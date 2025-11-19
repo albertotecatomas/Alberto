@@ -7,9 +7,7 @@
     <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+   
 </head>
 <body>
     <header>
@@ -28,6 +26,10 @@
 
     <main>
         
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <!-- Tela Inicial - Formulário de Dados Pessoais -->
     <section id="startScreen" class="screen">
         <div class="container">
@@ -97,7 +99,6 @@
             
             <div class="quiz-actions">
                 <button id="nextButton" class="btn-next" onclick="nextQuestion()" style="display: none;">Próxima Pergunta</button>
-                <button id="resultsButton" class="btn-results" onclick="showResults()" style="display: none;">Ver Resultados</button>
             </div>
         </div>
     </section>
@@ -497,6 +498,7 @@
             });
             
             document.getElementById('feedback').style.display = 'none';
+            document.getElementById('nextButton').style.display = 'none';
         }
 
         // Selecionar resposta
@@ -541,18 +543,7 @@
             }
             
             feedback.style.display = 'block';
-            
-            // Transição automática
-            const isLastQuestion = quizData.currentQuestionIndex === quizData.selectedQuestions.length - 1;
-            const delayTime = isLastQuestion ? 1500 : 2000;
-            
-            setTimeout(() => {
-                if (isLastQuestion) {
-                    endQuiz();
-                } else {
-                    nextQuestion();
-                }
-            }, delayTime);
+            document.getElementById('nextButton').style.display = 'block';
         }
 
         // Próxima pergunta
@@ -566,7 +557,7 @@
             }
         }
 
-        // Finalizar quiz e exibir resultados
+        // Finalizar quiz
         function endQuiz() {
             quizData.endTime = new Date();
             
@@ -604,141 +595,84 @@
 
         // Exibir resultados
         function displayResults(percentage, knowledgeLevel, riskProfile, riskPercentage) {
-            try {
-                // Informações do jogador
-                const playerInfoElement = document.getElementById('playerInfoText');
-                if (playerInfoElement) {
-                    playerInfoElement.textContent = 
-                        `${playerData.name}, ${playerData.age} anos, ${playerData.gender}, ${playerData.location}`;
-                }
-                
-                // Estatísticas de desempenho
-                const totalQuestions = quizData.selectedQuestions.length;
-                const knowledgeQuestions = totalQuestions - quizData.totalRiskQuestions;
-                
-                const performanceStatsElement = document.getElementById('performanceStats');
-                if (performanceStatsElement) {
-                    performanceStatsElement.innerHTML = `
-                        <p>Pontuação: ${quizData.score}/${knowledgeQuestions}</p>
-                        <p>Percentual de acertos: ${percentage.toFixed(1)}%</p>
-                        <p>Tempo total: ${calculateQuizTime()} minutos</p>
-                    `;
-                }
-                
-                // Classificação de conhecimento
-                const knowledgeLevelElement = document.getElementById('knowledgeLevel');
-                if (knowledgeLevelElement) {
-                    knowledgeLevelElement.innerHTML = `
-                        <p><strong>${knowledgeLevel}</strong></p>
-                        <p>${getKnowledgeDescription(knowledgeLevel)}</p>
-                    `;
-                }
-                
-                // Perfil de risco
-                const riskProfileElement = document.getElementById('riskProfileResult');
-                if (riskProfileElement) {
-                    riskProfileElement.innerHTML = `
-                        <p><strong>${riskProfile}</strong> (${riskPercentage.toFixed(1)}%)</p>
-                        <p>${getRiskProfileDescription(riskProfile)}</p>
-                    `;
-                }
-                
-                // Detalhamento das respostas
-                displayAnswersDetails();
-                
-                // Gráfico
-                createResultsChart(quizData.score, knowledgeQuestions - quizData.score);
-            } catch (error) {
-                console.error('Erro ao exibir resultados:', error);
-                alert('⚠️ Erro ao exibir resultados. Por favor, recarregue a página e tente novamente.');
-            }
+            // Informações do jogador
+            document.getElementById('playerInfoText').textContent = 
+                `${playerData.name}, ${playerData.age} anos, ${playerData.gender}, ${playerData.location}`;
+            
+            // Estatísticas de desempenho
+            const totalQuestions = quizData.selectedQuestions.length;
+            const knowledgeQuestions = totalQuestions - quizData.totalRiskQuestions;
+            
+            document.getElementById('performanceStats').innerHTML = `
+                <p>Pontuação: ${quizData.score}/${knowledgeQuestions}</p>
+                <p>Percentual de acertos: ${percentage.toFixed(1)}%</p>
+                <p>Tempo total: ${calculateQuizTime()} minutos</p>
+            `;
+            
+            // Classificação de conhecimento
+            document.getElementById('knowledgeLevel').innerHTML = `
+                <p><strong>${knowledgeLevel}</strong></p>
+                <p>${getKnowledgeDescription(knowledgeLevel)}</p>
+            `;
+            
+            // Perfil de risco
+            document.getElementById('riskProfileResult').innerHTML = `
+                <p><strong>${riskProfile}</strong> (${riskPercentage.toFixed(1)}%)</p>
+                <p>${getRiskProfileDescription(riskProfile)}</p>
+            `;
+            
+            // Detalhamento das respostas
+            displayAnswersDetails();
+            
+            // Gráfico
+            createResultsChart(quizData.score, knowledgeQuestions - quizData.score);
         }
 
         // Detalhamento das respostas
         function displayAnswersDetails() {
-            try {
-                const container = document.getElementById('answersDetails');
-                if (!container) {
-                    console.warn('Elemento answersDetails não encontrado');
-                    return;
+            const container = document.getElementById('answersDetails');
+            let html = '';
+            
+            quizData.answers.forEach((answer, index) => {
+                if (!answer.riskQuestion) {
+                    const status = answer.isCorrect ? '✅' : '❌';
+                    html += `
+                        <div class="answer-item">
+                            <p><strong>P${index + 1}:</strong> ${answer.question}</p>
+                            <p>Sua resposta: ${String.fromCharCode(65 + answer.selectedAnswer)}) - 
+                            ${quizData.selectedQuestions[index].options[answer.selectedAnswer]}</p>
+                            <p>${status} Resposta correta: ${String.fromCharCode(65 + answer.correctAnswer)}) - 
+                            ${quizData.selectedQuestions[index].options[answer.correctAnswer]}</p>
+                        </div>
+                    `;
                 }
-                
-                let html = '';
-                let knowledgeQuestionNumber = 0;
-                
-                quizData.answers.forEach((answer, answerIndex) => {
-                    if (!answer.riskQuestion) {
-                        knowledgeQuestionNumber++;
-                        const status = answer.isCorrect ? '✅' : '❌';
-                        
-                        // Validar índices
-                        const selectedQuestion = quizData.selectedQuestions[answerIndex];
-                        if (!selectedQuestion) {
-                            console.warn(`Pergunta não encontrada no índice ${answerIndex}`);
-                            return;
-                        }
-                        
-                        const selectedOptionText = answer.selectedAnswer >= 0 && answer.selectedAnswer < selectedQuestion.options.length 
-                            ? selectedQuestion.options[answer.selectedAnswer] 
-                            : 'Opção inválida';
-                        const correctOptionText = answer.correctAnswer >= 0 && answer.correctAnswer < selectedQuestion.options.length 
-                            ? selectedQuestion.options[answer.correctAnswer] 
-                            : 'Opção inválida';
-                        
-                        html += `
-                            <div class="answer-item">
-                                <p><strong>P${knowledgeQuestionNumber}:</strong> ${answer.question}</p>
-                                <p>Sua resposta: ${String.fromCharCode(65 + answer.selectedAnswer)}) - ${selectedOptionText}</p>
-                                <p>${status} Resposta correta: ${String.fromCharCode(65 + answer.correctAnswer)}) - ${correctOptionText}</p>
-                            </div>
-                        `;
-                    }
-                });
-                
-                container.innerHTML = html || '<p>Nenhuma resposta para exibir.</p>';
-            } catch (error) {
-                console.error('Erro ao exibir detalhamento de respostas:', error);
-                document.getElementById('answersDetails').innerHTML = '<p>Erro ao exibir as respostas. Por favor, tente novamente.</p>';
-            }
+            });
+            
+            container.innerHTML = html;
         }
 
         // Criar gráfico de resultados
         function createResultsChart(correct, incorrect) {
-            try {
-                const chartElement = document.getElementById('resultsChart');
-                if (!chartElement) {
-                    console.warn('Elemento do gráfico não encontrado');
-                    return;
-                }
-                
-                // Destruir gráfico anterior se existir
-                if (window.resultsChartInstance) {
-                    window.resultsChartInstance.destroy();
-                }
-                
-                const ctx = chartElement.getContext('2d');
-                window.resultsChartInstance = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Acertos', 'Erros'],
-                        datasets: [{
-                            data: [correct, incorrect],
-                            backgroundColor: ['#4CAF50', '#F44336']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Distribuição de Acertos/Erros'
-                            }
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Acertos', 'Erros'],
+                    datasets: [{
+                        data: [correct, incorrect],
+                        backgroundColor: ['#4CAF50', '#F44336']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Distribuição de Acertos/Erros'
                         }
                     }
-                });
-            } catch (error) {
-                console.error('Erro ao criar gráfico:', error);
-            }
+                }
+            });
         }
 
         // =============================================
@@ -785,153 +719,148 @@
         // =============================================
 
         async function generateReportPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const currentDate = new Date().toLocaleDateString('pt-PT');
+            const currentTime = new Date().toLocaleTimeString('pt-PT');
+            
+            let yPosition = 20;
+
+            // Cabeçalho
+            doc.setFontSize(16);
+            doc.text('Jogo de Simulação de Investimento', 20, yPosition);
+            yPosition += 8;
+            doc.setFontSize(12);
+            doc.text('Teca Capital Investimentos', 20, yPosition);
+            yPosition += 6;
+            doc.text('Elaborado por Alberto Teca Tomás', 20, yPosition);
+            yPosition += 10;
+            doc.setFontSize(10);
+            doc.text(`Data e hora do download: ${currentDate} às ${currentTime}`, 20, yPosition);
+            yPosition += 15;
+
+            // Dados do jogador
+            doc.setFontSize(14);
+            doc.text('Dados do Jogador', 20, yPosition);
+            yPosition += 10;
+            doc.setFontSize(10);
+            doc.text(`Nome: ${playerData.name}`, 20, yPosition);
+            yPosition += 6;
+            doc.text(`Idade: ${playerData.idade} anos`, 20, yPosition);
+            yPosition += 6;
+            doc.text(`Sexo: ${playerData.gender}`, 20, yPosition);
+            yPosition += 6;
+            doc.text(`Localização: ${playerData.location}`, 20, yPosition);
+            yPosition += 6;
+            doc.text(`Nível selecionado: ${playerData.level}`, 20, yPosition);
+            yPosition += 15;
+
+            // Resultados
+            const totalQuestions = quizData.selectedQuestions.length;
+            const knowledgeQuestions = totalQuestions - quizData.totalRiskQuestions;
+            const percentage = (quizData.score / knowledgeQuestions) * 100;
+            
+            // Classificação de conhecimento
+            let knowledgeLevel = '';
+            if (quizData.score < 5 || percentage < 30) {
+                knowledgeLevel = 'Insuficiente';
+            } else if (percentage >= 80) {
+                knowledgeLevel = 'Avançado';
+            } else {
+                knowledgeLevel = 'Médio';
+            }
+            
+            // Perfil de risco
+            const maxRiskScore = quizData.totalRiskQuestions * 3;
+            const riskPercentage = (quizData.riskScore / maxRiskScore) * 100;
+            let riskProfile = riskPercentage <= 33 ? 'Preservado' : riskPercentage <= 66 ? 'Regular' : 'Agressivo';
+
+            doc.setFontSize(14);
+            doc.text('Resultados do Quiz', 20, yPosition);
+            yPosition += 10;
+            doc.setFontSize(10);
+            doc.text(`Pontuação: ${quizData.score}/${knowledgeQuestions} (${percentage.toFixed(1)}%)`, 20, yPosition);
+            yPosition += 8;
+            doc.text(`Classificação de Conhecimento: ${knowledgeLevel}`, 20, yPosition);
+            yPosition += 8;
+            doc.text(`Perfil de Risco: ${riskProfile}`, 20, yPosition);
+            yPosition += 15;
+
+            // Gráfico
             try {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                const currentDate = new Date().toLocaleDateString('pt-PT');
-                const currentTime = new Date().toLocaleTimeString('pt-PT');
-                
-                let yPosition = 20;
-
-                // Cabeçalho
-                doc.setFontSize(16);
-                doc.text('Relatório do Quiz de Investimentos', 20, yPosition);
-                yPosition += 8;
-                doc.setFontSize(12);
-                doc.text('Teca Capital Investimentos', 20, yPosition);
-                yPosition += 6;
-                doc.text('Elaborado por Alberto Teca Tomás', 20, yPosition);
+                const chartCanvas = document.getElementById('resultsChart');
+                const chartImage = await html2canvas(chartCanvas);
+                const imgData = chartImage.toDataURL('image/png');
+                doc.addImage(imgData, 'PNG', 20, yPosition, 170, 80);
+                yPosition += 90;
+            } catch (error) {
+                console.log('Erro ao capturar gráfico:', error);
                 yPosition += 10;
-                doc.setFontSize(10);
-                doc.text(`Data e hora do download: ${currentDate} às ${currentTime}`, 20, yPosition);
-                yPosition += 15;
+            }
 
-                // Dados do jogador
-                doc.setFontSize(14);
-                doc.text('Dados do Jogador', 20, yPosition);
-                yPosition += 10;
-                doc.setFontSize(10);
-                doc.text(`Nome: ${playerData.name}`, 20, yPosition);
-                yPosition += 6;
-                doc.text(`Idade: ${playerData.age} anos`, 20, yPosition);
-                yPosition += 6;
-                doc.text(`Sexo: ${playerData.gender}`, 20, yPosition);
-                yPosition += 6;
-                doc.text(`Localização: ${playerData.location}`, 20, yPosition);
-                yPosition += 6;
-                doc.text(`Nível selecionado: ${playerData.level}`, 20, yPosition);
-                yPosition += 15;
-
-                // Resultados
-                const totalQuestions = quizData.selectedQuestions.length;
-                const knowledgeQuestions = totalQuestions - quizData.totalRiskQuestions;
-                const percentage = (quizData.score / knowledgeQuestions) * 100;
-                
-                // Classificação de conhecimento
-                let knowledgeLevel = '';
-                if (quizData.score < 5 || percentage < 30) {
-                    knowledgeLevel = 'Insuficiente';
-                } else if (percentage >= 80) {
-                    knowledgeLevel = 'Avançado';
-                } else {
-                    knowledgeLevel = 'Médio';
-                }
-                
-                // Perfil de risco
-                const maxRiskScore = quizData.totalRiskQuestions * 3;
-                const riskPercentage = (quizData.riskScore / maxRiskScore) * 100;
-                let riskProfile = riskPercentage <= 33 ? 'Preservado' : riskPercentage <= 66 ? 'Regular' : 'Agressivo';
-
-                doc.setFontSize(14);
-                doc.text('Resultados do Quiz', 20, yPosition);
-                yPosition += 10;
-                doc.setFontSize(10);
-                doc.text(`Pontuação: ${quizData.score}/${knowledgeQuestions} (${percentage.toFixed(1)}%)`, 20, yPosition);
-                yPosition += 8;
-                doc.text(`Classificação de Conhecimento: ${knowledgeLevel}`, 20, yPosition);
-                yPosition += 8;
-                doc.text(`Perfil de Risco: ${riskProfile}`, 20, yPosition);
-                yPosition += 15;
-
-                // Gráfico
-                try {
-                    const chartCanvas = document.getElementById('resultsChart');
-                    const chartImage = await html2canvas(chartCanvas);
-                    const imgData = chartImage.toDataURL('image/png');
-                    doc.addImage(imgData, 'PNG', 20, yPosition, 170, 80);
-                    yPosition += 90;
-                } catch (error) {
-                    console.log('Erro ao capturar gráfico:', error);
-                    yPosition += 10;
-                }
-
-                // Resumo das respostas (primeiras 5)
-                doc.setFontSize(14);
-                doc.text('Resumo das Respostas', 20, yPosition);
-                yPosition += 10;
-                doc.setFontSize(8);
-                
-                for (let i = 0; i < Math.min(5, quizData.answers.length); i++) {
-                    const answer = quizData.answers[i];
-                    if (!answer.riskQuestion) {
-                        const questionText = doc.splitTextToSize(`P${i + 1}: ${answer.question}`, 170);
-                        doc.text(questionText, 20, yPosition);
-                        yPosition += questionText.length * 3;
-                        
-                        const userAnswer = `Sua resposta: ${String.fromCharCode(65 + answer.selectedAnswer)}`;
-                        doc.text(userAnswer, 20, yPosition);
-                        yPosition += 4;
-                        
-                        const correctAnswer = `Resposta correta: ${String.fromCharCode(65 + answer.correctAnswer)}`;
-                        doc.text(correctAnswer, 20, yPosition);
-                        yPosition += 6;
-                        
-                        if (yPosition > 250) {
-                            doc.addPage();
-                            yPosition = 20;
-                        }
+            // Resumo das respostas (primeiras 5)
+            doc.setFontSize(14);
+            doc.text('Resumo das Respostas', 20, yPosition);
+            yPosition += 10;
+            doc.setFontSize(8);
+            
+            for (let i = 0; i < Math.min(5, quizData.answers.length); i++) {
+                const answer = quizData.answers[i];
+                if (!answer.riskQuestion) {
+                    const questionText = doc.splitTextToSize(`P${i + 1}: ${answer.question}`, 170);
+                    doc.text(questionText, 20, yPosition);
+                    yPosition += questionText.length * 3;
+                    
+                    const userAnswer = `Sua resposta: ${String.fromCharCode(65 + answer.selectedAnswer)}`;
+                    doc.text(userAnswer, 20, yPosition);
+                    yPosition += 4;
+                    
+                    const correctAnswer = `Resposta correta: ${String.fromCharCode(65 + answer.correctAnswer)}`;
+                    doc.text(correctAnswer, 20, yPosition);
+                    yPosition += 6;
+                    
+                    if (yPosition > 250) {
+                        doc.addPage();
+                        yPosition = 20;
                     }
                 }
+            }
 
-                // Recomendações
-                if (yPosition > 200) {
-                    doc.addPage();
-                    yPosition = 20;
-                }
-                
-                doc.setFontSize(14);
-                doc.text('Recomendações de Estudo', 20, yPosition);
-                yPosition += 10;
-                doc.setFontSize(10);
-                
-                const recommendations = `
+            // Recomendações
+            if (yPosition > 200) {
+                doc.addPage();
+                yPosition = 20;
+            }
+            
+            doc.setFontSize(14);
+            doc.text('Recomendações de Estudo', 20, yPosition);
+            yPosition += 10;
+            doc.setFontSize(10);
+            
+            const recommendations = `
 Se precisa aprofundar, recomendamos estudar:
 • Educação financeira básica
 • Diversificação de investimentos
 • Inflação e impacto cambial
 • Mercado de capitais angolano
 • Perfis de risco e tolerância
-                `.trim();
-                
-                const recLines = doc.splitTextToSize(recommendations, 170);
-                doc.text(recLines, 20, yPosition);
-                yPosition += recLines.length * 5 + 10;
+            `.trim();
+            
+            const recLines = doc.splitTextToSize(recommendations, 170);
+            doc.text(recLines, 20, yPosition);
+            yPosition += recLines.length * 5 + 10;
 
-                // Nota legal
-                doc.setFontSize(9);
-                doc.text('Documento processado pelo algoritmo da Teca Capital Investimentos.', 20, yPosition);
-                yPosition += 8;
-                doc.text('© Teca Capital Investimentos — Todos os direitos reservados.', 20, yPosition);
+            // Nota legal
+            doc.setFontSize(9);
+            doc.text('Documento processado pelo algoritmo da Teca Capital Investimentos.', 20, yPosition);
+            yPosition += 8;
+            doc.text('© Teca Capital Investimentos — Todos os direitos reservados.', 20, yPosition);
 
-                // Salvar PDF
-                doc.save(`relatorio_quiz_${playerData.name.replace(/\s+/g, '_')}_${currentDate.replace(/\//g, '-')}.pdf`);
-                
-                // Alerta de sucesso
-                alert('Relatório baixado com sucesso!');
-            } catch (error) {
-                console.error('Erro ao gerar PDF:', error);
-                alert('Desculpe, não foi possível gerar o relatório PDF. Por favor, tente novamente mais tarde.');
-            }
+            // Salvar PDF
+            doc.save(`relatorio_quiz_${playerData.name.replace(/\s+/g, '_')}_${currentDate.replace(/\//g, '-')}.pdf`);
+            
+            // Alerta de sucesso
+            alert('Relatório baixado com sucesso');
         }
 
         // =============================================
@@ -963,10 +892,12 @@ Se precisa aprofundar, recomendamos estudar:
         window.startQuiz = startQuiz;
         window.selectAnswer = selectAnswer;
         window.nextQuestion = nextQuestion;
-        window.showResults = showResults;
         window.generateReportPDF = generateReportPDF;
         window.restartQuiz = restartQuiz;
     </script>
+
+
+
 
     <!-- Simulador de investimentos -->
     <div class="simulator-container">
