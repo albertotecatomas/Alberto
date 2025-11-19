@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teca Capital Investimentos</title>
+    <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav id="navt">
+            <i class="fa-solid fa-hand-holding-dollar" id="navlogo"></i>
+           <ul id="lista">
+                <li class="navitem active"> <a href="index.html">Início</a>
+                </li>
+                <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
+                </li>   
+                <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+    <!-- Tela Inicial - Formulário de Dados Pessoais -->
+    <section id="startScreen" class="screen">
+        <div class="container">
+            <h1>Quiz de Investimentos</h1>
+            <p>Avalie seu conhecimento e descubra seu perfil de investidor</p>
+            
+            <form id="playerForm">
+                <div class="form-group">
+                    <label for="playerName">Nome Completo:</label>
+                    <input type="text" id="playerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="playerAge">Idade:</label>
+                    <input type="number" id="playerAge" min="18" max="100" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="playerGender">Sexo:</label>
+                    <select id="playerGender" required>
+                        <option value="">Selecione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                        <option value="prefiro_nao_dizer">Prefiro não dizer</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="playerLocation">Localização (Cidade/País):</label>
+                    <input type="text" id="playerLocation" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quizLevel">Nível do Quiz:</label>
+                    <select id="quizLevel" required>
+                        <option value="">Selecione o nível</option>
+                        <option value="iniciante">Iniciante (10 perguntas)</option>
+                        <option value="intermediario">Intermediário (25 perguntas)</option>
+                        <option value="avancado">Avançado (50 perguntas)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-start">Iniciar Jogo</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Tela do Quiz - Perguntas -->
+    <section id="quizScreen" class="screen" style="display: none;">
+        <div class="container">
+            <div class="quiz-header">
+                <h2>Quiz de Investimentos</h2>
+                <div class="progress">Pergunta <span id="currentQuestion">1</span> de <span id="totalQuestions">10</span></div>
+            </div>
+            
+            <div class="question-container">
+                <h3 id="questionText">Carregando pergunta...</h3>
+                <div id="optionsContainer" class="options-container">
+                    <!-- Opções serão geradas dinamicamente -->
+                </div>
+            </div>
+            
+            <div class="feedback" id="feedback" style="display: none;">
+                <p id="feedbackText"></p>
+            </div>
+            
+            <div class="quiz-actions">
+                <button id="nextButton" class="btn-next" onclick="nextQuestion()" style="display: none;">Próxima Pergunta</button>
+                <button id="resultsButton" class="btn-results" onclick="showResults()" style="display: none;">Ver Resultados</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tela de Resultados -->
+    <section id="resultsScreen" class="screen" style="display: none;">
+        <div class="container">
+            <h2>Resultados do Quiz</h2>
+            
+            <div class="player-info">
+                <h3>Dados do Jogador</h3>
+                <p id="playerInfoText"></p>
+            </div>
+            
+            <div class="results-summary">
+                <h3>Desempenho Geral</h3>
+                <div id="performanceStats"></div>
+            </div>
+            
+            <div class="knowledge-classification">
+                <h3>Classificação de Conhecimento</h3>
+                <div id="knowledgeLevel"></div>
+            </div>
+            
+            <div class="risk-profile">
+                <h3>Perfil de Risco</h3>
+                <div id="riskProfileResult"></div>
+            </div>
+            
+            <div class="detailed-results">
+                <h3>Detalhamento das Respostas</h3>
+                <div id="answersDetails"></div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="resultsChart"></canvas>
+            </div>
+            
+            <div class="final-actions">
+                <button class="btn-download" onclick="generateReportPDF()">Baixar Relatório (PDF)</button>
+                <button class="btn-restart" onclick="restartQuiz()">Jogar de Novo</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // =============================================
+        // CONFIGURAÇÕES E VARIÁVEIS GLOBAIS
+        // =============================================
+        
+        let currentScreen = 'startScreen';
+        let playerData = {};
+        let quizData = {
+            currentQuestionIndex: 0,
+            score: 0,
+            riskScore: 0,
+            totalRiskQuestions: 0,
+            answers: [],
+            selectedQuestions: [],
+            startTime: null,
+            endTime: null
+        };
+
+        // =============================================
+        // BANCO DE PERGUNTAS - FÁCIL ADIÇÃO/EDIÇÃO
+        // =============================================
+        
+        const questionBank = [
+            // PERGUNTAS SOBRE ANGOLA (10 perguntas)
+            {
+                id: 1,
+                question: "Em que ano foi criada a Bolsa de Dívida e Valores de Angola (BODIVA)?",
+                options: ["2010", "2014", "2018", "2020"],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "iniciante",
+                riskQuestion: false
+            },
+            {
+                id: 2,
+                question: "Qual foi a primeira empresa a ser listada na BODIVA?",
+                options: ["Sonangol", "BAI - Banco Angolano de Investimentos", "Endiama", "Unitel"],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "iniciante",
+                riskQuestion: false
+            },
+            {
+                id: 3,
+                question: "Qual é a moeda oficial de Angola?",
+                options: ["Dólar Americano", "Euro", "Kwanza", "Rand"],
+                correctAnswer: 2,
+                category: "Angola",
+                level: "iniciante",
+                riskQuestion: false
+            },
+            {
+                id: 4,
+                question: "Qual órgão supervisiona o mercado de capitais em Angola?",
+                options: ["Banco Nacional de Angola", "Comissão do Mercado de Capitais", "Ministério das Finanças", "BODIVA"],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "intermediario",
+                riskQuestion: false
+            },
+            {
+                id: 5,
+                question: "Qual é o principal produto de exportação de Angola?",
+                options: ["Diamantes", "Petróleo", "Café", "Pesca"],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "iniciante",
+                riskQuestion: false
+            },
+            {
+                id: 6,
+                question: "Quantas empresas estavam listadas na BODIVA até 2024?",
+                options: ["3 empresas", "5 empresas", "8 empresas", "12 empresas"],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "intermediario",
+                riskQuestion: false
+            },
+            {
+                id: 7,
+                question: "Qual destes NÃO é um tipo de título negociado na BODIVA?",
+                options: ["Obrigações do Tesouro", "Bilhetes do Tesouro", "Ações Ordinárias", "Certificados de Depósito"],
+                correctAnswer: 3,
+                category: "Angola",
+                level: "intermediario",
+                riskQuestion: false
+            },
+            {
+                id: 8,
+                question: "Qual é o prazo máximo dos Bilhetes do Tesouro em Angola?",
+                options: ["6 meses", "1 ano", "2 anos", "5 anos"],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "intermediario",
+                riskQuestion: false
+            },
+            {
+                id: 9,
+                question: "Qual banco angolano foi o primeiro a emitir obrigações na BODIVA?",
+                options: ["BFA", "BAI", "BPC", "BCGA"],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "avancado",
+                riskQuestion: false
+            },
+            {
+                id: 10,
+                question: "Qual foi o principal objetivo da criação da BODIVA?",
+                options: [
+                    "Substituir o Banco Nacional de Angola",
+                    "Desenvolver o mercado de capitais angolano",
+                    "Controlar a inflação",
+                    "Emitir moeda estrangeira"
+                ],
+                correctAnswer: 1,
+                category: "Angola",
+                level: "intermediario",
+                riskQuestion: false
+            },
+
+            // PERGUNTAS DE MACROECONOMIA
+            {
+                id: 11,
+                question: "O que é inflação?",
+                options: [
+                    "Aumento geral dos preços de bens e serviços",
+                    "Queda do valor da moeda estrangeira",
+                    "Aumento da produção industrial",
+                    "Crescimento do PIB"
+                ],
+                correctAnswer: 0,
+                category: "Macroeconomia",
+                level: "iniciante",
+                riskQuestion: false
+            },
+            {
+                id: 12,
+                question: "O que mede o Produto Interno Bruto (PIB)?",
+                options: [
+                    "O valor total de bens e serviços produzidos num país",
+                    "A taxa de desemprego",
+                    "A inflação acumulada",
+                    "O saldo da balança comercial"
+                ],
+                correctAnswer: 0,
+                category: "Macroeconomia",
+                level: "iniciante",
+                riskQuestion: false
+            },
+
+            // PERGUNTAS DE CRIPTOMOEDAS
+            {
+                id: 13,
+                question: "O que é Bitcoin?",
+                options: [
+                    "Uma moeda digital descentralizada",
+                    "Um tipo de ação tecnológica",
+                    "Um fundo de investimento",
+                    "Uma aplicação bancária"
+                ],
+                correctAnswer: 0,
+                category: "Criptomoedas",
+                level: "iniciante",
+                riskQuestion: false
+            },
+
+            // PERGUNTAS DE AÇÕES
+            {
+                id: 14,
+                question: "O que são ações ordinárias?",
+                options: [
+                    "Ações com direito a voto em assembleias",
+                    "Ações com dividendos fixos",
+                    "Ações do governo",
+                    "Ações internacionais"
+                ],
+                correctAnswer: 0,
+                category: "Ações",
+                level: "iniciante",
+                riskQuestion: false
+            },
+
+            // PERGUNTAS DE RENDA FIXA
+            {
+                id: 15,
+                question: "O que são títulos do tesouro?",
+                options: [
+                    "Títulos de dívida emitidos pelo governo",
+                    "Ações de empresas estatais",
+                    "Moedas estrangeiras",
+                    "Certificados de depósito bancário"
+                ],
+                correctAnswer: 0,
+                category: "Renda Fixa",
+                level: "iniciante",
+                riskQuestion: false
+            },
+
+            // PERGUNTAS DE PERFIL DE RISCO (5-8 perguntas)
+            {
+                id: 101,
+                question: "Se as ações estão em alta há 10 meses consecutivos, você:",
+                options: [
+                    "Compra mais ações (aproveita a tendência)",
+                    "Mantém sua posição atual",
+                    "Vende parte para realizar lucros",
+                    "Vende tudo e espera queda"
+                ],
+                correctAnswer: -1, // Sem resposta correta - é perfil
+                category: "Perfil de Risco",
+                level: "all",
+                riskQuestion: true,
+                riskWeights: [3, 2, 1, 0] // 3 = agressivo, 0 = preservado
+            },
+            {
+                id: 102,
+                question: "Qual é seu objetivo principal ao investir?",
+                options: [
+                    "Crescer o patrimônio rapidamente, aceitando riscos",
+                    "Crescer consistentemente com algum risco",
+                    "Preservar o capital com crescimento moderado",
+                    "Apenas proteger contra a inflação"
+                ],
+                correctAnswer: -1,
+                category: "Perfil de Risco",
+                level: "all",
+                riskQuestion: true,
+                riskWeights: [3, 2, 1, 0]
+            },
+            {
+                id: 103,
+                question: "Como você reagiria a uma queda de 30% no valor dos seus investimentos?",
+                options: [
+                    "Aumentaria os investimentos (é oportunidade)",
+                    "Manteria as posições (é volatilidade normal)",
+                    "Reduziria um pouco a exposição",
+                    "Venderia tudo para evitar mais perdas"
+                ],
+                correctAnswer: -1,
+                category: "Perfil de Risco",
+                level: "all",
+                riskQuestion: true,
+                riskWeights: [3, 2, 1, 0]
+            },
+            {
+                id: 104,
+                question: "Qual horizonte de investimento você prefere?",
+                options: [
+                    "Curto prazo (até 1 ano)",
+                    "Médio prazo (1-5 anos)",
+                    "Longo prazo (5-10 anos)",
+                    "Muito longo prazo (+10 anos)"
+                ],
+                correctAnswer: -1,
+                category: "Perfil de Risco",
+                level: "all",
+                riskQuestion: true,
+                riskWeights: [3, 2, 1, 0]
+            },
+            {
+                id: 105,
+                question: "Que porcentagem da sua renda você se sente confortável em investir?",
+                options: [
+                    "Mais de 30%",
+                    "15-30%",
+                    "5-15%",
+                    "Até 5%"
+                ],
+                correctAnswer: -1,
+                category: "Perfil de Risco",
+                level: "all",
+                riskQuestion: true,
+                riskWeights: [3, 2, 1, 0]
+            }
+        ];
+
+        // =============================================
+        // FUNÇÕES PRINCIPAIS DO JOGO
+        // =============================================
+
+        // Inicialização do jogo
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('playerForm').addEventListener('submit', startQuiz);
+        });
+
+        // Iniciar o quiz
+        function startQuiz(event) {
+            event.preventDefault();
+            
+            // Coletar dados do jogador
+            playerData = {
+                name: document.getElementById('playerName').value,
+                age: document.getElementById('playerAge').value,
+                gender: document.getElementById('playerGender').value,
+                location: document.getElementById('playerLocation').value,
+                level: document.getElementById('quizLevel').value
+            };
+            
+            // Configurar quiz baseado no nível
+            const levelConfig = {
+                iniciante: 10,
+                intermediario: 25,
+                avancado: 50
+            };
+            
+            const totalQuestions = levelConfig[playerData.level];
+            selectQuestions(totalQuestions);
+            
+            // Iniciar quiz
+            quizData.startTime = new Date();
+            quizData.currentQuestionIndex = 0;
+            quizData.score = 0;
+            quizData.riskScore = 0;
+            quizData.totalRiskQuestions = 0;
+            quizData.answers = [];
+            
+            showScreen('quizScreen');
+            displayQuestion();
+        }
+
+        // Selecionar perguntas aleatórias
+        function selectQuestions(totalNeeded) {
+            const filteredQuestions = questionBank.filter(q => 
+                q.level === "all" || q.level === playerData.level
+            );
+            
+            // Embaralhar perguntas
+            const shuffled = [...filteredQuestions].sort(() => Math.random() - 0.5);
+            quizData.selectedQuestions = shuffled.slice(0, totalNeeded);
+            
+            // Contar perguntas de risco
+            quizData.totalRiskQuestions = quizData.selectedQuestions.filter(q => q.riskQuestion).length;
+        }
+
+        // Exibir pergunta atual
+        function displayQuestion() {
+            const currentQuestion = quizData.selectedQuestions[quizData.currentQuestionIndex];
+            
+            document.getElementById('currentQuestion').textContent = quizData.currentQuestionIndex + 1;
+            document.getElementById('totalQuestions').textContent = quizData.selectedQuestions.length;
+            document.getElementById('questionText').textContent = currentQuestion.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            currentQuestion.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = `${String.fromCharCode(65 + index)}) ${option}`;
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+            
+            document.getElementById('feedback').style.display = 'none';
+        }
+
+        // Selecionar resposta
+        function selectAnswer(selectedIndex) {
+            const currentQuestion = quizData.selectedQuestions[quizData.currentQuestionIndex];
+            const isCorrect = selectedIndex === currentQuestion.correctAnswer;
+            
+            // Desabilitar todos os botões
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            // Calcular pontuação
+            if (currentQuestion.riskQuestion) {
+                // Pergunta de perfil de risco
+                quizData.riskScore += currentQuestion.riskWeights[selectedIndex];
+            } else if (isCorrect) {
+                // Pergunta de conhecimento - resposta correta
+                quizData.score++;
+            }
+            
+            // Salvar resposta
+            quizData.answers.push({
+                question: currentQuestion.question,
+                selectedAnswer: selectedIndex,
+                correctAnswer: currentQuestion.correctAnswer,
+                isCorrect: isCorrect,
+                category: currentQuestion.category,
+                riskQuestion: currentQuestion.riskQuestion
+            });
+            
+            // Mostrar feedback
+            const feedback = document.getElementById('feedback');
+            const feedbackText = document.getElementById('feedbackText');
+            
+            if (currentQuestion.riskQuestion) {
+                feedbackText.textContent = "Pergunta de perfil registrada!";
+            } else if (isCorrect) {
+                feedbackText.textContent = "Acertou!";
+            } else {
+                feedbackText.textContent = `Errou! Resposta correta: ${String.fromCharCode(65 + currentQuestion.correctAnswer)}) ${currentQuestion.options[currentQuestion.correctAnswer]}`;
+            }
+            
+            feedback.style.display = 'block';
+            
+            // Transição automática
+            const isLastQuestion = quizData.currentQuestionIndex === quizData.selectedQuestions.length - 1;
+            const delayTime = isLastQuestion ? 1500 : 2000;
+            
+            setTimeout(() => {
+                if (isLastQuestion) {
+                    endQuiz();
+                } else {
+                    nextQuestion();
+                }
+            }, delayTime);
+        }
+
+        // Próxima pergunta
+        function nextQuestion() {
+            quizData.currentQuestionIndex++;
+            
+            if (quizData.currentQuestionIndex < quizData.selectedQuestions.length) {
+                displayQuestion();
+            } else {
+                endQuiz();
+            }
+        }
+
+        // Finalizar quiz e exibir resultados
+        function endQuiz() {
+            quizData.endTime = new Date();
+            
+            // Calcular resultados
+            const totalKnowledgeQuestions = quizData.selectedQuestions.length - quizData.totalRiskQuestions;
+            const percentage = (quizData.score / totalKnowledgeQuestions) * 100;
+            
+            // Classificação de conhecimento
+            let knowledgeLevel = '';
+            if (quizData.score < 5 || percentage < 30) {
+                knowledgeLevel = 'Insuficiente';
+            } else if (percentage >= 80) {
+                knowledgeLevel = 'Avançado';
+            } else {
+                knowledgeLevel = 'Médio';
+            }
+            
+            // Perfil de risco
+            const maxRiskScore = quizData.totalRiskQuestions * 3;
+            const riskPercentage = (quizData.riskScore / maxRiskScore) * 100;
+            
+            let riskProfile = '';
+            if (riskPercentage <= 33) {
+                riskProfile = 'Preservado';
+            } else if (riskPercentage <= 66) {
+                riskProfile = 'Regular';
+            } else {
+                riskProfile = 'Agressivo';
+            }
+            
+            // Exibir resultados
+            displayResults(percentage, knowledgeLevel, riskProfile, riskPercentage);
+            showScreen('resultsScreen');
+        }
+
+        // Exibir resultados
+        function displayResults(percentage, knowledgeLevel, riskProfile, riskPercentage) {
+            try {
+                // Informações do jogador
+                const playerInfoElement = document.getElementById('playerInfoText');
+                if (playerInfoElement) {
+                    playerInfoElement.textContent = 
+                        `${playerData.name}, ${playerData.age} anos, ${playerData.gender}, ${playerData.location}`;
+                }
+                
+                // Estatísticas de desempenho
+                const totalQuestions = quizData.selectedQuestions.length;
+                const knowledgeQuestions = totalQuestions - quizData.totalRiskQuestions;
+                
+                const performanceStatsElement = document.getElementById('performanceStats');
+                if (performanceStatsElement) {
+                    performanceStatsElement.innerHTML = `
+                        <p>Pontuação: ${quizData.score}/${knowledgeQuestions}</p>
+                        <p>Percentual de acertos: ${percentage.toFixed(1)}%</p>
+                        <p>Tempo total: ${calculateQuizTime()} minutos</p>
+                    `;
+                }
+                
+                // Classificação de conhecimento
+                const knowledgeLevelElement = document.getElementById('knowledgeLevel');
+                if (knowledgeLevelElement) {
+                    knowledgeLevelElement.innerHTML = `
+                        <p><strong>${knowledgeLevel}</strong></p>
+                        <p>${getKnowledgeDescription(knowledgeLevel)}</p>
+                    `;
+                }
+                
+                // Perfil de risco
+                const riskProfileElement = document.getElementById('riskProfileResult');
+                if (riskProfileElement) {
+                    riskProfileElement.innerHTML = `
+                        <p><strong>${riskProfile}</strong> (${riskPercentage.toFixed(1)}%)</p>
+                        <p>${getRiskProfileDescription(riskProfile)}</p>
+                    `;
+                }
+                
+                // Detalhamento das respostas
+                displayAnswersDetails();
+                
+                // Gráfico
+                createResultsChart(quizData.score, knowledgeQuestions - quizData.score);
+            } catch (error) {
+                console.error('Erro ao exibir resultados:', error);
+                alert('⚠️ Erro ao exibir resultados. Por favor, recarregue a página e tente novamente.');
+            }
+        }
+
+        // Detalhamento das respostas
+        function displayAnswersDetails() {
+            try {
+                const container = document.getElementById('answersDetails');
+                if (!container) {
+                    console.warn('Elemento answersDetails não encontrado');
+                    return;
+                }
+                
+                let html = '';
+                let knowledgeQuestionNumber = 0;
+                
+                quizData.answers.forEach((answer, answerIndex) => {
+                    if (!answer.riskQuestion) {
+                        knowledgeQuestionNumber++;
+                        const status = answer.isCorrect ? '✅' : '❌';
+                        
+                        // Validar índices
+                        const selectedQuestion = quizData.selectedQuestions[answerIndex];
+                        if (!selectedQuestion) {
+                            console.warn(`Pergunta não encontrada no índice ${answerIndex}`);
+                            return;
+                        }
+                        
+                        const selectedOptionText = answer.selectedAnswer >= 0 && answer.selectedAnswer < selectedQuestion.options.length 
+                            ? selectedQuestion.options[answer.selectedAnswer] 
+                            : 'Opção inválida';
+                        const correctOptionText = answer.correctAnswer >= 0 && answer.correctAnswer < selectedQuestion.options.length 
+                            ? selectedQuestion.options[answer.correctAnswer] 
+                            : 'Opção inválida';
+                        
+                        html += `
+                            <div class="answer-item">
+                                <p><strong>P${knowledgeQuestionNumber}:</strong> ${answer.question}</p>
+                                <p>Sua resposta: ${String.fromCharCode(65 + answer.selectedAnswer)}) - ${selectedOptionText}</p>
+                                <p>${status} Resposta correta: ${String.fromCharCode(65 + answer.correctAnswer)}) - ${correctOptionText}</p>
+                            </div>
+                        `;
+                    }
+                });
+                
+                container.innerHTML = html || '<p>Nenhuma resposta para exibir.</p>';
+            } catch (error) {
+                console.error('Erro ao exibir detalhamento de respostas:', error);
+                document.getElementById('answersDetails').innerHTML = '<p>Erro ao exibir as respostas. Por favor, tente novamente.</p>';
+            }
+        }
+
+        // Criar gráfico de resultados
+        function createResultsChart(correct, incorrect) {
+            try {
+                const chartElement = document.getElementById('resultsChart');
+                if (!chartElement) {
+                    console.warn('Elemento do gráfico não encontrado');
+                    return;
+                }
+                
+                // Destruir gráfico anterior se existir
+                if (window.resultsChartInstance) {
+                    window.resultsChartInstance.destroy();
+                }
+                
+                const ctx = chartElement.getContext('2d');
+                window.resultsChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Acertos', 'Erros'],
+                        datasets: [{
+                            data: [correct, incorrect],
+                            backgroundColor: ['#4CAF50', '#F44336']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Distribuição de Acertos/Erros'
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Erro ao criar gráfico:', error);
+            }
+        }
+
+        // =============================================
+        // FUNÇÕES AUXILIARES
+        // =============================================
+
+        // Trocar telas
+        function showScreen(screenName) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            document.getElementById(screenName).style.display = 'block';
+            currentScreen = screenName;
+        }
+
+        // Calcular tempo do quiz
+        function calculateQuizTime() {
+            const diff = quizData.endTime - quizData.startTime;
+            return Math.round(diff / 60000);
+        }
+
+        // Descrição da classificação de conhecimento
+        function getKnowledgeDescription(level) {
+            const descriptions = {
+                'Insuficiente': 'Recomenda-se estudar conceitos básicos de finanças e investimentos.',
+                'Médio': 'Bom conhecimento base, pode aprofundar em temas específicos.',
+                'Avançado': 'Excelente domínio dos conceitos de investimento.'
+            };
+            return descriptions[level];
+        }
+
+        // Descrição do perfil de risco
+        function getRiskProfileDescription(profile) {
+            const descriptions = {
+                'Preservado': 'Prefere segurança e estabilidade nos investimentos.',
+                'Regular': 'Equilibra risco e retorno de forma moderada.',
+                'Agressivo': 'Confortável com riscos maiores em busca de retornos superiores.'
+            };
+            return descriptions[profile];
+        }
+
+        // =============================================
+        // GERAÇÃO DE RELATÓRIO PDF
+        // =============================================
+
+        async function generateReportPDF() {
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const currentDate = new Date().toLocaleDateString('pt-PT');
+                const currentTime = new Date().toLocaleTimeString('pt-PT');
+                
+                let yPosition = 20;
+
+                // Cabeçalho
+                doc.setFontSize(16);
+                doc.text('Relatório do Quiz de Investimentos', 20, yPosition);
+                yPosition += 8;
+                doc.setFontSize(12);
+                doc.text('Teca Capital Investimentos', 20, yPosition);
+                yPosition += 6;
+                doc.text('Elaborado por Alberto Teca Tomás', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+                doc.text(`Data e hora do download: ${currentDate} às ${currentTime}`, 20, yPosition);
+                yPosition += 15;
+
+                // Dados do jogador
+                doc.setFontSize(14);
+                doc.text('Dados do Jogador', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+                doc.text(`Nome: ${playerData.name}`, 20, yPosition);
+                yPosition += 6;
+                doc.text(`Idade: ${playerData.age} anos`, 20, yPosition);
+                yPosition += 6;
+                doc.text(`Sexo: ${playerData.gender}`, 20, yPosition);
+                yPosition += 6;
+                doc.text(`Localização: ${playerData.location}`, 20, yPosition);
+                yPosition += 6;
+                doc.text(`Nível selecionado: ${playerData.level}`, 20, yPosition);
+                yPosition += 15;
+
+                // Resultados
+                const totalQuestions = quizData.selectedQuestions.length;
+                const knowledgeQuestions = totalQuestions - quizData.totalRiskQuestions;
+                const percentage = (quizData.score / knowledgeQuestions) * 100;
+                
+                // Classificação de conhecimento
+                let knowledgeLevel = '';
+                if (quizData.score < 5 || percentage < 30) {
+                    knowledgeLevel = 'Insuficiente';
+                } else if (percentage >= 80) {
+                    knowledgeLevel = 'Avançado';
+                } else {
+                    knowledgeLevel = 'Médio';
+                }
+                
+                // Perfil de risco
+                const maxRiskScore = quizData.totalRiskQuestions * 3;
+                const riskPercentage = (quizData.riskScore / maxRiskScore) * 100;
+                let riskProfile = riskPercentage <= 33 ? 'Preservado' : riskPercentage <= 66 ? 'Regular' : 'Agressivo';
+
+                doc.setFontSize(14);
+                doc.text('Resultados do Quiz', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+                doc.text(`Pontuação: ${quizData.score}/${knowledgeQuestions} (${percentage.toFixed(1)}%)`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Classificação de Conhecimento: ${knowledgeLevel}`, 20, yPosition);
+                yPosition += 8;
+                doc.text(`Perfil de Risco: ${riskProfile}`, 20, yPosition);
+                yPosition += 15;
+
+                // Gráfico
+                try {
+                    const chartCanvas = document.getElementById('resultsChart');
+                    const chartImage = await html2canvas(chartCanvas);
+                    const imgData = chartImage.toDataURL('image/png');
+                    doc.addImage(imgData, 'PNG', 20, yPosition, 170, 80);
+                    yPosition += 90;
+                } catch (error) {
+                    console.log('Erro ao capturar gráfico:', error);
+                    yPosition += 10;
+                }
+
+                // Resumo das respostas (primeiras 5)
+                doc.setFontSize(14);
+                doc.text('Resumo das Respostas', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(8);
+                
+                for (let i = 0; i < Math.min(5, quizData.answers.length); i++) {
+                    const answer = quizData.answers[i];
+                    if (!answer.riskQuestion) {
+                        const questionText = doc.splitTextToSize(`P${i + 1}: ${answer.question}`, 170);
+                        doc.text(questionText, 20, yPosition);
+                        yPosition += questionText.length * 3;
+                        
+                        const userAnswer = `Sua resposta: ${String.fromCharCode(65 + answer.selectedAnswer)}`;
+                        doc.text(userAnswer, 20, yPosition);
+                        yPosition += 4;
+                        
+                        const correctAnswer = `Resposta correta: ${String.fromCharCode(65 + answer.correctAnswer)}`;
+                        doc.text(correctAnswer, 20, yPosition);
+                        yPosition += 6;
+                        
+                        if (yPosition > 250) {
+                            doc.addPage();
+                            yPosition = 20;
+                        }
+                    }
+                }
+
+                // Recomendações
+                if (yPosition > 200) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                
+                doc.setFontSize(14);
+                doc.text('Recomendações de Estudo', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+                
+                const recommendations = `
+Se precisa aprofundar, recomendamos estudar:
+• Educação financeira básica
+• Diversificação de investimentos
+• Inflação e impacto cambial
+• Mercado de capitais angolano
+• Perfis de risco e tolerância
+                `.trim();
+                
+                const recLines = doc.splitTextToSize(recommendations, 170);
+                doc.text(recLines, 20, yPosition);
+                yPosition += recLines.length * 5 + 10;
+
+                // Nota legal
+                doc.setFontSize(9);
+                doc.text('Documento processado pelo algoritmo da Teca Capital Investimentos.', 20, yPosition);
+                yPosition += 8;
+                doc.text('© Teca Capital Investimentos — Todos os direitos reservados.', 20, yPosition);
+
+                // Salvar PDF
+                doc.save(`relatorio_quiz_${playerData.name.replace(/\s+/g, '_')}_${currentDate.replace(/\//g, '-')}.pdf`);
+                
+                // Alerta de sucesso
+                alert('Relatório baixado com sucesso!');
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                alert('Desculpe, não foi possível gerar o relatório PDF. Por favor, tente novamente mais tarde.');
+            }
+        }
+
+        // =============================================
+        // REINICIAR QUIZ
+        // =============================================
+
+        function restartQuiz() {
+            // Limpar dados do quiz atual
+            quizData = {
+                currentQuestionIndex: 0,
+                score: 0,
+                riskScore: 0,
+                totalRiskQuestions: 0,
+                answers: [],
+                selectedQuestions: [],
+                startTime: null,
+                endTime: null
+            };
+            
+            // Voltar para tela inicial
+            showScreen('startScreen');
+            document.getElementById('playerForm').reset();
+        }
+
+        // =============================================
+        // EXPORTAÇÃO DE FUNÇÕES PARA HTML
+        // =============================================
+
+        window.startQuiz = startQuiz;
+        window.selectAnswer = selectAnswer;
+        window.nextQuestion = nextQuestion;
+        window.showResults = showResults;
+        window.generateReportPDF = generateReportPDF;
+        window.restartQuiz = restartQuiz;
+    </script>
+
+    <!-- Simulador de investimentos -->
+    <div class="simulator-container">
+        
+            <h1>Simulador de Investimentos</h1>
+            <p>Simule diferentes cenários de investimento em ações, criptomoedas e obrigações</p>
+        
+
+        <!-- Menu de seleção do tipo de investimento -->
+        <section class="investment-type">
+            <h2>Tipo de Investimento</h2>
+            <select id="investmentType">
+                <option value="acoes">Ações</option>
+                <option value="cripto">Criptomoedas</option>
+                <option value="obrigacoes-publicas">Obrigações Públicas</option>
+                <option value="obrigacoes-privadas">Obrigações Privadas</option>
+            </select>
+        </section>
+
+        <!-- Formulário principal -->
+        <section class="main-form">
+            <h2>Parâmetros do Investimento</h2>
+            <form id="investmentForm">
+                <div class="form-group">
+                    <label for="assetName">Nome do Ativo:</label>
+                    <input type="text" id="assetName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="investmentAmount">Valor a Investir (Kz):</label>
+                    <input type="number" id="investmentAmount" min="1000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="startDate">Data de Início (opcional):</label>
+                    <input type="date" id="startDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="timeHorizon">Horizonte (meses):</label>
+                    <input type="number" id="timeHorizon" min="1" max="600" required>
+                </div>
+
+                <!-- Campos específicos para renda fixa -->
+                <div id="fixedIncomeFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="interestRate">Taxa de Juros Anual (%):</label>
+                        <input type="number" id="interestRate" min="1" max="100" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paymentFrequency">Pagamento de Cupão:</label>
+                        <select id="paymentFrequency">
+                            <option value="mensal">Mensal</option>
+                            <option value="semestral">Semestral</option>
+                            <option value="anual">Anual</option>
+                            <option value="zero">Zero Cupão</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interestType">Tipo de Juros:</label>
+                        <select id="interestType">
+                            <option value="composto">Composto</option>
+                            <option value="simples">Simples</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Campos específicos para ações/cripto -->
+                <div id="variableIncomeFields">
+                    <div class="form-group">
+                        <label for="variationPct">Variação Percentual (%):</label>
+                        <input type="number" id="variationPct" min="-100" max="100" step="0.1">
+                    </div>
+
+                    <div class="quick-buttons">
+                        <button type="button" class="btn-quick" onclick="setVariation(5)">+5%</button>
+                        <button type="button" class="btn-quick" onclick="setVariation(10)">+10%</button>
+                        <button type="button" class="btn-quick" onclick="setVariation(25)">+25%</button>
+                        <button type="button" class="btn-quick" onclick="setVariation(-5)">-5%</button>
+                        <button type="button" class="btn-quick" onclick="setVariation(-10)">-10%</button>
+                        <button type="button" class="btn-quick" onclick="setVariation(-50)">-50%</button>
+                    </div>
+                </div>
+
+                <!-- Parâmetros macroeconômicos -->
+                <div class="macro-params">
+                    <h3>Parâmetros Macroeconômicos</h3>
+                    <div class="form-group">
+                        <label for="inflationRate">Inflação Anual (%):</label>
+                        <input type="number" id="inflationRate" value="20" min="0" max="100" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fxVariation">Variação Cambial Kz vs USD (%):</label>
+                        <input type="number" id="fxVariation" value="0" min="-100" max="100" step="0.1">
+                    </div>
+                </div>
+
+                <!-- Distribuição de carteira -->
+                <div class="portfolio-distribution">
+                    <h3>Distribuição da Carteira</h3>
+                    <div id="portfolioAssets">
+                        <div class="portfolio-asset">
+                            <input type="text" placeholder="Nome do ativo" class="asset-name">
+                            <input type="number" placeholder="%" class="asset-pct" min="1" max="100" onchange="validatePortfolio()">
+                            <button type="button" class="btn-remove" onclick="removeAsset(this)">Remover</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add" onclick="addAsset()">+ Adicionar Ativo</button>
+                    <div id="portfolioTotal">Total: 0%</div>
+                </div>
+
+                <!-- Comparação de cenários -->
+                <div class="scenario-comparison">
+                    <h3>Comparação de Cenários</h3>
+                    <div id="scenarios">
+                        <div class="scenario">
+                            <input type="text" placeholder="Nome do cenário" class="scenario-name">
+                            <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1">
+                            <button type="button" class="btn-remove" onclick="removeScenario(this)">Remover</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add" onclick="addScenario()">+ Adicionar Cenário</button>
+                </div>
+            </form>
+
+            <div class="form-actions">
+                <button type="button" class="btn-simulate" onclick="calculateScenario()">Calcular Simulação</button>
+                <button type="button" class="btn-reset" onclick="resetSimulation()">Limpar / Nova Simulação</button>
+            </div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="results" id="resultsSection" style="display: none;">
+            <h2>Resultados da Simulação</h2>
+            
+            <!-- Resumo numérico -->
+            <div class="summary" id="summaryResults"></div>
+
+            <!-- Análise textual automática -->
+            <div class="text-analysis" id="textAnalysis"></div>
+
+            <!-- Tabela de fluxos -->
+            <div class="cashflow-table">
+                <h3>Fluxo de Caixa</h3>
+                <table id="cashflowTable">
+                    <thead>
+                        <tr>
+                            <th>Período</th>
+                            <th>Capital Inicial</th>
+                            <th>Rendimento</th>
+                            <th>Acumulado</th>
+                            <th>Inflação Ajustada</th>
+                            <th>Valor Real</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cashflowBody"></tbody>
+                </table>
+            </div>
+
+            <!-- Gráfico -->
+            <div class="chart-container">
+                <h3>Evolução do Investimento</h3>
+                <canvas id="investmentChart"></canvas>
+            </div>
+
+            <!-- Guia de uso -->
+            <div class="usage-guide" id="usageGuide"></div>
+
+            <!-- Ações de exportação -->
+            <div class="export-actions">
+                <button class="btn-download" onclick="generatePDF()">Baixar Relatório (PDF)</button>
+                <button class="btn-export" onclick="exportCSV()">Exportar CSV</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Variáveis globais
+        let currentChart = null;
+        let simulationData = null;
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            setupExampleData();
+            generateUsageGuide();
+        });
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            const investmentType = document.getElementById('investmentType');
+            investmentType.addEventListener('change', toggleInvestmentFields);
+        }
+
+        // Configurar dados de exemplo
+        function setupExampleData() {
+            document.getElementById('assetName').value = 'Exemplo Ação';
+            document.getElementById('investmentAmount').value = '100000';
+            document.getElementById('timeHorizon').value = '12';
+            document.getElementById('variationPct').value = '15';
+        }
+
+        // Gerar guia de uso
+        function generateUsageGuide() {
+            const guideHTML = `
+                <h3>Guia de Uso - Como Interpretar os Resultados</h3>
+                <div class="guide-content">
+                    <h4>Explicação dos Campos:</h4>
+                    <ul>
+                        <li><strong>Taxa de valorização:</strong> Variação percentual do ativo no período selecionado</li>
+                        <li><strong>Inflação anual:</strong> Perda do poder de compra da moeda ao longo do tempo</li>
+                        <li><strong>Variação cambial:</strong> Impacto da conversão entre moedas diferentes</li>
+                        <li><strong>Rentabilidade nominal:</strong> Ganho/pedida sem considerar a inflação</li>
+                        <li><strong>Rentabilidade real:</strong> Ganho/perda após descontar a inflação (poder de compra real)</li>
+                    </ul>
+                    
+                    <h4>Interpretação dos Resultados:</h4>
+                    <ul>
+                        <li>Se a <strong>Rentabilidade Real</strong> for negativa, seu poder de compra diminuiu mesmo com ganho nominal</li>
+                        <li>Resultados positivos em <strong>Rentabilidade Real</strong> indicam crescimento real do patrimônio</li>
+                        <li>A <strong>Variação Cambial</strong> afeta investimentos em moeda estrangeira</li>
+                    </ul>
+                    
+                    <h4>Para Nova Simulação:</h4>
+                    <p>Use o botão "Limpar / Nova Simulação", altere os parâmetros desejados e clique em "Calcular Simulação"</p>
+                </div>
+            `;
+            document.getElementById('usageGuide').innerHTML = guideHTML;
+        }
+
+        // Alternar campos conforme tipo de investimento
+        function toggleInvestmentFields() {
+            const type = document.getElementById('investmentType').value;
+            const fixedIncomeFields = document.getElementById('fixedIncomeFields');
+            const variableIncomeFields = document.getElementById('variableIncomeFields');
+
+            if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
+                fixedIncomeFields.style.display = 'block';
+                variableIncomeFields.style.display = 'none';
+            } else {
+                fixedIncomeFields.style.display = 'none';
+                variableIncomeFields.style.display = 'block';
+            }
+        }
+
+        // Definir variação rápida
+        function setVariation(percent) {
+            document.getElementById('variationPct').value = percent;
+        }
+
+        // Adicionar ativo à carteira
+        function addAsset() {
+            const container = document.getElementById('portfolioAssets');
+            const assetDiv = document.createElement('div');
+            assetDiv.className = 'portfolio-asset';
+            assetDiv.innerHTML = `
+                <input type="text" placeholder="Nome do ativo" class="asset-name">
+                <input type="number" placeholder="%" class="asset-pct" min="1" max="100" onchange="validatePortfolio()">
+                <button type="button" class="btn-remove" onclick="removeAsset(this)">Remover</button>
+            `;
+            container.appendChild(assetDiv);
+        }
+
+        // Remover ativo da carteira
+        function removeAsset(button) {
+            button.parentElement.remove();
+            validatePortfolio();
+        }
+
+        // Validar distribuição da carteira
+        function validatePortfolio() {
+            const percentages = document.querySelectorAll('.asset-pct');
+            let total = 0;
+            
+            percentages.forEach(input => {
+                const value = parseFloat(input.value) || 0;
+                total += value;
+            });
+
+            const totalElement = document.getElementById('portfolioTotal');
+            totalElement.textContent = `Total: ${total}%`;
+            
+            if (total !== 100 && percentages.length > 0) {
+                totalElement.style.color = 'red';
+            } else {
+                totalElement.style.color = 'green';
+            }
+        }
+
+        // Adicionar cenário de comparação
+        function addScenario() {
+            const container = document.getElementById('scenarios');
+            const scenarioDiv = document.createElement('div');
+            scenarioDiv.className = 'scenario';
+            scenarioDiv.innerHTML = `
+                <input type="text" placeholder="Nome do cenário" class="scenario-name">
+                <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1">
+                <button type="button" class="btn-remove" onclick="removeScenario(this)">Remover</button>
+            `;
+            container.appendChild(scenarioDiv);
+        }
+
+        // Remover cenário
+        function removeScenario(button) {
+            button.parentElement.remove();
+        }
+
+        // Limpar simulação - NOVA FUNÇÃO
+        function resetSimulation() {
+            // Limpar formulário
+            document.getElementById('investmentForm').reset();
+            
+            // Limpar resultados
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('summaryResults').innerHTML = '';
+            document.getElementById('textAnalysis').innerHTML = '';
+            document.getElementById('cashflowBody').innerHTML = '';
+            
+            // Resetar gráfico
+            if (currentChart) {
+                currentChart.destroy();
+                currentChart = null;
+            }
+            
+            // Resetar dados
+            simulationData = null;
+            
+            // Resetar distribuição de carteira
+            document.getElementById('portfolioAssets').innerHTML = `
+                <div class="portfolio-asset">
+                    <input type="text" placeholder="Nome do ativo" class="asset-name">
+                    <input type="number" placeholder="%" class="asset-pct" min="1" max="100" onchange="validatePortfolio()">
+                    <button type="button" class="btn-remove" onclick="removeAsset(this)">Remover</button>
+                </div>
+            `;
+            
+            // Resetar cenários
+            document.getElementById('scenarios').innerHTML = `
+                <div class="scenario">
+                    <input type="text" placeholder="Nome do cenário" class="scenario-name">
+                    <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1">
+                    <button type="button" class="btn-remove" onclick="removeScenario(this)">Remover</button>
+                </div>
+            `;
+            
+            validatePortfolio();
+            setupExampleData();
+        }
+
+        // Ler inputs do formulário
+        function readInputs() {
+            const type = document.getElementById('investmentType').value;
+            const assetName = document.getElementById('assetName').value;
+            const amount = parseFloat(document.getElementById('investmentAmount').value);
+            const horizon = parseInt(document.getElementById('timeHorizon').value);
+            const inflation = parseFloat(document.getElementById('inflationRate').value) / 100;
+            const fxVariation = parseFloat(document.getElementById('fxVariation').value) / 100;
+
+            let specificParams = {};
+            
+            if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
+                specificParams = {
+                    interestRate: parseFloat(document.getElementById('interestRate').value) / 100,
+                    paymentFrequency: document.getElementById('paymentFrequency').value,
+                    interestType: document.getElementById('interestType').value
+                };
+            } else {
+                specificParams = {
+                    variationPct: parseFloat(document.getElementById('variationPct').value) / 100
+                };
+            }
+
+            // Ler cenários de comparação
+            const scenarios = [];
+            const scenarioElements = document.querySelectorAll('.scenario');
+            scenarioElements.forEach(element => {
+                const name = element.querySelector('.scenario-name').value || 'Cenário';
+                const variation = parseFloat(element.querySelector('.scenario-variation').value) / 100 || 0;
+                if (!isNaN(variation)) {
+                    scenarios.push({ name, variation });
+                }
+            });
+
+            return {
+                type,
+                assetName,
+                amount,
+                horizon,
+                inflation,
+                fxVariation,
+                specificParams,
+                scenarios
+            };
+        }
+
+        // Calcular cenário principal
+        function calculateScenario() {
+            const inputs = readInputs();
+            simulationData = calculateInvestmentScenario(inputs);
+            
+            // Calcular cenários de comparação
+            const comparisonScenarios = [];
+            inputs.scenarios.forEach(scenario => {
+                const scenarioInputs = {...inputs, specificParams: { variationPct: scenario.variation }};
+                comparisonScenarios.push({
+                    name: scenario.name,
+                    data: calculateInvestmentScenario(scenarioInputs)
+                });
+            });
+
+            displayResults(simulationData, comparisonScenarios);
+            updateChart(simulationData, comparisonScenarios);
+            generateTextAnalysis(simulationData);
+        }
+
+        // Calcular cenário de investimento
+        function calculateInvestmentScenario(inputs) {
+            const { type, assetName, amount, horizon, inflation, fxVariation, specificParams } = inputs;
+            const monthlyInflation = Math.pow(1 + inflation, 1/12) - 1;
+            
+            let cashflows = [];
+            let currentValue = amount;
+            let totalNominalReturn = 0;
+
+            for (let month = 1; month <= horizon; month++) {
+                let monthlyReturn = 0;
+                
+                // Calcular retorno baseado no tipo de investimento
+                if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
+                    const { interestRate, paymentFrequency, interestType } = specificParams;
+                    
+                    if (interestType === 'simples') {
+                        monthlyReturn = amount * interestRate / 12;
+                    } else {
+                        // Juros compostos
+                        monthlyReturn = currentValue * interestRate / 12;
+                    }
+                } else {
+                    // Ações ou criptomoedas
+                    const { variationPct } = specificParams;
+                    monthlyReturn = currentValue * variationPct;
+                }
+
+                totalNominalReturn += monthlyReturn;
+                currentValue += monthlyReturn;
+
+                // Aplicar inflação
+                const realValue = currentValue / Math.pow(1 + monthlyInflation, month);
+                const inflationAdjusted = currentValue - realValue;
+
+                cashflows.push({
+                    period: month,
+                    initialCapital: amount,
+                    monthlyReturn,
+                    accumulated: currentValue,
+                    inflationAdjusted,
+                    realValue
+                });
+            }
+
+            // Aplicar variação cambial
+            const finalValueWithFX = currentValue * (1 + fxVariation);
+            const fxImpact = finalValueWithFX - currentValue;
+
+            const nominalGain = currentValue - amount;
+            const realGain = (currentValue / Math.pow(1 + inflation, horizon/12)) - amount;
+
+            return {
+                inputs,
+                cashflows,
+                summary: {
+                    initialInvestment: amount,
+                    finalValueNominal: currentValue,
+                    finalValueReal: currentValue / Math.pow(1 + inflation, horizon/12),
+                    nominalGain,
+                    realGain,
+                    nominalReturnPct: (nominalGain / amount) * 100,
+                    realReturnPct: (realGain / amount) * 100,
+                    fxImpact,
+                    finalValueWithFX
+                }
+            };
+        }
+
+        // Aplicar inflação e câmbio
+        function applyInflationAndFX(value, inflation, horizon, fxVariation) {
+            const realValue = value / Math.pow(1 + inflation, horizon/12);
+            const valueWithFX = realValue * (1 + fxVariation);
+            return valueWithFX;
+        }
+
+        // Exibir resultados
+        function displayResults(mainScenario, comparisonScenarios) {
+            const resultsSection = document.getElementById('resultsSection');
+            resultsSection.style.display = 'block';
+
+            // Resumo numérico
+            const summary = mainScenario.summary;
+            const summaryHTML = `
+                <h3>Resumo do Investimento</h3>
+                <p><strong>Valor Investido:</strong> ${formatCurrency(summary.initialInvestment)} Kz</p>
+                <p><strong>Valor Final Nominal:</strong> ${formatCurrency(summary.finalValueNominal)} Kz</p>
+                <p><strong>Valor Final Real:</strong> ${formatCurrency(summary.finalValueReal)} Kz</p>
+                <p><strong>Ganho Nominal:</strong> ${formatCurrency(summary.nominalGain)} Kz (${summary.nominalReturnPct.toFixed(2)}%)</p>
+                <p><strong>Ganho Real:</strong> ${formatCurrency(summary.realGain)} Kz (${summary.realReturnPct.toFixed(2)}%)</p>
+                <p><strong>Impacto Cambial:</strong> ${formatCurrency(summary.fxImpact)} Kz</p>
+                <p><strong>Valor Final com Câmbio:</strong> ${formatCurrency(summary.finalValueWithFX)} Kz</p>
+            `;
+            document.getElementById('summaryResults').innerHTML = summaryHTML;
+
+            // Tabela de fluxos
+            const tableBody = document.getElementById('cashflowBody');
+            tableBody.innerHTML = '';
+            
+            mainScenario.cashflows.forEach(cashflow => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${cashflow.period}</td>
+                    <td>${formatCurrency(cashflow.initialCapital)}</td>
+                    <td>${formatCurrency(cashflow.monthlyReturn)}</td>
+                    <td>${formatCurrency(cashflow.accumulated)}</td>
+                    <td>${formatCurrency(cashflow.inflationAdjusted)}</td>
+                    <td>${formatCurrency(cashflow.realValue)}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Atualizar gráfico
+        function updateChart(mainScenario, comparisonScenarios) {
+            const ctx = document.getElementById('investmentChart').getContext('2d');
+            
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
+            const periods = mainScenario.cashflows.map(cf => cf.period);
+            const mainData = mainScenario.cashflows.map(cf => cf.accumulated);
+
+            const datasets = [{
+                label: 'Cenário Principal',
+                data: mainData,
+                borderColor: 'rgb(75, 192, 192)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.1
+            }];
+
+            // Adicionar cenários de comparação
+            const colors = ['rgb(255, 99, 132)', 'rgb(255, 205, 86)', 'rgb(54, 162, 235)'];
+            comparisonScenarios.forEach((scenario, index) => {
+                if (index < 3) { // Máximo 3 cenários
+                    const scenarioData = scenario.data.cashflows.map(cf => cf.accumulated);
+                    datasets.push({
+                        label: scenario.name,
+                        data: scenarioData,
+                        borderColor: colors[index],
+                        backgroundColor: colors[index].replace('rgb', 'rgba').replace(')', ', 0.2)'),
+                        tension: 0.1
+                    });
+                }
+            });
+
+            currentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: periods,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Evolução do Investimento'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return formatCurrency(value);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Gerar análise textual
+        function generateTextAnalysis(scenario) {
+            const summary = scenario.summary;
+            const { inflation, horizon } = scenario.inputs;
+            
+            let analysis = '<h3>Análise do Investimento</h3>';
+            
+            // Análise básica de retorno
+            if (summary.realReturnPct > 0) {
+                analysis += `<p>Seu investimento apresentou um retorno real positivo de ${summary.realReturnPct.toFixed(2)}%, o que significa que você superou a inflação de ${(inflation * 100).toFixed(2)}% ao ano. Em termos reais, seu patrimônio cresceu ${formatCurrency(summary.realGain)} Kz após considerar a perda do poder de compra.</p>`;
+            } else {
+                analysis += `<p>Seu investimento não conseguiu superar a inflação de ${(inflation * 100).toFixed(2)}% ao ano, resultando em um retorno real negativo de ${summary.realReturnPct.toFixed(2)}%. Isso significa que, embora o valor nominal tenha aumentado, seu poder de compra real diminuiu em ${formatCurrency(Math.abs(summary.realGain))} Kz.</p>`;
+            }
+
+            // Análise de horizonte
+            analysis += `<p>Em um horizonte de ${horizon} meses, o investimento transformou ${formatCurrency(summary.initialInvestment)} Kz em ${formatCurrency(summary.finalValueNominal)} Kz nominalmente. Após ajustar pela inflação, o valor real é de ${formatCurrency(summary.finalValueReal)} Kz.</p>`;
+
+            // Análise de riscos
+            analysis += `<p><strong>Principais riscos considerados:</strong>`;
+            analysis += `<br>- <strong>Risco inflacionário:</strong> A inflação de ${(inflation * 100).toFixed(2)}% anuais corroeu parte dos ganhos nominais`;
+            if (scenario.inputs.fxVariation !== 0) {
+                analysis += `<br>- <strong>Risco cambial:</strong> A variação cambial impactou o resultado em ${formatCurrency(summary.fxImpact)} Kz`;
+            }
+            analysis += `<br>- <strong>Risco de mercado:</strong> Flutuações nos retornos periódicos afetam o resultado final</p>`;
+
+            // Conclusão
+            if (summary.realReturnPct > 5) {
+                analysis += `<p>Este cenário demonstra um bom desempenho real, superando significativamente a inflação e gerando ganho real substancial.</p>`;
+            } else if (summary.realReturnPct > 0) {
+                analysis += `<p>O investimento manteve seu poder de compra, porém com margem reduzida acima da inflação.</p>`;
+            } else {
+                analysis += `<p>Neste cenário, o investimento não foi capaz de preservar o poder de compra do capital inicial.</p>`;
+            }
+
+            document.getElementById('textAnalysis').innerHTML = analysis;
+        }
+
+        // Gerar PDF - FUNÇÃO ATUALIZADA E MELHORADA
+        async function generatePDF() {
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const currentDate = new Date().toLocaleDateString('pt-PT');
+                const investmentType = document.getElementById('investmentType');
+                const typeText = investmentType.options[investmentType.selectedIndex].text;
+
+                let yPosition = 20;
+
+                // Cabeçalho
+                doc.setFontSize(16);
+                doc.text('Relatório de Simulação de Investimentos', 20, yPosition);
+                yPosition += 10;
+                
+                doc.setFontSize(12);
+                doc.text(`Tipo de Investimento: ${typeText}`, 20, yPosition);
+                yPosition += 8;
+                
+                doc.setFontSize(10);
+                doc.text(`Origem das informações: Dados fornecidos pelo usuário — processados por Teca Capital Investimentos`, 20, yPosition);
+                yPosition += 6;
+                doc.text(`Data do download: ${currentDate}`, 20, yPosition);
+                yPosition += 15;
+
+                // Sumário Executivo
+                doc.setFontSize(14);
+                doc.text('Sumário Executivo', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+                
+                const summary = simulationData.summary;
+                const summaryText = `Esta simulação demonstra um investimento de ${formatCurrency(summary.initialInvestment)} Kz que resultou em ${formatCurrency(summary.finalValueNominal)} Kz nominalmente. Após considerar a inflação, o valor real é de ${formatCurrency(summary.finalValueReal)} Kz, representando um ${summary.realReturnPct > 0 ? 'ganho' : 'perda'} real de ${Math.abs(summary.realReturnPct).toFixed(2)}%.`;
+                
+                const summaryLines = doc.splitTextToSize(summaryText, 170);
+                doc.text(summaryLines, 20, yPosition);
+                yPosition += summaryLines.length * 5 + 10;
+
+                // Tabela de Entradas
+                if (yPosition > 200) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                doc.setFontSize(14);
+                doc.text('Tabela de Entradas', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+                
+                const inputs = simulationData.inputs;
+                const inputData = [
+                    ['Parâmetro', 'Valor'],
+                    ['Tipo de Investimento', typeText],
+                    ['Nome do Ativo', inputs.assetName],
+                    ['Valor Investido', `${formatCurrency(inputs.amount)} Kz`],
+                    ['Horizonte', `${inputs.horizon} meses`],
+                    ['Inflação Anual', `${(inputs.inflation * 100).toFixed(2)}%`],
+                    ['Variação Cambial', `${(inputs.fxVariation * 100).toFixed(2)}%`]
+                ];
+
+                // Adicionar parâmetros específicos
+                if (inputs.type === 'obrigacoes-publicas' || inputs.type === 'obrigacoes-privadas') {
+                    inputData.push(['Taxa de Juros', `${(inputs.specificParams.interestRate * 100).toFixed(2)}%`]);
+                    inputData.push(['Frequência de Pagamento', inputs.specificParams.paymentFrequency]);
+                    inputData.push(['Tipo de Juros', inputs.specificParams.interestType]);
+                } else {
+                    inputData.push(['Variação Percentual', `${(inputs.specificParams.variationPct * 100).toFixed(2)}%`]);
+                }
+
+                doc.autoTable({
+                    startY: yPosition,
+                    head: [inputData[0]],
+                    body: inputData.slice(1),
+                    styles: { fontSize: 8 },
+                    headStyles: { fillColor: [100, 100, 100] }
+                });
+
+                yPosition = doc.lastAutoTable.finalY + 10;
+
+                // Tabela de Resultados
+                if (yPosition > 200) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                doc.setFontSize(14);
+                doc.text('Tabela de Resultados', 20, yPosition);
+                yPosition += 10;
+
+                const resultData = [
+                    ['Métrica', 'Valor'],
+                    ['Valor Final Nominal', `${formatCurrency(summary.finalValueNominal)} Kz`],
+                    ['Valor Final Real', `${formatCurrency(summary.finalValueReal)} Kz`],
+                    ['Ganho Nominal', `${formatCurrency(summary.nominalGain)} Kz (${summary.nominalReturnPct.toFixed(2)}%)`],
+                    ['Ganho Real', `${formatCurrency(summary.realGain)} Kz (${summary.realReturnPct.toFixed(2)}%)`],
+                    ['Impacto Cambial', `${formatCurrency(summary.fxImpact)} Kz`]
+                ];
+
+                doc.autoTable({
+                    startY: yPosition,
+                    head: [resultData[0]],
+                    body: resultData.slice(1),
+                    styles: { fontSize: 8 },
+                    headStyles: { fillColor: [100, 100, 100] }
+                });
+
+                yPosition = doc.lastAutoTable.finalY + 10;
+
+                // Gráfico
+                if (yPosition > 150) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                doc.setFontSize(14);
+                doc.text('Gráfico de Evolução', 20, yPosition);
+                yPosition += 10;
+
+                // Converter canvas para imagem
+                try {
+                    const chartCanvas = document.getElementById('investmentChart');
+                    const chartImage = await html2canvas(chartCanvas);
+                    const imgData = chartImage.toDataURL('image/png');
+                    doc.addImage(imgData, 'PNG', 20, yPosition, 170, 80);
+                    yPosition += 90;
+                } catch (error) {
+                    console.log('Erro ao capturar gráfico:', error);
+                    doc.text('Gráfico não disponível para exportação', 20, yPosition);
+                    yPosition += 20;
+                }
+
+                // Análise Automática
+                if (yPosition > 200) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                doc.setFontSize(14);
+                doc.text('Análise Automática', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+
+                const analysisText = document.getElementById('textAnalysis').textContent;
+                const analysisLines = doc.splitTextToSize(analysisText, 170);
+                doc.text(analysisLines, 20, yPosition);
+                yPosition += analysisLines.length * 5 + 10;
+
+                // Guia de Uso
+                if (yPosition > 200) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                doc.setFontSize(14);
+                doc.text('Guia de Uso e Interpretação', 20, yPosition);
+                yPosition += 10;
+                doc.setFontSize(10);
+
+                const guideText = `
+• Taxa de valorização: Variação percentual do ativo no período
+• Inflação anual: Perda do poder de compra da moeda
+• Rentabilidade nominal: Ganho sem considerar inflação
+• Rentabilidade real: Ganho após descontar inflação (poder de compra real)
+• Se Rentabilidade Real for negativa: poder de compra diminuiu
+• Para nova simulação: Use o botão "Limpar / Nova Simulação"
+                `.trim();
+
+                const guideLines = doc.splitTextToSize(guideText, 170);
+                doc.text(guideLines, 20, yPosition);
+                yPosition += guideLines.length * 5 + 10;
+
+                // Nota final
+                doc.setFontSize(9);
+                doc.text('Documento processado pelo algoritmo da Teca Capital Investimentos.', 20, yPosition);
+
+                // Rodapé em todas as páginas
+                const pageCount = doc.internal.getNumberOfPages();
+                for (let i = 1; i <= pageCount; i++) {
+                    doc.setPage(i);
+                    doc.setFontSize(8);
+                    doc.text('© Teca Capital Investimentos — Todos os direitos reservados', 20, 285);
+                    doc.text(`Página ${i} de ${pageCount}`, 180, 285, null, null, 'right');
+                }
+
+                // Salvar PDF
+                doc.save(`relatorio_investimento_${currentDate.replace(/\//g, '-')}.pdf`);
+                
+                // Alerta de sucesso
+                alert('Relatório baixado com sucesso!');
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                alert('Desculpe, não foi possível gerar o relatório PDF. Por favor, tente novamente mais tarde.');
+            }
+        }
+
+        // Exportar CSV
+        function exportCSV() {
+            if (!simulationData) return;
+
+            let csvContent = "Período,Capital Inicial,Rendimento,Acumulado,Inflação Ajustada,Valor Real\n";
+            
+            simulationData.cashflows.forEach(cashflow => {
+                csvContent += `${cashflow.period},${cashflow.initialCapital},${cashflow.monthlyReturn},${cashflow.accumulated},${cashflow.inflationAdjusted},${cashflow.realValue}\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'fluxo_caixa_investimento.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Funções auxiliares
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-AO', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(value);
+        }
+
+        // Expor funções globalmente para os event listeners HTML
+        window.toggleInvestmentFields = toggleInvestmentFields;
+        window.setVariation = setVariation;
+        window.addAsset = addAsset;
+        window.removeAsset = removeAsset;
+        window.validatePortfolio = validatePortfolio;
+        window.addScenario = addScenario;
+        window.removeScenario = removeScenario;
+        window.resetSimulation = resetSimulation;
+        window.calculateScenario = calculateScenario;
+        window.generatePDF = generatePDF;
+        window.exportCSV = exportCSV;
+    </script>
+
+    </main>
+
+    <footer>
+    <div>
+        <!-- REDES SOCIAIS -->
+        <div id="socialmidia">
+            <h3>Redes Sociais</h3>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CONTATO -->
+        <div id="Contato">
+            <h3>Contato</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <p>Gmail:</p>
+                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                        tecacapitalinvestimentostci@gmail.com
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Telefone:</p>
+                    <a href="tel:+244923456789">
+                        +244 923 456 789
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Endereço:</p>
+                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                </div>
+            </div>
+        </div>
+        
+        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+    </div>
+</footer>
+    
+</body>
+</html>

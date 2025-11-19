@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teca Capital Investimentos</title>
+    <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</style>
+</head>
+<body>
+    <header>
+        <nav id="navt">
+            <i class="fa-solid fa-hand-holding-dollar" id="navlogo"></i>
+             <ul id="lista">
+                <li class="navitem active"> <a href="index.html">Início</a>
+                </li>
+                <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
+                </li>   
+                <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
+                </li>
+            </ul>
+           <a class="simula" href="simulador.html">Simulador</a>
+        </nav>
+        
+    </header>
+
+  
+    <main>
+    <h1 class="fade-in">Biblioteca de Conhecimento Financeiro</h1>
+    <video src="Video/Estudando em casa.mp4" width="100%" autoplay loop class="banner-video fade-in-up" muted aria-describedby="video-description"></video>
+    <p id="video-description" class="sr-only">Vídeo em loop de pessoas estudando e fazendo anotações para representar o aprendizado.</p>
+
+    <div id="biblioteca" class="fade-in-up">
+        <h2 class="section-title time">Tipos de Conteúdos</h2>
+
+        <!-- ===================================================== -->
+        <!-- 1. SEÇÃO DE ARTIGOS (JS Dinâmico com PDF) -->
+        <!-- Conteúdo Original Mantido: 4 Artigos -->
+        <!-- ===================================================== -->
+        <div class="subdiv hover-lift">
+            <img src="Icon/artigo.png" width="10%" alt="artigos icon" aria-hidden="true">
+            <h3>Artigos & Análises Aprofundadas</h3>
+            <p>Leia artigos informativos sobre investimentos, finanças pessoais, economia e estratégias de mercado, com opção de download em PDF.</p>
+            
+            <!-- Scripts de dependência para a funcionalidade de PDF (Mantidos no corpo original) -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+                
+            <!-- Container para os cards de artigos - Conteúdo dinâmico via JS -->
+            <div class="articles-container" id="articlesContainer">
+                <!-- Os cards serão gerados dinamicamente via JavaScript -->
+            </div>
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- 2. SEÇÃO DE CONTEÚDO MULTIMÍDIA -->
+        <!-- Conteúdo Original Mantido: 3 Áudios/Vídeos -->
+        <!-- O código original não tinha dados dinâmicos para e-books. -->
+        <!-- ===================================================== -->
+        <div class="subdiv hover-lift">
+            <img src="Icon/audio 2.png" width="10%" alt="audio icon" aria-hidden="true"> 
+            <h3>Resumo em áudio e Vídeo</h3> 
+            <p>Ouça resumos em áudio sobre temas relevantes de finanças e investimentos para aprender de forma prática e acessível.</p>
+
+            <section class="audio-section">
+                <div class="container">
+                    <h4 class="text-center text-gold">Biblioteca Multimídia</h4>
+                    <p class="text-center text-gray-light">Ouça e veja conteúdos exclusivos para aprimorar sua educação financeira.</p>
+                    
+                    <!-- Container para cards de Áudio - Conteúdo dinâmico via JS -->
+                    <div class="audio-cards-container" id="audioContentContainer">
+                        <!-- Conteúdo de áudio gerado dinamicamente -->
+                    </div>
+                    
+                    <!-- Container para cards de Vídeo - Conteúdo dinâmico via JS -->
+                    <div class="video-cards-container" id="videoContentContainer">
+                        <!-- Conteúdo de vídeo gerado dinamicamente -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="video-card-header subdiv hover-lift">
+            <img src="Icon/video.png" width="10%" alt="video icon" aria-hidden="true">
+            <h3>Vídeos Educativos</h3>
+            <p>Assista a vídeos educativos que explicam conceitos financeiros complexos de maneira simples e visual.</p>
+            
+            <div class="bitcoin">
+                <video src="Video/O_que_é_a_Bitcoin_.mp4" width="100%" controls preload="metadata" poster="Imagem/Video_placeholder.jpg" class="fade-in-up"></video>
+                <div class="audio-info">
+                    <h3 class="video-title">Resumo do Livro: Bitcoin - A Moeda Digital</h3>
+                    <p class="video-author">Autor: Alberto Teca + IA</p>
+                    <p class="video-description">Descrição: Uma análise profunda da revolução monetária do Bitcoin</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ebook-card-header subdiv hover-lift">
+            <img src="Icon/ebook.png" width="10%" alt="ebook icon" aria-hidden="true">
+            <h3>E-books</h3>
+            <p>Baixe e-books gratuitos que abordam tópicos essenciais para quem deseja aprimorar seus conhecimentos sobre o mercado. (Conteúdo de exemplo)</p>
+            <div class="ebook-cards-container" id="ebookContentContainer">
+                <!-- E-books de exemplo estático ou dinâmico (dependendo da expansão do JS) -->
+                <a class="button btn-primary mt-lg" href="#" target="_blank" onclick="alert('Funcionalidade de download de E-book em desenvolvimento.')">Baixar Guia Básico</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- 3. RELATÓRIO BODIVA (Análise de Mercado de Capitais) -->
+    <!-- Dados ORIGINAIS MANTIDOS -->
+    <!-- ===================================================== -->
+    <section id="bodiva" class="section-gold">
+        
+        <!-- Scripts de dependência para Gráficos e PDF (Mantidos no corpo original) -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+        <div class="container">
+            <h1 class="section-title text-gold">Relatório da Bolsa de Valores de Angola - BODIVA</h1>
+            <p class="text-center text-lg">Análise detalhada e interativa do Mercado de Capitais Angolano.</p>
+       
+
+            <!-- Seção de Introdução -->
+            <section class="intro-section fade-in-up">
+                <h2>Bolsa de Dívida e Valores de Angola - BODIVA</h2>
+                <div class="intro-card hover-lift">
+                    <h3>Informações Gerais</h3>
+                    <p><strong>Data de Criação:</strong> 2 de julho de 2014</p>
+                    <p><strong>Supervisão:</strong> Comissão do Mercado de Capitais de Angola</p>
+                    <p><strong>Missão:</strong> Desenvolver um mercado financeiro moderno, seguro e eficiente, integrando Angola no sistema financeiro global e fortalecendo a confiança dos investidores no ambiente económico nacional.</p>
+                    <p><strong>Função:</strong> Conectar investidores, empresas e o Estado, permitindo a captação de recursos através da emissão e negociação de obrigações do tesouro, bilhetes do tesouro, obrigações privadas e ações.</p>
+                </div>
+            </section>
+
+            <!-- Seção de Cards de Ações -->
+            <section class="acoes-section fade-in-up">
+                <h2>Empresas Cotadas no Mercado de Ações</h2>
+                <div class="cards-container" id="acoes-cards">
+                    <!-- Cards de ações serão gerados dinamicamente via JS (5 Empresas Originais) -->
+                </div>
+            </section>
+
+            <!-- Seção de Cards de Obrigações -->
+            <section class="obrigacoes-section fade-in-up">
+                <h2>Empresas Cotadas no Mercado de Obrigações</h2>
+                <div class="cards-container" id="obrigacoes-cards">
+                    <!-- Cards de obrigações serão gerados dinamicamente via JS (1 Obrigação Original) -->
+                </div>
+            </section>
+
+            <!-- Seção do Gráfico Interativo -->
+            <section class="chart-section fade-in-up">
+                <h2>Análise Gráfica do Mercado</h2>
+                <div class="chart-controls hover-lift">
+                    <select id="chart-type" aria-label="Tipo de Gráfico" onchange="updateBodivaChart()">
+                        <option value="valor-mercado">Valor de Mercado por Empresa</option>
+                        <option value="preco-acoes">Preço das Ações</option>
+                        <option value="numero-acoes">Número de Ações Emitidas</option>
+                        <option value="comparacao">Comparação Múltipla</option>
+                    </select>
+                    <div id="comparison-selectors" style="display: none;" class="gap-md flex-col">
+                        <select id="indicator1" aria-label="Indicador 1 de Comparação">
+                            <option value="valorMercado">Valor de Mercado</option>
+                            <option value="precoAcao">Preço da Ação</option>
+                            <option value="numAcoes">Número de Ações</option>
+                        </select>
+                        <select id="indicator2" aria-label="Indicador 2 de Comparação">
+                            <option value="valorMercado">Valor de Mercado</option>
+                            <option value="precoAcao">Preço da Ação</option>
+                            <option value="numAcoes">Número de Ações</option>
+                        </select>
+                        <select id="indicator3" aria-label="Indicador 3 de Comparação">
+                            <option value="valorMercado">Valor de Mercado</option>
+                            <option value="precoAcao">Preço da Ação</option>
+                            <option value="numAcoes">Número de Ações</option>
+                        </select>
+                    </div>
+                    <button onclick="updateBodivaChart()" class="btn-primary mt-lg">Atualizar Gráfico</button>
+                </div>
+                <div class="chart-container hover-glow">
+                    <canvas id="bodiva-chart" role="img" aria-label="Gráfico de Análise do Mercado BODIVA"></canvas>
+                </div>
+            </section>
+
+            <!-- Seção de Análise e Conclusão -->
+            <section class="analysis-section fade-in-up">
+                <h2>Análise do Mercado de Capitais</h2>
+                <div class="analysis-content" id="market-analysis">
+                    <!-- Análise será gerada dinamicamente via JS -->
+                </div>
+            </section>
+
+            <!-- Botão de Download -->
+            <section class="download-section fade-in-up">
+                <button class="download-btn" onclick="generateFullReportBodiva()">Baixar Relatório Completo em PDF</button>
+            </section>
+        </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- 4. RELATÓRIO ECONÔMICO (Análise da Economia Angolana) -->
+    <!-- Dados ORIGINAIS MANTIDOS -->
+    <!-- ===================================================== -->
+    <section id="economic" class="section">
+        <div class="container">
+            <h1 class="section-title text-gold">Informações da Economia Angolana</h1>
+            <p class="text-center text-lg">Análise Macroeconômica de 2015 a 2024.</p>
+        </div>
+    
+        <div class="container">
+            <section class="intro fade-in-up">
+                <h2>Introdução à Análise Econômica</h2>
+                <p>A análise econômica de Angola apresentada neste relatório baseia-se exclusivamente nos dados fornecidos para o período de 2015 a 2024. Esta análise visa compreender a evolução da economia angolana através de indicadores fundamentais como PIB, inflação, câmbio, desemprego, balança comercial, dívida externa e outros indicadores macroeconômicos relevantes.</p>
+                <p>Angola, como economia dependente do petróleo, apresenta flutuações significativas em seus indicadores econômicos, refletindo tanto a volatilidade dos preços internacionais do petróleo quanto as políticas econômicas implementadas ao longo dos anos. Este relatório oferece uma visão abrangente dessas dinâmicas, permitindo identificar tendências, desafios e oportunidades na economia angolana.</p>
+            </section>
+        
+            <section class="chart-controls fade-in-up">
+                <h2>Gráfico Interativo de Indicadores</h2>
+                <div class="chart-selector flex-col gap-md">
+                    <select id="indicatorEco1" aria-label="Indicador Econômico 1" onchange="updateEconomicChart()">
+                        <option value="">Selecione um indicador</option>
+                        <option value="pib">PIB (Bilhões USD)</option>
+                        <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
+                        <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
+                        <option value="cambio">Câmbio Médio (Kz/USD)</option>
+                        <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
+                        <option value="taxaEmprego">Taxa Emprego (%)</option>
+                        <option value="taxaDesemprego">Taxa Desemprego (%)</option>
+                        <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
+                        <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
+                        <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
+                        <option value="fluxoCapital">Fluxo Capital (Mil Milhões USD)</option>
+                        <option value="taxaJuros">Taxa Juros (%)</option>
+                        <option value="taxaInflacao">Taxa Inflação (%)</option>
+                    </select>
+                    
+                    <select id="indicatorEco2" aria-label="Indicador Econômico 2 (opcional)" onchange="updateEconomicChart()">
+                        <option value="">Comparar com (opcional)</option>
+                        <option value="pib">PIB (Bilhões USD)</option>
+                        <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
+                        <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
+                        <option value="cambio">Câmbio Médio (Kz/USD)</option>
+                        <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
+                        <option value="taxaEmprego">Taxa Emprego (%)</option>
+                        <option value="taxaDesemprego">Taxa Desemprego (%)</option>
+                        <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
+                        <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
+                        <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
+                        <option value="fluxoCapital">Fluxo Capital (Mil Milhões USD)</option>
+                        <option value="taxaJuros">Taxa Juros (%)</option>
+                        <option value="taxaInflacao">Taxa Inflação (%)</option>
+                    </select>
+                    
+                    <select id="indicatorEco3" aria-label="Indicador Econômico 3 (opcional)" onchange="updateEconomicChart()">
+                        <option value="">Comparar com (opcional)</option>
+                        <option value="pib">PIB (Bilhões USD)</option>
+                        <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
+                        <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
+                        <option value="cambio">Câmbio Médio (Kz/USD)</option>
+                        <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
+                        <option value="taxaEmprego">Taxa Emprego (%)</option>
+                        <option value="taxaDesemprego">Taxa Desemprego (%)</option>
+                        <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
+                        <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
+                        <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
+                        <option value="fluxoCapital">Fluxo Capital (Mil Milhões USD)</option>
+                        <option value="taxaJuros">Taxa Juros (%)</option>
+                        <option value="taxaInflacao">Taxa Inflação (%)</option>
+                    </select>
+                    
+                    <button id="updateEconomicChartButton" onclick="updateEconomicChart()" class="btn-primary">Atualizar Gráfico</button>
+                </div>
+            </section>
+            
+            <section class="charts-section fade-in-up">
+                <div class="chart-container hover-glow">
+                    <canvas id="economicChart" role="img" aria-label="Gráfico de Indicadores Econômicos de Angola"></canvas>
+                </div>
+            </section>
+            
+            <section class="data-section fade-in-up">
+                <h2>Tabela de Dados Econômicos de Angola (2015-2024)</h2>
+                <div class="table-wrapper">
+                    <table class="data-table tabela" id="economicDataTable">
+                        <thead>
+                            <tr>
+                                <th>Ano</th>
+                                <th>PIB (Bilhões USD)</th>
+                                <th>PIB Per Capita (Mil USD)</th>
+                                <th>Despesa Fiscal (Mil Bilhões Kz)</th>
+                                <th>Câmbio Médio (Kz/USD)</th>
+                                <th>Salário Mínimo (Mil Kz)</th>
+                                <th>Taxa Emprego (%)</th>
+                                <th>Taxa Desemprego (%)</th>
+                                <th>Balança Comercial (Mil Milhões USD)</th>
+                                <th>Dívida Externa (Mil Milhões USD)</th>
+                                <th>Investimento Estrangeiro (Mil Milhões USD)</th>
+                                <th>Fluxo Capital (Mil Milhões USD)</th>
+                                <th>Taxa Juros (%)</th>
+                                <th>Taxa Inflação (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Os dados serão preenchidos dinamicamente via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section class="analysis-section fade-in-up">
+                <h2>Análise Detalhada dos Indicadores Econômicos</h2>
+                <div id="indicatorsAnalysis" class="analysis-content">
+                    <!-- A análise será preenchida dinamicamente via JavaScript -->
+                </div>
+            </section>
+            
+            <section class="conclusion fade-in-up">
+                <h2>Conclusão da Análise Macroeconômica</h2>
+                <div id="conclusionText">
+                    <!-- A conclusão será preenchida dinamicamente via JavaScript -->
+                </div>
+            </section>
+            
+            <button class="btn-pdf" id="generatePdfEco" onclick="generatePdfEconomic()">Baixar Relatório Completo em PDF</button>
+        </div>
+    </section>
+
+    <!-- ===================================================== -->
+    <!-- JAVASCRIPT: Modularização e Manutenção de Dados Originais -->
+    <!-- ===================================================== -->
+    <script>
+        // =====================================================
+        // 0. DADOS E VARIÁVEIS GLOBAIS (APENAS DADOS ORIGINAIS)
+        // =====================================================
+
+        /**
+         * Dados originais dos artigos (4 Artigos).
+         * Nota: O conteúdo completo foi condensado em uma única linha para economizar espaço de linha,
+         * mas mantendo a fidelidade ao conteúdo original.
+         */
+        const articles = [
+            { id: 1, title: "Do Alfinete ao Algoritmo: O Valor das Trocas na Era Moderna sob o Olhar de Adam Smith", author: "Baseado em 'A Riqueza das Nações' de Adam Smith", date: "Publicação Original: 1776 | Análise: 2024", shortDescription: "Uma análise contemporânea dos princípios fundamentais de Adam Smith sobre divisão do trabalho, origem do dinheiro e natureza do valor, aplicados à economia digital moderna.", fullContent: `<h3>Introdução: A Mão (Ainda) Invisível do Comércio</h3><p>Numa era definida pela vertiginosa complexidade das cadeias de abastecimento globais, onde um simples clique pode mobilizar uma intrincada rede de produção e logística, é fácil sentirmo-nos perdidos. Contudo, sob esta aparente complexidade, reside uma lógica fundamental, articulada há mais de dois séculos por Adam Smith. O seu pensamento sobre a especialização e a troca não é uma relíquia histórica; continua a ser o alicerce da nossa sociedade comercial.</p><h3>A Génese da Riqueza: Como a Divisão do Trabalho Criou o Mundo Moderno</h3><p>O maior aprimoramento das forças produtivas e, consequentemente, da riqueza de uma sociedade, não nasce de um grande desígnio, mas de um princípio surpreendentemente simples: a divisão do trabalho. Smith identificou esta especialização de tarefas como o motor primário do aumento exponencial da produtividade, uma ideia que ilustrou de forma magistral através do exemplo de uma modesta fábrica de alfinetes.</p><p>Nesta manufatura, a produção de um único alfinete é decomposta em cerca de 18 operações distintas. Um operário não treinado para esta atividade, a trabalhar isoladamente, talvez mal conseguisse fabricar um único alfinete por dia e certamente não faria vinte. No entanto, ao dividir o processo, uma pequena equipa de apenas dez operários, mesmo não sendo particularmente hábeis, conseguia produzir mais de 48.000 alfinetes por dia.</p><h3>O Fim do Escambo: A Origem e a Função Essencial do Dinheiro</h3><p>Com a especialização, cada indivíduo passa a depender da produção alheia para satisfazer a esmagadora maioria das suas necessidades. Numa sociedade baseada na troca direta, ou escambo, surgem obstáculos consideráveis. Smith ilustra o problema de forma clara: o açougueiro, que tem mais carne do que precisa, pode querer pão, mas se o padeiro já tiver carne suficiente, "não poderá haver nenhuma troca entre as duas". O comércio paralisa.</p><h3>O Paradoxo do Valor: Utilidade versus Poder de Compra</h3><p>Adam Smith faz uma distinção crucial ao analisar o conceito de "VALOR", que, segundo ele, possui dois significados distintos. O primeiro é o "valor de uso", que se refere à utilidade de um objeto, à sua capacidade de satisfazer uma necessidade. O segundo é o "valor de troca", que designa o poder de compra que a posse desse objeto confere, ou seja, a quantidade de outros bens que se pode obter em troca dele.</p><h3>A Medida de Todas as Coisas: O Trabalho como Preço Real</h3><p>Num mundo onde o valor das mercadorias flutua constantemente, como podemos encontrar uma medida estável para as comparar ao longo do tempo e do espaço? Para Adam Smith, a resposta não reside no dinheiro, mas no trabalho. Ele argumenta que o trabalho é a "medida real do valor de troca de todas as mercadorias".</p><h3>Conclusão: A Relevância Duradoura de Smith numa Sociedade Comercial Complexa</h3><p>A jornada que Adam Smith nos propõe, desde a simples divisão de tarefas numa fábrica de alfinetes até à complexa abstração do valor, revela os mecanismos fundamentais que transformaram a humanidade numa "sociedade comercial". A especialização gera riqueza através de um aumento massivo da produtividade; essa riqueza só pode ser distribuída através da troca; a troca eficiente exige um meio universal como o dinheiro; e o valor de tudo o que é trocado é, em última análise, medido pelo trabalho humano.</p>` },
+            { id: 2, title: "Bitcoin: Um Manifesto Tecnológico Contra a Tirania Monetária", author: "Baseado em 'Bitcoin - A Moeda Digital' de Fernando Ulrich", date: "Publicação Original: 2014 | Análise: 2024", shortDescription: "Análise profunda do Bitcoin como resposta tecnológica à crise de confiança no sistema monetário tradicional e sua potencialidade como instrumento de liberdade monetária.", fullContent: `<h3>Introdução: A Crise de Confiança no Dinheiro Moderno</h3><p>A quebra do banco de investimento Lehman Brothers em setembro de 2008 não foi apenas um evento financeiro; foi o epicentro de um terramoto que abalou os alicerces do sistema monetário global. A crise que se seguiu expôs as fragilidades de uma arquitetura financeira dependente de intervenção centralizada e, em resposta, desencadeou uma série de medidas sem precedentes e arbitrárias por parte das autoridades monetárias.</p><h3>A Arquitetura da Servidão: Desconstruindo o Sistema Fiduciário</h3><p>Para compreender a magnitude da disrupção que o Bitcoin representa, é essencial desconstruir a arquitetura do sistema monetário que hoje domina o mundo. Este sistema assenta em dois pilares interligados: o monopólio estatal da emissão de moeda, reforçado por leis de curso forçado, e a figura do banco central, que orquestra e controla todo o sistema bancário.</p><h3>A Insurgência do Código: Bitcoin como Resposta Direta</h3><p>A criação do Bitcoin em 2008, poucos meses após a queda do Lehman Brothers, não foi uma coincidência. Foi uma resposta deliberada e simbólica à desordem do sistema financeiro. A prova disso está gravada para sempre no primeiro bloco de transações da sua história, o "bloco génese", onde Satoshi Nakamoto inscreveu uma mensagem que aludia a uma manchete do jornal britânico The Times daquele dia sobre o resgate aos bancos.</p><h3>O Ideal Recuperado: A Liberdade Monetária e a Prosperidade</h3><p>A liberdade monetária — a capacidade de os indivíduos escolherem e produzirem moeda sem a interferência do Estado — é uma condição essencial para uma sociedade verdadeiramente próspera e livre. Durante décadas, economistas liberais propuseram diversas reformas para restaurar a solidez do dinheiro, desde o regresso ao padrão-ouro até a privatização da emissão de moeda.</p><h3>Desafios e Mitos: Uma Análise Fundamentada do Ceticismo</h3><p>É inegável que o Bitcoin enfrenta desafios significativos e críticas legítimas. No entanto, muitas das objeções mais comuns derivam de uma má compreensão da sua natureza fundamental e da aplicação de métricas de um sistema antigo a uma tecnologia inteiramente nova.</p><h3>Conclusão: O Futuro do Dinheiro é uma Escolha, Não um Decreto</h3><p>O argumento central é claro: o Bitcoin representa a separação entre o Estado e a moeda, uma transição histórica que será uma questão tecnológica, não política. Assistimos ao nascimento de uma alternativa monetária que não pede permissão para inovar e que devolve ao indivíduo a soberania sobre a sua propriedade.</p>` },
+            { id: 3, title: "Análise Comparativa de Mentalidades Financeiras: Um Estudo de Caso Baseado nos Princípios de T. Harv Eker", author: "Baseado em 'Os Segredos da Mente Milionária' de T. Harv Eker", date: "Publicação Original: 2005 | Análise: 2024", shortDescription: "Estudo detalhado sobre como o 'modelo de dinheiro' subconsciente determina o sucesso financeiro e estratégias para reprogramação mental para a prosperidade.", fullContent: `<h3>Introdução: O Modelo Financeiro como Fator Determinante do Sucesso</h3><p>O sucesso financeiro, ao contrário do que muitos acreditam, raramente é uma questão de sorte, circunstâncias externas ou mesmo de educação formal. É, fundamentalmente, um reflexo direto do nosso "modelo de dinheiro" subconsciente. Conforme apresentado por T. Harv Eker, este modelo é a programação interna, profundamente enraizada, que dita os nossos pensamentos, os nossos sentimentos e, consequentemente, as nossas ações em relação à riqueza.</p><h3>A Arquitetura da Riqueza: Análise da Formação do Modelo de Dinheiro</h3><p>A compreensão estratégica da origem das suas crenças financeiras é o primeiro passo para qualquer transformação duradoura. Tentar mudar os resultados financeiros sem antes abordar a programação subjacente é como pintar os frutos de uma árvore na esperança de que mudem de sabor.</p><h3>O Ponto de Viragem Mental: Responsabilidade vs. Vitimização</h3><p>A mentalidade de responsabilidade é o divisor de águas fundamental entre a criação de riqueza e a perpetuação da pobreza. Esta não é uma característica inata, mas sim uma escolha consciente que determina todas as ações subsequentes. Enquanto os indivíduos de mentalidade rica assumem o controlo e a autoria do seu destino financeiro, aqueles com mentalidade pobre adotam uma postura de vítima.</p><h3>Análise Comparativa dos Padrões de Pensamento: Os 'Arquivos de Riqueza'</h3><p>Para além da distinção fundamental entre responsabilidade e vitimização, existem 17 "arquivos de riqueza" que representam modos de pensar e agir contrastantes que distinguem fundamentalmente os indivíduos ricos daqueles com mentalidade pobre.</p><h3>Conclusão: Da Consciência à Ação para a Reprogramação Financeira</h3><p>A análise apresentada reforça a tese central de que a riqueza não é um acidente, mas sim um resultado direto do seu mundo interior. O seu "modelo de dinheiro", construído a partir da programação verbal, dos exemplos que seguiu e das experiências que viveu, governa silenciosamente cada decisão financeira que toma.</p>` },
+            { id: 4, title: "Relatório Analítico: Padrões de Sucesso e Fracasso na Psicologia Financeira", author: "Baseado em 'A Psicologia Financeira' de Morgan Housel", date: "Publicação Original: 2020 | Análise: 2024", shortDescription: "Análise comportamental profunda sobre como a psicologia, mais do que o conhecimento técnico, determina o sucesso financeiro sustentável.", fullContent: `<h3>Introdução: O Comportamento como Fator Decisivo no Sucesso Financeiro</h3><p>O sucesso financeiro é, de forma contraintuitiva, menos uma ciência exata e mais uma competência pessoal, onde o comportamento se revela mais determinante do que a inteligência bruta ou a formação académica. A gestão do dinheiro não é ensinada em laboratórios, mas sim à mesa do jantar e nas complexidades da vida quotidiana.</p><h3>A Base Psicológica da Riqueza: Experiência, Sorte e Risco</h3><p>Para gerir eficazmente as finanças, é imperativo compreender os fundamentos psicológicos que moldam a nossa relação com o dinheiro. As nossas decisões não são tomadas no vácuo de uma folha de cálculo; são, na verdade, o produto das nossas experiências de vida, profundamente influenciadas pela interação inevitável com as forças da sorte e do risco.</p><h3>Padrões Comportamentais de Sucesso Financeiro Sustentável</h3><p>Uma vez compreendidos os fundamentos psicológicos que governam a nossa relação com o dinheiro, torna-se possível identificar um conjunto de comportamentos e mentalidades que, de forma consistente, promovem a acumulação e, crucialmente, a manutenção da riqueza a longo prazo.</p><h3>Padrões Comportamentais que Levam ao Fracasso Financeiro</h3><p>Assim como existem padrões de sucesso, há também armadilhas comportamentais recorrentes que minam a segurança financeira a longo prazo. Estas armadilhas decorrem frequentemente de equívocos sobre a verdadeira natureza da riqueza e da sucumbência a pressões sociais e vieses psicológicos.</p><h3>Estratégias Práticas para a Gestão Financeira Pessoal</h3><p>A aplicação prática dos princípios psicológicos discutidos anteriormente constitui a base da gestão financeira eficaz. Esta não reside em fórmulas complexas ou previsões de mercado, mas sim na aplicação consistente de estratégias comportamentais sólidas que promovem a resiliência e a sustentabilidade a longo prazo.</p><h3>Conclusão: Síntese das Lições para a Sustentabilidade Financeira</h3><p>Este relatório analisou a profunda verdade de que a gestão do dinheiro é uma disciplina mais psicológica do que matemática. O sucesso não depende do que se sabe, mas de como se comporta. É uma jornada pessoal, onde a autoconsciência, a disciplina e a humildade são mais valiosas do que qualquer fórmula complexa.</p>` }
+        ];
+
+        /**
+         * Dados originais BODIVA (5 Ações, 1 Obrigação).
+         */
+        const bodivaData = {
+            acoes: [
+                { dataCotacao: "09/07/2022", empresa: "Banco Angolano de Investimentos (BAI)", tipoAcoes: "Ordinárias", numAcoes: 1945000, precoAcao: 100000, valorMercado: 194500000000 },
+                { dataCotacao: "19/09/2022", empresa: "Banco Caixa Geral de Angola (BCGA)", tipoAcoes: "Ordinárias", numAcoes: 5000000, precoAcao: 26000, valorMercado: 130000000000 },
+                { dataCotacao: "30/10/2024", empresa: "ENSA - Seguros Angola (ENSA)", tipoAcoes: "Ordinárias", numAcoes: 720000, precoAcao: 40000, valorMercado: 28800000000 },
+                { dataCotacao: "11/12/2024", empresa: "Bolsa de Dívidas e Valores de Angola (BODIVA)", tipoAcoes: "Ordinárias", numAcoes: 180000, precoAcao: 50000, valorMercado: 9000000000 },
+                { dataCotacao: "30/09/2025", empresa: "Banco de Fomento Angola (BFA)", tipoAcoes: "Ordinárias", numAcoes: 4462500, precoAcao: 120000, valorMercado: 360000000000 }
+            ],
+            obrigacoes: [
+                { dataEmissao: "2023", empresa: "Sonangol S.A", tipoObrigacoes: "Obrigações Privadas", numObrigacoes: 7500000, taxaJuros: "17,5% ao ano", dataVencimento: "2028", investimentoMinimo: "100.000 kz" }
+            ]
+        };
+
+        /**
+         * Dados originais econômicos (2015-2024).
+         */
+        const economicData = [
+            {ano: 2024, pib: 80.4, pibPerCapita: 2.36, despesaFiscal: 17.8, cambio: 850, salarioMinimo: 32.2, taxaEmprego: 60, taxaDesemprego: 32, balancaComercial: 22.6, dividaExterna: 46.8, investimentoEstrangeiro: 9.87, fluxoCapital: -6.02, taxaJuros: 19.5, taxaInflacao: 30},
+            {ano: 2023, pib: 84.88, pibPerCapita: 2.33, despesaFiscal: 14.9, cambio: 720, salarioMinimo: 32.2, taxaEmprego: null, taxaDesemprego: null, balancaComercial: 21.81, dividaExterna: 49.6, investimentoEstrangeiro: 8.8, fluxoCapital: -4.06, taxaJuros: 17, taxaInflacao: 13},
+            {ano: 2022, pib: 104.4, pibPerCapita: 2.38, despesaFiscal: 11.9, cambio: 440, salarioMinimo: 32.2, taxaEmprego: 62, taxaDesemprego: 30.5, balancaComercial: 32.76, dividaExterna: 52.1, investimentoEstrangeiro: 7.01, fluxoCapital: -7.85, taxaJuros: 20, taxaInflacao: 27},
+            {ano: 2021, pib: 66.51, pibPerCapita: 2.39, despesaFiscal: 9.21, cambio: 580, salarioMinimo: 21.5, taxaEmprego: 62.5, taxaDesemprego: 31, balancaComercial: 21.79, dividaExterna: 52.3, investimentoEstrangeiro: 6.53, fluxoCapital: -6.15, taxaJuros: 17.62, taxaInflacao: 25},
+            {ano: 2020, pib: 48.5, pibPerCapita: 2.43, despesaFiscal: 7.67, cambio: 480, salarioMinimo: 21.5, taxaEmprego: 61, taxaDesemprego: 32, balancaComercial: 11.39, dividaExterna: 50.1, investimentoEstrangeiro: 6.31, fluxoCapital: -2.93, taxaJuros: 15.5, taxaInflacao: 22},
+            {ano: 2019, pib: 70.9, pibPerCapita: 2.66, despesaFiscal: 5.98, cambio: 420, salarioMinimo: 21.5, taxaEmprego: 60, taxaDesemprego: 29, balancaComercial: 20.59, dividaExterna: 49.5, investimentoEstrangeiro: 8.09, fluxoCapital: -3.5, taxaJuros: 15.5, taxaInflacao: 17},
+            {ano: 2018, pib: 79.44, pibPerCapita: 2.78, despesaFiscal: 5.21, cambio: 250, salarioMinimo: 16.5, taxaEmprego: 61, taxaDesemprego: 28.8, balancaComercial: 24.9, dividaExterna: 54, investimentoEstrangeiro: 7.5, fluxoCapital: -7.43, taxaJuros: 17.5, taxaInflacao: 19.8},
+            {ano: 2017, pib: 73.69, pibPerCapita: 2.91, despesaFiscal: 4.81, cambio: 180, salarioMinimo: 16.5, taxaEmprego: null, taxaDesemprego: 20, balancaComercial: 20.15, dividaExterna: 43.4, investimentoEstrangeiro: 6.1, fluxoCapital: -4.15, taxaJuros: 16, taxaInflacao: 29},
+            {ano: 2016, pib: 52.76, pibPerCapita: 3.02, despesaFiscal: 4.3, cambio: 160, salarioMinimo: 15, taxaEmprego: null, taxaDesemprego: 19, balancaComercial: 14.54, dividaExterna: 44.4, investimentoEstrangeiro: 11.1, fluxoCapital: 5.29, taxaJuros: 14.5, taxaInflacao: 35},
+            {ano: 2015, pib: 90.5, pibPerCapita: 3.21, despesaFiscal: 3.5, cambio: 150, salarioMinimo: 15, taxaEmprego: null, taxaDesemprego: null, balancaComercial: 12.48, dividaExterna: 36.3, investimentoEstrangeiro: 16.2, fluxoCapital: 8.45, taxaJuros: 9.93, taxaInflacao: 10}
+        ].sort((a, b) => a.ano - b.ano);
+
+        let currentBodivaChart = null;
+        let currentEconomicChart = null;
+
+        /**
+         * Mapeamento de Configurações para Indicadores Econômicos (Cores e Rótulos).
+         */
+        const economicIndicatorConfigs = {
+            pib: { label: 'PIB (Bilhões USD)', color: 'rgb(6, 64, 167)' },
+            pibPerCapita: { label: 'PIB Per Capita (Mil USD)', color: 'rgb(54, 162, 235)' },
+            despesaFiscal: { label: 'Despesa Fiscal (Mil Bilhões Kz)', color: 'rgb(255, 99, 132)' },
+            cambio: { label: 'Câmbio Médio (Kz/USD)', color: 'rgb(75, 192, 192)' },
+            salarioMinimo: { label: 'Salário Mínimo (Mil Kz)', color: 'rgb(255, 159, 64)' },
+            taxaEmprego: { label: 'Taxa Emprego (%)', color: 'rgb(153, 102, 255)' },
+            taxaDesemprego: { label: 'Taxa Desemprego (%)', color: 'rgb(201, 203, 207)' },
+            balancaComercial: { label: 'Balança Comercial (Mil Milhões USD)', color: 'rgb(40, 167, 69)' },
+            dividaExterna: { label: 'Dívida Externa (Mil Milhões USD)', color: 'rgb(220, 53, 69)' },
+            investimentoEstrangeiro: { label: 'Investimento Estrangeiro (Mil Milhões USD)', color: 'rgb(253, 126, 20)' },
+            fluxoCapital: { label: 'Fluxo Capital (Mil Milhões USD)', color: 'rgb(32, 201, 151)' },
+            taxaJuros: { label: 'Taxa Juros (%)', color: 'rgb(111, 66, 193)' },
+            taxaInflacao: { label: 'Taxa Inflação (%)', color: 'rgb(214, 174, 100)' }
+        };
+
+
+        // =====================================================
+        // 1. FUNÇÕES AUXILIARES GLOBAIS (Formatação e HTML)
+        // =====================================================
+        
+        /**
+         * Formata um número como moeda angolana (Kz).
+         * @param {number} value O valor numérico a ser formatado.
+         * @returns {string} O valor formatado com o símbolo 'Kz'.
+         */
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('pt-AO', {
+                style: 'currency',
+                currency: 'AOA',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(value).replace('AOA', 'Kz').trim();
+        }
+
+        /**
+         * Formata um número com separador de milhares.
+         * @param {number} value O valor numérico a ser formatado.
+         * @returns {string} O valor formatado.
+         */
+        function formatNumber(value) {
+            return new Intl.NumberFormat('pt-AO').format(value);
+        }
+        
+        /**
+         * Remove tags HTML básicas para obter texto simples.
+         * @param {string} html O conteúdo HTML.
+         * @returns {string} O texto sem tags.
+         */
+        function stripHtmlTags(html) {
+            const div = document.createElement('div');
+            div.innerHTML = html;
+            return div.textContent || div.innerText || '';
+        }
+
+        // =====================================================
+        // 2. INICIALIZAÇÃO E GESTÃO DE CONTEÚDOS MULTIMÍDIA
+        // =====================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializa a seção de artigos
+            renderArticles();
+            
+            // Inicializa a seção de Áudio/Vídeo
+            renderAudioContent();
+            
+            // Inicializa relatórios
+            initializeBodivaReport();
+            initializeEconomicReport();
+        });
+
+        /**
+         * Renderiza os cards de artigos no container.
+         * Funções de toggle e PDF são expostas no window global.
+         */
+        function renderArticles() {
+            const container = document.getElementById('articlesContainer');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            articles.forEach(article => {
+                const articleCard = document.createElement('div');
+                articleCard.className = 'article-card hover-lift fade-in-up';
+                articleCard.innerHTML = `
+                    <div class="article-header">
+                        <h4 class="article-title">${article.title}</h4>
+                        <div class="article-meta">
+                            <span class="article-author">${article.author}</span>
+                            <span class="article-date">${article.date}</span>
+                        </div>
+                    </div>
+                    <div class="article-short">
+                        <p>${article.shortDescription}</p>
+                    </div>
+                    <div class="article-actions">
+                        <button class="toggle-content btn-secondary" onclick="window.toggleArticleContent(${article.id})" aria-expanded="false" aria-controls="content-${article.id}">Ler Resumo Completo</button>
+                        <button class="download-pdf btn-outline" onclick="window.downloadArticlePDF(${article.id})">Baixar em PDF</button>
+                    </div>
+                    <div class="article-full-content" id="content-${article.id}" style="display: none;" role="region" aria-labelledby="title-${article.id}">
+                        ${article.fullContent}
+                    </div>
+                `;
+                container.appendChild(articleCard);
+            });
+        }
+
+        /**
+         * Expande ou recolhe o conteúdo completo do artigo.
+         * @param {number} articleId O ID do artigo.
+         */
+        window.toggleArticleContent = function(articleId) {
+            const contentElement = document.getElementById(`content-${articleId}`);
+            const buttonElement = contentElement.previousElementSibling.querySelector('.toggle-content');
+            
+            if (contentElement.style.display === 'none') {
+                contentElement.style.display = 'block';
+                buttonElement.textContent = 'Ocultar Resumo';
+                buttonElement.setAttribute('aria-expanded', 'true');
+            } else {
+                contentElement.style.display = 'none';
+                buttonElement.textContent = 'Ler Resumo Completo';
+                buttonElement.setAttribute('aria-expanded', 'false');
+            }
+        };
+
+        /**
+         * Gera e baixa o artigo completo em formato PDF com formatação completa.
+         * @param {number} articleId O ID do artigo.
+         */
+        window.downloadArticlePDF = function(articleId) {
+            const { jsPDF } = window.jspdf;
+            const article = articles.find(a => a.id === articleId);
+            
+            if (!article) {
+                alert('Artigo não encontrado');
+                return;
+            }
+
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const currentDate = new Date().toLocaleDateString('pt-PT');
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 20;
+            const maxWidth = pageWidth - (2 * margin);
+            
+            let yPosition = 30;
+
+            // Cabeçalho com cor ouro
+            doc.setFillColor(214, 174, 100);
+            doc.rect(0, 0, pageWidth, 25, 'F');
+            
+            doc.setFontSize(16);
+            doc.setTextColor(40, 40, 40);
+            doc.text(article.title, margin, yPosition, { maxWidth: maxWidth, align: 'left' });
+            yPosition += 15;
+            
+            // Informações do artigo
+            doc.setFontSize(9);
+            doc.setTextColor(100, 100, 100);
+            doc.text(`Autor: ${article.author}`, margin, yPosition);
+            yPosition += 5;
+            doc.text(`Publicação: ${article.date}`, margin, yPosition);
+            yPosition += 5;
+            doc.text(`Data de download: ${currentDate}`, margin, yPosition);
+            yPosition += 10;
+            
+            // Linha divisória
+            doc.setDrawColor(214, 174, 100);
+            doc.setLineWidth(1);
+            doc.line(margin, yPosition, pageWidth - margin, yPosition);
+            yPosition += 8;
+            
+            // Processamento do conteúdo HTML
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            
+            // Converte HTML para texto estruturado
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = article.fullContent;
+            
+            const headings = tempDiv.querySelectorAll('h3');
+            const paragraphs = tempDiv.querySelectorAll('p');
+            
+            // Renderiza headings e parágrafos
+            let contentIndex = 0;
+            headings.forEach((heading, idx) => {
+                yPosition = window.checkPageBreak(doc, yPosition, 15);
+                
+                // Heading com cor gold
+                doc.setFontSize(12);
+                doc.setTextColor(214, 174, 100);
+                doc.setFont(undefined, 'bold');
+                
+                const headingText = heading.textContent;
+                const headingLines = doc.splitTextToSize(headingText, maxWidth);
+                headingLines.forEach(line => {
+                    yPosition = window.checkPageBreak(doc, yPosition, 6);
+                    doc.text(line, margin, yPosition);
+                    yPosition += 6;
+                });
+                
+                yPosition += 3;
+                
+                // Parágrafo associado
+                if (idx < paragraphs.length) {
+                    doc.setFontSize(10);
+                    doc.setTextColor(30, 30, 30);
+                    doc.setFont(undefined, 'normal');
+                    
+                    const paragraph = paragraphs[idx].textContent;
+                    const lines = doc.splitTextToSize(paragraph, maxWidth);
+                    
+                    lines.forEach((line, lineIdx) => {
+                        yPosition = window.checkPageBreak(doc, yPosition, 5);
+                        doc.text(line, margin, yPosition);
+                        yPosition += 5;
+                    });
+                    
+                    yPosition += 5;
+                }
+            });
+            
+            // Rodapé em todas as páginas
+            window.addFooterToAllPages(doc);
+            
+            // Salvar PDF
+            const fileName = `Artigo_${article.title.substring(0, 30).replace(/[^a-z0-9]/gi, '_')}.pdf`;
+            doc.save(fileName);
+            
+            alert('✓ Artigo baixado com sucesso!');
+        };
+
+        /**
+         * Renderiza o conteúdo da seção de Áudio (Baseado no código original).
+         */
+        function renderAudioContent() {
+            const container = document.getElementById('audioContentContainer');
+            if (!container) return;
+
+            // O código original não usava arrays de dados para áudio, mas sim divs estáticas com áudio tags.
+            // Para manter a fidelidade e facilitar futuras expansões, criamos uma estrutura semi-dinâmica.
+            const originalAudioData = [
+                { title: "A Psicologia Financeira", author: "Morgan Housel", description: "Lições atemporais sobre fortuna, ganância e felicidade", src: "audio/Limpar_fortunas_Comportamento_vence_inteligência_financeira.m4a" },
+                { title: "Os Segredos da Mente Milionária", author: "T. Harv Eker", description: "Como reprogramar seu modelo de dinheiro para o sucesso financeiro", src: "audio/Segredos_da_Mente_Milionária_Descodificar_Código_Financeiro.m4a" },
+                { title: "Bitcoin - A Moeda Digital", author: "Fernando Ulrich", description: "Uma análise profunda da revolução monetária do Bitcoin", src: "audio/Bitcoin_Crise_2008_Gasto_Duplo_Blockchain.m4a" }
+            ];
+
+            container.innerHTML = ''; 
+
+            originalAudioData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'audio-card hover-lift fade-in-up';
+                card.innerHTML = `
+                    <div class="audio-info">
+                        <h3 class="audio-title">Livro: ${item.title}</h3>
+                        <p class="audio-author">Autor: ${item.author}</p>
+                        <p class="audio-description">Descrição: ${item.description}</p>
+                        <audio src="${item.src}" controls preload="metadata"></audio>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        
+        // =====================================================
+        // 3. RELATÓRIO BODIVA (Inicialização e Gráficos)
+        // =====================================================
+
+        /**
+         * Inicializa o módulo de relatórios da BODIVA
+         */
+        function initializeBodivaReport() {
+            renderAcoesCards();
+            renderObrigacoesCards();
+            renderMarketAnalysis();
+            setupBodivaChartControls();
+            updateBodivaChart();
+        }
+
+        /**
+         * Configura a lógica de display dos seletores de gráfico BODIVA.
+         */
+        function setupBodivaChartControls() {
+            const chartTypeSelect = document.getElementById('chart-type');
+            const comparisonSelectors = document.getElementById('comparison-selectors');
+            
+            chartTypeSelect.addEventListener('change', function() {
+                if (this.value === 'comparacao') {
+                    comparisonSelectors.style.display = 'flex';
+                } else {
+                    comparisonSelectors.style.display = 'none';
+                }
+            });
+        }
+
+        /**
+         * Renderiza os cards de ações da BODIVA.
+         */
+        function renderAcoesCards() {
+            const container = document.getElementById('acoes-cards');
+            if (!container) return;
+            container.innerHTML = '';
+
+            bodivaData.acoes.forEach(acao => {
+                const card = document.createElement('div');
+                card.className = 'card acao-card hover-lift fade-in-up';
+                card.innerHTML = `
+                    <h3>${acao.empresa}</h3>
+                    <div class="card-content">
+                        <p><strong>Data de Cotação:</strong> ${acao.dataCotacao}</p>
+                        <p><strong>Tipo de Ações:</strong> ${acao.tipoAcoes}</p>
+                        <p><strong>Ações Emitidas:</strong> ${formatNumber(acao.numAcoes)}</p>
+                        <p><strong>Preço por Ação:</strong> ${formatCurrency(acao.precoAcao)}</p>
+                        <p><strong>Valor de Mercado:</strong> ${formatCurrency(acao.valorMercado)}</p>
+                    </div>
+                    <div class="card-analysis">
+                        <h4>Análise Rápida</h4>
+                        <p>${generateAcaoAnalysis(acao)}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        /**
+         * Renderiza os cards de obrigações da BODIVA.
+         */
+        function renderObrigacoesCards() {
+            const container = document.getElementById('obrigacoes-cards');
+            if (!container) return;
+            container.innerHTML = '';
+
+            bodivaData.obrigacoes.forEach(obrigacao => {
+                const card = document.createElement('div');
+                card.className = 'card obrigacao-card hover-lift fade-in-up';
+                card.innerHTML = `
+                    <h3>${obrigacao.empresa}</h3>
+                    <div class="card-content">
+                        <p><strong>Data de Emissão:</strong> ${obrigacao.dataEmissao}</p>
+                        <p><strong>Tipo de Obrigações:</strong> ${obrigacao.tipoObrigacoes}</p>
+                        <p><strong>Obrigações Emitidas:</strong> ${formatNumber(obrigacao.numObrigacoes)}</p>
+                        <p><strong>Taxa de Juros:</strong> ${obrigacao.taxaJuros}</p>
+                        <p><strong>Data de Vencimento:</strong> ${obrigacao.dataVencimento}</p>
+                        <p><strong>Investimento Mínimo:</strong> ${obrigacao.investimentoMinimo}</p>
+                    </div>
+                    <div class="card-analysis">
+                        <h4>Análise Rápida</h4>
+                        <p>${generateObrigacaoAnalysis(obrigacao)}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        /**
+         * Gera a análise textual para um card de ação (Baseado nos dados originais).
+         * @param {object} acao Dados da ação.
+         * @returns {string} Análise textual.
+         */
+        function generateAcaoAnalysis(acao) {
+            const valorMercadoBilhoes = (acao.valorMercado / 1000000000).toFixed(1);
+            const totalMercado = bodivaData.acoes.reduce((sum, a) => sum + a.valorMercado, 0);
+            const participacao = ((acao.valorMercado / totalMercado) * 100).toFixed(1);
+            
+            return `A ${acao.empresa} possui um valor de mercado de ${valorMercadoBilhoes} bilhões Kz, representando ${participacao}% do mercado total. Com ${formatNumber(acao.numAcoes)} ações emitidas, ela é um pilar do setor financeiro angolano, refletindo a concentração do mercado na banca.`;
+        }
+
+        /**
+         * Gera a análise textual para um card de obrigação (Baseado nos dados originais).
+         * @param {object} obrigacao Dados da obrigação.
+         * @returns {string} Análise textual.
+         */
+        function generateObrigacaoAnalysis(obrigacao) {
+            return `A obrigação privada da ${obrigacao.empresa} oferece uma taxa de juros de ${obrigacao.taxaJuros}, com vencimento em ${obrigacao.dataVencimento}. Este é um dos poucos instrumentos de dívida corporativa listados, indicando potencial de renda fixa com rendimento elevado, típico de mercados emergentes.`;
+        }
+
+        /**
+         * Atualiza o gráfico BODIVA com base nas seleções do usuário.
+         */
+        function updateBodivaChart() {
+            const ctx = document.getElementById('bodiva-chart').getContext('2d');
+            const chartType = document.getElementById('chart-type').value;
+            
+            if (currentBodivaChart) {
+                currentBodivaChart.destroy();
+            }
+
+            const empresas = bodivaData.acoes.map(acao => acao.empresa.split('(').pop().replace(')', ''));
+            const labelsMap = { valorMercado: 'Valor de Mercado (Bilhões Kz)', precoAcao: 'Preço por Ação (Mil Kz)', numAcoes: 'Número de Ações (Milhares)' };
+
+            if (chartType === 'comparacao') {
+                const indicator1 = document.getElementById('indicator1').value;
+                const indicator2 = document.getElementById('indicator2').value;
+                const indicator3 = document.getElementById('indicator3').value;
+                
+                const datasets = [];
+                const colors = ['rgba(54, 162, 235, 0.8)', 'rgba(255, 99, 132, 0.8)', 'rgba(75, 192, 192, 0.8)'];
+                const indicators = [indicator1, indicator2, indicator3].filter(ind => ind);
+
+                indicators.forEach((indicator, index) => {
+                    if (indicator) {
+                        let data = bodivaData.acoes.map(acao => {
+                            let value = acao[indicator];
+                            if (indicator === 'valorMercado') return value / 1000000000;
+                            if (indicator === 'precoAcao') return value / 1000;
+                            return value / 1000;
+                        });
+                        
+                        datasets.push({
+                            label: labelsMap[indicator],
+                            data: data,
+                            backgroundColor: colors[index],
+                            borderColor: colors[index].replace('0.8', '1'),
+                            borderWidth: 1
+                        });
+                    }
+                });
+
+                currentBodivaChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: { labels: empresas, datasets: datasets },
+                    options: window.getBodivaChartOptions('Comparação de Múltiplos Indicadores do Mercado Acionista')
+                });
+            } else {
+                let data, label, backgroundColor;
+
+                switch(chartType) {
+                    case 'valor-mercado':
+                        data = bodivaData.acoes.map(acao => acao.valorMercado / 1000000000);
+                        label = labelsMap.valorMercado;
+                        backgroundColor = 'rgba(54, 162, 235, 0.8)';
+                        break;
+                    case 'preco-acoes':
+                        data = bodivaData.acoes.map(acao => acao.precoAcao / 1000);
+                        label = labelsMap.precoAcao;
+                        backgroundColor = 'rgba(255, 99, 132, 0.8)';
+                        break;
+                    case 'numero-acoes':
+                        data = bodivaData.acoes.map(acao => acao.numAcoes / 1000);
+                        label = labelsMap.numAcoes;
+                        backgroundColor = 'rgba(75, 192, 192, 0.8)';
+                        break;
+                    default: return;
+                }
+
+                currentBodivaChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: { labels: empresas, datasets: [{ label: label, data: data, backgroundColor: backgroundColor, borderColor: backgroundColor.replace('0.8', '1'), borderWidth: 1 }] },
+                    options: window.getBodivaChartOptions(`Análise do Mercado de Ações - ${label.split('(')[0]}`)
+                });
+            }
+        }
+
+        /**
+         * Retorna as opções padrão para os gráficos BODIVA.
+         * @param {string} title Título do gráfico.
+         * @returns {object} Opções do Chart.js.
+         */
+        window.getBodivaChartOptions = function(title) {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: title, font: { size: 16 } }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Valor (Ajustado)' } },
+                    x: { title: { display: true, text: 'Empresas' } }
+                }
+            };
+        };
+
+        /**
+         * Renderiza a análise textual do mercado BODIVA (Baseada nos dados originais).
+         */
+        function renderMarketAnalysis() {
+            const container = document.getElementById('market-analysis');
+            if (!container) return;
+            
+            const totalValorMercado = bodivaData.acoes.reduce((sum, acao) => sum + acao.valorMercado, 0);
+            const maiorEmpresa = bodivaData.acoes.reduce((max, acao) => acao.valorMercado > max.valorMercado ? acao : max);
+            const menorEmpresa = bodivaData.acoes.reduce((min, acao) => acao.valorMercado < min.valorMercado ? acao : min);
+            const mediaPrecoAcoes = bodivaData.acoes.reduce((sum, acao) => sum + acao.precoAcao, 0) / bodivaData.acoes.length;
+
+            container.innerHTML = `
+                <div class="analysis-item hover-lift">
+                    <h3>Panorama do Mercado Acionista</h3>
+                    <p>O mercado de ações da BODIVA é composto por ${bodivaData.acoes.length} empresas, com valor de mercado total de ${formatCurrency(totalValorMercado)}. O setor bancário domina a bolsa, com instituições financeiras (BAI, BCGA, BFA) representando a maior parte do valor de mercado. Isso indica uma alta dependência do setor bancário para a capitalização do mercado angolano.</p>
+                </div>
+
+                <div class="analysis-item hover-lift">
+                    <h3>Concentração e Liquidez</h3>
+                    <p>O mercado apresenta alta concentração, com a ${maiorEmpresa.empresa} representando uma parcela significativa do valor total. A concentração em poucas empresas indica desafios de liquidez e diversificação para os investidores. O crescimento futuro do mercado depende da atração de mais empresas de diferentes setores.</p>
+                </div>
+
+                <div class="analysis-item hover-lift">
+                    <h3>Mercado de Obrigações</h3>
+                    <p>O mercado de dívida corporativa é incipiente, com apenas ${bodivaData.obrigacoes.length} emissão listada. A taxa de juros de ${bodivaData.obrigacoes[0].taxaJuros} da Sonangol reflete o potencial de retorno neste segmento de renda fixa, mas também o risco percebido no mercado angolano.</p>
+                </div>
+
+                <div class="conclusion hover-lift">
+                    <h3>Conclusão</h3>
+                    <p>A BODIVA representa um marco importante no desenvolvimento financeiro de Angola, porém enfrenta desafios de diversificação e liquidez. A auto-listagem da BODIVA é um sinal positivo de compromisso com a transparência e desenvolvimento do mercado, que oferece acessibilidade (preço médio das ações de ${formatCurrency(mediaPrecoAcoes)}) para diferentes perfis de investidores.</p>
+                </div>
+            `;
+        }
+
+        /**
+         * Gera o relatório completo da BODIVA em PDF com design aprimorado.
+         */
+        window.generateFullReportBodiva = function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const currentDate = new Date().toLocaleDateString('pt-PT');
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const margin = 20;
+            const maxWidth = pageWidth - (2 * margin);
+            
+            let yPosition = 20;
+
+            // Cabeçalho com cor ouro
+            doc.setFillColor(214, 174, 100);
+            doc.rect(0, 0, pageWidth, 20, 'F');
+            
+            doc.setFontSize(18);
+            doc.setTextColor(40, 40, 40);
+            doc.setFont(undefined, 'bold');
+            doc.text('RELATÓRIO BODIVA', margin, yPosition);
+            yPosition += 15;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.setFont(undefined, 'normal');
+            doc.text(`Bolsa de Dívida e Valores de Angola - Análise Completa`, margin, yPosition);
+            yPosition += 5;
+            doc.text(`Data do Relatório: ${currentDate}`, margin, yPosition);
+            yPosition += 10;
+
+            // SEÇÃO 1: INTRODUÇÃO
+            yPosition = window.addSectionHeader(doc, 'Introdução: Bolsa de Dívida e Valores de Angola', yPosition);
+            const introText = `A Bolsa de Dívida e Valores de Angola (BODIVA), criada em 2 de julho de 2014, é o mercado oficial de capitais de Angola. Sob supervisão da Comissão do Mercado de Capitais, promove transparência, liquidez e crescimento económico através da negociação de títulos públicos e privados. Este relatório apresenta uma análise completa do panorama do mercado, incluindo dados de empresas cotadas, análises técnicas e projeções estratégicas.`;
+            yPosition = window.addTextToPdf(doc, introText, yPosition, maxWidth, 5);
+            yPosition += 5;
+
+            // SEÇÃO 2: TABELA DE AÇÕES
+            yPosition = window.checkPageBreak(doc, yPosition, 50);
+            yPosition = window.addSectionHeader(doc, 'Empresas Cotadas no Mercado de Ações', yPosition);
+            
+            const acoesTableData = bodivaData.acoes.map(a => [
+                a.dataCotacao,
+                a.empresa.substring(0, 25),
+                a.tipoAcoes,
+                formatNumber(a.numAcoes),
+                formatCurrency(a.precoAcao),
+                formatCurrency(a.valorMercado)
+            ]);
+
+            doc.autoTable({
+                startY: yPosition,
+                head: [['Data', 'Empresa', 'Tipo', 'Nº de Ações', 'Preço Unit.', 'Valor Mercado']],
+                body: acoesTableData,
+                theme: 'grid',
+                styles: { 
+                    fontSize: 8, 
+                    cellPadding: 2.5,
+                    textColor: [30, 30, 30],
+                    lineColor: [200, 200, 200]
+                },
+                headStyles: { 
+                    fillColor: [214, 174, 100], 
+                    textColor: [40, 40, 40],
+                    fontStyle: 'bold',
+                    fontSize: 9
+                },
+                margin: { left: margin, right: margin }
+            });
+            yPosition = doc.lastAutoTable.finalY + 10;
+
+            // SEÇÃO 3: TABELA DE OBRIGAÇÕES
+            yPosition = window.checkPageBreak(doc, yPosition, 40);
+            yPosition = window.addSectionHeader(doc, 'Empresas Cotadas no Mercado de Obrigações', yPosition);
+            
+            const obligationsTableData = bodivaData.obrigacoes.map(o => [
+                o.dataEmissao,
+                o.empresa,
+                o.tipoObrigacoes,
+                formatNumber(o.numObrigacoes),
+                o.taxaJuros,
+                o.dataVencimento
+            ]);
+
+            doc.autoTable({
+                startY: yPosition,
+                head: [['Emissão', 'Empresa', 'Tipo', 'Nº Obrigações', 'Taxa Juros', 'Vencimento']],
+                body: obligationsTableData,
+                theme: 'grid',
+                styles: { 
+                    fontSize: 8, 
+                    cellPadding: 2.5,
+                    textColor: [30, 30, 30],
+                    lineColor: [200, 200, 200]
+                },
+                headStyles: { 
+                    fillColor: [214, 174, 100], 
+                    textColor: [40, 40, 40],
+                    fontStyle: 'bold'
+                },
+                margin: { left: margin, right: margin }
+            });
+            yPosition = doc.lastAutoTable.finalY + 10;
+
+            // SEÇÃO 4: ANÁLISE DO MERCADO
+            yPosition = window.checkPageBreak(doc, yPosition, 30);
+            yPosition = window.addSectionHeader(doc, 'Análise Técnica do Mercado', yPosition);
+            
+            const totalValorMercado = bodivaData.acoes.reduce((sum, acao) => sum + acao.valorMercado, 0);
+            const mediaPrecos = bodivaData.acoes.reduce((sum, a) => sum + a.precoAcao, 0) / bodivaData.acoes.length;
+            
+            const analysisText = `O mercado BODIVA apresenta concentração elevada com ${bodivaData.acoes.length} empresas cotadas e valor de mercado total de ${formatCurrency(totalValorMercado)}. O setor financeiro domina a bolsa, evidenciando a importância do banking para a capitalização do mercado angolano. O preço médio das ações é de ${formatCurrency(mediaPrecos)}, oferecendo oportunidades de acesso a diversos perfis de investidores. A estabilidade do mercado depende da atração de mais empresas e da melhoria da liquidez nos valores mobiliários.`;
+            yPosition = window.addTextToPdf(doc, analysisText, yPosition, maxWidth, 5);
+
+            // Rodapé em todas as páginas
+            window.addFooterToAllPages(doc);
+            
+            doc.save(`BODIVA_Relatorio_Completo_${currentDate.replace(/\//g, '-')}.pdf`);
+            alert('✓ Relatório BODIVA baixado com sucesso!');
+        };
+
+        /**
+         * Adiciona a tabela de Ações ao PDF usando autoTable (Dados originais).
+         */
+        window.addAcoesTableToPdf = function(doc, y) {
+            const tableData = bodivaData.acoes.map(a => [
+                a.dataCotacao,
+                a.empresa.split('(')[0].trim(),
+                a.tipoAcoes,
+                formatNumber(a.numAcoes),
+                formatCurrency(a.precoAcao),
+                formatCurrency(a.valorMercado)
+            ]);
+
+            doc.autoTable({
+                startY: y,
+                head: [['Data', 'Empresa', 'Tipo', 'Nº de Ações', 'Preço Unitário', 'Valor de Mercado']],
+                body: tableData,
+                styles: { fontSize: 8, cellPadding: 1, overflow: 'linebreak' },
+                headStyles: { fillColor: [214, 174, 100], textColor: [0, 0, 0], fontStyle: 'bold' },
+                margin: { left: 20, right: 20 }
+            });
+            return doc.lastAutoTable.finalY + 10;
+        };
+
+        /**
+         * Adiciona a tabela de Obrigações ao PDF usando autoTable (Dados originais).
+         */
+        window.addObrigacoesTableToPdf = function(doc, y) {
+            const tableData = bodivaData.obrigacoes.map(o => [
+                o.dataEmissao,
+                o.empresa,
+                o.tipoObrigacoes,
+                formatNumber(o.numObrigacoes),
+                o.taxaJuros,
+                o.dataVencimento,
+                o.investimentoMinimo
+            ]);
+
+            doc.autoTable({
+                startY: y,
+                head: [['Emissão', 'Empresa', 'Tipo', 'Nº de Obrigações', 'Juros', 'Vencimento', 'Mínimo']],
+                body: tableData,
+                styles: { fontSize: 8, cellPadding: 1, overflow: 'linebreak' },
+                headStyles: { fillColor: [214, 174, 100], textColor: [0, 0, 0], fontStyle: 'bold' },
+                margin: { left: 20, right: 20 }
+            });
+            return doc.lastAutoTable.finalY + 10;
+        };
+        
+        // =====================================================
+        // 4. RELATÓRIO ECONÔMICO (Inicialização, Tabela e Análise)
+        // =====================================================
+
+        /**
+         * Inicializa o módulo de relatórios econômicos.
+         */
+        function initializeEconomicReport() {
+            populateEconomicTable();
+            renderEconomicAnalysis();
+            renderEconomicConclusion();
+            
+            // Re-mapeia os eventos de click para as IDs corretas
+            document.getElementById('updateEconomicChartButton').addEventListener('click', updateEconomicChart);
+            document.getElementById('generatePdfEco').addEventListener('click', window.generatePdfEconomic);
+
+            updateEconomicChart(); // Gráfico inicial
+        }
+
+        /**
+         * Preenche a tabela de dados econômicos com os dados originais (2015-2024).
+         */
+        function populateEconomicTable() {
+            const tbody = document.getElementById('tableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            
+            economicData.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.ano}</td>
+                    <td>${row.pib}</td>
+                    <td>${row.pibPerCapita}</td>
+                    <td>${row.despesaFiscal}</td>
+                    <td>${row.cambio}</td>
+                    <td>${row.salarioMinimo}</td>
+                    <td>${row.taxaEmprego !== null ? row.taxaEmprego : 'N/D'}</td>
+                    <td>${row.taxaDesemprego !== null ? row.taxaDesemprego : 'N/D'}</td>
+                    <td>${row.balancaComercial}</td>
+                    <td>${row.dividaExterna}</td>
+                    <td>${row.investimentoEstrangeiro}</td>
+                    <td>${row.fluxoCapital}</td>
+                    <td>${row.taxaJuros}</td>
+                    <td>${row.taxaInflacao}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        /**
+         * Atualiza o gráfico econômico com base nos indicadores selecionados.
+         */
+        function updateEconomicChart() {
+            const ctx = document.getElementById('economicChart').getContext('2d');
+            const anos = economicData.map(d => d.ano);
+            
+            const indicator1 = document.getElementById('indicatorEco1').value;
+            const indicator2 = document.getElementById('indicatorEco2').value;
+            const indicator3 = document.getElementById('indicatorEco3').value;
+            
+            const selectedIndicators = [indicator1, indicator2, indicator3].filter(ind => ind !== '');
+            
+            if (selectedIndicators.length === 0) {
+                // Gráfico padrão de PIB se nenhum for selecionado
+                selectedIndicators.push('pib'); 
+            }
+            
+            if (currentEconomicChart) {
+                currentEconomicChart.destroy();
+            }
+            
+            // Preparar datasets
+            const datasets = selectedIndicators.map((indicator, index) => {
+                const config = economicIndicatorConfigs[indicator];
+                return {
+                    label: config.label,
+                    data: economicData.map(d => d[indicator]),
+                    borderColor: config.color,
+                    backgroundColor: config.color.replace('rgb', 'rgba').replace(')', ', 0.2)'),
+                    tension: 0.3,
+                    yAxisID: index === 0 ? 'y' : `y${index}`,
+                    pointRadius: 6, pointHoverRadius: 8, pointBackgroundColor: config.color, pointBorderColor: '#fff', pointBorderWidth: 2
+                };
+            });
+            
+            // Configuração dos eixos Y para múltiplos indicadores
+            const scales = {
+                x: { grid: { color: 'rgba(0, 0, 0, 0.05)' }, ticks: { font: { size: 12 } } },
+                y: { beginAtZero: false, position: 'left', grid: { color: 'rgba(0, 0, 0, 0.05)' }, title: { display: true, text: datasets[0].label } }
+            };
+            
+            if (datasets.length > 1) {
+                scales.y1 = { beginAtZero: false, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: datasets[1].label } };
+            }
+            // Não adiciona y2 para manter o gráfico com no máximo 2 eixos e manter a clareza.
+
+            currentEconomicChart = new Chart(ctx, {
+                type: 'line',
+                data: { labels: anos, datasets: datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, position: 'top', labels: { font: { size: 14, weight: 'bold' } } },
+                        title: { display: true, text: 'Indicadores Econômicos de Angola (2015-2024)', font: { size: 18, weight: 'bold' }, color: 'rgb(6, 64, 167)' }
+                    },
+                    scales: scales
+                }
+            });
+        }
+
+        /**
+         * Renderiza a análise detalhada dos indicadores no DOM (Baseada nos dados originais).
+         */
+        function renderEconomicAnalysis() {
+            const analysisContainer = document.getElementById('indicatorsAnalysis');
+            if (!analysisContainer) return;
+            analysisContainer.innerHTML = '';
+            
+            const data2015 = economicData.find(d => d.ano === 2015);
+            const data2024 = economicData.find(d => d.ano === 2024);
+
+            // Análise do PIB e PIB Per Capita
+            const pibAnalysis = document.createElement('div');
+            pibAnalysis.className = 'indicator-analysis hover-lift fade-in-up';
+            pibAnalysis.innerHTML = `
+                <h3>PIB (Produto Interno Bruto)</h3>
+                <p>O PIB angolano apresentou significativa volatilidade entre 2015 e 2024, refletindo a dependência da economia em relação ao petróleo. Em 2015, o PIB era de ${data2015.pib} bilhões USD, caindo para ${economicData.find(d => d.ano === 2016).pib} bilhões USD em 2016 - uma redução de 41,7% em apenas um ano, evidenciando o impacto da crise do petróleo. A recuperação foi gradual até 2022, mas em 2024 observou-se nova contração para ${data2024.pib} bilhões USD, indicando desafios estruturais na diversificação econômica.</p>
+            `;
+            analysisContainer.appendChild(pibAnalysis);
+            
+            // Análise do PIB Per Capita
+            const pibPerCapitaAnalysis = document.createElement('div');
+            pibPerCapitaAnalysis.className = 'indicator-analysis hover-lift fade-in-up';
+            pibPerCapitaAnalysis.innerHTML = `
+                <h3>PIB Per Capita</h3>
+                <p>O PIB per capita apresentou trajetória decrescente ao longo do período analisado, passando de ${data2015.pibPerCapita} mil USD em 2015 para ${data2024.pibPerCapita} mil USD em 2024 - uma redução de 26,5%. Esta tendência reflete não apenas as flutuações do PIB total, mas também o crescimento populacional, indicando deterioração do padrão de vida médio da população.</p>
+            `;
+            analysisContainer.appendChild(pibPerCapitaAnalysis);
+            
+            // Análise da Despesa Fiscal e Câmbio
+            const fiscalCambioAnalysis = document.createElement('div');
+            fiscalCambioAnalysis.className = 'indicator-analysis hover-lift fade-in-up';
+            fiscalCambioAnalysis.innerHTML = `
+                <h3>Despesa Fiscal e Câmbio Médio</h3>
+                <p>A <strong>Despesa Fiscal</strong> cresceu de ${data2015.despesaFiscal} mil bilhões Kz em 2015 para ${data2024.despesaFiscal} mil bilhões Kz em 2024 (aumento de 408,6%), refletindo a expansão do Estado e os efeitos da inflação. A <strong>Taxa de Câmbio</strong> apresentou depreciação acentuada, passando de ${data2015.cambio} Kz/USD em 2015 para ${data2024.cambio} Kz/USD em 2024, uma desvalorização de 466,7% que alimenta as pressões inflacionárias.</p>
+            `;
+            analysisContainer.appendChild(fiscalCambioAnalysis);
+            
+            // Análise da Taxa de Inflação e Desemprego
+            const inflacaoDesempregoAnalysis = document.createElement('div');
+            inflacaoDesempregoAnalysis.className = 'indicator-analysis hover-lift fade-in-up';
+            inflacaoDesempregoAnalysis.innerHTML = `
+                <h3>Taxa de Inflação e Desemprego</h3>
+                <p>A <strong>Taxa de Inflação</strong> apresentou comportamento volátil, com pico de 35% em 2016 e um novo aumento para 30% em 2024, indicando fragilidade na estabilidade monetária. A <strong>Taxa de Desemprego</strong> apresentou tendência de alta, atingindo 32% em 2024, o que reflete os desafios estruturais do mercado de trabalho angolano e a incapacidade de gerar empregos de qualidade.</p>
+            `;
+            analysisContainer.appendChild(inflacaoDesempregoAnalysis);
+            
+            // Análise da Balança Comercial e Dívida Externa
+            const balancaDividaAnalysis = document.createElement('div');
+            balancaDividaAnalysis.className = 'indicator-analysis hover-lift fade-in-up';
+            balancaDividaAnalysis.innerHTML = `
+                <h3>Balança Comercial e Dívida Externa</h3>
+                <p>A <strong>Balança Comercial</strong> manteve-se consistentemente superavitária (de ${data2015.balancaComercial} para ${data2024.balancaComercial} mil milhões USD), confirmando a dependência das exportações de petróleo. A <strong>Dívida Externa</strong> apresentou tendência geral de crescimento, passando de ${data2015.dividaExterna} para ${data2024.dividaExterna} mil milhões USD, indicando vulnerabilidade externa significativa.</p>
+            `;
+            analysisContainer.appendChild(balancaDividaAnalysis);
+        }
+
+        /**
+         * Renderiza a conclusão final da análise econômica no DOM (Baseada no texto original).
+         */
+        function renderEconomicConclusion() {
+            const conclusionContainer = document.getElementById('conclusionText');
+            if (!conclusionContainer) return;
+            
+            conclusionContainer.innerHTML = `
+                <p>A análise dos indicadores econômicos de Angola entre 2015 e 2024 revela uma economia com desafios estruturais significativos, marcada pela alta dependência do petróleo, volatilidade macroeconômica e dificuldades em promover diversificação econômica sustentável.</p>
+                
+                <p>O desempenho do PIB reflete claramente a vulnerabilidade externa da economia angolana, com flutuações acentuadas associadas aos ciclos do preço do petróleo. A contração observada em 2023-2024, após o pico de 2022, sugere que os ganhos temporários com altos preços do petróleo não se traduziram em transformação estrutural duradoura.</p>
+                
+                <p>A deterioração do PIB per capita ao longo do período indica que o crescimento econômico não tem sido suficiente para melhorar o padrão de vida da população de forma consistente. Esta situação é agravada pelo aumento do desemprego, que atingiu 32% em 2024, refletindo limitações na capacidade de geração de emprego formal.</p>
+                
+                <p>A depreciação cambial acentuada (466,7% em nove anos) e a inflação volátil representam desafios macroeconômicos fundamentais, com impactos diretos no poder de compra da população e na estabilidade de preços. A recente alta da inflação para 30% em 2024, após queda anterior, indica fragilidade na conquista da estabilidade monetária.</p>
+                
+                <p>Do lado positivo, a balança comercial mantém-se superavitária, as reservas internacionais apresentam certa recuperação e a dívida externa mostra sinais de contenção após os picos de 2021-2022. Entretanto, estes aspectos positivos são insuficientes para compensar os desafios estruturais.</p>
+                
+                <p>Em síntese, a economia angolana necessita de reformas estruturais profundas para reduzir a dependência petrolífera, promover a diversificação econômica, criar empregos de qualidade e estabilizar o ambiente macroeconômico. A trajetória dos indicadores sugere que, sem estas reformas, a vulnerabilidade externa e a volatilidade devem persistir, limitando o potencial de crescimento sustentável e inclusivo.</p>
+            `;
+        }
+
+        /**
+         * Gera o relatório econômico completo em PDF com design aprimorado.
+         */
+        window.generatePdfEconomic = function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const currentDate = new Date().toLocaleDateString('pt-PT');
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const margin = 20;
+            const maxWidth = pageWidth - (2 * margin);
+            
+            let yPosition = 20;
+            
+            // Cabeçalho com cor ouro
+            doc.setFillColor(214, 174, 100);
+            doc.rect(0, 0, pageWidth, 20, 'F');
+            
+            doc.setFontSize(16);
+            doc.setTextColor(40, 40, 40);
+            doc.setFont(undefined, 'bold');
+            doc.text('RELATÓRIO ECONÔMICO DE ANGOLA', margin, yPosition);
+            yPosition += 15;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.setFont(undefined, 'normal');
+            doc.text(`Análise Macroeconômica 2015-2024`, margin, yPosition);
+            yPosition += 5;
+            doc.text(`Data do Relatório: ${currentDate}`, margin, yPosition);
+            yPosition += 10;
+            
+            // SEÇÃO 1: INTRODUÇÃO
+            yPosition = window.addSectionHeader(doc, 'Introdução à Análise Econômica', yPosition);
+            const introEcoText = `A análise econômica de Angola apresentada neste relatório baseia-se em dados oficiais para o período de 2015 a 2024. Este estudo visa compreender a evolução da economia angolana através de indicadores fundamentais como PIB, inflação, câmbio, desemprego, balança comercial, dívida externa e outros indicadores macroeconômicos relevantes. Angola, como economia dependente do petróleo, apresenta flutuações significativas em seus indicadores econômicos.`;
+            yPosition = window.addTextToPdf(doc, introEcoText, yPosition, maxWidth, 5);
+            yPosition += 5;
+
+            // SEÇÃO 2: TABELA DE DADOS
+            yPosition = window.checkPageBreak(doc, yPosition, 60);
+            yPosition = window.addSectionHeader(doc, 'Tabela de Dados Econômicos (2015-2024)', yPosition);
+            
+            const ecoTableHeaders = ['Ano', 'PIB (B)', 'PIB PC', 'Cambio', 'Desemp. %', 'Dívida Ext.', 'Inflação %'];
+            const ecoTableData = economicData.map(d => [
+                d.ano.toString(),
+                d.pib.toFixed(1),
+                d.pibPerCapita.toFixed(2),
+                d.cambio.toFixed(0),
+                d.taxaDesemprego !== null ? d.taxaDesemprego.toFixed(1) : 'N/D',
+                d.dividaExterna.toFixed(1),
+                d.taxaInflacao.toFixed(1)
+            ]);
+
+            doc.autoTable({
+                startY: yPosition,
+                head: [ecoTableHeaders],
+                body: ecoTableData,
+                theme: 'grid',
+                styles: { fontSize: 8, cellPadding: 2, textColor: [30, 30, 30], lineColor: [200, 200, 200], halign: 'center' },
+                headStyles: { fillColor: [6, 64, 167], textColor: [255, 255, 255], fontStyle: 'bold', halign: 'center' },
+                margin: { left: margin, right: margin }
+            });
+            yPosition = doc.lastAutoTable.finalY + 10;
+
+            // SEÇÃO 3: ANÁLISE DETALHADA
+            yPosition = window.checkPageBreak(doc, yPosition, 40);
+            yPosition = window.addSectionHeader(doc, 'Análise Detalhada dos Indicadores', yPosition);
+            
+            const data2015 = economicData.find(d => d.ano === 2015);
+            const data2024 = economicData.find(d => d.ano === 2024);
+            
+            const analysisTextEco = `PIB: O PIB angolano apresentou volatilidade de ${data2015.pib}B USD em 2015 para ${data2024.pib}B USD em 2024. Câmbio: Depreciação de ${((data2024.cambio / data2015.cambio - 1) * 100).toFixed(1)}% durante o período. Desemprego: Aumentou de ${economicData.find(d => d.ano === 2015).taxaDesemprego}% para ${data2024.taxaDesemprego}%. Dívida Externa: Elevou-se de ${data2015.dividaExterna}B USD para ${data2024.dividaExterna}B USD. Inflação: Volatilidade acentuada, com picos de 35% em 2016 e 30% em 2024.`;
+            yPosition = window.addTextToPdf(doc, analysisTextEco, yPosition, maxWidth, 5);
+
+            // SEÇÃO 4: CONCLUSÃO
+            yPosition = window.checkPageBreak(doc, yPosition, 30);
+            yPosition = window.addSectionHeader(doc, 'Conclusão Final', yPosition);
+            
+            const conclusionTextEco = `A economia angolana entre 2015 e 2024 revela desafios estruturais significativos relacionados à dependência petrolífera, volatilidade macroeconômica e dificuldades em promover diversificação econômica sustentável. A deterioração do PIB per capita e aumento do desemprego indicam que o crescimento não tem melhorado o padrão de vida da população. Reformas estruturais profundas são necessárias para reduzir a dependência energética e criar empregos de qualidade.`;
+            yPosition = window.addTextToPdf(doc, conclusionTextEco, yPosition, maxWidth, 5);
+
+            // Rodapé em todas as páginas
+            window.addFooterToAllPages(doc);
+            
+            doc.save(`Relatorio_Economico_Angola_${currentDate.replace(/\//g, '-')}.pdf`);
+            alert('✓ Relatório Econômico baixado com sucesso!');
+        };
+        
+        /**
+         * Adiciona a tabela de dados econômicos completa ao PDF usando autoTable (Dados originais).
+         */
+        window.addEconomicTableToPdf = function(doc, y) {
+            const tableHeaders = [
+                'Ano', 'PIB (B USD)', 'PIB PC (M USD)', 'Desp. Fiscal (M B Kz)', 'Câmbio (Kz/USD)', 
+                'Salário Mín. (M Kz)', 'Emprego (%)', 'Desemp. (%)', 'Balança Com. (M M USD)', 
+                'Dívida Ext. (M M USD)', 'Invest. Est. (M M USD)', 'Fluxo Cap. (M M USD)', 'Juros (%)', 'Inflação (%)'
+            ];
+            
+            const tableBodyData = economicData.map(d => [
+                d.ano.toString(),
+                d.pib.toFixed(1),
+                d.pibPerCapita.toFixed(2),
+                d.despesaFiscal.toFixed(1),
+                d.cambio.toFixed(0),
+                d.salarioMinimo.toFixed(1),
+                d.taxaEmprego !== null ? d.taxaEmprego.toFixed(1) : 'N/D',
+                d.taxaDesemprego !== null ? d.taxaDesemprego.toFixed(1) : 'N/D',
+                d.balancaComercial.toFixed(2),
+                d.dividaExterna.toFixed(1),
+                d.investimentoEstrangeiro.toFixed(2),
+                d.fluxoCapital.toFixed(2),
+                d.taxaJuros.toFixed(2),
+                d.taxaInflacao.toFixed(1)
+            ]);
+
+            doc.autoTable({
+                startY: y,
+                head: [tableHeaders],
+                body: tableBodyData,
+                styles: { fontSize: 5, cellPadding: 1, overflow: 'linebreak', halign: 'center' },
+                headStyles: { fillColor: [6, 64, 167], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 6, halign: 'center' },
+                margin: { left: 5, right: 5 }
+            });
+            return doc.lastAutoTable.finalY + 10;
+        };
+
+        // =====================================================
+        // 5. HELPERS GLOBAIS DE PDF (Para BODIVA e Econômico)
+        // =====================================================
+        
+        /**
+         * Adiciona um cabeçalho de seção ao PDF com design melhorado.
+         */
+        window.addSectionHeader = function(doc, title, y) {
+            const pageWidth = doc.internal.pageSize.getWidth();
+            y = window.checkPageBreak(doc, y, 12);
+            
+            // Fundo do cabeçalho
+            doc.setFillColor(240, 240, 240);
+            doc.rect(15, y - 3, pageWidth - 30, 8, 'F');
+            
+            doc.setFontSize(12);
+            doc.setTextColor(6, 64, 167);
+            doc.setFont(undefined, 'bold');
+            doc.text(title, 20, y + 2);
+            
+            // Linha decorativa
+            doc.setDrawColor(214, 174, 100);
+            doc.setLineWidth(0.5);
+            doc.line(20, y + 5, pageWidth - 20, y + 5);
+            
+            return y + 10;
+        };
+
+        /**
+         * Adiciona texto ao PDF com quebra de linha e ajuste de página.
+         */
+        window.addTextToPdf = function(doc, text, y, maxWidth, lineHeight) {
+            const lines = doc.splitTextToSize(text, maxWidth);
+            let currentY = y;
+            
+            doc.setFontSize(10);
+            doc.setTextColor(30, 30, 30);
+            doc.setFont(undefined, 'normal');
+            
+            lines.forEach(line => {
+                currentY = window.checkPageBreak(doc, currentY, lineHeight);
+                doc.text(line, 20, currentY);
+                currentY += lineHeight;
+            });
+            
+            return currentY + 3;
+        };
+
+        /**
+         * Verifica se é necessário adicionar uma nova página.
+         */
+        window.checkPageBreak = function(doc, y, spaceNeeded) {
+            if (y + spaceNeeded > 275) {
+                doc.addPage();
+                return 20;
+            }
+            return y;
+        };
+
+        /**
+         * Adiciona o rodapé em todas as páginas com design.
+         */
+        window.addFooterToAllPages = function(doc) {
+            const pageCount = doc.internal.getNumberOfPages();
+            const pageWidth = doc.internal.pageSize.getWidth();
+            
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                
+                // Linha divisória
+                doc.setDrawColor(200, 200, 200);
+                doc.setLineWidth(0.3);
+                doc.line(20, 280, pageWidth - 20, 280);
+                
+                // Texto do rodapé
+                doc.setFontSize(8);
+                doc.setTextColor(120, 120, 120);
+                doc.text('© Teca Capital Investimentos — Todos os direitos reservados', 20, 285);
+                doc.text(`Página ${i} de ${pageCount}`, pageWidth - 20, 285, null, null, 'right');
+            }
+        };
+        
+        /**
+         * Adiciona o gráfico ao PDF (Versão simplificada sem async).
+         */
+        window.addChartToPdf = function(doc, canvasId, y) {
+            try {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return y;
+                
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = 160;
+                const imgHeight = 70;
+                
+                const finalY = window.checkPageBreak(doc, y, imgHeight + 10);
+                doc.addImage(imgData, 'PNG', 25, finalY, imgWidth, imgHeight);
+                
+                return finalY + imgHeight + 10;
+            } catch (e) {
+                console.warn('Erro ao adicionar gráfico ao PDF:', e);
+                return y + 10;
+            }
+        };
+        
+        // Exposição das funções no escopo global para o HTML (onchange/onclick)
+        window.updateBodivaChart = updateBodivaChart;
+        window.updateEconomicChart = updateEconomicChart;
+    </script>
+</main>
+
+
+    <footer>
+    <div>
+        <!-- REDES SOCIAIS -->
+        <div id="socialmidia">
+            <h3>Redes Sociais</h3>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CONTATO -->
+        <div id="Contato">
+            <h3>Contato</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <p>Gmail:</p>
+                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                        tecacapitalinvestimentostci@gmail.com
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Telefone:</p>
+                    <a href="tel:+244923456789">
+                    +244 923 456 789
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Endereço:</p>
+                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                </div>
+            </div>
+        </div>
+        
+        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+    </div>
+</footer>
+    
+</body>
+</html>

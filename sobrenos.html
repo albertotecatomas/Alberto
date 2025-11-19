@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teca Capital Investimentos</title>
+    <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</style>
+</head>
+<body>
+    <header>
+        <nav id="navt">
+            <i class="fa-solid fa-hand-holding-dollar" id="navlogo"></i>
+           <ul id="lista">
+                <li class="navitem active"> <a href="index.html">Início</a>
+                </li>
+                <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
+                </li>   
+                <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
+                </li>
+            </ul>
+             <a class="simula" href="simulador.html">Simulador</a>
+        </nav>
+       
+    </header>
+
+    <main>
+
+    <div class="about-container fade-in-up">
+       
+        <h1 class="section-title text-gold">Sobre Nós</h1>
+        <p class="text-center text-lg">Conheça a equipe e a filosofia por trás da Teca Capital Investimentos</p>
+       
+
+        <!-- Navegação entre cards - Adicionada acessibilidade e tooltips -->
+        <nav class="cards-navigation" role="tablist" aria-label="Navegação de Seções Pessoais e da Empresa">
+            <button class="nav-btn active" data-card="quem-sou-eu" role="tab" aria-selected="true" data-tooltip="Informações Biográficas e Profissionais">Quem Sou Eu</button>
+            <button class="nav-btn" data-card="habilidades" role="tab" aria-selected="false" data-tooltip="Habilidades Técnicas Avançadas e em Desenvolvimento">Minhas Habilidades</button>
+            <button class="nav-btn" data-card="personalidade" role="tab" aria-selected="false" data-tooltip="Traços, Equilíbrio e Visão Crítica">Minha Personalidade</button>
+            <button class="nav-btn" data-card="interesses" role="tab" aria-selected="false" data-tooltip="Hobbies, Paixões e Inspirações de Personagens">Meus Interesses</button>
+            <button class="nav-btn" data-card="valores-pessoais" role="tab" aria-selected="false" data-tooltip="Filosofia de Vida e Valores Éticos">Meus Valores</button>
+            <button class="nav-btn" data-card="idolos" role="tab" aria-selected="false" data-tooltip="Grandes Nomes da Tecnologia e Finanças">Meus Ídolos</button>
+            <button class="nav-btn" data-card="teca-capital" role="tab" aria-selected="false" data-tooltip="Criação, Objetivo e Pilares da Teca Capital">Teca Capital</button>
+            <button class="nav-btn" data-card="missao" role="tab" aria-selected="false" data-tooltip="Propósito Fundamental da Empresa">Missão</button>
+            <button class="nav-btn" data-card="visao" role="tab" aria-selected="false" data-tooltip="Objetivo de Longo Prazo e Aspiração">Visão</button>
+            <button class="nav-btn" data-card="valores-empresa" role="tab" aria-selected="false" data-tooltip="Princípios Éticos e de Conduta da TCI">Valores da Empresa</button>
+            <button class="nav-btn" data-card="projetos" role="tab" aria-selected="false" data-tooltip="Visão Geral dos Projetos em Operação e Desenvolvimento">Projetos</button>
+            <button class="nav-btn" data-card="todos" role="tab" aria-selected="false" data-tooltip="Exibir todos os cards de uma vez">Ver Todos</button>
+        </nav>
+
+        <!-- Container dos cards -->
+        <div class="cards-container">
+            
+            <!-- Card 1: Quem Sou Eu -->
+            <div class="card hover-lift" id="card-quem-sou-eu" role="tabpanel" aria-labelledby="quem-sou-eu-tab">
+                <div class="card-header">
+                    <h2>Quem Sou Eu</h2>
+                </div>
+                <div class="card-content">
+                    <div class="profile-image fade-in">
+                        <img src="Imagem/Alberto Teca Tomas Promocional.jpeg" alt="Foto de Alberto Teca Tomás">
+                    </div>
+                
+                    <div class="personal-info">
+                        <h3>Alberto Teca Tomás</h3>
+                        <p class="tooltip" data-tooltip="Nascimento na Província do Uíge."><strong>Data de nascimento:</strong> 03/03/2001</p>
+                        <p class="tooltip" data-tooltip="A área de origem e raízes familiares."><strong>Local de nascimento:</strong> Negage, província do Uíge, Angola</p>
+                        <p><strong>Mudança para Huambo:</strong> 2020</p>
+                    </div>
+
+                    <div class="education">
+                        <h3>Formação Académica</h3>
+                        <p><strong>Técnico médio:</strong> Finanças</p>
+                        <p><strong>Ensino superior:</strong> Contabilidade e Finanças</p>
+                    </div>
+
+                    <div class="professional">
+                        <h3>Atuação Profissional</h3>
+                        <ul>
+                            <li class="tooltip" data-tooltip="Foco em análise de risco e projeções.">Analista financeiro e de Dados</li>
+                            <li>Investidor no Mercado Financeiro</li>
+                            <li>Escritor de artigos de opinião no blog da Teca Capital</li>
+                            <li>Criador de conteúdo sobre finanças e economia</li>
+                            <li class="tooltip" data-tooltip="Criador da Teca Capital Investimentos.">Empreendedor na área de tecnologia financeira</li>
+                        </ul>
+                    </div>
+
+                    <div class="philosophy-quote">
+                        <h3>Citação Central</h3>
+                        <blockquote class="text-gold">
+                            "O mérito é discutível, o impacto é inegável."
+                        </blockquote>
+                        <p>Acredito que o verdadeiro sucesso vem de causar impacto real e mensurável, não apenas de acumular méritos ou reconhecimentos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Minhas Habilidades -->
+            <div class="card hover-lift" id="card-habilidades" role="tabpanel" aria-labelledby="habilidades-tab">
+                <div class="card-header">
+                    <h2>Minhas Habilidades</h2>
+                </div>
+                <div class="card-content">
+                    <div class="skills-advanced">
+                        <h3>Habilidades Avançadas</h3>
+                        <ul>
+                            <li class="tooltip" data-tooltip="Cálculos complexos, modelagem e dashboards."><strong>Excel:</strong> Análise de dados, fórmulas complexas, dashboards, automatização</li>
+                            <li class="tooltip" data-tooltip="Visualização de dados e relatórios dinâmicos."><strong>Power BI:</strong> Visualização e análise de dados, relatórios dinâmicos</li>
+                            <li><strong>Pacote Office:</strong> Domínio completo das ferramentas Microsoft</li>
+                            <li class="tooltip" data-tooltip="Análise de balanços, valuation e projeções de FCD."><strong>Análise Financeira:</strong> Análise de balanços, valuation, projeções</li>
+                            <li class="tooltip" data-tooltip="Capacidade de leitura não-verbal e estratégica."><strong>Observação e Análise:</strong> Habilidades dedutivas apuradas, capacidade de observar e analisar pessoas e situações</li>
+                        </ul>
+                    </div>
+
+                    <div class="skills-developing">
+                        <h3>Habilidades em Desenvolvimento</h3>
+                        <div class="progress-bar mb-sm"><div class="progress-bar-fill" style="width: 60%;" data-tooltip="60% de Proficiência"></div></div>
+                        <ul>
+                            <li><strong>HTML, CSS, JavaScript:</strong> Desenvolvimento web front-end</li>
+                            <li><strong>SQL:</strong> Banco de dados e consultas</li>
+                            <li><strong>Python:</strong> Programação e análise de dados</li>
+                            <li><strong>Gestão de Projetos:</strong> Metodologias ágeis e planeamento</li>
+                        </ul>
+                    </div>
+
+                    <div class="skills-approach">
+                        <h3>Abordagem de Aprendizagem</h3>
+                        <p class="info-message">Acredito que <strong>esforço + inteligência = eficiência e resultados</strong>. Descobri meu próprio potencial através da prática constante e da aplicação direta do conhecimento.</p>
+                        <p>Reconheço que nunca saberei tudo, e é isso que torna a jornada do aprendizado tão fascinante e divertida.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Minha Personalidade -->
+            <div class="card hover-lift" id="card-personalidade" role="tabpanel" aria-labelledby="personalidade-tab">
+                <div class="card-header">
+                    <h2>Minha Personalidade</h2>
+                </div>
+                <div class="card-content">
+                    <div class="personality-traits">
+                        <h3>Traços de Personalidade</h3>
+                        <ul>
+                            <li><strong>Calmo:</strong> Mantenho a serenidade mesmo sob pressão</li>
+                            <li><strong>Analítico:</strong> Penso antes de agir, avaliando todas as variáveis</li>
+                            <li><strong>Observador:</strong> Percebo detalhes que outros ignoram</li>
+                            <li><strong>Amante do conhecimento:</strong> Curiosidade insaciável por aprender</li>
+                            <li><strong>Sensível e emocional:</strong> Conecto-me profundamente com pessoas e causas</li>
+                            <li><strong>Autoconsciente:</strong> Reconheço minhas limitações e busco melhorias</li>
+                        </ul>
+                    </div>
+
+                    <div class="work-life-balance">
+                        <h3>Equilíbrio de Vida</h3>
+                        <p>Dedico <strong>90% do meu tempo a produzir e evoluir</strong>, mas valorizo profundamente os momentos de diversão com amigos e família. Acredito que o sucesso sem conexões humanas é vazio.</p>
+                    </div>
+
+                    <div class="irritants">
+                        <h3>O que me Irrita</h3>
+                        <ul class="error-message">
+                            <li>Falta de base lógica em discussões</li>
+                            <li>Sistemas de ensino que priorizam teoria sobre prática</li>
+                            <li>Pensamento superficial sem análise profunda</li>
+                            <li>Resistência à inovação e mudança</li>
+                        </ul>
+                    </div>
+
+                    <div class="education-critique">
+                        <h3>Visão sobre Educação</h3>
+                        <p class="warning-message">Sou crítico do sistema de ensino tradicional, especialmente do ensino superior, que frequentemente falha em conectar teoria com prática. Acredito na aprendizagem autodidata e orientada para resultados.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Meus Interesses -->
+            <div class="card hover-lift" id="card-interesses" role="tabpanel" aria-labelledby="interesses-tab">
+                <div class="card-header">
+                    <h2>Meus Interesses</h2>
+                </div>
+                <div class="card-content">
+                    <div class="professional-interests">
+                        <h3>Interesses Profissionais</h3>
+                        <ul>
+                            <li>Finanças e mercado financeiro</li>
+                            <li>Economia global e local</li>
+                            <li>Tecnologia e inovação</li>
+                            <li>Empreendedorismo e startups</li>
+                            <li>Análise de dados e inteligência de negócio</li>
+                        </ul>
+                    </div>
+
+                    <div class="personal-interests">
+                        <h3>Interesses Pessoais</h3>
+                        <ul>
+                            <li>Anime e mangá</li>
+                            <li>Séries e filmes</li>
+                            <li>Futebol (Torcedor do Barcelona)</li>
+                            <li>Aprendizagem contínua</li>
+                            <li>Psicologia e comportamento humano</li>
+                        </ul>
+                    </div>
+
+                    <div class="otaku-identity">
+                        <h3>Identidade Otaku e Personagens Favoritos</h3>
+                        <p>Orgulhosamente otaku, encontro inspiração em personagens que representam inteligência, disciplina e pensamento estratégico:</p>
+                        <ul class="badge-list">
+                            <li><span class="badge badge-gold">Vegeta (Dragon Ball)</span> Disciplina e orgulho na busca pela excelência</li>
+                            <li><span class="badge badge-gold">Tony Stark (Iron Man)</span> Genialidade tecnológica e visão empresarial</li>
+                            <li><span class="badge badge-gold">Batman</span> Estratégia, preparação e intelecto</li>
+                            <li><span class="badge badge-gold">L (Death Note)</span> Raciocínio dedutivo e pensamento fora da caixa</li>
+                            <li><span class="badge badge-gold">Ayanokoji (Classroom of the Elite)</span> Estratégia e cálculo perfeitos</li>
+                            <li><span class="badge badge-gold">Levi (Attack on Titan)</span> Excelência técnica e disciplina absoluta</li>
+                            <li><span class="badge badge-gold">Sherlock Holmes</span> Observação aguçada e dedução lógica</li>
+                        </ul>
+                    </div>
+
+                    <div class="football">
+                        <h3>Paixão pelo Futebol</h3>
+                        <p><strong>Time do coração:</strong> <span class="text-gold">Barcelona</span></p>
+                        <p><strong>Melhor de todos os tempos:</strong> Lionel Messi</p>
+                        <p><strong>Jogador favorito atual:</strong> Lamine Yamal</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Meus Valores Pessoais -->
+            <div class="card hover-lift" id="card-valores-pessoais" role="tabpanel" aria-labelledby="valores-pessoais-tab">
+                <div class="card-header">
+                    <h2>Meus Valores Pessoais</h2>
+                </div>
+                <div class="card-content">
+                    <div class="core-values">
+                        <h3>Valores Fundamentais</h3>
+                        <ul>
+                            <li><strong>Impacto sobre reconhecimento:</strong> Prefiro causar mudanças reais do que receber elogios</li>
+                            <li><strong>Aprendizagem contínua:</strong> A evolução nunca termina</li>
+                            <li><strong>Autenticidade:</strong> Ser verdadeiro comigo mesmo e com os outros</li>
+                            <li><strong>Resiliência:</strong> Persistir diante dos desafios</li>
+                            <li><strong>Empatia:</strong> Compreender e conectar com as pessoas</li>
+                            <li><strong>Excelência:</strong> Buscar o melhor em tudo que faço</li>
+                        </ul>
+                    </div>
+
+                    <div class="philosophy">
+                        <h3>Filosofia de Vida</h3>
+                        <div class="learning-process">
+                            <h4>Processo de Desenvolvimento:</h4>
+                            <ol class="text-white-medium">
+                                <li><strong>Conhecimento:</strong> Aquisição de informação e compreensão teórica</li>
+                                <li><strong>Habilidade:</strong> Desenvolvimento de competências através da prática</li>
+                                <li><strong>Execução:</strong> Aplicação consistente do conhecimento e habilidades</li>
+                                <li><strong>Resultados:</strong> Consequências naturais da execução disciplinada</li>
+                                <li><strong>Impacto:</strong> Mudanças reais e significativas geradas</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="family-values">
+                        <h3>Família e Raízes</h3>
+                        <p class="success-message">Sou um grande fã da minha Mãe, que sempre foi minha maior inspiração e apoio. Valorizo profundamente as conexões familiares e as lições aprendidas com minhas origens em Negage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Meus Ídolos -->
+            <div class="card hover-lift" id="card-idolos" role="tabpanel" aria-labelledby="idolos-tab">
+                <div class="card-header">
+                    <h2>Meus Ídolos</h2>
+                </div>
+                <div class="card-content">
+                    <div class="tech-entrepreneurs">
+                        <h3>Empreendedores da Tecnologia</h3>
+                        <ul>
+                            <li><strong class="text-gold">Mark Zuckerberg:</strong> Visão em redes sociais e evolução constante</li>
+                            <li><strong class="text-gold">Elon Musk:</strong> Ambição e execução em múltiplas indústrias</li>
+                            <li><strong class="text-gold">Bill Gates:</strong> Estratégia de negócios e filantropia</li>
+                        </ul>
+                    </div>
+
+                    <div class="finance-investment">
+                        <h3>Finanças e Investimentos</h3>
+                        <ul>
+                            <li><strong class="text-gold">Warren Buffett:</strong> Paciência e estratégia de investimento em valor</li>
+                            <li><strong class="text-gold">Fernando Ulrich:</strong> Visão sobre Bitcoin e liberdade monetária</li>
+                            <li><strong class="text-gold">Primo Rico:</strong> Educação financeira acessível</li>
+                            <li><strong class="text-gold">Bruno Perini:</strong> Análise de mercado e estratégias</li>
+                        </ul>
+                    </div>
+
+                    <div class="local-inspirations">
+                        <h3>Inspirações Locais</h3>
+                        <ul>
+                            <li><strong class="text-gold">Minha Mãe:</strong> Força, resiliência, fé, dedicação e sabedoria</li>
+                            <li><strong class="text-gold">Meu Pai:</strong> Referência em sabedoria, responsabilidade, liderança e empreendedorismo</li>
+                            <li><strong class="text-gold">Euclides Francisco:</strong> Referência em finanças em angola, sucesso, execução, visão estratégica de mercado</li>
+                            <li><strong class="text-gold">Nuno Baio:</strong> Referência em empreendedorismo, networking, dedicação e paixão</li>
+                        </ul>
+                    </div>
+
+                    <div class="sports-idols">
+                        <h3>Ídolos do Esporte</h3>
+                        <ul>
+                            <li><strong class="text-gold">Lionel Messi:</strong> Excelência técnica, humildade e consistência</li>
+                            <li><strong class="text-gold">Lamine Yamal:</strong> Talento jovem e potencial extraordinário</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7: Teca Capital -->
+            <div class="card hover-lift" id="card-teca-capital" role="tabpanel" aria-labelledby="teca-capital-tab">
+                <div class="card-header">
+                    <h2>Teca Capital Investimentos</h2>
+                </div>
+                <div class="card-content">
+                    <div class="company-history">
+                        <h3>História da Criação</h3>
+                        <p>A Teca Capital Investimentos nasceu da visão de democratizar o acesso à educação financeira e às oportunidades de investimento em Angola. Fruto da combinação entre expertise financeira e paixão pela tecnologia, a empresa foi fundada para preencher uma lacuna crítica no mercado angolano: a falta de informações financeiras acessíveis e confiáveis.</p>
+                    </div>
+
+                    <div class="company-objective">
+                        <h3>Objetivo Central</h3>
+                        <p>Facilitar o acesso a informações confiáveis do mercado angolano e global, permitindo que pessoas e empresas tomem decisões financeiras inteligentes baseadas em dados. Operamos com uma abordagem tecnológica orientada por informações, transformando dados complexos em insights acionáveis.</p>
+                    </div>
+
+                    <div class="company-representation">
+                        <h3>O que a Teca Capital Representa para Angola</h3>
+                        <p>A Teca Capital simboliza a nova vanguarda de empreendedorismo angolano - uma fusão entre conhecimento financeiro tradicional e inovação tecnológica. Representamos a possibilidade de um mercado financeiro mais transparente, acessível e eficiente para todos os angolanos.</p>
+                    </div>
+
+                    <div class="company-integration">
+                        <h3>Integração de Áreas</h3>
+                        <p>A Teca Capital conecta intrinsecamente quatro pilares fundamentais:</p>
+                        <ul>
+                            <li><strong>Finanças:</strong> Análise de mercados, investimentos e gestão de portfólio</li>
+                            <li><strong>Economia:</strong> Compreensão macroeconómica e seus impactos locais</li>
+                            <li><strong>Educação:</strong> Democratização do conhecimento financeiro</li>
+                            <li><strong>Tecnologia:</strong> Ferramentas digitais para análise e tomada de decisão</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: Missão -->
+            <div class="card hover-lift" id="card-missao" role="tabpanel" aria-labelledby="missao-tab">
+                <div class="card-header">
+                    <h2>Missão</h2>
+                </div>
+                <div class="card-content">
+                    <div class="mission">
+                        <p>Facilitar o acesso a informações financeiras confiáveis e análises de mercado precisas, capacitando indivíduos e empresas em Angola a tomarem decisões de investimento inteligentes e fundamentadas. Através da integração entre finanças, economia, educação e tecnologia, buscamos promover a inclusão financeira e contribuir para o desenvolvimento de um mercado de capitais mais robusto e transparente em Angola.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9: Visão -->
+            <div class="card hover-lift" id="card-visao" role="tabpanel" aria-labelledby="visao-tab">
+                <div class="card-header">
+                    <h2>Visão</h2>
+                </div>
+                <div class="card-content">
+                    <div class="vision">
+                        <p>Ser a principal referência em educação financeira e análise de investimentos em Angola, reconhecida pela excelência na transformação de dados complexos em insights acionáveis. Aspiramos construir uma comunidade financeiramente educada e empoderada, onde cada angolano tenha as ferramentas e conhecimentos necessários para participar ativamente do mercado financeiro e construir prosperidade sustentável.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10: Valores da Empresa -->
+            <div class="card hover-lift" id="card-valores-empresa" role="tabpanel" aria-labelledby="valores-empresa-tab">
+                <div class="card-header">
+                    <h2>Valores da Empresa</h2>
+                </div>
+                <div class="card-content">
+                    <div class="values">
+                        <ul class="value-list">
+                            <li class="tooltip" data-tooltip="Dados primários e honestidade radical.">
+                                <strong>Transparência:</strong> Acreditamos na honestidade radical em todas as nossas análises e recomendações. Os dados nunca são manipulados para servir interesses particulares.
+                            </li>
+                            <li class="tooltip" data-tooltip="Busca contínua pelo padrão mais alto (Benchmark global).">
+                                <strong>Excelência Técnica:</strong> Buscamos constantemente o mais alto padrão de qualidade em nossas análises, atualizando-nos continuamente com as melhores práticas do mercado global.
+                            </li>
+                            <li class="tooltip" data-tooltip="Conhecimento é um direito fundamental.">
+                                <strong>Educação como Base:</strong> Acreditamos que o conhecimento financeiro é um direito, não um privilégio. Comprometemo-nos a democratizar o acesso à educação de qualidade.
+                            </li>
+                            <li class="tooltip" data-tooltip="A tecnologia como ferramenta de simplificação.">
+                                <strong>Inovação Contínua:</strong> Abraçamos a tecnologia como ferramenta para simplificar o complexo, desenvolvendo soluções que tornam o mercado financeiro mais acessível.
+                            </li>
+                            <li class="tooltip" data-tooltip="Medir sucesso pela transformação de vidas.">
+                                <strong>Impacto Social:</strong> Medimos nosso sucesso não apenas por resultados financeiros, mas pela capacidade de transformar vidas através da educação financeira.
+                            </li>
+                            <li class="tooltip" data-tooltip="Decisões baseadas em evidências e metodologias.">
+                                <strong>Rigor Analítico:</strong> Todas as nossas decisões e recomendações são baseadas em dados concretos, análise profunda e metodologias testadas.
+                            </li>
+                            <li class="tooltip" data-tooltip="Compromisso inabalável com a integridade.">
+                                <strong>Ética Inegociável:</strong> Mantemos padrões éticos irrepreensíveis em todas as nossas operações e relacionamentos.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11: Projetos -->
+            <div class="card hover-lift" id="card-projetos" role="tabpanel" aria-labelledby="projetos-tab">
+                <div class="card-header">
+                    <h2>Projetos</h2>
+                </div>
+                <div class="card-content">
+                    <div class="project-teca">
+                        <h3>Teca Capital Investimentos</h3>
+                        <p><strong class="text-gold">Status:</strong> Em operação</p>
+                        <p><strong>Descrição:</strong> A plataforma principal que oferece serviços de análise de dados, gestão de portfólio, elaboração de planos de negócios e educação financeira. Funciona como o ecossistema central que conecta todos os outros projetos.</p>
+                        <p><strong>Serviços Oferecidos:</strong></p>
+                        <ul>
+                            <li>Análise de dados financeiros e económicos</li>
+                            <li>Gestão de carteiras de investimento</li>
+                            <li>Elaboração de planos de negócios</li>
+                            <li>Consultoria financeira personalizada</li>
+                            <li>Conteúdo educativo sobre mercados financeiros</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-mybase">
+                        <h3>MyBase</h3>
+                        <p><strong class="text-gold">Status:</strong> Em desenvolvimento</p>
+                        <p><strong>Descrição:</strong> O núcleo tecnológico do projeto, uma base de dados sofisticada que serve como motor comercial e infraestrutura central para análises, inteligência financeira e soluções digitais que sustentam todo o ecossistema da Teca Capital.</p>
+                        <p><strong>Funcionalidades Principais:</strong></p>
+                        <ul>
+                            <li>Armazenamento e processamento de dados económicos</li>
+                            <li>Análises automatizadas e geração de relatórios</li>
+                            <li>Dashboard interativos para visualização de dados</li>
+                            <li>API para integração com outras plataformas</li>
+                            <li>Ferramentas de previsão e modelagem financeira</li>
+                        </ul>
+                        <p><strong class="text-gold">Importância Estratégica:</strong> A MyBase é a espinha dorsal que permite a escalabilidade e inovação contínua da Teca Capital, representando nossa vantagem competitiva no mercado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Controle de Navegação dos Cards - Refatorado e Aprimorado -->
+    <script>
+        /**
+         * SOBRE NÓS - Controle de Navegação de Cards
+         * Este script gerencia a exibição dos cards de conteúdo na página 'sobrenos.html',
+         * permitindo que o usuário visualize um card por vez ou todos ao mesmo tempo.
+         * 
+         * Estrutura: Padrão IIFE (Immediately Invoked Function Expression)
+         */
+        (function() {
+            // Seletores DOM
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const cards = document.querySelectorAll('.card');
+            const cardsContainer = document.querySelector('.cards-container');
+
+            /**
+             * Inicializa o módulo após o carregamento completo do DOM.
+             */
+            function initializeModule() {
+                // Configura os ouvintes de evento para os botões de navegação
+                setupEventListeners();
+                
+                // Exibe todos os cards inicialmente
+                showCard('todos'); 
+                
+                // Aplica a classe 'active' ao botão 'Ver Todos'
+                const initialButton = document.querySelector('.nav-btn[data-card="todos"]');
+                if (initialButton) {
+                    initialButton.classList.add('active');
+                }
+            }
+
+            /**
+             * Configura os event listeners para os botões de navegação.
+             */
+            function setupEventListeners() {
+                navButtons.forEach(button => {
+                    button.addEventListener('click', handleNavClick);
+                });
+            }
+
+            /**
+             * Manipulador de evento para o clique nos botões de navegação.
+             * @param {Event} event O evento de clique.
+             */
+            function handleNavClick(event) {
+                // Obtém o ID do card alvo a partir do atributo 'data-card'
+                const cardId = event.currentTarget.getAttribute('data-card');
+                
+                // Remove a classe 'active' de todos os botões e reseta aria-selected
+                resetActiveState();
+                
+                // Mostra o card/seção correspondente
+                showCard(cardId);
+                
+                // Adiciona a classe 'active' ao botão clicado e atualiza aria-selected
+                event.currentTarget.classList.add('active');
+                event.currentTarget.setAttribute('aria-selected', 'true');
+            }
+
+            /**
+             * Reseta o estado 'active' de todos os botões e a propriedade aria-selected.
+             */
+            function resetActiveState() {
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+            }
+
+            /**
+             * Exibe o card específico (ou todos) e gerencia o layout do container.
+             * @param {string} cardId O ID do card a ser exibido ('quem-sou-eu', 'todos', etc.).
+             */
+            function showCard(cardId) {
+                // Esconde todos os cards
+                cards.forEach(card => {
+                    card.style.display = 'none';
+                });
+
+                if (cardId === 'todos') {
+                    // Modo 'Ver Todos'
+                    cards.forEach(card => {
+                        card.style.display = 'block';
+                    });
+                    // Define o layout do container para exibir todos (e.g., em uma coluna)
+                    cardsContainer.style.gridTemplateColumns = '1fr'; 
+                    cardsContainer.style.gap = 'var(--spacing-2xl)';
+
+                } else {
+                    // Modo 'Card Único'
+                    const targetCard = document.getElementById(`card-${cardId}`);
+                    if (targetCard) {
+                        targetCard.style.display = 'block';
+                        // Força o container a mostrar apenas uma coluna
+                        cardsContainer.style.gridTemplateColumns = '1fr';
+                        cardsContainer.style.gap = '0';
+                    }
+                }
+                
+                // Rola suavemente para o topo do container (Melhoria de UX)
+                cardsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Inicia o módulo após o DOM estar pronto
+            document.addEventListener('DOMContentLoaded', initializeModule);
+        })(); // Fim do IIFE
+    </script>
+
+
+    </main>
+
+    <footer>
+    <div>
+        <!-- REDES SOCIAIS -->
+        <div id="socialmidia">
+            <h3>Redes Sociais</h3>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CONTATO -->
+        <div id="Contato">
+            <h3>Contato</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <p>Gmail:</p>
+                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                        tecacapitalinvestimentostci@gmail.com
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Telefone:</p>
+                    <a href="tel:+244923456789">
+                         +244 923 456 789
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Endereço:</p>
+                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                </div>
+            </div>
+        </div>
+        
+        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+    </div>
+</footer>
+    
+</body>
+</html>
