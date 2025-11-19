@@ -5074,3 +5074,771 @@ main > * {
   .card, #serviços, .simulator-container { box-shadow: var(--shadow-md); }
   .navitem a::before, .simula::before, .button::before { display: none; }
 }
+
+
+
+/* =====================================================
+   TABLET (768px - 1000px)
+   ===================================================== */
+@media screen and (max-width: 1000px) {
+  :root {
+    --font-size-5xl: 2.25rem;
+    --font-size-4xl: 1.875rem;
+    --font-size-3xl: 1.625rem;
+    --font-size-2xl: 1.375rem;
+    --font-size-xl: 1.125rem;
+    --font-size-lg: 1rem;
+    --font-size-base: 0.875rem;
+    --font-size-sm: 0.813rem;
+    --font-size-xs: 0.75rem;
+    
+    --spacing-3xl: 2.5rem;
+    --spacing-2xl: 2rem;
+    --spacing-xl: 1.5rem;
+    --spacing-lg: 1rem;
+    --spacing-md: 0.75rem;
+    --spacing-sm: 0.5rem;
+    --spacing-xs: 0.25rem;
+  }
+
+  /* === HEADER E NAVEGAÇÃO === */
+  header {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: 90px; /* Espaço entre header e main */
+  }
+
+  #navt {
+    gap: var(--spacing-md);
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #navlogo {
+    font-size: 1.8rem;
+    display: none; /* Oculta o ícone em telas menores que 700px */
+  }
+
+  #lista {
+    gap: var(--spacing-sm);
+    flex: 1;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navitem a {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .simula {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    white-space: nowrap;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  /* === LAYOUT PRINCIPAL === */
+  body {
+    padding-top: 80px; /* Mantém espaço para header fixo */
+  }
+
+  main {
+    padding: var(--spacing-lg);
+    margin-top: 90px; /* Espaço entre header e main */
+  }
+
+  #conteudo {
+    width: 95%;
+    gap: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+  }
+
+  /* === TIPOGRAFIA === */
+  .tci h1 {
+    font-size: var(--font-size-4xl);
+  }
+
+  .tc {
+    font-size: var(--font-size-base);
+  }
+
+  /* === BANNER === */
+  #banner img,
+  .banner-img {
+    width: clamp(180px, 35vw, 250px);
+  }
+
+  /* === SERVIÇOS === */
+  #serviços {
+    padding: var(--spacing-xl);
+  }
+
+  #serviços > div {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: var(--spacing-lg);
+  }
+
+  #s1, #s2, #s3, #s4 {
+    padding: var(--spacing-lg);
+    min-height: 280px;
+    height: auto;
+  }
+
+  #s1 h3, #s2 h3, #s3 h3, #s4 h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .time {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  /* === BODIVA E CRIPTOMOEDAS === */
+  #bodiva,
+  .cripto {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+  }
+
+  #bodiva h2,
+  .cripto h2.timeline {
+    font-size: var(--font-size-3xl);
+  }
+
+  #bodiva h3,
+  .cripto h3 {
+    font-size: var(--font-size-2xl);
+    margin: var(--spacing-2xl) 0 var(--spacing-lg) 0;
+  }
+
+  #bodiva > p,
+  .cripto > p {
+    font-size: var(--font-size-base);
+    padding: 0;
+  }
+
+  .banner-video {
+    max-height: 350px;
+    border-radius: var(--radius-lg);
+  }
+
+  /* === BIBLIOTECA === */
+  .subdiv, .video-card-header, .ebook-card-header {
+    padding: var(--spacing-lg);
+  }
+
+  .subdiv img, .video-card-header img, .ebook-card-header img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .subdiv h3, .video-card-header h3, .ebook-card-header h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  /* === SIMULADOR === */
+  .simulator-container {
+    padding: var(--spacing-xl);
+  }
+
+  .main-form {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .quick-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions,
+  .export-actions,
+  .final-actions {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .btn-simulate,
+  .btn-reset,
+  .btn-download,
+  .btn-export,
+  .btn-restart {
+    width: 100%;
+  }
+
+  .portfolio-asset,
+  .scenario {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  /* === SOBRE NÓS - DIVS UMA EM BAIXO DA OUTRA === */
+  .card-content {
+    grid-template-columns: 1fr !important;
+    gap: var(--spacing-lg);
+  }
+
+  .card-content > div {
+    min-height: auto;
+    height: auto;
+    margin-bottom: var(--spacing-md);
+    width: 100%;
+  }
+
+  .personal-info,
+  .education,
+  .professional {
+    width: 100%;
+    grid-column: 1 !important;
+  }
+
+  .profile-image {
+    grid-column: 1;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .profile-image img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* === TABELAS === */
+  .tabela,
+  .data-table,
+  .cashflow-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabela th,
+  .tabela td,
+  .data-table th,
+  .data-table td,
+  .cashflow-table th,
+  .cashflow-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+
+  /* === GRÁFICOS === */
+  .chart-container {
+    height: 350px;
+    padding: var(--spacing-lg);
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: var(--spacing-2xl) var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+  }
+
+  .social-icons {
+    gap: var(--spacing-lg);
+  }
+
+  #socialmidia a {
+    width: 50px;
+    height: 50px;
+  }
+
+  #socialmidia i {
+    font-size: var(--font-size-xl);
+  }
+
+  .contact-info {
+    gap: var(--spacing-xl);
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    min-width: 180px;
+  }
+
+  #Contato p {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* =====================================================
+   MOBILE (100px - 450px)
+   ===================================================== */
+@media screen and (max-width: 450px) {
+  :root {
+    --font-size-5xl: 1.75rem;
+    --font-size-4xl: 1.5rem;
+    --font-size-3xl: 1.25rem;
+    --font-size-2xl: 1.125rem;
+    --font-size-xl: 1rem;
+    --font-size-lg: 0.875rem;
+    --font-size-base: 0.75rem;
+    --font-size-sm: 0.688rem;
+    --font-size-xs: 0.625rem;
+    
+    --spacing-3xl: 1.5rem;
+    --spacing-2xl: 1.25rem;
+    --spacing-xl: 1rem;
+    --spacing-lg: 0.75rem;
+    --spacing-md: 0.5rem;
+    --spacing-sm: 0.375rem;
+    --spacing-xs: 0.188rem;
+  }
+
+  /* === HEADER E NAVEGAÇÃO === */
+  header {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-bottom: 90px; /* Espaço entre header e main */
+  }
+
+  #navt {
+    gap: var(--spacing-sm);
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  #navlogo {
+    display: none; /* Mantém oculto */
+  }
+
+  #lista {
+    gap: var(--spacing-xs);
+    flex: 1;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navitem a {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    text-align: center;
+    min-width: 60px;
+    white-space: nowrap;
+  }
+
+  .simula {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-md);
+    min-width: 80px;
+    text-align: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* === LAYOUT PRINCIPAL === */
+  body {
+    font-size: 10px; /* Tamanho mínimo para body */
+    padding-top: 70px; /* Ajuste para header menor */
+  }
+
+  main {
+    padding: var(--spacing-md);
+    margin-top: 90px; /* Espaço entre header e main */
+  }
+
+  #conteudo {
+    width: 100%;
+    gap: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+  }
+
+  /* === TIPOGRAFIA - TAMANHO MÍNIMO === */
+  .tci h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .tc {
+    font-size: var(--font-size-sm);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  p, li, span, a {
+    font-size: var(--font-size-xs);
+  }
+
+  /* === BANNER === */
+  #banner img,
+  .banner-img {
+    width: clamp(120px, 40vw, 180px);
+  }
+
+  /* === SERVIÇOS === */
+  #serviços {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-xl) auto;
+  }
+
+  #serviços > div {
+    gap: var(--spacing-md);
+  }
+
+  #s1, #s2, #s3, #s4 {
+    padding: var(--spacing-md);
+    min-height: 220px;
+  }
+
+  #s1 h3, #s2 h3, #s3 h3, #s4 h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .time {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  /* === BODIVA E CRIPTOMOEDAS === */
+  #bodiva,
+  .cripto {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+
+  #bodiva h2,
+  .cripto h2.timeline {
+    font-size: var(--font-size-2xl);
+  }
+
+  #bodiva h3,
+  .cripto h3 {
+    font-size: var(--font-size-xl);
+    margin: var(--spacing-xl) 0 var(--spacing-md) 0;
+  }
+
+  #bodiva > p,
+  .cripto > p {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+  }
+
+  .banner-video {
+    max-height: 250px;
+    border-radius: var(--radius-md);
+  }
+
+  /* === BIBLIOTECA === */
+  .subdiv, .video-card-header, .ebook-card-header {
+    padding: var(--spacing-md);
+  }
+
+  .subdiv img, .video-card-header img, .ebook-card-header img {
+    width: 50px;
+    height: 50px;
+    padding: var(--spacing-md);
+  }
+
+  .subdiv h3, .video-card-header h3, .ebook-card-header h3 {
+    font-size: var(--font-size-base);
+  }
+
+  /* === SIMULADOR === */
+  .simulator-container {
+    padding: var(--spacing-lg);
+  }
+
+  .main-form {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .form-group {
+    padding: var(--spacing-lg);
+  }
+
+  .quick-buttons {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+
+  .btn-quick {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  .btn-simulate,
+  .btn-reset,
+  .btn-add,
+  .btn-remove {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+  }
+
+  /* === SOBRE NÓS - LAYOUT VERTICAL COMPLETO === */
+  .cards-navigation {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .nav-btn {
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+
+  .card-header {
+    padding: var(--spacing-lg);
+  }
+
+  .card-header h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .card-content {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .card-content > div {
+    padding: var(--spacing-lg);
+    min-height: auto;
+    width: 100%;
+  }
+
+  .card-content > div h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .card-content > div h4 {
+    font-size: var(--font-size-base);
+  }
+
+  /* DIVS ESPECÍFICAS DO SOBRE NÓS - UMA EM BAIXO DA OUTRA */
+  .personal-info,
+  .education,
+  .professional {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .personal-info h3,
+  .education h3,
+  .professional h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  .profile-image {
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .profile-image img {
+    max-width: 200px;
+  }
+
+  /* === TABELAS === */
+  .tabela th,
+  .tabela td,
+  .data-table th,
+  .data-table td,
+  .cashflow-table th,
+  .cashflow-table td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.5rem;
+  }
+
+  /* === GRÁFICOS === */
+  .chart-container {
+    height: 250px;
+    padding: var(--spacing-md);
+  }
+
+  /* === ELEMENTOS DE MÍDIA === */
+  audio, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg) var(--spacing-md);
+    margin-top: var(--spacing-xl);
+  }
+
+  footer::before {
+    top: -30px;
+    height: 60px;
+  }
+
+  .social-icons {
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  #socialmidia a {
+    width: 45px;
+    height: 45px;
+  }
+
+  #socialmidia i {
+    font-size: var(--font-size-lg);
+  }
+
+  #socialmidia h3,
+  #Contato h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .contact-info {
+    gap: var(--spacing-lg);
+    flex-direction: column;
+  }
+
+  .contact-item {
+    min-width: auto;
+    width: 100%;
+  }
+
+  #Contato p {
+    font-size: var(--font-size-sm);
+  }
+
+  footer .timeline {
+    font-size: var(--font-size-xs);
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+  }
+}
+
+/* =====================================================
+   OCULTAR LOGO EM TELAS ≤ 700px
+   ===================================================== */
+@media screen and (max-width: 700px) {
+  #navlogo {
+    display: none !important;
+  }
+  
+  #navt {
+    justify-content: space-between;
+  }
+  
+  #lista {
+    flex: 1;
+    justify-content: space-around;
+  }
+  
+  .navitem a,
+  .simula {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+/* =====================================================
+   MOBILE MUITO PEQUENO (100px - 360px)
+   ===================================================== */
+@media screen and (max-width: 360px) {
+  :root {
+    --font-size-xs: 0.5rem;
+    --spacing-xs: 0.125rem;
+  }
+
+  /* Header compacto máximo */
+  .navitem a {
+    font-size: 0.45rem;
+    padding: 0.25rem 0.375rem;
+    min-width: 50px;
+  }
+
+  .simula {
+    font-size: 0.45rem;
+    padding: 0.25rem 0.375rem;
+    min-width: 60px;
+  }
+
+  /* Tipografia mínima */
+  body {
+    font-size: 8px;
+  }
+
+  /* Elementos críticos de tamanho mínimo */
+  .tci h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .tc {
+    font-size: 0.6rem;
+  }
+
+  /* Tabelas com scroll horizontal */
+  .data-section .table-wrapper::after {
+    content: '← Deslize →';
+    font-size: 0.5rem;
+    padding: 0.25rem;
+  }
+}
+
+/* =====================================================
+   MELHORIAS DE ACESSIBILIDADE PARA TOUCH
+   ===================================================== */
+@media screen and (max-width: 450px) {
+  .navitem a,
+  .simula,
+  .button,
+  .btn-primary,
+  .option-btn,
+  .nav-btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Remove animações complexas em mobile */
+  .navitem a::before,
+  .simula::before,
+  .button::before {
+    display: none;
+  }
+
+  .navitem a:hover,
+  .simula:hover,
+  .button:hover {
+    transform: none;
+  }
+}
+
+/* =====================================================
+   GARANTIR ESPAÇAMENTO ENTRE HEADER, MAIN E FOOTER
+   ===================================================== */
+@media screen and (max-width: 1000px) {
+  body {
+    padding-top: 80px;
+  }
+  
+  main {
+    margin-top: 90px;
+    min-height: calc(100vh - 160px); /* Altura mínima considerando header e footer */
+  }
+  
+  footer {
+    margin-top: var(--spacing-2xl);
+  }
+}
