@@ -6035,3 +6035,174 @@ main > * {
   alt: attr(alt);
   aria-hidden: attr(aria-hidden);
 }
+
+/* =====================================================
+   REMOÇÃO DE EFEITOS ESPECÍFICOS PARA ELEMENTOS DE ÁUDIO
+   ===================================================== */
+
+/* === REMOVER TODOS OS EFEITOS DOS ELEMENTOS DE ÁUDIO === */
+audio {
+  /* Remover todas as transformações e estilos customizados */
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: none !important;
+  backdrop-filter: none !important;
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* === REMOVER EFEITOS DE HOVER ESPECÍFICOS PARA ÁUDIO === */
+audio:hover {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+/* === ESTILOS BÁSICOS PARA OS ELEMENTOS DE ÁUDIO === */
+audio {
+  /* Manter apenas estilos essenciais de dimensionamento */
+  width: 100%;
+  display: block;
+}
+
+/* === REMOVER EFEITOS DOS CONTAINERS DE ÁUDIO MANTENDO OUTROS ELEMENTOS === */
+.audio-card,
+.audio-info {
+  /* Manter os efeitos do container mas remover específicos do áudio */
+  background: var(--bg-medium);
+  border: 1px solid var(--border-white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  transition: all var(--transition-base);
+}
+
+.audio-card:hover,
+.audio-info:hover {
+  /* Manter hover do container mas sem afetar o áudio */
+  border-color: var(--color-gold-primary);
+  box-shadow: var(--shadow-gold-md);
+}
+
+/* === MANTER ESTILOS DOS OUTROS ELEMENTOS DENTRO DAS DIVS DE ÁUDIO === */
+.audio-title,
+.video-title {
+  color: var(--color-gold-primary);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.audio-author,
+.video-author {
+  color: var(--text-gray);
+  margin-bottom: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.audio-description,
+.video-description {
+  color: var(--text-gray-light);
+  margin-bottom: var(--spacing-lg);
+  line-height: var(--line-height-normal);
+}
+
+/* === REMOVER APENAS OS EFEITOS ESPECÍFICOS DO ÁUDIO DO CSS ORIGINAL === */
+
+/* Remover as bordas e estilos customizados específicos do áudio */
+.audio-section audio {
+  border: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Remover transformações específicas do áudio */
+.audio-card:hover audio,
+.audio-info:hover audio {
+  transform: none !important;
+}
+
+/* === RESPONSIVIDADE PARA OS ELEMENTOS DE ÁUDIO SEM EFEITOS === */
+
+/* Tablet (1000px) */
+@media screen and (max-width: 1000px) {
+  audio {
+    width: 100%;
+  }
+  
+  .audio-card,
+  .audio-info {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Mobile (450px) */
+@media screen and (max-width: 450px) {
+  audio {
+    width: 100%;
+  }
+  
+  .audio-card,
+  .audio-info {
+    padding: var(--spacing-md);
+  }
+  
+  .audio-title,
+  .video-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .audio-description,
+  .video-description {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Mobile muito pequeno (300px) */
+@media screen and (max-width: 300px) {
+  audio {
+    width: 100%;
+  }
+  
+  .audio-card,
+  .audio-info {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* === GARANTIR QUE OS CONTROLES DE ÁUDIO FIQUEM FUNCIONAIS === */
+audio {
+  /* Garantir que os controles nativos do navegador funcionem */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* === MANTENDO OS EFEITOS DOS OUTROS ELEMENTOS DAS DIVS === */
+
+/* Manter hover effects nos cards de áudio (exceto no elemento audio) */
+.audio-card:hover:not(audio),
+.audio-info:hover:not(audio) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold-md);
+}
+
+/* Manter estilos dos títulos e descrições */
+.audio-card h3,
+.audio-info h3,
+.audio-card p,
+.audio-info p {
+  /* Manter todos os efeitos de texto */
+  transition: color var(--transition-base);
+}
+
+.audio-card:hover h3,
+.audio-info:hover h3 {
+  color: var(--color-gold-primary);
+}
