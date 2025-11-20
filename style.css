@@ -5078,21 +5078,21 @@ main > * {
 
 
 /* =====================================================
-   RESPONSIVIDADE ESPECÍFICA - TABLETS E MOBILE
+   RESPONSIVIDADE ESPECÍFICA - TABLET 1000px e MOBILE 450px
    ===================================================== */
 
-/* === TABLETS (768px - 1000px) === */
+/* === TABLET (1000px) === */
 @media screen and (max-width: 1000px) {
   :root {
-    --font-size-5xl: 2.25rem;
-    --font-size-4xl: 1.875rem;
-    --font-size-3xl: 1.625rem;
-    --font-size-2xl: 1.375rem;
-    --font-size-xl: 1.125rem;
+    --font-size-5xl: 2.2rem;
+    --font-size-4xl: 1.8rem;
+    --font-size-3xl: 1.5rem;
+    --font-size-2xl: 1.3rem;
+    --font-size-xl: 1.1rem;
     --font-size-lg: 1rem;
-    --font-size-base: 0.875rem;
-    --font-size-sm: 0.75rem;
-    --font-size-xs: 0.625rem;
+    --font-size-base: 0.9rem;
+    --font-size-sm: 0.8rem;
+    --font-size-xs: 0.7rem;
   }
 
   /* Header ajustado */
@@ -5106,87 +5106,64 @@ main > * {
     justify-content: space-between;
   }
 
-  /* Logo oculto em telas menores que 700px */
-  @media screen and (max-width: 700px) {
-    #navlogo {
-      display: none;
-    }
-    
-    #navt {
-      justify-content: space-around;
-    }
-  }
-
   #navlogo {
     font-size: 1.8rem;
-    flex-shrink: 0;
+    display: flex !important;
   }
 
   #lista {
     gap: var(--spacing-xs);
     flex-wrap: nowrap;
-    justify-content: center;
-    flex: 1;
   }
 
   .navitem a {
-    font-size: var(--font-size-xs);
-    padding: 0.5rem 0.75rem;
+    font-size: var(--font-size-sm);
+    padding: 0.5rem 0.8rem;
     white-space: nowrap;
-    border-radius: var(--radius-lg);
   }
 
   .simula {
-    font-size: var(--font-size-xs);
-    padding: 0.5rem 0.75rem;
+    font-size: var(--font-size-sm);
+    padding: 0.5rem 0.8rem;
     white-space: nowrap;
-    border-radius: var(--radius-lg);
-    flex-shrink: 0;
   }
 
-  /* Espaçamento entre header e main */
-  body {
-    padding-top: 70px;
-  }
-
+  /* Main com margin-top ajustado */
   main {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding-top: 90px;
+    padding: var(--spacing-lg);
   }
 
   #conteudo {
     width: 95%;
-    gap: var(--spacing-2xl);
+    gap: var(--spacing-xl);
     padding-top: var(--spacing-xl);
   }
 
-  /* Ajustes de layout para uma coluna */
+  .tci h1 {
+    font-size: 1.8rem;
+  }
+
+  .tc {
+    font-size: var(--font-size-base);
+  }
+
+  /* Serviços - uma coluna */
   #serviços > div {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, auto);
     gap: var(--spacing-lg);
   }
 
-  .cards-container {
-    grid-template-columns: 1fr;
-  }
-
-  .main-form {
-    grid-template-columns: 1fr;
-  }
-
-  .summary {
-    grid-template-columns: 1fr;
-  }
-
-  .quick-buttons {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Ajustes de cards e seções */
   #s1, #s2, #s3, #s4 {
     padding: var(--spacing-lg);
     min-height: 280px;
     height: auto;
+  }
+
+  /* Cards uma coluna */
+  .cards-container {
+    grid-template-columns: 1fr;
   }
 
   .card-content {
@@ -5195,19 +5172,30 @@ main > * {
   }
 
   .card-content > div {
-    min-height: 200px;
+    min-height: auto;
+    height: fit-content;
+  }
+
+  /* Navegação de cards oculta */
+  .cards-navigation {
+    display: none;
+  }
+
+  /* Elementos específicos do sobre nós - um embaixo do outro */
+  #card-quem-sou-eu .card-content {
+    grid-template-columns: 1fr;
+  }
+
+  .personal-info,
+  .education,
+  .professional,
+  .philosophy-quote {
+    grid-column: 1 !important;
+    min-height: auto !important;
     margin-bottom: var(--spacing-md);
   }
 
-  /* Personal info em coluna única */
-  .personal-info,
-  .education,
-  .professional {
-    width: 100%;
-    margin-bottom: var(--spacing-lg);
-  }
-
-  /* Tabelas com scroll horizontal */
+  /* Tabelas com scroll */
   .tabela,
   .data-table,
   .cashflow-table {
@@ -5217,17 +5205,23 @@ main > * {
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Ajustes de tipografia */
-  .tci h1 {
-    font-size: 1.75rem;
+  /* Gráficos ajustados */
+  .chart-container {
+    height: 350px;
+    padding: var(--spacing-lg);
   }
 
-  .tc {
-    font-size: var(--spacing-md);
+  /* Formulários uma coluna */
+  .main-form {
+    grid-template-columns: 1fr;
   }
 
-  .time {
-    font-size: var(--font-size-3xl);
+  .quick-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .summary {
+    grid-template-columns: 1fr;
   }
 
   /* Footer ajustado */
@@ -5241,24 +5235,23 @@ main > * {
   }
 
   .contact-info {
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
     flex-wrap: wrap;
   }
 }
 
-/* === MOBILE PEQUENO (300px - 450px) === */
+/* === MOBILE (450px) === */
 @media screen and (max-width: 450px) {
   :root {
-    --font-size-5xl: 1.75rem;
-    --font-size-4xl: 1.5rem;
-    --font-size-3xl: 1.25rem;
-    --font-size-2xl: 1.125rem;
+    --font-size-5xl: 1.6rem;
+    --font-size-4xl: 1.4rem;
+    --font-size-3xl: 1.2rem;
+    --font-size-2xl: 1.1rem;
     --font-size-xl: 1rem;
-    --font-size-lg: 0.875rem;
-    --font-size-base: 0.75rem;
-    --font-size-sm: 0.625rem;
-    --font-size-xs: 0.5rem;
-    
+    --font-size-lg: 0.9rem;
+    --font-size-base: 0.8rem;
+    --font-size-sm: 0.7rem;
+    --font-size-xs: 0.6rem;
     --spacing-3xl: 1.5rem;
     --spacing-2xl: 1.25rem;
     --spacing-xl: 1rem;
@@ -5268,7 +5261,7 @@ main > * {
     --spacing-xs: 0.25rem;
   }
 
-  /* Header ultra compacto */
+  /* Header totalmente ajustado */
   header {
     padding: var(--spacing-xs) var(--spacing-sm);
     height: 60px;
@@ -5277,20 +5270,23 @@ main > * {
 
   #navt {
     gap: var(--spacing-sm);
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
   }
 
-  /* Logo sempre oculto */
+  /* Logo oculto */
   #navlogo {
-    display: none;
+    display: none !important;
   }
 
+  /* Lista de navegação centralizada e compacta */
   #lista {
+    display: flex;
     gap: var(--spacing-xs);
     flex: 1;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     margin: 0;
     padding: 0;
   }
@@ -5301,99 +5297,78 @@ main > * {
   }
 
   .navitem a {
-    font-size: 0.5rem;
-    padding: 0.375rem 0.5rem;
+    font-size: var(--font-size-xs);
+    padding: 0.4rem 0.5rem;
     margin: 0;
     display: block;
     width: 100%;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: var(--radius-md);
-    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
+  /* Botão simulador na mesma linha */
   .simula {
-    font-size: 0.5rem;
-    padding: 0.375rem 0.5rem;
+    font-size: var(--font-size-xs);
+    padding: 0.4rem 0.6rem;
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
     flex-shrink: 0;
+    margin-left: var(--spacing-xs);
     border-radius: var(--radius-md);
-    line-height: 1.2;
-    min-width: auto;
   }
 
-  /* Espaçamento header-main */
+  /* Hover mais suave para mobile */
+  .navitem a:hover,
+  .simula:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: var(--shadow-gold-sm);
+  }
+
+  /* Main com margin-top ajustado */
   body {
     padding-top: 60px;
   }
 
   main {
-    padding: var(--spacing-md) var(--spacing-sm);
+    padding: var(--spacing-md);
+    padding-top: 80px;
   }
 
   #conteudo {
     width: 100%;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
     padding-top: var(--spacing-lg);
   }
 
-  /* Layout totalmente em coluna única */
-  #serviços > div {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  #s1, #s2, #s3, #s4 {
-    padding: var(--spacing-md);
-    min-height: 200px;
-    margin-bottom: var(--spacing-md);
-  }
-
-  /* Cards em coluna única */
-  .card-content {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
-  }
-
-  .card-content > div {
-    padding: var(--spacing-md);
-    min-height: 150px;
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-xs);
-  }
-
-  /* Personal info em coluna */
-  .personal-info,
-  .education,
-  .professional {
-    width: 100%;
-    margin-bottom: var(--spacing-md);
-    padding: var(--spacing-md);
-    font-size: var(--font-size-xs);
-  }
-
-  .personal-info h3,
-  .education h3,
-  .professional h3 {
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .personal-info p,
-  .education p,
-  .professional li {
-    font-size: var(--font-size-xs);
-    line-height: 1.3;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  /* Tipografia mínima */
   .tci h1 {
-    font-size: 1.25rem;
-    line-height: 1.2;
+    font-size: 1.4rem;
+    margin-bottom: var(--spacing-md);
   }
 
   .tc {
-    font-size: var(--font-size-xs);
-    line-height: 1.3;
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  /* Banner menor */
+  #banner img,
+  .banner-img {
+    width: clamp(120px, 40vw, 200px);
+  }
+
+  /* Serviços compactos */
+  #serviços {
+    padding: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
   }
 
   .time {
@@ -5401,26 +5376,97 @@ main > * {
     margin-bottom: var(--spacing-lg);
   }
 
-  /* Tabelas com fonte mínima */
+  #s1, #s2, #s3, #s4 {
+    padding: var(--spacing-md);
+    min-height: 220px;
+  }
+
+  #s1 h3, #s2 h3, #s3 h3, #s4 h3 {
+    font-size: var(--font-size-lg);
+  }
+
+  #s1 p, #s2 p, #s3 p, #s4 p {
+    font-size: var(--font-size-sm);
+  }
+
+  /* Cards muito compactos */
+  .card {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .card-header {
+    padding: var(--spacing-md);
+  }
+
+  .card-header h2 {
+    font-size: var(--font-size-lg);
+  }
+
+  .card-content {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .card-content > div {
+    padding: var(--spacing-md);
+    min-height: auto;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .card-content > div h3 {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .card-content > div p {
+    font-size: var(--font-size-xs);
+    line-height: 1.3;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  /* Elementos específicos do sobre nós - muito compactos */
+  .personal-info h3,
+  .education h3,
+  .professional h3,
+  .philosophy-quote h3 {
+    font-size: var(--font-size-base);
+  }
+
+  .personal-info p,
+  .education p,
+  .professional li,
+  .philosophy-quote p {
+    font-size: var(--font-size-xs);
+    line-height: 1.3;
+  }
+
+  /* Tabelas super compactas */
   .tabela th,
-  .tabela td {
-    padding: var(--spacing-xs) 0.25rem;
-    font-size: 0.4rem;
-  }
-
+  .tabela td,
   .data-table th,
-  .data-table td {
-    padding: 0.25rem 0.25rem;
-    font-size: 0.4rem;
+  .data-table td,
+  .cashflow-table th,
+  .cashflow-table td {
+    padding: var(--spacing-xs) 0.25rem;
+    font-size: 0.5rem;
+    line-height: 1.2;
   }
 
-  /* Formulários compactos */
+  /* Gráficos compactos mas visíveis */
+  .chart-container {
+    height: 250px;
+    padding: var(--spacing-md);
+  }
+
+  /* Formulários super compactos */
   .simulator-container {
     padding: var(--spacing-md);
   }
 
   .form-group {
     padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
   }
 
   input[type="text"],
@@ -5432,15 +5478,28 @@ main > * {
   }
 
   .btn-simulate,
-  .btn-reset {
+  .btn-reset,
+  .btn-add,
+  .btn-remove {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-xs);
+    min-height: 35px;
+  }
+
+  .quick-buttons {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
   }
 
   /* Footer compacto */
   footer {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-md);
     margin-top: var(--spacing-xl);
+  }
+
+  #socialmidia h3,
+  #Contato h3 {
+    font-size: var(--font-size-lg);
   }
 
   .social-icons {
@@ -5448,8 +5507,8 @@ main > * {
   }
 
   #socialmidia a {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
   }
 
   #socialmidia i {
@@ -5457,7 +5516,7 @@ main > * {
   }
 
   .contact-info {
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     flex-direction: column;
   }
 
@@ -5465,48 +5524,93 @@ main > * {
     width: 100%;
   }
 
-  /* Garantir que textos não ultrapassem containers */
-  p, span, li, td, th, a, button {
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  #Contato p {
+    font-size: var(--font-size-sm);
   }
 
-  /* Forçar ajuste de fonte mínima quando necessário */
-  .text-adjust {
-    font-size: 0.4rem !important;
-    line-height: 1.2 !important;
+  footer .timeline {
+    font-size: var(--font-size-xs);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+  }
+
+  /* Garantir que todos os textos respeitem os limites */
+  p, span, li, td, th, a, button, input, select, textarea, label, h1, h2, h3, h4, h5, h6, .tc, .time, .card-content > div p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.3;
+  }
+
+  /* Padding mínimo garantido em todas as divs */
+  .card, .card-content > div, #s1, #s2, #s3, #s4, .form-group, .simulator-container, footer, header, #conteudo {
+    padding: var(--spacing-sm);
+  }
+
+  /* Espaçamento consistente entre seções */
+  section, .section, #serviços, #bodiva, .cripto, #biblioteca, .about-container, .simulator-container, .screen .container {
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
   }
 }
 
-/* === MOBILE MUITO PEQUENO (até 300px) === */
-@media screen and (max-width: 300px) {
+/* === MOBILE MUITO PEQUENO (300px - 450px) === */
+@media screen and (max-width: 450px) and (min-width: 300px) {
   :root {
-    --font-size-xs: 0.4rem;
-    --font-size-sm: 0.45rem;
-    --font-size-base: 0.5rem;
+    --font-size-base: 0.7rem;
+    --font-size-sm: 0.65rem;
+    --font-size-xs: 0.5rem;
   }
 
-  .navitem a,
+  /* Header ultra compacto */
+  .navitem a {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.4rem;
+    min-height: 30px;
+  }
+
   .simula {
-    font-size: 0.4rem;
-    padding: 0.25rem 0.375rem;
+    font-size: 0.6rem;
+    padding: 0.3rem 0.5rem;
+    min-height: 30px;
   }
 
-  /* Forçar redução máxima de fonte */
-  body {
-    font-size: 0.4rem;
+  /* Textos mínimos mas legíveis */
+  p, li, span, .tc, .card-content > div p {
+    font-size: 0.6rem !important;
+    line-height: 1.2;
   }
 
-  p, span, li, td, th {
-    font-size: 0.4rem !important;
-    line-height: 1.1 !important;
+  h1 { font-size: 1.1rem !important; }
+  h2 { font-size: 1rem !important; }
+  h3 { font-size: 0.9rem !important; }
+  h4 { font-size: 0.8rem !important; }
+  h5 { font-size: 0.7rem !important; }
+  h6 { font-size: 0.65rem !important; }
+
+  /* Garantir que nenhum texto ultrapasse os limites */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  h1 { font-size: 1rem !important; }
-  h2 { font-size: 0.875rem !important; }
-  h3 { font-size: 0.75rem !important; }
-  h4 { font-size: 0.625rem !important; }
+  .card-content > div,
+  #s1, #s2, #s3, #s4,
+  .form-group,
+  .tabela,
+  .data-table {
+    padding: 0.375rem;
+  }
+
+  .card-content > div p,
+  #s1 p, #s2 p, #s3 p, #s4 p,
+  .personal-info p,
+  .education p,
+  .professional li {
+    font-size: 0.55rem !important;
+    line-height: 1.15;
+    margin-bottom: 0.25rem;
+  }
 }
 
 /* === GARANTIA DE LAYOUT HORIZONTAL NO HEADER === */
@@ -5522,21 +5626,31 @@ main > * {
   #lista {
     display: flex;
     flex-direction: row;
+    gap: var(--spacing-xs);
     flex-wrap: nowrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    width: 70%;
+    flex: 1;
   }
 
   .navitem {
     flex: 1;
+    min-width: 0;
+  }
+
+  .navitem a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .simula {
-    width: 30%;
-    text-align: center;
-    margin: 0;
+    flex-shrink: 0;
+    margin-left: var(--spacing-xs);
   }
 
   /* Garantir que todos os elementos fiquem na mesma linha */
@@ -5548,28 +5662,101 @@ main > * {
   }
 }
 
-/* === PREVENÇÃO DE SOBREPOSIÇÃO === */
+/* === OCULTAR LOGO EM TELAS PEQUENAS === */
+@media screen and (max-width: 700px) {
+  #navlogo {
+    display: none !important;
+  }
+
+  #lista {
+    margin-left: 0;
+  }
+}
+
+/* === GARANTIA DE ESPAÇAMENTO ENTRE HEADER, MAIN E FOOTER === */
+@media screen and (max-width: 1000px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+    margin: 0;
+    padding-top: 90px;
+  }
+
+  footer {
+    margin-top: auto;
+  }
+
+  /* Garantir que o conteúdo não fique escondido atrás do header fixo */
+  section:first-of-type {
+    scroll-margin-top: 90px;
+  }
+}
+
+/* === AJUSTES ESPECÍFICOS PARA OS ELEMENTOS SOLICITADOS === */
+@media screen and (max-width: 700px) {
+  /* Divs do sobre nós uma embaixo da outra */
+  .personal-info,
+  .education,
+  .professional,
+  .philosophy-quote {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+  }
+
+  /* Navegação de cards oculta */
+  .cards-navigation {
+    display: none;
+  }
+
+  /* Ajuste no espaçamento do conteúdo principal */
+  #conteudo {
+    margin-top: var(--spacing-md);
+  }
+
+  /* Redução de hover effects em mobile */
+  .navitem a:hover,
+  .simula:hover,
+  .card:hover,
+  #s1:hover, #s2:hover, #s3:hover, #s4:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+/* === GARANTIA DE TEXTO DENTRO DOS LIMITES === */
 @media screen and (max-width: 450px) {
+  .card-content > div,
+  #s1, #s2, #s3, #s4,
+  .form-group,
+  .personal-info,
+  .education,
+  .professional,
+  .philosophy-quote {
+    padding: 0.5rem;
+  }
+
+  .card-content > div p,
+  #s1 p, #s2 p, #s3 p, #s4 p,
+  .personal-info p,
+  .education p,
+  .professional li,
+  .philosophy-quote p {
+    font-size: 0.6rem !important;
+    line-height: 1.2;
+    margin: 0.25rem 0;
+    padding: 0;
+  }
+
+  /* Garantir que textos longos quebrem corretamente */
   * {
-    box-sizing: border-box;
-  }
-
-  body > * {
-    min-width: 0;
-  }
-
-  .container, section, div {
-    overflow: hidden;
-  }
-
-  /* Garantir espaçamento mínimo entre seções */
-  section {
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-md);
-  }
-
-  /* Prevenir que textos toquem nas bordas */
-  p, h1, h2, h3, h4, h5, h6 {
-    padding: 0 var(--spacing-xs);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
   }
 }
