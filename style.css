@@ -6207,127 +6207,45 @@ audio {
   color: var(--color-gold-primary);
 }
 
-/* =====================================================
-   CENTRALIZAÇÃO ESPECÍFICA DOS ELEMENTOS SOLICITADOS
-   ===================================================== */
-
-/* === CENTRALIZAÇÃO APENAS DOS ELEMENTOS SOLICITADOS === */
-#s1, #s2, #s3, #s4,
-.skills-advanced, .skills-developing, .skills-approach,
-.personality-traits, .work-life-balance, .education-critique,
-.professional-interests, .football, .core-values, 
-.family-values, .tech-entrepreneurs, .finance-investment,
-.local-inspirations, .sports-idols, .company-history,
-.company-objective, .company-representation, .mission, .vision {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-}
-
-/* === PARÁGRAFOS CENTRALIZADOS MAS COM TEXTO JUSTIFICADO === */
-#s1 p, #s2 p, #s3 p, #s4 p,
-.skills-approach p, .work-life-balance p, .education-critique p,
-.football p, .family-values p, .company-history p,
-.company-objective p, .company-representation p, .mission p, .vision p {
-  text-align: justify;
-  text-align-last: center;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-/* === LISTAS CENTRALIZADAS === */
-.skills-advanced ul, .skills-developing ul, .personality-traits ul,
-.professional-interests ul, .core-values ul, .tech-entrepreneurs ul,
-.finance-investment ul, .local-inspirations ul, .sports-idols ul {
-  list-style-position: inside;
-  padding-left: 0;
-  text-align: center;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.skills-advanced li, .skills-developing li, .personality-traits li,
-.professional-interests li, .core-values li, .tech-entrepreneurs li,
-.finance-investment li, .local-inspirations li, .sports-idols li {
-  text-align: center;
-  margin-bottom: var(--spacing-sm);
-  display: block;
-  width: fit-content;
-}
-
-/* === HEADERS MANTÊM POSIÇÃO ORIGINAL - APENAS CENTRALIZADOS HORIZONTALMENTE === */
-#s1 h3, #s2 h3, #s3 h3, #s4 h3,
-.skills-advanced h3, .skills-developing h3, .skills-approach h3,
-.personality-traits h3, .work-life-balance h3, .education-critique h3,
-.professional-interests h3, .football h3, .core-values h3,
-.family-values h3, .tech-entrepreneurs h3, .finance-investment h3,
-.local-inspirations h3, .sports-idols h3, .company-history h3,
-.company-objective h3, .company-representation h3, .mission h3, .vision h3 {
-  text-align: center;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  /* Mantém todas as outras propriedades originais */
-}
-
-/* === BARRA DE PROGRESSO CENTRALIZADA === */
-.skills-developing .progress-bar {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-/* === MENSAGENS DE ALERTA/INFO/SUCESSO CENTRALIZADAS === */
-.info-message, .warning-message, .success-message {
-  text-align: justify;
-  text-align-last: center;
-  max-width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 /* =====================================================
-   BOTÃO SIMULADOR COMPACTO PARA TELAS PEQUENAS
+   AJUSTES ESPECÍFICOS PARA O BOTÃO SIMULADOR EM TELAS PEQUENAS
    ===================================================== */
 
 @media screen and (max-width: 700px) {
+  /* === BOTÃO SIMULADOR REDUZIDO === */
   .simula {
     /* Redução drástica de tamanho */
-    padding: 0.25rem 0.5rem !important;
-    font-size: 0.6rem !important;
-    min-height: 26px !important;
-    min-width: 60px !important;
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.65rem !important;
+    min-height: 28px !important;
     
     /* Redução de efeitos visuais */
-    box-shadow: 0 1px 3px rgba(214, 174, 100, 0.3) !important;
+    box-shadow: var(--shadow-sm) !important;
     border-width: 1px !important;
     
     /* Garantir que caiba na tela */
+    max-width: 80px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     
-    /* Efeitos simplificados */
+    /* Remover efeitos excessivos */
     background: var(--color-gold-primary) !important;
     color: var(--bg-black) !important;
-    
-    /* Remover transformações excessivas */
     transform: none !important;
+    
+    /* Remover gradientes complexos */
+    background-image: none !important;
   }
 
-  /* Efeito hover mínimo */
+  /* Efeito hover reduzido */
   .simula:hover {
     transform: scale(1.02) !important;
-    box-shadow: 0 2px 4px rgba(214, 174, 100, 0.4) !important;
+    box-shadow: 0 2px 8px rgba(214, 174, 100, 0.3) !important;
   }
 
-  /* Remover pseudo-elementos complexos */
+  /* Remover pseudo-elementos que causam overflow */
   .simula::before {
     display: none !important;
   }
@@ -6338,89 +6256,7 @@ audio {
     padding: 0.2rem 0.4rem !important;
     font-size: 0.55rem !important;
     min-height: 24px !important;
-    min-width: 55px !important;
+    max-width: 70px;
+    margin-left: 0.1rem !important;
   }
-}
-
-/* =====================================================
-   RESPONSIVIDADE PARA OS ELEMENTOS CENTRALIZADOS
-   ===================================================== */
-
-@media screen and (max-width: 700px) {
-  /* Parágrafos com texto menor mas mantendo justificação e centralização */
-  #s1 p, #s2 p, #s3 p, #s4 p,
-  .skills-approach p, .work-life-balance p, .education-critique p,
-  .football p, .family-values p, .company-history p,
-  .company-objective p, .company-representation p, .mission p, .vision p {
-    max-width: 95%;
-    font-size: var(--font-size-sm);
-    line-height: 1.5;
-  }
-
-  /* Listas com fonte menor */
-  .skills-advanced li, .skills-developing li, .personality-traits li,
-  .professional-interests li, .core-values li, .tech-entrepreneurs li,
-  .finance-investment li, .local-inspirations li, .sports-idols li {
-    font-size: var(--font-size-xs);
-  }
-
-  /* Mensagens responsivas */
-  .info-message, .warning-message, .success-message {
-    max-width: 98%;
-    font-size: var(--font-size-sm);
-  }
-}
-
-@media screen and (max-width: 450px) {
-  /* Ajustes finos para mobile muito pequeno */
-  #s1 p, #s2 p, #s3 p, #s4 p,
-  .skills-approach p, .work-life-balance p, .education-critique p,
-  .football p, .family-values p, .company-history p,
-  .company-objective p, .company-representation p, .mission p, .vision p {
-    max-width: 98%;
-    font-size: 0.7rem;
-    line-height: 1.4;
-  }
-
-  .skills-advanced li, .skills-developing li, .personality-traits li,
-  .professional-interests li, .core-values li, .tech-entrepreneurs li,
-  .finance-investment li, .local-inspirations li, .sports-idols li {
-    font-size: 0.65rem;
-    margin-bottom: 0.2rem;
-  }
-}
-
-/* =====================================================
-   GARANTIAS DE QUE OUTROS ELEMENTOS NÃO SÃO AFETADOS
-   ===================================================== */
-
-/* Garantir que outros headers não sejam afetados */
-h1:not(#s1 h3):not(#s2 h3):not(#s3 h3):not(#s4 h3):not(.skills-advanced h3):not(.skills-developing h3):not(.skills-approach h3):not(.personality-traits h3):not(.work-life-balance h3):not(.education-critique h3):not(.professional-interests h3):not(.football h3):not(.core-values h3):not(.family-values h3):not(.tech-entrepreneurs h3):not(.finance-investment h3):not(.local-inspirations h3):not(.sports-idols h3):not(.company-history h3):not(.company-objective h3):not(.company-representation h3):not(.mission h3):not(.vision h3),
-h2:not(#s1 h3):not(#s2 h3):not(#s3 h3):not(#s4 h3):not(.skills-advanced h3):not(.skills-developing h3):not(.skills-approach h3):not(.personality-traits h3):not(.work-life-balance h3):not(.education-critique h3):not(.professional-interests h3):not(.football h3):not(.core-values h3):not(.family-values h3):not(.tech-entrepreneurs h3):not(.finance-investment h3):not(.local-inspirations h3):not(.sports-idols h3):not(.company-history h3):not(.company-objective h3):not(.company-representation h3):not(.mission h3):not(.vision h3),
-h3:not(#s1 h3):not(#s2 h3):not(#s3 h3):not(#s4 h3):not(.skills-advanced h3):not(.skills-developing h3):not(.skills-approach h3):not(.personality-traits h3):not(.work-life-balance h3):not(.education-critique h3):not(.professional-interests h3):not(.football h3):not(.core-values h3):not(.family-values h3):not(.tech-entrepreneurs h3):not(.finance-investment h3):not(.local-inspirations h3):not(.sports-idols h3):not(.company-history h3):not(.company-objective h3):not(.company-representation h3):not(.mission h3):not(.vision h3),
-h4, h5, h6 {
-  /* Mantém todos os estilos originais - não aplica centralização */
-  text-align: inherit;
-  display: inherit;
-  justify-content: inherit;
-  align-items: inherit;
-}
-
-/* Garantir que outros parágrafos não sejam afetados */
-p:not(#s1 p):not(#s2 p):not(#s3 p):not(#s4 p):not(.skills-approach p):not(.work-life-balance p):not(.education-critique p):not(.football p):not(.family-values p):not(.company-history p):not(.company-objective p):not(.company-representation p):not(.mission p):not(.vision p) {
-  text-align: inherit;
-  max-width: inherit;
-  margin-left: inherit;
-  margin-right: inherit;
-}
-
-/* Garantir que outras listas não sejam afetadas */
-ul:not(.skills-advanced ul):not(.skills-developing ul):not(.personality-traits ul):not(.professional-interests ul):not(.core-values ul):not(.tech-entrepreneurs ul):not(.finance-investment ul):not(.local-inspirations ul):not(.sports-idols ul),
-ol:not(.skills-advanced ul):not(.skills-developing ul):not(.personality-traits ul):not(.professional-interests ul):not(.core-values ul):not(.tech-entrepreneurs ul):not(.finance-investment ul):not(.local-inspirations ul):not(.sports-idols ul) {
-  list-style-position: inherit;
-  padding-left: inherit;
-  text-align: inherit;
-  display: inherit;
-  flex-direction: inherit;
-  align-items: inherit;
 }
