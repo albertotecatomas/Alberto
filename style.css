@@ -5078,8 +5078,10 @@ main > * {
 
 
 /* =====================================================
-   TABLET (768px - 1000px)
+   RESPONSIVIDADE ESPECÍFICA - TABLETS E MOBILE
    ===================================================== */
+
+/* === TABLETS (768px - 1000px) === */
 @media screen and (max-width: 1000px) {
   :root {
     --font-size-5xl: 2.25rem;
@@ -5089,68 +5091,66 @@ main > * {
     --font-size-xl: 1.125rem;
     --font-size-lg: 1rem;
     --font-size-base: 0.875rem;
-    --font-size-sm: 0.813rem;
-    --font-size-xs: 0.75rem;
-    
-    --spacing-3xl: 2.5rem;
-    --spacing-2xl: 2rem;
-    --spacing-xl: 1.5rem;
-    --spacing-lg: 1rem;
-    --spacing-md: 0.75rem;
-    --spacing-sm: 0.5rem;
-    --spacing-xs: 0.25rem;
+    --font-size-sm: 0.75rem;
+    --font-size-xs: 0.625rem;
   }
 
-  /* === HEADER E NAVEGAÇÃO === */
+  /* Header ajustado */
   header {
     padding: var(--spacing-sm) var(--spacing-md);
-    margin-bottom: 90px; /* Espaço entre header e main */
+    height: 70px;
   }
 
   #navt {
     gap: var(--spacing-md);
     justify-content: space-between;
-    align-items: center;
+  }
+
+  /* Logo oculto em telas menores que 700px */
+  @media screen and (max-width: 700px) {
+    #navlogo {
+      display: none;
+    }
+    
+    #navt {
+      justify-content: space-around;
+    }
   }
 
   #navlogo {
     font-size: 1.8rem;
-    display: none; /* Oculta o ícone em telas menores que 700px */
-  }
-
-  #lista {
-    gap: var(--spacing-sm);
-    flex: 1;
-    justify-content: space-around;
-    margin: 0;
-    padding: 0;
-  }
-
-  .navitem a {
-    font-size: var(--font-size-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--radius-lg);
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  .simula {
-    font-size: var(--font-size-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--radius-lg);
-    white-space: nowrap;
-    text-align: center;
     flex-shrink: 0;
   }
 
-  /* === LAYOUT PRINCIPAL === */
+  #lista {
+    gap: var(--spacing-xs);
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .navitem a {
+    font-size: var(--font-size-xs);
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+    border-radius: var(--radius-lg);
+  }
+
+  .simula {
+    font-size: var(--font-size-xs);
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+    border-radius: var(--radius-lg);
+    flex-shrink: 0;
+  }
+
+  /* Espaçamento entre header e main */
   body {
-    padding-top: 80px; /* Mantém espaço para header fixo */
+    padding-top: 70px;
   }
 
   main {
-    padding: var(--spacing-lg);
-    margin-top: 90px; /* Espaço entre header e main */
+    padding: var(--spacing-lg) var(--spacing-md);
   }
 
   #conteudo {
@@ -5159,160 +5159,55 @@ main > * {
     padding-top: var(--spacing-xl);
   }
 
-  /* === TIPOGRAFIA === */
-  .tci h1 {
-    font-size: var(--font-size-4xl);
-  }
-
-  .tc {
-    font-size: var(--font-size-base);
-  }
-
-  /* === BANNER === */
-  #banner img,
-  .banner-img {
-    width: clamp(180px, 35vw, 250px);
-  }
-
-  /* === SERVIÇOS === */
-  #serviços {
-    padding: var(--spacing-xl);
-  }
-
+  /* Ajustes de layout para uma coluna */
   #serviços > div {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, auto);
     gap: var(--spacing-lg);
   }
 
-  #s1, #s2, #s3, #s4 {
-    padding: var(--spacing-lg);
-    min-height: 280px;
-    height: auto;
-  }
-
-  #s1 h3, #s2 h3, #s3 h3, #s4 h3 {
-    font-size: var(--font-size-xl);
-  }
-
-  .time {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  /* === BODIVA E CRIPTOMOEDAS === */
-  #bodiva,
-  .cripto {
-    padding: var(--spacing-2xl) var(--spacing-lg);
-  }
-
-  #bodiva h2,
-  .cripto h2.timeline {
-    font-size: var(--font-size-3xl);
-  }
-
-  #bodiva h3,
-  .cripto h3 {
-    font-size: var(--font-size-2xl);
-    margin: var(--spacing-2xl) 0 var(--spacing-lg) 0;
-  }
-
-  #bodiva > p,
-  .cripto > p {
-    font-size: var(--font-size-base);
-    padding: 0;
-  }
-
-  .banner-video {
-    max-height: 350px;
-    border-radius: var(--radius-lg);
-  }
-
-  /* === BIBLIOTECA === */
-  .subdiv, .video-card-header, .ebook-card-header {
-    padding: var(--spacing-lg);
-  }
-
-  .subdiv img, .video-card-header img, .ebook-card-header img {
-    width: 60px;
-    height: 60px;
-  }
-
-  .subdiv h3, .video-card-header h3, .ebook-card-header h3 {
-    font-size: var(--font-size-lg);
-  }
-
-  /* === SIMULADOR === */
-  .simulator-container {
-    padding: var(--spacing-xl);
+  .cards-container {
+    grid-template-columns: 1fr;
   }
 
   .main-form {
     grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-  }
-
-  .quick-buttons {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .summary {
     grid-template-columns: 1fr;
   }
 
-  .form-actions,
-  .export-actions,
-  .final-actions {
-    flex-direction: column;
-    gap: var(--spacing-lg);
+  .quick-buttons {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .btn-simulate,
-  .btn-reset,
-  .btn-download,
-  .btn-export,
-  .btn-restart {
-    width: 100%;
+  /* Ajustes de cards e seções */
+  #s1, #s2, #s3, #s4 {
+    padding: var(--spacing-lg);
+    min-height: 280px;
+    height: auto;
   }
 
-  .portfolio-asset,
-  .scenario {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  /* === SOBRE NÓS - DIVS UMA EM BAIXO DA OUTRA === */
   .card-content {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
 
   .card-content > div {
-    min-height: auto;
-    height: auto;
+    min-height: 200px;
     margin-bottom: var(--spacing-md);
-    width: 100%;
   }
 
+  /* Personal info em coluna única */
   .personal-info,
   .education,
   .professional {
     width: 100%;
-    grid-column: 1 !important;
-  }
-
-  .profile-image {
-    grid-column: 1;
     margin-bottom: var(--spacing-lg);
   }
 
-  .profile-image img {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  /* === TABELAS === */
+  /* Tabelas com scroll horizontal */
   .tabela,
   .data-table,
   .cashflow-table {
@@ -5322,25 +5217,22 @@ main > * {
     -webkit-overflow-scrolling: touch;
   }
 
-  .tabela th,
-  .tabela td,
-  .data-table th,
-  .data-table td,
-  .cashflow-table th,
-  .cashflow-table td {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-xs);
+  /* Ajustes de tipografia */
+  .tci h1 {
+    font-size: 1.75rem;
   }
 
-  /* === GRÁFICOS === */
-  .chart-container {
-    height: 350px;
-    padding: var(--spacing-lg);
+  .tc {
+    font-size: var(--spacing-md);
   }
 
-  /* === FOOTER === */
+  .time {
+    font-size: var(--font-size-3xl);
+  }
+
+  /* Footer ajustado */
   footer {
-    padding: var(--spacing-2xl) var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+    padding: var(--spacing-2xl) var(--spacing-lg);
     margin-top: var(--spacing-2xl);
   }
 
@@ -5348,32 +5240,13 @@ main > * {
     gap: var(--spacing-lg);
   }
 
-  #socialmidia a {
-    width: 50px;
-    height: 50px;
-  }
-
-  #socialmidia i {
-    font-size: var(--font-size-xl);
-  }
-
   .contact-info {
     gap: var(--spacing-xl);
     flex-wrap: wrap;
   }
-
-  .contact-item {
-    min-width: 180px;
-  }
-
-  #Contato p {
-    font-size: var(--font-size-base);
-  }
 }
 
-/* =====================================================
-   MOBILE (100px - 450px)
-   ===================================================== */
+/* === MOBILE PEQUENO (300px - 450px) === */
 @media screen and (max-width: 450px) {
   :root {
     --font-size-5xl: 1.75rem;
@@ -5383,8 +5256,8 @@ main > * {
     --font-size-xl: 1rem;
     --font-size-lg: 0.875rem;
     --font-size-base: 0.75rem;
-    --font-size-sm: 0.688rem;
-    --font-size-xs: 0.625rem;
+    --font-size-sm: 0.625rem;
+    --font-size-xs: 0.5rem;
     
     --spacing-3xl: 1.5rem;
     --spacing-2xl: 1.25rem;
@@ -5392,24 +5265,26 @@ main > * {
     --spacing-lg: 0.75rem;
     --spacing-md: 0.5rem;
     --spacing-sm: 0.375rem;
-    --spacing-xs: 0.188rem;
+    --spacing-xs: 0.25rem;
   }
 
-  /* === HEADER E NAVEGAÇÃO === */
+  /* Header ultra compacto */
   header {
     padding: var(--spacing-xs) var(--spacing-sm);
-    margin-bottom: 90px; /* Espaço entre header e main */
+    height: 60px;
+    min-height: 60px;
   }
 
   #navt {
     gap: var(--spacing-sm);
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
+    width: 100%;
   }
 
+  /* Logo sempre oculto */
   #navlogo {
-    display: none; /* Mantém oculto */
+    display: none;
   }
 
   #lista {
@@ -5420,34 +5295,37 @@ main > * {
     padding: 0;
   }
 
-  .navitem a {
-    font-size: var(--font-size-xs);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-md);
+  .navitem {
+    flex: 1;
     text-align: center;
-    min-width: 60px;
-    white-space: nowrap;
+  }
+
+  .navitem a {
+    font-size: 0.5rem;
+    padding: 0.375rem 0.5rem;
+    margin: 0;
+    display: block;
+    width: 100%;
+    border-radius: var(--radius-md);
+    line-height: 1.2;
   }
 
   .simula {
-    font-size: var(--font-size-xs);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-md);
-    min-width: 80px;
-    text-align: center;
-    white-space: nowrap;
+    font-size: 0.5rem;
+    padding: 0.375rem 0.5rem;
     flex-shrink: 0;
+    border-radius: var(--radius-md);
+    line-height: 1.2;
+    min-width: auto;
   }
 
-  /* === LAYOUT PRINCIPAL === */
+  /* Espaçamento header-main */
   body {
-    font-size: 10px; /* Tamanho mínimo para body */
-    padding-top: 70px; /* Ajuste para header menor */
+    padding-top: 60px;
   }
 
   main {
-    padding: var(--spacing-md);
-    margin-top: 90px; /* Espaço entre header e main */
+    padding: var(--spacing-md) var(--spacing-sm);
   }
 
   #conteudo {
@@ -5456,253 +5334,126 @@ main > * {
     padding-top: var(--spacing-lg);
   }
 
-  /* === TIPOGRAFIA - TAMANHO MÍNIMO === */
-  .tci h1 {
-    font-size: var(--font-size-3xl);
-  }
-
-  .tc {
-    font-size: var(--font-size-sm);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-size: inherit;
-    margin-bottom: var(--spacing-sm);
-  }
-
-  p, li, span, a {
-    font-size: var(--font-size-xs);
-  }
-
-  /* === BANNER === */
-  #banner img,
-  .banner-img {
-    width: clamp(120px, 40vw, 180px);
-  }
-
-  /* === SERVIÇOS === */
-  #serviços {
-    padding: var(--spacing-lg);
-    margin: var(--spacing-xl) auto;
-  }
-
+  /* Layout totalmente em coluna única */
   #serviços > div {
+    grid-template-columns: 1fr;
     gap: var(--spacing-md);
   }
 
   #s1, #s2, #s3, #s4 {
     padding: var(--spacing-md);
-    min-height: 220px;
+    min-height: 200px;
+    margin-bottom: var(--spacing-md);
   }
 
-  #s1 h3, #s2 h3, #s3 h3, #s4 h3 {
-    font-size: var(--font-size-lg);
+  /* Cards em coluna única */
+  .card-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+
+  .card-content > div {
+    padding: var(--spacing-md);
+    min-height: 150px;
     margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+
+  /* Personal info em coluna */
+  .personal-info,
+  .education,
+  .professional {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+
+  .personal-info h3,
+  .education h3,
+  .professional h3 {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .personal-info p,
+  .education p,
+  .professional li {
+    font-size: var(--font-size-xs);
+    line-height: 1.3;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  /* Tipografia mínima */
+  .tci h1 {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .tc {
+    font-size: var(--font-size-xs);
+    line-height: 1.3;
   }
 
   .time {
     font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
   }
 
-  /* === BODIVA E CRIPTOMOEDAS === */
-  #bodiva,
-  .cripto {
-    padding: var(--spacing-xl) var(--spacing-md);
+  /* Tabelas com fonte mínima */
+  .tabela th,
+  .tabela td {
+    padding: var(--spacing-xs) 0.25rem;
+    font-size: 0.4rem;
   }
 
-  #bodiva h2,
-  .cripto h2.timeline {
-    font-size: var(--font-size-2xl);
+  .data-table th,
+  .data-table td {
+    padding: 0.25rem 0.25rem;
+    font-size: 0.4rem;
   }
 
-  #bodiva h3,
-  .cripto h3 {
-    font-size: var(--font-size-xl);
-    margin: var(--spacing-xl) 0 var(--spacing-md) 0;
-  }
-
-  #bodiva > p,
-  .cripto > p {
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-normal);
-  }
-
-  .banner-video {
-    max-height: 250px;
-    border-radius: var(--radius-md);
-  }
-
-  /* === BIBLIOTECA === */
-  .subdiv, .video-card-header, .ebook-card-header {
-    padding: var(--spacing-md);
-  }
-
-  .subdiv img, .video-card-header img, .ebook-card-header img {
-    width: 50px;
-    height: 50px;
-    padding: var(--spacing-md);
-  }
-
-  .subdiv h3, .video-card-header h3, .ebook-card-header h3 {
-    font-size: var(--font-size-base);
-  }
-
-  /* === SIMULADOR === */
+  /* Formulários compactos */
   .simulator-container {
-    padding: var(--spacing-lg);
-  }
-
-  .main-form {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+    padding: var(--spacing-md);
   }
 
   .form-group {
-    padding: var(--spacing-lg);
-  }
-
-  .quick-buttons {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-sm);
-  }
-
-  .btn-quick {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-xs);
+    padding: var(--spacing-md);
   }
 
   input[type="text"],
   input[type="number"],
   input[type="date"],
   select {
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: var(--font-size-sm);
-  }
-
-  .btn-simulate,
-  .btn-reset,
-  .btn-add,
-  .btn-remove {
-    padding: var(--spacing-md) var(--spacing-lg);
-    font-size: var(--font-size-sm);
-  }
-
-  /* === SOBRE NÓS - LAYOUT VERTICAL COMPLETO === */
-  .cards-navigation {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-
-  .nav-btn {
-    width: 100%;
-    text-align: center;
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--font-size-xs);
   }
 
-  .card-header {
-    padding: var(--spacing-lg);
+  .btn-simulate,
+  .btn-reset {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
   }
 
-  .card-header h2 {
-    font-size: var(--font-size-xl);
-  }
-
-  .card-content {
-    padding: var(--spacing-md);
-    gap: var(--spacing-md);
-  }
-
-  .card-content > div {
-    padding: var(--spacing-lg);
-    min-height: auto;
-    width: 100%;
-  }
-
-  .card-content > div h3 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-md);
-  }
-
-  .card-content > div h4 {
-    font-size: var(--font-size-base);
-  }
-
-  /* DIVS ESPECÍFICAS DO SOBRE NÓS - UMA EM BAIXO DA OUTRA */
-  .personal-info,
-  .education,
-  .professional {
-    width: 100%;
-    margin-bottom: var(--spacing-md);
-  }
-
-  .personal-info h3,
-  .education h3,
-  .professional h3 {
-    font-size: var(--font-size-lg);
-  }
-
-  .profile-image {
-    padding: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
-  }
-
-  .profile-image img {
-    max-width: 200px;
-  }
-
-  /* === TABELAS === */
-  .tabela th,
-  .tabela td,
-  .data-table th,
-  .data-table td,
-  .cashflow-table th,
-  .cashflow-table td {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: 0.5rem;
-  }
-
-  /* === GRÁFICOS === */
-  .chart-container {
-    height: 250px;
-    padding: var(--spacing-md);
-  }
-
-  /* === ELEMENTOS DE MÍDIA === */
-  audio, video {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* === FOOTER === */
+  /* Footer compacto */
   footer {
-    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-lg) var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-md);
     margin-top: var(--spacing-xl);
-  }
-
-  footer::before {
-    top: -30px;
-    height: 60px;
   }
 
   .social-icons {
     gap: var(--spacing-md);
-    flex-wrap: wrap;
   }
 
   #socialmidia a {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
   }
 
   #socialmidia i {
     font-size: var(--font-size-lg);
-  }
-
-  #socialmidia h3,
-  #Contato h3 {
-    font-size: var(--font-size-xl);
   }
 
   .contact-info {
@@ -5711,134 +5462,114 @@ main > * {
   }
 
   .contact-item {
-    min-width: auto;
     width: 100%;
   }
 
-  #Contato p {
-    font-size: var(--font-size-sm);
+  /* Garantir que textos não ultrapassem containers */
+  p, span, li, td, th, a, button {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
-  footer .timeline {
-    font-size: var(--font-size-xs);
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
+  /* Forçar ajuste de fonte mínima quando necessário */
+  .text-adjust {
+    font-size: 0.4rem !important;
+    line-height: 1.2 !important;
   }
 }
 
-/* =====================================================
-   OCULTAR LOGO EM TELAS ≤ 700px
-   ===================================================== */
-@media screen and (max-width: 700px) {
-  #navlogo {
-    display: none !important;
-  }
-  
-  #navt {
-    justify-content: space-between;
-  }
-  
-  #lista {
-    flex: 1;
-    justify-content: space-around;
-  }
-  
-  .navitem a,
-  .simula {
-    font-size: var(--font-size-xs);
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-}
-
-/* =====================================================
-   MOBILE MUITO PEQUENO (100px - 360px)
-   ===================================================== */
-@media screen and (max-width: 360px) {
+/* === MOBILE MUITO PEQUENO (até 300px) === */
+@media screen and (max-width: 300px) {
   :root {
-    --font-size-xs: 0.5rem;
-    --spacing-xs: 0.125rem;
+    --font-size-xs: 0.4rem;
+    --font-size-sm: 0.45rem;
+    --font-size-base: 0.5rem;
   }
 
-  /* Header compacto máximo */
-  .navitem a {
-    font-size: 0.45rem;
+  .navitem a,
+  .simula {
+    font-size: 0.4rem;
     padding: 0.25rem 0.375rem;
-    min-width: 50px;
+  }
+
+  /* Forçar redução máxima de fonte */
+  body {
+    font-size: 0.4rem;
+  }
+
+  p, span, li, td, th {
+    font-size: 0.4rem !important;
+    line-height: 1.1 !important;
+  }
+
+  h1 { font-size: 1rem !important; }
+  h2 { font-size: 0.875rem !important; }
+  h3 { font-size: 0.75rem !important; }
+  h4 { font-size: 0.625rem !important; }
+}
+
+/* === GARANTIA DE LAYOUT HORIZONTAL NO HEADER === */
+@media screen and (max-width: 700px) {
+  #navt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  #lista {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+  }
+
+  .navitem {
+    flex: 1;
+    text-align: center;
   }
 
   .simula {
-    font-size: 0.45rem;
-    padding: 0.25rem 0.375rem;
-    min-width: 60px;
+    width: 30%;
+    text-align: center;
+    margin: 0;
   }
 
-  /* Tipografia mínima */
-  body {
-    font-size: 8px;
-  }
-
-  /* Elementos críticos de tamanho mínimo */
-  .tci h1 {
-    font-size: var(--font-size-2xl);
-  }
-
-  .tc {
-    font-size: 0.6rem;
-  }
-
-  /* Tabelas com scroll horizontal */
-  .data-section .table-wrapper::after {
-    content: '← Deslize →';
-    font-size: 0.5rem;
-    padding: 0.25rem;
+  /* Garantir que todos os elementos fiquem na mesma linha */
+  #navlogo,
+  #lista,
+  .simula {
+    display: inline-flex;
+    vertical-align: middle;
   }
 }
 
-/* =====================================================
-   MELHORIAS DE ACESSIBILIDADE PARA TOUCH
-   ===================================================== */
+/* === PREVENÇÃO DE SOBREPOSIÇÃO === */
 @media screen and (max-width: 450px) {
-  .navitem a,
-  .simula,
-  .button,
-  .btn-primary,
-  .option-btn,
-  .nav-btn {
-    min-height: 44px;
-    min-width: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  * {
+    box-sizing: border-box;
   }
 
-  /* Remove animações complexas em mobile */
-  .navitem a::before,
-  .simula::before,
-  .button::before {
-    display: none;
+  body > * {
+    min-width: 0;
   }
 
-  .navitem a:hover,
-  .simula:hover,
-  .button:hover {
-    transform: none;
+  .container, section, div {
+    overflow: hidden;
   }
-}
 
-/* =====================================================
-   GARANTIR ESPAÇAMENTO ENTRE HEADER, MAIN E FOOTER
-   ===================================================== */
-@media screen and (max-width: 1000px) {
-  body {
-    padding-top: 80px;
+  /* Garantir espaçamento mínimo entre seções */
+  section {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
   }
-  
-  main {
-    margin-top: 90px;
-    min-height: calc(100vh - 160px); /* Altura mínima considerando header e footer */
-  }
-  
-  footer {
-    margin-top: var(--spacing-2xl);
+
+  /* Prevenir que textos toquem nas bordas */
+  p, h1, h2, h3, h4, h5, h6 {
+    padding: 0 var(--spacing-xs);
   }
 }
