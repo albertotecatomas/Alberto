@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-   
+
 </head>
 <body>
     <header>
@@ -886,6 +886,1154 @@
         window.generatePDF = generatePDF;
         window.exportCSV = exportCSV;
     </script>
+
+    <section id="quiz-investimentos" class="quiz-section">
+    <div class="quiz-container">
+        <!-- Tela Inicial - Formulário de Registo -->
+        <div id="tela-inicial" class="quiz-screen active">
+            <div class="quiz-header">
+                <h1>Quiz de Investimentos</h1>
+                <p>Teste seus conhecimentos sobre economia, finanças e mercado angolano</p>
+            </div>
+
+            <form id="form-jogador" class="player-form">
+                <div class="form-group">
+                    <label for="nome-jogador">Nome Completo *</label>
+                    <input type="text" id="nome-jogador" name="nome" required placeholder="Digite seu nome completo">
+                    <span class="error-message" id="erro-nome"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="regiao-jogador">Região/Município</label>
+                    <select id="regiao-jogador" name="regiao">
+                        <option value="">Selecione sua região</option>
+                        <option value="Luanda">Luanda</option>
+                        <option value="Benguela">Benguela</option>
+                        <option value="Huambo">Huambo</option>
+                        <option value="Huíla">Huíla</option>
+                        <option value="Cabinda">Cabinda</option>
+                        <option value="Outra">Outra região</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idade-jogador">Idade *</label>
+                        <input type="number" id="idade-jogador" name="idade" min="13" max="120" required placeholder="18">
+                        <span class="error-message" id="erro-idade"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sexo-jogador">Sexo</label>
+                        <select id="sexo-jogador" name="sexo">
+                            <option value="">Prefiro não dizer</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nível de Dificuldade *</label>
+                    <div class="level-selection">
+                        <div class="level-option">
+                            <input type="radio" id="nivel-facil" name="nivel" value="facil" required>
+                            <label for="nivel-facil">
+                                <span class="level-title">Fácil</span>
+                                <span class="level-desc">10 perguntas - Conceitos básicos</span>
+                            </label>
+                        </div>
+                        <div class="level-option">
+                            <input type="radio" id="nivel-intermediario" name="nivel" value="intermediario">
+                            <label for="nivel-intermediario">
+                                <span class="level-title">Intermediário</span>
+                                <span class="level-desc">25 perguntas - Conhecimento médio</span>
+                            </label>
+                        </div>
+                        <div class="level-option">
+                            <input type="radio" id="nivel-avancado" name="nivel" value="avancado">
+                            <label for="nivel-avancado">
+                                <span class="level-title">Avançado</span>
+                                <span class="level-desc">50 perguntas - Nível experiente</span>
+                            </label>
+                        </div>
+                    </div>
+                    <span class="error-message" id="erro-nivel"></span>
+                </div>
+
+                <button type="submit" class="btn-primary">Iniciar Quiz</button>
+            </form>
+        </div>
+
+        <!-- Tela do Quiz - Perguntas -->
+        <div id="tela-quiz" class="quiz-screen">
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progresso-bar"></div>
+                </div>
+                <div class="progress-text" id="contador-perguntas">Pergunta 1 de 10</div>
+            </div>
+
+            <div class="question-card">
+                <h2 id="texto-pergunta" class="question-text"></h2>
+                <div class="options-container" id="container-opcoes">
+                    <!-- Opções serão inseridas via JavaScript -->
+                </div>
+            </div>
+
+            <div class="quiz-feedback" id="feedback-area">
+                <!-- Feedback será inserido via JavaScript -->
+            </div>
+
+            <div class="quiz-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Acertos:</span>
+                    <span class="stat-value" id="contador-acertos">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Erros:</span>
+                    <span class="stat-value" id="contador-erros">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Resultados -->
+        <div id="tela-resultados" class="quiz-screen">
+            <div class="results-header">
+                <h1>Quiz Concluído! 🎉</h1>
+                <p>Veja seu desempenho abaixo</p>
+            </div>
+
+            <div class="results-content">
+                <div class="player-info-card">
+                    <h3>Dados do Jogador</h3>
+                    <div class="player-details">
+                        <p><strong>Nome:</strong> <span id="result-nome"></span></p>
+                        <p><strong>Região:</strong> <span id="result-regiao"></span></p>
+                        <p><strong>Idade:</strong> <span id="result-idade"></span> anos</p>
+                        <p><strong>Nível:</strong> <span id="result-nivel"></span></p>
+                    </div>
+                </div>
+
+                <div class="performance-card">
+                    <h3>Desempenho</h3>
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <span class="score-percent" id="score-percent">0%</span>
+                            <span class="score-text">de acerto</span>
+                        </div>
+                        <div class="score-details">
+                            <p><span id="score-acertos">0</span> de <span id="score-total">0</span> acertos</p>
+                            <p class="score-classification" id="score-classificacao">Iniciante</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Perfil de Investidor</h3>
+                    <div class="profile-result">
+                        <span class="profile-badge" id="perfil-investidor">Preservador</span>
+                        <p class="profile-desc" id="desc-perfil">Descrição do perfil...</p>
+                    </div>
+                </div>
+
+                <div class="errors-card" id="card-erros">
+                    <h3>Análise de Erros</h3>
+                    <div class="errors-list" id="lista-erros">
+                        <!-- Lista de erros será inserida via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="recommendations-card">
+                    <h3>Recomendações</h3>
+                    <p class="recommendations-text" id="texto-recomendacoes">
+                        Carregando recomendações...
+                    </p>
+                </div>
+            </div>
+
+            <div class="results-actions">
+                <button class="btn-primary" id="btn-pdf">📄 Baixar Resultado (PDF)</button>
+                <button class="btn-secondary" id="btn-reiniciar">🔄 Jogar Novamente</button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="tela-loading" class="quiz-screen">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p>Processando resultados...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// =====================================================
+// QUIZ DE INVESTIMENTOS - LÓGICA COMPLETA
+// =====================================================
+
+class QuizInvestimentos {
+    constructor() {
+        this.jogoAtivo = false;
+        this.jogoFinalizado = false;
+        this.perguntaAtual = 0;
+        this.pontuacao = 0;
+        this.respostas = [];
+        this.perguntas = [];
+        this.dadosJogador = {};
+        
+        this.inicializarElementos();
+        this.configurarEventos();
+        this.carregarBancoDados();
+    }
+
+    // =====================================================
+    // INICIALIZAÇÃO
+    // =====================================================
+
+    inicializarElementos() {
+        // Telas
+        this.telaInicial = document.getElementById('tela-inicial');
+        this.telaQuiz = document.getElementById('tela-quiz');
+        this.telaResultados = document.getElementById('tela-resultados');
+        this.telaLoading = document.getElementById('tela-loading');
+
+        // Formulário
+        this.formJogador = document.getElementById('form-jogador');
+        this.nomeJogador = document.getElementById('nome-jogador');
+        this.regiaoJogador = document.getElementById('regiao-jogador');
+        this.idadeJogador = document.getElementById('idade-jogador');
+        this.sexoJogador = document.getElementById('sexo-jogador');
+        this.niveis = document.querySelectorAll('input[name="nivel"]');
+
+        // Elementos do Quiz
+        this.contadorPerguntas = document.getElementById('contador-perguntas');
+        this.textoPergunta = document.getElementById('texto-pergunta');
+        this.containerOpcoes = document.getElementById('container-opcoes');
+        this.feedbackArea = document.getElementById('feedback-area');
+        this.contadorAcertos = document.getElementById('contador-acertos');
+        this.contadorErros = document.getElementById('contador-erros');
+        this.progressoBar = document.getElementById('progresso-bar');
+
+        // Elementos de Resultados
+        this.resultNome = document.getElementById('result-nome');
+        this.resultRegiao = document.getElementById('result-regiao');
+        this.resultIdade = document.getElementById('result-idade');
+        this.resultNivel = document.getElementById('result-nivel');
+        this.scorePercent = document.getElementById('score-percent');
+        this.scoreAcertos = document.getElementById('score-acertos');
+        this.scoreTotal = document.getElementById('score-total');
+        this.scoreClassificacao = document.getElementById('score-classificacao');
+        this.perfilInvestidor = document.getElementById('perfil-investidor');
+        this.descPerfil = document.getElementById('desc-perfil');
+        this.listaErros = document.getElementById('lista-erros');
+        this.textoRecomendacoes = document.getElementById('texto-recomendacoes');
+
+        // Botões
+        this.btnPDF = document.getElementById('btn-pdf');
+        this.btnReiniciar = document.getElementById('btn-reiniciar');
+    }
+
+    configurarEventos() {
+        // Formulário inicial
+        this.formJogador.addEventListener('submit', (e) => this.iniciarJogo(e));
+        
+        // Botões de resultados
+        this.btnPDF.addEventListener('click', () => this.gerarPDF());
+        this.btnReiniciar.addEventListener('click', () => this.reiniciarJogo());
+
+        // Validação em tempo real
+        this.nomeJogador.addEventListener('input', () => this.validarNome());
+        this.idadeJogador.addEventListener('input', () => this.validarIdade());
+    }
+
+    // =====================================================
+    // BANCO DE DADOS DE PERGUNTAS
+    // =====================================================
+
+    carregarBancoDados() {
+        this.questionsDatabase = {
+            facil: [
+                {
+                    pergunta: "O que são ações?",
+                    opcoes: [
+                        "Partes de uma empresa que você pode comprar",
+                        "Documentos de identidade financeira",
+                        "Tipos de empréstimos bancários",
+                        "Formas de pagamento internacional"
+                    ],
+                    correta: 0,
+                    explicacao: "Ações representam pequenas partes do capital de uma empresa. Quando você compra ações, torna-se sócio da empresa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é a BODIVA?",
+                    opcoes: [
+                        "Bolsa de Dívida e Valores de Angola",
+                        "Banco de Desenvolvimento de Angola",
+                        "Bureau de Operações Diversas",
+                        "Base de Dados de Investimentos"
+                    ],
+                    correta: 0,
+                    explicacao: "A BODIVA é a Bolsa de Dívida e Valores de Angola, responsável pela negociação de títulos e valores mobiliários no país.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual a principal vantagem da poupança?",
+                    opcoes: [
+                        "Segurança e liquidez",
+                        "Alta rentabilidade",
+                        "Isenção total de impostos",
+                        "Rendimento garantido acima da inflação"
+                    ],
+                    correta: 0,
+                    explicacao: "A poupança oferece segurança para o investidor e boa liquidez (facilidade de resgate), mas geralmente tem rentabilidade moderada.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O mercado caiu 15% em 2 meses. Você:",
+                    opcoes: [
+                        "Vende tudo com medo de perder mais",
+                        "Mantém os investimentos e aguarda",
+                        "Compra mais aproveitando os preços baixos",
+                        "Transfere tudo para a poupança"
+                    ],
+                    correta: 1,
+                    explicacao: "Mercados são cíclicos. Manter a calma e seguir o planeamento é geralmente a melhor estratégia para investidores de longo prazo.",
+                    tipo: "comportamental"
+                },
+                {
+                    pergunta: "O que é diversificação?",
+                    opcoes: [
+                        "Investir em diferentes tipos de ativos",
+                        "Comprar ações de uma única empresa",
+                        "Manter todo dinheiro na poupança",
+                        "Investir apenas no exterior"
+                    ],
+                    correta: 0,
+                    explicacao: "Diversificação significa espalhar seus investimentos em diferentes ativos para reduzir o risco geral da carteira.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Quando foi criada a BODIVA?",
+                    opcoes: [
+                        "2014",
+                        "2006",
+                        "2010",
+                        "1999"
+                    ],
+                    correta: 1,
+                    explicacao: "A BODIVA foi criada em 2006, mas começou suas operações apenas em 2016 com o leilão de títulos do Tesouro.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é inflação?",
+                    opcoes: [
+                        "Aumento geral dos preços",
+                        "Queda do valor do dólar",
+                        "Crescimento econômico acelerado",
+                        "Aumento do poder de compra"
+                    ],
+                    correta: 0,
+                    explicacao: "Inflação é o aumento generalizado e contínuo dos preços de bens e serviços na economia, reduzindo o poder de compra da moeda.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Você recebeu um aumento. O que faz?",
+                    opcoes: [
+                        "Aumento imediato do padrão de vida",
+                        "Investe 50% do aumento",
+                        "Investe todo o aumento",
+                        "Gasta em comemorações"
+                    ],
+                    correta: 1,
+                    explicacao: "Aproveitar aumentos para aumentar seus investimentos é uma estratégia inteligente para acelerar a construção de patrimônio.",
+                    tipo: "comportamental"
+                },
+                {
+                    pergunta: "O que são juros compostos?",
+                    opcoes: [
+                        "Juros sobre juros acumulados",
+                        "Juros simples mensais",
+                        "Taxa de juros fixa",
+                        "Desconto em financiamentos"
+                    ],
+                    correta: 0,
+                    explicacao: "Juros compostos são calculados sobre o capital inicial mais os juros acumulados, criando um efeito de crescimento exponencial.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é seu objetivo principal ao investir?",
+                    opcoes: [
+                        "Preservar o capital acima de tudo",
+                        "Crescer moderadamente com segurança",
+                        "Maximizar retornos aceitando riscos",
+                        "Especular para ganhos rápidos"
+                    ],
+                    correta: 1,
+                    explicacao: "A maioria dos investidores busca crescimento moderado com segurança, equilibrando risco e retorno de acordo com seu perfil.",
+                    tipo: "comportamental"
+                }
+            ],
+
+            intermediario: [
+                {
+                    pergunta: "O que são debêntures?",
+                    opcoes: [
+                        "Títulos de dívida de empresas",
+                        "Ações preferenciais",
+                        "Fundos imobiliários",
+                        "Moedas digitais"
+                    ],
+                    correta: 0,
+                    explicacao: "Debêntures são títulos de dívida emitidos por empresas para captar recursos, pagando juros aos investidores.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Como funciona o mercado futuro?",
+                    opcoes: [
+                        "Negociação de contratos com data futura",
+                        "Compra de ações para revenda rápida",
+                        "Investimento em startups",
+                        "Empréstimos de longo prazo"
+                    ],
+                    correta: 0,
+                    explicacao: "Mercado futuro envolve contratos para compra/venda de ativos em data futura, a preços estabelecidos hoje.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual a taxa básica de juros em Angola?",
+                    opcoes: [
+                        "Taxa BNA",
+                        "Taxa SELIC",
+                        "Taxa LIBOR",
+                        "Taxa Prime"
+                    ],
+                    correta: 0,
+                    explicacao: "Em Angola, a taxa básica é estabelecida pelo Banco Nacional de Angola (BNA), similar à SELIC no Brasil.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Um ativo valorizou 30% em 3 meses. Você:",
+                    opcoes: [
+                        "Vende tudo para realizar lucro",
+                        "Vende parte e mantém o resto",
+                        "Mantém esperando mais alta",
+                        "Compra mais na expectativa de continuação"
+                    ],
+                    correta: 1,
+                    explicacao: "Realizar parte dos lucros e manter o resto balanceia realização de ganhos com exposição a possíveis valorizações futuras.",
+                    tipo: "comportamental"
+                },
+                {
+                    pergunta: "O que é análise fundamentalista?",
+                    opcoes: [
+                        "Análise de dados econômicos e financeiros",
+                        "Análise de gráficos e tendências",
+                        "Análise de notícias do mercado",
+                        "Análise de comportamento de investidores"
+                    ],
+                    correta: 0,
+                    explicacao: "Análise fundamentalista estuda dados econômicos, financeiros e setoriais para determinar o valor real de um ativo.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um ETF?",
+                    opcoes: [
+                        "Fundo de índice negociado em bolsa",
+                        "Tipo de empréstimo bancário",
+                        "Moeda eletrônica",
+                        "Seguro de investimentos"
+                    ],
+                    correta: 0,
+                    explicacao: "ETF (Exchange Traded Fund) é um fundo de investimento que replica um índice de mercado e é negociado como ação.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual o principal risco da renda variável?",
+                    opcoes: [
+                        "Volatilidade dos preços",
+                        "Inadimplência do emissor",
+                        "Falta de liquidez",
+                        "Alta tributação"
+                    ],
+                    correta: 0,
+                    explicacao: "O principal risco da renda variável é a volatilidade - os preços podem subir ou descer significativamente.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é dividend yield?",
+                    opcoes: [
+                        "Rentabilidade dos dividendos em relação ao preço",
+                        "Taxa de crescimento dos dividendos",
+                        "Imposto sobre dividendos",
+                        "Frequência de pagamento de dividendos"
+                    ],
+                    correta: 0,
+                    explicacao: "Dividend yield é o percentual que os dividendos pagos representam em relação ao preço da ação.",
+                    tipo: "conhecimento"
+                }
+            ],
+
+            avancado: [
+                {
+                    pergunta: "Explique o modelo Black-Scholes",
+                    opcoes: [
+                        "Modelo para precificação de opções",
+                        "Teoria de portfolio eficiente",
+                        "Modelo de previsão de inflação",
+                        "Teoria de ciclos econômicos"
+                    ],
+                    correta: 0,
+                    explicacao: "Black-Scholes é um modelo matemático para calcular o preço teórico de opções financeiras, considerando volatilidade, tempo e taxa de juros.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que causou a crise financeira de 2008?",
+                    opcoes: [
+                        "Bolha imobiliária e derivativos tóxicos",
+                        "Queda do preço do petróleo",
+                        "Ataques especulativos ao dólar",
+                        "Crise de dívida soberana europeia"
+                    ],
+                    correta: 0,
+                    explicacao: "A crise de 2008 foi causada principalmente pela bolha imobiliária americana e pela proliferação de derivativos lastreados em hipotecas de risco.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Como rebalancear portfólio após crash?",
+                    opcoes: [
+                        "Vender tudo e esperar",
+                        "Manter alocação original",
+                        "Comprar mais ativos de risco",
+                        "Mudar para 100% renda fixa"
+                    ],
+                    correta: 1,
+                    explicacao: "Rebalancear para a alocação original aproveita a venda de ativos que caíram menos e compra dos que caíram mais, seguindo a estratégia definida.",
+                    tipo: "comportamental"
+                },
+                {
+                    pergunta: "Quais instrumentos a BODIVA negocia atualmente?",
+                    opcoes: [
+                        "Títulos do Tesouro e Obrigações",
+                        "Ações e ETFs",
+                        "Criptomoedas e Forex",
+                        "Derivativos e Futuros"
+                    ],
+                    correta: 0,
+                    explicacao: "A BODIVA foca em títulos públicos (Tesouro) e privados (Obrigações), com planos de expandir para outros instrumentos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é Alpha no mercado financeiro?",
+                    opcoes: [
+                        "Retorno acima do benchmark",
+                        "Medida de volatilidade",
+                        "Taxa de administração",
+                        "Risco sistemático"
+                    ],
+                    correta: 0,
+                    explicacao: "Alpha mede o retorno excedente de um investimento em relação ao seu benchmark ou índice de referência.",
+                    tipo: "conhecimento"
+                }
+            ]
+        };
+    }
+
+    // =====================================================
+    // VALIDAÇÕES
+    // =====================================================
+
+    validarNome() {
+        const nome = this.nomeJogador.value.trim();
+        const erro = document.getElementById('erro-nome');
+        
+        if (nome.length < 2) {
+            erro.textContent = 'Nome deve ter pelo menos 2 caracteres';
+            return false;
+        }
+        
+        if (nome.length > 50) {
+            erro.textContent = 'Nome muito longo (máx. 50 caracteres)';
+            return false;
+        }
+        
+        erro.textContent = '';
+        return true;
+    }
+
+    validarIdade() {
+        const idade = parseInt(this.idadeJogador.value);
+        const erro = document.getElementById('erro-idade');
+        
+        if (isNaN(idade) || idade < 13 || idade > 120) {
+            erro.textContent = 'Idade deve ser entre 13 e 120 anos';
+            return false;
+        }
+        
+        erro.textContent = '';
+        return true;
+    }
+
+    validarNivel() {
+        const nivelSelecionado = Array.from(this.niveis).some(radio => radio.checked);
+        const erro = document.getElementById('erro-nivel');
+        
+        if (!nivelSelecionado) {
+            erro.textContent = 'Selecione um nível de dificuldade';
+            return false;
+        }
+        
+        erro.textContent = '';
+        return true;
+    }
+
+    validarFormulario() {
+        return this.validarNome() && this.validarIdade() && this.validarNivel();
+    }
+
+    // =====================================================
+    // INICIALIZAÇÃO DO JOGO
+    // =====================================================
+
+    async iniciarJogo(event) {
+        event.preventDefault();
+        
+        if (!this.validarFormulario()) {
+            return;
+        }
+
+        // Coletar dados do jogador
+        this.dadosJogador = {
+            nome: this.nomeJogador.value.trim(),
+            regiao: this.regiaoJogador.value || 'Não informada',
+            idade: parseInt(this.idadeJogador.value),
+            sexo: this.sexoJogador.value || 'Não informado',
+            nivel: Array.from(this.niveis).find(radio => radio.checked).value,
+            dataInicio: new Date()
+        };
+
+        // Carregar perguntas
+        this.carregarPerguntas();
+        
+        // Mostrar tela de loading
+        this.mostrarTela(this.telaLoading);
+        
+        // Simular carregamento
+        setTimeout(() => {
+            this.prepararQuiz();
+        }, 1000);
+    }
+
+    carregarPerguntas() {
+        const nivel = this.dadosJogador.nivel;
+        let perguntasBase;
+        
+        switch(nivel) {
+            case 'facil':
+                perguntasBase = this.questionsDatabase.facil;
+                break;
+            case 'intermediario':
+                perguntasBase = this.questionsDatabase.intermediario;
+                break;
+            case 'avancado':
+                perguntasBase = this.questionsDatabase.avancado;
+                break;
+        }
+
+        // Embaralhar perguntas e selecionar quantidade
+        this.perguntas = this.embaralharArray([...perguntasBase])
+            .slice(0, this.obterQuantidadePerguntas(nivel));
+    }
+
+    obterQuantidadePerguntas(nivel) {
+        const quantidades = {
+            'facil': 10,
+            'intermediario': 25,
+            'avancado': 50
+        };
+        return quantidades[nivel] || 10;
+    }
+
+    prepararQuiz() {
+        this.jogoAtivo = true;
+        this.jogoFinalizado = false;
+        this.perguntaAtual = 0;
+        this.pontuacao = 0;
+        this.respostas = [];
+
+        this.atualizarPlacar();
+        this.mostrarTela(this.telaQuiz);
+        this.mostrarPergunta();
+    }
+
+    // =====================================================
+    // LÓGICA DO QUIZ
+    // =====================================================
+
+    mostrarPergunta() {
+        if (this.perguntaAtual >= this.perguntas.length) {
+            this.finalizarQuiz();
+            return;
+        }
+
+        const pergunta = this.perguntas[this.perguntaAtual];
+        
+        // Atualizar contador
+        this.contadorPerguntas.textContent = 
+            `Pergunta ${this.perguntaAtual + 1} de ${this.perguntas.length}`;
+        
+        // Atualizar barra de progresso
+        const progresso = ((this.perguntaAtual) / this.perguntas.length) * 100;
+        this.progressoBar.style.width = `${progresso}%`;
+
+        // Mostrar pergunta
+        this.textoPergunta.textContent = pergunta.pergunta;
+
+        // Limpar opções anteriores
+        this.containerOpcoes.innerHTML = '';
+        this.feedbackArea.innerHTML = '';
+
+        // Criar opções
+        pergunta.opcoes.forEach((opcao, index) => {
+            const botao = document.createElement('button');
+            botao.className = 'option-btn';
+            botao.innerHTML = `
+                <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                <span class="option-text">${opcao}</span>
+            `;
+            botao.addEventListener('click', () => this.validarResposta(index));
+            this.containerOpcoes.appendChild(botao);
+        });
+    }
+
+    validarResposta(opcaoIndex) {
+        if (this.jogoFinalizado) return;
+
+        const pergunta = this.perguntas[this.perguntaAtual];
+        const botao = this.containerOpcoes.children[opcaoIndex];
+        const correto = opcaoIndex === pergunta.correta;
+
+        // Desabilitar todos os botões
+        Array.from(this.containerOpcoes.children).forEach(btn => {
+            btn.classList.add('disabled');
+            btn.style.pointerEvents = 'none';
+        });
+
+        // Marcar resposta correta/incorreta
+        if (correto) {
+            botao.classList.add('correct');
+            this.pontuacao++;
+        } else {
+            botao.classList.add('incorrect');
+            // Mostrar resposta correta
+            this.containerOpcoes.children[pergunta.correta].classList.add('correct');
+        }
+
+        // Registrar resposta
+        this.respostas.push({
+            pergunta: pergunta.pergunta,
+            respostaJogador: opcaoIndex,
+            correta: pergunta.correta,
+            explicacao: pergunta.explicacao,
+            tipo: pergunta.tipo,
+            acertou: correto
+        });
+
+        // Mostrar feedback
+        this.mostrarFeedback(correto, pergunta.explicacao);
+
+        // Atualizar placar
+        this.atualizarPlacar();
+
+        // Avançar após delay
+        setTimeout(() => {
+            this.perguntaAtual++;
+            this.mostrarPergunta();
+        }, 2500);
+    }
+
+    mostrarFeedback(correto, explicacao) {
+        const feedback = document.createElement('div');
+        feedback.className = `feedback-message ${correto ? 'feedback-correct' : 'feedback-incorrect'}`;
+        
+        feedback.innerHTML = `
+            <div class="feedback-icon">${correto ? '✅' : '❌'}</div>
+            <div class="feedback-text">
+                <strong>${correto ? 'Resposta Correta!' : 'Resposta Incorreta'}</strong>
+                <div class="feedback-explanation">${explicacao}</div>
+            </div>
+        `;
+
+        this.feedbackArea.innerHTML = '';
+        this.feedbackArea.appendChild(feedback);
+    }
+
+    atualizarPlacar() {
+        this.contadorAcertos.textContent = this.pontuacao;
+        this.contadorErros.textContent = this.perguntaAtual - this.pontuacao;
+    }
+
+    // =====================================================
+    // FINALIZAÇÃO E RESULTADOS
+    // =====================================================
+
+    finalizarQuiz() {
+        this.jogoAtivo = false;
+        this.jogoFinalizado = true;
+        this.dadosJogador.dataFim = new Date();
+
+        this.mostrarTela(this.telaLoading);
+
+        // Processar resultados
+        setTimeout(() => {
+            this.mostrarResultados();
+        }, 1500);
+    }
+
+    mostrarResultados() {
+        const totalPerguntas = this.perguntas.length;
+        const percentualAcerto = (this.pontuacao / totalPerguntas) * 100;
+
+        // Preencher dados do jogador
+        this.resultNome.textContent = this.dadosJogador.nome;
+        this.resultRegiao.textContent = this.dadosJogador.regiao;
+        this.resultIdade.textContent = this.dadosJogador.idade;
+        this.resultNivel.textContent = this.formatarNivel(this.dadosJogador.nivel);
+
+        // Preencher desempenho
+        this.scorePercent.textContent = `${Math.round(percentualAcerto)}%`;
+        this.scoreAcertos.textContent = this.pontuacao;
+        this.scoreTotal.textContent = totalPerguntas;
+        this.scoreClassificacao.textContent = this.classificarDesempenho(percentualAcerto);
+
+        // Calcular perfil
+        const perfil = this.calcularPerfilInvestidor();
+        this.perfilInvestidor.textContent = perfil.tipo;
+        this.descPerfil.textContent = perfil.descricao;
+
+        // Mostrar erros
+        this.mostrarErros();
+
+        // Gerar recomendações
+        this.textoRecomendacoes.textContent = this.gerarRecomendacoes(percentualAcerto, perfil.tipo);
+
+        this.mostrarTela(this.telaResultados);
+    }
+
+    mostrarErros() {
+        const erros = this.respostas.filter(r => !r.acertou);
+        
+        if (erros.length === 0) {
+            this.listaErros.innerHTML = '<p style="color: green; text-align: center;">🎉 Parabéns! Você não cometeu nenhum erro.</p>';
+            return;
+        }
+
+        this.listaErros.innerHTML = erros.map((erro, index) => {
+            const perguntaObj = this.perguntas.find(p => p.pergunta === erro.pergunta);
+            return `
+                <div class="error-item" style="background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
+                    <div class="error-question" style="color: #721c24; font-weight: bold; margin-bottom: 10px;">
+                        ${index + 1}. ${erro.pergunta}
+                    </div>
+                    <div class="error-details" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div class="error-detail" style="background: white; padding: 8px; border-radius: 4px;">
+                            <strong style="color: #dc3545;">Sua resposta:</strong><br>
+                            ${perguntaObj.opcoes[erro.respostaJogador]}
+                        </div>
+                        <div class="error-detail" style="background: white; padding: 8px; border-radius: 4px;">
+                            <strong style="color: #28a745;">Resposta correta:</strong><br>
+                            ${perguntaObj.opcoes[erro.correta]}
+                        </div>
+                    </div>
+                    <div class="error-explanation" style="color: #856404; background: #fff3cd; padding: 8px; border-radius: 4px;">
+                        <strong>Explicação:</strong> ${erro.explicacao}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // =====================================================
+    // ANÁLISE E CLASSIFICAÇÃO
+    // =====================================================
+
+    classificarDesempenho(percentual) {
+        if (percentual === 100) return "🏆 Excelência Total";
+        if (percentual >= 90) return "⭐ Especialista";
+        if (percentual >= 75) return "✅ Avançado";
+        if (percentual >= 60) return "📈 Intermediário";
+        if (percentual >= 40) return "📚 Iniciante";
+        return "🎓 Precisa Estudar Mais";
+    }
+
+    calcularPerfilInvestidor() {
+        const respostasComportamentais = this.respostas
+            .filter(r => r.tipo === 'comportamental')
+            .map(r => r.respostaJogador);
+
+        let pontuacao = 0;
+        
+        // Analisar padrões de respostas comportamentais
+        respostasComportamentais.forEach(resposta => {
+            if (resposta === 0) pontuacao -= 2; // Conservador
+            else if (resposta === 1) pontuacao += 0; // Neutro
+            else if (resposta === 2) pontuacao += 2; // Agressivo
+        });
+
+        // Determinar perfil baseado na pontuação
+        if (pontuacao <= -3) {
+            return {
+                tipo: "Preservador",
+                descricao: "Prefere segurança acima de tudo, evita riscos e valoriza a proteção do capital investido. Recomenda-se investimentos conservadores como poupança, títulos públicos e fundos de renda fixa."
+            };
+        } else if (pontuacao <= 2) {
+            return {
+                tipo: "Regular",
+                descricao: "Equilibrado entre risco e retorno, aceita alguma volatilidade por ganhos moderados. Pode diversificar entre renda fixa, fundos multimercado e algumas ações blue chips."
+            };
+        } else {
+            return {
+                tipo: "Agressivo",
+                descricao: "Buscador de altos retornos, tolera volatilidade significativa por oportunidades de ganho. Adequado para carteiras com maior exposição a ações, criptomoedas e ativos de alto risco."
+            };
+        }
+    }
+
+    gerarRecomendacoes(percentual, perfil) {
+        let recomendacoes = [];
+        
+        // Recomendações baseadas no desempenho
+        if (percentual < 60) {
+            recomendacoes.push("Recomendamos estudar os conceitos básicos de finanças pessoais antes de investir.");
+            recomendacoes.push("Considere começar com investimentos de baixo risco enquanto aprende.");
+        } else if (percentual < 80) {
+            recomendacoes.push("Você tem boa base! Continue estudando sobre diversificação e análise de risco.");
+            recomendacoes.push("Pode explorar investimentos de médio risco com parte do capital.");
+        } else {
+            recomendacoes.push("Excelente conhecimento! Pode considerar estratégias mais sofisticadas.");
+            recomendacoes.push("Continue acompanhando o mercado para manter sua vantagem.");
+        }
+
+        // Recomendações baseadas no perfil
+        if (perfil === "Preservador") {
+            recomendacoes.push("Foque em títulos públicos, poupança e fundos conservadores.");
+            recomendacoes.push("Mantenha uma reserva de emergência de 6-12 meses de despesas.");
+        } else if (perfil === "Regular") {
+            recomendacoes.push("Diversifique entre renda fixa e variável conforme seu conforto.");
+            recomendacoes.push("Considere fundos multimercado e ETFs para exposição balanceada.");
+        } else {
+            recomendacoes.push("Pode alocar parte significativa em ações e criptomoedas.");
+            recomendacoes.push("Estude estratégias de alavancagem e derivativos com cuidado.");
+        }
+
+        return recomendacoes.join(' ');
+    }
+
+    // =====================================================
+    // GERAÇÃO DE PDF
+    // =====================================================
+
+    async gerarPDF() {
+        try {
+            this.mostrarTela(this.telaLoading);
+            
+            // Verificar se jsPDF está disponível
+            if (typeof window.jspdf !== 'undefined') {
+                const { jsPDF } = window.jspdf;
+                await this.gerarPDFComJsPDF(jsPDF);
+            } else {
+                // Fallback - baixar dados como JSON
+                this.baixarDadosComoJSON();
+            }
+        } catch (error) {
+            console.error('Erro ao gerar PDF:', error);
+            alert('Erro ao gerar PDF. Verifique o console para detalhes.');
+            this.mostrarTela(this.telaResultados);
+        }
+    }
+
+    async gerarPDFComJsPDF(jsPDF) {
+        const doc = new jsPDF();
+        const totalPerguntas = this.perguntas.length;
+        const percentualAcerto = (this.pontuacao / totalPerguntas) * 100;
+        const perfil = this.calcularPerfilInvestidor();
+
+        // Página 1 - Cabeçalho e Dados Básicos
+        doc.setFillColor(214, 174, 100);
+        doc.rect(0, 0, 210, 40, 'F');
+        
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(20);
+        doc.setFont('helvetica', 'bold');
+        doc.text('TECA CAPITAL INVESTIMENTOS', 105, 15, { align: 'center' });
+        
+        doc.setFontSize(12);
+        doc.text('Quiz de Educação Financeira e Investimentos', 105, 25, { align: 'center' });
+
+        // Dados do Jogador
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(14);
+        doc.text('DADOS DO JOGADOR', 20, 60);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Nome: ${this.dadosJogador.nome}`, 20, 75);
+        doc.text(`Região: ${this.dadosJogador.regiao}`, 20, 82);
+        doc.text(`Idade: ${this.dadosJogador.idade} anos`, 20, 89);
+        doc.text(`Nível: ${this.formatarNivel(this.dadosJogador.nivel)}`, 20, 96);
+        doc.text(`Data: ${this.dadosJogador.dataFim.toLocaleDateString('pt-AO')}`, 20, 103);
+        doc.text(`Hora: ${this.dadosJogador.dataFim.toLocaleTimeString('pt-AO')}`, 20, 110);
+
+        // Resultados
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(14);
+        doc.text('RESULTADOS', 20, 125);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Pontuação: ${this.pontuacao}/${totalPerguntas} (${Math.round(percentualAcerto)}%)`, 20, 140);
+        doc.text(`Classificação: ${this.classificarDesempenho(percentualAcerto)}`, 20, 147);
+        doc.text(`Perfil de Investidor: ${perfil.tipo}`, 20, 154);
+        doc.text(`Descrição: ${perfil.descricao}`, 20, 161);
+
+        // Página 2 - Análise de Erros (se houver)
+        const erros = this.respostas.filter(r => !r.acertou);
+        if (erros.length > 0) {
+            doc.addPage();
+            doc.setFontSize(16);
+            doc.setTextColor(0, 0, 0);
+            doc.text('ANÁLISE DE ERROS', 20, 20);
+
+            let yPos = 35;
+            erros.forEach((erro, index) => {
+                if (yPos > 250) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+
+                doc.setFontSize(10);
+                doc.setTextColor(220, 53, 69);
+                doc.text(`${index + 1}. ${erro.pergunta}`, 20, yPos);
+                
+                doc.setTextColor(100, 100, 100);
+                const perguntaObj = this.perguntas.find(p => p.pergunta === erro.pergunta);
+                doc.text(`Sua resposta: ${perguntaObj.opcoes[erro.respostaJogador]}`, 25, yPos + 7);
+                doc.text(`Resposta correta: ${perguntaObj.opcoes[erro.correta]}`, 25, yPos + 14);
+                doc.text(`Explicação: ${erro.explicacao}`, 25, yPos + 21);
+                
+                yPos += 35;
+            });
+        }
+
+        // Página Final - Recomendações
+        doc.addPage();
+        doc.setFontSize(16);
+        doc.setTextColor(0, 0, 0);
+        doc.text('RECOMENDAÇÕES PERSONALIZADAS', 20, 20);
+
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        const recomendacoes = this.gerarRecomendacoes(percentualAcerto, perfil.tipo);
+        const splitRecomendacoes = doc.splitTextToSize(recomendacoes, 170);
+        doc.text(splitRecomendacoes, 20, 40);
+
+        // Rodapé
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text('Documento processado pelo algoritmo da Teca Capital Investimentos.', 20, 280);
+        doc.text('Criado por Alberto Teca Tomás.', 20, 285);
+        doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-AO')} ${new Date().toLocaleTimeString('pt-AO')}`, 20, 290);
+
+        // Salvar PDF
+        doc.save(`Quiz_Investimentos_${this.dadosJogador.nome.replace(/\s+/g, '_')}.pdf`);
+        
+        this.mostrarTela(this.telaResultados);
+        alert('✅ Relatório baixado com sucesso!');
+    }
+
+    baixarDadosComoJSON() {
+        const dados = {
+            jogador: this.dadosJogador,
+            resultado: {
+                pontuacao: this.pontuacao,
+                totalPerguntas: this.perguntas.length,
+                percentualAcerto: (this.pontuacao / this.perguntas.length) * 100,
+                classificacao: this.classificarDesempenho((this.pontuacao / this.perguntas.length) * 100),
+                perfil: this.calcularPerfilInvestidor()
+            },
+            respostas: this.respostas,
+            recomendacoes: this.gerarRecomendacoes(
+                (this.pontuacao / this.perguntas.length) * 100,
+                this.calcularPerfilInvestidor().tipo
+            )
+        };
+
+        const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `quiz_resultados_${this.dadosJogador.nome.replace(/\s+/g, '_')}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        this.mostrarTela(this.telaResultados);
+        alert('📊 Dados baixados como JSON (jsPDF não encontrado)');
+    }
+
+    // =====================================================
+    // UTILITÁRIOS
+    // =====================================================
+
+    mostrarTela(tela) {
+        document.querySelectorAll('.quiz-screen').forEach(t => t.classList.remove('active'));
+        tela.classList.add('active');
+    }
+
+    formatarNivel(nivel) {
+        const niveis = {
+            'facil': 'Fácil',
+            'intermediario': 'Intermediário',
+            'avancado': 'Avançado'
+        };
+        return niveis[nivel] || nivel;
+    }
+
+    embaralharArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    reiniciarJogo() {
+        this.mostrarTela(this.telaInicial);
+        this.formJogador.reset();
+    }
+}
+
+// =====================================================
+// INICIALIZAÇÃO DO QUIZ
+// =====================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    new QuizInvestimentos();
+});
+
+// =====================================================
+// TRATAMENTO DE ERROS GLOBAL
+// =====================================================
+
+window.addEventListener('error', function(e) {
+    console.error('Erro no quiz:', e.error);
+    alert('Ocorreu um erro no quiz. Recarregue a página e tente novamente.');
+});
+</script>
 
     </main>
 
