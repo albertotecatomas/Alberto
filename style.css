@@ -7009,3 +7009,874 @@ audio {
     outline: 2px solid var(--color-gold-primary);
     outline-offset: 2px;
 }
+
+/* =====================================================
+   ESTILOS COMPLEMENTARES PARA O SIMULADOR DE INVESTIMENTOS
+   Correção de visibilidade de gráficos e elementos
+   ===================================================== */
+
+/* === CONTÊINER PRINCIPAL DO SIMULADOR === */
+.simulator-container {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-dark);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-3xl);
+    margin: var(--spacing-2xl) auto;
+    box-shadow: var(--shadow-xl);
+    max-width: var(--max-width-container);
+    width: 100%;
+}
+
+.simulator-container h1 {
+    color: var(--color-gold-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.simulator-container > p {
+    text-align: center;
+    color: var(--text-gray);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2xl);
+    line-height: var(--line-height-relaxed);
+}
+
+/* === SEÇÕES DO SIMULADOR === */
+.investment-type,
+.main-form,
+.results {
+    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-xl);
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-white);
+}
+
+.investment-type h2,
+.main-form h2,
+.results h2 {
+    color: var(--color-gold-primary);
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+    font-weight: var(--font-weight-semibold);
+    border-bottom: 2px solid var(--border-gold);
+    padding-bottom: var(--spacing-md);
+}
+
+/* === FORMULÁRIOS E INPUTS === */
+#investmentForm {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--bg-darker);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-white);
+    transition: all var(--transition-base);
+}
+
+.form-group:hover {
+    border-color: var(--color-gold-light);
+}
+
+.form-group label {
+    display: block;
+    color: var(--color-gold-primary);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-base);
+}
+
+/* === INPUTS, SELECTS E TEXTAREAS === */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-black);
+    border: 1px solid var(--border-white);
+    border-radius: var(--radius-md);
+    color: var(--text-white);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-base);
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color-gold-primary);
+    box-shadow: 0 0 0 3px var(--color-gold-darker);
+    background: var(--bg-dark);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="date"]::placeholder,
+textarea::placeholder {
+    color: var(--text-gray-light);
+}
+
+/* === BOTÕES DO SIMULADOR === */
+.btn-simulate,
+.btn-reset,
+.btn-add,
+.btn-remove,
+.btn-download,
+.btn-export,
+.btn-quick {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-decoration: none;
+    min-height: 44px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-simulate {
+    background: var(--color-gold-primary);
+    color: var(--bg-black);
+    box-shadow: var(--shadow-gold-md);
+}
+
+.btn-simulate:hover {
+    background: var(--color-gold-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-gold-lg);
+}
+
+.btn-reset {
+    background: var(--bg-medium);
+    color: var(--text-white);
+    border: 1px solid var(--border-white);
+}
+
+.btn-reset:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--color-gold-primary);
+    transform: translateY(-2px);
+}
+
+.btn-add {
+    background: var(--color-gold-darker);
+    color: var(--color-gold-primary);
+    border: 1px solid var(--color-gold-primary);
+}
+
+.btn-add:hover {
+    background: var(--color-gold-primary);
+    color: var(--bg-black);
+}
+
+.btn-remove {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+.btn-remove:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-download,
+.btn-export {
+    background: var(--color-gold-primary);
+    color: var(--bg-black);
+}
+
+.btn-download:hover,
+.btn-export:hover {
+    background: var(--color-gold-light);
+    transform: translateY(-2px);
+}
+
+.btn-quick {
+    background: var(--color-gold-darker);
+    color: var(--color-gold-primary);
+    border: 1px solid var(--color-gold-primary);
+    font-size: var(--font-size-sm);
+}
+
+.btn-quick:hover {
+    background: var(--color-gold-primary);
+    color: var(--bg-black);
+    transform: translateY(-1px);
+}
+
+/* === GRUPOS DE AÇÕES === */
+.form-actions,
+.export-actions {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--border-white);
+}
+
+.quick-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+/* === SEÇÕES ESPECIAIS === */
+.macro-params,
+.portfolio-distribution,
+.scenario-comparison {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--bg-darker);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-white);
+}
+
+.macro-params h3,
+.portfolio-distribution h3,
+.scenario-comparison h3 {
+    color: var(--color-gold-primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* === DISTRIBUIÇÃO DE CARTEIRA E CENÁRIOS === */
+.portfolio-asset,
+.scenario {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: var(--spacing-md);
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-black);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-white);
+}
+
+#portfolioTotal {
+    text-align: center;
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-gold-darker);
+    border-radius: var(--radius-sm);
+    color: var(--color-gold-primary);
+    font-size: var(--font-size-base);
+}
+
+/* === RESULTADOS - CORREÇÃO DE VISIBILIDADE === */
+.results {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+.results[style*="display: none"] {
+    display: none !important;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.summary p {
+    background: var(--bg-darker);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-gold-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+    color: var(--text-white);
+}
+
+.summary strong {
+    color: var(--color-gold-primary);
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-base);
+}
+
+/* === ANÁLISE TEXTUAL - CORREÇÃO DE VISIBILIDADE === */
+.text-analysis {
+    background: var(--bg-darker);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-gold-primary);
+    margin: var(--spacing-xl) 0;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.text-analysis h3 {
+    color: var(--color-gold-primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+.text-analysis p {
+    color: var(--text-white);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-base);
+}
+
+.text-analysis strong {
+    color: var(--color-gold-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* === TABELAS === */
+.cashflow-table {
+    background: var(--bg-darker);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-white);
+    margin: var(--spacing-xl) 0;
+    display: block !important;
+}
+
+.cashflow-table h3 {
+    background: var(--bg-card);
+    padding: var(--spacing-lg);
+    margin: 0;
+    color: var(--color-gold-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+.cashflow-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cashflow-table th {
+    background: var(--color-gold-primary);
+    color: var(--bg-black);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cashflow-table td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--border-white);
+    font-size: var(--font-size-base);
+    color: var(--text-white);
+}
+
+.cashflow-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.cashflow-table tr:hover {
+    background: var(--color-gold-darker);
+}
+
+/* === GRÁFICO - CORREÇÃO COMPLETA === */
+.chart-container {
+    background: var(--bg-darker);
+    border: 1px solid var(--border-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+    height: 400px;
+    position: relative;
+    display: block !important;
+    overflow: visible !important;
+}
+
+.chart-container h3 {
+    color: var(--color-gold-primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+}
+
+/* Container do canvas do gráfico */
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    background: transparent !important;
+    border-radius: var(--radius-md);
+}
+
+/* Garantir que o Chart.js seja visível */
+#investmentChart {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: transparent !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+/* Estilos específicos para elementos do Chart.js */
+.chartjs-render-monitor {
+    background: transparent !important;
+}
+
+.chartjs-size-monitor,
+.chartjs-size-monitor-expand,
+.chartjs-size-monitor-shrink {
+    display: none !important;
+}
+
+/* === GUIA DE USO === */
+.usage-guide {
+    background: var(--color-gold-darker);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-gold-primary);
+    margin: var(--spacing-xl) 0;
+    display: block !important;
+}
+
+.usage-guide h3 {
+    color: var(--color-gold-primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+}
+
+.guide-content h4 {
+    color: var(--color-gold-primary);
+    margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+}
+
+.guide-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.guide-content li {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-xl);
+    position: relative;
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-base);
+    color: var(--text-white);
+}
+
+.guide-content li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--color-gold-primary);
+    font-size: var(--font-size-sm);
+}
+
+/* === ESTADOS DINÂMICOS - CORREÇÃO === */
+#fixedIncomeFields,
+#variableIncomeFields {
+    transition: all var(--transition-base);
+    display: block !important;
+}
+
+#fixedIncomeFields[style*="display: none"] {
+    display: none !important;
+}
+
+#variableIncomeFields[style*="display: none"] {
+    display: none !important;
+}
+
+.portfolio-asset input,
+.scenario input {
+    background: var(--bg-black);
+    border: 1px solid var(--border-white);
+    color: var(--text-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-base);
+}
+
+.portfolio-asset input:focus,
+.scenario input:focus {
+    outline: none;
+    border-color: var(--color-gold-primary);
+    box-shadow: 0 0 0 2px var(--color-gold-darker);
+}
+
+/* === MENSAGENS E ALERTAS === */
+.error-message {
+    color: #dc3545;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    display: block;
+    font-weight: var(--font-weight-medium);
+}
+
+.success-message {
+    color: #28a745;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    display: block;
+    font-weight: var(--font-weight-medium);
+}
+
+/* === ANIMAÇÕES DE ENTRADA === */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.results,
+.text-analysis,
+.cashflow-table,
+.chart-container,
+.usage-guide {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* =====================================================
+   RESPONSIVIDADE ESPECÍFICA DO SIMULADOR
+   ===================================================== */
+
+@media screen and (max-width: 1024px) {
+    .simulator-container {
+        padding: var(--spacing-2xl);
+        margin: var(--spacing-xl) auto;
+    }
+    
+    .investment-type,
+    .main-form,
+    .results {
+        padding: var(--spacing-lg);
+    }
+    
+    .form-group {
+        padding: var(--spacing-md);
+    }
+    
+    .portfolio-asset,
+    .scenario {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .chart-container {
+        height: 350px;
+    }
+    
+    .summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .simulator-container {
+        padding: var(--spacing-xl);
+        margin: var(--spacing-lg) auto;
+    }
+    
+    .simulator-container h1 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+    
+    .investment-type,
+    .main-form,
+    .results {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .form-actions,
+    .export-actions {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .btn-simulate,
+    .btn-reset,
+    .btn-download,
+    .btn-export {
+        width: 100%;
+    }
+    
+    .quick-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .chart-container {
+        height: 300px;
+        padding: var(--spacing-lg);
+    }
+    
+    .cashflow-table {
+        overflow-x: auto;
+    }
+    
+    .cashflow-table table {
+        min-width: 600px;
+    }
+    
+    .text-analysis,
+    .usage-guide {
+        padding: var(--spacing-lg);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .simulator-container {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-md) auto;
+        border-radius: var(--radius-lg);
+    }
+    
+    .simulator-container h1 {
+        font-size: 1.4rem;
+    }
+    
+    .simulator-container > p {
+        font-size: var(--font-size-base);
+    }
+    
+    .investment-type h2,
+    .main-form h2,
+    .results h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .form-group {
+        padding: var(--spacing-sm);
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-sm);
+    }
+    
+    .btn-simulate,
+    .btn-reset,
+    .btn-add,
+    .btn-remove {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-sm);
+    }
+    
+    .quick-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .chart-container {
+        height: 250px;
+        padding: var(--spacing-md);
+    }
+    
+    .cashflow-table th,
+    .cashflow-table td {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-sm);
+    }
+    
+    .usage-guide {
+        padding: var(--spacing-lg);
+    }
+    
+    .guide-content li {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* === ESTADOS DE CARREGAMENTO === */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-gold-primary);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* === ACESSIBILIDADE === */
+@media (prefers-reduced-motion: reduce) {
+    .simulator-container,
+    .form-group,
+    .btn-simulate,
+    .btn-reset,
+    .btn-add,
+    .btn-remove,
+    .btn-download,
+    .btn-export,
+    .btn-quick {
+        transition: none;
+    }
+    
+    .loading::after {
+        animation: none;
+    }
+    
+    .results,
+    .text-analysis,
+    .cashflow-table,
+    .chart-container,
+    .usage-guide {
+        animation: none;
+    }
+}
+
+/* === FOCO PARA TECLADO === */
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--color-gold-primary);
+    outline-offset: 2px;
+}
+
+/* === IMPRESSÃO === */
+@media print {
+    .simulator-container {
+        box-shadow: none;
+        border: 1px solid #000;
+        background: white;
+        color: black;
+    }
+    
+    .btn-simulate,
+    .btn-reset,
+    .btn-add,
+    .btn-remove,
+    .btn-download,
+    .btn-export,
+    .btn-quick {
+        display: none;
+    }
+    
+    .results {
+        display: block !important;
+    }
+    
+    .chart-container {
+        background: white !important;
+        border: 1px solid #000 !important;
+    }
+}
+
+/* === CORREÇÕES ESPECÍFICAS PARA ELEMENTOS DO SEU HTML === */
+#portfolioAssets .portfolio-asset:first-child,
+#scenarios .scenario:first-child {
+    margin-top: var(--spacing-md);
+}
+
+#portfolioTotal[style*="color: red"] {
+    animation: pulse 2s infinite;
+    background: rgba(220, 53, 69, 0.1) !important;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* === GARANTIA DE VISIBILIDADE DOS ELEMENTOS OCULTOS DINAMICAMENTE === */
+#resultsSection[style*="display: none"] {
+    display: none !important;
+}
+
+/* === CORREÇÃO PARA ELEMENTOS DO CHART.JS === */
+.chartjs-tooltip {
+    background: var(--bg-black) !important;
+    border: 1px solid var(--border-gold) !important;
+    border-radius: var(--radius-md) !important;
+    color: var(--text-white) !important;
+    padding: var(--spacing-sm) var(--spacing-md) !important;
+    font-family: var(--font-family-primary) !important;
+}
+
+.chartjs-tooltip-key {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+}
+
+/* === GARANTIR QUE TODOS OS TEXTOS SEJAM VISÍVEIS === */
+.simulator-container * {
+    color: inherit;
+    visibility: inherit;
+    opacity: inherit;
+}
+
+/* === CORREÇÃO PARA SCROLL NAS TABELAS === */
+.cashflow-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    margin: var(--spacing-md) 0;
+}
+
+.cashflow-table-wrapper table {
+    min-width: 800px;
+}
+
