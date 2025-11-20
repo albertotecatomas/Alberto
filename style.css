@@ -5760,3 +5760,278 @@ main > * {
     hyphens: auto;
   }
 }
+
+
+
+/* =====================================================
+   REMOÇÃO DE EFEITOS ESPECÍFICOS PARA ELEMENTOS DE MÍDIA
+   ===================================================== */
+
+/* === REMOVER TODOS OS EFEITOS DOS ÍCONES E VÍDEOS ESPECIFICADOS === */
+.subdiv img,
+.video-card-header img,
+.ebook-card-header img,
+.bitcoin video,
+.banner-video,
+#banner img,
+.banner-img {
+  /* Remover todas as transformações e transições */
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  background: none !important;
+  backdrop-filter: none !important;
+  overflow: visible !important;
+  position: static !important;
+}
+
+/* === REMOVER EFEITOS DE HOVER ESPECÍFICOS === */
+.subdiv:hover img,
+.video-card-header:hover img,
+.ebook-card-header:hover img,
+.bitcoin video:hover,
+.banner-video:hover,
+#banner img:hover,
+.banner-img:hover {
+  transform: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+/* === REMOVER PSEUDO-ELEMENTOS E ANIMAÇÕES === */
+.subdiv::before,
+.video-card-header::before,
+.ebook-card-header::before,
+.subdiv:hover::before,
+.video-card-header:hover::before,
+.ebook-card-header:hover::before {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* === ESTILOS BÁSICOS PARA OS ÍCONES === */
+.subdiv img,
+.video-card-header img,
+.ebook-card-header img {
+  /* Manter apenas estilos essenciais de dimensionamento */
+  display: block;
+  margin: 0 auto var(--spacing-xl) auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 0; /* Remover bordas arredondadas */
+  padding: 0; /* Remover padding */
+}
+
+/* === ESTILOS BÁSICOS PARA VÍDEOS === */
+.bitcoin video,
+.banner-video {
+  /* Manter apenas estilos essenciais de dimensionamento */
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 0; /* Remover bordas arredondadas */
+  margin: var(--spacing-2xl) 0 var(--spacing-3xl) 0;
+  border: none; /* Remover bordas */
+}
+
+/* === ESTILOS BÁSICOS PARA IMAGEM DO BANNER === */
+#banner img,
+.banner-img {
+  /* Manter apenas estilos essenciais de dimensionamento */
+  width: clamp(200px, 30vw, 400px);
+  height: auto;
+  filter: none; /* Remover drop-shadow */
+}
+
+/* === REMOVER ANIMAÇÕES DE FLUTUAÇÃO === */
+#banner {
+  animation: none !important;
+}
+
+#banner img,
+.banner-img {
+  animation: none !important;
+}
+
+/* === GARANTIR QUE OS ELEMENTOS FICEM VISÍVEIS === */
+.subdiv,
+.video-card-header,
+.ebook-card-header {
+  /* Manter apenas a estrutura básica do container */
+  background: var(--bg-medium);
+  border: 1px solid var(--border-white);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.subdiv h3,
+.video-card-header h3,
+.ebook-card-header h3 {
+  /* Manter estilos básicos de texto */
+  color: var(--color-gold-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-xl);
+}
+
+.subdiv p,
+.video-card-header p,
+.ebook-card-header p {
+  /* Manter estilos básicos de texto */
+  color: var(--text-gray);
+  text-align: center;
+  line-height: var(--line-height-relaxed);
+}
+
+/* === RESPONSIVIDADE PARA OS ELEMENTOS SEM EFEITOS === */
+
+/* Tablet (1000px) */
+@media screen and (max-width: 1000px) {
+  .subdiv img,
+  .video-card-header img,
+  .ebook-card-header img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .bitcoin video,
+  .banner-video {
+    max-height: 400px;
+  }
+  
+  #banner img,
+  .banner-img {
+    width: clamp(150px, 25vw, 300px);
+  }
+}
+
+/* Mobile (450px) */
+@media screen and (max-width: 450px) {
+  .subdiv img,
+  .video-card-header img,
+  .ebook-card-header img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .bitcoin video,
+  .banner-video {
+    max-height: 300px;
+    margin: var(--spacing-lg) 0;
+  }
+  
+  #banner img,
+  .banner-img {
+    width: clamp(120px, 20vw, 250px);
+  }
+  
+  .subdiv,
+  .video-card-header,
+  .ebook-card-header {
+    padding: var(--spacing-lg);
+  }
+  
+  .subdiv h3,
+  .video-card-header h3,
+  .ebook-card-header h3 {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Mobile muito pequeno (300px) */
+@media screen and (max-width: 300px) {
+  .subdiv img,
+  .video-card-header img,
+  .ebook-card-header img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .bitcoin video,
+  .banner-video {
+    max-height: 250px;
+  }
+  
+  #banner img,
+  .banner-img {
+    width: 100px;
+  }
+}
+
+/* === REMOVER EFEITOS ESPECÍFICOS DO SEU CSS ORIGINAL === */
+
+/* Remover as transformações específicas do seu CSS */
+.subdiv:hover img,
+.video-card-header:hover img,
+.ebook-card-header:hover img {
+  background: transparent !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Remover os gradientes e efeitos de brilho */
+.subdiv::before,
+.video-card-header::before,
+.ebook-card-header::before,
+#s1::before, #s2::before, #s3::before, #s4::before {
+  content: none !important;
+}
+
+/* Remover animações de rotação e scale */
+#socialmidia a:hover i {
+  transform: none !important;
+}
+
+/* Garantir que os elementos fiquem estáticos */
+.subdiv,
+.video-card-header,
+.ebook-card-header,
+.bitcoin video,
+.banner-video,
+#banner img,
+.banner-img {
+  will-change: auto !important;
+}
+
+/* Remover transições específicas */
+.hardware-accelerated {
+  transform: none !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+}
+
+/* === MANTENDO APENAS A VISIBILIDADE E FUNCIONALIDADE === */
+
+/* Garantir que os vídeos mantenham controles funcionais */
+.bitcoin video,
+.banner-video {
+  /* Manter controles de vídeo funcionais */
+  controls: visible;
+}
+
+/* Garantir que as imagens sejam clicáveis se forem links */
+.subdiv a img,
+.video-card-header a img,
+.ebook-card-header a img {
+  cursor: pointer;
+}
+
+/* Manter acessibilidade */
+.subdiv img,
+.video-card-header img,
+.ebook-card-header img,
+.bitcoin video,
+.banner-video,
+#banner img,
+.banner-img {
+  /* Manter atributos de acessibilidade */
+  alt: attr(alt);
+  aria-hidden: attr(aria-hidden);
+}
