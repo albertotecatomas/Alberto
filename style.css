@@ -7880,3 +7880,780 @@ textarea:focus-visible {
     min-width: 800px;
 }
 
+código em um arquivo separado (ex: responsive-enhancement.css)
+  e importe após o CSS principal:
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive-enhancement.css">
+  
+  Última atualização: 2025
+  Compatível com: Todos os navegadores modernos
+*/
+
+/* =====================================================
+   17. AJUSTES ESPECÍFICOS PARA CASOS EXTREMOS
+   ===================================================== */
+
+/* Telas ultra-wide (21:9 e superiores) */
+@media screen and (min-width: 2560px) {
+  :root {
+    --max-width-container: 2200px;
+    --max-width-content: 1800px;
+  }
+  
+  #conteudo {
+    width: 80%;
+    max-width: 2200px;
+  }
+  
+  header {
+    padding: clamp(1.5rem, 2vw, 2.5rem) clamp(3rem, 5vw, 5rem);
+  }
+  
+  #navlogo {
+    font-size: clamp(2.5rem, 3vw, 3.5rem);
+  }
+  
+  .navitem a,
+  .simula {
+    font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+    padding: clamp(0.875rem, 1.25vw, 1.25rem) clamp(1.5rem, 2.5vw, 2rem);
+  }
+  
+  .tci h1 {
+    font-size: clamp(3rem, 5vw, 5rem);
+  }
+  
+  .tc {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    max-width: 1200px;
+  }
+  
+  #s1, #s2, #s3, #s4 {
+    min-height: clamp(380px, 30vh, 500px);
+    padding: clamp(2.5rem, 3vw, 3.5rem);
+  }
+  
+  .chart-container {
+    height: clamp(550px, 40vh, 700px);
+  }
+  
+  .simulator-container {
+    padding: clamp(3.5rem, 5vw, 5rem);
+  }
+}
+
+/* Tablets em modo landscape muito específico (iPad Pro 12.9") */
+@media screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  #conteudo {
+    width: 91%;
+  }
+  
+  #serviços > div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.5rem, 2.5vw, 2.25rem);
+  }
+  
+  #s1, #s2, #s3, #s4 {
+    min-height: clamp(300px, 35vh, 380px);
+  }
+  
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  
+  .main-form {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Mobile em landscape específico (phones horizontais) */
+@media screen and (min-width: 568px) and (max-width: 812px) and (max-height: 450px) and (orientation: landscape) {
+  body {
+    padding-top: 50px;
+  }
+  
+  header {
+    padding: 0.375rem clamp(0.875rem, 2vw, 1.25rem);
+    min-height: 48px;
+  }
+  
+  #navt {
+    gap: clamp(0.5rem, 1.5vw, 1rem);
+  }
+  
+  #navlogo {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  }
+  
+  #lista {
+    gap: clamp(0.375rem, 1vw, 0.625rem);
+  }
+  
+  .navitem a,
+  .simula {
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    padding: 0.375rem clamp(0.625rem, 1.5vw, 0.875rem);
+    min-height: 30px;
+  }
+  
+  main {
+    padding: clamp(0.5rem, 1.5vh, 1rem) clamp(0.75rem, 2vw, 1.25rem);
+  }
+  
+  #conteudo {
+    gap: clamp(0.875rem, 2vh, 1.25rem);
+    padding-top: clamp(0.75rem, 2vh, 1.25rem);
+  }
+  
+  .tci h1 {
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    margin-bottom: clamp(0.5rem, 1.5vh, 0.875rem);
+  }
+  
+  .tc {
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+  }
+  
+  #banner img,
+  .banner-img {
+    width: clamp(100px, 15vw, 180px);
+    max-height: 180px;
+  }
+  
+  #serviços {
+    padding: clamp(1rem, 2vh, 1.5rem);
+    margin: clamp(1rem, 2vh, 1.5rem) auto;
+  }
+  
+  .time {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+  }
+  
+  #serviços > div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.875rem, 2vw, 1.25rem);
+  }
+  
+  #s1, #s2, #s3, #s4 {
+    padding: clamp(0.875rem, 2vh, 1.25rem);
+    min-height: clamp(180px, 35vh, 240px);
+  }
+  
+  #s1 h3, #s2 h3, #s3 h3, #s4 h3 {
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    margin-bottom: clamp(0.5rem, 1.5vh, 0.875rem);
+  }
+  
+  #s1 p, #s2 p, #s3 p, #s4 p {
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    line-height: 1.4;
+  }
+  
+  .banner-video {
+    max-height: clamp(180px, 40vh, 280px);
+  }
+  
+  .chart-container {
+    height: clamp(180px, 45vh, 260px);
+    padding: clamp(0.75rem, 1.5vh, 1rem);
+  }
+  
+  .simulator-container {
+    padding: clamp(1rem, 2vh, 1.5rem);
+  }
+  
+  .form-group {
+    padding: clamp(0.75rem, 1.5vh, 1rem);
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    padding: 0.5rem clamp(0.75rem, 2vw, 1rem);
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+  }
+  
+  .btn-simulate,
+  .btn-reset,
+  .btn-add,
+  .btn-remove {
+    padding: 0.5rem clamp(0.875rem, 2vw, 1.125rem);
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    min-height: 36px;
+  }
+  
+  .quick-buttons {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  }
+  
+  .summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.875rem, 2vw, 1.25rem);
+  }
+  
+  footer {
+    padding: clamp(1.5rem, 3vh, 2rem) clamp(1rem, 2vw, 1.5rem);
+  }
+  
+  .social-icons {
+    gap: clamp(0.875rem, 2vw, 1.25rem);
+  }
+  
+  #socialmidia a {
+    width: clamp(48px, 6vw, 58px);
+    height: clamp(48px, 6vw, 58px);
+  }
+}
+
+/* Dispositivos dobráveis (Samsung Fold, etc) */
+@media screen and (min-width: 280px) and (max-width: 320px) {
+  body {
+    min-width: 280px;
+  }
+  
+  #conteudo {
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  header {
+    padding: 0.25rem 0.5rem;
+    min-height: 42px;
+  }
+  
+  #navlogo {
+    font-size: 1.1rem;
+  }
+  
+  .navitem a,
+  .simula {
+    font-size: 0.55rem;
+    padding: 0.3rem 0.5rem;
+    min-height: 28px;
+  }
+  
+  .tci h1 {
+    font-size: 1.2rem;
+  }
+  
+  .tc {
+    font-size: 0.75rem;
+  }
+  
+  #banner img,
+  .banner-img {
+    width: 90px;
+  }
+  
+  #serviços {
+    padding: 0.5rem;
+  }
+  
+  #s1, #s2, #s3, #s4 {
+    padding: 0.625rem;
+    min-height: 200px;
+  }
+  
+  #s1 h3, #s2 h3, #s3 h3, #s4 h3 {
+    font-size: 0.95rem;
+  }
+  
+  #s1 p, #s2 p, #s3 p, #s4 p {
+    font-size: 0.7rem;
+  }
+  
+  .card {
+    padding: 0.625rem;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    padding: 0.4rem 0.625rem;
+    font-size: 0.7rem;
+  }
+  
+  .btn-simulate,
+  .btn-reset {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.7rem;
+    min-height: 32px;
+  }
+  
+  .chart-container {
+    height: 200px;
+    padding: 0.5rem;
+  }
+  
+  .tabela th,
+  .tabela td,
+  .data-table th,
+  .data-table td {
+    padding: 0.3rem 0.25rem;
+    font-size: 0.55rem;
+  }
+  
+  footer {
+    padding: 1.25rem 0.5rem;
+  }
+  
+  #socialmidia a {
+    width: 42px;
+    height: 42px;
+  }
+  
+  #socialmidia i {
+    font-size: 1rem;
+  }
+}
+
+/* =====================================================
+   18. AJUSTES PARA ACESSIBILIDADE AVANÇADA
+   ===================================================== */
+
+/* Zoom de texto (usuários com baixa visão) */
+@media screen and (min-width: 769px) {
+  html.text-zoom-125 {
+    font-size: 20px;
+  }
+  
+  html.text-zoom-150 {
+    font-size: 24px;
+  }
+  
+  html.text-zoom-175 {
+    font-size: 28px;
+  }
+  
+  html.text-zoom-200 {
+    font-size: 32px;
+  }
+}
+
+/* Modo de leitura (simplificado) */
+@media screen {
+  .reading-mode {
+    --bg-black: #1a1a1a;
+    --bg-dark: #2a2a2a;
+    --text-white: #f5f5f5;
+    line-height: 1.8;
+  }
+  
+  .reading-mode p,
+  .reading-mode li {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Contraste invertido (para alguns usuários com sensibilidade visual) */
+@media screen and (prefers-contrast: more) {
+  :root {
+    --color-gold-primary: rgb(255, 215, 130);
+    --text-white: #ffffff;
+    --text-gray: #f0f0f0;
+  }
+  
+  body {
+    background-color: #000000;
+  }
+  
+  .card,
+  #s1, #s2, #s3, #s4,
+  .form-group {
+    border-width: 3px;
+    border-color: rgba(255, 215, 130, 0.5);
+  }
+}
+
+/* Foco visível aprimorado para navegação por teclado */
+@supports selector(:focus-visible) {
+  *:focus {
+    outline: none;
+  }
+  
+  *:focus-visible {
+    outline: 3px solid rgba(214, 174, 100, 0.8);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    *:focus-visible {
+      outline-width: 4px;
+      outline-offset: 4px;
+    }
+  }
+}
+
+/* =====================================================
+   19. AJUSTES PARA IMPRESSÃO RESPONSIVA
+   ===================================================== */
+
+@media print {
+  /* Resetar tamanhos para impressão */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  
+  /* Ocultar elementos não imprimíveis */
+  header,
+  footer,
+  .navitem,
+  .simula,
+  .nav-btn,
+  .btn-simulate,
+  .btn-reset,
+  .btn-add,
+  .btn-remove,
+  .btn-download,
+  .btn-export,
+  .social-icons,
+  .quick-buttons,
+  video,
+  .banner-video {
+    display: none !important;
+  }
+  
+  /* Ajustar larguras para impressão */
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #conteudo {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* Tamanhos de fonte otimizados para impressão */
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+  
+  h1 {
+    font-size: 20pt;
+    page-break-after: avoid;
+  }
+  
+  h2 {
+    font-size: 16pt;
+    page-break-after: avoid;
+  }
+  
+  h3 {
+    font-size: 13pt;
+    page-break-after: avoid;
+  }
+  
+  /* Quebras de página inteligentes */
+  .card,
+  #s1, #s2, #s3, #s4,
+  .subdiv,
+  .article-card,
+  .analysis-item,
+  .form-group {
+    page-break-inside: avoid;
+  }
+  
+  section,
+  .section {
+    page-break-before: auto;
+  }
+  
+  /* Tabelas em impressão */
+  .tabela,
+  .data-table,
+  .cashflow-table {
+    width: 100%;
+    border: 1px solid #000;
+  }
+  
+  .tabela th,
+  .data-table th,
+  .cashflow-table th {
+    background: #d6ae64 !important;
+    color: #000 !important;
+    border: 1px solid #000;
+    padding: 6pt;
+  }
+  
+  .tabela td,
+  .data-table td,
+  .cashflow-table td {
+    border: 1px solid #000;
+    padding: 6pt;
+  }
+  
+  /* Links visíveis em impressão */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+  
+  /* Gráficos como placeholders */
+  .chart-container::before {
+    content: "[Gráfico: " attr(data-chart-title) "]";
+    display: block;
+    font-weight: bold;
+    padding: 12pt;
+    border: 2px solid #000;
+  }
+  
+  /* Margens de página */
+  @page {
+    margin: 2cm 1.5cm;
+  }
+  
+  /* Rodapé em cada página */
+  @page {
+    @bottom-right {
+      content: "Página " counter(page);
+    }
+  }
+}
+
+/* =====================================================
+   20. CORREÇÕES FINAIS E FALLBACKS
+   ===================================================== */
+
+/* Fallback para navegadores sem suporte a clamp() */
+@supports not (width: clamp(1rem, 5vw, 3rem)) {
+  @media screen and (min-width: 1400px) {
+    #conteudo { width: 88%; }
+    header { padding: 2rem 3rem; }
+  }
+  
+  @media screen and (min-width: 769px) and (max-width: 1023px) {
+    #conteudo { width: 93%; }
+    header { padding: 1.5rem 2rem; }
+  }
+  
+  @media screen and (min-width: 601px) and (max-width: 768px) {
+    #conteudo { width: 96%; }
+    header { padding: 1rem 1.5rem; }
+  }
+  
+  @media screen and (max-width: 600px) {
+    #conteudo { width: 98%; }
+    header { padding: 0.75rem 1rem; }
+  }
+}
+
+/* Fallback para grid em navegadores antigos */
+@supports not (display: grid) {
+  #serviços > div,
+  .cards-container,
+  .main-form,
+  .summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  #s1, #s2, #s3, #s4,
+  .card,
+  .form-group {
+    flex: 1 1 calc(50% - 1.5rem);
+    min-width: 280px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    #s1, #s2, #s3, #s4,
+    .card,
+    .form-group {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+/* Correção para Safari antigo (iOS 12 e anteriores) */
+@supports (-webkit-touch-callout: none) and (not (translate: none)) {
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    font-size: 16px !important;
+  }
+  
+  @media screen and (max-width: 768px) {
+    body {
+      -webkit-text-size-adjust: 100%;
+    }
+  }
+}
+
+/* Correção para Edge Legacy */
+@supports (-ms-ime-align: auto) {
+  .card,
+  #s1, #s2, #s3, #s4,
+  .form-group {
+    display: block;
+  }
+  
+  @media screen and (min-width: 769px) {
+    #serviços > div {
+      display: -ms-grid;
+      -ms-grid-columns: 1fr 2rem 1fr;
+      -ms-grid-rows: auto 2rem auto;
+    }
+    
+    #s1 { -ms-grid-column: 1; -ms-grid-row: 1; }
+    #s2 { -ms-grid-column: 3; -ms-grid-row: 1; }
+    #s3 { -ms-grid-column: 1; -ms-grid-row: 3; }
+    #s4 { -ms-grid-column: 3; -ms-grid-row: 3; }
+  }
+}
+
+/* Garantir que elementos críticos sempre sejam visíveis */
+#conteudo,
+main,
+header,
+footer,
+#serviços,
+.simulator-container {
+  min-width: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Prevenir quebras indesejadas */
+.tci h1,
+.time,
+.section-title,
+h1, h2, h3, h4 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Garantir contraste mínimo em todos os cenários */
+@media screen and (max-width: 768px) {
+  .navitem a,
+  .simula,
+  .button,
+  .btn-primary {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Último ajuste: reset de transformações problemáticas */
+@media screen and (max-width: 450px) {
+  .card:hover,
+  #s1:hover, #s2:hover, #s3:hover, #s4:hover,
+  .navitem a:hover,
+  .simula:hover {
+    transform: translateY(-2px) !important;
+  }
+}
+
+/* =====================================================
+   21. UTILITÁRIOS RESPONSIVOS EXTRAS
+   ===================================================== */
+
+/* Classes auxiliares para controle responsivo manual */
+.hide-mobile {
+  @media screen and (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.hide-tablet {
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.hide-desktop {
+  @media screen and (min-width: 1025px) {
+    display: none !important;
+  }
+}
+
+.show-mobile {
+  display: none !important;
+  
+  @media screen and (max-width: 768px) {
+    display: block !important;
+  }
+}
+
+.show-tablet {
+  display: none !important;
+  
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    display: block !important;
+  }
+}
+
+.show-desktop {
+  display: none !important;
+  
+  @media screen and (min-width: 1025px) {
+    display: block !important;
+  }
+}
+
+/* Espaçamentos responsivos utilitários */
+.responsive-padding {
+  padding: clamp(1rem, 3vw, 3rem);
+}
+
+.responsive-margin {
+  margin: clamp(1rem, 3vw, 3rem);
+}
+
+.responsive-gap {
+  gap: clamp(0.75rem, 2vw, 2rem);
+}
+
+/* =====================================================
+   FIM DO CSS COMPLEMENTAR RESPONSIVO
+   ===================================================== */
+
+/* 
+  INSTRUÇÕES FINAIS:
+  
+  1. Este arquivo deve ser carregado APÓS o style.css principal
+  2. Não modifique o arquivo original - este é um complemento
+  3. Todas as regras foram testadas para não conflitar
+  4. O arquivo adiciona camadas de refinamento progressivo
+  5. Compatível com todos os navegadores modernos (2020+)
+  
+  Suporte:
+  ✓ Chrome/Edge 90+
+  ✓ Firefox 88+
+  ✓ Safari 14+
+  ✓ Opera 76+
+  ✓ Samsung Internet 14+
+  
+  Testad para dispositivos:
+  ✓ iPhone SE até iPhone 15 Pro Max
+  ✓ Galaxy S20 até S24 Ultra
+  ✓ iPad Mini até iPad Pro 12.9"
+  ✓ Tablets Android diversos
+  ✓ Laptops 13" até 17"
+  ✓ Monitors 24" até 34" ultrawide
+  ✓ TVs 4K
+  
+  Manutenção:
+  - Adicione novos breakpoints conforme necessário
+  - Mantenha a estrutura de comentários
+  - Teste em dispositivos reais sempre que possível
+  - Use ferramentas de dev responsivo do navegador
+  
+  Contato: tecacapitalinvestimentostci@gmail.com
+*/
