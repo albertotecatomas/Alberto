@@ -2966,6 +2966,864 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+
+
+    <!-- CDNs para exportação (html2canvas e jsPDF) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* Cores: RGB(214, 174, 100) | Branco | Preto */
+        :root {
+            --primary-color: rgb(214, 174, 100);
+            --bg-color: black;
+            --text-color: white;
+            --container-bg: black;
+            --highlight-bg: #111;
+            --success-color: rgb(174, 214, 100); /* Cor alternativa para sucesso, mantendo o tom */
+            --error-color: rgb(214, 100, 100); /* Cor alternativa para erro */
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--bg-color); 
+            color: var(--text-color); 
+            margin: 0; 
+            padding: 20px; 
+            line-height: 1.6;
+        }
+
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: var(--container-bg); 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 25px var(--primary-color); 
+            border: 2px solid var(--primary-color);
+        }
+
+        h1 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            border-bottom: 3px solid var(--primary-color); 
+            padding-bottom: 10px; 
+            margin-bottom: 30px;
+        }
+
+        h2, h3 { 
+            color: var(--primary-color); 
+            border-left: 5px solid var(--primary-color); 
+            padding-left: 10px; 
+            margin-top: 25px; 
+        }
+
+        .screen { display: none; margin-top: 20px; }
+        .active-screen { display: block; }
+        
+        label { display: block; margin-top: 10px; font-weight: bold; color: var(--text-color); }
+        input[type="text"], input[type="number"], select, textarea, input[type="date"] { 
+            width: 100%; 
+            padding: 12px; 
+            margin-top: 8px; 
+            border: 1px solid var(--primary-color); 
+            border-radius: 5px; 
+            box-sizing: border-box;
+            background: var(--highlight-bg);
+            color: var(--text-color);
+        }
+
+        button { 
+            background: var(--primary-color); 
+            color: var(--bg-color); 
+            padding: 12px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin-top: 20px; 
+            font-weight: bold; 
+            transition: background 0.3s, color 0.3s; 
+        }
+        button:hover { background: white; color: var(--bg-color); }
+
+        .btn-secondary { background: white; color: var(--bg-color); }
+        .btn-secondary:hover { background: #ccc; }
+
+        .feedback-error { color: var(--error-color); font-weight: bold; background: #331111; padding: 12px; border-radius: 5px; margin-top: 10px; border: 1px solid var(--error-color); }
+        .feedback-success { color: var(--success-color); font-weight: bold; background: #113311; padding: 12px; border-radius: 5px; margin-top: 10px; border: 1px solid var(--success-color); }
+        
+        .lesson-content, .quiz-question { 
+            margin-top: 20px; 
+            border: 1px dashed var(--primary-color); 
+            padding: 20px; 
+            border-radius: 8px; 
+            background: var(--highlight-bg);
+        }
+        
+        .quiz-question label { font-weight: normal; margin: 8px 0; display: flex; align-items: center; color: var(--text-color); }
+        .quiz-question input[type="radio"] { margin-right: 10px; }
+
+        .sensei-box { 
+            border: 2px solid var(--primary-color); 
+            background: var(--highlight-bg); 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+        }
+        .sensei-message { font-style: italic; color: var(--primary-color); font-size: 1.1em; }
+        
+        #results-export-area, #practical-results-area-container { 
+            padding: 20px; 
+            border: 3px solid var(--primary-color); 
+            border-radius: 10px; 
+            margin-top: 20px; 
+            background: var(--highlight-bg);
+        }
+
+        .export-btn-group button { margin-right: 10px; }
+
+        .topic-search-result { 
+            margin-top: 15px; 
+            padding: 15px; 
+            border: 1px solid var(--primary-color); 
+            background: var(--highlight-bg); 
+            border-radius: 5px; 
+            color: white;
+        }
+
+        .tab-button { 
+            background: var(--highlight-bg); 
+            color: white; 
+            border: 1px solid var(--primary-color); 
+            padding: 10px 15px;
+            margin-right: 5px;
+        }
+        .tab-button.active { 
+            background: var(--primary-color); 
+            color: var(--bg-color); 
+            border: 1px solid var(--primary-color);
+        }
+
+        .mov-debit { color: var(--success-color); font-weight: bold; }
+        .mov-credit { color: white; font-weight: bold; }
+        #practical-operations-list { border: 1px dashed white; padding: 15px; min-height: 50px; background: #222; margin-top: 15px;}
+        .operation-item { border-bottom: 1px dotted #555; padding: 5px 0; }
+        .explanation-box { background: #2a2a2a; padding: 10px; border-left: 3px solid var(--primary-color); margin-top: 10px; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="app-container">
+    <h1>Sensei Teca - Perito em Contabilidade Geral (Angola)</h1>
+
+    <!-- TABS DE NAVEGAÇÃO -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button class="tab-button" id="tab-aulas" onclick="showModule('lessons-module')">MÓDULO A - Aulas</button>
+        <button class="tab-button" id="tab-provas" onclick="showModule('quiz-module-wrapper')">MÓDULO B - Provas</button>
+        <button class="tab-button" id="tab-simulador" onclick="showModule('practical-simulator')">MÓDULO C - Simulador Prático</button>
+    </div>
+
+    <!-- MÓDULO A & B: Aulas e Provas -->
+    <div id="lessons-module" class="module-content active-module-content">
+
+        <!-- TELA 1: Registo Inicial -->
+        <div id="start-screen" class="screen active-screen">
+            <h2>Bem-vindo, Jovem Contabilista!</h2>
+            <div class="sensei-box">
+                <p class="sensei-message">Olá! Eu sou o Sensei Teca. Preenche o teu perfil e seleciona o teu nível de desafio para começarmos a tua jornada na Contabilidade PGC.</p>
+            </div>
+            <form id="registration-form">
+                <label for="name">Nome:</label><input type="text" id="name" required>
+                <label for="age">Idade:</label><input type="number" id="age" min="10" required>
+                <label for="gender">Gênero:</label>
+                <select id="gender" required>
+                    <option value="">Selecione</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="O">Outro</option>
+                </select>
+                <label for="region">Região/Província:</label><input type="text" id="region" required>
+                <label for="lesson-level-selector">Nível de Estudo:</label>
+                <select id="lesson-level-selector" required>
+                    <option value="Básico">🔰 Básico (Introdução/Conceitos)</option>
+                    <option value="Intermediário">🔰 Intermediário (PGC, Movimentações)</option>
+                    <option value="Avançado">🔰 Avançado (Fiscalidade, Fecho)</option>
+                </select>
+                <button type="button" onclick="startLesson()">Começar Aula com o Sensei Teca</button>
+            </form>
+        </div>
+
+        <!-- TELA 2: Módulo de Aulas -->
+        <div id="learning-module" class="screen">
+            <h2 id="lesson-title"></h2>
+            <div class="sensei-box">
+                <p class="sensei-message" id="lesson-message"></p>
+            </div>
+            
+            <!-- Conteúdo da Aula -->
+            <div id="lesson-content" class="lesson-content"></div>
+            
+            <!-- Barra de Pesquisa de Tópicos -->
+            <h3>Pesquisar/Rever Tópicos:</h3>
+            <select id="topic-search" onchange="showTopicDetails(this.value)">
+                <option value="">Pesquisar/Selecionar Tópico Chave...</option>
+            </select>
+            <div id="topic-details" class="topic-search-result" style="display:none;"></div>
+
+            <button onclick="nextLessonOrQuiz()">Avançar para a próxima lição / Iniciar Prova</button>
+        </div>
+
+    </div>
+
+    <!-- MÓDULO B: Provas (Quizzes) -->
+    <div id="quiz-module-wrapper" class="module-content">
+
+        <!-- TELA 3: Seleção de Nível para Quiz Direto (ou após Aulas) -->
+        <div id="level-selection-screen" class="screen active-screen">
+            <h2>Seleção de Prova</h2>
+            <div class="sensei-box">
+                <p class="sensei-message">Se já és um mestre, seleciona o teu nível. Cada prova tem 10 questões de teoria e prática do PGC!</p>
+            </div>
+            <select id="quiz-level-selector">
+                <option value="Básico">🔰 Básico</option>
+                <option value="Intermediário">🔰 Intermediário</option>
+                <option value="Avançado">🔰 Avançado</option>
+            </select>
+            <button onclick="startQuiz(document.getElementById('quiz-level-selector').value)">Iniciar a Prova de 10 Questões</button>
+        </div>
+        
+        <!-- TELA 4: Módulo de Quiz -->
+        <div id="quiz-module" class="screen">
+            <h2 id="quiz-title"></h2>
+            <form id="quiz-form">
+                <div id="quiz-questions-container"></div>
+                <button type="button" onclick="checkQuiz()">Finalizar Prova e Ver Resultados</button>
+            </form>
+        </div>
+
+        <!-- TELA 5: Resultados Finais -->
+        <div id="results-screen" class="screen">
+            <div id="results-export-area">
+                <h2>Resultados da Avaliação - Sensei Teca</h2>
+                <div id="user-info"></div>
+                <div id="score-summary"></div>
+                <div id="sensei-feedback" class="sensei-box"></div>
+                <h3>Onde Deves Focar a tua Essência (Áreas a Melhorar):</h3>
+                <div id="improvement-areas"></div>
+            </div>
+            
+            <div class="export-btn-group">
+                <button onclick="exportResultsPDF()">Exportar para PDF</button>
+                <button onclick="exportResultsImage()">Exportar como Imagem</button>
+            </div>
+            <button class="btn-secondary" onclick="window.location.reload()">Reiniciar Simulador</button>
+        </div>
+    </div>
+
+    <!-- MÓDULO C: SIMULADOR PRÁTICO -->
+    <div id="practical-simulator" class="module-content">
+        <h2>MÓDULO C - SIMULADOR PRÁTICO (Lançamentos PGC)</h2>
+        <div class="sensei-box">
+            <p class="sensei-message">Aqui testas a essência do Débito e Crédito. Insere uma operação real, e eu, Sensei Teca, mostrarei o lançamento PGC correto e a lógica por trás de cada movimento.</p>
+        </div>
+
+        <!-- Formulário de Operação -->
+        <h3>Adicionar Operação Contábil:</h3>
+        <form id="practical-form">
+            <div style="display: flex; gap: 10px;">
+                <div style="flex: 1;"><label for="op-date">Data:</label><input type="date" id="op-date" value="2025-11-21" required></div>
+                <div style="flex: 2;"><label for="op-type">Cenário de Operação (Tipo PGC):</label>
+                    <select id="op-type" required>
+                        <option value="">Selecione o Cenário...</option>
+                        <option value="COMPRA_MERCADORIAS_IVA">1. Compra de Mercadorias (14% IVA, a Crédito)</option>
+                        <option value="VENDA_MERCADORIAS_IVA">2. Venda de Mercadorias (14% IVA, a Dinheiro)</option>
+                        <option value="AMORTIZACAO_ATIVO">3. Registo de Amortização de Ativo (10%)</option>
+                        <option value="PAGAMENTO_CUSTO">4. Pagamento de Custo Operacional (Ex: Eletricidade)</option>
+                    </select>
+                </div>
+                <div style="flex: 1;"><label for="op-amount">Valor Total (Kz):</label><input type="number" id="op-amount" value="114000" min="1000" required></div>
+            </div>
+            <label for="op-description">Descrição Breve:</label><input type="text" id="op-description" value="Fatura de X" required>
+            <button type="button" onclick="addOperation()">Adicionar Operação</button>
+        </form>
+
+        <!-- Lista de Operações -->
+        <h3>Operações a Resolver (Diário):</h3>
+        <div id="practical-operations-list">Nenhuma operação adicionada.</div>
+
+        <button onclick="calculateResolution()">Calcular Resolução do Exercício (Razão)</button>
+        <button class="btn-secondary" onclick="clearPracticalSimulator()">Limpar Simulador</button>
+
+        <!-- Resultados da Resolução -->
+        <div id="practical-results-container">
+            <h3>Resolução Sensei Teca (O Lançamento):</h3>
+            <div id="practical-results-area" style="white-space: pre-wrap;"></div>
+            <button onclick="exportPracticalResultsImage()">Exportar Resolução (Imagem)</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // =======================================================
+    // 2. ESTRUTURA DA BASE DE CONHECIMENTO (accountingData)
+    // Conteúdo Robustecido (PGC, Teoria, Prática, Fiscalidade)
+    // =======================================================
+
+    const accountingData = {
+        // Mapeamento dos níveis para o conteúdo sequencial
+        lessonFlow: {
+            Básico: [
+                'O que é Contabilidade',
+                'O Método das Partidas Dobradas (D/C)',
+                'PGC, Razão e Balancete'
+            ],
+            Intermediário: [
+                'Classes do PGC Angolano',
+                'Regras de Movimentação PGC',
+                'Balanço e Demonstração de Resultados (Montagem)'
+            ],
+            Avançado: [
+                'Apuramento de Resultados e Fecho de Contas',
+                'Fiscalidade (IVA Cativo e Pro-Rata)'
+            ]
+        },
+        
+        // Tópicos e Definições para Módulo A e Sistema de Pesquisa
+        topics: {
+            'O que é Contabilidade': {
+                level: 'Básico',
+                explanation: "A Contabilidade é a ciência que estuda, regista e interpreta o *Património da empresa. Surgiu formalmente no século XV com Luca Pacioli e tem como objetivo fornecer informação económica e financeira útil para a tomada de decisões. É obrigatória em Angola pelo PGC. Usuários: Gestores (decisão interna), Estado (fiscalidade) e Credores/Investidores (decisão externa).",
+                example: "Em Angola, o órgão que regula a profissão é a **OCPCA** (Ordem dos Contabilistas e Peritos Contabilistas de Angola)."
+            },
+            'O Método das Partidas Dobradas (D/C)': {
+                level: 'Básico',
+                explanation: "A regra de ouro da Contabilidade: **Não há débito sem crédito**. Em qualquer lançamento, a soma dos valores a Débito (D) deve ser igual à soma dos valores a Crédito (C). **D/Ativo e Custos (Aumenta)**; **C/Passivo, Capital Próprio e Proveitos (Aumenta)**. É a essência da movimentação.",
+                example: "Ex: Pagamento de Renda (Custo) em dinheiro. D/Custo (Classe 7) e C/Caixa (Classe 4, que diminui a C)."
+            },
+            'PGC, Razão e Balancete': {
+                level: 'Básico',
+                explanation: "O **PGC (Plano Geral de Contabilidade)** é o código de contas obrigatório em Angola. O **Razão** é o registo individual (ficha) de cada conta (T's) para ver o saldo. O **Balancete** é o mapa que lista todas as contas do Razão com o total de movimentos a D e C e os saldos finais, comprovando a igualdade do MPD.",
+                example: "O Balancete de Verificação final é usado para montar as Demonstrações Financeiras (Balanço e DR)."
+            },
+            'Classes do PGC Angolano': {
+                level: 'Intermediário',
+                explanation: "As Classes do PGC: **1**-Ativo Não Corrente (ANC: Imobilizações); **2**-Ativo Corrente (Existências); **3**-Terceiros (Dívidas a receber/pagar); **4**-Meios Monetários (Caixa, Bancos); **5**-Capital Próprio e Reservas; **6**-Proveitos por Natureza; **7**-Custos e Perdas por Natureza; **8**-Resultados. As Classes 1 a 5 vão para o Balanço; 6 e 7 para a DR.",
+                example: "A conta 32 (Fornecedores) é um Passivo; a conta 11 (Imobilizações Corpóreas) é um Ativo."
+            },
+            'Regras de Movimentação PGC': {
+                level: 'Intermediário',
+                explanation: "Regras Mnemónicas (Sensei Teca): **DECAP** (Débito: Elementos do Ativo e Custos Aumentam); **CRIPP** (Crédito: Elementos do Passivo e Proveitos Aumentam). Esta regra é fundamental para os lançamentos PGC. Exceções: 18 (Amortizações) e 38 (Provisões) são Contas Retificadoras (C/Ativo), aumentam a Crédito.",
+                example: "Ex: Pagamento de um Custo (75.2) por Banco (43). D/75.2 (Custo, aumenta) a C/43 (Ativo, diminui)."
+            },
+            'Balanço e Demonstração de Resultados (Montagem)': {
+                level: 'Intermediário',
+                explanation: "O **Balanço** é a foto do Património: Ativo (Classes 1, 2, 4, 3 D) = Passivo (Classes 3, 4 P) + Capital Próprio (Classe 5). A **Demonstração de Resultados (DR)** é o filme do exercício: Proveitos (Classe 6) - Custos (Classe 7) = Resultado. A montagem é feita a partir dos saldos do Balancete final.",
+                example: "Ex: O CMVMC (Custo das Mercadorias Vendidas - 71) é um dos maiores custos na DR."
+            },
+            'Apuramento de Resultados e Fecho de Contas': {
+                level: 'Avançado',
+                explanation: "O **Fecho de Contas** é a transferência dos saldos das Classes 6 e 7 para a Classe 8 (Resultados). Objetivo: ZERAR as contas 6 e 7. Regra: Contas com saldo Devedor (Custos) são transferidas a **CRÉDITO**. Contas com saldo Credor (Proveitos) são transferidas a **DÉBITO**. O saldo final (88 Resultado Líquido) é distribuído no exercício seguinte.",
+                example: "Ex: Fecho de Vendas (61 - Credor): D/61 a C/82.1. Fecho de Custos (71 - Devedor): D/82.6 a C/71."
+            },
+            'Fiscalidade (IVA Cativo e Pro-Rata)': {
+                level: 'Avançado',
+                explanation: "O IVA (Conta 34.5) tem regimes especiais em Angola. **IVA Cativo:** Entidades grandes (Bancos, Petrolíferas) retêm e liquidam o IVA do fornecedor diretamente ao Estado (50% ou 100%). **Pro-Rata:** Usado quando há vendas isentas (sem direito à dedução). O IVA Suportado (34.5.1) é deduzido apenas na proporção das vendas tributáveis (Ex: 80% tributável = 80% dedução).",
+                example: "Ex: IVA Pro-Rata. D/34.5.2 (Dedutível - 80%) e o remanescente (20%) vai a custo (75.3.1.2) para não ser deduzido."
+            }
+        },
+
+        // Perguntas de Múltipla Escolha (10 por Nível)
+        quizzes: {
+            Básico: [
+                { question: "Qual a regra do Débito (D) no MPD para a Classe 4 (Meios Monetários)?", options: ["Diminui o Ativo", "Aumenta o Passivo", "Aumenta o Ativo", "Aumenta o Custo"], answer: "Aumenta o Ativo", feedback: "A Classe 4 é Ativo. Débito (D) aumenta Ativo. Revê 'O Método das Partidas Dobradas (D/C)'." },
+                { question: "A conta 32 - Fornecedores, representa um(a)...", options: ["Ativo", "Custo", "Passivo", "Capital Próprio"], answer: "Passivo", feedback: "Fornecedores é uma obrigação (dívida) com terceiros, logo é um Passivo (Classe 3)." },
+                { question: "O PGC Angolano organiza-se em quantas classes?", options: ["5", "8", "9", "10"], answer: "8", feedback: "O PGC é estruturado em 8 Classes (1 a 8), mais a Classe 0 (Contas de Ordem)." },
+                { question: "Onde se Credita (C/) o aumento de uma Venda (Classe 6)?", options: ["Classe 7", "Classe 4", "Classe 6", "Classe 5"], answer: "Classe 6", feedback: "Proveitos (Vendas - Classe 6) aumentam a CRÉDITO. D/Caixa (45) a C/Vendas (61)." },
+                { question: "O que é o Balancete?", options: ["Resultado final", "Ficha individual de conta", "Mapa de saldos D/C para comprovar o MPD", "Demonstração de resultados"], answer: "Mapa de saldos D/C para comprovar o MPD", feedback: "O Balancete lista todos os saldos e movimentos para provar que a soma dos D é igual à soma dos C." },
+                { question: "Qual a conta Debitada (D/) na compra a dinheiro de um computador (11.5)?", options: ["43 Depósitos à Ordem", "32 Fornecedores", "11.5 Equipamento Administrativo", "61 Vendas"], answer: "11.5 Equipamento Administrativo", feedback: "O computador é um Ativo (Classe 1) e o aumento do Ativo é a DÉBITO." },
+                { question: "A que grupo de contas pertence o Capital Próprio (Classe 5)?", options: ["Ativo", "Passivo", "Capital Próprio", "Resultados"], answer: "Capital Próprio", feedback: "A Classe 5 representa os recursos próprios da empresa (Património Líquido)." },
+                { question: "A diminuição de um Ativo (Ex: Venda de Mercadorias) é registada em qual lado?", options: ["Débito", "Crédito", "Equação", "Resultado"], answer: "Crédito", feedback: "A diminuição do Ativo é registada a CRÉDITO. Revê 'O Método das Partidas Dobradas (D/C)'." },
+                { question: "Qual a principal função do contabilista em Angola (OCCCA)?", options: ["Vender produtos", "Fornecer informação para decisão", "Pagar impostos", "Fazer empréstimos"], answer: "Fornecer informação para decisão", feedback: "A função primária é produzir e interpretar informação financeira para os usuários da informação." },
+                { question: "O que significa 'Fecho de Contas'?", options: ["Saldar as contas 6 e 7", "Pagar as dívidas", "Vender o imobilizado", "Aumentar o lucro"], answer: "Saldar as contas 6 e 7", feedback: "O fecho de contas (Apuramento) zera as contas de Resultado (6 e 7) transferindo o saldo para a Classe 8." }
+            ],
+            Intermediário: [
+                { question: "Qual a conta Debita (D/) para registar um Prémio de Emissão de Ações (Classe 53)?", options: ["53 Prémios de Emissão", "51 Capital", "43 Depósitos", "Não se Credita"], answer: "53 Prémios de Emissão", feedback: "O prémio é Capital Próprio e o aumento de CP é a CRÉDITO. A contrapartida D/43 (Banco) para receber o dinheiro." },
+                { question: "A conta 18 - Amortizações Acumuladas, é uma conta de natureza:", options: ["Ativa (D)", "Passiva (C)", "Retificadora de Ativo (C)", "Custo (D)"], answer: "Retificadora de Ativo (C)", feedback: "A conta 18 é Creditada (C) no aumento (amortização), funcionando como um Passivo mas abatendo o Ativo." },
+                { question: "Lançamento D/75.2.21 (Rendas) a C/37.9 (Outros Valores a Pagar). O que é 37.9?", options: ["Ativo a Receber", "Proveito", "Passivo a Pagar (Dívida)", "Resultado"], answer: "Passivo a Pagar (Dívida)", feedback: "D/Custo (75) a C/Passivo (37.9). Registra-se um Custo que ainda não foi pago (dívida)." },
+                { question: "O CMVMC (Custo das Mercadorias Vendidas) é apurado através de qual fórmula básica?", options: ["Vendas - Compras", "Existências Iniciais + Compras - Existências Finais", "Ativo - Passivo", "Proveitos - Custos"], answer: "Existências Iniciais + Compras - Existências Finais", feedback: "Fórmula clássica do CMVMC no PGC Angolano (Fase de Regularização)." },
+                { question: "Qual o lançamento para constituir Provisão para Cobranças Duvidosas (38.1)?", options: ["D/38.1 a C/31.1", "D/78.1 a C/38.1", "D/31.1 a C/78.1", "D/43 a C/38.1"], answer: "D/78.1 a C/38.1", feedback: "A Provisão é um Custo Não Operacional (D/78.1) e aumenta o Passivo/Retificadora (C/38.1)." },
+                { question: "O IVA de uma compra de Mercadorias (114.000 Kz total, taxa 14%) é dedutível. Qual o valor base da compra?", options: ["14.000 Kz", "114.000 Kz", "100.000 Kz", "15.960 Kz"], answer: "100.000 Kz", feedback: "Valor Base = 114.000 / 1.14 = 100.000 Kz. IVA = 14.000 Kz." },
+                { question: "Na venda de imobilizado, a conta 37.2 - Vendas de Imobilizado, regista:", options: ["O Custo de Aquisição", "O Lucro/Prejuízo", "O Valor de Venda", "A Amortização"], answer: "O Valor de Venda", feedback: "O 37.2 (Vendas de Imobilizado) é a conta de Ativo/Passivo de transição que regista o valor da venda. O resultado (Lucro/Prejuízo) é que vai para 68.3/78.3." },
+                { question: "Qual a classe usada para saldar todas as contas de Ativo, Passivo e Capital Próprio no encerramento (PGC)?", options: ["Classe 0", "Classe 8", "Não se saldam", "Classe 5"], answer: "Não se saldam", feedback: "As contas de Balanço (Ativo, Passivo, CP) não se saldam no fecho. Apenas as contas de Resultados (6, 7 e 8) se fecham." },
+                { question: "Onde se Credita (C/) a aquisição de um empréstimo bancário (33.1)?", options: ["Classe 4 (Banco)", "Classe 7 (Juros)", "Classe 33.1 (Empréstimos)", "Classe 51 (Capital)"], answer: "Classe 33.1 (Empréstimos)", feedback: "O empréstimo é Passivo, e o aumento do Passivo é a CRÉDITO. A contrapartida D/43 (Banco) para receber o dinheiro." },
+                { question: "A conta 31.9.1 - Clientes - Adiantamentos, é uma conta de natureza:", options: ["Ativo", "Custo", "Passivo", "Proveito"], answer: "Passivo", feedback: "O adiantamento de um cliente é uma obrigação (Passivo) da empresa para entregar bens/serviços." }
+            ],
+            Avançado: [
+                { question: "A taxa de Pro-Rata provisória (30%) é maior que a definitiva (20%). A regularização do IVA (10% sobre o IVA total suportado) é a favor de quem?", options: ["A favor do Estado", "A favor da Empresa", "É nulo", "OCCCA"], answer: "A favor do Estado", feedback: "A empresa deduziu a mais (30%>20%). A diferença deve ser devolvida ao Estado, logo é Creditada (C/34.5.4.2)." },
+                { question: "No IVA Cativo, a entidade que prestou o serviço (Fornecedor) deve Creditar (C/) o valor do IVA na conta:", options: ["34.5.3.1 IVA Liquidado", "34.5.6.2 IVA a Pagar de Cativo", "34.5.7.2 IVA a Recuperar de Cativo", "34.5.2.3 IVA Dedutível"], answer: "34.5.7.2 IVA a Recuperar de Cativo", feedback: "O IVA Liquidado (34.5.3) é saldado pelo IVA a Recuperar de Cativo (34.5.7.2) porque o cliente reteve o dinheiro." },
+                { question: "No fecho, os saldos devedores (Custos) da Classe 7 são transferidos a Crédito para qual conta da Classe 8?", options: ["88 Resultado Líquido", "81 Resultados Transitados", "82.6 Custo das Mercadorias Vendidas e Matérias Consumidas", "87 Imposto sobre os Lucros"], answer: "82.6 Custo das Mercadorias Vendidas e Matérias Consumidas", feedback: "O fecho dos custos operacionais é centralizado no débito da 82.6." },
+                { question: "Qual conta Credita (C/) a retenção na fonte sobre dividendos (Rendimento de Participações - 66.5)?", options: ["66.5 Rendimento", "43 Depósitos", "34.1 Imposto sobre os Lucros", "35 Participadas"], answer: "34.1 Imposto sobre os Lucros", feedback: "A retenção é um crédito sobre o Estado para abater ao Imposto sobre os Lucros anual (34.1 - Passivo/Ativo)." },
+                { question: "Qual conta de Passivo/CP Credita (C/) o saldo final (Prejuízo) da conta 88 - Resultado Líquido, no exercício seguinte?", options: ["51 Capital", "81 Resultados Transitados (Credor)", "81 Resultados Transitados (Devedor)", "58 Reservas Livres"], answer: "81 Resultados Transitados (Devedor)", feedback: "Um prejuízo (D/88) é transferido a Crédito (C/88) e Debitado (D/) na conta 81, aumentando o saldo devedor acumulado." },
+                { question: "Qual conta do PGC regista a Anulação de Passivos Não Exigíveis (ganho extraordinário)?", options: ["68.1 Reposição de Provisões", "79.1 Perdas Extraordinárias", "69.6 Anulação de Passivos Não Exigíveis", "51 Capital"], answer: "69.6 Anulação de Passivos Não Exigíveis", feedback: "A conta 69.6 regista Ganhos Extraordinários, Credora por natureza." },
+                { question: "A conta 34.5.8.1 - Reembolsos Pedidos, é de natureza devedora e é Debitada (D/) por contrapartida de qual conta?", options: ["34.5.6 IVA a Pagar", "34.5.7.1 IVA a Recuperar de Apuramento", "43 Depósitos à Ordem", "75.3 Impostos"], answer: "34.5.7.1 IVA a Recuperar de Apuramento", feedback: "O pedido de reembolso (D/34.5.8.1) exige que o crédito (34.5.7.1) seja saldado a Crédito." },
+                { question: "A Demonstração de Resultados apura o resultado a partir de quais classes?", options: ["Classes 1 e 5", "Classes 6 e 7", "Classes 3 e 4", "Classes 0 e 8"], answer: "Classes 6 e 7", feedback: "A DR é o resultado dos fluxos de Proveitos (6) e Custos (7) do exercício." },
+                { question: "O que é um 'Encargo a Repartir por Períodos Futuros' (37.4)?", options: ["Um Passivo a Curto Prazo", "Um Custo já pago, mas que afeta exercícios futuros (Ativo)", "Um Proveito Diferido", "Uma Dívida Incobrável"], answer: "Um Custo já pago, mas que afeta exercícios futuros (Ativo)", feedback: "É um custo pago antecipadamente (Ex: Seguro Anual) que é Ativo e só se transforma em Custo (75) ao longo dos meses." },
+                { question: "Lançamento D/43 a C/37.6. O que representa 37.6?", options: ["Custo antecipado", "Receita antecipada (Proveito a Repartir)", "Passivo", "Empréstimo"], answer: "Receita antecipada (Proveito a Repartir)", feedback: "O recebimento antecipado (D/43) de uma receita (Ex: Renda Anual) é uma obrigação (Passivo/Proveito Diferido) para a empresa, Creditado em 37.6." }
+            ]
+        }
+    };
+
+    // =======================================================
+    // VARIÁVEIS GLOBAIS E ESTADO DO SIMULADOR
+    // =======================================================
+    let userData = {};
+    let currentLevel = 'Básico'; 
+    let currentLessonIndex = 0;
+    let quizQuestions = [];
+    let quizResults = { score: 0, level: '', incorrectAnswers: [] };
+    let practicalOperations = [];
+    
+    // =======================================================
+    // FUNÇÕES GERAIS DE NAVEGAÇÃO E SETUP
+    // =======================================================
+
+    function showModule(moduleId) {
+        document.querySelectorAll('.module-content').forEach(module => module.style.display = 'none');
+        document.getElementById(moduleId).style.display = 'block';
+
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('tab-' + moduleId.split('-')[0]).classList.add('active');
+
+        // Lógica de Tela para o Módulo A/B (Quiz/Aulas)
+        if (moduleId === 'lessons-module') {
+            switchScreen('start-screen');
+        } else if (moduleId === 'quiz-module-wrapper') {
+            switchScreen('level-selection-screen'); // Mostra o seletor de nível primeiro
+        }
+    }
+
+    function switchScreen(activeId) {
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.remove('active-screen');
+        });
+        document.getElementById(activeId).classList.add('active-screen');
+    }
+
+    function saveUserData() {
+        const form = document.getElementById('registration-form');
+        if (form.checkValidity()) {
+            userData.name = document.getElementById('name').value;
+            userData.age = document.getElementById('age').value;
+            userData.gender = document.getElementById('gender').value;
+            userData.region = document.getElementById('region').value;
+            currentLevel = document.getElementById('lesson-level-selector').value;
+            return true;
+        }
+        form.reportValidity();
+        return false;
+    }
+
+    // =======================================================
+    // MÓDULO A: AULAS COM O SENSEI TECA
+    // =======================================================
+
+    function startLesson() {
+        if (!saveUserData()) return;
+        currentLessonIndex = 0;
+        
+        // Configura a barra de pesquisa de acordo com os tópicos carregados
+        const searchSelect = document.getElementById('topic-search');
+        searchSelect.innerHTML = '<option value="">Pesquisar/Selecionar Tópico Chave...</option>';
+        Object.keys(accountingData.topics).forEach(topic => {
+            searchSelect.innerHTML += `<option value="${topic}">${topic}</option>`;
+        });
+
+        showLesson();
+        switchScreen('learning-module');
+    }
+
+    function showLesson() {
+        const topics = accountingData.lessonFlow[currentLevel];
+        const lessonContentDiv = document.getElementById('lesson-content');
+        const lessonTitle = document.getElementById('lesson-title');
+        const lessonMessage = document.getElementById('lesson-message');
+        const nextButton = document.querySelector('#learning-module button');
+        
+        lessonTitle.textContent = `MÓDULO ${currentLevel} (Lição ${currentLessonIndex + 1}/${topics.length})`;
+        lessonMessage.innerHTML = `Excelente, ${userData.name}! Foco total! Vamos dominar o **Nível ${currentLevel}**.`;
+
+        if (currentLessonIndex < topics.length) {
+            const topicName = topics[currentLessonIndex];
+            const topicData = accountingData.topics[topicName];
+            lessonContentDiv.innerHTML = `
+                <h3>${topicName}</h3>
+                <p>${topicData.explanation}</p>
+                <p class="sensei-message"><strong>Exemplo Prático (A Essência):</strong> ${topicData.example}</p>
+            `;
+            nextButton.textContent = "Avançar para a próxima lição";
+        } else {
+            lessonContentDiv.innerHTML = `<p class="feedback-success">Parabéns, ${userData.name}! Concluíste o Módulo ${currentLevel}. Estás pronto para testar os teus conhecimentos!</p>`;
+            nextButton.textContent = "Iniciar Prova";
+        }
+    }
+
+    function nextLessonOrQuiz() {
+        const topics = accountingData.lessonFlow[currentLevel];
+
+        if (currentLessonIndex < topics.length - 1) {
+            currentLessonIndex++;
+            showLesson();
+        } else {
+            // Concluiu as aulas, iniciar o quiz
+            startQuiz(currentLevel);
+        }
+    }
+
+    // 3.3. Sistema de Pesquisa Interno
+    function showTopicDetails(topicName) {
+        const detailsDiv = document.getElementById('topic-details');
+        if (topicName && accountingData.topics[topicName]) {
+            const topic = accountingData.topics[topicName];
+            detailsDiv.innerHTML = `
+                <h4>Sensei Teca Detalha: ${topicName}</h4>
+                <p><strong>Nível:</strong> ${topic.level}</p>
+                <p><strong>Explicação Completa:</strong> ${topic.explanation}</p>
+                <p class="sensei-message"><strong>Exemplo PGC:</strong> ${topic.example}</p>
+            `;
+            detailsDiv.style.display = 'block';
+        } else {
+            detailsDiv.style.display = 'none';
+        }
+    }
+
+    // =======================================================
+    // MÓDULO B: PROVAS (AVALIAÇÕES)
+    // =======================================================
+
+    function startQuiz(level) {
+        currentLevel = level;
+        const quizContainer = document.getElementById('quiz-questions-container');
+        document.getElementById('quiz-title').textContent = `PROVA DE AVALIAÇÃO: Nível ${level} - 10 Questões`;
+        quizContainer.innerHTML = '';
+        
+        const allQuizzes = accountingData.quizzes[level];
+
+        // Função para obter 10 perguntas aleatórias
+        function getRandomQuestions(arr, num) {
+            const shuffled = [...arr].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, num);
+        }
+
+        quizQuestions = getRandomQuestions(allQuizzes, 10);
+
+        // Renderizar as perguntas
+        quizQuestions.forEach((q, index) => {
+            // Misturar opções antes de renderizar
+            const shuffledOptions = [...q.options].sort(() => 0.5 - Math.random());
+            
+            let optionsHtml = shuffledOptions.map((option) => `
+                <label>
+                    <input type="radio" name="question${index}" value="${option}" required>
+                    ${option}
+                </label>
+            `).join('');
+
+            quizContainer.innerHTML += `
+                <div class="quiz-question" id="q-${index}">
+                    <strong>${index + 1}.</strong> ${q.question}
+                    <div>${optionsHtml}</div>
+                </div>
+            `;
+        });
+
+        switchScreen('quiz-module');
+    }
+
+    function checkQuiz() {
+        let score = 0;
+        let incorrect = [];
+        const form = document.getElementById('quiz-form');
+        
+        quizQuestions.forEach((q, index) => {
+            const selectedOption = form.elements[`question${index}`].value;
+            const questionDiv = document.getElementById(`q-${index}`);
+
+            if (selectedOption === q.answer) {
+                score++;
+                questionDiv.style.backgroundColor = '#113311'; // Sucesso
+            } else {
+                incorrect.push({ index: index + 1, question: q.question, selected: selectedOption, correct: q.answer, feedback: q.feedback });
+                questionDiv.style.backgroundColor = '#331111'; // Erro
+            }
+        });
+
+        quizResults.score = score;
+        quizResults.incorrectAnswers = incorrect;
+        quizResults.level = currentLevel;
+
+        showResults();
+        switchScreen('results-screen');
+    }
+
+    function showResults() {
+        const total = 10;
+        const percentage = (quizResults.score / total) * 100;
+        const senseiFeedbackDiv = document.getElementById('sensei-feedback');
+        const userInfoDiv = document.getElementById('user-info');
+        const scoreSummaryDiv = document.getElementById('score-summary');
+        const improvementAreasDiv = document.getElementById('improvement-areas');
+
+        // 1. Dados Pessoais
+        userInfoDiv.innerHTML = `
+            <p><strong>Aluno:</strong> ${userData.name} | <strong>Região:</strong> ${userData.region}</p>
+        `;
+
+        // 2. Sumário de Score
+        scoreSummaryDiv.innerHTML = `
+            <p><strong>Nível Avaliado:</strong> ${quizResults.level}</p>
+            <p><strong>Pontuação:</strong> ${quizResults.score}/${total}</p>
+            <p class="feedback-${percentage >= 70 ? 'success' : 'error'}"><strong>Desempenho:</strong> ${percentage.toFixed(0)}%</p>
+        `;
+
+        // 3. Feedback do Sensei Teca (Motivacional)
+        let senseiMessage = "";
+        if (percentage >= 90) {
+            senseiMessage = `PARABÉNS, ${userData.name}! O teu conhecimento é excelente! Estás pronto para o próximo nível.`;
+        } else if (percentage >= 60) {
+            senseiMessage = `Bom trabalho! O teu desempenho é sólido. Sensei Teca diz: Foca-te nas áreas de melhoria e repete esta aula para dominar a essência!`;
+        } else {
+            senseiMessage = `Grande esforço! O teu resultado indica que os fundamentos precisam de mais atenção. Volta ao MÓDULO A - AULAS ou usa o Simulador Prático para entender a lógica do Débito/Crédito!`;
+        }
+        senseiFeedbackDiv.innerHTML = `<p class="sensei-message">${senseiMessage}</p>`;
+
+        // 4. Áreas de Melhoria
+        improvementAreasDiv.innerHTML = '';
+        if (quizResults.incorrectAnswers.length > 0) {
+            let listHtml = '<ul>';
+            quizResults.incorrectAnswers.forEach(item => {
+                listHtml += `<li><strong>Questão ${item.index} (Errada):</strong> ${item.question} <br><div class="explanation-box"> ${item.feedback}</div></li>`;
+            });
+            listHtml += '</ul>';
+            improvementAreasDiv.innerHTML += listHtml;
+        } else {
+            improvementAreasDiv.innerHTML += '<p class="feedback-success">Nenhuma área de melhoria! Domínio Completo!</p>';
+        }
+    }
+
+
+    // =======================================================
+    // MÓDULO C: SIMULADOR PRÁTICO
+    // =======================================================
+
+    function clearPracticalSimulator() {
+        practicalOperations = [];
+        document.getElementById('practical-operations-list').innerHTML = 'Nenhuma operação adicionada.';
+        document.getElementById('practical-results-area').innerHTML = '';
+    }
+
+    function addOperation() {
+        const date = document.getElementById('op-date').value;
+        const type = document.getElementById('op-type').value;
+        const amount = parseFloat(document.getElementById('op-amount').value);
+        const description = document.getElementById('op-description').value;
+
+        if (!type || amount <= 0) {
+            alert("Sensei Teca diz: Seleciona um tipo de operação e valor válidos!");
+            return;
+        }
+
+        practicalOperations.push({ date, type, amount, description });
+        renderPracticalOperations();
+        document.getElementById('practical-results-area').innerHTML = ''; 
+    }
+
+    function renderPracticalOperations() {
+        const listDiv = document.getElementById('practical-operations-list');
+        listDiv.innerHTML = practicalOperations.length === 0 
+            ? 'Nenhuma operação adicionada.' 
+            : practicalOperations.map((op, index) => `
+                <div class="operation-item">
+                    <strong>[${index + 1}] ${op.date}</strong> - ${op.description} (Tipo: ${op.type.replace(/_/g, ' ')}) - Kz ${op.amount.toFixed(2)}
+                </div>
+            `).join('');
+    }
+
+    // LÓGICA DE RESOLUÇÃO (Regras Contábeis PGC)
+    function resolveOperation(operation) {
+        const { type, amount, description } = operation;
+        const IVA_RATE = 0.14;
+        const totalValue = amount;
+
+        switch (type) {
+            case 'COMPRA_MERCADORIAS_IVA': {
+                const baseValue = totalValue / (1 + IVA_RATE);
+                const ivaValue = totalValue - baseValue;
+                return {
+                    movements: [
+                        { account: "D/21.2 Compras - Mercadorias (Classe 2/Custo)", value: baseValue.toFixed(2), nature: "D", justification: "Aumento do Custo de Aquisição." },
+                        { account: "D/34.5.2.1 IVA Dedutível - Existências (Classe 3/Ativo)", value: ivaValue.toFixed(2), nature: "D", justification: "IVA Suportado que é um Ativo (a deduzir)." },
+                        { account: "C/32.1 Fornecedores - Correntes (Classe 3/Passivo)", value: totalValue.toFixed(2), nature: "C", justification: "Aumento da Dívida pelo valor total." }
+                    ],
+                    not_moved: ["11 Imobilizado", "61 Vendas"],
+                    summary: `Lançamento de Compra a Crédito: A essência é D/Custo + D/Ativo a C/Passivo. Débito do valor que entra (Custo/IVA) e Crédito do valor da dívida que aumenta.`
+                };
+            }
+            case 'VENDA_MERCADORIAS_IVA': {
+                const baseSale = totalValue / (1 + IVA_RATE);
+                const ivaSale = totalValue - baseSale;
+                return {
+                    movements: [
+                        { account: "D/45 Caixa/43 Banco (Classe 4/Ativo)", value: totalValue.toFixed(2), nature: "D", justification: "Aumento do Ativo (Meios Monetários) pelo valor total recebido." },
+                        { account: "C/61.3 Vendas - Mercadorias (Classe 6/Proveito)", value: baseSale.toFixed(2), nature: "C", justification: "Aumento do Proveito (Receita) no valor base." },
+                        { account: "C/34.5.3.1 IVA Liquidado - Operações Gerais (Classe 3/Passivo)", value: ivaSale.toFixed(2), nature: "C", justification: "Aumento da Dívida (Passivo) ao Estado pelo IVA da venda." }
+                    ],
+                    not_moved: ["71 Custo das Existências (Lançamento CMVMC separado)", "75.2 FSE"],
+                    summary: `Lançamento de Venda a Dinheiro: A essência é D/Ativo (Total) a C/Proveito (Base) + C/Passivo (IVA Estado). D/Recebimento a C/Receita.`
+                };
+            }
+            case 'AMORTIZACAO_ATIVO': {
+                const amortValue = amount * 0.10; // 10% fixo para o exemplo
+                return {
+                    movements: [
+                        { account: "D/73.1.5 Amortizações do Exercício (Classe 7/Custo)", value: amortValue.toFixed(2), nature: "D", justification: "Aumento do Custo do exercício." },
+                        { account: "C/18.1.5 Amortizações Acumuladas (Classe 1/Retif. Ativo)", value: amortValue.toFixed(2), nature: "C", justification: "Aumento da Conta Retificadora de Ativo (Diminuição do Imobilizado)." }
+                    ],
+                    not_moved: ["43 Banco (não é movimento monetário)", "68 Ganhos"],
+                    summary: `Lançamento de Amortização: É um ajuste interno (D/Custo a C/Retificadora). Mostra o desgaste do ativo.`
+                };
+            }
+             case 'PAGAMENTO_CUSTO': {
+                // Exemplo: Pagamento de Eletricidade/Serviço (75.2.12)
+                const baseValue = totalValue / (1 + IVA_RATE);
+                const ivaValue = totalValue - baseValue;
+                return {
+                    movements: [
+                        { account: "D/75.2.12 Fornecimento - Eletricidade (Classe 7/Custo)", value: baseValue.toFixed(2), nature: "D", justification: "Aumento do Custo Operacional." },
+                        { account: "D/34.5.2.3 IVA Dedutível - Outros Bens e Serviços (Classe 3/Ativo)", value: ivaValue.toFixed(2), nature: "D", justification: "IVA Suportado a deduzir (Ativo)." },
+                        { account: "C/43 Depósitos à Ordem (Classe 4/Ativo)", value: totalValue.toFixed(2), nature: "C", justification: "Diminuição do Ativo (Banco) pelo valor total pago." }
+                    ],
+                    not_moved: ["32 Fornecedores (assumindo pagamento imediato)", "61 Vendas"],
+                    summary: `Lançamento de Pagamento de Custo: D/Custo + D/IVA a C/Ativo (Banco). D/O que entra (serviço) a C/O que sai (dinheiro).`
+                };
+            }
+            default:
+                return { movements: [], not_moved: [], summary: "Sensei Teca não consegue resolver este tipo de operação. Selecione um cenário predefinido." };
+        }
+    }
+
+
+    function calculateResolution() {
+        const resultsArea = document.getElementById('practical-results-area');
+        if (practicalOperations.length === 0) {
+            resultsArea.innerHTML = "<p class='feedback-error'>Sensei Teca diz: Adiciona operações antes de calcular!</p>";
+            return;
+        }
+
+        let fullResolution = `MOVIMENTAÇÕES RAZÃO (PGC):\n`;
+        let totalDB = 0;
+        let totalCR = 0;
+
+        practicalOperations.forEach((op, index) => {
+            const result = resolveOperation(op);
+            fullResolution += `\n--- [OP ${index + 1}: ${op.description}] ---\n`;
+            
+            result.movements.forEach(mov => {
+                const isDebit = mov.nature === 'D';
+                const value = parseFloat(mov.value);
+                
+                if(isDebit) { totalDB += value; } else { totalCR += value; }
+
+                // HTML com classes para cor (primary-color / white)
+                fullResolution += `<span class="${isDebit ? 'mov-debit' : 'mov-credit'}">${mov.account}</span> - Kz ${mov.value.padEnd(10)} - Justificativa: ${mov.justification}\n`;
+            });
+            
+            fullResolution += `\nContas NÃO movimentadas (Por Quê?): ${result.not_moved.join(', ')} (Conta não tem lógica no cenário).\n`;
+            fullResolution += `Essência Sensei Teca: ${result.summary}\n`;
+        });
+        
+        fullResolution += `\n--- BALANCETE (Teste da Essência do MPD) ---\n`;
+        fullResolution += `Total Débito: Kz ${totalDB.toFixed(2)}\n`;
+        fullResolution += `Total Crédito: Kz ${totalCR.toFixed(2)}\n`;
+        fullResolution += `MPD COMPROVADO: ${totalDB.toFixed(2) === totalCR.toFixed(2) ? 'SIM' : 'NÃO'} (As Partidas Dobradas estão corretas!)\n`;
+
+        resultsArea.innerHTML = `<pre>${fullResolution}</pre>`;
+    }
+
+
+    function exportPracticalResultsImage() {
+        const input = document.getElementById('practical-results-container');
+        if (input.querySelector('pre').textContent.length < 50) {
+             alert("Sensei Teca diz: Calcula primeiro a resolução do exercício!");
+            return;
+        }
+
+        html2canvas(input, { 
+            scale: 2, 
+            backgroundColor: 'black' 
+        }).then(canvas => {
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL('image/png');
+            a.download = `SenseiTeca_SimuladorPratico_${new Date().toISOString().slice(0, 10)}.png`;
+            a.click();
+        });
+    }
+
+    // =======================================================
+    // FUNÇÕES DE EXPORTAÇÃO (PDF e Imagem para QUIZ)
+    // =======================================================
+
+    // Requer as bibliotecas jsPDF e html2canvas (incluídas via CDN)
+    function exportResultsPDF() {
+        const input = document.getElementById('results-export-area');
+        const { jsPDF } = window.jspdf;
+        
+        const tempDiv = input.cloneNode(true);
+        tempDiv.id = 'temp-pdf-content';
+        tempDiv.style.backgroundColor = 'white'; 
+        tempDiv.style.color = 'black'; 
+        tempDiv.style.border = 'none';
+        document.body.appendChild(tempDiv);
+
+        html2canvas(tempDiv, { scale: 2, backgroundColor: 'white' }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgWidth = 210; 
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+            pdf.save(`SenseiTeca_Resultado_${userData.name}_${quizResults.level}.pdf`);
+            document.body.removeChild(tempDiv);
+        });
+    }
+
+    function exportResultsImage() {
+        const input = document.getElementById('results-export-area');
+
+        html2canvas(input, { scale: 2, backgroundColor: 'black' }).then(canvas => {
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL('image/png');
+            a.download = `SenseiTeca_Resultado_${userData.name}_${quizResults.level}.png`;
+            a.click();
+        });
+    }
+
+    // =======================================================
+    // INICIALIZAÇÃO
+    // =======================================================
+
+    window.onload = function() {
+        showModule('lessons-module');
+        document.getElementById('tab-aulas').classList.add('active');
+    };
+
+    // --- ÁREA RESERVADA PARA IMPORTAÇÃO DE ARQUIVOS PGC E LIVROS DE CONTABILIDADE ---
+    // Aqui serão carregados os PDFs externos enviados pelo usuário futuramente.
+</script>
+
+
+
+
     </main>
 
     <footer>
