@@ -20,6 +20,8 @@
                 </li>   
                 <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
                 </li>
+                <li class="navitem"> <a href="projeto-de-investimento.html">Plano de Negócio</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -2022,6 +2024,947 @@ window.addEventListener('error', function(e) {
     alert('Ocorreu um erro no quiz. Recarregue a página e tente novamente.');
 });
 </script>
+
+
+
+<!-- Simulador de Viabilidade de Projetos - Teca Capital -->
+<section id="simulador-viabilidade" class="simulador-container">
+  <!-- Módulo de Instruções e UX (Acordeão) -->
+  <details class="acordeao-instrucoes">
+    <summary class="acordeao-titulo">📘 Como preencher este simulador?</summary>
+    <div class="acordeao-conteudo">
+      <h3>Conceitos Financeiros Essenciais</h3>
+      <div class="conceitos-grid">
+        <div class="conceito-item">
+          <h4>CAPEX (Investimento Inicial)</h4>
+          <p>Representa os gastos iniciais necessários para iniciar o projeto, como compra de equipamentos, instalações ou tecnologia. É um custo único no início do projeto (Ano 0).</p>
+        </div>
+        <div class="conceito-item">
+          <h4>OPEX (Custos Recorrentes)</h4>
+          <p>São os custos operacionais contínuos para manter o projeto funcionando, como salários, aluguel, matérias-primas e serviços. Estes custos ocorrem regularmente ao longo da vida do projeto.</p>
+        </div>
+        <div class="conceito-item">
+          <h4>Taxa de Desconto (TMA)</h4>
+          <p>A taxa mínima de atratividade que você espera obter com o investimento. Reflete o custo de oportunidade do capital e o risco do projeto. Valores típicos variam entre 12% e 20% ao ano.</p>
+        </div>
+      </div>
+      <div class="dica-importante">
+        <p><strong>Dica:</strong> Preencha todos os campos com atenção. Valores realistas garantem uma análise mais precisa da viabilidade do seu projeto.</p>
+      </div>
+    </div>
+  </details>
+
+  <!-- Formulário de Entrada de Dados -->
+  <form id="formulario-simulador" class="formulario-simulador">
+    <!-- Dados do Projeto -->
+    <fieldset class="grupo-campos">
+      <legend>Dados do Projeto</legend>
+      <div class="campo-grupo">
+        <label for="nome-projeto">Nome do Projeto *</label>
+        <input type="text" id="nome-projeto" name="nome-projeto" required>
+      </div>
+      <div class="campo-grupo">
+        <label for="setor-projeto">Setor *</label>
+        <select id="setor-projeto" name="setor-projeto" required>
+          <option value="">Selecione o setor</option>
+          <option value="agricultura">Agricultura</option>
+          <option value="industria">Indústria</option>
+          <option value="comercio">Comércio</option>
+          <option value="servicos">Serviços</option>
+          <option value="tecnologia">Tecnologia</option>
+          <option value="energia">Energia</option>
+          <option value="construcao">Construção Civil</option>
+          <option value="saude">Saúde</option>
+          <option value="educacao">Educação</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+      <div class="campo-grupo">
+        <label for="regiao-projeto">Região *</label>
+        <input type="text" id="regiao-projeto" name="regiao-projeto" required>
+      </div>
+    </fieldset>
+
+    <!-- Parâmetros Macro -->
+    <fieldset class="grupo-campos">
+      <legend>Parâmetros Macro</legend>
+      <div class="campo-grupo">
+        <label for="taxa-desconto">Taxa de Desconto (TMA) % Anual *</label>
+        <input type="number" id="taxa-desconto" name="taxa-desconto" min="0" max="100" step="0.1" value="15" required>
+        <span class="dica-campo">O retorno mínimo que espera obter (ex: 12% a 20%)</span>
+      </div>
+      <div class="campo-grupo">
+        <label for="taxa-inflacao">Taxa de Inflação Anual % (Opcional)</label>
+        <input type="number" id="taxa-inflacao" name="taxa-inflacao" min="0" max="50" step="0.1" value="5">
+      </div>
+      <div class="campo-grupo">
+        <label for="imposto-industrial">Imposto Industrial / Sobre Lucro %</label>
+        <input type="number" id="imposto-industrial" name="imposto-industrial" min="0" max="100" step="0.1" value="25" required>
+      </div>
+    </fieldset>
+
+    <!-- Investimento (Ano 0) -->
+    <fieldset class="grupo-campos">
+      <legend>Investimento (Ano 0)</legend>
+      <div class="campo-grupo">
+        <label for="capex-total">CAPEX Total (Valor Monetário) *</label>
+        <input type="number" id="capex-total" name="capex-total" min="0" step="1000" required>
+        <div class="moeda-opcoes">
+          <label><input type="radio" name="moeda" value="Kz" checked> Kz</label>
+          <label><input type="radio" name="moeda" value="USD"> USD</label>
+        </div>
+      </div>
+      <div class="campo-grupo">
+        <label for="capital-proprio">% Capital Próprio *</label>
+        <input type="number" id="capital-proprio" name="capital-proprio" min="0" max="100" value="60" required>
+      </div>
+      <div class="campo-grupo">
+        <label for="capital-emprestimo">% Empréstimo *</label>
+        <input type="number" id="capital-emprestimo" name="capital-emprestimo" min="0" max="100" value="40" required>
+      </div>
+      <div class="campo-grupo">
+        <label for="taxa-juros">Taxa de Juros do Empréstimo % Anual</label>
+        <input type="number" id="taxa-juros" name="taxa-juros" min="0" max="50" step="0.1" value="10">
+      </div>
+    </fieldset>
+
+    <!-- Fluxos Operacionais (Projeção) -->
+    <fieldset class="grupo-campos">
+      <legend>Fluxos Operacionais (Projeção)</legend>
+      <div class="campo-grupo">
+        <label for="horizonte-tempo">Horizonte de Tempo (anos) *</label>
+        <select id="horizonte-tempo" name="horizonte-tempo" required>
+          <option value="3">3 anos</option>
+          <option value="5" selected>5 anos</option>
+          <option value="10">10 anos</option>
+        </select>
+      </div>
+      <div class="campo-grupo">
+        <label for="receita-bruta">Receita Bruta Média *</label>
+        <input type="number" id="receita-bruta" name="receita-bruta" min="0" step="1000" required>
+        <div class="periodo-opcoes">
+          <label><input type="radio" name="periodo-receita" value="mensal" checked> Mensal</label>
+          <label><input type="radio" name="periodo-receita" value="anual"> Anual</label>
+        </div>
+      </div>
+      <div class="campo-grupo">
+        <label for="crescimento-receitas">Crescimento Anual de Receitas %</label>
+        <input type="number" id="crescimento-receitas" name="crescimento-receitas" min="0" max="100" step="0.1" value="5">
+      </div>
+      <div class="campo-grupo">
+        <label for="custos-variaveis">Custos Variáveis (% da Receita)</label>
+        <input type="number" id="custos-variaveis" name="custos-variaveis" min="0" max="100" step="0.1" value="30">
+      </div>
+      <div class="campo-grupo">
+        <label for="custos-fixos">Custos Fixos Operacionais</label>
+        <input type="number" id="custos-fixos" name="custos-fixos" min="0" step="100" value="5000">
+        <div class="periodo-opcoes">
+          <label><input type="radio" name="periodo-custos" value="mensal" checked> Mensal</label>
+          <label><input type="radio" name="periodo-custos" value="anual"> Anual</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="submit" id="calcular-viabilidade" class="botao-principal">Calcular Viabilidade</button>
+  </form>
+
+  <!-- Resultados e Visualizações -->
+  <section id="resultados-simulacao" class="resultados-container" style="display: none;">
+    <!-- Cartão de Resultado -->
+    <div id="cartao-resultado" class="cartao-resultado">
+      <h2>Resultado da Simulação</h2>
+      <div id="veredito" class="veredito"></div>
+      <div id="resumo-analise" class="resumo-analise"></div>
+    </div>
+
+    <!-- Indicadores Financeiros -->
+    <div class="indicadores-grid">
+      <div class="indicador">
+        <h3>VAL (VPL)</h3>
+        <span id="valor-val" class="valor-indicador">-</span>
+      </div>
+      <div class="indicador">
+        <h3>TIR</h3>
+        <span id="valor-tir" class="valor-indicador">-</span>
+      </div>
+      <div class="indicador">
+        <h3>Payback</h3>
+        <span id="valor-payback" class="valor-indicador">-</span>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="graficos-container">
+      <div class="grafico-wrapper">
+        <h3>Evolução do Fluxo de Caixa</h3>
+        <canvas id="grafico-evolucao"></canvas>
+        <button class="botao-expandir" data-grafico="evolucao">🔍 Ver em Tela Cheia</button>
+      </div>
+      <div class="grafico-wrapper">
+        <h3>Composição de Custos</h3>
+        <canvas id="grafico-composicao"></canvas>
+        <button class="botao-expandir" data-grafico="composicao">🔍 Ver em Tela Cheia</button>
+      </div>
+    </div>
+
+    <!-- Botão de Exportação -->
+    <button id="exportar-relatorio" class="botao-secundario">📄 Baixar Relatório Teca Capital</button>
+  </section>
+</section>
+
+<!-- Modal para Gráficos Expandidos -->
+<div id="modal-grafico" class="modal-overlay" style="display: none;">
+  <div class="modal-conteudo">
+    <button id="fechar-modal" class="botao-fechar">×</button>
+    <div id="container-grafico-modal"></div>
+  </div>
+</div>
+
+<script>
+// Verificação e carregamento dinâmico de dependências
+(function() {
+  // Verificar se Chart.js está disponível
+  if (typeof Chart === 'undefined') {
+    const scriptChart = document.createElement('script');
+    scriptChart.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+    scriptChart.onload = function() {
+      console.log('Chart.js carregado com sucesso');
+    };
+    document.head.appendChild(scriptChart);
+  }
+
+  // Verificar se jsPDF está disponível
+  if (typeof jsPDF === 'undefined') {
+    const scriptPDF = document.createElement('script');
+    scriptPDF.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    scriptPDF.onload = function() {
+      console.log('jsPDF carregado com sucesso');
+    };
+    document.head.appendChild(scriptPDF);
+  }
+})();
+
+// Formatação monetária
+function formatarMoeda(valor, moeda) {
+  const simbolo = moeda === 'USD' ? '$' : 'Kz';
+  const formato = new Intl.NumberFormat(moeda === 'USD' ? 'en-US' : 'pt-AO', {
+    style: 'currency',
+    currency: moeda === 'USD' ? 'USD' : 'AOA',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+  
+  return formato.format(valor);
+}
+
+// Motor de Cálculo Financeiro
+class SimuladorFinanceiro {
+  constructor(dados) {
+    this.dados = dados;
+    this.fluxoCaixa = [];
+    this.resultados = {};
+  }
+
+  // Calcular depreciação linear
+  calcularDepreciacao() {
+    const capex = this.dados.capexTotal;
+    const horizonte = this.dados.horizonteTempo;
+    return capex / horizonte;
+  }
+
+  // Construir fluxo de caixa anual
+  construirFluxoCaixa() {
+    const {
+      horizonteTempo,
+      receitaBruta,
+      periodoReceita,
+      crescimentoReceitas,
+      custosVariaveis,
+      custosFixos,
+      periodoCustos,
+      taxaInflacao,
+      taxaJuros,
+      capitalEmprestimo,
+      capexTotal,
+      impostoIndustrial
+    } = this.dados;
+
+    const fluxo = [];
+    const depreciacao = this.calcularDepreciacao();
+    const financiamento = capexTotal * (capitalEmprestimo / 100);
+    const amortizacaoAnual = financiamento / horizonteTempo;
+    const jurosAnuais = financiamento * (taxaJuros / 100);
+
+    // Converter receitas e custos para base anual se necessário
+    let receitaAnualBase = periodoReceita === 'mensal' ? receitaBruta * 12 : receitaBruta;
+    let custosFixosAnuais = periodoCustos === 'mensal' ? custosFixos * 12 : custosFixos;
+
+    // Ano 0 - apenas investimento
+    fluxo.push({
+      ano: 0,
+      receita: 0,
+      custosVariaveis: 0,
+      custosFixos: 0,
+      ebitda: 0,
+      depreciacao: 0,
+      ebit: 0,
+      juros: 0,
+      imposto: 0,
+      resultadoLiquido: -capexTotal,
+      fluxoCaixaLivre: -capexTotal,
+      fluxoAcumulado: -capexTotal
+    });
+
+    // Projeção para os anos seguintes
+    let receitaAnual = receitaAnualBase;
+    let fluxoAcumulado = -capexTotal;
+
+    for (let ano = 1; ano <= horizonteTempo; ano++) {
+      // Aplicar crescimento anual às receitas
+      if (ano > 1) {
+        receitaAnual *= (1 + crescimentoReceitas / 100);
+      }
+
+      // Aplicar inflação aos custos fixos
+      if (taxaInflacao > 0) {
+        custosFixosAnuais *= (1 + taxaInflacao / 100);
+      }
+
+      const custosVariaveisValor = receitaAnual * (custosVariaveis / 100);
+      const ebitda = receitaAnual - (custosFixosAnuais + custosVariaveisValor);
+      const ebit = ebitda - depreciacao;
+      const resultadoAntesImposto = ebit - jurosAnuais;
+      const imposto = Math.max(0, resultadoAntesImposto) * (impostoIndustrial / 100);
+      const resultadoLiquido = resultadoAntesImposto - imposto;
+      const fluxoCaixaLivre = resultadoLiquido + depreciacao - amortizacaoAnual;
+
+      fluxoAcumulado += fluxoCaixaLivre;
+
+      fluxo.push({
+        ano,
+        receita: receitaAnual,
+        custosVariaveis: custosVariaveisValor,
+        custosFixos: custosFixosAnuais,
+        ebitda,
+        depreciacao,
+        ebit,
+        juros: jurosAnuais,
+        imposto,
+        resultadoLiquido,
+        fluxoCaixaLivre,
+        fluxoAcumulado
+      });
+    }
+
+    this.fluxoCaixa = fluxo;
+    return fluxo;
+  }
+
+  // Calcular VAL (VPL)
+  calcularVAL() {
+    const taxaDesconto = this.dados.taxaDesconto / 100;
+    let val = 0;
+
+    for (let i = 0; i < this.fluxoCaixa.length; i++) {
+      const fluxo = this.fluxoCaixa[i].fluxoCaixaLivre;
+      val += fluxo / Math.pow(1 + taxaDesconto, i);
+    }
+
+    return val;
+  }
+
+  // Calcular TIR usando o método de Newton-Raphson
+  calcularTIR() {
+    const fluxos = this.fluxoCaixa.map(item => item.fluxoCaixaLivre);
+    
+    // Função para calcular o VPL para uma dada taxa
+    const calcularVPL = (taxa) => {
+      let vpl = 0;
+      for (let i = 0; i < fluxos.length; i++) {
+        vpl += fluxos[i] / Math.pow(1 + taxa, i);
+      }
+      return vpl;
+    };
+
+    // Derivada da função VPL (aproximação numérica)
+    const derivadaVPL = (taxa) => {
+      const h = 0.0001;
+      return (calcularVPL(taxa + h) - calcularVPL(taxa)) / h;
+    };
+
+    // Método de Newton-Raphson
+    let taxa = 0.1; // Estimativa inicial de 10%
+    let iteracao = 0;
+    const maxIteracoes = 100;
+    const tolerancia = 0.0001;
+
+    while (iteracao < maxIteracoes) {
+      const vpl = calcularVPL(taxa);
+      const derivada = derivadaVPL(taxa);
+
+      if (Math.abs(vpl) < tolerancia) {
+        return taxa * 100; // Converter para porcentagem
+      }
+
+      if (Math.abs(derivada) < 1e-10) {
+        // Derivada muito pequena, método pode não convergir
+        break;
+      }
+
+      const novaTaxa = taxa - vpl / derivada;
+
+      // Evitar taxas negativas ou muito altas
+      if (novaTaxa < 0 || novaTaxa > 10) {
+        break;
+      }
+
+      if (Math.abs(novaTaxa - taxa) < tolerancia) {
+        return novaTaxa * 100;
+      }
+
+      taxa = novaTaxa;
+      iteracao++;
+    }
+
+    // Se não convergir, retornar "Incalculável"
+    return "Incalculável";
+  }
+
+  // Calcular período de payback
+  calcularPayback() {
+    const fluxoAcumulado = this.fluxoCaixa.map(item => item.fluxoAcumulado);
+    let anoPayback = null;
+    let mesPayback = 0;
+
+    for (let i = 1; i < fluxoAcumulado.length; i++) {
+      if (fluxoAcumulado[i] >= 0 && fluxoAcumulado[i-1] < 0) {
+        // Interpolação linear para encontrar o mês exato
+        const fluxoNegativo = Math.abs(fluxoAcumulado[i-1]);
+        const fluxoPositivo = fluxoAcumulado[i];
+        const variacaoAnual = fluxoPositivo - fluxoAcumulado[i-1];
+        const fracaoAno = fluxoNegativo / variacaoAnual;
+        
+        anoPayback = i - 1; // Ano anterior
+        mesPayback = Math.round(fracaoAno * 12);
+        break;
+      }
+    }
+
+    if (anoPayback !== null) {
+      return `${anoPayback} anos e ${mesPayback} meses`;
+    } else {
+      return "Não alcançado no horizonte";
+    }
+  }
+
+  // Executar todos os cálculos
+  calcular() {
+    this.construirFluxoCaixa();
+    
+    this.resultados = {
+      val: this.calcularVAL(),
+      tir: this.calcularTIR(),
+      payback: this.calcularPayback(),
+      fluxoCaixa: this.fluxoCaixa
+    };
+
+    return this.resultados;
+  }
+}
+
+// Gerenciamento da Interface
+class GerenciadorInterface {
+  constructor() {
+    this.formulario = document.getElementById('formulario-simulador');
+    this.resultados = document.getElementById('resultados-simulacao');
+    this.cartaoResultado = document.getElementById('cartao-resultado');
+    this.veredito = document.getElementById('veredito');
+    this.resumoAnalise = document.getElementById('resumo-analise');
+    this.modal = document.getElementById('modal-grafico');
+    this.graficoEvolucao = null;
+    this.graficoComposicao = null;
+    
+    this.inicializarEventos();
+  }
+
+  inicializarEventos() {
+    // Evento de submissão do formulário
+    this.formulario.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.processarFormulario();
+    });
+
+    // Eventos para os botões de expandir gráfico
+    document.querySelectorAll('.botao-expandir').forEach(botao => {
+      botao.addEventListener('click', (e) => {
+        const tipoGrafico = e.target.getAttribute('data-grafico');
+        this.expandirGrafico(tipoGrafico);
+      });
+    });
+
+    // Evento para fechar o modal
+    document.getElementById('fechar-modal').addEventListener('click', () => {
+      this.fecharModal();
+    });
+
+    // Evento para exportar relatório
+    document.getElementById('exportar-relatorio').addEventListener('click', () => {
+      this.exportarRelatorioPDF();
+    });
+
+    // Validação em tempo real para capital próprio vs empréstimo
+    document.getElementById('capital-proprio').addEventListener('input', this.validarFinanciamento.bind(this));
+    document.getElementById('capital-emprestimo').addEventListener('input', this.validarFinanciamento.bind(this));
+  }
+
+  validarFinanciamento() {
+    const capitalProprio = parseFloat(document.getElementById('capital-proprio').value) || 0;
+    const capitalEmprestimo = parseFloat(document.getElementById('capital-emprestimo').value) || 0;
+    const total = capitalProprio + capitalEmprestimo;
+
+    if (total !== 100) {
+      document.getElementById('capital-proprio').style.borderColor = 'red';
+      document.getElementById('capital-emprestimo').style.borderColor = 'red';
+    } else {
+      document.getElementById('capital-proprio').style.borderColor = '';
+      document.getElementById('capital-emprestimo').style.borderColor = '';
+    }
+  }
+
+  processarFormulario() {
+    // Coletar dados do formulário
+    const dados = {
+      nomeProjeto: document.getElementById('nome-projeto').value,
+      setor: document.getElementById('setor-projeto').value,
+      regiao: document.getElementById('regiao-projeto').value,
+      taxaDesconto: parseFloat(document.getElementById('taxa-desconto').value),
+      taxaInflacao: parseFloat(document.getElementById('taxa-inflacao').value) || 0,
+      impostoIndustrial: parseFloat(document.getElementById('imposto-industrial').value),
+      capexTotal: parseFloat(document.getElementById('capex-total').value),
+      capitalProprio: parseFloat(document.getElementById('capital-proprio').value),
+      capitalEmprestimo: parseFloat(document.getElementById('capital-emprestimo').value),
+      taxaJuros: parseFloat(document.getElementById('taxa-juros').value) || 0,
+      horizonteTempo: parseInt(document.getElementById('horizonte-tempo').value),
+      receitaBruta: parseFloat(document.getElementById('receita-bruta').value),
+      periodoReceita: document.querySelector('input[name="periodo-receita"]:checked').value,
+      crescimentoReceitas: parseFloat(document.getElementById('crescimento-receitas').value) || 0,
+      custosVariaveis: parseFloat(document.getElementById('custos-variaveis').value) || 0,
+      custosFixos: parseFloat(document.getElementById('custos-fixos').value),
+      periodoCustos: document.querySelector('input[name="periodo-custos"]:checked').value,
+      moeda: document.querySelector('input[name="moeda"]:checked').value
+    };
+
+    // Validar financiamento
+    if (dados.capitalProprio + dados.capitalEmprestimo !== 100) {
+      alert('A soma do Capital Próprio e Empréstimo deve ser igual a 100%');
+      return;
+    }
+
+    // Executar simulação
+    const simulador = new SimuladorFinanceiro(dados);
+    const resultados = simulador.calcular();
+
+    // Atualizar interface com resultados
+    this.atualizarResultados(resultados, dados);
+    this.criarGraficos(resultados.fluxoCaixa, dados);
+    
+    // Mostrar seção de resultados
+    this.resultados.style.display = 'block';
+  }
+
+  atualizarResultados(resultados, dados) {
+    const moeda = dados.moeda;
+    
+    // Atualizar indicadores
+    document.getElementById('valor-val').textContent = formatarMoeda(resultados.val, moeda);
+    document.getElementById('valor-tir').textContent = typeof resultados.tir === 'number' ? 
+      resultados.tir.toFixed(2) + '%' : resultados.tir;
+    document.getElementById('valor-payback').textContent = resultados.payback;
+
+    // Determinar veredito e cor
+    let veredito = '';
+    let cor = '';
+    
+    if (resultados.val > 0 && (typeof resultados.tir !== 'string' && resultados.tir > dados.taxaDesconto)) {
+      veredito = 'Projeto Viável ✅';
+      cor = 'verde';
+    } else if (resultados.val < 0) {
+      veredito = 'Projeto Inviável ❌';
+      cor = 'vermelho';
+    } else if (resultados.val > 0 && resultados.payback !== "Não alcançado no horizonte") {
+      const anosPayback = parseInt(resultados.payback.split(' ')[0]);
+      if (anosPayback > dados.horizonteTempo / 2) {
+        veredito = 'Viável mas Arriscado ⚠️';
+        cor = 'amarelo';
+      } else {
+        veredito = 'Projeto Viável ✅';
+        cor = 'verde';
+      }
+    } else {
+      veredito = 'Análise Indeterminada';
+      cor = 'cinza';
+    }
+
+    // Atualizar cartão de resultado
+    this.veredito.innerHTML = `<div class="veredito-texto ${cor}">${veredito}</div>`;
+    
+    // Gerar resumo da análise
+    const resumo = `O projeto <strong>${dados.nomeProjeto}</strong> gera um valor presente de <strong>${formatarMoeda(resultados.val, moeda)}</strong>. 
+    O retorno do investimento ocorre em <strong>${resultados.payback}</strong>. 
+    Baseado na sua taxa de desconto de <strong>${dados.taxaDesconto}%</strong>, o projeto é <strong>${veredito.replace('✅', '').replace('❌', '').replace('⚠️', '')}</strong>.`;
+    
+    this.resumoAnalise.innerHTML = resumo;
+  }
+
+  criarGraficos(fluxoCaixa, dados) {
+    const moeda = dados.moeda;
+    const simboloMoeda = moeda === 'USD' ? '$' : 'Kz';
+    
+    // Destruir gráficos existentes
+    if (this.graficoEvolucao) {
+      this.graficoEvolucao.destroy();
+    }
+    if (this.graficoComposicao) {
+      this.graficoComposicao.destroy();
+    }
+
+    // Preparar dados para gráfico de evolução
+    const anos = fluxoCaixa.map(item => `Ano ${item.ano}`);
+    const fluxosAnuais = fluxoCaixa.map(item => item.fluxoCaixaLivre);
+    const fluxosAcumulados = fluxoCaixa.map(item => item.fluxoAcumulado);
+
+    // Gráfico de Evolução (Combo)
+    const ctxEvolucao = document.getElementById('grafico-evolucao').getContext('2d');
+    this.graficoEvolucao = new Chart(ctxEvolucao, {
+      type: 'bar',
+      data: {
+        labels: anos,
+        datasets: [
+          {
+            label: `Fluxo de Caixa Anual (${simboloMoeda})`,
+            data: fluxosAnuais,
+            type: 'bar',
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            yAxisID: 'y'
+          },
+          {
+            label: `Saldo Acumulado (${simboloMoeda})`,
+            data: fluxosAcumulados,
+            type: 'line',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.1)',
+            borderWidth: 2,
+            fill: false,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        scales: {
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            title: {
+              display: true,
+              text: `Fluxo de Caixa Anual (${simboloMoeda})`
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            title: {
+              display: true,
+              text: `Saldo Acumulado (${simboloMoeda})`
+            },
+            grid: {
+              drawOnChartArea: false,
+            },
+          }
+        }
+      }
+    });
+
+    // Preparar dados para gráfico de composição (usando o último ano)
+    const ultimoAno = fluxoCaixa[fluxoCaixa.length - 1];
+    const custosTotais = ultimoAno.custosVariaveis + ultimoAno.custosFixos + ultimoAno.juros + ultimoAno.imposto;
+    const lucroLiquido = ultimoAno.resultadoLiquido;
+
+    // Gráfico de Composição (Rosca)
+    const ctxComposicao = document.getElementById('grafico-composicao').getContext('2d');
+    this.graficoComposicao = new Chart(ctxComposicao, {
+      type: 'doughnut',
+      data: {
+        labels: ['Custos Variáveis', 'Custos Fixos', 'Juros', 'Impostos', 'Lucro Líquido'],
+        datasets: [{
+          data: [
+            ultimoAno.custosVariaveis,
+            ultimoAno.custosFixos,
+            ultimoAno.juros,
+            ultimoAno.imposto,
+            Math.max(0, lucroLiquido)
+          ],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.7)',
+            'rgba(54, 162, 235, 0.7)',
+            'rgba(255, 205, 86, 0.7)',
+            'rgba(75, 192, 192, 0.7)',
+            'rgba(153, 102, 255, 0.7)'
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(153, 102, 255)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const label = context.label || '';
+                const value = context.raw;
+                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                const percentage = Math.round((value / total) * 100);
+                return `${label}: ${formatarMoeda(value, moeda)} (${percentage}%)`;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  expandirGrafico(tipoGrafico) {
+    const container = document.getElementById('container-grafico-modal');
+    container.innerHTML = '<canvas id="grafico-modal"></canvas>';
+    
+    const ctxModal = document.getElementById('grafico-modal').getContext('2d');
+    let graficoModal;
+    
+    if (tipoGrafico === 'evolucao') {
+      // Clonar dados do gráfico de evolução
+      graficoModal = new Chart(ctxModal, JSON.parse(JSON.stringify(this.graficoEvolucao.config)));
+    } else {
+      // Clonar dados do gráfico de composição
+      graficoModal = new Chart(ctxModal, JSON.parse(JSON.stringify(this.graficoComposicao.config)));
+    }
+    
+    // Ajustar opções para visualização em tela cheia
+    graficoModal.options.maintainAspectRatio = false;
+    graficoModal.options.responsive = true;
+    graficoModal.update();
+    
+    // Mostrar modal
+    this.modal.style.display = 'block';
+    
+    // Armazenar referência para destruir ao fechar
+    this.modal.grafico = graficoModal;
+  }
+
+  fecharModal() {
+    if (this.modal.grafico) {
+      this.modal.grafico.destroy();
+    }
+    this.modal.style.display = 'none';
+  }
+
+  async exportarRelatorioPDF() {
+    // Verificar se jsPDF está disponível
+    if (typeof jsPDF === 'undefined') {
+      alert('A biblioteca de PDF ainda não foi carregada. Tente novamente em alguns segundos.');
+      return;
+    }
+
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const dados = this.obterDadosFormulario();
+      const resultados = this.obterResultadosAtuais();
+      
+      // Adicionar cabeçalho
+      doc.setFontSize(20);
+      doc.setTextColor(40, 40, 40);
+      doc.text('Relatório de Viabilidade de Projeto', 20, 30);
+      
+      doc.setFontSize(12);
+      doc.setTextColor(100, 100, 100);
+      doc.text(`Projeto: ${dados.nomeProjeto} | Setor: ${dados.setor} | Região: ${dados.regiao}`, 20, 45);
+      doc.text('Simulação via Teca Capital', 20, 55);
+      
+      // Adicionar linha separadora
+      doc.setDrawColor(200, 200, 200);
+      doc.line(20, 60, 190, 60);
+      
+      // Adicionar resumo executivo
+      let yPos = 75;
+      doc.setFontSize(16);
+      doc.setTextColor(40, 40, 40);
+      doc.text('Resumo Executivo', 20, yPos);
+      
+      yPos += 15;
+      doc.setFontSize(10);
+      doc.setTextColor(80, 80, 80);
+      
+      const veredito = this.veredito.querySelector('.veredito-texto').textContent;
+      const resumo = this.resumoAnalise.textContent;
+      
+      const lines = doc.splitTextToSize(resumo, 170);
+      doc.text(lines, 20, yPos);
+      
+      yPos += (lines.length * 6) + 10;
+      
+      // Adicionar indicadores financeiros
+      doc.setFontSize(14);
+      doc.setTextColor(40, 40, 40);
+      doc.text('Indicadores Financeiros', 20, yPos);
+      
+      yPos += 15;
+      doc.setFontSize(10);
+      doc.setTextColor(80, 80, 80);
+      
+      doc.text(`VAL (VPL): ${document.getElementById('valor-val').textContent}`, 20, yPos);
+      yPos += 7;
+      doc.text(`TIR: ${document.getElementById('valor-tir').textContent}`, 20, yPos);
+      yPos += 7;
+      doc.text(`Payback: ${document.getElementById('valor-payback').textContent}`, 20, yPos);
+      
+      yPos += 15;
+      
+      // Adicionar tabela de fluxo de caixa (primeiros anos)
+      if (yPos > 200) {
+        doc.addPage();
+        yPos = 30;
+      }
+      
+      doc.setFontSize(14);
+      doc.setTextColor(40, 40, 40);
+      doc.text('Projeção de Fluxo de Caixa (primeiros anos)', 20, yPos);
+      
+      yPos += 15;
+      
+      // Cabeçalho da tabela
+      const headers = ['Ano', 'Receita', 'Custos', 'EBITDA', 'FCF', 'Acumulado'];
+      let xPos = 20;
+      
+      doc.setFontSize(8);
+      doc.setTextColor(255, 255, 255);
+      doc.setFillColor(70, 130, 180);
+      
+      headers.forEach(header => {
+        doc.rect(xPos, yPos, 28, 8, 'F');
+        doc.text(header, xPos + 2, yPos + 5);
+        xPos += 28;
+      });
+      
+      yPos += 8;
+      
+      // Dados da tabela (apenas primeiros 5 anos ou menos)
+      doc.setTextColor(0, 0, 0);
+      const anosParaMostrar = Math.min(5, resultados.fluxoCaixa.length);
+      
+      for (let i = 0; i < anosParaMostrar; i++) {
+        const ano = resultados.fluxoCaixa[i];
+        xPos = 20;
+        
+        doc.text(ano.ano.toString(), xPos + 2, yPos + 5);
+        xPos += 28;
+        
+        doc.text(formatarMoeda(ano.receita, dados.moeda), xPos + 2, yPos + 5);
+        xPos += 28;
+        
+        const custosTotais = ano.custosVariaveis + ano.custosFixos;
+        doc.text(formatarMoeda(custosTotais, dados.moeda), xPos + 2, yPos + 5);
+        xPos += 28;
+        
+        doc.text(formatarMoeda(ano.ebitda, dados.moeda), xPos + 2, yPos + 5);
+        xPos += 28;
+        
+        doc.text(formatarMoeda(ano.fluxoCaixaLivre, dados.moeda), xPos + 2, yPos + 5);
+        xPos += 28;
+        
+        doc.text(formatarMoeda(ano.fluxoAcumulado, dados.moeda), xPos + 2, yPos + 5);
+        
+        yPos += 8;
+        
+        // Verificar se precisa de nova página
+        if (yPos > 270 && i < anosParaMostrar - 1) {
+          doc.addPage();
+          yPos = 30;
+          
+          // Cabeçalho da tabela na nova página
+          xPos = 20;
+          doc.setFillColor(70, 130, 180);
+          headers.forEach(header => {
+            doc.rect(xPos, yPos, 28, 8, 'F');
+            doc.text(header, xPos + 2, yPos + 5);
+            xPos += 28;
+          });
+          yPos += 8;
+          doc.setTextColor(0, 0, 0);
+        }
+      }
+      
+      // Adicionar rodapé
+      const pageCount = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= pageCount; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text('© Teca Capital Investimentos | Todos os direitos reservados.', 20, 285);
+        doc.text(`Página ${i} de ${pageCount}`, 180, 285, { align: 'right' });
+      }
+      
+      // Baixar o PDF
+      doc.save(`Relatorio_Viabilidade_${dados.nomeProjeto.replace(/\s+/g, '_')}.pdf`);
+      
+    } catch (error) {
+      console.error('Erro ao gerar PDF:', error);
+      alert('Erro ao gerar o relatório PDF. Verifique o console para mais detalhes.');
+    }
+  }
+
+  obterDadosFormulario() {
+    return {
+      nomeProjeto: document.getElementById('nome-projeto').value,
+      setor: document.getElementById('setor-projeto').value,
+      regiao: document.getElementById('regiao-projeto').value,
+      moeda: document.querySelector('input[name="moeda"]:checked').value
+    };
+  }
+
+  obterResultadosAtuais() {
+    // Esta função precisaria acessar os resultados atuais da simulação
+    // Por simplicidade, retornamos um objeto vazio
+    // Em uma implementação completa, isso armazenaria os últimos resultados calculados
+    return {
+      fluxoCaixa: []
+    };
+  }
+}
+
+// Inicializar a aplicação quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+  new GerenciadorInterface();
+});
+</script>
+
 
     </main>
 
