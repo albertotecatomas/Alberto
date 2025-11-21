@@ -4391,7 +4391,60 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('op-date').value = today;
     };
+
+    // =======================================================
+// FUNÇÃO PARA APLICAR SCROLL AUTOMÁTICO NAS TABELAS
+// =======================================================
+
+function applyTableScrollContainers() {
+    // Selecionar todas as tabelas que precisam de scroll
+    const tables = document.querySelectorAll('#results-container-table table, .sensei-box table, .explanation-box table');
+    
+    tables.forEach(table => {
+        // Verificar se já tem um wrapper
+        if (!table.parentElement.classList.contains('table-responsive')) {
+            // Criar wrapper
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-responsive';
+            
+            // Inserir o wrapper e mover a tabela para dentro
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        }
+    });
+}
+
+// Aplicar quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    applyTableScrollContainers();
+    
+    // Aplicar também após cálculos do simulador prático
+    const originalCalculateResolution = window.calculateResolution;
+    window.calculateResolution = function() {
+        originalCalculateResolution();
+        setTimeout(applyTableScrollContainers, 100);
+    };
+});
+
+// Observar mudanças no DOM para aplicar a tabelas dinâmicas
+const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length) {
+            setTimeout(applyTableScrollContainers, 50);
+        }
+    });
+});
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true
+});
+
+// Re-aplicar quando a janela for redimensionada
+window.addEventListener('resize', applyTableScrollContainers);
+
 </script>
+
 
 
     </main>
