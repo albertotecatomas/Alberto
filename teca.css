@@ -10112,3 +10112,404 @@ select {
     max-width: 100% !important;
     margin: 15px 0 !important;
 }
+
+
+/* ===================================================== */
+/* RESPONSIVIDADE UNIVERSAL E HARMONIZAÇÃO CSS */
+/* Foco exclusivo em fluidez, adaptação e prevenção de conflitos */
+/* ===================================================== */
+
+/* === P1. FUNDAÇÃO: FLUIDEZ UNIVERSAL === */
+
+/* Viewport já está no HTML: <meta name="viewport" content="width=device-width"> */
+
+/* Box Model Consistente para todos os elementos */
+* {
+  box-sizing: border-box;
+}
+
+/* Imagens Flexíveis - Prevenir "layout breaking" */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container Principal Fluido */
+.container {
+  width: 94%;
+  margin: 0 auto;
+  max-width: 1400px; /* Limite máximo para TVs/Desktops grandes */
+}
+
+/* === P2. ALINHAMENTO E CONTROLE DE FLUXO === */
+
+/* Clearfix Hack - Correção de colapso de elementos float */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Garantir que footer fique abaixo de elementos flutuantes */
+footer {
+  clear: both;
+}
+
+/* Espaçamento consistente com unidades relativas */
+.section-spacing {
+  margin-bottom: 2em;
+  padding: 1.5em;
+}
+
+.element-spacing {
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+/* === P3. NEUTRALIZAR INTERFERÊNCIA NO SIMULADOR === */
+
+/* Container do Simulador - Estilos mínimos e não-invasivos */
+#simulador-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  position: static; /* Remove posicionamento absoluto conflituoso */
+  float: none; /* Remove flutuação conflituosa */
+}
+
+/* Reset de estilos globais que podem conflitar com o simulador */
+#simulador-wrapper div,
+#simulador-wrapper p,
+#simulador-wrapper input,
+#simulador-wrapper select,
+#simulador-wrapper button {
+  /* Não aplicar estilos globais que possam sobrepor estilos internos */
+  all: unset;
+  box-sizing: border-box;
+}
+
+/* Garantir que o simulador seja responsivo dentro do wrapper */
+#simulador-wrapper .simulador-interno,
+#simulador-wrapper > div {
+  width: 100%;
+  height: auto;
+}
+
+/* === P4. MEDIA QUERIES PARA ADAPTABILIDADE TOTAL === */
+
+/* MOBILE FIRST APPROACH - Base para todos os dispositivos */
+
+/* Telemóveis Pequenos (até 449px) */
+@media (max-width: 449px) {
+  .container {
+    width: 98%;
+    padding: 0 0.5rem;
+  }
+  
+  /* Forçar empilhamento vertical */
+  .elemento-lateral,
+  .banner-direita,
+  .coluna-flutuante {
+    float: none;
+    position: static;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  /* Aumentar área clicável para touch */
+  .menu-opcoes ul li a,
+  .nav-item,
+  .botao-toque {
+    padding: 12px 16px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Simplificar layouts complexos */
+  .grid-desktop,
+  .colunas-multiplas {
+    display: block;
+  }
+}
+
+/* Telemóveis Grandes / Tablet Portrait (450px - 767px) */
+@media (min-width: 450px) and (max-width: 767px) {
+  .container {
+    width: 96%;
+  }
+  
+  /* Layouts simples de 2 colunas quando possível */
+  .grid-adaptavel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  /* Melhor legibilidade */
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .texto-legivel {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    width: 94%;
+  }
+  
+  /* Ativar layouts de colunas */
+  .layout-tablet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Sidebars condicionais */
+  .sidebar-adaptavel {
+    width: 35%;
+    float: left;
+    margin-right: 1.5rem;
+  }
+  
+  .conteudo-principal {
+    width: 62%;
+    float: left;
+  }
+}
+
+/* Desktop Padrão (1024px - 1399px) */
+@media (min-width: 1024px) and (max-width: 1399px) {
+  .container {
+    width: 92%;
+    max-width: 1200px;
+  }
+  
+  /* Layouts completos de desktop */
+  .grid-desktop {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  /* Navegação complexa ativada */
+  .navegacao-complexa {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+/* Desktop Grande / TV (1400px+) */
+@media (min-width: 1400px) {
+  .container {
+    width: 90%;
+    max-width: 1600px;
+  }
+  
+  /* Otimização para telas extra-largas */
+  .layout-ultrawide {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+  
+  /* Aproveitar espaço lateral */
+  .conteudo-widescreen {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+/* === ADAPTAÇÕES ESPECÍFICAS PARA CONTEÚDO === */
+
+/* Quando o conteúdo quebra - breakpoints baseados em conteúdo */
+@media (max-width: 650px) {
+  .tabela-responsiva {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .tabela-responsiva table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 550px) {
+  .formulario-complexo .grupo-campos {
+    display: block;
+  }
+  
+  .formulario-complexo .campo-metade {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* === HARMONIZAÇÃO DE COMPONENTES COMUNS === */
+
+/* Cards - Adaptação universal */
+.card-responsiva {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  break-inside: avoid;
+}
+
+@media (min-width: 768px) {
+  .card-responsiva {
+    width: calc(50% - 1rem);
+    float: left;
+    margin-right: 1rem;
+  }
+  
+  .card-responsiva:nth-child(2n) {
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-responsiva {
+    width: calc(33.333% - 1.5rem);
+    margin-right: 1.5rem;
+  }
+  
+  .card-responsiva:nth-child(2n) {
+    margin-right: 1.5rem;
+  }
+  
+  .card-responsiva:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+
+/* Navegação - Adaptação touch/desktop */
+.nav-universal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .nav-universal {
+    flex-direction: column;
+  }
+  
+  .nav-universal .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* === PREVENÇÃO DE CONFLITOS ESPECÍFICOS === */
+
+/* Isolar componentes de frameworks externos */
+.componente-externo {
+  all: initial;
+  box-sizing: border-box;
+}
+
+.componente-externo * {
+  box-sizing: border-box;
+}
+
+/* Garantir que iframes/vídeos sejam responsivos */
+.video-responsivo,
+.iframe-responsivo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+/* === UTILITÁRIOS DE RESPONSIVIDADE === */
+
+.visivel-mobile { display: block; }
+.visivel-tablet { display: none; }
+.visivel-desktop { display: none; }
+
+@media (min-width: 768px) {
+  .visivel-mobile { display: none; }
+  .visivel-tablet { display: block; }
+}
+
+@media (min-width: 1024px) {
+  .visivel-tablet { display: none; }
+  .visivel-desktop { display: block; }
+}
+
+/* Esconder elementos em dispositivos específicos */
+.esconder-mobile { display: block; }
+.esconder-tablet { display: block; }
+
+@media (max-width: 767px) {
+  .esconder-mobile { display: none; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .esconder-tablet { display: none; }
+}
+
+/* === CORREÇÕES DE FLUXO ESPECÍFICAS === */
+
+/* Prevenir quebra de layout em transições */
+.transicao-suave {
+  transition: all 0.3s ease;
+}
+
+/* Garantir hierarquia visual consistente */
+.z-index-gerenciado {
+  z-index: 1;
+}
+
+.modal-overlay {
+  z-index: 1000;
+}
+
+.menu-flutuante {
+  z-index: 100;
+}
+
+/* === OTIMIZAÇÃO PARA PERFORMANCE EM MOBILE === */
+
+@media (max-width: 767px) {
+  .efeitos-mobile {
+    /* Reduzir efeitos pesados em mobile */
+    transform: none;
+    filter: none;
+    backdrop-filter: none;
+  }
+  
+  .animacao-mobile {
+    /* Manter apenas animações essenciais */
+    animation-duration: 0.3s;
+  }
+}
+
+/* === SUPORTE PARA ORIENTAÇÃO DE TELA === */
+
+/* Landscape em mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+  .container {
+    width: 98%;
+  }
+  
+  .conteudo-landscape {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+/* Portrait em tablet */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+  .layout-tablet-portrait {
+    grid-template-columns: 1fr;
+  }
+}
+
