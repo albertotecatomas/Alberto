@@ -5796,3 +5796,323 @@ img, video {
         padding: 0.5rem;
     }
 }
+
+/* === CORREÇÕES ESPECÍFICAS DA BIBLIOTECA === */
+
+/* 1) VÍDEO PRINCIPAL DA BIBLIOTECA */
+.banner-video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 2) RESUMO EM ÁUDIO - SEM FORMATAÇÃO */
+.audio-card audio {
+    width: 100%;
+    filter: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: none !important;
+    border-radius: 0 !important;
+}
+
+.audio-card,
+.audio-card:hover,
+.audio-card:focus {
+    filter: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    background: none !important;
+    border: none !important;
+}
+
+/* 3) VÍDEO EDUCATIVO - TAMANHO ORIGINAL */
+.bitcoin video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    max-width: 100%;
+    display: block;
+}
+
+/* 4) GRÁFICOS - VISUALIZAÇÃO COMPLETA */
+.chart-container {
+    min-height: 500px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 20px 10px;
+    margin: 15px 0;
+}
+
+.chart-container canvas {
+    min-height: 450px;
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+/* Garantir que gráficos não sejam espremidos em telas pequenas */
+@media (max-width: 700px) {
+    .chart-container {
+        min-height: 500px;
+        overflow-x: auto;
+    }
+    
+    .chart-container canvas {
+        min-width: 600px; /* Permite scroll horizontal se necessário */
+    }
+}
+
+@media (max-width: 450px) {
+    .chart-container {
+        min-height: 500px;
+    }
+    
+    .chart-container canvas {
+        min-width: 500px;
+    }
+}
+
+/* 5) NEUTRALIZAR EFEITOS APENAS NA BIBLIOTECA */
+#biblioteca .subdiv img,
+#biblioteca .video-card-header img,
+#biblioteca .ebook-card-header img {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+#biblioteca .subdiv:hover img,
+#biblioteca .video-card-header:hover img,
+#biblioteca .ebook-card-header:hover img {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* === VÍDEOS BANNER - OCUPAÇÃO TOTAL DO ESPAÇO === */
+.banner-video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 12px !important;
+    margin: 0 auto;
+}
+
+/* Container dos vídeos banner para garantir ocupação total */
+.banner-video-container {
+    width: 100%;
+    height: 400px; /* Altura fixa para ocupação total */
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* Garantir responsividade mantendo ocupação total */
+@media (max-width: 1000px) {
+    .banner-video-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 700px) {
+    .banner-video-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 450px) {
+    .banner-video-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 300px) {
+    .banner-video-container {
+        height: 200px;
+    }
+}
+
+/* === CORREÇÃO DO LAYOUT DO MAIN DA BIBLIOTECA === */
+main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#biblioteca {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container dos vídeos banner - tamanho adequado */
+.banner-video-container {
+    width: 100%;
+    height: 300px; /* Altura mais adequada */
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 0 auto 20px auto;
+}
+
+.banner-video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+}
+
+/* Subdivs da biblioteca - ocupando espaço necessário */
+#biblioteca .subdiv {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Container de artigos - grid responsivo */
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.article-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Container de áudios - grid responsivo */
+.audio-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.audio-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Seções BODIVA e Econômica */
+#bodiva,
+#economic {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Responsividade para ocupar espaço necessário */
+@media (max-width: 1000px) {
+    main {
+        padding: 15px;
+    }
+    
+    .banner-video-container {
+        height: 250px;
+    }
+    
+    .articles-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .audio-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    main {
+        padding: 10px;
+    }
+    
+    .banner-video-container {
+        height: 200px;
+    }
+    
+    .articles-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .audio-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 450px) {
+    main {
+        padding: 10px;
+    }
+    
+    .banner-video-container {
+        height: 180px;
+    }
+    
+    .articles-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .audio-cards-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    #biblioteca .subdiv {
+        padding: 15px;
+    }
+}
+
+/* === CORREÇÃO DE ESPAÇAMENTO ENTRE TÍTULOS E VÍDEO === */
+.fade-in {
+    margin-bottom: 30px !important;
+}
+
+.section-title.time {
+    margin-top: 40px !important;
+    margin-bottom: 25px !important;
+}
+
+/* === CORREÇÃO DE ESPAÇAMENTO ENTRE HEADER E MAIN === */
+header {
+    margin-bottom: 40px !important;
+}
+
+main {
+    margin-top: 20px !important;
+}
