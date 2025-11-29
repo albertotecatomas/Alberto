@@ -34,59 +34,74 @@
     </header>
     
     <main>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+    
+    <!-- CSS otimizado -->
     <style>
-        /* Cores: RGB(214, 174, 100) | Branco | Preto */
+        /* Variáveis CSS otimizadas */
         :root {
             --primary-color: rgb(214, 174, 100);
             --primary-dark: rgb(180, 145, 75);
             --primary-light: rgba(214, 174, 100, 0.2);
-            --bg-color: black;
-            --text-color: white;
-            --container-bg: black;
-            --highlight-bg: #111;
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --container-bg: #000000;
+            --highlight-bg: #111111;
             --success-color: rgb(174, 214, 100);
             --error-color: rgb(214, 100, 100);
             --card-bg: #0d0d0d;
             --border-color: rgba(214, 174, 100, 0.3);
+            --shadow-color: rgba(214, 174, 100, 0.15);
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --border-radius: 8px;
+            --font-primary: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
+        /* Reset e estilos base otimizados */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: var(--font-primary);
             background: var(--bg-color); 
             color: var(--text-color); 
             line-height: 1.6;
-            background-image: radial-gradient(circle at 10% 20%, rgba(214, 174, 100, 0.05) 0%, transparent 20%),
-                              radial-gradient(circle at 90% 80%, rgba(214, 174, 100, 0.05) 0%, transparent 20%);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(214, 174, 100, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(214, 174, 100, 0.05) 0%, transparent 20%);
             background-attachment: fixed;
         }
 
+        /* Container principal */
         .container { 
             max-width: 1200px; 
             margin: 0 auto; 
             background: var(--container-bg); 
             padding: 30px; 
             border-radius: 15px; 
-            box-shadow: 0 0 25px var(--primary-color); 
+            box-shadow: 0 0 25px var(--shadow-color); 
             border: 2px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Títulos */
         h1 { 
             color: var(--primary-color); 
             text-align: center; 
             border-bottom: 3px solid var(--primary-color); 
             padding-bottom: 10px; 
             margin-bottom: 30px;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         h2, h3 { 
@@ -94,43 +109,74 @@
             border-left: 5px solid var(--primary-color); 
             padding-left: 10px; 
             margin-top: 25px; 
+            font-weight: 600;
+        }
+
+        /* Navegação entre telas */
+        .screen { 
+            display: none; 
+            margin-top: 20px; 
+            animation: fadeIn 0.5s ease;
         }
         
-        .screen { display: none; margin-top: 20px; }
-        .active-screen { display: block; }
+        .active-screen { 
+            display: block; 
+        }
+
+        /* Formulários */
+        label { 
+            display: block; 
+            margin-top: 10px; 
+            font-weight: 600; 
+            color: var(--text-color); 
+        }
         
-        label { display: block; margin-top: 10px; font-weight: bold; color: var(--text-color); }
-        input[type="text"], input[type="number"], select, textarea, input[type="date"] { 
+        input[type="text"], 
+        input[type="number"], 
+        select, 
+        textarea, 
+        input[type="date"] { 
             width: 100%; 
             padding: 12px; 
             margin-top: 8px; 
             border: 1px solid var(--border-color); 
-            border-radius: 5px; 
+            border-radius: var(--border-radius); 
             box-sizing: border-box;
             background: var(--highlight-bg);
             color: var(--text-color);
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-family: inherit;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus, 
+        select:focus, 
+        textarea:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(214, 174, 100, 0.2);
         }
 
+        /* Botões */
         button { 
             background: var(--primary-color); 
             color: var(--bg-color); 
             padding: 12px 20px; 
             border: none; 
-            border-radius: 5px; 
+            border-radius: var(--border-radius); 
             cursor: pointer; 
             margin-top: 20px; 
-            font-weight: bold; 
-            transition: all 0.3s; 
+            font-weight: 600; 
+            transition: var(--transition); 
             position: relative;
             overflow: hidden;
+            font-family: inherit;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
+        
         button:hover { 
             background: white; 
             color: var(--bg-color); 
@@ -138,17 +184,56 @@
             box-shadow: 0 5px 15px rgba(214, 174, 100, 0.3);
         }
 
-        .btn-secondary { background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); }
-        .btn-secondary:hover { background: var(--primary-color); color: var(--bg-color); }
+        button:active {
+            transform: translateY(0);
+        }
 
-        .feedback-error { color: var(--error-color); font-weight: bold; background: #331111; padding: 12px; border-radius: 5px; margin-top: 10px; border: 1px solid var(--error-color); }
-        .feedback-success { color: var(--success-color); font-weight: bold; background: #113311; padding: 12px; border-radius: 5px; margin-top: 10px; border: 1px solid var(--success-color); }
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary { 
+            background: transparent; 
+            color: var(--primary-color); 
+            border: 2px solid var(--primary-color); 
+        }
         
-        .lesson-content, .quiz-question { 
+        .btn-secondary:hover { 
+            background: var(--primary-color); 
+            color: var(--bg-color); 
+        }
+
+        /* Feedback */
+        .feedback-error { 
+            color: var(--error-color); 
+            font-weight: 600; 
+            background: #331111; 
+            padding: 12px; 
+            border-radius: var(--border-radius); 
+            margin-top: 10px; 
+            border: 1px solid var(--error-color); 
+        }
+        
+        .feedback-success { 
+            color: var(--success-color); 
+            font-weight: 600; 
+            background: #113311; 
+            padding: 12px; 
+            border-radius: var(--border-radius); 
+            margin-top: 10px; 
+            border: 1px solid var(--success-color); 
+        }
+
+        /* Componentes específicos */
+        .lesson-content, 
+        .quiz-question { 
             margin-top: 20px; 
             border: 1px dashed var(--primary-color); 
             padding: 20px; 
-            border-radius: 8px; 
+            border-radius: var(--border-radius); 
             background: var(--card-bg);
         }
         
@@ -156,11 +241,12 @@
             border: 2px solid var(--primary-color); 
             background: var(--card-bg); 
             padding: 20px; 
-            border-radius: 10px; 
+            border-radius: var(--border-radius); 
             margin-bottom: 20px; 
             position: relative;
             overflow: hidden;
         }
+        
         .sensei-box::before {
             content: '';
             position: absolute;
@@ -170,7 +256,12 @@
             height: 100%;
             background: linear-gradient(to bottom, var(--primary-color), var(--primary-dark));
         }
-        .sensei-message { font-style: italic; color: var(--primary-color); font-size: 1.1em; }
+        
+        .sensei-message { 
+            font-style: italic; 
+            color: var(--primary-color); 
+            font-size: 1.1em; 
+        }
         
         .tab-button { 
             background: var(--highlight-bg); 
@@ -178,29 +269,33 @@
             border: 1px solid var(--primary-color); 
             padding: 10px 15px;
             margin-right: 5px;
-            transition: all 0.3s;
+            transition: var(--transition);
+            border-radius: var(--border-radius);
         }
+        
         .tab-button.active { 
             background: var(--primary-color); 
             color: var(--bg-color); 
             border: 1px solid var(--primary-color);
         }
+        
         .tab-button:hover {
             background: var(--primary-light);
         }
 
-        .mov-debit { color: var(--primary-color); font-weight: bold; }
-        .mov-credit { color: white; font-weight: bold; }
+        .mov-debit { color: var(--primary-color); font-weight: 600; }
+        .mov-credit { color: white; font-weight: 600; }
 
-        /* Estilos para o Simulador Prático e Resultados */
+        /* Simulador Prático */
         #practical-operations-list { 
             border: 1px dashed var(--border-color); 
             padding: 15px; 
             min-height: 50px; 
             background: var(--card-bg); 
             margin-top: 15px;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
         }
+        
         .operation-item { 
             border-bottom: 1px dotted var(--border-color); 
             padding: 8px 0; 
@@ -208,63 +303,86 @@
             justify-content: space-between;
             align-items: center;
         }
+        
         .operation-item:last-child {
             border-bottom: none;
         }
+        
         .operation-actions {
             display: flex;
             gap: 10px;
         }
+        
         .operation-actions button {
             margin: 0;
             padding: 5px 10px;
             font-size: 0.8rem;
         }
+        
         .explanation-box { 
             background: var(--card-bg); 
             padding: 15px; 
             border-left: 3px solid var(--primary-color); 
             margin-top: 15px; 
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        /* Tabelas responsivas */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: var(--border-radius);
         }
         
         #results-container-table table { 
             width: 100%; 
             border-collapse: collapse; 
-            margin-top: 15px; 
             background: var(--card-bg); 
-            border-radius: 8px;
-            overflow: hidden;
+            border-radius: var(--border-radius);
+            min-width: 600px;
         }
-        #results-container-table th, #results-container-table td { 
+        
+        #results-container-table th, 
+        #results-container-table td { 
             border: 1px solid var(--border-color); 
-            padding: 8px; 
+            padding: 10px; 
             text-align: left; 
         }
+        
         #results-container-table th { 
             background: var(--primary-color); 
             color: black; 
+            font-weight: 600;
+            position: sticky;
+            top: 0;
         }
+        
         #results-container-table tr:nth-child(even) {
             background: rgba(255, 255, 255, 0.05);
         }
 
+        /* Layout de formulários */
         .form-row {
             display: flex;
             gap: 15px;
             margin-bottom: 15px;
         }
+        
         .form-group {
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* Barras de progresso */
         .progress-container {
             margin: 20px 0;
             background: var(--card-bg);
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             padding: 15px;
             border: 1px solid var(--border-color);
         }
+        
         .progress-bar {
             height: 10px;
             background: var(--highlight-bg);
@@ -272,13 +390,16 @@
             overflow: hidden;
             margin-top: 10px;
         }
+        
         .progress-fill {
             height: 100%;
             background: var(--primary-color);
             width: 0%;
             transition: width 0.5s ease;
+            border-radius: 5px;
         }
 
+        /* Animações */
         .module-content {
             animation: fadeIn 0.5s ease;
         }
@@ -288,29 +409,64 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Grupos de botões */
         .export-btn-group {
             display: flex;
             gap: 10px;
             margin: 20px 0;
+            flex-wrap: wrap;
         }
 
         .highlight {
             background: var(--primary-light);
             padding: 2px 5px;
             border-radius: 3px;
+            font-weight: 600;
         }
 
         .instruction-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             padding: 15px;
             margin: 15px 0;
         }
 
+        /* Estados de loading */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            border-right-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
+                margin: 10px;
             }
             
             .form-row {
@@ -320,1199 +476,1678 @@
             .export-btn-group {
                 flex-direction: column;
             }
+            
+            .operation-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .operation-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            
+            .tab-button {
+                margin-bottom: 5px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .sensei-box, 
+            .lesson-content, 
+            .quiz-question {
+                padding: 15px;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Acessibilidade */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
-</head>
-<body>
+    
+    <div class="container" id="app-container">
+        <h1>Sensei Teca - Simulador de Contabilidade Profissional</h1>
 
-<div class="container" id="app-container">
-    <h1>Sensei Teca - Simulador de Contabilidade Profissional</h1>
+        <!-- TABS DE NAVEGAÇÃO -->
+        <div role="tablist" style="text-align: center; margin-bottom: 20px;">
+            <button class="tab-button" id="tab-aulas" onclick="SenseiTeca.showModule('lessons-module')" aria-selected="true" role="tab">
+                MÓDULO A - Aulas
+            </button>
+            <button class="tab-button" id="tab-provas" onclick="SenseiTeca.showModule('quiz-module-wrapper')" aria-selected="false" role="tab">
+                MÓDULO B - Provas
+            </button>
+            <button class="tab-button" id="tab-simulador" onclick="SenseiTeca.showModule('practical-simulator')" aria-selected="false" role="tab">
+                MÓDULO C - Simulador Prático
+            </button>
+        </div>
 
-    <!-- TABS DE NAVEGAÇÃO -->
-    <div style="text-align: center; margin-bottom: 20px;">
-        <button class="tab-button" id="tab-aulas" onclick="showModule('lessons-module')">MÓDULO A - Aulas</button>
-        <button class="tab-button" id="tab-provas" onclick="showModule('quiz-module-wrapper')">MÓDULO B - Provas</button>
-        <button class="tab-button" id="tab-simulador" onclick="showModule('practical-simulator')">MÓDULO C - Simulador Prático</button>
-    </div>
-
-    <!-- MÓDULO A: Aulas com o Sensei Teca -->
-    <section id="lessons-module" class="module-content">
-        <!-- TELA 1: Registo Inicial -->
-        <div id="start-screen" class="screen active-screen">
-            <h2>Bem-vindo, Jovem Contabilista!</h2>
-            <div class="sensei-box">
-                <p class="sensei-message">Olá! Eu sou o Sensei Teca. Preenche o teu perfil e seleciona o teu nível de desafio para começarmos a tua jornada na Contabilidade.</p>
+        <!-- MÓDULO A: Aulas com o Sensei Teca -->
+        <section id="lessons-module" class="module-content" role="tabpanel">
+            <!-- TELA 1: Registo Inicial -->
+            <div id="start-screen" class="screen active-screen">
+                <h2>Bem-vindo, Jovem Contabilista!</h2>
+                <div class="sensei-box">
+                    <p class="sensei-message">Olá! Eu sou o Sensei Teca. Preenche o teu perfil e seleciona o teu nível de desafio para começarmos a tua jornada na Contabilidade.</p>
+                </div>
+                <form id="registration-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Idade:</label>
+                            <input type="number" id="age" min="10" required aria-required="true">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gênero:</label>
+                            <select id="gender" required aria-required="true">
+                                <option value="">Selecione</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                                <option value="O">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Região/Província:</label>
+                            <input type="text" id="region" required aria-required="true">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lesson-level-selector">Nível de Estudo:</label>
+                        <select id="lesson-level-selector" required aria-required="true">
+                            <option value="Básico">🔰 Nível Básico</option>
+                            <option value="Intermediário">🔰 Nível Intermediário</option>
+                            <option value="Avançado">🔰 Nível Avançado</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="SenseiTeca.startLesson()">Começar Aula com o Sensei Teca</button>
+                    <button type="button" class="btn-secondary" onclick="SenseiTeca.showModule('quiz-module-wrapper')">
+                        Saltar Diretamente para a Prova
+                    </button>
+                </form>
             </div>
-            <form id="registration-form">
+
+            <!-- TELA 2: Módulo de Aulas -->
+            <div id="learning-module" class="screen">
+                <div class="progress-container">
+                    <div id="lesson-progress-text"></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="lesson-progress-bar"></div>
+                    </div>
+                </div>
+                
+                <h2 id="lesson-title"></h2>
+                <div class="sensei-box">
+                    <p class="sensei-message" id="lesson-message"></p>
+                </div>
+                
+                <!-- Conteúdo da Aula -->
+                <div id="lesson-content" class="lesson-content"></div>
+                
+                <!-- Barra de Pesquisa de Tópicos -->
+                <h3>Pesquisar/Rever Tópicos:</h3>
+                <select id="topic-search" onchange="SenseiTeca.showTopicDetails(this.value)" aria-label="Selecionar tópico para revisão">
+                    <option value="">Pesquisar/Selecionar Tópico Chave...</option>
+                </select>
+                <div id="topic-details" class="topic-search-result" style="display:none;"></div>
+
+                <button onclick="SenseiTeca.nextLessonOrQuiz()">Avançar para o próximo Capítulo / Iniciar Prova</button>
+            </div>
+        </section>
+
+        <!-- MÓDULO B: Provas (Quizzes) -->
+        <section id="quiz-module-wrapper" class="module-content" role="tabpanel">
+            <!-- TELA 3: Seleção de Nível para Quiz Direto (ou após Aulas) -->
+            <div id="level-selection-screen" class="screen active-screen">
+                <h2>Seleção de Prova</h2>
+                <div class="sensei-box">
+                    <p class="sensei-message">Se já dominas a matéria, seleciona o nível para testar o teu domínio! Cada prova tem 10 questões.</p>
+                </div>
+                <div class="form-group">
+                    <label for="quiz-level-selector">Nível da Prova:</label>
+                    <select id="quiz-level-selector">
+                        <option value="Básico">🔰 Nível Básico</option>
+                        <option value="Intermediário">🔰 Nível Intermediário</option>
+                        <option value="Avançado">🔰 Nível Avançado</option>
+                    </select>
+                </div>
+                <button onclick="SenseiTeca.startQuiz(document.getElementById('quiz-level-selector').value)">
+                    Iniciar a Prova de 10 Questões
+                </button>
+            </div>
+            
+            <!-- TELA 4: Módulo de Quiz -->
+            <div id="quiz-module" class="screen">
+                <div class="progress-container">
+                    <div id="quiz-progress-text"></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="quiz-progress-bar"></div>
+                    </div>
+                </div>
+                
+                <h2 id="quiz-title"></h2>
+                <form id="quiz-form">
+                    <div id="quiz-questions-container"></div>
+                    <button type="button" onclick="SenseiTeca.checkQuiz()">Finalizar Prova e Ver Resultados</button>
+                </form>
+            </div>
+
+            <!-- TELA 5: Resultados Finais -->
+            <div id="results-screen" class="screen">
+                <div id="results-export-area">
+                    <h2>Resultados da Avaliação - Sensei Teca</h2>
+                    <div id="user-info"></div>
+                    <div id="score-summary"></div>
+                    <div id="sensei-feedback" class="sensei-box"></div>
+                    <h3>Onde Deves Focar a tua Essência (Áreas a Melhorar):</h3>
+                    <div id="improvement-areas"></div>
+                </div>
+                
+                <div class="export-btn-group">
+                    <button onclick="SenseiTeca.exportResultsPDF()">Exportar para PDF</button>
+                    <button onclick="SenseiTeca.exportResultsImage()">Exportar como Imagem</button>
+                </div>
+                <button class="btn-secondary" onclick="SenseiTeca.restartSimulator()">Reiniciar Simulador</button>
+            </div>
+        </section>
+
+        <!-- MÓDULO C: SIMULADOR PRÁTICO -->
+        <section id="practical-simulator" class="module-content" role="tabpanel">
+            <h2>MÓDULO C - SIMULADOR PRÁTICO DE LANÇAMENTOS</h2>
+            <div class="sensei-box">
+                <p class="sensei-message">Insere as operações do teu exercício. Eu calcularei os lançamentos, o Balanço, Balancete e a DRE resultante, com explicação detalhada da lógica de Débito/Crédito.</p>
+            </div>
+
+            <div class="instruction-box">
+                <h3>Instruções de Uso:</h3>
+                <p>1. Preencha todos os campos obrigatórios para cada operação</p>
+                <p>2. Selecione o tipo de movimento adequado à transação</p>
+                <p>3. Adicione uma descrição clara da operação</p>
+                <p>4. Clique em "Adicionar Operação" para incluir na lista</p>
+                <p>5. Após adicionar todas as operações, clique em "Calcular Resolução Completa"</p>
+            </div>
+
+            <!-- Formulário de Operação -->
+            <h3>Adicionar Operação:</h3>
+            <form id="practical-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="name">Nome:</label>
-                        <input type="text" id="name" required>
+                        <label for="op-num">Nº Op.:</label>
+                        <input type="number" id="op-num" value="1" min="1" required aria-required="true">
                     </div>
                     <div class="form-group">
-                        <label for="age">Idade:</label>
-                        <input type="number" id="age" min="10" required>
+                        <label for="op-date">Data:</label>
+                        <input type="date" id="op-date" required aria-required="true">
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="gender">Gênero:</label>
-                        <select id="gender" required>
-                            <option value="">Selecione</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
-                            <option value="O">Outro</option>
+                        <label for="op-type">Tipo de Movimento:</label>
+                        <select id="op-type" required aria-required="true">
+                            <option value="">Selecione o Tipo de Lançamento...</option>
+                            <option value="ABERTURA">1. Abertura de Escritas (Saldos Iniciais)</option>
+                            <option value="COMPRA_MERCADORIAS_CREDITO">2. Compra de Mercadorias (a Crédito)</option>
+                            <option value="COMPRA_MERCADORIAS_DINHEIRO">3. Compra de Mercadorias (a Dinheiro)</option>
+                            <option value="VENDA_MERCADORIAS_CREDITO">4. Venda de Mercadorias (a Crédito)</option>
+                            <option value="VENDA_MERCADORIAS_DINHEIRO">5. Venda de Mercadorias (a Dinheiro)</option>
+                            <option value="PAGAMENTO_FORNECEDOR">6. Pagamento a Fornecedor</option>
+                            <option value="RECEBIMENTO_CLIENTE">7. Recebimento de Cliente</option>
+                            <option value="REGISTO_AMORTIZACAO">8. Registo de Amortização</option>
+                            <option value="PAGAMENTO_CUSTO">9. Pagamento de Custo Operacional</option>
+                            <option value="CONSTITUICAO_CAPITAL">10. Constituição/Aumento de Capital</option>
+                            <option value="OBTER_EMPRESTIMO">11. Obtenção de Empréstimo</option>
+                            <option value="PAGAMENTO_JUROS">12. Pagamento de Juros</option>
+                            <option value="AQUISICAO_IMOBILIZADO">13. Aquisição de Imobilizado</option>
+                            <option value="REGISTO_PROVISAO">14. Registo de Provisão</option>
+                            <option value="PAGAMENTO_IMPOSTO">15. Pagamento de Imposto</option>
+                            <option value="REGULARIZACAO_IVA">16. Regularização de IVA</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="region">Região/Província:</label>
-                        <input type="text" id="region" required>
+                        <label for="op-amount">Valor (Kz):</label>
+                        <input type="number" id="op-amount" value="100000" min="0" step="100" required aria-required="true">
                     </div>
                 </div>
                 
-                <label for="lesson-level-selector">Nível de Estudo:</label>
-                <select id="lesson-level-selector" required>
-                    <option value="Básico">🔰 Nível Básico</option>
-                    <option value="Intermediário">🔰 Nível Intermediário</option>
-                    <option value="Avançado">🔰 Nível Avançado</option>
-                </select>
+                <div class="form-group">
+                    <label for="op-description">Descrição Breve da Operação:</label>
+                    <input type="text" id="op-description" placeholder="Ex: Compra a Fornecedor, Fatura X" required aria-required="true">
+                </div>
                 
-                <button type="button" onclick="startLesson()">Começar Aula com o Sensei Teca</button>
-                <button type="button" class="btn-secondary" onclick="showModule('quiz-module-wrapper')">Saltar Diretamente para a Prova</button>
+                <button type="button" onclick="SenseiTeca.addOperation()">Adicionar Operação</button>
             </form>
-        </div>
 
-        <!-- TELA 2: Módulo de Aulas -->
-        <div id="learning-module" class="screen">
-            <div class="progress-container">
-                <div id="lesson-progress-text"></div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="lesson-progress-bar"></div>
+            <!-- Lista de Operações -->
+            <h3>Operações a Resolver (Diário):</h3>
+            <div id="practical-operations-list">Nenhuma operação adicionada.</div>
+
+            <button onclick="SenseiTeca.calculateResolution()">Calcular Resolução Completa (Balancete/DRE)</button>
+            <button class="btn-secondary" onclick="SenseiTeca.clearPracticalSimulator()">Limpar Simulador</button>
+
+            <!-- Resultados da Resolução -->
+            <div id="practical-results-area-container" style="display: none;">
+                <h3>Resolução Sensei Teca: O Lançamento e as Demonstrações</h3>
+                <div id="practical-results-area"></div>
+                
+                <div id="results-container-table">
+                    <!-- Tabelas (Balanço, Balancete, DRE) serão injetadas aqui -->
+                </div>
+
+                <div class="export-btn-group">
+                    <button onclick="SenseiTeca.exportPracticalResultsImage()">Exportar Resolução Completa (Imagem)</button>
+                    <button onclick="SenseiTeca.exportPracticalResultsPDF()" class="btn-secondary">Exportar Resolução Completa (PDF)</button>
                 </div>
             </div>
-            
-            <h2 id="lesson-title"></h2>
-            <div class="sensei-box">
-                <p class="sensei-message" id="lesson-message"></p>
-            </div>
-            
-            <!-- Conteúdo da Aula -->
-            <div id="lesson-content" class="lesson-content"></div>
-            
-            <!-- Barra de Pesquisa de Tópicos -->
-            <h3>Pesquisar/Rever Tópicos:</h3>
-            <select id="topic-search" onchange="showTopicDetails(this.value)">
-                <option value="">Pesquisar/Selecionar Tópico Chave...</option>
-            </select>
-            <div id="topic-details" class="topic-search-result" style="display:none;"></div>
+        </section>
+    </div>
 
-            <button onclick="nextLessonOrQuiz()">Avançar para o próximo Capítulo / Iniciar Prova</button>
-        </div>
-    </section>
+    <!-- Scripts externos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <!-- MÓDULO B: Provas (Quizzes) -->
-    <section id="quiz-module-wrapper" class="module-content">
-        <!-- TELA 3: Seleção de Nível para Quiz Direto (ou após Aulas) -->
-        <div id="level-selection-screen" class="screen active-screen">
-            <h2>Seleção de Prova</h2>
-            <div class="sensei-box">
-                <p class="sensei-message">Se já dominas a matéria, seleciona o nível para testar o teu domínio! Cada prova tem 10 questões.</p>
-            </div>
-            <select id="quiz-level-selector">
-                <option value="Básico">🔰 Nível Básico</option>
-                <option value="Intermediário">🔰 Nível Intermediário</option>
-                <option value="Avançado">🔰 Nível Avançado</option>
-            </select>
-            <button onclick="startQuiz(document.getElementById('quiz-level-selector').value)">Iniciar a Prova de 10 Questões</button>
-        </div>
-        
-        <!-- TELA 4: Módulo de Quiz -->
-        <div id="quiz-module" class="screen">
-            <div class="progress-container">
-                <div id="quiz-progress-text"></div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="quiz-progress-bar"></div>
-                </div>
-            </div>
-            
-            <h2 id="quiz-title"></h2>
-            <form id="quiz-form">
-                <div id="quiz-questions-container"></div>
-                <button type="button" onclick="checkQuiz()">Finalizar Prova e Ver Resultados</button>
-            </form>
-        </div>
-
-        <!-- TELA 5: Resultados Finais -->
-        <div id="results-screen" class="screen">
-            <div id="results-export-area">
-                <h2>Resultados da Avaliação - Sensei Teca</h2>
-                <div id="user-info"></div>
-                <div id="score-summary"></div>
-                <div id="sensei-feedback" class="sensei-box"></div>
-                <h3>Onde Deves Focar a tua Essência (Áreas a Melhorar):</h3>
-                <div id="improvement-areas"></div>
-            </div>
-            
-            <div class="export-btn-group">
-                <button onclick="exportResultsPDF()">Exportar para PDF</button>
-                <button onclick="exportResultsImage()">Exportar como Imagem</button>
-            </div>
-            <button class="btn-secondary" onclick="window.location.reload()">Reiniciar Simulador</button>
-        </div>
-    </section>
-
-    <!-- MÓDULO C: SIMULADOR PRÁTICO -->
-    <section id="practical-simulator" class="module-content">
-        <h2>MÓDULO C - SIMULADOR PRÁTICO DE LANÇAMENTOS</h2>
-        <div class="sensei-box">
-            <p class="sensei-message">Insere as operações do teu exercício. Eu calcularei os lançamentos, o Balanço, Balancete e a DRE resultante, com explicação detalhada da lógica de Débito/Crédito.</p>
-        </div>
-
-        <div class="instruction-box">
-            <h3>Instruções de Uso:</h3>
-            <p>1. Preencha todos os campos obrigatórios para cada operação</p>
-            <p>2. Selecione o tipo de movimento adequado à transação</p>
-            <p>3. Adicione uma descrição clara da operação</p>
-            <p>4. Clique em "Adicionar Operação" para incluir na lista</p>
-            <p>5. Após adicionar todas as operações, clique em "Calcular Resolução Completa"</p>
-        </div>
-
-        <!-- Formulário de Operação -->
-        <h3>Adicionar Operação:</h3>
-        <form id="practical-form">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="op-num">Nº Op.:</label>
-                    <input type="number" id="op-num" value="1" min="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="op-date">Data:</label>
-                    <input type="date" id="op-date" value="2025-11-21" required>
-                </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="op-type">Tipo de Movimento:</label>
-                    <select id="op-type" required>
-                        <option value="">Selecione o Tipo de Lançamento...</option>
-                        <option value="ABERTURA">1. Abertura de Escritas (Saldos Iniciais)</option>
-                        <option value="COMPRA_MERCADORIAS_CREDITO">2. Compra de Mercadorias (a Crédito)</option>
-                        <option value="COMPRA_MERCADORIAS_DINHEIRO">3. Compra de Mercadorias (a Dinheiro)</option>
-                        <option value="VENDA_MERCADORIAS_CREDITO">4. Venda de Mercadorias (a Crédito)</option>
-                        <option value="VENDA_MERCADORIAS_DINHEIRO">5. Venda de Mercadorias (a Dinheiro)</option>
-                        <option value="PAGAMENTO_FORNECEDOR">6. Pagamento a Fornecedor</option>
-                        <option value="RECEBIMENTO_CLIENTE">7. Recebimento de Cliente</option>
-                        <option value="REGISTO_AMORTIZACAO">8. Registo de Amortização</option>
-                        <option value="PAGAMENTO_CUSTO">9. Pagamento de Custo Operacional</option>
-                        <option value="CONSTITUICAO_CAPITAL">10. Constituição/Aumento de Capital</option>
-                        <option value="OBTER_EMPRESTIMO">11. Obtenção de Empréstimo</option>
-                        <option value="PAGAMENTO_JUROS">12. Pagamento de Juros</option>
-                        <option value="AQUISICAO_IMOBILIZADO">13. Aquisição de Imobilizado</option>
-                        <option value="REGISTO_PROVISAO">14. Registo de Provisão</option>
-                        <option value="PAGAMENTO_IMPOSTO">15. Pagamento de Imposto</option>
-                        <option value="REGULARIZACAO_IVA">16. Regularização de IVA</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="op-amount">Valor (Kz):</label>
-                    <input type="number" id="op-amount" value="100000" min="0" step="100" required>
-                </div>
-            </div>
-            
-            <label for="op-description">Descrição Breve da Operação:</label>
-            <input type="text" id="op-description" placeholder="Ex: Compra a Fornecedor, Fatura X" required>
-            
-            <button type="button" onclick="addOperation()">Adicionar Operação</button>
-        </form>
-
-        <!-- Lista de Operações -->
-        <h3>Operações a Resolver (Diário):</h3>
-        <div id="practical-operations-list">Nenhuma operação adicionada.</div>
-
-        <button onclick="calculateResolution()">Calcular Resolução Completa (Balancete/DRE)</button>
-        <button class="btn-secondary" onclick="clearPracticalSimulator()">Limpar Simulador</button>
-
-        <!-- Resultados da Resolução -->
-        <div id="practical-results-area-container" style="display: none;">
-            <h3>Resolução Sensei Teca: O Lançamento e as Demonstrações</h3>
-            <div id="practical-results-area"></div>
-            
-            <div id="results-container-table">
-                <!-- Tabelas (Balanço, Balancete, DRE) serão injetadas aqui -->
-            </div>
-
-            <div class="export-btn-group">
-                <button onclick="exportPracticalResultsImage()">Exportar Resolução Completa (Imagem)</button>
-                <button onclick="exportPracticalResultsPDF()" class="btn-secondary">Exportar Resolução Completa (PDF)</button>
-            </div>
-        </div>
-    </section>
-</div>
-
-<script>
+    <script>
     // =======================================================
-    // 2. ESTRUTURA DA BASE DE CONHECIMENTO (accountingData)
+    // SENSEI TECA - SIMULADOR DE CONTABILIDADE PROFISSIONAL
+    // =======================================================
+    // Código otimizado e modularizado para melhor performance
+    // e manutenibilidade
     // =======================================================
 
-    const accountingData = {
-        // Mapeamento dos níveis para o conteúdo sequencial por CAPÍTULO
-        lessonFlow: {
-            Básico: [
-                'Capítulo 1: Contabilidade - Funções e Divisões',
-                'Capítulo 2: Patrimônio, Inventário e Balanço',
-                'Capítulo 3: Dinâmica Patrimonial e Apuramento'
-            ],
-            Intermediário: [
-                'Capítulo 4: Desdobramento de Contas e Razão',
-                'Capítulo 5: Normalização Contabilística'
-            ],
-            Avançado: [
-                'Capítulo 6: Abertura de Escritas e Estrutura Societária',
-                'Capítulo 7: Apuramento do Resultado e Fecho de Contas'
-            ]
-        },
+    // Namespace principal para evitar poluição do escopo global
+    const SenseiTeca = (function() {
+        // =======================================================
+        // 1. CONSTANTES E CONFIGURAÇÕES
+        // =======================================================
+        const IVA_RATE = 0.14;
+        const QUIZ_QUESTIONS_COUNT = 10;
         
-        // Tópicos e Definições para Módulo A e Sistema de Pesquisa
-        topics: {
-            // Nível Básico
-            'Capítulo 1: Contabilidade - Funções e Divisões': {
-                level: 'Básico',
-                explanation: "A <span class='highlight'>Contabilidade</span> é a ciência que regista, controla e avalia o Património. <strong>Funções:</strong> <span class='highlight'>Registo</span> (documentar transações), <span class='highlight'>Controlo</span> (verificar o património) e <span class='highlight'>Avaliação</span> (determinar resultados). <strong>Agentes Económicos:</strong> Famílias (consumo), Empresas (produção), Estado (regulação). <strong>Classificação das Empresas:</strong> Jurídica (Individual, Sociedade), Económica (Indústria, Comércio, Serviços). <strong>Documentos Comerciais:</strong> Nota, Encomenda, Guia de Remessa, Guia de Emissão, Fatura, Registo, Cheque. <strong>Fluxos:</strong> Reais (bens/serviços) e Monetários (pagamentos).",
-                example: "Documentos Comuns: <strong>Fatura</strong> (comprova a venda/compra), <strong>Guia de Remessa</strong> (transporte), <strong>Cheque</strong> (pagamento). A fatura eletrónica existe para garantir autenticidade e evitar fraudes."
+        // =======================================================
+        // 2. ESTRUTURA DA BASE DE CONHECIMENTO
+        // =======================================================
+        const accountingData = {
+            lessonFlow: {
+                Básico: [
+                    'Capítulo 1: Contabilidade - Funções e Divisões',
+                    'Capítulo 2: Patrimônio, Inventário e Balanço',
+                    'Capítulo 3: Dinâmica Patrimonial e Apuramento'
+                ],
+                Intermediário: [
+                    'Capítulo 4: Desdobramento de Contas e Razão',
+                    'Capítulo 5: Normalização Contabilística'
+                ],
+                Avançado: [
+                    'Capítulo 6: Abertura de Escritas e Estrutura Societária',
+                    'Capítulo 7: Apuramento do Resultado e Fecho de Contas'
+                ]
             },
-            'Capítulo 2: Patrimônio, Inventário e Balanço': {
-                level: 'Básico',
-                explanation: "O <span class='highlight'>Património</span> é o conjunto de bens, direitos e obrigações da empresa. <strong>Ativo</strong> (bens/direitos, Ex: Dinheiro, Imobilizado); <strong>Passivo</strong> (obrigações, Ex: Dívidas a Fornecedores). A agregação de elementos em Contas (Ex: Conta 45 Caixa). A <strong>Equação Geral do Balanço</strong> é: <span class='highlight'>Ativo = Passivo + Capital Próprio</span> (Património Líquido). O Balanço é a Demonstração da situação patrimonial num momento específico. <strong>Inventário:</strong> levantamento completo de todos os elementos patrimoniais.",
-                example: "Ativo Não Corrente: Imobilizado (dura mais de 1 ano). Ativo Corrente: Caixa, Bancos, Existências. Capital Próprio: Capital, Reservas, Resultados."
+            
+            topics: {
+                // Nível Básico
+                'Capítulo 1: Contabilidade - Funções e Divisões': {
+                    level: 'Básico',
+                    explanation: "A <span class='highlight'>Contabilidade</span> é a ciência que regista, controla e avalia o Património. <strong>Funções:</strong> <span class='highlight'>Registo</span> (documentar transações), <span class='highlight'>Controlo</span> (verificar o património) e <span class='highlight'>Avaliação</span> (determinar resultados). <strong>Agentes Económicos:</strong> Famílias (consumo), Empresas (produção), Estado (regulação). <strong>Classificação das Empresas:</strong> Jurídica (Individual, Sociedade), Económica (Indústria, Comércio, Serviços). <strong>Documentos Comerciais:</strong> Nota, Encomenda, Guia de Remessa, Guia de Emissão, Fatura, Registo, Cheque. <strong>Fluxos:</strong> Reais (bens/serviços) e Monetários (pagamentos).",
+                    example: "Documentos Comuns: <strong>Fatura</strong> (comprova a venda/compra), <strong>Guia de Remessa</strong> (transporte), <strong>Cheque</strong> (pagamento). A fatura eletrónica existe para garantir autenticidade e evitar fraudes."
+                },
+                'Capítulo 2: Patrimônio, Inventário e Balanço': {
+                    level: 'Básico',
+                    explanation: "O <span class='highlight'>Património</span> é o conjunto de bens, direitos e obrigações da empresa. <strong>Ativo</strong> (bens/direitos, Ex: Dinheiro, Imobilizado); <strong>Passivo</strong> (obrigações, Ex: Dívidas a Fornecedores). A agregação de elementos em Contas (Ex: Conta 45 Caixa). A <strong>Equação Geral do Balanço</strong> é: <span class='highlight'>Ativo = Passivo + Capital Próprio</span> (Património Líquido). O Balanço é a Demonstração da situação patrimonial num momento específico. <strong>Inventário:</strong> levantamento completo de todos os elementos patrimoniais.",
+                    example: "Ativo Não Corrente: Imobilizado (dura mais de 1 ano). Ativo Corrente: Caixa, Bancos, Existências. Capital Próprio: Capital, Reservas, Resultados."
+                },
+                'Capítulo 3: Dinâmica Patrimonial e Apuramento': {
+                    level: 'Básico',
+                    explanation: "A <span class='highlight'>Dinâmica Patrimonial</span> são as mudanças no Património. <strong>Regras de Movimentação</strong> (<span class='highlight'>Partidas Dobradas</span>): <strong>Débito aumenta Ativo/Custos</strong>; <strong>Crédito aumenta Passivo/Proveitos</strong>. <strong>Balanço de Verificação:</strong> Comprova o MPD. <strong>Apuramento do Resultado:</strong> Proveitos - Custos = Lucro/Prejuízo. Liga o Balanço à Demonstração de Resultados (DR).",
+                    example: "Registo de Abertura: D/Ativo a C/Passivo e C/Capital. Movimento Simples: D/43 (Banco) a C/61 (Vendas). Exercício: Compra de mercadorias a crédito - D/21 (Compras) a C/32 (Fornecedores)."
+                },
+                // Nível Intermediário
+                'Capítulo 4: Desdobramento de Contas e Razão': {
+                    level: 'Intermediário',
+                    explanation: "As <span class='highlight'>Contas Principais</span> (Ex: Classe 3 - Terceiros) desdobram-se em Subcontas (Ex: 31.1 Clientes - Correntes, 31.2 Clientes - Títulos). O <span class='highlight'>Razão</span> é o livro onde se regista o movimento de cada conta em forma de 'T' (Débito lado esquerdo, Crédito lado direito) para obter o saldo, controlando todos os desdobramentos (ex: Clientes). Permite o controlo detalhado de cada conta e seus componentes.",
+                    example: "Ex: Recebimento de Letra: O valor sai de 31.2 (Clientes - Títulos) e vai para 43 (Banco). Desdobramento de Fornecedores: 32.1 (Fornecedores Correntes), 32.2 (Fornecedores Títulos)."
+                },
+                'Capítulo 5: Normalização Contabilística': {
+                    level: 'Intermediário',
+                    explanation: "A <span class='highlight'>Normalização Contabilística</span> estabelece regras para a comparabilidade e clareza da informação financeira. <strong>Princípios Contabilísticos:</strong> Continuidade, Consistência, Materialidade, Prudência. Estabelece o <strong>Código de Contas</strong> (Classes 1 a 8) e o modelo das demonstrações (Balanço, DRE, etc.), devendo a escrituração ser feita no nível mais detalhado (subcontas). <strong>Conteúdo da Informação Financeira:</strong> deve ser relevante, fiável, comparável e compreensível.",
+                    example: "O Balanço: <strong>Ativo Não Corrente</strong> (Classe 1) e <strong>Ativo Corrente</strong> (Classes 2, 3, 4). As demonstrações devem seguir formatos padronizados para permitir comparação entre empresas."
+                },
+                // Nível Avançado
+                'Capítulo 6: Abertura de Escritas e Estrutura Societária': {
+                    level: 'Avançado',
+                    explanation: "<span class='highlight'>Abertura de Escritas</span> é o <strong>lançamento inicial</strong> dos saldos. <strong>Tipos de Sociedades</strong> (Ex: Unipessoal, por Quotas, Anónima). O lançamento de Constituição de Capital (Conta 51 - Capital) é sempre a Crédito. O Capital é uma conta de Capital Próprio. Lançamento inicial de uma Sociedade: <strong>D/Ativo (43 Banco)</strong> a <strong>C/51 (Capital)</strong> pela subscrição/realização. Processo de abertura de empresa: registo comercial, fiscal, etc.",
+                    example: "Capital Individual: Registado como Passivo (51) - Quase extinto. Capital Coletivo: Registado em 51 - Capital. Abertura: D/11 (Imobilizado) 100.000, D/43 (Banco) 50.000 a C/51 (Capital) 150.000."
+                },
+                'Capítulo 7: Apuramento do Resultado e Fecho de Contas': {
+                    level: 'Avançado',
+                    explanation: "O <span class='highlight'>Fecho de Contas</span> (Final do Ciclo) zera as contas de Fluxo (Classes 6 e 7) transferindo os saldos para a Classe 8. <strong>Regra:</strong> Custos (D) são Creditos a 82.6; Proveitos (C) são Debitos a 82.1. O saldo final (88 - Resultado Líquido) é transferido para 81 (Resultados Transitados) no ano seguinte. O processo inclui provisões, amortizações e cálculo de impostos (IRF, ISL).",
+                    example: "Fecho de Vendas (61 - Credor): D/61 a C/82.1. Fecho de Compras (21 - Devedor): D/82.6 a C/21. O lucro (D/88) é transferido a Crédito (C/81) no ano seguinte."
+                }
             },
-            'Capítulo 3: Dinâmica Patrimonial e Apuramento': {
-                level: 'Básico',
-                explanation: "A <span class='highlight'>Dinâmica Patrimonial</span> são as mudanças no Património. <strong>Regras de Movimentação</strong> (<span class='highlight'>Partidas Dobradas</span>): <strong>Débito aumenta Ativo/Custos</strong>; <strong>Crédito aumenta Passivo/Proveitos</strong>. <strong>Balanço de Verificação:</strong> Comprova o MPD. <strong>Apuramento do Resultado:</strong> Proveitos - Custos = Lucro/Prejuízo. Liga o Balanço à Demonstração de Resultados (DR).",
-                example: "Registo de Abertura: D/Ativo a C/Passivo e C/Capital. Movimento Simples: D/43 (Banco) a C/61 (Vendas). Exercício: Compra de mercadorias a crédito - D/21 (Compras) a C/32 (Fornecedores)."
-            },
-            // Nível Intermediário
-            'Capítulo 4: Desdobramento de Contas e Razão': {
-                level: 'Intermediário',
-                explanation: "As <span class='highlight'>Contas Principais</span> (Ex: Classe 3 - Terceiros) desdobram-se em Subcontas (Ex: 31.1 Clientes - Correntes, 31.2 Clientes - Títulos). O <span class='highlight'>Razão</span> é o livro onde se regista o movimento de cada conta em forma de 'T' (Débito lado esquerdo, Crédito lado direito) para obter o saldo, controlando todos os desdobramentos (ex: Clientes). Permite o controlo detalhado de cada conta e seus componentes.",
-                example: "Ex: Recebimento de Letra: O valor sai de 31.2 (Clientes - Títulos) e vai para 43 (Banco). Desdobramento de Fornecedores: 32.1 (Fornecedores Correntes), 32.2 (Fornecedores Títulos)."
-            },
-            'Capítulo 5: Normalização Contabilística': {
-                level: 'Intermediário',
-                explanation: "A <span class='highlight'>Normalização Contabilística</span> estabelece regras para a comparabilidade e clareza da informação financeira. <strong>Princípios Contabilísticos:</strong> Continuidade, Consistência, Materialidade, Prudência. Estabelece o <strong>Código de Contas</strong> (Classes 1 a 8) e o modelo das demonstrações (Balanço, DRE, etc.), devendo a escrituração ser feita no nível mais detalhado (subcontas). <strong>Conteúdo da Informação Financeira:</strong> deve ser relevante, fiável, comparável e compreensível.",
-                example: "O Balanço: <strong>Ativo Não Corrente</strong> (Classe 1) e <strong>Ativo Corrente</strong> (Classes 2, 3, 4). As demonstrações devem seguir formatos padronizados para permitir comparação entre empresas."
-            },
-            // Nível Avançado
-            'Capítulo 6: Abertura de Escritas e Estrutura Societária': {
-                level: 'Avançado',
-                explanation: "<span class='highlight'>Abertura de Escritas</span> é o <strong>lançamento inicial</strong> dos saldos. <strong>Tipos de Sociedades</strong> (Ex: Unipessoal, por Quotas, Anónima). O lançamento de Constituição de Capital (Conta 51 - Capital) é sempre a Crédito. O Capital é uma conta de Capital Próprio. Lançamento inicial de uma Sociedade: <strong>D/Ativo (43 Banco)</strong> a <strong>C/51 (Capital)</strong> pela subscrição/realização. Processo de abertura de empresa: registo comercial, fiscal, etc.",
-                example: "Capital Individual: Registado como Passivo (51) - Quase extinto. Capital Coletivo: Registado em 51 - Capital. Abertura: D/11 (Imobilizado) 100.000, D/43 (Banco) 50.000 a C/51 (Capital) 150.000."
-            },
-            'Capítulo 7: Apuramento do Resultado e Fecho de Contas': {
-                level: 'Avançado',
-                explanation: "O <span class='highlight'>Fecho de Contas</span> (Final do Ciclo) zera as contas de Fluxo (Classes 6 e 7) transferindo os saldos para a Classe 8. <strong>Regra:</strong> Custos (D) são Creditos a 82.6; Proveitos (C) são Debitos a 82.1. O saldo final (88 - Resultado Líquido) é transferido para 81 (Resultados Transitados) no ano seguinte. O processo inclui provisões, amortizações e cálculo de impostos (IRF, ISL).",
-                example: "Fecho de Vendas (61 - Credor): D/61 a C/82.1. Fecho de Compras (21 - Devedor): D/82.6 a C/21. O lucro (D/88) é transferido a Crédito (C/81) no ano seguinte."
+
+            quizzes: {
+                Básico: [
+                    { question: "Qual a regra do Débito (D) no MPD para a Classe 4 (Meios Monetários)?", options: ["Diminui o Ativo", "Aumenta o Passivo", "Aumenta o Ativo", "Aumenta o Custo"], answer: "Aumenta o Ativo", feedback: "A Classe 4 é Ativo. Débito (D) aumenta Ativo. Revê 'O Método das Partidas Dobradas (D/C)'." },
+                    { question: "A conta 32 - Fornecedores, representa um(a)...", options: ["Ativo", "Custo", "Passivo", "Capital Próprio"], answer: "Passivo", feedback: "Fornecedores é uma obrigação (dívida) com terceiros, logo é um Passivo (Classe 3)." },
+                    { question: "Quantas classes principais tem o código de contas?", options: ["5", "8", "9", "10"], answer: "8", feedback: "O código é estruturado em 8 Classes (1 a 8), mais a Classe 0 (Contas de Ordem)." },
+                    { question: "Onde se Credita (C/) o aumento de uma Venda (Classe 6)?", options: ["Classe 7", "Classe 4", "Classe 6", "Classe 5"], answer: "Classe 6", feedback: "Proveitos (Vendas - Classe 6) aumentam a CRÉDITO. D/Caixa (45) a C/Vendas (61)." },
+                    { question: "O que é o Balancete?", options: ["Resultado final", "Ficha individual de conta", "Mapa de saldos D/C para comprovar o MPD", "Demonstração de resultados"], answer: "Mapa de saldos D/C para comprovar o MPD", feedback: "O Balancete lista todos os saldos e movimentos para provar que a soma dos D é igual à soma dos C." },
+                    { question: "Qual a conta Debitada (D/) na compra a dinheiro de um computador (11.5)?", options: ["43 Depósitos à Ordem", "32 Fornecedores", "11.5 Equipamento Administrativo", "61 Vendas"], answer: "11.5 Equipamento Administrativo", feedback: "O computador é um Ativo (Classe 1) e o aumento do Ativo é a DÉBITO." },
+                    { question: "A que grupo de contas pertence o Capital Próprio (Classe 5)?", options: ["Ativo", "Passivo", "Capital Próprio", "Resultados"], answer: "Capital Próprio", feedback: "A Classe 5 representa os recursos próprios da empresa (Património Líquido)." },
+                    { question: "A diminuição de um Ativo (Ex: Venda de Mercadorias) é registada em qual lado?", options: ["Débito", "Crédito", "Equação", "Resultado"], answer: "Crédito", feedback: "A diminuição do Ativo é registada a CRÉDITO. Revê 'O Método das Partidas Dobradas (D/C)'." },
+                    { question: "Qual a principal função do contabilista?", options: ["Vender produtos", "Fornecer informação para decisão", "Pagar impostos", "Fazer empréstimos"], answer: "Fornecer informação para decisão", feedback: "A função primária é produzir e interpretar informação financeira para os usuários da informação." },
+                    { question: "O que significa 'Fecho de Contas'?", options: ["Saldar as contas 6 e 7", "Pagar as dívidas", "Vender o imobilizado", "Aumentar o lucro"], answer: "Saldar as contas 6 e 7", feedback: "O fecho de contas (Apuramento) zera as contas de Resultado (6 e 7) transferindo o saldo para a Classe 8." }
+                ],
+                Intermediário: [
+                    { question: "A conta 18 - Amortizações Acumuladas, é uma conta de natureza:", options: ["Ativa (D)", "Passiva (C)", "Retificadora de Ativo (C)", "Custo (D)"], answer: "Retificadora de Ativo (C)", feedback: "A conta 18 é Creditada (C) no aumento (amortização), funcionando como um Passivo mas abatendo o Ativo." },
+                    { question: "Lançamento D/75.2.21 (Rendas) a C/37.9 (Outros Valores a Pagar). O que é 37.9?", options: ["Ativo a Receber", "Proveito", "Passivo a Pagar (Dívida)", "Resultado"], answer: "Passivo a Pagar (Dívida)", feedback: "D/Custo (75) a C/Passivo (37.9). Registra-se um Custo que ainda não foi pago (dívida)." },
+                    { question: "O CMVMC (Custo das Mercadorias Vendidas) é apurado através de qual fórmula básica?", options: ["Vendas - Compras", "Existências Iniciais + Compras - Existências Finais", "Ativo - Passivo", "Proveitos - Custos"], answer: "Existências Iniciais + Compras - Existências Finais", feedback: "Fórmula clássica do CMVMC." },
+                    { question: "Qual o lançamento para constituir Provisão para Cobranças Duvidosas (38.1)?", options: ["D/38.1 a C/31.1", "D/78.1 a C/38.1", "D/31.1 a C/78.1", "D/43 a C/38.1"], answer: "D/78.1 a C/38.1", feedback: "A Provisão é um Custo Não Operacional (D/78.1) e aumenta o Passivo/Retificadora (C/38.1)." },
+                    { question: "O IVA de uma compra de Mercadorias (114.000 Kz total, taxa 14%) é dedutível. Qual o valor base da compra?", options: ["14.000 Kz", "114.000 Kz", "100.000 Kz", "15.960 Kz"], answer: "100.000 Kz", feedback: "Valor Base = 114.000 / 1.14 = 100.000 Kz. IVA = 14.000 Kz." },
+                    { question: "Na venda de imobilizado, a conta 37.2 - Vendas de Imobilizado, regista:", options: ["O Custo de Aquisição", "O Lucro/Prejuízo", "O Valor de Venda", "A Amortização"], answer: "O Valor de Venda", feedback: "O 37.2 (Vendas de Imobilizado) é a conta de Ativo/Passivo de transição que regista o valor da venda. O resultado (Lucro/Prejuízo) vai para 68.3/78.3." },
+                    { question: "O que é o Balancete de Verificação?", options: ["Uma lista de saldos D/C para garantir a igualdade do MPD", "O resultado final do exercício", "O mapa de clientes", "O plano de contas"], answer: "Uma lista de saldos D/C para garantir a igualdade do MPD", feedback: "O Balancete lista os saldos devedores e credores de todas as contas para provar que a soma de D é igual à soma de C." },
+                    { question: "Onde se Credita (C/) a aquisição de um empréstimo bancário (33.1)?", options: ["Classe 4 (Banco)", "Classe 7 (Juros)", "Classe 33.1 (Empréstimos)", "Classe 51 (Capital)"], answer: "Classe 33.1 (Empréstimos)", feedback: "O empréstimo é Passivo, e o aumento do Passivo é a CRÉDITO. A contrapartida D/43 (Banco) para receber o dinheiro." },
+                    { question: "Qual a classe usada para saldar todas as contas de Ativo, Passivo e Capital Próprio no encerramento?", options: ["Classe 0", "Classe 8", "Não se saldam", "Classe 5"], answer: "Não se saldam", feedback: "As contas de Balanço (Ativo, Passivo, CP) não se saldam no fecho. Apenas as contas de Resultados (6, 7 e 8) se fecham." },
+                    { question: "A conta 31.9.1 - Clientes - Adiantamentos, é uma conta de natureza:", options: ["Ativo", "Custo", "Passivo", "Proveito"], answer: "Passivo", feedback: "O adiantamento de um cliente é uma obrigação (Passivo) da empresa para entregar bens/serviços." }
+                ],
+                Avançado: [
+                    { question: "A taxa de Pro-Rata provisória (30%) é maior que a definitiva (20%). A regularização do IVA (10% sobre o IVA total suportado) é a favor de quem?", options: ["A favor do Estado", "A favor da Empresa", "É nulo", "OCCCA"], answer: "A favor do Estado", feedback: "A empresa deduziu a mais (30%>20%). A diferença deve ser devolvida ao Estado, logo é Creditada (C/34.5.4.2)." },
+                    { question: "No IVA Cativo, a entidade que prestou o serviço (Fornecedor) deve Creditar (C/) o valor do IVA na conta:", options: ["34.5.3.1 IVA Liquidado", "34.5.6.2 IVA a Pagar de Cativo", "34.5.7.2 IVA a Recuperar de Cativo", "34.5.2.3 IVA Dedutível"], answer: "34.5.7.2 IVA a Recuperar de Cativo", feedback: "O IVA Liquidado (34.5.3) é saldado pelo IVA a Recuperar de Cativo (34.5.7.2) porque o cliente reteve o dinheiro." },
+                    { question: "No fecho, os saldos devedores (Custos) da Classe 7 são transferidos a Crédito para qual conta da Classe 8?", options: ["88 Resultado Líquido", "81 Resultados Transitados", "82.6 Custo das Mercadorias Vendidas e Matérias Consumidas", "87 Imposto sobre os Lucros"], answer: "82.6 Custo das Mercadorias Vendidas e Matérias Consumidas", feedback: "O fecho dos custos operacionais é centralizado no débito da 82.6." },
+                    { question: "Qual conta Credita (C/) a retenção na fonte sobre dividendos (Rendimento de Participações - 66.5)?", options: ["66.5 Rendimento", "43 Depósitos", "34.1 Imposto sobre os Lucros", "35 Participadas"], answer: "34.1 Imposto sobre os Lucros", feedback: "A retenção é um crédito sobre o Estado para abater ao Imposto sobre os Lucros anual (34.1 - Passivo/Ativo)." },
+                    { question: "No fecho, o saldo devedor da conta 88 - Resultado Líquido do Exercício (Prejuízo) é transferido para qual conta no exercício seguinte?", options: ["51 Capital", "81 Resultados Transitados (Credor)", "81 Resultados Transitados (Devedor)", "58 Reservas Livres"], answer: "81 Resultados Transitados (Devedor)", feedback: "Um prejuízo (D/88) é transferido a Crédito (C/88) e Debitado (D/) na conta 81, aumentando o saldo devedor acumulado." },
+                    { question: "Qual conta regista a Anulação de Passivos Não Exigíveis (ganho extraordinário)?", options: ["68.1 Reposição de Provisões", "79.1 Perdas Extraordinárias", "69.6 Anulação de Passivos Não Exigíveis", "51 Capital"], answer: "69.6 Anulação de Passivos Não Exigíveis", feedback: "A conta 69.6 regista Ganhos Extraordinários, Credora por natureza." },
+                    { question: "Qual conta Credita (C/) o saldo final (Prejuízo) da conta 88 - Resultado Líquido, no exercício seguinte?", options: ["51 Capital", "81 Resultados Transitados (Credor)", "81 Resultados Transitados (Devedor)", "58 Reservas Livres"], answer: "81 Resultados Transitados (Devedor)", feedback: "Um prejuízo (D/88) é transferido a Crédito (C/88) e Debitado (D/) na conta 81, aumentando o saldo devedor acumulado." },
+                    { question: "Qual conta Credita (C/) a anulação de passivos não exigíveis (ex: empréstimo que deixa de ser exigido)?", options: ["33 Empréstimos", "69.6 Anulação de Passivos Não Exigíveis", "79 Custos Extraordinários", "51 Capital"], answer: "69.6 Anulação de Passivos Não Exigíveis", feedback: "É um Ganho Extraordinário (Classe 69.6 - Credor). A contrapartida é o Débito da conta de Passivo (33 Empréstimos) que é saldada." },
+                    { question: "O que é um 'Encargo a Repartir por Períodos Futuros' (37.4)?", options: ["Um Passivo a Curto Prazo", "Um Custo já pago, mas que afeta exercícios futuros (Ativo)", "Um Proveito Diferido", "Uma Dívida Incobrável"], answer: "Um Custo já pago, mas que afeta exercícios futuros (Ativo)", feedback: "É um custo pago antecipadamente (Ex: Seguro Anual) que é Ativo e só se transforma em Custo (75) ao longo dos meses." },
+                    { question: "Lançamento D/43 a C/37.6. O que representa 37.6?", options: ["Custo antecipado", "Receita antecipada (Proveito a Repartir)", "Passivo", "Empréstimo"], answer: "Receita antecipada (Proveito a Repartir)", feedback: "O recebimento antecipado (D/43) de uma receita (Ex: Renda Anual) é uma obrigação (Passivo/Proveito Diferido) para a empresa, Creditado em 37.6." }
+                ]
             }
-        },
-
-        // Perguntas de Múltipla Escolha (10 por Nível)
-        quizzes: {
-            Básico: [
-                { question: "Qual a regra do Débito (D) no MPD para a Classe 4 (Meios Monetários)?", options: ["Diminui o Ativo", "Aumenta o Passivo", "Aumenta o Ativo", "Aumenta o Custo"], answer: "Aumenta o Ativo", feedback: "A Classe 4 é Ativo. Débito (D) aumenta Ativo. Revê 'O Método das Partidas Dobradas (D/C)'." },
-                { question: "A conta 32 - Fornecedores, representa um(a)...", options: ["Ativo", "Custo", "Passivo", "Capital Próprio"], answer: "Passivo", feedback: "Fornecedores é uma obrigação (dívida) com terceiros, logo é um Passivo (Classe 3)." },
-                { question: "Quantas classes principais tem o código de contas?", options: ["5", "8", "9", "10"], answer: "8", feedback: "O código é estruturado em 8 Classes (1 a 8), mais a Classe 0 (Contas de Ordem)." },
-                { question: "Onde se Credita (C/) o aumento de uma Venda (Classe 6)?", options: ["Classe 7", "Classe 4", "Classe 6", "Classe 5"], answer: "Classe 6", feedback: "Proveitos (Vendas - Classe 6) aumentam a CRÉDITO. D/Caixa (45) a C/Vendas (61)." },
-                { question: "O que é o Balancete?", options: ["Resultado final", "Ficha individual de conta", "Mapa de saldos D/C para comprovar o MPD", "Demonstração de resultados"], answer: "Mapa de saldos D/C para comprovar o MPD", feedback: "O Balancete lista todos os saldos e movimentos para provar que a soma dos D é igual à soma dos C." },
-                { question: "Qual a conta Debitada (D/) na compra a dinheiro de um computador (11.5)?", options: ["43 Depósitos à Ordem", "32 Fornecedores", "11.5 Equipamento Administrativo", "61 Vendas"], answer: "11.5 Equipamento Administrativo", feedback: "O computador é um Ativo (Classe 1) e o aumento do Ativo é a DÉBITO." },
-                { question: "A que grupo de contas pertence o Capital Próprio (Classe 5)?", options: ["Ativo", "Passivo", "Capital Próprio", "Resultados"], answer: "Capital Próprio", feedback: "A Classe 5 representa os recursos próprios da empresa (Património Líquido)." },
-                { question: "A diminuição de um Ativo (Ex: Venda de Mercadorias) é registada em qual lado?", options: ["Débito", "Crédito", "Equação", "Resultado"], answer: "Crédito", feedback: "A diminuição do Ativo é registada a CRÉDITO. Revê 'O Método das Partidas Dobradas (D/C)'." },
-                { question: "Qual a principal função do contabilista?", options: ["Vender produtos", "Fornecer informação para decisão", "Pagar impostos", "Fazer empréstimos"], answer: "Fornecer informação para decisão", feedback: "A função primária é produzir e interpretar informação financeira para os usuários da informação." },
-                { question: "O que significa 'Fecho de Contas'?", options: ["Saldar as contas 6 e 7", "Pagar as dívidas", "Vender o imobilizado", "Aumentar o lucro"], answer: "Saldar as contas 6 e 7", feedback: "O fecho de contas (Apuramento) zera as contas de Resultado (6 e 7) transferindo o saldo para a Classe 8." }
-            ],
-            Intermediário: [
-                { question: "A conta 18 - Amortizações Acumuladas, é uma conta de natureza:", options: ["Ativa (D)", "Passiva (C)", "Retificadora de Ativo (C)", "Custo (D)"], answer: "Retificadora de Ativo (C)", feedback: "A conta 18 é Creditada (C) no aumento (amortização), funcionando como um Passivo mas abatendo o Ativo." },
-                { question: "Lançamento D/75.2.21 (Rendas) a C/37.9 (Outros Valores a Pagar). O que é 37.9?", options: ["Ativo a Receber", "Proveito", "Passivo a Pagar (Dívida)", "Resultado"], answer: "Passivo a Pagar (Dívida)", feedback: "D/Custo (75) a C/Passivo (37.9). Registra-se um Custo que ainda não foi pago (dívida)." },
-                { question: "O CMVMC (Custo das Mercadorias Vendidas) é apurado através de qual fórmula básica?", options: ["Vendas - Compras", "Existências Iniciais + Compras - Existências Finais", "Ativo - Passivo", "Proveitos - Custos"], answer: "Existências Iniciais + Compras - Existências Finais", feedback: "Fórmula clássica do CMVMC." },
-                { question: "Qual o lançamento para constituir Provisão para Cobranças Duvidosas (38.1)?", options: ["D/38.1 a C/31.1", "D/78.1 a C/38.1", "D/31.1 a C/78.1", "D/43 a C/38.1"], answer: "D/78.1 a C/38.1", feedback: "A Provisão é um Custo Não Operacional (D/78.1) e aumenta o Passivo/Retificadora (C/38.1)." },
-                { question: "O IVA de uma compra de Mercadorias (114.000 Kz total, taxa 14%) é dedutível. Qual o valor base da compra?", options: ["14.000 Kz", "114.000 Kz", "100.000 Kz", "15.960 Kz"], answer: "100.000 Kz", feedback: "Valor Base = 114.000 / 1.14 = 100.000 Kz. IVA = 14.000 Kz." },
-                { question: "Na venda de imobilizado, a conta 37.2 - Vendas de Imobilizado, regista:", options: ["O Custo de Aquisição", "O Lucro/Prejuízo", "O Valor de Venda", "A Amortização"], answer: "O Valor de Venda", feedback: "O 37.2 (Vendas de Imobilizado) é a conta de Ativo/Passivo de transição que regista o valor da venda. O resultado (Lucro/Prejuízo) vai para 68.3/78.3." },
-                { question: "O que é o Balancete de Verificação?", options: ["Uma lista de saldos D/C para garantir a igualdade do MPD", "O resultado final do exercício", "O mapa de clientes", "O plano de contas"], answer: "Uma lista de saldos D/C para garantir a igualdade do MPD", feedback: "O Balancete lista os saldos devedores e credores de todas as contas para provar que a soma de D é igual à soma de C." },
-                { question: "Onde se Credita (C/) a aquisição de um empréstimo bancário (33.1)?", options: ["Classe 4 (Banco)", "Classe 7 (Juros)", "Classe 33.1 (Empréstimos)", "Classe 51 (Capital)"], answer: "Classe 33.1 (Empréstimos)", feedback: "O empréstimo é Passivo, e o aumento do Passivo é a CRÉDITO. A contrapartida D/43 (Banco) para receber o dinheiro." },
-                { question: "Qual a classe usada para saldar todas as contas de Ativo, Passivo e Capital Próprio no encerramento?", options: ["Classe 0", "Classe 8", "Não se saldam", "Classe 5"], answer: "Não se saldam", feedback: "As contas de Balanço (Ativo, Passivo, CP) não se saldam no fecho. Apenas as contas de Resultados (6, 7 e 8) se fecham." },
-                { question: "A conta 31.9.1 - Clientes - Adiantamentos, é uma conta de natureza:", options: ["Ativo", "Custo", "Passivo", "Proveito"], answer: "Passivo", feedback: "O adiantamento de um cliente é uma obrigação (Passivo) da empresa para entregar bens/serviços." }
-            ],
-            Avançado: [
-                { question: "A taxa de Pro-Rata provisória (30%) é maior que a definitiva (20%). A regularização do IVA (10% sobre o IVA total suportado) é a favor de quem?", options: ["A favor do Estado", "A favor da Empresa", "É nulo", "OCCCA"], answer: "A favor do Estado", feedback: "A empresa deduziu a mais (30%>20%). A diferença deve ser devolvida ao Estado, logo é Creditada (C/34.5.4.2)." },
-                { question: "No IVA Cativo, a entidade que prestou o serviço (Fornecedor) deve Creditar (C/) o valor do IVA na conta:", options: ["34.5.3.1 IVA Liquidado", "34.5.6.2 IVA a Pagar de Cativo", "34.5.7.2 IVA a Recuperar de Cativo", "34.5.2.3 IVA Dedutível"], answer: "34.5.7.2 IVA a Recuperar de Cativo", feedback: "O IVA Liquidado (34.5.3) é saldado pelo IVA a Recuperar de Cativo (34.5.7.2) porque o cliente reteve o dinheiro." },
-                { question: "No fecho, os saldos devedores (Custos) da Classe 7 são transferidos a Crédito para qual conta da Classe 8?", options: ["88 Resultado Líquido", "81 Resultados Transitados", "82.6 Custo das Mercadorias Vendidas e Matérias Consumidas", "87 Imposto sobre os Lucros"], answer: "82.6 Custo das Mercadorias Vendidas e Matérias Consumidas", feedback: "O fecho dos custos operacionais é centralizado no débito da 82.6." },
-                { question: "Qual conta Credita (C/) a retenção na fonte sobre dividendos (Rendimento de Participações - 66.5)?", options: ["66.5 Rendimento", "43 Depósitos", "34.1 Imposto sobre os Lucros", "35 Participadas"], answer: "34.1 Imposto sobre os Lucros", feedback: "A retenção é um crédito sobre o Estado para abater ao Imposto sobre os Lucros anual (34.1 - Passivo/Ativo)." },
-                { question: "No fecho, o saldo devedor da conta 88 - Resultado Líquido do Exercício (Prejuízo) é transferido para qual conta no exercício seguinte?", options: ["51 Capital", "81 Resultados Transitados (Credor)", "81 Resultados Transitados (Devedor)", "58 Reservas Livres"], answer: "81 Resultados Transitados (Devedor)", feedback: "Um prejuízo (D/88) é transferido a Crédito (C/88) e Debitado (D/) na conta 81, aumentando o saldo devedor acumulado." },
-                { question: "Qual conta regista a Anulação de Passivos Não Exigíveis (ganho extraordinário)?", options: ["68.1 Reposição de Provisões", "79.1 Perdas Extraordinárias", "69.6 Anulação de Passivos Não Exigíveis", "51 Capital"], answer: "69.6 Anulação de Passivos Não Exigíveis", feedback: "A conta 69.6 regista Ganhos Extraordinários, Credora por natureza." },
-                { question: "Qual conta Credita (C/) o saldo final (Prejuízo) da conta 88 - Resultado Líquido, no exercício seguinte?", options: ["51 Capital", "81 Resultados Transitados (Credor)", "81 Resultados Transitados (Devedor)", "58 Reservas Livres"], answer: "81 Resultados Transitados (Devedor)", feedback: "Um prejuízo (D/88) é transferido a Crédito (C/88) e Debitado (D/) na conta 81, aumentando o saldo devedor acumulado." },
-                { question: "Qual conta Credita (C/) a anulação de passivos não exigíveis (ex: empréstimo que deixa de ser exigido)?", options: ["33 Empréstimos", "69.6 Anulação de Passivos Não Exigíveis", "79 Custos Extraordinários", "51 Capital"], answer: "69.6 Anulação de Passivos Não Exigíveis", feedback: "É um Ganho Extraordinário (Classe 69.6 - Credor). A contrapartida é o Débito da conta de Passivo (33 Empréstimos) que é saldada." },
-                { question: "O que é um 'Encargo a Repartir por Períodos Futuros' (37.4)?", options: ["Um Passivo a Curto Prazo", "Um Custo já pago, mas que afeta exercícios futuros (Ativo)", "Um Proveito Diferido", "Uma Dívida Incobrável"], answer: "Um Custo já pago, mas que afeta exercícios futuros (Ativo)", feedback: "É um custo pago antecipadamente (Ex: Seguro Anual) que é Ativo e só se transforma em Custo (75) ao longo dos meses." },
-                { question: "Lançamento D/43 a C/37.6. O que representa 37.6?", options: ["Custo antecipado", "Receita antecipada (Proveito a Repartir)", "Passivo", "Empréstimo"], answer: "Receita antecipada (Proveito a Repartir)", feedback: "O recebimento antecipado (D/43) de uma receita (Ex: Renda Anual) é uma obrigação (Passivo/Proveito Diferido) para a empresa, Creditado em 37.6." }
-            ]
-        }
-    };
-
-    // =======================================================
-    // VARIÁVEIS GLOBAIS E ESTADO DO SIMULADOR
-    // =======================================================
-    let userData = {};
-    let currentLevel = 'Básico'; 
-    let currentLessonIndex = 0;
-    let quizQuestions = [];
-    let currentQuizIndex = 0;
-    let quizResults = { score: 0, level: '', incorrectAnswers: [] };
-    let practicalOperations = [];
-    let accountBalances = {}; // Estado das contas para o Simulador Prático
-    const IVA_RATE = 0.14;
-
-    // Função para mapear as contas e resetar o Balanço
-    function resetAccountBalances() {
-        // Contas mínimas para o Balanço/DRE (Iniciais com saldo 0)
-        accountBalances = {
-            '11.5': { name: 'Equip. Administrativo', class: 1, balance: 0, nature: 'D' },
-            '18.1.5': { name: 'Amort. Acum. Equip. Adm.', class: 1, balance: 0, nature: 'C' },
-            '21.2': { name: 'Compras Mercadorias', class: 2, balance: 0, nature: 'D' },
-            '26': { name: 'Mercadorias', class: 2, balance: 0, nature: 'D' },
-            '31.1': { name: 'Clientes', class: 3, balance: 0, nature: 'D' },
-            '32.1': { name: 'Fornecedores', class: 3, balance: 0, nature: 'C' },
-            '33.1': { name: 'Empréstimos', class: 3, balance: 0, nature: 'C' },
-            '34.1': { name: 'Imposto sobre Lucros', class: 3, balance: 0, nature: 'C' },
-            '34.5.2.1': { name: 'IVA Dedutível', class: 3, balance: 0, nature: 'D' },
-            '34.5.3.1': { name: 'IVA Liquidado', class: 3, balance: 0, nature: 'C' },
-            '37.4': { name: 'Encargos a Repartir', class: 3, balance: 0, nature: 'D' },
-            '37.6': { name: 'Receitas Antecipadas', class: 3, balance: 0, nature: 'C' },
-            '38.1': { name: 'Provisões', class: 3, balance: 0, nature: 'C' },
-            '43': { name: 'Banco', class: 4, balance: 0, nature: 'D' },
-            '45': { name: 'Caixa', class: 4, balance: 0, nature: 'D' },
-            '51': { name: 'Capital', class: 5, balance: 0, nature: 'C' },
-            '61.3': { name: 'Vendas Mercadorias', class: 6, balance: 0, nature: 'C' },
-            '66.5': { name: 'Rendimentos Participações', class: 6, balance: 0, nature: 'C' },
-            '69.6': { name: 'Anulação Passivos', class: 6, balance: 0, nature: 'C' },
-            '71': { name: 'CMVMC', class: 7, balance: 0, nature: 'D' },
-            '73': { name: 'Amortizações', class: 7, balance: 0, nature: 'D' },
-            '75.2.12': { name: 'Custo FSE', class: 7, balance: 0, nature: 'D' },
-            '78.1': { name: 'Provisões Custo', class: 7, balance: 0, nature: 'D' },
-            '79.1': { name: 'Perdas Extraordinárias', class: 7, balance: 0, nature: 'D' }
         };
-    }
-    
-    // =======================================================
-    // FUNÇÕES GERAIS DE NAVEGAÇÃO E SETUP
-    // =======================================================
 
-    function showModule(moduleId) {
-        document.querySelectorAll('.module-content').forEach(module => module.style.display = 'none');
-        document.getElementById(moduleId).style.display = 'block';
+        // =======================================================
+        // 3. VARIÁVEIS DE ESTADO
+        // =======================================================
+        let userData = {};
+        let currentLevel = 'Básico'; 
+        let currentLessonIndex = 0;
+        let quizQuestions = [];
+        let currentQuizIndex = 0;
+        let quizResults = { score: 0, level: '', incorrectAnswers: [] };
+        let practicalOperations = [];
+        let accountBalances = {};
 
-        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('tab-' + moduleId.split('-')[0]).classList.add('active');
-
-        // Lógica de Tela para o Módulo A/B
-        if (moduleId === 'lessons-module') {
-            document.getElementById('start-screen').classList.add('active-screen');
-            document.getElementById('learning-module').classList.remove('active-screen');
-        } else if (moduleId === 'quiz-module-wrapper') {
-            document.getElementById('level-selection-screen').classList.add('active-screen');
-            document.getElementById('quiz-module').classList.remove('active-screen');
-            document.getElementById('results-screen').classList.remove('active-screen');
-        }
-    }
-
-    function switchScreen(activeId) {
-        document.querySelectorAll('.screen').forEach(screen => {
-            screen.classList.remove('active-screen');
-        });
-        document.getElementById(activeId).classList.add('active-screen');
-    }
-
-    function saveUserData() {
-        const form = document.getElementById('registration-form');
-        if (form.checkValidity()) {
-            userData.name = document.getElementById('name').value;
-            userData.age = document.getElementById('age').value;
-            userData.gender = document.getElementById('gender').value;
-            userData.region = document.getElementById('region').value;
-            currentLevel = document.getElementById('lesson-level-selector').value;
-            return true;
-        }
-        form.reportValidity();
-        return false;
-    }
-
-    // =======================================================
-    // MÓDULO A: AULAS COM O SENSEI TECA
-    // =======================================================
-
-    function startLesson() {
-        if (!saveUserData()) return;
-        currentLessonIndex = 0;
+        // =======================================================
+        // 4. FUNÇÕES DE INICIALIZAÇÃO E UTILITÁRIAS
+        // =======================================================
         
-        const searchSelect = document.getElementById('topic-search');
-        searchSelect.innerHTML = '<option value="">Pesquisar/Selecionar Tópico Chave...</option>';
-        Object.keys(accountingData.topics).forEach(topic => {
-            searchSelect.innerHTML += `<option value="${topic}">${topic}</option>`;
-        });
-
-        showLesson();
-        switchScreen('learning-module');
-    }
-
-    function showLesson() {
-        const topics = accountingData.lessonFlow[currentLevel];
-        const lessonContentDiv = document.getElementById('lesson-content');
-        const lessonTitle = document.getElementById('lesson-title');
-        const lessonMessage = document.getElementById('lesson-message');
-        const nextButton = document.querySelector('#learning-module button');
-        
-        // Atualizar barra de progresso
-        const progressPercent = ((currentLessonIndex + 1) / topics.length) * 100;
-        document.getElementById('lesson-progress-bar').style.width = `${progressPercent}%`;
-        document.getElementById('lesson-progress-text').textContent = `Progresso: ${currentLessonIndex + 1} de ${topics.length} capítulos (${Math.round(progressPercent)}%)`;
-        
-        lessonTitle.textContent = `MÓDULO ${currentLevel} (Capítulo ${currentLessonIndex + 1}/${topics.length})`;
-        lessonMessage.innerHTML = `Excelente, ${userData.name}! Foco total! Vamos dominar o <strong>Nível ${currentLevel}</strong>.`;
-
-        if (currentLessonIndex < topics.length) {
-            const topicName = topics[currentLessonIndex];
-            const topicData = accountingData.topics[topicName];
-            lessonContentDiv.innerHTML = `
-                <h3>${topicName}</h3>
-                <p>${topicData.explanation}</p>
-                <div class="explanation-box">
-                    <p class="sensei-message"><strong>Exemplo Prático:</strong> ${topicData.example}</p>
-                </div>
-            `;
-            nextButton.textContent = "Avançar para o próximo Capítulo";
-        } else {
-            lessonContentDiv.innerHTML = `<p class="feedback-success">Parabéns, ${userData.name}! Concluíste o Módulo ${currentLevel}. Estás pronto para testar os teus conhecimentos!</p>`;
-            nextButton.textContent = "Iniciar Prova";
-        }
-    }
-
-    function nextLessonOrQuiz() {
-        const topics = accountingData.lessonFlow[currentLevel];
-
-        if (currentLessonIndex < topics.length - 1) {
-            currentLessonIndex++;
-            showLesson();
-        } else {
-            // Se as aulas foram concluídas, inicia o quiz do nível correspondente
-            startQuiz(currentLevel);
-        }
-    }
-
-    function showTopicDetails(topicName) {
-        const detailsDiv = document.getElementById('topic-details');
-        if (topicName && accountingData.topics[topicName]) {
-            const topic = accountingData.topics[topicName];
-            detailsDiv.innerHTML = `
-                <div class="sensei-box">
-                    <h4>Sensei Teca Detalha: ${topicName}</h4>
-                    <p><strong>Nível:</strong> ${topic.level}</p>
-                    <p><strong>Explicação Completa:</strong> ${topic.explanation}</p>
-                    <p class="sensei-message"><strong>Exemplo Prático:</strong> ${topic.example}</p>
-                </div>
-            `;
-            detailsDiv.style.display = 'block';
-        } else {
-            detailsDiv.style.display = 'none';
-        }
-    }
-
-    // =======================================================
-    // MÓDULO B: PROVAS (QUIZZES)
-    // =======================================================
-
-    function startQuiz(level) {
-        currentLevel = level;
-        quizQuestions = accountingData.quizzes[level];
-        currentQuizIndex = 0;
-        quizResults = { score: 0, level: level, incorrectAnswers: [] };
-        
-        document.getElementById('quiz-title').textContent = `Prova de Nível ${level}`;
-        
-        showQuizQuestion();
-        switchScreen('quiz-module');
-    }
-
-    function showQuizQuestion() {
-        const container = document.getElementById('quiz-questions-container');
-        const question = quizQuestions[currentQuizIndex];
-        
-        // Atualizar barra de progresso
-        const progressPercent = ((currentQuizIndex + 1) / quizQuestions.length) * 100;
-        document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
-        document.getElementById('quiz-progress-text').textContent = `Questão ${currentQuizIndex + 1} de ${quizQuestions.length} (${Math.round(progressPercent)}%)`;
-        
-        container.innerHTML = `
-            <div class="quiz-question">
-                <h3>${question.question}</h3>
-                ${question.options.map((option, index) => `
-                    <div>
-                        <input type="radio" id="option-${index}" name="quiz-answer" value="${option}">
-                        <label for="option-${index}">${option}</label>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-    }
-
-    function checkQuiz() {
-        const selectedOption = document.querySelector('input[name="quiz-answer"]:checked');
-        if (!selectedOption) {
-            alert("Sensei Teca diz: Seleciona uma resposta antes de avançar!");
-            return;
-        }
-
-        const question = quizQuestions[currentQuizIndex];
-        const isCorrect = selectedOption.value === question.answer;
-        
-        if (isCorrect) {
-            quizResults.score++;
-        } else {
-            quizResults.incorrectAnswers.push({
-                question: question.question,
-                correctAnswer: question.answer,
-                userAnswer: selectedOption.value,
-                feedback: question.feedback
-            });
-        }
-
-        currentQuizIndex++;
-
-        if (currentQuizIndex < quizQuestions.length) {
-            showQuizQuestion();
-        } else {
-            showQuizResults();
-        }
-    }
-
-    function showQuizResults() {
-        const percentage = (quizResults.score / quizQuestions.length) * 100;
-        
-        document.getElementById('user-info').innerHTML = `
-            <p><strong>Nome:</strong> ${userData.name || 'Não registado'}</p>
-            <p><strong>Nível:</strong> ${quizResults.level}</p>
-            <p><strong>Data:</strong> ${new Date().toLocaleDateString('pt-AO')}</p>
-        `;
-        
-        document.getElementById('score-summary').innerHTML = `
-            <div class="${percentage >= 70 ? 'feedback-success' : 'feedback-error'}">
-                <h3>Pontuação: ${quizResults.score}/${quizQuestions.length} (${percentage.toFixed(1)}%)</h3>
-                <p>${percentage >= 70 ? '✅ Excelente desempenho!' : '❌ Precisas de mais estudo!'}</p>
-            </div>
-        `;
-        
-        let feedback = '';
-        if (percentage >= 90) {
-            feedback = 'Dominas completamente este nível! Estás pronto para desafios mais avançados.';
-        } else if (percentage >= 70) {
-            feedback = 'Bom desempenho! Tens uma base sólida, mas podes melhorar em alguns detalhes.';
-        } else if (percentage >= 50) {
-            feedback = 'Desempenho razoável. Recomendo reveres os tópicos onde tiveste dificuldades.';
-        } else {
-            feedback = 'Precisas de estudar mais. Foca nos conceitos básicos antes de avançar.';
-        }
-        
-        document.getElementById('sensei-feedback').innerHTML = `
-            <p class="sensei-message">${feedback}</p>
-        `;
-        
-        let improvementHTML = '';
-        if (quizResults.incorrectAnswers.length > 0) {
-            improvementHTML = '<ul>';
-            quizResults.incorrectAnswers.forEach(item => {
-                improvementHTML += `
-                    <li>
-                        <strong>${item.question}</strong><br>
-                        <span class="mov-credit">Resposta correta: ${item.correctAnswer}</span><br>
-                        <span class="mov-debit">Tua resposta: ${item.userAnswer}</span><br>
-                        <em>${item.feedback}</em>
-                    </li>
-                `;
-            });
-            improvementHTML += '</ul>';
-        } else {
-            improvementHTML = '<p class="feedback-success">✅ Dominaste todos os conceitos deste nível!</p>';
-        }
-        
-        document.getElementById('improvement-areas').innerHTML = improvementHTML;
-        
-        switchScreen('results-screen');
-    }
-
-    // =======================================================
-    // MÓDULO C: SIMULADOR PRÁTICO (FUNÇÕES)
-    // =======================================================
-
-    function clearPracticalSimulator() {
-        practicalOperations = [];
-        resetAccountBalances();
-        document.getElementById('practical-operations-list').innerHTML = 'Nenhuma operação adicionada.';
-        document.getElementById('practical-results-area').innerHTML = '';
-        document.getElementById('practical-results-area-container').style.display = 'none';
-        document.getElementById('op-num').value = 1;
-        document.getElementById('op-description').value = '';
-    }
-
-    function addOperation() {
-        const num = document.getElementById('op-num').value;
-        const date = document.getElementById('op-date').value;
-        const type = document.getElementById('op-type').value;
-        const amount = parseFloat(document.getElementById('op-amount').value);
-        const description = document.getElementById('op-description').value;
-
-        if (!type || amount < 0 || !description) {
-            alert("Sensei Teca diz: Preenche todos os campos obrigatórios com valores válidos!");
-            return;
-        }
-
-        practicalOperations.push({ num, date, type, amount, description });
-        renderPracticalOperations();
-        document.getElementById('practical-results-area-container').style.display = 'none';
-        document.getElementById('op-num').value = parseInt(num) + 1;
-        document.getElementById('op-description').value = '';
-    }
-
-    function renderPracticalOperations() {
-        const listDiv = document.getElementById('practical-operations-list');
-        if (practicalOperations.length === 0) {
-            listDiv.innerHTML = 'Nenhuma operação adicionada.';
-            return;
-        }
-        
-        listDiv.innerHTML = practicalOperations.map((op, index) => `
-            <div class="operation-item">
-                <div>
-                    <strong>[OP ${op.num}: ${op.type.replace(/_/g, ' ')}]</strong> - ${op.description} - Kz ${op.amount.toFixed(2)}
-                </div>
-                <div class="operation-actions">
-                    <button onclick="editOperation(${index})" class="btn-secondary">Editar</button>
-                    <button onclick="removeOperation(${index})">Remover</button>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    function removeOperation(index) {
-        practicalOperations.splice(index, 1);
-        renderPracticalOperations();
-    }
-
-    function editOperation(index) {
-        const op = practicalOperations[index];
-        document.getElementById('op-num').value = op.num;
-        document.getElementById('op-date').value = op.date;
-        document.getElementById('op-type').value = op.type;
-        document.getElementById('op-amount').value = op.amount;
-        document.getElementById('op-description').value = op.description;
-        
-        removeOperation(index);
-    }
-
-    // LÓGICA DE RESOLUÇÃO E ATUALIZAÇÃO DO BALANÇO INTERNO
-    function calculateResolution() {
-        resetAccountBalances(); // Começa com o Balanço zerado para simulação.
-        const resultsArea = document.getElementById('practical-results-area');
-        if (practicalOperations.length === 0) {
-            resultsArea.innerHTML = "<p class='feedback-error'>Sensei Teca diz: Adiciona operações antes de calcular!</p>";
-            return;
-        }
-
-        let fullResolution = `<h4>MOVIMENTAÇÕES RAZÃO (DIÁRIO):</h4>`;
-
-        practicalOperations.forEach(op => {
-            const result = resolveOperation(op);
-            fullResolution += `<div class="sensei-box">`;
-            fullResolution += `<h5>--- [OP ${op.num} - ${op.description}] ---</h5>`;
+        /**
+         * Inicializa o simulador
+         */
+        function init() {
+            showModule('lessons-module');
+            document.getElementById('tab-aulas').classList.add('active');
+            resetAccountBalances();
             
-            result.movements.forEach(mov => {
-                const isDebit = mov.nature === 'D';
+            // Definir data atual como padrão
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('op-date').value = today;
+            
+            // Aplicar scroll automático nas tabelas
+            applyTableScrollContainers();
+            
+            console.log('Sensei Teca - Simulador inicializado com sucesso');
+        }
+        
+        /**
+         * Reinicia o simulador
+         */
+        function restartSimulator() {
+            if (confirm('Tens a certeza que queres reiniciar o simulador? Todo o progresso será perdido.')) {
+                window.location.reload();
+            }
+        }
+        
+        /**
+         * Reseta os saldos das contas
+         */
+        function resetAccountBalances() {
+            accountBalances = {
+                '11.5': { name: 'Equip. Administrativo', class: 1, balance: 0, nature: 'D' },
+                '18.1.5': { name: 'Amort. Acum. Equip. Adm.', class: 1, balance: 0, nature: 'C' },
+                '21.2': { name: 'Compras Mercadorias', class: 2, balance: 0, nature: 'D' },
+                '26': { name: 'Mercadorias', class: 2, balance: 0, nature: 'D' },
+                '31.1': { name: 'Clientes', class: 3, balance: 0, nature: 'D' },
+                '32.1': { name: 'Fornecedores', class: 3, balance: 0, nature: 'C' },
+                '33.1': { name: 'Empréstimos', class: 3, balance: 0, nature: 'C' },
+                '34.1': { name: 'Imposto sobre Lucros', class: 3, balance: 0, nature: 'C' },
+                '34.5.2.1': { name: 'IVA Dedutível', class: 3, balance: 0, nature: 'D' },
+                '34.5.3.1': { name: 'IVA Liquidado', class: 3, balance: 0, nature: 'C' },
+                '37.4': { name: 'Encargos a Repartir', class: 3, balance: 0, nature: 'D' },
+                '37.6': { name: 'Receitas Antecipadas', class: 3, balance: 0, nature: 'C' },
+                '38.1': { name: 'Provisões', class: 3, balance: 0, nature: 'C' },
+                '43': { name: 'Banco', class: 4, balance: 0, nature: 'D' },
+                '45': { name: 'Caixa', class: 4, balance: 0, nature: 'D' },
+                '51': { name: 'Capital', class: 5, balance: 0, nature: 'C' },
+                '61.3': { name: 'Vendas Mercadorias', class: 6, balance: 0, nature: 'C' },
+                '66.5': { name: 'Rendimentos Participações', class: 6, balance: 0, nature: 'C' },
+                '69.6': { name: 'Anulação Passivos', class: 6, balance: 0, nature: 'C' },
+                '71': { name: 'CMVMC', class: 7, balance: 0, nature: 'D' },
+                '73': { name: 'Amortizações', class: 7, balance: 0, nature: 'D' },
+                '75.2.12': { name: 'Custo FSE', class: 7, balance: 0, nature: 'D' },
+                '78.1': { name: 'Provisões Custo', class: 7, balance: 0, nature: 'D' },
+                '79.1': { name: 'Perdas Extraordinárias', class: 7, balance: 0, nature: 'D' }
+            };
+        }
+        
+        /**
+         * Exibe um módulo específico e oculta os outros
+         */
+        function showModule(moduleId) {
+            try {
+                document.querySelectorAll('.module-content').forEach(module => {
+                    module.style.display = 'none';
+                });
                 
-                // Atualiza o Balanço Interno
-                const accountKey = mov.account.split(' ')[0];
-                if (!accountBalances[accountKey]) {
-                    accountBalances[accountKey] = {
-                        name: mov.account.split(' ').slice(1).join(' '),
-                        class: parseInt(accountKey.split('.')[0]),
-                        balance: 0,
-                        nature: mov.nature
-                    };
-                }
-                
-                if (isDebit) {
-                    accountBalances[accountKey].balance += mov.value;
+                const targetModule = document.getElementById(moduleId);
+                if (targetModule) {
+                    targetModule.style.display = 'block';
                 } else {
-                    accountBalances[accountKey].balance -= mov.value;
+                    throw new Error(`Módulo com ID '${moduleId}' não encontrado`);
                 }
 
-                // Adiciona ao Diário (HTML)
-                fullResolution += `<p><span class="${isDebit ? 'mov-debit' : 'mov-credit'}">${mov.account}</span> - Kz ${mov.value.toFixed(2).padEnd(10)} - <em>${mov.justification}</em></p>`;
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                
+                const activeTab = document.getElementById('tab-' + moduleId.split('-')[0]);
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                    activeTab.setAttribute('aria-selected', 'true');
+                }
+
+                // Lógica de Tela para o Módulo A/B
+                if (moduleId === 'lessons-module') {
+                    switchScreen('start-screen');
+                } else if (moduleId === 'quiz-module-wrapper') {
+                    switchScreen('level-selection-screen');
+                }
+            } catch (error) {
+                console.error('Erro ao mostrar módulo:', error);
+                showError('Ocorreu um erro ao carregar o módulo. Tenta novamente.');
+            }
+        }
+
+        /**
+         * Alterna entre telas dentro de um módulo
+         */
+        function switchScreen(activeId) {
+            try {
+                document.querySelectorAll('.screen').forEach(screen => {
+                    screen.classList.remove('active-screen');
+                });
+                
+                const activeScreen = document.getElementById(activeId);
+                if (activeScreen) {
+                    activeScreen.classList.add('active-screen');
+                } else {
+                    throw new Error(`Tela com ID '${activeId}' não encontrada`);
+                }
+            } catch (error) {
+                console.error('Erro ao alternar tela:', error);
+            }
+        }
+
+        /**
+         * Salva os dados do utilizador
+         */
+        function saveUserData() {
+            try {
+                const form = document.getElementById('registration-form');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return false;
+                }
+
+                userData = {
+                    name: document.getElementById('name').value.trim(),
+                    age: document.getElementById('age').value,
+                    gender: document.getElementById('gender').value,
+                    region: document.getElementById('region').value.trim(),
+                    timestamp: new Date().toISOString()
+                };
+                
+                currentLevel = document.getElementById('lesson-level-selector').value;
+                
+                return true;
+            } catch (error) {
+                console.error('Erro ao salvar dados do utilizador:', error);
+                showError('Ocorreu um erro ao processar os teus dados. Tenta novamente.');
+                return false;
+            }
+        }
+
+        /**
+         * Exibe uma mensagem de erro para o utilizador
+         */
+        function showError(message) {
+            // Criar elemento de erro se não existir
+            let errorElement = document.getElementById('global-error');
+            if (!errorElement) {
+                errorElement = document.createElement('div');
+                errorElement.id = 'global-error';
+                errorElement.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    z-index: 10000;
+                    max-width: 400px;
+                `;
+                document.body.appendChild(errorElement);
+            }
+            
+            errorElement.innerHTML = `
+                <div class="feedback-error">
+                    <strong>Erro:</strong> ${message}
+                    <button onclick="this.parentElement.remove()" style="float: right; background: none; border: none; color: inherit; cursor: pointer;">×</button>
+                </div>
+            `;
+            
+            // Auto-remover após 5 segundos
+            setTimeout(() => {
+                if (errorElement.parentElement) {
+                    errorElement.remove();
+                }
+            }, 5000);
+        }
+
+        /**
+         * Aplica scroll automático nas tabelas para responsividade
+         */
+        function applyTableScrollContainers() {
+            const tables = document.querySelectorAll('#results-container-table table, .sensei-box table, .explanation-box table');
+            
+            tables.forEach(table => {
+                if (!table.parentElement.classList.contains('table-responsive')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'table-responsive';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
             });
-            
-            fullResolution += `<p class="sensei-message"><strong>Essência Sensei Teca:</strong> ${result.summary}</p>`;
-            fullResolution += `</div>`;
-        });
-
-        // 1. Exibir Diário e Explicação
-        resultsArea.innerHTML = fullResolution;
-
-        // 2. Exibir Demonstrações
-        renderDemonstrations();
-        document.getElementById('practical-results-area-container').style.display = 'block';
-    }
-
-    // Função para resolver cada tipo de operação
-    function resolveOperation(operation) {
-        const amount = operation.amount;
-        let movements = [];
-        let summary = '';
-
-        switch(operation.type) {
-            case 'ABERTURA':
-                movements = [
-                    { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento do Ativo (Débito)' },
-                    { account: '51 Capital', value: amount, nature: 'C', justification: 'Aumento do Capital Próprio (Crédito)' }
-                ];
-                summary = 'Registo inicial do capital social da empresa. O capital é sempre registado a Crédito.';
-                break;
-                
-            case 'COMPRA_MERCADORIAS_CREDITO':
-                const baseValue = amount / (1 + IVA_RATE);
-                const ivaValue = amount - baseValue;
-                movements = [
-                    { account: '21.2 Compras Mercadorias', value: baseValue, nature: 'D', justification: 'Aumento de Custo (Débito)' },
-                    { account: '34.5.2.1 IVA Dedutível', value: ivaValue, nature: 'D', justification: 'Aumento de Ativo (IVA a recuperar)' },
-                    { account: '32.1 Fornecedores', value: amount, nature: 'C', justification: 'Aumento de Passivo (Crédito)' }
-                ];
-                summary = 'Compra de mercadorias a crédito com IVA. O IVA é dedutível (Ativo) e será compensado com o IVA liquidado nas vendas.';
-                break;
-                
-            case 'COMPRA_MERCADORIAS_DINHEIRO':
-                const baseValue2 = amount / (1 + IVA_RATE);
-                const ivaValue2 = amount - baseValue2;
-                movements = [
-                    { account: '21.2 Compras Mercadorias', value: baseValue2, nature: 'D', justification: 'Aumento de Custo (Débito)' },
-                    { account: '34.5.2.1 IVA Dedutível', value: ivaValue2, nature: 'D', justification: 'Aumento de Ativo (IVA a recuperar)' },
-                    { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Compra de mercadorias a dinheiro com IVA. Pagamento imediato reduz o saldo bancário.';
-                break;
-                
-            case 'VENDA_MERCADORIAS_CREDITO':
-                const baseValue3 = amount / (1 + IVA_RATE);
-                const ivaValue3 = amount - baseValue3;
-                movements = [
-                    { account: '31.1 Clientes', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
-                    { account: '61.3 Vendas Mercadorias', value: baseValue3, nature: 'C', justification: 'Aumento de Proveito (Crédito)' },
-                    { account: '34.5.3.1 IVA Liquidado', value: ivaValue3, nature: 'C', justification: 'Aumento de Passivo (IVA a pagar)' }
-                ];
-                summary = 'Venda de mercadorias a crédito com IVA. O IVA liquidado é uma obrigação para com o Estado.';
-                break;
-                
-            case 'VENDA_MERCADORIAS_DINHEIRO':
-                const baseValue4 = amount / (1 + IVA_RATE);
-                const ivaValue4 = amount - baseValue4;
-                movements = [
-                    { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
-                    { account: '61.3 Vendas Mercadorias', value: baseValue4, nature: 'C', justification: 'Aumento de Proveito (Crédito)' },
-                    { account: '34.5.3.1 IVA Liquidado', value: ivaValue4, nature: 'C', justification: 'Aumento de Passivo (IVA a pagar)' }
-                ];
-                summary = 'Venda de mercadorias a dinheiro com IVA. Recebimento imediato aumenta o saldo bancário.';
-                break;
-                
-            case 'PAGAMENTO_FORNECEDOR':
-                movements = [
-                    { account: '32.1 Fornecedores', value: amount, nature: 'D', justification: 'Diminuição de Passivo (Débito)' },
-                    { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Pagamento a fornecedor reduz tanto o Passivo (dívida) como o Ativo (disponibilidades).';
-                break;
-                
-            case 'RECEBIMENTO_CLIENTE':
-                movements = [
-                    { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
-                    { account: '31.1 Clientes', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Recebimento de cliente: troca de um Ativo (clientes) por outro Ativo (banco).';
-                break;
-                
-            case 'REGISTO_AMORTIZACAO':
-                movements = [
-                    { account: '73 Amortizações', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
-                    { account: '18.1.5 Amort. Acum. Equip. Adm.', value: amount, nature: 'C', justification: 'Aumento de Retificadora de Ativo (Crédito)' }
-                ];
-                summary = 'Amortização do imobilizado: reconhecimento do desgaste dos ativos fixos ao longo do tempo.';
-                break;
-                
-            case 'PAGAMENTO_CUSTO':
-                movements = [
-                    { account: '75.2.12 Custo FSE', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
-                    { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Pagamento de custo operacional: reconhecimento imediato da despesa.';
-                break;
-                
-            case 'CONSTITUICAO_CAPITAL':
-                movements = [
-                    { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
-                    { account: '51 Capital', value: amount, nature: 'C', justification: 'Aumento de Capital Próprio (Crédito)' }
-                ];
-                summary = 'Constituição ou aumento de capital: entrada de recursos próprios na empresa.';
-                break;
-                
-            case 'OBTER_EMPRESTIMO':
-                movements = [
-                    { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
-                    { account: '33.1 Empréstimos', value: amount, nature: 'C', justification: 'Aumento de Passivo (Crédito)' }
-                ];
-                summary = 'Obtenção de empréstimo: entrada de recursos de terceiros (aumenta tanto Ativo como Passivo).';
-                break;
-                
-            case 'PAGAMENTO_JUROS':
-                movements = [
-                    { account: '75.2.12 Custo FSE', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
-                    { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Pagamento de juros: custo financeiro do capital de terceiros.';
-                break;
-                
-            case 'AQUISICAO_IMOBILIZADO':
-                movements = [
-                    { account: '11.5 Equip. Administrativo', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
-                    { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Aquisição de imobilizado: troca de um Ativo (disponibilidades) por outro Ativo (imobilizado).';
-                break;
-                
-            case 'REGISTO_PROVISAO':
-                movements = [
-                    { account: '78.1 Provisões Custo', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
-                    { account: '38.1 Provisões', value: amount, nature: 'C', justification: 'Aumento de Passivo (Crédito)' }
-                ];
-                summary = 'Constituição de provisão: reconhecimento antecipado de um custo/obrigação futura.';
-                break;
-                
-            case 'PAGAMENTO_IMPOSTO':
-                movements = [
-                    { account: '34.1 Imposto sobre Lucros', value: amount, nature: 'D', justification: 'Diminuição de Passivo (Débito)' },
-                    { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Pagamento de imposto: liquidação da obrigação fiscal com o Estado.';
-                break;
-                
-            case 'REGULARIZACAO_IVA':
-                movements = [
-                    { account: '34.5.3.1 IVA Liquidado', value: amount, nature: 'D', justification: 'Diminuição de Passivo (Débito)' },
-                    { account: '34.5.2.1 IVA Dedutível', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
-                ];
-                summary = 'Regularização de IVA: compensação do IVA a pagar com o IVA a recuperar.';
-                break;
-                
-            default:
-                movements = [
-                    { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
-                    { account: '79.1 Perdas Extraordinárias', value: amount, nature: 'C', justification: 'Aumento de Custo (Crédito)' }
-                ];
-                summary = 'Operação genérica - ajustar conforme a natureza específica da transação.';
         }
 
-        return { movements, summary };
-    }
+        // =======================================================
+        // 5. MÓDULO A: AULAS COM O SENSEI TECA
+        // =======================================================
+        
+        /**
+         * Inicia as aulas
+         */
+        function startLesson() {
+            if (!saveUserData()) return;
+            
+            currentLessonIndex = 0;
+            
+            const searchSelect = document.getElementById('topic-search');
+            if (searchSelect) {
+                searchSelect.innerHTML = '<option value="">Pesquisar/Selecionar Tópico Chave...</option>';
+                Object.keys(accountingData.topics).forEach(topic => {
+                    searchSelect.innerHTML += `<option value="${topic}">${topic}</option>`;
+                });
+            }
 
-    // Função de Geração de Demonstrações (Balancete, Balanço, DRE)
-    function renderDemonstrations() {
-        const container = document.getElementById('results-container-table');
-        container.innerHTML = '<h3>Análise das Demonstrações</h3>';
+            showLesson();
+            switchScreen('learning-module');
+        }
 
-        // GERAÇÃO DO BALANCETE
-        let balanceteHTML = '<div class="sensei-box"><h4>BALANCETE DE VERIFICAÇÃO (Saldos Finais)</h4>';
-        balanceteHTML += '<table><thead><tr><th>Conta</th><th>Nome</th><th>Saldo Devedor (D)</th><th>Saldo Credor (C)</th></tr></thead><tbody>';
-        let totalD = 0, totalC = 0;
-
-        for (const key in accountBalances) {
-            const balanceData = accountBalances[key];
-            const saldo = balanceData.balance;
-
-            if (saldo !== 0) {
-                const isDebit = saldo > 0;
-                const finalSaldo = Math.abs(saldo).toFixed(2);
+        /**
+         * Exibe a aula atual
+         */
+        function showLesson() {
+            try {
+                const topics = accountingData.lessonFlow[currentLevel];
+                const lessonContentDiv = document.getElementById('lesson-content');
+                const lessonTitle = document.getElementById('lesson-title');
+                const lessonMessage = document.getElementById('lesson-message');
+                const nextButton = document.querySelector('#learning-module button');
                 
-                balanceteHTML += `<tr>
-                    <td>${key}</td>
-                    <td>${balanceData.name}</td>
-                    <td class="${isDebit ? 'mov-debit' : ''}">${isDebit ? finalSaldo : '0.00'}</td>
-                    <td class="${!isDebit ? 'mov-credit' : ''}">${!isDebit ? finalSaldo : '0.00'}</td>
-                </tr>`;
+                if (!topics || !lessonContentDiv || !lessonTitle || !lessonMessage || !nextButton) {
+                    throw new Error('Elementos da aula não encontrados');
+                }
+                
+                // Atualizar barra de progresso
+                const progressPercent = ((currentLessonIndex + 1) / topics.length) * 100;
+                const progressBar = document.getElementById('lesson-progress-bar');
+                const progressText = document.getElementById('lesson-progress-text');
+                
+                if (progressBar) progressBar.style.width = `${progressPercent}%`;
+                if (progressText) {
+                    progressText.textContent = `Progresso: ${currentLessonIndex + 1} de ${topics.length} capítulos (${Math.round(progressPercent)}%)`;
+                }
+                
+                lessonTitle.textContent = `MÓDULO ${currentLevel} (Capítulo ${currentLessonIndex + 1}/${topics.length})`;
+                lessonMessage.innerHTML = `Excelente, ${userData.name || 'jovem contabilista'}! Foco total! Vamos dominar o <strong>Nível ${currentLevel}</strong>.`;
 
-                if (isDebit) totalD += Math.abs(saldo); 
-                else totalC += Math.abs(saldo);
+                if (currentLessonIndex < topics.length) {
+                    const topicName = topics[currentLessonIndex];
+                    const topicData = accountingData.topics[topicName];
+                    
+                    if (topicData) {
+                        lessonContentDiv.innerHTML = `
+                            <h3>${topicName}</h3>
+                            <p>${topicData.explanation}</p>
+                            <div class="explanation-box">
+                                <p class="sensei-message"><strong>Exemplo Prático:</strong> ${topicData.example}</p>
+                            </div>
+                        `;
+                        nextButton.textContent = "Avançar para o próximo Capítulo";
+                    } else {
+                        throw new Error(`Dados do tópico '${topicName}' não encontrados`);
+                    }
+                } else {
+                    lessonContentDiv.innerHTML = `<p class="feedback-success">Parabéns, ${userData.name || 'jovem contabilista'}! Concluíste o Módulo ${currentLevel}. Estás pronto para testar os teus conhecimentos!</p>`;
+                    nextButton.textContent = "Iniciar Prova";
+                }
+            } catch (error) {
+                console.error('Erro ao mostrar aula:', error);
+                showError('Ocorreu um erro ao carregar a aula. Tenta novamente.');
             }
         }
-        
-        balanceteHTML += `<tr>
-            <td><strong>TOTAIS</strong></td>
-            <td></td>
-            <td><strong>Kz ${totalD.toFixed(2)}</strong></td>
-            <td><strong>Kz ${totalC.toFixed(2)}</strong></td>
-        </tr>`;
-        balanceteHTML += `</tbody></table>`;
-        
-        const balanceTest = totalD.toFixed(2) === totalC.toFixed(2);
-        balanceteHTML += `<p class="${balanceTest ? 'feedback-success' : 'feedback-error'}">
-            <strong>TESTE MPD:</strong> Débito e Crédito estão ${balanceTest ? 'IGUAIS' : 'DIFERENTES'}! (${totalD.toFixed(2)} vs ${totalC.toFixed(2)})
-        </p>`;
-        balanceteHTML += '</div>';
-        container.innerHTML += balanceteHTML;
-        
-        // GERAÇÃO DA DEMONSTRAÇÃO DE RESULTADOS (DRE)
-        let dreHTML = '<div class="sensei-box"><h4>DEMONSTRAÇÃO DE RESULTADOS (DRE)</h4>';
-        dreHTML += '<table><thead><tr><th>Rubrica</th><th>Valor</th></tr></thead><tbody>';
-        
-        const vendas = accountBalances['61.3'] ? Math.abs(accountBalances['61.3'].balance) : 0;
-        const cmvmc = accountBalances['71'] ? Math.abs(accountBalances['71'].balance) : 0;
-        const amort = accountBalances['73'] ? Math.abs(accountBalances['73'].balance) : 0;
-        const custos_fse = accountBalances['75.2.12'] ? Math.abs(accountBalances['75.2.12'].balance) : 0;
-        const provisoes_custo = accountBalances['78.1'] ? Math.abs(accountBalances['78.1'].balance) : 0;
-        const perdas_extra = accountBalances['79.1'] ? Math.abs(accountBalances['79.1'].balance) : 0;
-        const rendimentos = accountBalances['66.5'] ? Math.abs(accountBalances['66.5'].balance) : 0;
-        const anulacao_passivos = accountBalances['69.6'] ? Math.abs(accountBalances['69.6'].balance) : 0;
 
-        const resultado_operacional = vendas - cmvmc - amort - custos_fse - provisoes_custo;
-        const resultado_antes_impostos = resultado_operacional + rendimentos + anulacao_passivos - perdas_extra;
-        
-        dreHTML += `<tr><td>1. Vendas e Serviços Prestados</td><td class="mov-credit">Kz ${vendas.toFixed(2)}</td></tr>`;
-        dreHTML += `<tr><td>2. Custo das Mercadorias Vendidas</td><td class="mov-debit">Kz (${cmvmc.toFixed(2)})</td></tr>`;
-        dreHTML += `<tr><td>3. Amortizações e Ajustamentos</td><td class="mov-debit">Kz (${amort.toFixed(2)})</td></tr>`;
-        dreHTML += `<tr><td>4. Outros Custos Operacionais</td><td class="mov-debit">Kz (${custos_fse.toFixed(2)})</td></tr>`;
-        dreHTML += `<tr><td>5. Provisões</td><td class="mov-debit">Kz (${provisoes_custo.toFixed(2)})</td></tr>`;
-        dreHTML += `<tr><td><strong>RESULTADO OPERACIONAL</strong></td><td><strong>Kz ${resultado_operacional.toFixed(2)}</strong></td></tr>`;
-        
-        if (rendimentos > 0) dreHTML += `<tr><td>6. Rendimentos Financeiros</td><td class="mov-credit">Kz ${rendimentos.toFixed(2)}</td></tr>`;
-        if (anulacao_passivos > 0) dreHTML += `<tr><td>7. Anulação de Passivos</td><td class="mov-credit">Kz ${anulacao_passivos.toFixed(2)}</td></tr>`;
-        if (perdas_extra > 0) dreHTML += `<tr><td>8. Perdas Extraordinárias</td><td class="mov-debit">Kz (${perdas_extra.toFixed(2)})</td></tr>`;
-        
-        dreHTML += `<tr><td><strong>RESULTADO ANTES DE IMPOSTOS</strong></td><td><strong>Kz ${resultado_antes_impostos.toFixed(2)}</strong></td></tr>`;
-        dreHTML += `</tbody></table>`;
-        dreHTML += '</div>';
-        container.innerHTML += dreHTML;
+        /**
+         * Avança para a próxima aula ou inicia o quiz
+         */
+        function nextLessonOrQuiz() {
+            const topics = accountingData.lessonFlow[currentLevel];
 
-        // GERAÇÃO DO BALANÇO (Simplificado)
-        let balancoHTML = '<div class="sensei-box"><h4>BALANÇO PATRIMONIAL (Simplificado)</h4>';
-        let ativoTotal = 0, passivoTotal = 0;
-        
-        // Calcular totais
-        for (const key in accountBalances) {
-            const balanceData = accountBalances[key];
-            const saldo = balanceData.balance;
-
-            if (saldo !== 0) {
-                const finalSaldo = Math.abs(saldo);
-                // Classes 1, 2, 4 (D) são Ativo; 3 (P), 5, 8 (C) são Passivo/CP
-                if (saldo > 0) ativoTotal += finalSaldo; // Saldo devedor é Ativo
-                else if (saldo < 0) passivoTotal += finalSaldo; // Saldo credor é Passivo/CP
+            if (currentLessonIndex < topics.length - 1) {
+                currentLessonIndex++;
+                showLesson();
+            } else {
+                // Se as aulas foram concluídas, inicia o quiz do nível correspondente
+                startQuiz(currentLevel);
             }
         }
-        
-        // Incluir o resultado da DRE no Capital Próprio
-        passivoTotal += resultado_antes_impostos;
 
-        balancoHTML += '<table><thead><tr><th>Ativo</th><th>Valor</th><th>Passivo e Capital Próprio</th><th>Valor</th></tr></thead><tbody>';
-        balancoHTML += `<tr>
-            <td>Ativo Total</td>
-            <td>Kz ${ativoTotal.toFixed(2)}</td>
-            <td>Passivo + Capital Próprio</td>
-            <td>Kz ${passivoTotal.toFixed(2)}</td>
-        </tr>`;
-        balancoHTML += `<tr>
-            <td></td>
-            <td></td>
-            <td>Resultado do Exercício (DRE)</td>
-            <td>Kz ${resultado_antes_impostos.toFixed(2)}</td>
-        </tr>`;
-        balancoHTML += `</tbody></table>`;
-        
-        const balanceTest2 = ativoTotal.toFixed(2) === passivoTotal.toFixed(2);
-        balancoHTML += `<p class="${balanceTest2 ? 'feedback-success' : 'feedback-error'}">
-            <strong>TESTE BALANÇO:</strong> Ativo é ${balanceTest2 ? 'IGUAL' : 'DIFERENTE'} ao Passivo+CP! (${ativoTotal.toFixed(2)} vs ${passivoTotal.toFixed(2)})
-        </p>`;
-        balancoHTML += '</div>';
-        container.innerHTML += balancoHTML;
-    }
-
-    // =======================================================
-    // FUNÇÕES DE EXPORTAÇÃO
-    // =======================================================
-
-    function exportResultsPDF() {
-        if (typeof jsPDF === 'undefined') {
-            alert("Biblioteca PDF não carregada. Tente novamente.");
-            return;
+        /**
+         * Exibe detalhes de um tópico específico
+         */
+        function showTopicDetails(topicName) {
+            const detailsDiv = document.getElementById('topic-details');
+            if (!detailsDiv) return;
+            
+            if (topicName && accountingData.topics[topicName]) {
+                const topic = accountingData.topics[topicName];
+                detailsDiv.innerHTML = `
+                    <div class="sensei-box">
+                        <h4>Sensei Teca Detalha: ${topicName}</h4>
+                        <p><strong>Nível:</strong> ${topic.level}</p>
+                        <p><strong>Explicação Completa:</strong> ${topic.explanation}</p>
+                        <p class="sensei-message"><strong>Exemplo Prático:</strong> ${topic.example}</p>
+                    </div>
+                `;
+                detailsDiv.style.display = 'block';
+            } else {
+                detailsDiv.style.display = 'none';
+            }
         }
 
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const element = document.getElementById('results-export-area');
+        // =======================================================
+        // 6. MÓDULO B: PROVAS (QUIZZES)
+        // =======================================================
         
-        html2canvas(element, { scale: 2 }).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const imgWidth = 190;
-            const pageHeight = 280;
-            const imgHeight = canvas.height * imgWidth / canvas.width;
-            let heightLeft = imgHeight;
-            
-            let position = 10;
-            
-            doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-            
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                doc.addPage();
-                doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
+        /**
+         * Inicia o quiz
+         */
+        function startQuiz(level) {
+            try {
+                if (!accountingData.quizzes[level]) {
+                    throw new Error(`Nível de quiz '${level}' não encontrado`);
+                }
+                
+                currentLevel = level;
+                quizQuestions = accountingData.quizzes[level];
+                currentQuizIndex = 0;
+                quizResults = { score: 0, level: level, incorrectAnswers: [] };
+                
+                const quizTitle = document.getElementById('quiz-title');
+                if (quizTitle) {
+                    quizTitle.textContent = `Prova de Nível ${level}`;
+                }
+                
+                showQuizQuestion();
+                switchScreen('quiz-module');
+            } catch (error) {
+                console.error('Erro ao iniciar quiz:', error);
+                showError('Ocorreu um erro ao iniciar a prova. Tenta novamente.');
+            }
+        }
+
+        /**
+         * Exibe a questão atual do quiz
+         */
+        function showQuizQuestion() {
+            try {
+                const container = document.getElementById('quiz-questions-container');
+                if (!container || !quizQuestions[currentQuizIndex]) {
+                    throw new Error('Container de questões ou questão atual não encontrados');
+                }
+                
+                const question = quizQuestions[currentQuizIndex];
+                
+                // Atualizar barra de progresso
+                const progressPercent = ((currentQuizIndex + 1) / quizQuestions.length) * 100;
+                const progressBar = document.getElementById('quiz-progress-bar');
+                const progressText = document.getElementById('quiz-progress-text');
+                
+                if (progressBar) progressBar.style.width = `${progressPercent}%`;
+                if (progressText) {
+                    progressText.textContent = `Questão ${currentQuizIndex + 1} de ${quizQuestions.length} (${Math.round(progressPercent)}%)`;
+                }
+                
+                container.innerHTML = `
+                    <div class="quiz-question">
+                        <h3>${question.question}</h3>
+                        ${question.options.map((option, index) => `
+                            <div>
+                                <input type="radio" id="option-${index}" name="quiz-answer" value="${option}">
+                                <label for="option-${index}">${option}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Erro ao mostrar questão do quiz:', error);
+                showError('Ocorreu um erro ao carregar a questão. Tenta novamente.');
+            }
+        }
+
+        /**
+         * Verifica a resposta do quiz e avança
+         */
+        function checkQuiz() {
+            try {
+                const selectedOption = document.querySelector('input[name="quiz-answer"]:checked');
+                if (!selectedOption) {
+                    alert("Sensei Teca diz: Seleciona uma resposta antes de avançar!");
+                    return;
+                }
+
+                const question = quizQuestions[currentQuizIndex];
+                const isCorrect = selectedOption.value === question.answer;
+                
+                if (isCorrect) {
+                    quizResults.score++;
+                } else {
+                    quizResults.incorrectAnswers.push({
+                        question: question.question,
+                        correctAnswer: question.answer,
+                        userAnswer: selectedOption.value,
+                        feedback: question.feedback
+                    });
+                }
+
+                currentQuizIndex++;
+
+                if (currentQuizIndex < quizQuestions.length) {
+                    showQuizQuestion();
+                } else {
+                    showQuizResults();
+                }
+            } catch (error) {
+                console.error('Erro ao verificar quiz:', error);
+                showError('Ocorreu um erro ao processar a tua resposta. Tenta novamente.');
+            }
+        }
+
+        /**
+         * Exibe os resultados do quiz
+         */
+        function showQuizResults() {
+            try {
+                const percentage = (quizResults.score / quizQuestions.length) * 100;
+                
+                const userInfo = document.getElementById('user-info');
+                const scoreSummary = document.getElementById('score-summary');
+                const senseiFeedback = document.getElementById('sensei-feedback');
+                const improvementAreas = document.getElementById('improvement-areas');
+                
+                if (!userInfo || !scoreSummary || !senseiFeedback || !improvementAreas) {
+                    throw new Error('Elementos de resultados não encontrados');
+                }
+                
+                userInfo.innerHTML = `
+                    <p><strong>Nome:</strong> ${userData.name || 'Não registado'}</p>
+                    <p><strong>Nível:</strong> ${quizResults.level}</p>
+                    <p><strong>Data:</strong> ${new Date().toLocaleDateString('pt-AO')}</p>
+                `;
+                
+                scoreSummary.innerHTML = `
+                    <div class="${percentage >= 70 ? 'feedback-success' : 'feedback-error'}">
+                        <h3>Pontuação: ${quizResults.score}/${quizQuestions.length} (${percentage.toFixed(1)}%)</h3>
+                        <p>${percentage >= 70 ? '✅ Excelente desempenho!' : '❌ Precisas de mais estudo!'}</p>
+                    </div>
+                `;
+                
+                let feedback = '';
+                if (percentage >= 90) {
+                    feedback = 'Dominas completamente este nível! Estás pronto para desafios mais avançados.';
+                } else if (percentage >= 70) {
+                    feedback = 'Bom desempenho! Tens uma base sólida, mas podes melhorar em alguns detalhes.';
+                } else if (percentage >= 50) {
+                    feedback = 'Desempenho razoável. Recomendo reveres os tópicos onde tiveste dificuldades.';
+                } else {
+                    feedback = 'Precisas de estudar mais. Foca nos conceitos básicos antes de avançar.';
+                }
+                
+                senseiFeedback.innerHTML = `
+                    <p class="sensei-message">${feedback}</p>
+                `;
+                
+                let improvementHTML = '';
+                if (quizResults.incorrectAnswers.length > 0) {
+                    improvementHTML = '<ul>';
+                    quizResults.incorrectAnswers.forEach(item => {
+                        improvementHTML += `
+                            <li>
+                                <strong>${item.question}</strong><br>
+                                <span class="mov-credit">Resposta correta: ${item.correctAnswer}</span><br>
+                                <span class="mov-debit">Tua resposta: ${item.userAnswer}</span><br>
+                                <em>${item.feedback}</em>
+                            </li>
+                        `;
+                    });
+                    improvementHTML += '</ul>';
+                } else {
+                    improvementHTML = '<p class="feedback-success">✅ Dominaste todos os conceitos deste nível!</p>';
+                }
+                
+                improvementAreas.innerHTML = improvementHTML;
+                
+                switchScreen('results-screen');
+            } catch (error) {
+                console.error('Erro ao mostrar resultados do quiz:', error);
+                showError('Ocorreu um erro ao processar os resultados. Tenta novamente.');
+            }
+        }
+
+        // =======================================================
+        // 7. MÓDULO C: SIMULADOR PRÁTICO
+        // =======================================================
+        
+        /**
+         * Limpa o simulador prático
+         */
+        function clearPracticalSimulator() {
+            if (practicalOperations.length > 0 && !confirm('Tens a certeza que queres limpar todas as operações?')) {
+                return;
             }
             
-            doc.save(`SenseiTeca_Resultados_${userData.name || 'Anonimo'}_${new Date().toISOString().slice(0, 10)}.pdf`);
-        });
-    }
-
-    function exportResultsImage() {
-        const element = document.getElementById('results-export-area');
-        
-        html2canvas(element, { 
-            scale: 2, 
-            backgroundColor: 'black' 
-        }).then(canvas => {
-            const a = document.createElement('a');
-            a.href = canvas.toDataURL('image/png');
-            a.download = `SenseiTeca_Resultados_${userData.name || 'Anonimo'}_${new Date().toISOString().slice(0, 10)}.png`;
-            a.click();
-        });
-    }
-
-    function exportPracticalResultsImage() {
-        const input = document.getElementById('practical-results-area-container');
-        if (input.style.display === 'none') {
-             alert("Sensei Teca diz: Calcula primeiro a resolução completa do exercício!");
-            return;
+            practicalOperations = [];
+            resetAccountBalances();
+            document.getElementById('practical-operations-list').innerHTML = 'Nenhuma operação adicionada.';
+            document.getElementById('practical-results-area').innerHTML = '';
+            document.getElementById('practical-results-area-container').style.display = 'none';
+            document.getElementById('op-num').value = 1;
+            document.getElementById('op-description').value = '';
         }
 
-        html2canvas(input, { 
-            scale: 2, 
-            backgroundColor: 'black' 
-        }).then(canvas => {
-            const a = document.createElement('a');
-            a.href = canvas.toDataURL('image/png');
-            a.download = `SenseiTeca_SimuladorPratico_${new Date().toISOString().slice(0, 10)}.png`;
-            a.click();
-        });
-    }
+        /**
+         * Adiciona uma operação ao simulador
+         */
+        function addOperation() {
+            try {
+                const num = document.getElementById('op-num').value;
+                const date = document.getElementById('op-date').value;
+                const type = document.getElementById('op-type').value;
+                const amount = parseFloat(document.getElementById('op-amount').value);
+                const description = document.getElementById('op-description').value.trim();
 
-    function exportPracticalResultsPDF() {
-        if (typeof jsPDF === 'undefined') {
-            alert("Biblioteca PDF não carregada. Tente novamente.");
-            return;
+                // Validações
+                if (!type) {
+                    alert("Sensei Teca diz: Seleciona um tipo de movimento!");
+                    return;
+                }
+                
+                if (isNaN(amount) || amount < 0) {
+                    alert("Sensei Teca diz: Insere um valor válido para a operação!");
+                    return;
+                }
+                
+                if (!description) {
+                    alert("Sensei Teca diz: Adiciona uma descrição para a operação!");
+                    return;
+                }
+
+                practicalOperations.push({ num, date, type, amount, description });
+                renderPracticalOperations();
+                document.getElementById('practical-results-area-container').style.display = 'none';
+                document.getElementById('op-num').value = parseInt(num) + 1;
+                document.getElementById('op-description').value = '';
+            } catch (error) {
+                console.error('Erro ao adicionar operação:', error);
+                showError('Ocorreu um erro ao adicionar a operação. Verifica os dados e tenta novamente.');
+            }
         }
 
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        const element = document.getElementById('practical-results-area-container');
-        
-        html2canvas(element, { scale: 2 }).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const imgWidth = 190;
-            const pageHeight = 280;
-            const imgHeight = canvas.height * imgWidth / canvas.width;
-            let heightLeft = imgHeight;
+        /**
+         * Renderiza a lista de operações
+         */
+        function renderPracticalOperations() {
+            const listDiv = document.getElementById('practical-operations-list');
+            if (!listDiv) return;
             
-            let position = 10;
-            
-            doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-            
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                doc.addPage();
-                doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
+            if (practicalOperations.length === 0) {
+                listDiv.innerHTML = 'Nenhuma operação adicionada.';
+                return;
             }
             
-            doc.save(`SenseiTeca_SimuladorPratico_${new Date().toISOString().slice(0, 10)}.pdf`);
-        });
-    }
-
-    // =======================================================
-    // INICIALIZAÇÃO
-    // =======================================================
-
-    window.onload = function() {
-        showModule('lessons-module'); // Inicia no Módulo A - Aulas
-        document.getElementById('tab-aulas').classList.add('active');
-        resetAccountBalances();
-        
-        // Definir data atual como padrão
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('op-date').value = today;
-    };
-
-    // =======================================================
-// FUNÇÃO PARA APLICAR SCROLL AUTOMÁTICO NAS TABELAS
-// =======================================================
-
-function applyTableScrollContainers() {
-    // Selecionar todas as tabelas que precisam de scroll
-    const tables = document.querySelectorAll('#results-container-table table, .sensei-box table, .explanation-box table');
-    
-    tables.forEach(table => {
-        // Verificar se já tem um wrapper
-        if (!table.parentElement.classList.contains('table-responsive')) {
-            // Criar wrapper
-            const wrapper = document.createElement('div');
-            wrapper.className = 'table-responsive';
-            
-            // Inserir o wrapper e mover a tabela para dentro
-            table.parentNode.insertBefore(wrapper, table);
-            wrapper.appendChild(table);
+            listDiv.innerHTML = practicalOperations.map((op, index) => `
+                <div class="operation-item">
+                    <div>
+                        <strong>[OP ${op.num}: ${op.type.replace(/_/g, ' ')}]</strong> - ${op.description} - Kz ${op.amount.toFixed(2)}
+                    </div>
+                    <div class="operation-actions">
+                        <button onclick="SenseiTeca.editOperation(${index})" class="btn-secondary">Editar</button>
+                        <button onclick="SenseiTeca.removeOperation(${index})">Remover</button>
+                    </div>
+                </div>
+            `).join('');
         }
+
+        /**
+         * Remove uma operação
+         */
+        function removeOperation(index) {
+            if (index >= 0 && index < practicalOperations.length) {
+                practicalOperations.splice(index, 1);
+                renderPracticalOperations();
+            }
+        }
+
+        /**
+         * Edita uma operação
+         */
+        function editOperation(index) {
+            if (index >= 0 && index < practicalOperations.length) {
+                const op = practicalOperations[index];
+                document.getElementById('op-num').value = op.num;
+                document.getElementById('op-date').value = op.date;
+                document.getElementById('op-type').value = op.type;
+                document.getElementById('op-amount').value = op.amount;
+                document.getElementById('op-description').value = op.description;
+                
+                removeOperation(index);
+            }
+        }
+
+        /**
+         * Calcula a resolução completa das operações
+         */
+        function calculateResolution() {
+            try {
+                resetAccountBalances();
+                const resultsArea = document.getElementById('practical-results-area');
+                const resultsContainer = document.getElementById('practical-results-area-container');
+                
+                if (!resultsArea || !resultsContainer) {
+                    throw new Error('Elementos de resultados não encontrados');
+                }
+                
+                if (practicalOperations.length === 0) {
+                    resultsArea.innerHTML = "<p class='feedback-error'>Sensei Teca diz: Adiciona operações antes de calcular!</p>";
+                    return;
+                }
+
+                let fullResolution = `<h4>MOVIMENTAÇÕES RAZÃO (DIÁRIO):</h4>`;
+
+                practicalOperations.forEach(op => {
+                    const result = resolveOperation(op);
+                    fullResolution += `<div class="sensei-box">`;
+                    fullResolution += `<h5>--- [OP ${op.num} - ${op.description}] ---</h5>`;
+                    
+                    result.movements.forEach(mov => {
+                        const isDebit = mov.nature === 'D';
+                        
+                        // Atualiza o Balanço Interno
+                        const accountKey = mov.account.split(' ')[0];
+                        if (!accountBalances[accountKey]) {
+                            accountBalances[accountKey] = {
+                                name: mov.account.split(' ').slice(1).join(' '),
+                                class: parseInt(accountKey.split('.')[0]),
+                                balance: 0,
+                                nature: mov.nature
+                            };
+                        }
+                        
+                        if (isDebit) {
+                            accountBalances[accountKey].balance += mov.value;
+                        } else {
+                            accountBalances[accountKey].balance -= mov.value;
+                        }
+
+                        // Adiciona ao Diário (HTML)
+                        fullResolution += `<p><span class="${isDebit ? 'mov-debit' : 'mov-credit'}">${mov.account}</span> - Kz ${mov.value.toFixed(2).padEnd(10)} - <em>${mov.justification}</em></p>`;
+                    });
+                    
+                    fullResolution += `<p class="sensei-message"><strong>Essência Sensei Teca:</strong> ${result.summary}</p>`;
+                    fullResolution += `</div>`;
+                });
+
+                // 1. Exibir Diário e Explicação
+                resultsArea.innerHTML = fullResolution;
+
+                // 2. Exibir Demonstrações
+                renderDemonstrations();
+                resultsContainer.style.display = 'block';
+                
+                // Aplicar scroll nas tabelas
+                setTimeout(applyTableScrollContainers, 100);
+            } catch (error) {
+                console.error('Erro ao calcular resolução:', error);
+                showError('Ocorreu um erro ao calcular a resolução. Verifica as operações e tenta novamente.');
+            }
+        }
+
+        /**
+         * Resolve uma operação específica
+         */
+        function resolveOperation(operation) {
+            const amount = operation.amount;
+            let movements = [];
+            let summary = '';
+
+            switch(operation.type) {
+                case 'ABERTURA':
+                    movements = [
+                        { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento do Ativo (Débito)' },
+                        { account: '51 Capital', value: amount, nature: 'C', justification: 'Aumento do Capital Próprio (Crédito)' }
+                    ];
+                    summary = 'Registo inicial do capital social da empresa. O capital é sempre registado a Crédito.';
+                    break;
+                    
+                case 'COMPRA_MERCADORIAS_CREDITO':
+                    const baseValue = amount / (1 + IVA_RATE);
+                    const ivaValue = amount - baseValue;
+                    movements = [
+                        { account: '21.2 Compras Mercadorias', value: baseValue, nature: 'D', justification: 'Aumento de Custo (Débito)' },
+                        { account: '34.5.2.1 IVA Dedutível', value: ivaValue, nature: 'D', justification: 'Aumento de Ativo (IVA a recuperar)' },
+                        { account: '32.1 Fornecedores', value: amount, nature: 'C', justification: 'Aumento de Passivo (Crédito)' }
+                    ];
+                    summary = 'Compra de mercadorias a crédito com IVA. O IVA é dedutível (Ativo) e será compensado com o IVA liquidado nas vendas.';
+                    break;
+                    
+                case 'COMPRA_MERCADORIAS_DINHEIRO':
+                    const baseValue2 = amount / (1 + IVA_RATE);
+                    const ivaValue2 = amount - baseValue2;
+                    movements = [
+                        { account: '21.2 Compras Mercadorias', value: baseValue2, nature: 'D', justification: 'Aumento de Custo (Débito)' },
+                        { account: '34.5.2.1 IVA Dedutível', value: ivaValue2, nature: 'D', justification: 'Aumento de Ativo (IVA a recuperar)' },
+                        { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Compra de mercadorias a dinheiro com IVA. Pagamento imediato reduz o saldo bancário.';
+                    break;
+                    
+                case 'VENDA_MERCADORIAS_CREDITO':
+                    const baseValue3 = amount / (1 + IVA_RATE);
+                    const ivaValue3 = amount - baseValue3;
+                    movements = [
+                        { account: '31.1 Clientes', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
+                        { account: '61.3 Vendas Mercadorias', value: baseValue3, nature: 'C', justification: 'Aumento de Proveito (Crédito)' },
+                        { account: '34.5.3.1 IVA Liquidado', value: ivaValue3, nature: 'C', justification: 'Aumento de Passivo (IVA a pagar)' }
+                    ];
+                    summary = 'Venda de mercadorias a crédito com IVA. O IVA liquidado é uma obrigação para com o Estado.';
+                    break;
+                    
+                case 'VENDA_MERCADORIAS_DINHEIRO':
+                    const baseValue4 = amount / (1 + IVA_RATE);
+                    const ivaValue4 = amount - baseValue4;
+                    movements = [
+                        { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
+                        { account: '61.3 Vendas Mercadorias', value: baseValue4, nature: 'C', justification: 'Aumento de Proveito (Crédito)' },
+                        { account: '34.5.3.1 IVA Liquidado', value: ivaValue4, nature: 'C', justification: 'Aumento de Passivo (IVA a pagar)' }
+                    ];
+                    summary = 'Venda de mercadorias a dinheiro com IVA. Recebimento imediato aumenta o saldo bancário.';
+                    break;
+                    
+                case 'PAGAMENTO_FORNECEDOR':
+                    movements = [
+                        { account: '32.1 Fornecedores', value: amount, nature: 'D', justification: 'Diminuição de Passivo (Débito)' },
+                        { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Pagamento a fornecedor reduz tanto o Passivo (dívida) como o Ativo (disponibilidades).';
+                    break;
+                    
+                case 'RECEBIMENTO_CLIENTE':
+                    movements = [
+                        { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
+                        { account: '31.1 Clientes', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Recebimento de cliente: troca de um Ativo (clientes) por outro Ativo (banco).';
+                    break;
+                    
+                case 'REGISTO_AMORTIZACAO':
+                    movements = [
+                        { account: '73 Amortizações', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
+                        { account: '18.1.5 Amort. Acum. Equip. Adm.', value: amount, nature: 'C', justification: 'Aumento de Retificadora de Ativo (Crédito)' }
+                    ];
+                    summary = 'Amortização do imobilizado: reconhecimento do desgaste dos ativos fixos ao longo do tempo.';
+                    break;
+                    
+                case 'PAGAMENTO_CUSTO':
+                    movements = [
+                        { account: '75.2.12 Custo FSE', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
+                        { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Pagamento de custo operacional: reconhecimento imediato da despesa.';
+                    break;
+                    
+                case 'CONSTITUICAO_CAPITAL':
+                    movements = [
+                        { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
+                        { account: '51 Capital', value: amount, nature: 'C', justification: 'Aumento de Capital Próprio (Crédito)' }
+                    ];
+                    summary = 'Constituição ou aumento de capital: entrada de recursos próprios na empresa.';
+                    break;
+                    
+                case 'OBTER_EMPRESTIMO':
+                    movements = [
+                        { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
+                        { account: '33.1 Empréstimos', value: amount, nature: 'C', justification: 'Aumento de Passivo (Crédito)' }
+                    ];
+                    summary = 'Obtenção de empréstimo: entrada de recursos de terceiros (aumenta tanto Ativo como Passivo).';
+                    break;
+                    
+                case 'PAGAMENTO_JUROS':
+                    movements = [
+                        { account: '75.2.12 Custo FSE', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
+                        { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Pagamento de juros: custo financeiro do capital de terceiros.';
+                    break;
+                    
+                case 'AQUISICAO_IMOBILIZADO':
+                    movements = [
+                        { account: '11.5 Equip. Administrativo', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
+                        { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Aquisição de imobilizado: troca de um Ativo (disponibilidades) por outro Ativo (imobilizado).';
+                    break;
+                    
+                case 'REGISTO_PROVISAO':
+                    movements = [
+                        { account: '78.1 Provisões Custo', value: amount, nature: 'D', justification: 'Aumento de Custo (Débito)' },
+                        { account: '38.1 Provisões', value: amount, nature: 'C', justification: 'Aumento de Passivo (Crédito)' }
+                    ];
+                    summary = 'Constituição de provisão: reconhecimento antecipado de um custo/obrigação futura.';
+                    break;
+                    
+                case 'PAGAMENTO_IMPOSTO':
+                    movements = [
+                        { account: '34.1 Imposto sobre Lucros', value: amount, nature: 'D', justification: 'Diminuição de Passivo (Débito)' },
+                        { account: '43 Banco', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Pagamento de imposto: liquidação da obrigação fiscal com o Estado.';
+                    break;
+                    
+                case 'REGULARIZACAO_IVA':
+                    movements = [
+                        { account: '34.5.3.1 IVA Liquidado', value: amount, nature: 'D', justification: 'Diminuição de Passivo (Débito)' },
+                        { account: '34.5.2.1 IVA Dedutível', value: amount, nature: 'C', justification: 'Diminuição de Ativo (Crédito)' }
+                    ];
+                    summary = 'Regularização de IVA: compensação do IVA a pagar com o IVA a recuperar.';
+                    break;
+                    
+                default:
+                    movements = [
+                        { account: '43 Banco', value: amount, nature: 'D', justification: 'Aumento de Ativo (Débito)' },
+                        { account: '79.1 Perdas Extraordinárias', value: amount, nature: 'C', justification: 'Aumento de Custo (Crédito)' }
+                    ];
+                    summary = 'Operação genérica - ajustar conforme a natureza específica da transação.';
+            }
+
+            return { movements, summary };
+        }
+
+        /**
+         * Renderiza as demonstrações financeiras
+         */
+        function renderDemonstrations() {
+            const container = document.getElementById('results-container-table');
+            if (!container) return;
+            
+            container.innerHTML = '<h3>Análise das Demonstrações</h3>';
+
+            // GERAÇÃO DO BALANCETE
+            let balanceteHTML = '<div class="sensei-box"><h4>BALANCETE DE VERIFICAÇÃO (Saldos Finais)</h4>';
+            balanceteHTML += '<div class="table-responsive"><table><thead><tr><th>Conta</th><th>Nome</th><th>Saldo Devedor (D)</th><th>Saldo Credor (C)</th></tr></thead><tbody>';
+            let totalD = 0, totalC = 0;
+
+            for (const key in accountBalances) {
+                const balanceData = accountBalances[key];
+                const saldo = balanceData.balance;
+
+                if (saldo !== 0) {
+                    const isDebit = saldo > 0;
+                    const finalSaldo = Math.abs(saldo).toFixed(2);
+                    
+                    balanceteHTML += `<tr>
+                        <td>${key}</td>
+                        <td>${balanceData.name}</td>
+                        <td class="${isDebit ? 'mov-debit' : ''}">${isDebit ? finalSaldo : '0.00'}</td>
+                        <td class="${!isDebit ? 'mov-credit' : ''}">${!isDebit ? finalSaldo : '0.00'}</td>
+                    </tr>`;
+
+                    if (isDebit) totalD += Math.abs(saldo); 
+                    else totalC += Math.abs(saldo);
+                }
+            }
+            
+            balanceteHTML += `<tr>
+                <td><strong>TOTAIS</strong></td>
+                <td></td>
+                <td><strong>Kz ${totalD.toFixed(2)}</strong></td>
+                <td><strong>Kz ${totalC.toFixed(2)}</strong></td>
+            </tr>`;
+            balanceteHTML += `</tbody></table></div>`;
+            
+            const balanceTest = totalD.toFixed(2) === totalC.toFixed(2);
+            balanceteHTML += `<p class="${balanceTest ? 'feedback-success' : 'feedback-error'}">
+                <strong>TESTE MPD:</strong> Débito e Crédito estão ${balanceTest ? 'IGUAIS' : 'DIFERENTES'}! (${totalD.toFixed(2)} vs ${totalC.toFixed(2)})
+            </p>`;
+            balanceteHTML += '</div>';
+            container.innerHTML += balanceteHTML;
+            
+            // GERAÇÃO DA DEMONSTRAÇÃO DE RESULTADOS (DRE)
+            let dreHTML = '<div class="sensei-box"><h4>DEMONSTRAÇÃO DE RESULTADOS (DRE)</h4>';
+            dreHTML += '<div class="table-responsive"><table><thead><tr><th>Rubrica</th><th>Valor</th></tr></thead><tbody>';
+            
+            const vendas = accountBalances['61.3'] ? Math.abs(accountBalances['61.3'].balance) : 0;
+            const cmvmc = accountBalances['71'] ? Math.abs(accountBalances['71'].balance) : 0;
+            const amort = accountBalances['73'] ? Math.abs(accountBalances['73'].balance) : 0;
+            const custos_fse = accountBalances['75.2.12'] ? Math.abs(accountBalances['75.2.12'].balance) : 0;
+            const provisoes_custo = accountBalances['78.1'] ? Math.abs(accountBalances['78.1'].balance) : 0;
+            const perdas_extra = accountBalances['79.1'] ? Math.abs(accountBalances['79.1'].balance) : 0;
+            const rendimentos = accountBalances['66.5'] ? Math.abs(accountBalances['66.5'].balance) : 0;
+            const anulacao_passivos = accountBalances['69.6'] ? Math.abs(accountBalances['69.6'].balance) : 0;
+
+            const resultado_operacional = vendas - cmvmc - amort - custos_fse - provisoes_custo;
+            const resultado_antes_impostos = resultado_operacional + rendimentos + anulacao_passivos - perdas_extra;
+            
+            dreHTML += `<tr><td>1. Vendas e Serviços Prestados</td><td class="mov-credit">Kz ${vendas.toFixed(2)}</td></tr>`;
+            dreHTML += `<tr><td>2. Custo das Mercadorias Vendidas</td><td class="mov-debit">Kz (${cmvmc.toFixed(2)})</td></tr>`;
+            dreHTML += `<tr><td>3. Amortizações e Ajustamentos</td><td class="mov-debit">Kz (${amort.toFixed(2)})</td></tr>`;
+            dreHTML += `<tr><td>4. Outros Custos Operacionais</td><td class="mov-debit">Kz (${custos_fse.toFixed(2)})</td></tr>`;
+            dreHTML += `<tr><td>5. Provisões</td><td class="mov-debit">Kz (${provisoes_custo.toFixed(2)})</td></tr>`;
+            dreHTML += `<tr><td><strong>RESULTADO OPERACIONAL</strong></td><td><strong>Kz ${resultado_operacional.toFixed(2)}</strong></td></tr>`;
+            
+            if (rendimentos > 0) dreHTML += `<tr><td>6. Rendimentos Financeiros</td><td class="mov-credit">Kz ${rendimentos.toFixed(2)}</td></tr>`;
+            if (anulacao_passivos > 0) dreHTML += `<tr><td>7. Anulação de Passivos</td><td class="mov-credit">Kz ${anulacao_passivos.toFixed(2)}</td></tr>`;
+            if (perdas_extra > 0) dreHTML += `<tr><td>8. Perdas Extraordinárias</td><td class="mov-debit">Kz (${perdas_extra.toFixed(2)})</td></tr>`;
+            
+            dreHTML += `<tr><td><strong>RESULTADO ANTES DE IMPOSTOS</strong></td><td><strong>Kz ${resultado_antes_impostos.toFixed(2)}</strong></td></tr>`;
+            dreHTML += `</tbody></table></div>`;
+            dreHTML += '</div>';
+            container.innerHTML += dreHTML;
+
+            // GERAÇÃO DO BALANÇO (Simplificado)
+            let balancoHTML = '<div class="sensei-box"><h4>BALANÇO PATRIMONIAL (Simplificado)</h4>';
+            let ativoTotal = 0, passivoTotal = 0;
+            
+            // Calcular totais
+            for (const key in accountBalances) {
+                const balanceData = accountBalances[key];
+                const saldo = balanceData.balance;
+
+                if (saldo !== 0) {
+                    const finalSaldo = Math.abs(saldo);
+                    // Classes 1, 2, 4 (D) são Ativo; 3 (P), 5, 8 (C) são Passivo/CP
+                    if (saldo > 0) ativoTotal += finalSaldo; // Saldo devedor é Ativo
+                    else if (saldo < 0) passivoTotal += finalSaldo; // Saldo credor é Passivo/CP
+                }
+            }
+            
+            // Incluir o resultado da DRE no Capital Próprio
+            passivoTotal += resultado_antes_impostos;
+
+            balancoHTML += '<div class="table-responsive"><table><thead><tr><th>Ativo</th><th>Valor</th><th>Passivo e Capital Próprio</th><th>Valor</th></tr></thead><tbody>';
+            balancoHTML += `<tr>
+                <td>Ativo Total</td>
+                <td>Kz ${ativoTotal.toFixed(2)}</td>
+                <td>Passivo + Capital Próprio</td>
+                <td>Kz ${passivoTotal.toFixed(2)}</td>
+            </tr>`;
+            balancoHTML += `<tr>
+                <td></td>
+                <td></td>
+                <td>Resultado do Exercício (DRE)</td>
+                <td>Kz ${resultado_antes_impostos.toFixed(2)}</td>
+            </tr>`;
+            balancoHTML += `</tbody></table></div>`;
+            
+            const balanceTest2 = ativoTotal.toFixed(2) === passivoTotal.toFixed(2);
+            balancoHTML += `<p class="${balanceTest2 ? 'feedback-success' : 'feedback-error'}">
+                <strong>TESTE BALANÇO:</strong> Ativo é ${balanceTest2 ? 'IGUAL' : 'DIFERENTE'} ao Passivo+CP! (${ativoTotal.toFixed(2)} vs ${passivoTotal.toFixed(2)})
+            </p>`;
+            balancoHTML += '</div>';
+            container.innerHTML += balancoHTML;
+        }
+
+        // =======================================================
+        // 8. FUNÇÕES DE EXPORTAÇÃO
+        // =======================================================
+        
+        /**
+         * Exporta resultados para PDF
+         */
+        function exportResultsPDF() {
+            try {
+                if (typeof jsPDF === 'undefined') {
+                    alert("Biblioteca PDF não carregada. Tenta novamente.");
+                    return;
+                }
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const element = document.getElementById('results-export-area');
+                
+                if (!element) {
+                    throw new Error('Elemento de exportação não encontrado');
+                }
+                
+                // Adicionar estado de loading
+                const originalText = event.target.textContent;
+                event.target.innerHTML = 'A gerar PDF...';
+                event.target.disabled = true;
+                
+                html2canvas(element, { 
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const imgWidth = 190;
+                    const pageHeight = 280;
+                    const imgHeight = canvas.height * imgWidth / canvas.width;
+                    let heightLeft = imgHeight;
+                    
+                    let position = 10;
+                    
+                    doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                    
+                    while (heightLeft >= 0) {
+                        position = heightLeft - imgHeight;
+                        doc.addPage();
+                        doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                        heightLeft -= pageHeight;
+                    }
+                    
+                    const fileName = `SenseiTeca_Resultados_${userData.name || 'Anonimo'}_${new Date().toISOString().slice(0, 10)}.pdf`;
+                    doc.save(fileName);
+                    
+                    // Restaurar botão
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                }).catch(error => {
+                    console.error('Erro ao exportar PDF:', error);
+                    showError('Ocorreu um erro ao gerar o PDF. Tenta novamente.');
+                    
+                    // Restaurar botão em caso de erro
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                });
+            } catch (error) {
+                console.error('Erro ao exportar resultados para PDF:', error);
+                showError('Ocorreu um erro ao exportar para PDF. Tenta novamente.');
+            }
+        }
+
+        /**
+         * Exporta resultados como imagem
+         */
+        function exportResultsImage() {
+            try {
+                const element = document.getElementById('results-export-area');
+                
+                if (!element) {
+                    throw new Error('Elemento de exportação não encontrado');
+                }
+                
+                // Adicionar estado de loading
+                const originalText = event.target.textContent;
+                event.target.innerHTML = 'A gerar imagem...';
+                event.target.disabled = true;
+                
+                html2canvas(element, { 
+                    scale: 2, 
+                    backgroundColor: 'black',
+                    useCORS: true,
+                    logging: false
+                }).then(canvas => {
+                    const a = document.createElement('a');
+                    a.href = canvas.toDataURL('image/png');
+                    a.download = `SenseiTeca_Resultados_${userData.name || 'Anonimo'}_${new Date().toISOString().slice(0, 10)}.png`;
+                    a.click();
+                    
+                    // Restaurar botão
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                }).catch(error => {
+                    console.error('Erro ao exportar imagem:', error);
+                    showError('Ocorreu um erro ao gerar a imagem. Tenta novamente.');
+                    
+                    // Restaurar botão em caso de erro
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                });
+            } catch (error) {
+                console.error('Erro ao exportar resultados como imagem:', error);
+                showError('Ocorreu um erro ao exportar como imagem. Tenta novamente.');
+            }
+        }
+
+        /**
+         * Exporta resultados práticos como imagem
+         */
+        function exportPracticalResultsImage() {
+            try {
+                const input = document.getElementById('practical-results-area-container');
+                if (!input || input.style.display === 'none') {
+                    alert("Sensei Teca diz: Calcula primeiro a resolução completa do exercício!");
+                    return;
+                }
+
+                // Adicionar estado de loading
+                const originalText = event.target.textContent;
+                event.target.innerHTML = 'A gerar imagem...';
+                event.target.disabled = true;
+
+                html2canvas(input, { 
+                    scale: 2, 
+                    backgroundColor: 'black',
+                    useCORS: true,
+                    logging: false
+                }).then(canvas => {
+                    const a = document.createElement('a');
+                    a.href = canvas.toDataURL('image/png');
+                    a.download = `SenseiTeca_SimuladorPratico_${new Date().toISOString().slice(0, 10)}.png`;
+                    a.click();
+                    
+                    // Restaurar botão
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                }).catch(error => {
+                    console.error('Erro ao exportar imagem prática:', error);
+                    showError('Ocorreu um erro ao gerar a imagem. Tenta novamente.');
+                    
+                    // Restaurar botão em caso de erro
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                });
+            } catch (error) {
+                console.error('Erro ao exportar resultados práticos como imagem:', error);
+                showError('Ocorreu um erro ao exportar como imagem. Tenta novamente.');
+            }
+        }
+
+        /**
+         * Exporta resultados práticos para PDF
+         */
+        function exportPracticalResultsPDF() {
+            try {
+                if (typeof jsPDF === 'undefined') {
+                    alert("Biblioteca PDF não carregada. Tenta novamente.");
+                    return;
+                }
+
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const element = document.getElementById('practical-results-area-container');
+                
+                if (!element || element.style.display === 'none') {
+                    alert("Sensei Teca diz: Calcula primeiro a resolução completa do exercício!");
+                    return;
+                }
+                
+                // Adicionar estado de loading
+                const originalText = event.target.textContent;
+                event.target.innerHTML = 'A gerar PDF...';
+                event.target.disabled = true;
+                
+                html2canvas(element, { 
+                    scale: 2,
+                    useCORS: true,
+                    logging: false
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const imgWidth = 190;
+                    const pageHeight = 280;
+                    const imgHeight = canvas.height * imgWidth / canvas.width;
+                    let heightLeft = imgHeight;
+                    
+                    let position = 10;
+                    
+                    doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                    
+                    while (heightLeft >= 0) {
+                        position = heightLeft - imgHeight;
+                        doc.addPage();
+                        doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+                        heightLeft -= pageHeight;
+                    }
+                    
+                    const fileName = `SenseiTeca_SimuladorPratico_${new Date().toISOString().slice(0, 10)}.pdf`;
+                    doc.save(fileName);
+                    
+                    // Restaurar botão
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                }).catch(error => {
+                    console.error('Erro ao exportar PDF prático:', error);
+                    showError('Ocorreu um erro ao gerar o PDF. Tenta novamente.');
+                    
+                    // Restaurar botão em caso de erro
+                    event.target.textContent = originalText;
+                    event.target.disabled = false;
+                });
+            } catch (error) {
+                console.error('Erro ao exportar resultados práticos para PDF:', error);
+                showError('Ocorreu um erro ao exportar para PDF. Tenta novamente.');
+            }
+        }
+
+        // =======================================================
+        // 9. EXPORTAÇÃO DE FUNÇÕES PÚBLICAS
+        // =======================================================
+        return {
+            init,
+            showModule,
+            switchScreen,
+            startLesson,
+            showLesson,
+            nextLessonOrQuiz,
+            showTopicDetails,
+            startQuiz,
+            showQuizQuestion,
+            checkQuiz,
+            showQuizResults,
+            clearPracticalSimulator,
+            addOperation,
+            removeOperation,
+            editOperation,
+            calculateResolution,
+            exportResultsPDF,
+            exportResultsImage,
+            exportPracticalResultsImage,
+            exportPracticalResultsPDF,
+            restartSimulator
+        };
+    })();
+
+    // =======================================================
+    // 10. INICIALIZAÇÃO
+    // =======================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        SenseiTeca.init();
+        
+        // Observar mudanças no DOM para aplicar a tabelas dinâmicas
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length) {
+                    setTimeout(SenseiTeca.applyTableScrollContainers, 50);
+                }
+            });
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        // Re-aplicar quando a janela for redimensionada
+        window.addEventListener('resize', SenseiTeca.applyTableScrollContainers);
     });
-}
 
-// Aplicar quando a página carregar
-document.addEventListener('DOMContentLoaded', function() {
-    applyTableScrollContainers();
-    
-    // Aplicar também após cálculos do simulador prático
-    const originalCalculateResolution = window.calculateResolution;
-    window.calculateResolution = function() {
-        originalCalculateResolution();
-        setTimeout(applyTableScrollContainers, 100);
-    };
-});
-
-// Observar mudanças no DOM para aplicar a tabelas dinâmicas
-const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-        if (mutation.addedNodes.length) {
-            setTimeout(applyTableScrollContainers, 50);
-        }
-    });
-});
-
-observer.observe(document.body, {
-    childList: true,
-    subtree: true
-});
-
-// Re-aplicar quando a janela for redimensionada
-window.addEventListener('resize', applyTableScrollContainers);
-
-</script>
+    // Expor SenseiTeca globalmente para acesso via HTML
+    window.SenseiTeca = SenseiTeca;
+    </script>
 
     </main>
 
