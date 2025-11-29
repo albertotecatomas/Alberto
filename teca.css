@@ -560,7 +560,466 @@ h1, h2, {
     border-radius: 20px;
 }
 
+/* ===== ESTILOS ESPECÍFICOS PARA INDICADORES ECONÔMICOS ===== */
 
+/* Container principal para isolamento */
+.economic-indicators-intro {
+    margin: 60px 0 40px;
+    text-align: center;
+}
+
+.economic-indicators-intro h2 {
+    color: #d6ae64;
+    font-size: 2.2em;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.indicator-card {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.indicator-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(214, 174, 100, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.indicator-card:hover::before {
+    left: 100%;
+}
+
+.indicator-card:hover {
+    transform: translateY(-8px);
+    border-color: #d6ae64;
+    box-shadow: 0 15px 40px rgba(214, 174, 100, 0.15);
+}
+
+.indicator-card h3 {
+    color: #d6ae64;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.indicator-card p {
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+/* ===== CONTROLES DO GRÁFICO ===== */
+.chart-controls-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid #333;
+}
+
+.chart-controls-section h2 {
+    color: #d6ae64;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.chart-controls {
+    width: 100%;
+}
+
+.control-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.control-group select {
+    background: #000;
+    color: #fff;
+    border: 2px solid #d6ae64;
+    padding: 12px 20px;
+    border-radius: 10px;
+    min-width: 250px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 0 3px rgba(214, 174, 100, 0.3);
+}
+
+.control-group select option {
+    background: #000;
+    color: #fff;
+    padding: 10px;
+}
+
+.update-chart-btn {
+    background: linear-gradient(135deg, #d6ae64 0%, #b89448 100%);
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.update-chart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(214, 174, 100, 0.4);
+}
+
+/* ===== SEÇÃO DO GRÁFICO ===== */
+.chart-section {
+    margin-bottom: 50px;
+}
+
+.chart-container {
+    background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.chart-wrapper {
+    height: 500px;
+    position: relative;
+}
+
+/* ===== SEÇÃO DA TABELA ===== */
+.table-section {
+    margin-bottom: 50px;
+}
+
+.table-section h2 {
+    color: #d6ae64;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.table-container {
+    background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    overflow-x: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.economic-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.economic-table th {
+    background: linear-gradient(135deg, #d6ae64 0%, #b89448 100%);
+    color: #000;
+    padding: 18px 12px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+}
+
+.economic-table th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: #000;
+    opacity: 0.2;
+}
+
+.economic-table td {
+    padding: 15px 12px;
+    text-align: center;
+    color: #fff;
+    border-bottom: 1px solid #333;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.economic-table tr {
+    background: #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.economic-table tr:nth-child(even) {
+    background: #222222;
+}
+
+.economic-table tr:hover {
+    background: rgba(214, 174, 100, 0.1);
+    transform: scale(1.01);
+}
+
+.economic-table tr:hover td {
+    color: #d6ae64;
+    font-weight: 600;
+}
+
+.economic-table td:first-child {
+    font-weight: 700;
+    color: #d6ae64;
+}
+
+/* ===== SEÇÃO DE ANÁLISE ===== */
+.analysis-section {
+    margin-bottom: 60px;
+}
+
+.analysis-section h2 {
+    color: #d6ae64;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.analysis-content {
+    display: grid;
+    gap: 25px;
+}
+
+.analysis-item {
+    background: linear-gradient(135deg, #1a1a1a 0%, #222222 100%);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 5px solid #d6ae64;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.analysis-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(214, 174, 100, 0.05), transparent);
+    transition: left 0.6s ease;
+}
+
+.analysis-item:hover::before {
+    left: 100%;
+}
+
+.analysis-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(214, 174, 100, 0.1);
+}
+
+.analysis-item h4 {
+    color: #d6ae64;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.analysis-item p {
+    color: #ccc;
+    line-height: 1.7;
+    font-size: 1em;
+}
+
+/* ===== ANIMAÇÕES ESPECÍFICAS ===== */
+@keyframes economicFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.economic-indicators-intro,
+.chart-controls-section,
+.chart-section,
+.table-section,
+.analysis-section {
+    animation: economicFadeInUp 0.8s ease-out;
+}
+
+.indicator-card,
+.analysis-item {
+    animation: economicFadeInUp 0.6s ease-out;
+}
+
+/* ===== RESPONSIVIDADE ESPECÍFICA ===== */
+@media (max-width: 1200px) {
+    .indicators-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .control-group select {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .economic-indicators-intro h2 {
+        font-size: 1.8em;
+    }
+    
+    .indicators-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .indicator-card {
+        padding: 20px;
+    }
+    
+    .chart-controls-section {
+        padding: 20px;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .control-group select {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .chart-container {
+        padding: 20px;
+    }
+    
+    .chart-wrapper {
+        height: 400px;
+    }
+    
+    .table-container {
+        padding: 15px;
+    }
+    
+    .economic-table {
+        font-size: 12px;
+    }
+    
+    .economic-table th,
+    .economic-table td {
+        padding: 12px 8px;
+    }
+    
+    .analysis-item {
+        padding: 20px;
+    }
+    
+    .analysis-item h4 {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .economic-indicators-intro h2 {
+        font-size: 1.5em;
+    }
+    
+    .chart-controls-section h2,
+    .table-section h2,
+    .analysis-section h2 {
+        font-size: 1.4em;
+    }
+    
+    .chart-wrapper {
+        height: 300px;
+    }
+    
+    .economic-table {
+        font-size: 11px;
+    }
+    
+    .economic-table th,
+    .economic-table td {
+        padding: 10px 6px;
+    }
+    
+    .indicator-card h3 {
+        font-size: 1.1em;
+    }
+    
+    .analysis-item h4 {
+        font-size: 1em;
+    }
+}
+
+/* ===== SCROLLBAR PERSONALIZADA PARA TABELA ECONÔMICA ===== */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #d6ae64;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #b89448;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA ELEMENTOS DO GRÁFICO ===== */
+#economicChart {
+    border-radius: 10px;
+}
+
+/* Garantir que os estilos do Chart.js não conflitem */
+.chart-section canvas {
+    max-width: 100%;
+    height: auto;
+}      
 
 
 
