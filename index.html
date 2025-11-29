@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-AO">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,117 +11,227 @@
 </head>
 <body>
     <header>
+        <h3 class="htc">Teca Capital Investimentos</h3>
         <nav id="navt">
-            <i class="fa-solid fa-hand-holding-dollar" id="navlogo"></i>
-            <ul id="lista">
+             <ul id="lista">
                 <li class="navitem active"> <a href="index.html">Início</a>
                 </li>
                 <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
                 </li>   
                 <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
                 </li>
+                <li class="simula"> <a href="">Simuladores</a> 
+                    <ul class="sub-lista">
+                        <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
+                        <li class="sub-navitem"><a href="simulador-de-estudo-de-viabilidade.html">Estudo de Viabilidade</a></li>
+                        <li class="sub-navitem"><a href="simulador-de-investimentos.html">Investimentos Financeiros</a></li>
+                        <li class="sub-navitem"><a href="simulador-quiz.html">Quiz de Educação Financeira</a></li>
+                    </ul>    
+                </li>
             </ul>
-            <a class="simula" href="simulador.html">Simulador</a>
         </nav>
     </header>
+       
+    <main>
+
+       <div id="img1">
+            <div class="img11">
+                <h1 class="himg1">Seja Bem-vindo (a)</h1>
+
+                <p>A Teca Capital Investimentos é uma startuo de <strong>inteligência financeira</strong> e <strong>tecnologia</strong> focada em transformar dados em decisões estratégicas. Atuamos no desenvolvimento de soluções tecnológicas, análises econômicas e educação financeira, ajudando indivíduos e empresas a investir com clareza, reduzir riscos e maximizar resultados no mercado financeiro. Nosso compromisso é construir uma nova era de acesso ao conhecimento, autonomia e crescimento financeiro sustentável.</p>
+            </div>
+
+            <div class="img12">
+
+            </div>
+        </div>
 
     
+        <h2 class="S">Serviços</h2>
+        <div class="s">Conheça nossos serviços exclusivos</div>
 
-    <main>
-        <div id="conteudo">
-            <h1 class="tci">Bem-Vindo (a) a Teca Capital <span>Investimentos</span></h1>
+        <div class="carousel-container">
+            <button class="carousel-btn prev">‹</button>
+            <div class="carousel-track">
+            <div class="servico-item">
+            <h4 class="s">Consultoria Financeira</h4>
+            <p>Oferecemos consultoria personalizada para ajudar você a tomar decisões financeiras informadas, desde planejamento de investimentos até gestão de riscos.</p>
+        </div>
 
-            <p class="tc">
-                Somos uma startup angolana voltada para <strong>finanças</strong>, <strong>economia</strong>, <strong>gestão</strong>, <strong>educação</strong> e <strong>tecnologia</strong>.
-            </p>    
+        <div class="servico-item">
+            <h4 class="s">Educação Financeira</h4>
+            <p>Disponibilizamos uma biblioteca rica em recursos educacionais, incluindo artigos, vídeos e cursos para capacitar você com conhecimentos financeiros essenciais.</p>
+        </div>
 
-            <div id="banner">
-            <img class="banner-img" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="">
-            </div>
+        <div class="servico-item">
+            <h4 class="s">Simuladores</h4>
+            <p>Oferecemos uma variedade de simuladores financeiros para ajudar você a planejar e visualizar seus investimentos, estudos de viabilidade e quizzes educativos.</p>
+        </div>
+
+        <div class="servico-item">
+            <h4 class="s">E. Projeto de Investimento</h4>
+            <p>Analisamos e planejamos uma ideia de negócio ou aplicação financeira de forma estratégica, avaliando custos, riscos, retorno esperado e viabilidade econômico-financeira.</p>
+        </div>
+    </div>
+    <button class="carousel-btn next">›</button>
+    
+    <div class="carousel-indicators">
+        <span class="indicator active"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+        <span class="indicator"></span>
+    </div>
+</div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.carousel-track');
+    const items = document.querySelectorAll('.servico-item');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const indicators = document.querySelectorAll('.indicator');
+    
+    let currentIndex = 0;
+    let autoPlayInterval;
+    const visibleItems = 3;
+    const itemWidth = items[0].offsetWidth + 20;
+
+    function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        
+        indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function nextSlide() {
+        if (currentIndex < items.length - visibleItems) {
+        currentIndex++;
+        } else {
+        currentIndex = 0;
+        }
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        if (currentIndex > 0) {
+        currentIndex--;
+        } else {
+        currentIndex = items.length - visibleItems;
+        }
+        updateCarousel();
+    }
+
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextSlide, 4000);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        prevSlide();
+        startAutoPlay();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        nextSlide();
+        startAutoPlay();
+    });
+
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+        stopAutoPlay();
+        currentIndex = index;
+        updateCarousel();
+        startAutoPlay();
+        });
+    });
+
+    // Pausar auto-play quando o mouse estiver sobre o carousel
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+    carouselContainer.addEventListener('mouseleave', startAutoPlay);
+
+    // Iniciar auto-play
+    startAutoPlay();
+    updateCarousel();
+    });
+    </script>
+
+    <div id="bodiva">
+
+        <div class="info2">
+            <video class="infovideo" src="Video/2D Movimento de Mercadi.mp4" width="100%" autoplay muted loop></video>
 
         </div>
 
-        
-
-        <section id="serviços">
-            <h2 class="time">Nossos Serviços</h2>
-            <div>
-                <div id="s1">
-                    <h3>Análise de Dados</h3>
-                    <p>O serviço de Análise de Dados da Teca Capital funciona de forma direta e orientada para decisões. Primeiro recolhemos dados brutos conforme a necessidade do cliente, sejam empresas, instituições públicas ou projetos individuais. Depois, tratamos, limpamos e organizamos essas informações para eliminar ruídos e revelar o que realmente importa. Em seguida, transformamos os dados em insights claros e visuais, criando gráficos, tabelas, mapas, dashboards e relatórios dinâmicos que mostram exatamente o que precisa ser visto. O resultado é simples: informação confiável, entregue no tempo certo, que permite decisões rápidas, estratégicas e baseadas em evidências, ajustadas às metas e aos desafios de cada cliente.</p>
-                </div>
-                <div id="s2">
-                    <h3 >Gestão de Portfólio</h3>
-                    <p>Administramos e orientamos a composição de carteiras de investimento diversificadas incluindo <strong>ações, ETFs, títulos e criptomoedas</strong>, com foco em rentabilidade, segurança e alinhamento aos objetivos de cada cliente. Utilizamos análises financeiras e ferramentas tecnológicas para acompanhar o desempenho dos ativos e ajustar estratégias conforme o mercado evolui.</p>
-                </div>
-                <div id="s3">
-                    <h3>Elaboração de Planos de Negócios</h3>
-                    <p>Desenvolvemos planos de negócios completos e profissionais, ideais para empreendedores, startups e empresas que buscam financiamento, investidores ou expansão. Cada plano é construído com base em dados económicos reais, projeções financeiras sólidas e uma visão estratégica clara, garantindo credibilidade e viabilidade para o projeto.</p>
-                </div>
-                <div id="s4">
-                    <h3>Informações Gratuitas sobre Mercado Nacional e Internacional</h3>
-                    <p>Promovemos aulas abertas e acessíveis para todos que desejam aprender a investir no mercado financeiro angolano e internacional, explicando conceitos fundamentais sobre ações, títulos, criptomoedas e finanças pessoais. Nosso objetivo é democratizar o conhecimento financeiro e capacitar o público a tomar decisões seguras e informadas no mundo dos investimentos.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="bodiva">
-            <h2>Informações da Bolsa de Valores de Angola - <strong>BODIVA</strong></h2>
+        <div class="info1">
+            <h2>Informações <strong>BODIVA</strong></h2>
 
             <p>A Bolsa de Dívida e Valores de Angola é o mercado oficial de capitais de Angola, criada em 2 de julho de 2014 para facilitar a negociação de títulos públicos e privados, promovendo a transparência, liquidez e crescimento económico no país. Operando sob a supervisão da <strong>Comissão do Mercado de Capitais de Angola</strong>, a BODIVA conecta investidores, empresas e o Estado, permitindo a captação de recursos através da emissão e negociação de <strong>obrigações do tesouro, bilhetes do tesouro, obrigações privadas e ações</strong>. A sua missão é desenvolver um mercado financeiro moderno, seguro e eficiente, integrando Angola no sistema financeiro global e fortalecendo a confiança dos investidores no ambiente económico nacional.</p>
+        </div>
+
+    </div>
 
             <h3>Empresas Cotadas no Mercado de Ações BODIVA</h3>
 
-            <table class="tabela">
-                <tr>
-                    <th>Data de Cotação</th>
-                    <th>Nome da Empresa</th>
-                    <th>Tipo de ações</th>
-                    <th>Nº de Ações Emitidas</th>
-                    <th>Preço atual por Ações</th>
-                    <th>Valor de Mercado</th>
-                </tr>
-                <tr>
-                    <td>09/07/2022</td>
-                    <td>Banco Angolano de Investimentos <strong>(BAI)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>1.945.000</td>
-                    <td>100.000 kz</td>
-                    <td>194.500.000.000 kz</td>
-                <tr>
-                <tr>
-                    <td>19/09/2022</td>
-                    <td>Banco Caixa Geral de Angola <strong>(BCGA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>5.000.000</td>
-                    <td>26.000 kz</td>
-                    <td>130.000.000.000 kz</td>
-                </tr>
-                <tr>
-                    <td>30/10/2024</td>
-                    <td>ENSA - Seguros Angola <strong>(ENSA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>720.000</td>
-                    <td>40.000 kz</td>
-                    <td>28.800.000.000 kz</td>
-                </tr>
-                <tr>
-                    <td>11/12/2024</td>
-                    <td>Bolsa de Dívidas e Valores de Angola<strong>(BODIVA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>180.000</td>
-                    <td>50.000 kz</td>
-                    <td>9.000.000.000 kz</td>
-                </tr>
-                <tr>
-                    <td>30/09/2025</td>
-                    <td>Banco de Fomento Angola <strong>(BFA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>4.462.500</td>
-                    <td>120.000 kz</td>
-                    <td>360.000.000.000 kz</td>
-                </tr>
-            </table>
+            <div class="tabela-container">
+    <table class="tabela">
+        <tr>
+            <th>Data de Cotação</th>
+            <th>Nome da Empresa</th>
+            <th>Tipo de ações</th>
+            <th>Nº de Ações Emitidas</th>
+            <th>Preço atual por Ações</th>
+            <th>Valor de Mercado</th>
+        </tr>
+        <tr>
+            <td>09/07/2022</td>
+            <td>Banco Angolano de Investimentos <strong>(BAI)</strong></td>
+            <td>Ordinárias</td>
+            <td>1.945.000</td>
+            <td>100.000 kz</td>
+            <td>194.500.000.000 kz</td>
+        </tr>
+        <tr>
+            <td>19/09/2022</td>
+            <td>Banco Caixa Geral de Angola <strong>(BCGA)</strong></td>
+            <td>Ordinárias</td>
+            <td>5.000.000</td>
+            <td>26.000 kz</td>
+            <td>130.000.000.000 kz</td>
+        </tr>
+        <tr>
+            <td>30/10/2024</td>
+            <td>ENSA - Seguros Angola <strong>(ENSA)</strong></td>
+            <td>Ordinárias</td>
+            <td>720.000</td>
+            <td>40.000 kz</td>
+            <td>28.800.000.000 kz</td>
+        </tr>
+        <tr>
+            <td>11/12/2024</td>
+            <td>Bolsa de Dívidas e Valores de Angola<strong>(BODIVA)</strong></td>
+            <td>Ordinárias</td>
+            <td>180.000</td>
+            <td>50.000 kz</td>
+            <td>9.000.000.000 kz</td>
+        </tr>
+        <tr>
+            <td>30/09/2025</td>
+            <td>Banco de Fomento Angola <strong>(BFA)</strong></td>
+            <td>Ordinárias</td>
+            <td>4.462.500</td>
+            <td>120.000 kz</td>
+            <td>360.000.000.000 kz</td>
+        </tr>
+    </table>
+</div>
 
             <h3>Empresas Cotadas no Mercado de Obrigações BODIVA</h3>
 
@@ -145,15 +255,21 @@
                     <td>100.000 kz</td>
             </table>
             <a class="button" href="https://www.bodiva.ao/#gsc.tab=0" target="_blank">Acessar a Bolsa</a>
-        </section>
 
-        <section class="cripto">
-            <h2 class="timeline">Informações sobre Criptomoedas</h2>
-         <video class="banner-video" src="Video/Criptomoedas 2.mp4" width="100%" autoplay loop class="banner-video fade-in-up" muted aria-describedby="video-description"></video>
-         
-            <p>As criptomoedas são moedas digitais que utilizam a criptografia para garantir transações seguras e controlar a criação de novas unidades. Elas operam em redes descentralizadas baseadas na tecnologia blockchain, que registra todas as transações de forma transparente e imutável. As criptomoedas oferecem vantagens como rapidez nas transações, baixos custos e acessibilidade global, mas também apresentam desafios como volatilidade, riscos de segurança e questões regulatórias. Exemplos populares incluem Bitcoin, Ethereum e Ripple, cada uma com suas características e usos específicos no mercado financeiro digital.</p>
+       <div id="cripto">
 
-            <h3>Principais Criptomoedas</h3>
+            <div class="info3">
+                 <h2 class="timeline">Informações sobre Criptomoedas</h2>
+                 <p>As criptomoedas são moedas digitais que utilizam a <strong>criptografia</strong> para garantir transações seguras e controlar a criação de novas unidades. Elas operam em redes descentralizadas baseadas na tecnologia <strong>blockchain</strong>, que registra todas as transações de forma transparente e imutável. As criptomoedas oferecem vantagens como rapidez nas transações, baixos custos e acessibilidade global, mas também apresentam desafios como volatilidade, riscos de segurança e questões regulatórias. Exemplos populares incluem <strong>Bitcoin</strong>, <strong>Ethereum</strong> e <strong>USDT</strong>, cada uma com suas características e usos específicos no mercado financeiro digital.</p>
+            </div>
+
+            <div class="info4">
+                 <video class="banner-video" src="Video/Criptomoedas 2.mp4" width="100%" autoplay loop class="banner-video fade-in-up" muted aria-describedby="video-description"></video>
+            </div>
+
+       </div>
+           
+            <h3 class="h3-cripto">Principais Criptomoedas</h3>
             <table class="tabela">
                 <tr>
                     <th>Nome</th>

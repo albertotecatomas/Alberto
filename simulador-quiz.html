@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teca Capital Investimentos</title>
+    <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
+    <link rel="stylesheet" href="teca.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</style>
+</head>
+
+<body>
+    <header>
+        <h3 class="htc">Teca Capital Investimentos</h3>
+        <nav id="navt">
+             <ul id="lista">
+                <li class="navitem active"> <a href="index.html">Início</a>
+                </li>
+                <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
+                </li>   
+                <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
+                </li>
+                <li class="simula"> <a href="">Simuladores</a> 
+                    <ul class="sub-lista">
+                        <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
+                        <li class="sub-navitem"><a href="simulador-de-estudo-de-viabilidade.html">Estudo de Viabilidade</a></li>
+                        <li class="sub-navitem"><a href="simulador-de-investimentos.html">Investimentos Financeiros</a></li>
+                        <li class="sub-navitem"><a href="simulador-quiz.html">Quiz de Educação Financeira</a></li>
+                    </ul>    
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+
+        <section id="quiz-investimentos" class="quiz-section">
+    <div class="quiz-container">
+        <!-- Tela Inicial - Formulário de Registo -->
+        <div id="tela-inicial" class="quiz-screen active">
+            <div class="quiz-header">
+                <h1>Jogo de Perguntas Sobre Finanças e Economia</h1>
+                <p>Teste seus conhecimentos sobre economia, finanças e mercado angolano e global</p>
+            </div>
+
+            <form id="form-jogador" class="player-form">
+                <div class="form-group">
+                    <label for="nome-jogador">Nome Completo *</label>
+                    <input type="text" id="nome-jogador" name="nome" required placeholder="Digite seu nome completo">
+                    <span class="error-message" id="erro-nome"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="regiao-jogador">Região/Município</label>
+                    <select id="regiao-jogador" name="regiao">
+                        <option value="">Selecione sua região</option>
+                        <option value="Luanda">Luanda</option>
+                        <option value="Benguela">Benguela</option>
+                        <option value="Huambo">Huambo</option>
+                        <option value="Huíla">Huíla</option>
+                        <option value="Cabinda">Cabinda</option>
+                        <option value="Outra">Uíge</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="idade-jogador">Idade *</label>
+                        <input type="number" id="idade-jogador" name="idade" min="13" max="120" required placeholder="18">
+                        <span class="error-message" id="erro-idade"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sexo-jogador">Sexo</label>
+                        <select id="sexo-jogador" name="sexo">
+                            <option value="">Prefiro não dizer</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nível de Dificuldade *</label>
+                    <div class="level-selection">
+                        <div class="level-option">
+                            <input type="radio" id="nivel-facil" name="nivel" value="facil" required>
+                            <label for="nivel-facil">
+                                <span class="level-title">Fácil</span>
+                                <span class="level-desc">10 perguntas - Conceitos básicos</span>
+                            </label>
+                        </div>
+                        <div class="level-option">
+                            <input type="radio" id="nivel-intermediario" name="nivel" value="intermediario">
+                            <label for="nivel-intermediario">
+                                <span class="level-title">Intermediário</span>
+                                <span class="level-desc">25 perguntas - Conhecimento médio</span>
+                            </label>
+                        </div>
+                        <div class="level-option">
+                            <input type="radio" id="nivel-avancado" name="nivel" value="avancado">
+                            <label for="nivel-avancado">
+                                <span class="level-title">Avançado</span>
+                                <span class="level-desc">50 perguntas - Nível experiente</span>
+                            </label>
+                        </div>
+                    </div>
+                    <span class="error-message" id="erro-nivel"></span>
+                </div>
+
+                <button type="submit" class="btn-primary">Iniciar Quiz</button>
+            </form>
+        </div>
+
+        <!-- Tela do Quiz - Perguntas -->
+        <div id="tela-quiz" class="quiz-screen">
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progresso-bar"></div>
+                </div>
+                <div class="progress-text" id="contador-perguntas">Pergunta 1 de 10</div>
+            </div>
+
+            <div class="question-card">
+                <h2 id="texto-pergunta" class="question-text"></h2>
+                <div class="options-container" id="container-opcoes">
+                    <!-- Opções serão inseridas via JavaScript -->
+                </div>
+            </div>
+
+            <div class="quiz-feedback" id="feedback-area">
+                <!-- Feedback será inserido via JavaScript -->
+            </div>
+
+            <div class="quiz-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Acertos:</span>
+                    <span class="stat-value" id="contador-acertos">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Erros:</span>
+                    <span class="stat-value" id="contador-erros">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tela de Resultados -->
+        <div id="tela-resultados" class="quiz-screen">
+            <div class="results-header">
+                <h1>Quiz Concluído! 🎉</h1>
+                <p>Veja seu desempenho abaixo</p>
+            </div>
+
+            <div class="results-content">
+                <div class="player-info-card">
+                    <h3>Dados do Jogador</h3>
+                    <div class="player-details">
+                        <p><strong>Nome:</strong> <span id="result-nome"></span></p>
+                        <p><strong>Região:</strong> <span id="result-regiao"></span></p>
+                        <p><strong>Idade:</strong> <span id="result-idade"></span> anos</p>
+                        <p><strong>Nível:</strong> <span id="result-nivel"></span></p>
+                    </div>
+                </div>
+
+                <div class="performance-card">
+                    <h3>Desempenho</h3>
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <span class="score-percent" id="score-percent">0%</span>
+                            <span class="score-text">de acerto</span>
+                        </div>
+                        <div class="score-details">
+                            <p><span id="score-acertos">0</span> de <span id="score-total">0</span> acertos</p>
+                            <p class="score-classification" id="score-classificacao">Iniciante</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Perfil de Investidor</h3>
+                    <div class="profile-result">
+                        <span class="profile-badge" id="perfil-investidor">Preservador</span>
+                        <p class="profile-desc" id="desc-perfil">Descrição do perfil...</p>
+                    </div>
+                </div>
+
+                <div class="errors-card" id="card-erros">
+                    <h3>Análise de Erros</h3>
+                    <div class="errors-list" id="lista-erros">
+                        <!-- Lista de erros será inserida via JavaScript -->
+                    </div>
+                </div>
+
+                <div class="recommendations-card">
+                    <h3>Recomendações</h3>
+                    <p class="recommendations-text" id="texto-recomendacoes">
+                        Carregando recomendações...
+                    </p>
+                </div>
+            </div>
+
+            <div class="results-actions">
+                <button class="btn-primary" id="btn-pdf">📄 Baixar Resultado (PDF)</button>
+                <button class="btn-secondary" id="btn-reiniciar">🔄 Jogar Novamente</button>
+            </div>
+        </div>
+
+        <!-- Loading Screen -->
+        <div id="tela-loading" class="quiz-screen">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p>Processando resultados...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// =====================================================
+// QUIZ DE INVESTIMENTOS - LÓGICA COMPLETA
+// =====================================================
+
+class QuizInvestimentos {
+    constructor() {
+        this.jogoAtivo = false;
+        this.jogoFinalizado = false;
+        this.perguntaAtual = 0;
+        this.pontuacao = 0;
+        this.respostas = [];
+        this.perguntas = [];
+        this.dadosJogador = {};
+        
+        this.inicializarElementos();
+        this.configurarEventos();
+        this.carregarBancoDados();
+    }
+
+    // =====================================================
+    // INICIALIZAÇÃO
+    // =====================================================
+
+    inicializarElementos() {
+        // Telas
+        this.telaInicial = document.getElementById('tela-inicial');
+        this.telaQuiz = document.getElementById('tela-quiz');
+        this.telaResultados = document.getElementById('tela-resultados');
+        this.telaLoading = document.getElementById('tela-loading');
+
+        // Formulário
+        this.formJogador = document.getElementById('form-jogador');
+        this.nomeJogador = document.getElementById('nome-jogador');
+        this.regiaoJogador = document.getElementById('regiao-jogador');
+        this.idadeJogador = document.getElementById('idade-jogador');
+        this.sexoJogador = document.getElementById('sexo-jogador');
+        this.niveis = document.querySelectorAll('input[name="nivel"]');
+
+        // Elementos do Quiz
+        this.contadorPerguntas = document.getElementById('contador-perguntas');
+        this.textoPergunta = document.getElementById('texto-pergunta');
+        this.containerOpcoes = document.getElementById('container-opcoes');
+        this.feedbackArea = document.getElementById('feedback-area');
+        this.contadorAcertos = document.getElementById('contador-acertos');
+        this.contadorErros = document.getElementById('contador-erros');
+        this.progressoBar = document.getElementById('progresso-bar');
+
+        // Elementos de Resultados
+        this.resultNome = document.getElementById('result-nome');
+        this.resultRegiao = document.getElementById('result-regiao');
+        this.resultIdade = document.getElementById('result-idade');
+        this.resultNivel = document.getElementById('result-nivel');
+        this.scorePercent = document.getElementById('score-percent');
+        this.scoreAcertos = document.getElementById('score-acertos');
+        this.scoreTotal = document.getElementById('score-total');
+        this.scoreClassificacao = document.getElementById('score-classificacao');
+        this.perfilInvestidor = document.getElementById('perfil-investidor');
+        this.descPerfil = document.getElementById('desc-perfil');
+        this.listaErros = document.getElementById('lista-erros');
+        this.textoRecomendacoes = document.getElementById('texto-recomendacoes');
+
+        // Botões
+        this.btnPDF = document.getElementById('btn-pdf');
+        this.btnReiniciar = document.getElementById('btn-reiniciar');
+    }
+
+    configurarEventos() {
+        // Formulário inicial
+        this.formJogador.addEventListener('submit', (e) => this.iniciarJogo(e));
+        
+        // Botões de resultados
+        this.btnPDF.addEventListener('click', () => this.gerarPDF());
+        this.btnReiniciar.addEventListener('click', () => this.reiniciarJogo());
+
+        // Validação em tempo real
+        this.nomeJogador.addEventListener('input', () => this.validarNome());
+        this.idadeJogador.addEventListener('input', () => this.validarIdade());
+    }
+
+    // =====================================================
+    // BANCO DE DADOS DE PERGUNTAS
+    // =====================================================
+
+    carregarBancoDados() {
+        this.questionsDatabase = {
+            facil: [
+                {
+                    pergunta: "O que é o BNA (Banco Nacional de Angola)?",
+                    opcoes: [
+                        "Um banco comercial que oferece empréstimos pessoais",
+                        "O órgão regulador do sistema financeiro angolano",
+                        "Uma bolsa de valores privada",
+                        "Uma seguradora estatal"
+                    ],
+                    correta: 1,
+                    explicacao: "O BNA regula os bancos e o sistema financeiro em Angola. Ele define regras para empréstimos, taxas de juros e estabilidade monetária.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função da BODIVA?",
+                    opcoes: [
+                        "Supervisionar os bancos comerciais",
+                        "Administrar a Bolsa de Dívida e Valores de Angola",
+                        "Criar índices financeiros fictícios",
+                        "Emitir moedas digitais"
+                    ],
+                    correta: 1,
+                    explicacao: "A BODIVA organiza o mercado de ações e obrigações. Ela funciona como um centro de negociação de valores mobiliários.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa AGT para uma empresa em Angola?",
+                    opcoes: [
+                        "Um imposto sobre exportações",
+                        "Administração Geral Tributária",
+                        "Um índice financeiro",
+                        "Um tipo de seguro"
+                    ],
+                    correta: 1,
+                    explicacao: "A AGT é responsável pela cobrança de impostos. Para empresas, é crucial entender obrigações fiscais.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que caracteriza a crise financeira de 2008?",
+                    opcoes: [
+                        "Colapso de grandes bancos nos EUA",
+                        "Criação do BNA em Angola",
+                        "Lançamento do Euro",
+                        "Aumento do preço do petróleo apenas"
+                    ],
+                    correta: 0,
+                    explicacao: "A crise de 2008 foi global, causada por falências de bancos e má gestão de créditos imobiliários.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é educação financeira?",
+                    opcoes: [
+                        "Aprender a gerenciar dinheiro e investimentos",
+                        "Estudar apenas economia teórica",
+                        "Saber sobre tecnologia bancária",
+                        "Criar índices financeiros"
+                    ],
+                    correta: 0,
+                    explicacao: "Educação financeira ajuda a tomar decisões conscientes sobre consumo, poupança e investimentos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes é um instrumento financeiro comum em Angola?",
+                    opcoes: [
+                        "Obrigações do Tesouro",
+                        "Bitcoin apenas",
+                        "Índice Bolívar",
+                        "Poupança escolar"
+                    ],
+                    correta: 0,
+                    explicacao: "Obrigações são títulos de dívida emitidos pelo Estado.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a principal função da Comissão do Mercado de Capitais (CMC)?",
+                    opcoes: [
+                        "Supervisionar empresas cotadas e proteger investidores",
+                        "Emitir moeda",
+                        "Criar bancos comerciais",
+                        "Regular impostos"
+                    ],
+                    correta: 0,
+                    explicacao: "A CMC protege investidores e garante transparência.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um investimento conservador?",
+                    opcoes: [
+                        "Investimento com alto risco e alta rentabilidade",
+                        "Investimento de baixo risco e rentabilidade previsível",
+                        "Investimento apenas em criptomoedas",
+                        "Investimento que nunca perde dinheiro"
+                    ],
+                    correta: 1,
+                    explicacao: "Investimentos conservadores buscam segurança, não necessariamente grandes lucros.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é o papel do Banco Comercial em Angola?",
+                    opcoes: [
+                        "Emitir moeda",
+                        "Oferecer empréstimos, contas e serviços financeiros",
+                        "Supervisionar mercados",
+                        "Criar índices financeiros"
+                    ],
+                    correta: 1,
+                    explicacao: "Bancos comerciais oferecem serviços financeiros ao público.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes hábitos demonstra boa educação financeira?",
+                    opcoes: [
+                        "Gastar todo salário sem planeamento",
+                        "Poupar uma parte do salário regularmente",
+                        "Comprar apenas por impulso",
+                        "Ignorar dívidas"
+                    ],
+                    correta: 1,
+                    explicacao: "Poupar e planejar gastos ajuda a garantir estabilidade financeira.",
+                    tipo: "comportamental"
+                }
+            ],
+
+            intermediario: [
+                {
+                    pergunta: "O que é a Bolsa de Dívida e Valores de Angola (BODIVA)?",
+                    opcoes: [
+                        "Um banco que oferece empréstimos pessoais",
+                        "Um mercado organizado de títulos e valores mobiliários",
+                        "Uma seguradora estatal",
+                        "Um índice financeiro"
+                    ],
+                    correta: 1,
+                    explicacao: "A BODIVA permite negociação de ações e obrigações, garantindo transparência e liquidez.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função principal do Banco Nacional de Angola (BNA)?",
+                    opcoes: [
+                        "Emitir moeda e supervisionar bancos",
+                        "Oferecer contas correntes aos cidadãos",
+                        "Administrar bolsas de valores",
+                        "Gerenciar investimentos privados"
+                    ],
+                    correta: 0,
+                    explicacao: "O BNA regula a política monetária e a estabilidade financeira.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é uma ação?",
+                    opcoes: [
+                        "Um título de dívida emitido pelo Estado",
+                        "Uma parte do capital de uma empresa",
+                        "Um tipo de conta poupança",
+                        "Um empréstimo bancário"
+                    ],
+                    correta: 1,
+                    explicacao: "Ao comprar ações, você se torna sócio de uma empresa e pode receber dividendos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes instrumentos é emitido pelo governo angolano?",
+                    opcoes: [
+                        "Obrigações do Tesouro",
+                        "Criptomoedas",
+                        "Ações de bancos privados",
+                        "Fundos de investimento estrangeiros"
+                    ],
+                    correta: 0,
+                    explicacao: "Obrigações são títulos de dívida emitidos pelo Estado.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa diversificação em investimentos?",
+                    opcoes: [
+                        "Colocar todo o dinheiro em um único ativo",
+                        "Distribuir recursos em diferentes tipos de ativos",
+                        "Apenas investir em ações",
+                        "Evitar investimentos"
+                    ],
+                    correta: 1,
+                    explicacao: "Diversificação reduz risco e protege o investidor.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que caracteriza um investimento de alto risco?",
+                    opcoes: [
+                        "Rentabilidade previsível e baixa",
+                        "Possibilidade de grandes perdas ou ganhos",
+                        "Segurança garantida pelo banco central",
+                        "Aplicações apenas em contas poupança"
+                    ],
+                    correta: 1,
+                    explicacao: "Investimentos de alto risco podem gerar grandes lucros, mas também perdas significativas.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual órgão supervisiona as empresas cotadas na bolsa de valores em Angola?",
+                    opcoes: [
+                        "Banco Comercial",
+                        "Comissão do Mercado de Capitais (CMC)",
+                        "Banco Nacional de Angola",
+                        "Ministério da Economia"
+                    ],
+                    correta: 1,
+                    explicacao: "A CMC protege investidores e garante transparência.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um investidor conservador?",
+                    opcoes: [
+                        "Prefere investimentos de baixo risco e rentabilidade estável",
+                        "Prefere altos riscos e alta rentabilidade",
+                        "Investe apenas em criptomoedas",
+                        "Evita qualquer tipo de investimento"
+                    ],
+                    correta: 0,
+                    explicacao: "Investidores conservadores priorizam segurança e preservação de capital.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual a importância do planeamento financeiro pessoal?",
+                    opcoes: [
+                        "Evitar dívidas e alcançar metas financeiras",
+                        "Gastar mais do que se ganha",
+                        "Comprar apenas por impulso",
+                        "Ignorar investimentos"
+                    ],
+                    correta: 0,
+                    explicacao: "Planejar finanças ajuda a controlar gastos, economizar e investir de forma eficiente.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é inflação?",
+                    opcoes: [
+                        "Queda geral dos preços",
+                        "Aumento generalizado e contínuo dos preços",
+                        "Taxa de juros bancária",
+                        "Crescimento do PIB"
+                    ],
+                    correta: 1,
+                    explicacao: "Inflação significa que o dinheiro perde poder de compra.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que são derivativos financeiros?",
+                    opcoes: [
+                        "Títulos emitidos pelo governo",
+                        "Contratos cujo valor deriva de outro ativo",
+                        "Contas poupança",
+                        "Ações emitidas por empresas"
+                    ],
+                    correta: 1,
+                    explicacao: "Derivativos são usados para proteção (hedge) ou especulação.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função da AGT para empresas em Angola?",
+                    opcoes: [
+                        "Emitir ações",
+                        "Cobrar e fiscalizar impostos",
+                        "Supervisionar bancos",
+                        "Emitir títulos do Tesouro"
+                    ],
+                    correta: 1,
+                    explicacao: "A AGT garante que empresas paguem impostos corretamente.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um investidor moderado?",
+                    opcoes: [
+                        "Aceita algum risco, busca equilíbrio entre segurança e retorno",
+                        "Sempre investe em poupança",
+                        "Evita qualquer risco",
+                        "Investe apenas em ações de alto risco"
+                    ],
+                    correta: 0,
+                    explicacao: "Moderados buscam equilíbrio entre risco e retorno.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes é um ativo líquido?",
+                    opcoes: [
+                        "Dinheiro em conta corrente",
+                        "Imóvel residencial",
+                        "Arte rara",
+                        "Automóvel usado"
+                    ],
+                    correta: 0,
+                    explicacao: "Ativos líquidos podem ser convertidos rapidamente em dinheiro sem perda significativa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa análise fundamentalista?",
+                    opcoes: [
+                        "Avaliar notícias do mercado apenas",
+                        "Estudar finanças da empresa e indicadores econômicos",
+                        "Apostar na sorte",
+                        "Investir só em criptomoedas"
+                    ],
+                    correta: 1,
+                    explicacao: "A análise fundamentalista foca no valor real de uma empresa para tomar decisões de investimento.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função principal dos fundos de investimento?",
+                    opcoes: [
+                        "Concentrar recursos de diversos investidores",
+                        "Criar índices financeiros",
+                        "Emitir títulos de dívida",
+                        "Administrar bancos"
+                    ],
+                    correta: 0,
+                    explicacao: "Fundos permitem que pessoas invistam juntas, reduzindo risco e aumentando diversificação.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é comportamento financeiro saudável?",
+                    opcoes: [
+                        "Controlar gastos e investir com planejamento",
+                        "Gastar sem limite",
+                        "Ignorar dívidas",
+                        "Aguardar sorte para enriquecer"
+                    ],
+                    correta: 0,
+                    explicacao: "O controle financeiro previne endividamento e aumenta patrimônio.",
+                    tipo: "comportamental"
+                },
+                {
+                    pergunta: "O que é um investimento em ações de crescimento?",
+                    opcoes: [
+                        "Empresas que prometem aumentar valor rapidamente",
+                        "Empresas estáveis sem crescimento",
+                        "Apenas empresas estrangeiras",
+                        "Fundos de renda fixa"
+                    ],
+                    correta: 0,
+                    explicacao: "Ações de crescimento têm potencial de valorização maior, mas risco também maior.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é risco de mercado?",
+                    opcoes: [
+                        "Perda possível devido a mudanças econômicas ou políticas",
+                        "Perda garantida",
+                        "Risco de fraude no banco",
+                        "Risco apenas em imóveis"
+                    ],
+                    correta: 0,
+                    explicacao: "Mudanças no mercado afetam todos os investimentos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes é um indicador de solvência?",
+                    opcoes: [
+                        "Relação dívida/ativo",
+                        "Taxa de câmbio",
+                        "Índice de preços",
+                        "Taxa SELIC"
+                    ],
+                    correta: 0,
+                    explicacao: "Indicadores de solvência mostram a capacidade de uma empresa pagar dívidas.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que caracteriza uma crise financeira sistêmica?",
+                    opcoes: [
+                        "Afeta apenas uma empresa",
+                        "Afeta todo o sistema financeiro",
+                        "É causada por investimentos em imóveis apenas",
+                        "É previsível sempre"
+                    ],
+                    correta: 1,
+                    explicacao: "Crises sistêmicas afetam bancos, empresas e mercados.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um índice de liquidez corrente?",
+                    opcoes: [
+                        "Medida de capacidade de pagar dívidas de curto prazo",
+                        "Medida de retorno de ações",
+                        "Um tipo de investimento",
+                        "Uma taxa de juros"
+                    ],
+                    correta: 0,
+                    explicacao: "Quanto maior, mais segura é a posição financeira de uma empresa no curto prazo.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes fatores influencia o perfil do investidor?",
+                    opcoes: [
+                        "Renda, tolerância a risco e objetivos financeiros",
+                        "Apenas a idade",
+                        "Apenas o sexo",
+                        "Cor favorita"
+                    ],
+                    correta: 0,
+                    explicacao: "O perfil define quais investimentos são mais adequados.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é uma obrigação corporativa?",
+                    opcoes: [
+                        "Empréstimo de um investidor a uma empresa",
+                        "Ação de uma empresa",
+                        "Investimento em imóvel",
+                        "Uma taxa de juros bancária"
+                    ],
+                    correta: 0,
+                    explicacao: "A empresa paga juros periódicos e devolve o valor no vencimento.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Por que é importante entender o histórico econômico de Angola?",
+                    opcoes: [
+                        "Para tomar decisões de investimento mais conscientes",
+                        "Para apostar em loterias",
+                        "Para estudar política apenas",
+                        "Não é importante"
+                    ],
+                    correta: 0,
+                    explicacao: "O histórico ajuda a avaliar riscos, oportunidades e tendências do mercado local.",
+                    tipo: "conhecimento"
+                }
+            ],
+
+            avancado: [
+                {
+                    pergunta: "O que mede o índice de liquidez imediata de uma empresa?",
+                    opcoes: [
+                        "Capacidade de pagar dívidas de longo prazo",
+                        "Capacidade de pagar dívidas imediatas com ativos disponíveis",
+                        "Rentabilidade do patrimônio líquido",
+                        "Crescimento do faturamento"
+                    ],
+                    correta: 1,
+                    explicacao: "Liquidez imediata mostra se a empresa consegue pagar dívidas com dinheiro em caixa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que caracteriza uma ação de dividendos?",
+                    opcoes: [
+                        "Empresa reinveste todos os lucros",
+                        "Empresa distribui regularmente lucros aos acionistas",
+                        "Empresa só cresce sem pagar dividendos",
+                        "Empresa com alto risco e alta volatilidade"
+                    ],
+                    correta: 1,
+                    explicacao: "Ações de dividendos são ideais para investidores que buscam renda passiva.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é o principal objetivo de um hedge financeiro?",
+                    opcoes: [
+                        "Maximizar lucro sem risco",
+                        "Reduzir ou neutralizar risco de investimentos",
+                        "Evitar investimentos estrangeiros",
+                        "Aplicar apenas em ações de crescimento"
+                    ],
+                    correta: 1,
+                    explicacao: "Hedge protege contra flutuações de mercado, como variação cambial ou taxa de juros.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa o termo 'spread' em finanças?",
+                    opcoes: [
+                        "Diferença entre preço de compra e venda de um ativo",
+                        "Crescimento de capital",
+                        "Juros pagos por um banco central",
+                        "Índice de inflação"
+                    ],
+                    correta: 0,
+                    explicacao: "O spread indica custo de negociação ou diferença de preços no mercado.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é uma obrigação do Tesouro Angolano?",
+                    opcoes: [
+                        "Empréstimo do investidor ao governo",
+                        "Ação de uma empresa",
+                        "Investimento em imóveis",
+                        "Uma taxa de juros bancária"
+                    ],
+                    correta: 0,
+                    explicacao: "O governo emite obrigações para financiar projetos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é o efeito da inflação elevada na economia?",
+                    opcoes: [
+                        "Aumenta poder de compra",
+                        "Reduz poder de compra e aumenta custos",
+                        "Não afeta preços",
+                        "Garante crescimento do PIB"
+                    ],
+                    correta: 1,
+                    explicacao: "Inflação reduz o valor real do dinheiro, afetando consumo e investimento.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um investidor agressivo?",
+                    opcoes: [
+                        "Busca alto retorno, aceita alto risco",
+                        "Prefere segurança",
+                        "Investe apenas em poupança",
+                        "Evita qualquer risco"
+                    ],
+                    correta: 0,
+                    explicacao: "Investidores agressivos priorizam lucro, mas podem enfrentar grandes perdas.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é análise técnica de ações?",
+                    opcoes: [
+                        "Avaliação da saúde financeira da empresa",
+                        "Estudo de gráficos e padrões para prever preços",
+                        "Consultar órgãos reguladores",
+                        "Avaliar histórico fiscal"
+                    ],
+                    correta: 1,
+                    explicacao: "A análise técnica foca em comportamento passado de preços para decisões futuras.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes instrumentos financeiros é considerado de baixo risco?",
+                    opcoes: [
+                        "Obrigações do Tesouro",
+                        "Ações de startups",
+                        "Criptomoedas",
+                        "Derivativos especulativos"
+                    ],
+                    correta: 0,
+                    explicacao: "Títulos do governo têm menor risco de inadimplência.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa diversificação internacional de investimentos?",
+                    opcoes: [
+                        "Aplicar recursos em diferentes empresas locais",
+                        "Aplicar recursos em diferentes países",
+                        "Investir apenas no mercado de Angola",
+                        "Concentrar-se em um único ativo"
+                    ],
+                    correta: 1,
+                    explicacao: "Diversificação internacional reduz risco específico de um país ou setor.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função da Comissão do Mercado de Capitais (CMC) em Angola?",
+                    opcoes: [
+                        "Gerir bancos comerciais",
+                        "Supervisionar mercado de capitais e proteger investidores",
+                        "Emitir moeda",
+                        "Administrar fundos de investimento"
+                    ],
+                    correta: 1,
+                    explicacao: "A CMC regula a negociação de títulos e ações, garantindo transparência.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um ativo ilíquido?",
+                    opcoes: [
+                        "Fácil de vender",
+                        "Difícil de vender rapidamente sem perda",
+                        "Sempre de baixo risco",
+                        "Um título do governo"
+                    ],
+                    correta: 1,
+                    explicacao: "Ativos ilíquidos, como imóveis ou obras de arte, exigem mais tempo para converter em dinheiro.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é o impacto de uma alta taxa de juros nos investimentos?",
+                    opcoes: [
+                        "Estimula endividamento",
+                        "Reduz consumo e torna empréstimos mais caros",
+                        "Sempre aumenta preço das ações",
+                        "Não afeta economia"
+                    ],
+                    correta: 1,
+                    explicacao: "Taxas altas desestimulam crédito e consumo, afetando investimentos e crescimento.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é capital próprio de uma empresa?",
+                    opcoes: [
+                        "Recursos de terceiros",
+                        "Recursos dos acionistas",
+                        "Títulos emitidos pelo governo",
+                        "Dívidas bancárias"
+                    ],
+                    correta: 1,
+                    explicacao: "Capital próprio representa o patrimônio líquido dos donos da empresa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é o objetivo de um fundo de investimento imobiliário?",
+                    opcoes: [
+                        "Investir em ações",
+                        "Aplicar em imóveis e gerar renda",
+                        "Financiar dívidas do governo",
+                        "Apenas especular no mercado"
+                    ],
+                    correta: 1,
+                    explicacao: "Permite investir em imóveis sem comprar diretamente, recebendo rendimentos de aluguéis.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa a sigla BNA?",
+                    opcoes: [
+                        "Banco Nacional de Angola",
+                        "Bolsa Nacional de Ações",
+                        "Banco de Negócios e Ativos",
+                        "Banco Nacional Africano"
+                    ],
+                    correta: 0,
+                    explicacao: "O BNA regula a política monetária, bancos e estabilidade financeira do país.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é risco de crédito?",
+                    opcoes: [
+                        "Possibilidade de inadimplência de um devedor",
+                        "Perda por inflação",
+                        "Risco de mercado",
+                        "Risco de liquidez"
+                    ],
+                    correta: 0,
+                    explicacao: "O risco de crédito é essencial para avaliar empréstimos ou investimentos em títulos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a diferença entre ação ordinária e preferencial?",
+                    opcoes: [
+                        "Ordinária dá direito a voto; preferencial tem prioridade em dividendos",
+                        "Não há diferença",
+                        "Preferencial não paga dividendos",
+                        "Ordinária não é negociável"
+                    ],
+                    correta: 0,
+                    explicacao: "Tipos de ação oferecem benefícios distintos a investidores.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é alavancagem financeira?",
+                    opcoes: [
+                        "Uso de recursos próprios apenas",
+                        "Uso de dívida para aumentar retorno",
+                        "Aplicação em títulos públicos",
+                        "Redução de riscos"
+                    ],
+                    correta: 1,
+                    explicacao: "Alavancagem aumenta potencial de lucro, mas também de perda.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa ROI (Return on Investment)?",
+                    opcoes: [
+                        "Lucro líquido de uma empresa",
+                        "Retorno sobre investimento",
+                        "Valor de mercado",
+                        "Capital próprio"
+                    ],
+                    correta: 1,
+                    explicacao: "ROI mede eficiência de um investimento em gerar retorno.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que caracteriza o perfil de investidor arrojado?",
+                    opcoes: [
+                        "Aceita alta volatilidade por altos retornos",
+                        "Evita risco",
+                        "Investimento em poupança",
+                        "Prefere baixo risco"
+                    ],
+                    correta: 0,
+                    explicacao: "Arrojados priorizam crescimento rápido de capital.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes instrumentos serve para hedge cambial?",
+                    opcoes: [
+                        "Obrigações do governo",
+                        "Contratos futuros de câmbio",
+                        "Ações de empresas locais",
+                        "Poupança"
+                    ],
+                    correta: 1,
+                    explicacao: "Futuros cambiais protegem contra flutuações na moeda.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um investimento em renda fixa?",
+                    opcoes: [
+                        "Retorno previsível, risco menor",
+                        "Retorno incerto, alto risco",
+                        "Compra de imóveis para especulação",
+                        "Aplicação apenas em ações"
+                    ],
+                    correta: 0,
+                    explicacao: "Renda fixa oferece juros ou pagamentos determinados.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é o papel da AGT em relação às empresas?",
+                    opcoes: [
+                        "Supervisionar mercado de capitais",
+                        "Cobrar e fiscalizar impostos",
+                        "Emitir títulos",
+                        "Garantir empréstimos"
+                    ],
+                    correta: 1,
+                    explicacao: "A AGT fiscaliza tributos e obrigações fiscais.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa volatilidade em finanças?",
+                    opcoes: [
+                        "Estabilidade de preços",
+                        "Variação de preços ao longo do tempo",
+                        "Crescimento do PIB",
+                        "Rentabilidade garantida"
+                    ],
+                    correta: 1,
+                    explicacao: "Maior volatilidade indica maior risco de variação nos preços.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um ETF (Exchange Traded Fund)?",
+                    opcoes: [
+                        "Fundo negociado em bolsa",
+                        "Ação de uma empresa",
+                        "Empréstimo bancário",
+                        "Obrigação do governo"
+                    ],
+                    correta: 0,
+                    explicacao: "ETF permite investir em cesta de ativos negociada como ação.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é risco sistêmico?",
+                    opcoes: [
+                        "Risco isolado de uma empresa",
+                        "Risco que afeta todo o mercado financeiro",
+                        "Risco do governo apenas",
+                        "Risco de liquidez"
+                    ],
+                    correta: 1,
+                    explicacao: "Crises de 2008 são exemplo de risco sistêmico.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função de um mercado secundário?",
+                    opcoes: [
+                        "Criar novas ações",
+                        "Negociar ações e títulos existentes",
+                        "Emitir moedas",
+                        "Fornecer crédito"
+                    ],
+                    correta: 1,
+                    explicacao: "Mercado secundário permite liquidez e precificação justa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é liquidez de mercado?",
+                    opcoes: [
+                        "Facilidade de converter ativo em dinheiro",
+                        "Crescimento do patrimônio",
+                        "Risco de crédito",
+                        "Renda fixa"
+                    ],
+                    correta: 0,
+                    explicacao: "Mais liquidez significa mais facilidade em vender sem perda.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes é um exemplo de derivativo de juros?",
+                    opcoes: [
+                        "Swap de taxa de juros",
+                        "Ação de banco",
+                        "Poupança",
+                        "ETF"
+                    ],
+                    correta: 0,
+                    explicacao: "Derivativos de juros protegem ou especulam sobre variações na taxa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa 'capital de giro'?",
+                    opcoes: [
+                        "Ativos fixos",
+                        "Recursos disponíveis para operação do dia a dia",
+                        "Investimento de longo prazo",
+                        "Empréstimos do governo"
+                    ],
+                    correta: 1,
+                    explicacao: "Capital de giro é essencial para manter empresa funcionando sem falta de caixa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é uma IPO (Initial Public Offering)?",
+                    opcoes: [
+                        "Emissão inicial de ações ao público",
+                        "Título de dívida",
+                        "Empréstimo bancário",
+                        "Fundo de investimento"
+                    ],
+                    correta: 0,
+                    explicacao: "IPO permite que uma empresa se torne pública e capte recursos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa 'benchmark' em investimentos?",
+                    opcoes: [
+                        "Valor mínimo de retorno",
+                        "Referência para comparar desempenho",
+                        "Taxa de juros oficial",
+                        "Preço de mercado"
+                    ],
+                    correta: 1,
+                    explicacao: "Benchmark é usado para avaliar performance relativa de fundos ou ações.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é o impacto do câmbio sobre investimentos em Angola?",
+                    opcoes: [
+                        "Nenhum impacto",
+                        "Pode alterar retornos de investimentos em moeda estrangeira",
+                        "Apenas afeta ações",
+                        "Apenas títulos públicos"
+                    ],
+                    correta: 1,
+                    explicacao: "Investimentos em dólares ou euros podem variar com flutuação do Kwanza.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é o risco de liquidez?",
+                    opcoes: [
+                        "Falta de capacidade de vender um ativo rapidamente",
+                        "Falha de banco central",
+                        "Perda garantida",
+                        "Crescimento do PIB"
+                    ],
+                    correta: 0,
+                    explicacao: "Investimentos ilíquidos podem gerar perdas se precisar do dinheiro rápido.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um 'stop-loss' em bolsa de valores?",
+                    opcoes: [
+                        "Ordem para vender ativo automaticamente ao atingir preço definido",
+                        "Compra de ações automaticamente",
+                        "Ordem de empréstimo",
+                        "Taxa de juros"
+                    ],
+                    correta: 0,
+                    explicacao: "Stop-loss limita perdas em investimentos voláteis.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é alocação de ativos?",
+                    opcoes: [
+                        "Distribuição de investimentos entre diferentes tipos de ativos",
+                        "Compra de um único ativo",
+                        "Venda de títulos do governo",
+                        "Apenas ações"
+                    ],
+                    correta: 0,
+                    explicacao: "Alocação ajuda a balancear risco e retorno.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é inflação acumulada?",
+                    opcoes: [
+                        "Aumento de preços em um período",
+                        "Taxa de juros bancária",
+                        "Retorno de investimentos",
+                        "Dívida pública"
+                    ],
+                    correta: 0,
+                    explicacao: "Mostra quanto os preços subiram ao longo do tempo.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um investidor especulativo?",
+                    opcoes: [
+                        "Busca lucros de curto prazo, alto risco",
+                        "Prefere renda fixa",
+                        "Investe em imóveis apenas",
+                        "Conservador"
+                    ],
+                    correta: 0,
+                    explicacao: "Especulativos aceitam volatilidade para ganhos rápidos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função de um agente de custódia?",
+                    opcoes: [
+                        "Emitir títulos",
+                        "Guardar e administrar ativos de investidores",
+                        "Supervisionar bancos",
+                        "Cobrar impostos"
+                    ],
+                    correta: 1,
+                    explicacao: "Custodiantes asseguram segurança e registro de ativos.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa 'yield' de uma obrigação?",
+                    opcoes: [
+                        "Retorno anual esperado",
+                        "Preço do ativo",
+                        "Lucro da empresa",
+                        "Taxa de câmbio"
+                    ],
+                    correta: 0,
+                    explicacao: "Yield indica quanto o investidor receberá de retorno relativo ao preço do título.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que caracteriza o mercado de capitais em Angola?",
+                    opcoes: [
+                        "Apenas bancos",
+                        "Negociação de ações e títulos",
+                        "Comércio de produtos",
+                        "Fundos de governo"
+                    ],
+                    correta: 1,
+                    explicacao: "Mercado de capitais permite financiamento de empresas e liquidez para investidores.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual destes é um instrumento de política monetária?",
+                    opcoes: [
+                        "Emissão de ações",
+                        "Taxa de juros de referência",
+                        "Investimento em imóveis",
+                        "Compra de criptomoedas"
+                    ],
+                    correta: 1,
+                    explicacao: "Taxas de juros controlam inflação e liquidez na economia.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é beta de uma ação?",
+                    opcoes: [
+                        "Medida de risco sistemático",
+                        "Retorno garantido",
+                        "Dividendos pagos",
+                        "Índice de liquidez"
+                    ],
+                    correta: 0,
+                    explicacao: "Beta mostra sensibilidade de um ativo em relação ao mercado.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é capital intelectual?",
+                    opcoes: [
+                        "Recursos financeiros",
+                        "Conhecimento e habilidades que agregam valor",
+                        "Imóveis e máquinas",
+                        "Dívidas da empresa"
+                    ],
+                    correta: 1,
+                    explicacao: "Capital intelectual é estratégico para inovação e competitividade.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Qual é a função de um índice de referência em bolsa?",
+                    opcoes: [
+                        "Representar desempenho médio de um conjunto de ações",
+                        "Determinar taxas de juros",
+                        "Emitir títulos",
+                        "Administrar bancos"
+                    ],
+                    correta: 0,
+                    explicacao: "Índices como S&P500 ajudam investidores a medir performance do mercado.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa liquidação de um título?",
+                    opcoes: [
+                        "Compra do ativo",
+                        "Pagamento ou transferência final do valor do título",
+                        "Abertura de conta bancária",
+                        "Alteração do preço de ação"
+                    ],
+                    correta: 1,
+                    explicacao: "Liquidação garante que comprador e vendedor recebam valores corretamente.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que é um mercado de balcão?",
+                    opcoes: [
+                        "Negociação organizada em bolsa",
+                        "Negociação direta entre partes, sem bolsa central",
+                        "Emissão de obrigações",
+                        "Mercado de imóveis"
+                    ],
+                    correta: 1,
+                    explicacao: "Mercado de balcão permite negociação mais flexível, porém menos regulada.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "O que significa 'capital social' de uma empresa?",
+                    opcoes: [
+                        "Lucro líquido anual",
+                        "Recursos investidos pelos sócios na empresa",
+                        "Empréstimos bancários",
+                        "Obrigações do governo"
+                    ],
+                    correta: 1,
+                    explicacao: "Capital social representa o investimento inicial dos donos e estrutura financeira da empresa.",
+                    tipo: "conhecimento"
+                },
+                {
+                    pergunta: "Por que o perfil do investidor é importante ao escolher investimentos?",
+                    opcoes: [
+                        "Determina risco tolerado e estratégias adequadas",
+                        "Não tem impacto",
+                        "Apenas indica idade",
+                        "Define apenas retorno esperado"
+                    ],
+                    correta: 0,
+                    explicacao: "Conhecer o perfil evita escolhas inadequadas e aumenta chances de alcançar objetivos financeiros.",
+                    tipo: "conhecimento"
+                }
+            ]
+        };
+    }
+
+    // =====================================================
+    // VALIDAÇÕES
+    // =====================================================
+
+    validarNome() {
+        const nome = this.nomeJogador.value.trim();
+        const erro = document.getElementById('erro-nome');
+        
+        if (nome.length < 2) {
+            erro.textContent = 'Nome deve ter pelo menos 2 caracteres';
+            return false;
+        }
+        
+        if (nome.length > 50) {
+            erro.textContent = 'Nome muito longo (máx. 50 caracteres)';
+            return false;
+        }
+        
+        erro.textContent = '';
+        return true;
+    }
+
+    validarIdade() {
+        const idade = parseInt(this.idadeJogador.value);
+        const erro = document.getElementById('erro-idade');
+        
+        if (isNaN(idade) || idade < 13 || idade > 120) {
+            erro.textContent = 'Idade deve ser entre 13 e 120 anos';
+            return false;
+        }
+        
+        erro.textContent = '';
+        return true;
+    }
+
+    validarNivel() {
+        const nivelSelecionado = Array.from(this.niveis).some(radio => radio.checked);
+        const erro = document.getElementById('erro-nivel');
+        
+        if (!nivelSelecionado) {
+            erro.textContent = 'Selecione um nível de dificuldade';
+            return false;
+        }
+        
+        erro.textContent = '';
+        return true;
+    }
+
+    validarFormulario() {
+        return this.validarNome() && this.validarIdade() && this.validarNivel();
+    }
+
+    // =====================================================
+    // INICIALIZAÇÃO DO JOGO
+    // =====================================================
+
+    async iniciarJogo(event) {
+        event.preventDefault();
+        
+        if (!this.validarFormulario()) {
+            return;
+        }
+
+        // Coletar dados do jogador
+        this.dadosJogador = {
+            nome: this.nomeJogador.value.trim(),
+            regiao: this.regiaoJogador.value || 'Não informada',
+            idade: parseInt(this.idadeJogador.value),
+            sexo: this.sexoJogador.value || 'Não informado',
+            nivel: Array.from(this.niveis).find(radio => radio.checked).value,
+            dataInicio: new Date()
+        };
+
+        // Carregar perguntas
+        this.carregarPerguntas();
+        
+        // Mostrar tela de loading
+        this.mostrarTela(this.telaLoading);
+        
+        // Simular carregamento
+        setTimeout(() => {
+            this.prepararQuiz();
+        }, 1000);
+    }
+
+    carregarPerguntas() {
+        const nivel = this.dadosJogador.nivel;
+        let perguntasBase;
+        
+        switch(nivel) {
+            case 'facil':
+                perguntasBase = this.questionsDatabase.facil;
+                break;
+            case 'intermediario':
+                perguntasBase = this.questionsDatabase.intermediario;
+                break;
+            case 'avancado':
+                perguntasBase = this.questionsDatabase.avancado;
+                break;
+        }
+
+        // Embaralhar perguntas e selecionar quantidade
+        this.perguntas = this.embaralharArray([...perguntasBase])
+            .slice(0, this.obterQuantidadePerguntas(nivel));
+    }
+
+    obterQuantidadePerguntas(nivel) {
+        const quantidades = {
+            'facil': 10,
+            'intermediario': 25,
+            'avancado': 50
+        };
+        return quantidades[nivel] || 10;
+    }
+
+    prepararQuiz() {
+        this.jogoAtivo = true;
+        this.jogoFinalizado = false;
+        this.perguntaAtual = 0;
+        this.pontuacao = 0;
+        this.respostas = [];
+
+        this.atualizarPlacar();
+        this.mostrarTela(this.telaQuiz);
+        this.mostrarPergunta();
+    }
+
+    // =====================================================
+    // LÓGICA DO QUIZ
+    // =====================================================
+
+    mostrarPergunta() {
+        if (this.perguntaAtual >= this.perguntas.length) {
+            this.finalizarQuiz();
+            return;
+        }
+
+        const pergunta = this.perguntas[this.perguntaAtual];
+        
+        // Atualizar contador
+        this.contadorPerguntas.textContent = 
+            `Pergunta ${this.perguntaAtual + 1} de ${this.perguntas.length}`;
+        
+        // Atualizar barra de progresso
+        const progresso = ((this.perguntaAtual) / this.perguntas.length) * 100;
+        this.progressoBar.style.width = `${progresso}%`;
+
+        // Mostrar pergunta
+        this.textoPergunta.textContent = pergunta.pergunta;
+
+        // Limpar opções anteriores
+        this.containerOpcoes.innerHTML = '';
+        this.feedbackArea.innerHTML = '';
+
+        // Criar opções (embaralhando as respostas)
+        const opcoesEmbaralhadas = this.embaralharArray([...pergunta.opcoes]);
+        const indiceCorretoEmbaralhado = opcoesEmbaralhadas.indexOf(pergunta.opcoes[pergunta.correta]);
+
+        opcoesEmbaralhadas.forEach((opcao, index) => {
+            const botao = document.createElement('button');
+            botao.className = 'option-btn';
+            botao.innerHTML = `
+                <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                <span class="option-text">${opcao}</span>
+            `;
+            botao.addEventListener('click', () => this.validarResposta(index, indiceCorretoEmbaralhado));
+            this.containerOpcoes.appendChild(botao);
+        });
+
+        // Guardar o índice correto embaralhado para validação
+        this.perguntas[this.perguntaAtual].corretaEmbaralhada = indiceCorretoEmbaralhado;
+    }
+
+    validarResposta(opcaoIndex, indiceCorreto) {
+        if (this.jogoFinalizado) return;
+
+        const pergunta = this.perguntas[this.perguntaAtual];
+        const botao = this.containerOpcoes.children[opcaoIndex];
+        const correto = opcaoIndex === indiceCorreto;
+
+        // Desabilitar todos os botões
+        Array.from(this.containerOpcoes.children).forEach(btn => {
+            btn.classList.add('disabled');
+            btn.style.pointerEvents = 'none';
+        });
+
+        // Marcar resposta correta/incorreta
+        if (correto) {
+            botao.classList.add('correct');
+            this.pontuacao++;
+        } else {
+            botao.classList.add('incorrect');
+            // Mostrar resposta correta
+            this.containerOpcoes.children[indiceCorreto].classList.add('correct');
+        }
+
+        // Registrar resposta
+        this.respostas.push({
+            pergunta: pergunta.pergunta,
+            respostaJogador: opcaoIndex,
+            correta: indiceCorreto,
+            explicacao: pergunta.explicacao,
+            tipo: pergunta.tipo,
+            acertou: correto
+        });
+
+        // Mostrar feedback
+        this.mostrarFeedback(correto, pergunta.explicacao);
+
+        // Atualizar placar
+        this.atualizarPlacar();
+
+        // Avançar após delay
+        setTimeout(() => {
+            this.perguntaAtual++;
+            this.mostrarPergunta();
+        }, 2500);
+    }
+
+    mostrarFeedback(correto, explicacao) {
+        const feedback = document.createElement('div');
+        feedback.className = `feedback-message ${correto ? 'feedback-correct' : 'feedback-incorrect'}`;
+        
+        feedback.innerHTML = `
+            <div class="feedback-icon">${correto ? '✅' : '❌'}</div>
+            <div class="feedback-text">
+                <strong>${correto ? 'Resposta Correta!' : 'Resposta Incorreta'}</strong>
+                <div class="feedback-explanation">${explicacao}</div>
+            </div>
+        `;
+
+        this.feedbackArea.innerHTML = '';
+        this.feedbackArea.appendChild(feedback);
+    }
+
+    atualizarPlacar() {
+        this.contadorAcertos.textContent = this.pontuacao;
+        this.contadorErros.textContent = this.perguntaAtual - this.pontuacao;
+    }
+
+    // =====================================================
+    // FINALIZAÇÃO E RESULTADOS
+    // =====================================================
+
+    finalizarQuiz() {
+        this.jogoAtivo = false;
+        this.jogoFinalizado = true;
+        this.dadosJogador.dataFim = new Date();
+
+        this.mostrarTela(this.telaLoading);
+
+        // Processar resultados
+        setTimeout(() => {
+            this.mostrarResultados();
+        }, 1500);
+    }
+
+    mostrarResultados() {
+        const totalPerguntas = this.perguntas.length;
+        const percentualAcerto = (this.pontuacao / totalPerguntas) * 100;
+
+        // Preencher dados do jogador
+        this.resultNome.textContent = this.dadosJogador.nome;
+        this.resultRegiao.textContent = this.dadosJogador.regiao;
+        this.resultIdade.textContent = this.dadosJogador.idade;
+        this.resultNivel.textContent = this.formatarNivel(this.dadosJogador.nivel);
+
+        // Preencher desempenho
+        this.scorePercent.textContent = `${Math.round(percentualAcerto)}%`;
+        this.scoreAcertos.textContent = this.pontuacao;
+        this.scoreTotal.textContent = totalPerguntas;
+        this.scoreClassificacao.textContent = this.classificarDesempenho(percentualAcerto);
+
+        // Calcular perfil
+        const perfil = this.calcularPerfilInvestidor();
+        this.perfilInvestidor.textContent = perfil.tipo;
+        this.descPerfil.textContent = perfil.descricao;
+
+        // Mostrar erros
+        this.mostrarErros();
+
+        // Gerar recomendações
+        this.textoRecomendacoes.textContent = this.gerarRecomendacoes(percentualAcerto, perfil.tipo);
+
+        this.mostrarTela(this.telaResultados);
+    }
+
+    mostrarErros() {
+        const erros = this.respostas.filter(r => !r.acertou);
+        
+        if (erros.length === 0) {
+            this.listaErros.innerHTML = '<p style="color: green; text-align: center;">🎉 Parabéns! Você não cometeu nenhum erro.</p>';
+            return;
+        }
+
+        this.listaErros.innerHTML = erros.map((erro, index) => {
+            const perguntaObj = this.perguntas.find(p => p.pergunta === erro.pergunta);
+            const opcoesEmbaralhadas = this.embaralharArray([...perguntaObj.opcoes]);
+            
+            return `
+                <div class="error-item" style="background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
+                    <div class="error-question" style="color: #721c24; font-weight: bold; margin-bottom: 10px;">
+                        ${index + 1}. ${erro.pergunta}
+                    </div>
+                    <div class="error-details" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div class="error-detail" style="background: white; padding: 8px; border-radius: 4px;">
+                            <strong style="color: #dc3545;">Sua resposta:</strong><br>
+                            ${opcoesEmbaralhadas[erro.respostaJogador]}
+                        </div>
+                        <div class="error-detail" style="background: white; padding: 8px; border-radius: 4px;">
+                            <strong style="color: #28a745;">Resposta correta:</strong><br>
+                            ${opcoesEmbaralhadas[erro.correta]}
+                        </div>
+                    </div>
+                    <div class="error-explanation" style="color: #856404; background: #fff3cd; padding: 8px; border-radius: 4px;">
+                        <strong>Explicação:</strong> ${erro.explicacao}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // =====================================================
+    // ANÁLISE E CLASSIFICAÇÃO
+    // =====================================================
+
+    classificarDesempenho(percentual) {
+        if (percentual === 100) return "🏆 Excelência Total";
+        if (percentual >= 90) return "⭐ Especialista";
+        if (percentual >= 75) return "✅ Avançado";
+        if (percentual >= 60) return "📈 Intermediário";
+        if (percentual >= 40) return "📚 Iniciante";
+        return "🎓 Precisa Estudar Mais";
+    }
+
+    calcularPerfilInvestidor() {
+        const respostasComportamentais = this.respostas
+            .filter(r => r.tipo === 'comportamental')
+            .map(r => r.respostaJogador);
+
+        let pontuacao = 0;
+        
+        // Analisar padrões de respostas comportamentais
+        respostasComportamentais.forEach(resposta => {
+            if (resposta === 0) pontuacao -= 2; // Conservador
+            else if (resposta === 1) pontuacao += 0; // Neutro
+            else if (resposta === 2) pontuacao += 2; // Agressivo
+        });
+
+        // Determinar perfil baseado na pontuação
+        if (pontuacao <= -3) {
+            return {
+                tipo: "Preservador",
+                descricao: "Prefere segurança acima de tudo, evita riscos e valoriza a proteção do capital investido. Recomenda-se investimentos conservadores como poupança, títulos públicos e fundos de renda fixa."
+            };
+        } else if (pontuacao <= 2) {
+            return {
+                tipo: "Regular",
+                descricao: "Equilibrado entre risco e retorno, aceita alguma volatilidade por ganhos moderados. Pode diversificar entre renda fixa, fundos multimercado e algumas ações blue chips."
+            };
+        } else {
+            return {
+                tipo: "Agressivo",
+                descricao: "Buscador de altos retornos, tolera volatilidade significativa por oportunidades de ganho. Adequado para carteiras com maior exposição a ações, criptomoedas e ativos de alto risco."
+            };
+        }
+    }
+
+    gerarRecomendacoes(percentual, perfil) {
+        let recomendacoes = [];
+        
+        // Recomendações baseadas no desempenho
+        if (percentual < 60) {
+            recomendacoes.push("Recomendamos estudar os conceitos básicos de finanças pessoais antes de investir.");
+            recomendacoes.push("Considere começar com investimentos de baixo risco enquanto aprende.");
+        } else if (percentual < 80) {
+            recomendacoes.push("Você tem boa base! Continue estudando sobre diversificação e análise de risco.");
+            recomendacoes.push("Pode explorar investimentos de médio risco com parte do capital.");
+        } else {
+            recomendacoes.push("Excelente conhecimento! Pode considerar estratégias mais sofisticadas.");
+            recomendacoes.push("Continue acompanhando o mercado para manter sua vantagem.");
+        }
+
+        // Recomendações baseadas no perfil
+        if (perfil === "Preservador") {
+            recomendacoes.push("Foque em títulos públicos, poupança e fundos conservadores.");
+            recomendacoes.push("Mantenha uma reserva de emergência de 6-12 meses de despesas.");
+        } else if (perfil === "Regular") {
+            recomendacoes.push("Diversifique entre renda fixa e variável conforme seu conforto.");
+            recomendacoes.push("Considere fundos multimercado e ETFs para exposição balanceada.");
+        } else {
+            recomendacoes.push("Pode alocar parte significativa em ações e criptomoedas.");
+            recomendacoes.push("Estude estratégias de alavancagem e derivativos com cuidado.");
+        }
+
+        return recomendacoes.join(' ');
+    }
+
+    // =====================================================
+    // GERAÇÃO DE PDF
+    // =====================================================
+
+    async gerarPDF() {
+        try {
+            this.mostrarTela(this.telaLoading);
+            
+            // Verificar se jsPDF está disponível
+            if (typeof window.jspdf !== 'undefined') {
+                const { jsPDF } = window.jspdf;
+                await this.gerarPDFComJsPDF(jsPDF);
+            } else {
+                // Fallback - baixar dados como JSON
+                this.baixarDadosComoJSON();
+            }
+        } catch (error) {
+            console.error('Erro ao gerar PDF:', error);
+            // Removido alerta que interrompia a experiência
+            this.mostrarTela(this.telaResultados);
+        }
+    }
+
+    async gerarPDFComJsPDF(jsPDF) {
+        const doc = new jsPDF();
+        const totalPerguntas = this.perguntas.length;
+        const percentualAcerto = (this.pontuacao / totalPerguntas) * 100;
+        const perfil = this.calcularPerfilInvestidor();
+
+        // Página 1 - Cabeçalho e Dados Básicos
+        doc.setFillColor(214, 174, 100);
+        doc.rect(0, 0, 210, 40, 'F');
+        
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(20);
+        doc.setFont('helvetica', 'bold');
+        doc.text('TECA CAPITAL INVESTIMENTOS', 105, 15, { align: 'center' });
+        
+        doc.setFontSize(12);
+        doc.text('Quiz de Educação Financeira e Investimentos', 105, 25, { align: 'center' });
+
+        // Dados do Jogador
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(14);
+        doc.text('DADOS DO JOGADOR', 20, 60);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Nome: ${this.dadosJogador.nome}`, 20, 75);
+        doc.text(`Região: ${this.dadosJogador.regiao}`, 20, 82);
+        doc.text(`Idade: ${this.dadosJogador.idade} anos`, 20, 89);
+        doc.text(`Nível: ${this.formatarNivel(this.dadosJogador.nivel)}`, 20, 96);
+        doc.text(`Data: ${this.dadosJogador.dataFim.toLocaleDateString('pt-AO')}`, 20, 103);
+        doc.text(`Hora: ${this.dadosJogador.dataFim.toLocaleTimeString('pt-AO')}`, 20, 110);
+
+        // Resultados
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(14);
+        doc.text('RESULTADOS', 20, 125);
+        
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`Pontuação: ${this.pontuacao}/${totalPerguntas} (${Math.round(percentualAcerto)}%)`, 20, 140);
+        doc.text(`Classificação: ${this.classificarDesempenho(percentualAcerto)}`, 20, 147);
+        doc.text(`Perfil de Investidor: ${perfil.tipo}`, 20, 154);
+        doc.text(`Descrição: ${perfil.descricao}`, 20, 161);
+
+        // Página 2 - Análise de Erros (se houver)
+        const erros = this.respostas.filter(r => !r.acertou);
+        if (erros.length > 0) {
+            doc.addPage();
+            doc.setFontSize(16);
+            doc.setTextColor(0, 0, 0);
+            doc.text('ANÁLISE DE ERROS', 20, 20);
+
+            let yPos = 35;
+            erros.forEach((erro, index) => {
+                if (yPos > 250) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+
+                doc.setFontSize(10);
+                doc.setTextColor(220, 53, 69);
+                doc.text(`${index + 1}. ${erro.pergunta}`, 20, yPos);
+                
+                doc.setTextColor(100, 100, 100);
+                const perguntaObj = this.perguntas.find(p => p.pergunta === erro.pergunta);
+                const opcoesEmbaralhadas = this.embaralharArray([...perguntaObj.opcoes]);
+                
+                doc.text(`Sua resposta: ${opcoesEmbaralhadas[erro.respostaJogador]}`, 25, yPos + 7);
+                doc.text(`Resposta correta: ${opcoesEmbaralhadas[erro.correta]}`, 25, yPos + 14);
+                doc.text(`Explicação: ${erro.explicacao}`, 25, yPos + 21);
+                
+                yPos += 35;
+            });
+        }
+
+        // Página Final - Recomendações
+        doc.addPage();
+        doc.setFontSize(16);
+        doc.setTextColor(0, 0, 0);
+        doc.text('RECOMENDAÇÕES PERSONALIZADAS', 20, 20);
+
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        const recomendacoes = this.gerarRecomendacoes(percentualAcerto, perfil.tipo);
+        const splitRecomendacoes = doc.splitTextToSize(recomendacoes, 170);
+        doc.text(splitRecomendacoes, 20, 40);
+
+        // Rodapé
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text('Documento processado pelo algoritmo da Teca Capital Investimentos.', 20, 280);
+        doc.text('Criado por Alberto Teca Tomás.', 20, 285);
+        doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-AO')} ${new Date().toLocaleTimeString('pt-AO')}`, 20, 290);
+
+        // Salvar PDF
+        doc.save(`Quiz_Investimentos_${this.dadosJogador.nome.replace(/\s+/g, '_')}.pdf`);
+        
+        this.mostrarTela(this.telaResultados);
+    }
+
+    baixarDadosComoJSON() {
+        const dados = {
+            jogador: this.dadosJogador,
+            resultado: {
+                pontuacao: this.pontuacao,
+                totalPerguntas: this.perguntas.length,
+                percentualAcerto: (this.pontuacao / this.perguntas.length) * 100,
+                classificacao: this.classificarDesempenho((this.pontuacao / this.perguntas.length) * 100),
+                perfil: this.calcularPerfilInvestidor()
+            },
+            respostas: this.respostas,
+            recomendacoes: this.gerarRecomendacoes(
+                (this.pontuacao / this.perguntas.length) * 100,
+                this.calcularPerfilInvestidor().tipo
+            )
+        };
+
+        const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `quiz_resultados_${this.dadosJogador.nome.replace(/\s+/g, '_')}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        this.mostrarTela(this.telaResultados);
+    }
+
+    // =====================================================
+    // UTILITÁRIOS
+    // =====================================================
+
+    mostrarTela(tela) {
+        document.querySelectorAll('.quiz-screen').forEach(t => t.classList.remove('active'));
+        tela.classList.add('active');
+    }
+
+    formatarNivel(nivel) {
+        const niveis = {
+            'facil': 'Fácil',
+            'intermediario': 'Intermediário',
+            'avancado': 'Avançado'
+        };
+        return niveis[nivel] || nivel;
+    }
+
+    embaralharArray(array) {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
+
+    reiniciarJogo() {
+        this.mostrarTela(this.telaInicial);
+        this.formJogador.reset();
+    }
+}
+
+// =====================================================
+// INICIALIZAÇÃO DO QUIZ
+// =====================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    new QuizInvestimentos();
+});
+
+// =====================================================
+// TRATAMENTO DE ERROS GLOBAL
+// =====================================================
+
+window.addEventListener('error', function(e) {
+    console.error('Erro no quiz:', e.error);
+});
+</script> 
+
+    </main>
+
+     <footer>
+    <div>
+        <!-- REDES SOCIAIS -->
+        <div id="socialmidia">
+            <h3>Redes Sociais</h3>
+            <div class="social-icons">
+                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CONTATO -->
+        <div id="Contato">
+            <h3>Contato</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <p>Gmail:</p>
+                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                        tecacapitalinvestimentostci@gmail.com
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Telefone:</p>
+                    <a href="tel:+244923456789">
+                    +244 923 456 789
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <p>Endereço:</p>
+                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                </div>
+            </div>
+        </div>
+        
+        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+    </div>
+</footer>
+
+</body>
+</html>
