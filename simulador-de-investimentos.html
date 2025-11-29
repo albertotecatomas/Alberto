@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="teca.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -33,198 +35,988 @@
         </nav>
     </header>
 
-    <main>
-         <div class="simulator-container">
-            <h1>Simulador de Investimentos</h1>
-            <p>Simule diferentes cenários de investimento em ações, criptomoedas e obrigações</p>
 
-        <!-- Menu de seleção do tipo de investimento -->
-        <section class="investment-type">
-            <h2>Tipo de Investimento</h2>
-            <select id="investmentType">
-                <option value="acoes">Ações</option>
-                <option value="cripto">Criptomoedas</option>
-                <option value="obrigacoes-publicas">Obrigações Públicas</option>
-                <option value="obrigacoes-privadas">Obrigações Privadas</option>
-            </select>
-        </section>
+        <main>
 
-        <!-- Formulário principal -->
-        <section class="main-form">
-            <h2>Parâmetros do Investimento</h2>
-            <form id="investmentForm">
-                <div class="form-group">
-                    <label for="assetName">Nome do Ativo:</label>
-                    <input type="text" id="assetName" required>
-                </div>
+    <style>
+        :root {
+            --primary-color: rgb(214, 174, 100);
+            --primary-dark: rgb(180, 145, 75);
+            --primary-light: rgba(214, 174, 100, 0.2);
+            --secondary-color: #ffffff;
+            --accent-color: #4ecdc4;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --error-color: #e74c3c;
+            --bg-color: #000000;
+            --card-bg: #0d0d0d;
+            --highlight-bg: #111111;
+            --border-color: rgba(214, 174, 100, 0.3);
+            --text-color: #ffffff;
+            --text-muted: #888888;
+            --shadow: 0 4px 20px rgba(214, 174, 100, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
 
-                <div class="form-group">
-                    <label for="investmentAmount">Valor a Investir (Kz):</label>
-                    <input type="number" id="investmentAmount" min="1000" required>
-                </div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-                <div class="form-group">
-                    <label for="startDate">Data de Início (opcional):</label>
-                    <input type="date" id="startDate">
-                </div>
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
 
-                <div class="form-group">
-                    <label for="timeHorizon">Horizonte (meses):</label>
-                    <input type="number" id="timeHorizon" min="1" max="600" required>
-                </div>
+        .simulator-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
 
-                <!-- Campos específicos para renda fixa -->
-                <div id="fixedIncomeFields" style="display: none;">
-                    <div class="form-group">
-                        <label for="interestRate">Taxa de Juros Anual (%):</label>
-                        <input type="number" id="interestRate" min="1" max="100" step="0.1">
-                    </div>
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
 
-                    <div class="form-group">
-                        <label for="paymentFrequency">Pagamento de Cupão:</label>
-                        <select id="paymentFrequency">
-                            <option value="mensal">Mensal</option>
-                            <option value="semestral">Semestral</option>
-                            <option value="anual">Anual</option>
-                            <option value="zero">Zero Cupão</option>
-                        </select>
-                    </div>
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
 
-                    <div class="form-group">
-                        <label for="interestType">Tipo de Juros:</label>
-                        <select id="interestType">
-                            <option value="composto">Composto</option>
-                            <option value="simples">Simples</option>
-                        </select>
-                    </div>
-                </div>
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
 
-                <!-- Campos específicos para ações/cripto -->
-                <div id="variableIncomeFields">
-                    <div class="form-group">
-                        <label for="variationPct">Variação Percentual (%):</label>
-                        <input type="number" id="variationPct" min="-100" max="100" step="0.1">
-                    </div>
+        h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
 
-                    <div class="quick-buttons">
-                        <button type="button" class="btn-quick" onclick="setVariation(5)">+5%</button>
-                        <button type="button" class="btn-quick" onclick="setVariation(10)">+10%</button>
-                        <button type="button" class="btn-quick" onclick="setVariation(25)">+25%</button>
-                        <button type="button" class="btn-quick" onclick="setVariation(-5)">-5%</button>
-                        <button type="button" class="btn-quick" onclick="setVariation(-10)">-10%</button>
-                        <button type="button" class="btn-quick" onclick="setVariation(-50)">-50%</button>
-                    </div>
-                </div>
+        h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
 
-                <!-- Parâmetros macroeconômicos -->
-                <div class="macro-params">
-                    <h3>Parâmetros Macroeconômicos</h3>
-                    <div class="form-group">
-                        <label for="inflationRate">Inflação Anual (%):</label>
-                        <input type="number" id="inflationRate" value="20" min="0" max="100" step="0.1">
-                    </div>
+        /* Remove list styles */
+        ul, ol {
+            list-style: none;
+        }
 
-                    <div class="form-group">
-                        <label for="fxVariation">Variação Cambial Kz vs USD (%):</label>
-                        <input type="number" id="fxVariation" value="0" min="-100" max="100" step="0.1">
-                    </div>
-                </div>
+        /* Guia de Uso Expandido */
+        .usage-guide-expanded {
+            margin-bottom: 30px;
+        }
 
-                <!-- Distribuição de carteira -->
-                <div class="portfolio-distribution">
-                    <h3>Distribuição da Carteira</h3>
-                    <div id="portfolioAssets">
-                        <div class="portfolio-asset">
-                            <input type="text" placeholder="Nome do ativo" class="asset-name">
-                            <input type="number" placeholder="%" class="asset-pct" min="1" max="100" onchange="validatePortfolio()">
-                            <button type="button" class="btn-remove" onclick="removeAsset(this)">Remover</button>
+        .guide-accordion {
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--highlight-bg);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background: rgba(214, 174, 100, 0.1);
+        }
+
+        .accordion-content {
+            background: var(--card-bg);
+            padding: 25px;
+        }
+
+        .guide-sections {
+            display: grid;
+            gap: 25px;
+        }
+
+        .guide-section {
+            background: var(--highlight-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .indicators-explanation {
+            display: grid;
+            gap: 10px;
+        }
+
+        .indicator-item {
+            display: flex;
+            gap: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .indicator-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            min-width: 180px;
+        }
+
+        .indicator-desc {
+            color: var(--text-muted);
+            flex: 1;
+        }
+
+        /* Form Sections */
+        .form-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .form-section:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+
+        input, select {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--highlight-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .field-hint {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .section-description {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* Quick Buttons */
+        .quick-buttons-container {
+            margin-top: 20px;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-quick {
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--highlight-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .btn-quick.positive {
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .btn-quick.positive:hover {
+            background: var(--success-color);
+            color: var(--bg-color);
+        }
+
+        .btn-quick.negative {
+            border-color: var(--error-color);
+            color: var(--error-color);
+        }
+
+        .btn-quick.negative:hover {
+            background: var(--error-color);
+            color: var(--bg-color);
+        }
+
+        .btn-quick-small {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
+        .quick-horizons {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .horizon-input {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-suffix {
+            margin-left: 10px;
+            color: var(--text-muted);
+        }
+
+        /* Portfolio and Scenarios */
+        .portfolio-asset, .scenario {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-asset, .scenario {
+                flex-direction: column;
+            }
+        }
+
+        .portfolio-asset input, .scenario input {
+            flex: 1;
+        }
+
+        .btn-add, .btn-remove {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-add {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            font-weight: 600;
+        }
+
+        .btn-add:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-remove {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .btn-remove:hover {
+            background: #c0392b;
+        }
+
+        .portfolio-total {
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .portfolio-hint, .scenario-examples {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-simulate, .btn-reset {
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 200px;
+        }
+
+        .btn-simulate {
+            background: var(--primary-color);
+            color: var(--bg-color);
+        }
+
+        .btn-simulate:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-reset:hover {
+            background: var(--primary-light);
+        }
+
+        /* Results Section */
+        .results {
+            margin-top: 40px;
+        }
+
+        .key-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .indicator-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .indicator-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .indicator-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .indicator-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .positive { color: var(--success-color); }
+        .negative { color: var(--error-color); }
+        .neutral { color: var(--warning-color); }
+
+        /* Executive Summary */
+        .executive-summary {
+            background: var(--highlight-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .summary-header {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Detailed Analysis */
+        .detailed-analysis {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Table Styles */
+        .cashflow-section {
+            margin-bottom: 30px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background: var(--card-bg);
+        }
+
+        #cashflowTable {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        #cashflowTable th {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        #cashflowTable td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        #cashflowTable tr:nth-child(even) {
+            background: var(--highlight-bg);
+        }
+
+        #cashflowTable tr:hover {
+            background: rgba(214, 174, 100, 0.1);
+        }
+
+        /* Charts Section */
+        .charts-section {
+            margin-bottom: 30px;
+        }
+
+        .chart-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .chart-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+        }
+
+        .chart-container canvas {
+            max-height: 300px;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            background: var(--highlight-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 8px;
+        }
+
+        .recommendation-icon {
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+
+        /* Export Actions */
+        .export-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-download, .btn-export, .btn-share {
+            padding: 12px 25px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-download {
+            background: var(--primary-color);
+            color: var(--bg-color);
+        }
+
+        .btn-export {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .btn-share {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-download:hover, .btn-export:hover, .btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Type Descriptions */
+        .type-selector {
+            margin-bottom: 20px;
+        }
+
+        .type-description {
+            background: var(--primary-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        /* Status badges */
+        .status-positive {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .status-negative {
+            color: var(--error-color);
+            font-weight: bold;
+        }
+
+        .status-neutral {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+    </style>
+
+        <div class="simulator-container">
+            <h1>Simulador de Investimentos Teca Capital</h1>
+            <p class="subtitle">Simule diferentes cenários de investimentos financeiro e entenda os resultados como um profissional</p>
+
+            <!-- Guia de Uso Expandido -->
+            <section class="usage-guide-expanded">
+                <details class="guide-accordion">
+                    <summary class="accordion-header">
+                        <span>📘 Como usar este simulador? (Guia Completo)</span>
+                        <span class="accordion-icon">▼</span>
+                    </summary>
+                    <div class="accordion-content">
+                        <div class="guide-sections">
+                            <div class="guide-section">
+                                <h4>🎯 Para Iniciantes:</h4>
+                                <ul>
+                                    <li><strong>Comece simples:</strong> Use apenas os campos básicos primeiro</li>
+                                    <li><strong>Valor a Investir:</strong> Digite quanto dinheiro pretende aplicar</li>
+                                    <li><strong>Horizonte:</strong> Escolha por quantos meses quer manter o investimento</li>
+                                    <li><strong>Variação esperada:</strong> Use os botões rápidos (+5%, +10%, etc.)</li>
+                                    <li><strong>Clique em "Calcular Simulação"</strong> para ver os resultados</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="guide-section">
+                                <h4>📈 Explicação dos Indicadores:</h4>
+                                <div class="indicators-explanation">
+                                    <div class="indicator-item">
+                                        <span class="indicator-name">Rentabilidade Nominal:</span>
+                                        <span class="indicator-desc">Ganho/pedida sem considerar a inflação (valor bruto)</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-name">Rentabilidade Real:</span>
+                                        <span class="indicator-desc">Ganho/perda REAL após descontar a inflação (poder de compra)</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-name">Inflação Ajustada:</span>
+                                        <span class="indicator-desc">Quanto a inflação "comeu" do seu rendimento</span>
+                                    </div>
+                                    <div class="indicator-item">
+                                        <span class="indicator-name">Impacto Cambial:</span>
+                                        <span class="indicator-desc">Efeito da variação do câmbio no seu investimento</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="guide-section">
+                                <h4>💡 Dicas Importantes:</h4>
+                                <ul>
+                                    <li><strong>Rentabilidade REAL é o que importa:</strong> Se for negativa, você perdeu poder de compra</li>
+                                    <li><strong>Compare cenários:</strong> Use a seção de comparação para testar diferentes variações</li>
+                                    <li><strong>Considere a inflação:</strong> Em Angola, a inflação histórica é alta - não ignore!</li>
+                                    <li><strong>Diversifique:</strong> Use a distribuição de carteira para simular investimentos múltiplos</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="btn-add" onclick="addAsset()">+ Adicionar Ativo</button>
-                    <div id="portfolioTotal">Total: 0%</div>
-                </div>
+                </details>
+            </section>
 
-                <!-- Comparação de cenários -->
-                <div class="scenario-comparison">
-                    <h3>Comparação de Cenários</h3>
-                    <div id="scenarios">
-                        <div class="scenario">
-                            <input type="text" placeholder="Nome do cenário" class="scenario-name">
-                            <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1">
-                            <button type="button" class="btn-remove" onclick="removeScenario(this)">Remover</button>
+            <!-- Menu de seleção do tipo de investimento -->
+            <section class="investment-type">
+                <h2>🎯 Tipo de Investimento</h2>
+                <div class="type-selector">
+                    <select id="investmentType">
+                        <option value="acoes">📈 Ações (Bolsa de Valores)</option>
+                        <option value="cripto">₿ Criptomoedas</option>
+                        <option value="obrigacoes-publicas">🏛️ Obrigações Públicas (Tesouro)</option>
+                        <option value="obrigacoes-privadas">🏢 Obrigações Privadas (Empresas)</option>
+                    </select>
+                    <div class="type-description" id="typeDescription">
+                        Investimento em empresas listadas na bolsa de valores - maior risco, maior potencial
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulário principal -->
+            <section class="main-form">
+                <h2>⚙️ Parâmetros do Investimento</h2>
+                <form id="investmentForm">
+                    <!-- Dados Básicos -->
+                    <div class="form-section">
+                        <h3>📝 Dados Básicos</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="assetName">Nome do Ativo:</label>
+                                <input type="text" id="assetName" placeholder="Ex: SONANGOL, UNITEL, BTC..." value="Exemplo Ação" required>
+                                <span class="field-hint">Digite o nome do ativo que pretende simular</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="investmentAmount">Valor a Investir (Kz):</label>
+                                <input type="number" id="investmentAmount" min="1000" step="1000" placeholder="100000" value="100000" required>
+                                <span class="field-hint">Valor mínimo: 1.000 Kz</span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="startDate">Data de Início (opcional):</label>
+                                <input type="date" id="startDate">
+                                <span class="field-hint">Data em que começaria o investimento</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="timeHorizon">Horizonte de Investimento:</label>
+                                <div class="horizon-input">
+                                    <input type="number" id="timeHorizon" min="1" max="600" value="12" required>
+                                    <span class="input-suffix">meses</span>
+                                </div>
+                                <div class="quick-horizons">
+                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(6)">6 meses</button>
+                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(12)">1 ano</button>
+                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(36)">3 anos</button>
+                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(60)">5 anos</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="btn-add" onclick="addScenario()">+ Adicionar Cenário</button>
+
+                    <!-- Campos específicos para renda fixa -->
+                    <div id="fixedIncomeFields" class="form-section" style="display: none;">
+                        <h3>💰 Parâmetros de Renda Fixa</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="interestRate">Taxa de Juros Anual (%):</label>
+                                <input type="number" id="interestRate" min="1" max="100" step="0.1" placeholder="15.5" value="12.0">
+                                <span class="field-hint">Taxa de juros anual oferecida pelo título</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paymentFrequency">Pagamento de Cupão:</label>
+                                <select id="paymentFrequency">
+                                    <option value="mensal">Mensal</option>
+                                    <option value="trimestral">Trimestral</option>
+                                    <option value="semestral">Semestral</option>
+                                    <option value="anual">Anual</option>
+                                    <option value="zero">Zero Cupão (sem pagamentos)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="interestType">Tipo de Juros:</label>
+                                <select id="interestType">
+                                    <option value="composto">Juros Compostos</option>
+                                    <option value="simples">Juros Simples</option>
+                                </select>
+                                <span class="field-hint">Compostos: juros sobre juros | Simples: apenas sobre capital inicial</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="riskLevel">Nível de Risco:</label>
+                                <select id="riskLevel">
+                                    <option value="baixo">Baixo (Tesouro)</option>
+                                    <option value="medio">Médio (Empresas sólidas)</option>
+                                    <option value="alto">Alto (Empresas em crescimento)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campos específicos para ações/cripto -->
+                    <div id="variableIncomeFields" class="form-section">
+                        <h3>📊 Projeção de Rentabilidade</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="variationPct">Variação Mensal Esperada (%):</label>
+                                <input type="number" id="variationPct" min="-100" max="100" step="0.1" placeholder="5.0" value="5.0" required>
+                                <span class="field-hint">Valor positivo para ganhos, negativo para perdas</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="volatility">Volatilidade (Risco):</label>
+                                <select id="volatility">
+                                    <option value="baixa">Baixa (±5%)</option>
+                                    <option value="media" selected>Média (±15%)</option>
+                                    <option value="alta">Alta (±30%)</option>
+                                    <option value="muito-alta">Muito Alta (±50%)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="quick-buttons-container">
+                            <h4>Variações Rápidas - Clique para usar:</h4>
+                            <div class="quick-buttons">
+                                <button type="button" class="btn-quick positive" onclick="setVariation(2)">+2%</button>
+                                <button type="button" class="btn-quick positive" onclick="setVariation(5)">+5%</button>
+                                <button type="button" class="btn-quick positive" onclick="setVariation(10)">+10%</button>
+                                <button type="button" class="btn-quick positive" onclick="setVariation(15)">+15%</button>
+                                <button type="button" class="btn-quick negative" onclick="setVariation(-2)">-2%</button>
+                                <button type="button" class="btn-quick negative" onclick="setVariation(-5)">-5%</button>
+                                <button type="button" class="btn-quick negative" onclick="setVariation(-10)">-10%</button>
+                                <button type="button" class="btn-quick negative" onclick="setVariation(-20)">-20%</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parâmetros macroeconômicos -->
+                    <div class="form-section macro-params">
+                        <h3>🌍 Cenário Macroeconômico</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="inflationRate">Inflação Anual (%):</label>
+                                <input type="number" id="inflationRate" value="20.0" min="0" max="100" step="0.1" required>
+                                <span class="field-hint">Inflação média esperada - histórico Angola: 15-25%</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fxVariation">Variação Cambial Kz/USD (%):</label>
+                                <input type="number" id="fxVariation" value="10.0" min="-100" max="100" step="0.1">
+                                <span class="field-hint">Valor positivo: Kz desvaloriza | Negativo: Kz valoriza</span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="economicScenario">Cenário Econômico:</label>
+                                <select id="economicScenario">
+                                    <option value="otimista">Otimista (Crescimento)</option>
+                                    <option value="estavel" selected>Estável</option>
+                                    <option value="recessao">Recessão</option>
+                                    <option value="crise">Crise Econômica</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distribuição de carteira -->
+                    <div class="form-section portfolio-distribution">
+                        <h3>🎯 Distribuição da Carteira (Opcional)</h3>
+                        <p class="section-description">Simule uma carteira diversificada com múltiplos ativos</p>
+                        <div id="portfolioAssets">
+                            <div class="portfolio-asset">
+                                <input type="text" placeholder="Nome do ativo" class="asset-name" value="Ação Principal">
+                                <input type="number" placeholder="%" class="asset-pct" min="1" max="100" value="100" onchange="validatePortfolio()">
+                                <button type="button" class="btn-remove" onclick="removeAsset(this)">🗑️ Remover</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add" onclick="addAsset()">+ Adicionar Ativo</button>
+                        <div id="portfolioTotal" class="portfolio-total">Total: 100%</div>
+                        <div class="portfolio-hint">Dica: Diversificar reduz riscos! Ex: 50% ações, 30% obrigações, 20% cripto</div>
+                    </div>
+
+                    <!-- Comparação de cenários -->
+                    <div class="form-section scenario-comparison">
+                        <h3>🔍 Comparação de Cenários (Opcional)</h3>
+                        <p class="section-description">Compare este investimento com outras opções</p>
+                        <div id="scenarios">
+                            <div class="scenario">
+                                <input type="text" placeholder="Nome do cenário" class="scenario-name" value="Poupança Bancária">
+                                <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1" value="2.0">
+                                <button type="button" class="btn-remove" onclick="removeScenario(this)">🗑️ Remover</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn-add" onclick="addScenario()">+ Adicionar Cenário</button>
+                        <div class="scenario-examples">
+                            <strong>Exemplos comuns:</strong> Poupança (2%), Inflação (0%), Obrigações (8-12%), Ações (10-15%)
+                        </div>
+                    </div>
+                </form>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-simulate" onclick="calculateScenario()">
+                        🚀 Calcular Simulação
+                    </button>
+                    <button type="button" class="btn-reset" onclick="resetSimulation()">
+                        🔄 Limpar / Nova Simulação
+                    </button>
                 </div>
-            </form>
+            </section>
 
-            <div class="form-actions">
-                <button type="button" class="btn-simulate" onclick="calculateScenario()">Calcular Simulação</button>
-                <button type="button" class="btn-reset" onclick="resetSimulation()">Limpar / Nova Simulação</button>
-            </div>
-        </section>
+            <!-- Resultados -->
+            <section class="results" id="resultsSection" style="display: none;">
+                <h2>📊 Resultados da Simulação</h2>
+                
+                <!-- Indicadores Principais -->
+                <div class="key-indicators" id="keyIndicators"></div>
 
-        <!-- Resultados -->
-        <section class="results" id="resultsSection" style="display: none;">
-            <h2>Resultados da Simulação</h2>
-            
-            <!-- Resumo numérico -->
-            <div class="summary" id="summaryResults"></div>
+                <!-- Resumo Executivo -->
+                <div class="executive-summary" id="executiveSummary"></div>
 
-            <!-- Análise textual automática -->
-            <div class="text-analysis" id="textAnalysis"></div>
+                <!-- Análise Detalhada -->
+                <div class="detailed-analysis" id="detailedAnalysis"></div>
 
-            <!-- Tabela de fluxos -->
-            <div class="cashflow-table">
-                <h3>Fluxo de Caixa</h3>
-                <table id="cashflowTable">
-                    <thead>
-                        <tr>
-                            <th>Período</th>
-                            <th>Capital Inicial</th>
-                            <th>Rendimento</th>
-                            <th>Acumulado</th>
-                            <th>Inflação Ajustada</th>
-                            <th>Valor Real</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cashflowBody"></tbody>
-                </table>
-            </div>
+                <!-- Tabela de fluxos -->
+                <div class="cashflow-section">
+                    <h3>📋 Evolução Mês a Mês</h3>
+                    <div class="table-container">
+                        <table id="cashflowTable">
+                            <thead>
+                                <tr>
+                                    <th>Mês</th>
+                                    <th>Valor Inicial</th>
+                                    <th>Rendimento</th>
+                                    <th>Valor Final</th>
+                                    <th>Rend. Acumulado</th>
+                                    <th>Inflação Acum.</th>
+                                    <th>Valor Real</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cashflowBody"></tbody>
+                        </table>
+                    </div>
+                </div>
 
-            <!-- Gráfico -->
-            <div class="chart-container">
-                <h3>Evolução do Investimento</h3>
-                <canvas id="investmentChart"></canvas>
-            </div>
+                <!-- Gráficos -->
+                <div class="charts-section">
+                    <div class="chart-row">
+                        <div class="chart-container">
+                            <h3>📈 Evolução do Investimento</h3>
+                            <canvas id="investmentChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>🥧 Composição de Resultados</h3>
+                            <canvas id="compositionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Guia de uso -->
-            <div class="usage-guide" id="usageGuide"></div>
+                <!-- Recomendações -->
+                <div class="recommendations" id="recommendationsSection"></div>
 
-            <!-- Ações de exportação -->
-            <div class="export-actions">
-                <button class="btn-download" onclick="generatePDF()">Baixar Relatório (PDF)</button>
-                <button class="btn-export" onclick="exportCSV()">Exportar CSV</button>
-            </div>
-        </section>
-    </div>
+                <!-- Ações de exportação -->
+                <div class="export-actions">
+                    <button class="btn-download" onclick="generatePDF()">
+                        📄 Baixar Relatório Completo (PDF)
+                    </button>
+                    <button class="btn-export" onclick="exportCSV()">
+                        📊 Exportar Dados (CSV)
+                    </button>
+                    <button class="btn-share" onclick="shareResults()">
+                        🔗 Partilhar Resultados
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <script>
         // Variáveis globais
         let currentChart = null;
+        let compositionChart = null;
         let simulationData = null;
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('Simulador inicializado');
             setupEventListeners();
             setupExampleData();
-            generateUsageGuide();
         });
 
         // Configurar event listeners
         function setupEventListeners() {
             const investmentType = document.getElementById('investmentType');
             investmentType.addEventListener('change', toggleInvestmentFields);
+            
+            // Prevenir submissão do formulário
+            document.getElementById('investmentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                calculateScenario();
+            });
         }
 
         // Configurar dados de exemplo
@@ -232,35 +1024,9 @@
             document.getElementById('assetName').value = 'Exemplo Ação';
             document.getElementById('investmentAmount').value = '100000';
             document.getElementById('timeHorizon').value = '12';
-            document.getElementById('variationPct').value = '15';
-        }
-
-        // Gerar guia de uso
-        function generateUsageGuide() {
-            const guideHTML = `
-                <h3>Guia de Uso - Como Interpretar os Resultados</h3>
-                <div class="guide-content">
-                    <h4>Explicação dos Campos:</h4>
-                    <ul>
-                        <li><strong>Taxa de valorização:</strong> Variação percentual do ativo no período selecionado</li>
-                        <li><strong>Inflação anual:</strong> Perda do poder de compra da moeda ao longo do tempo</li>
-                        <li><strong>Variação cambial:</strong> Impacto da conversão entre moedas diferentes</li>
-                        <li><strong>Rentabilidade nominal:</strong> Ganho/pedida sem considerar a inflação</li>
-                        <li><strong>Rentabilidade real:</strong> Ganho/perda após descontar a inflação (poder de compra real)</li>
-                    </ul>
-                    
-                    <h4>Interpretação dos Resultados:</h4>
-                    <ul>
-                        <li>Se a <strong>Rentabilidade Real</strong> for negativa, seu poder de compra diminuiu mesmo com ganho nominal</li>
-                        <li>Resultados positivos em <strong>Rentabilidade Real</strong> indicam crescimento real do patrimônio</li>
-                        <li>A <strong>Variação Cambial</strong> afeta investimentos em moeda estrangeira</li>
-                    </ul>
-                    
-                    <h4>Para Nova Simulação:</h4>
-                    <p>Use o botão "Limpar / Nova Simulação", altere os parâmetros desejados e clique em "Calcular Simulação"</p>
-                </div>
-            `;
-            document.getElementById('usageGuide').innerHTML = guideHTML;
+            document.getElementById('variationPct').value = '5.0';
+            document.getElementById('inflationRate').value = '20.0';
+            document.getElementById('fxVariation').value = '10.0';
         }
 
         // Alternar campos conforme tipo de investimento
@@ -268,6 +1034,15 @@
             const type = document.getElementById('investmentType').value;
             const fixedIncomeFields = document.getElementById('fixedIncomeFields');
             const variableIncomeFields = document.getElementById('variableIncomeFields');
+
+            const descriptions = {
+                'acoes': 'Investimento em empresas listadas na bolsa de valores - maior risco, maior potencial de retorno',
+                'cripto': 'Investimento em criptomoedas - alta volatilidade, potencial de retorno elevado',
+                'obrigacoes-publicas': 'Empréstimo ao governo - baixo risco, retorno previsível',
+                'obrigacoes-privadas': 'Empréstimo a empresas - risco moderado, retorno superior à poupança'
+            };
+            
+            document.getElementById('typeDescription').textContent = descriptions[type] || '';
 
             if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
                 fixedIncomeFields.style.display = 'block';
@@ -283,17 +1058,23 @@
             document.getElementById('variationPct').value = percent;
         }
 
+        // Definir horizonte rápido
+        function setHorizon(months) {
+            document.getElementById('timeHorizon').value = months;
+        }
+
         // Adicionar ativo à carteira
         function addAsset() {
             const container = document.getElementById('portfolioAssets');
             const assetDiv = document.createElement('div');
             assetDiv.className = 'portfolio-asset';
             assetDiv.innerHTML = `
-                <input type="text" placeholder="Nome do ativo" class="asset-name">
-                <input type="number" placeholder="%" class="asset-pct" min="1" max="100" onchange="validatePortfolio()">
-                <button type="button" class="btn-remove" onclick="removeAsset(this)">Remover</button>
+                <input type="text" placeholder="Nome do ativo" class="asset-name" value="Novo Ativo">
+                <input type="number" placeholder="%" class="asset-pct" min="1" max="100" value="0" onchange="validatePortfolio()">
+                <button type="button" class="btn-remove" onclick="removeAsset(this)">🗑️ Remover</button>
             `;
             container.appendChild(assetDiv);
+            validatePortfolio();
         }
 
         // Remover ativo da carteira
@@ -316,9 +1097,9 @@
             totalElement.textContent = `Total: ${total}%`;
             
             if (total !== 100 && percentages.length > 0) {
-                totalElement.style.color = 'red';
+                totalElement.className = 'portfolio-total negative';
             } else {
-                totalElement.style.color = 'green';
+                totalElement.className = 'portfolio-total positive';
             }
         }
 
@@ -328,9 +1109,9 @@
             const scenarioDiv = document.createElement('div');
             scenarioDiv.className = 'scenario';
             scenarioDiv.innerHTML = `
-                <input type="text" placeholder="Nome do cenário" class="scenario-name">
-                <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1">
-                <button type="button" class="btn-remove" onclick="removeScenario(this)">Remover</button>
+                <input type="text" placeholder="Nome do cenário" class="scenario-name" value="Novo Cenário">
+                <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1" value="5.0">
+                <button type="button" class="btn-remove" onclick="removeScenario(this)">🗑️ Remover</button>
             `;
             container.appendChild(scenarioDiv);
         }
@@ -340,46 +1121,81 @@
             button.parentElement.remove();
         }
 
-        // Limpar simulação - NOVA FUNÇÃO
+        // Limpar simulação
         function resetSimulation() {
-            // Limpar formulário
-            document.getElementById('investmentForm').reset();
-            
-            // Limpar resultados
-            document.getElementById('resultsSection').style.display = 'none';
-            document.getElementById('summaryResults').innerHTML = '';
-            document.getElementById('textAnalysis').innerHTML = '';
-            document.getElementById('cashflowBody').innerHTML = '';
-            
-            // Resetar gráfico
-            if (currentChart) {
-                currentChart.destroy();
-                currentChart = null;
+            if (confirm('Tem certeza que deseja limpar todos os dados e começar uma nova simulação?')) {
+                // Limpar formulário
+                document.getElementById('investmentForm').reset();
+                
+                // Limpar resultados
+                document.getElementById('resultsSection').style.display = 'none';
+                document.getElementById('keyIndicators').innerHTML = '';
+                document.getElementById('executiveSummary').innerHTML = '';
+                document.getElementById('detailedAnalysis').innerHTML = '';
+                document.getElementById('cashflowBody').innerHTML = '';
+                document.getElementById('recommendationsSection').innerHTML = '';
+                
+                // Resetar gráficos
+                if (currentChart) {
+                    currentChart.destroy();
+                    currentChart = null;
+                }
+                if (compositionChart) {
+                    compositionChart.destroy();
+                    compositionChart = null;
+                }
+                
+                // Resetar dados
+                simulationData = null;
+                
+                // Resetar distribuição de carteira
+                document.getElementById('portfolioAssets').innerHTML = `
+                    <div class="portfolio-asset">
+                        <input type="text" placeholder="Nome do ativo" class="asset-name" value="Ação Principal">
+                        <input type="number" placeholder="%" class="asset-pct" min="1" max="100" value="100" onchange="validatePortfolio()">
+                        <button type="button" class="btn-remove" onclick="removeAsset(this)">🗑️ Remover</button>
+                    </div>
+                `;
+                
+                // Resetar cenários
+                document.getElementById('scenarios').innerHTML = `
+                    <div class="scenario">
+                        <input type="text" placeholder="Nome do cenário" class="scenario-name" value="Poupança Bancária">
+                        <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1" value="2.0">
+                        <button type="button" class="btn-remove" onclick="removeScenario(this)">🗑️ Remover</button>
+                    </div>
+                `;
+                
+                validatePortfolio();
+                setupExampleData();
+                
+                alert('Simulação reiniciada com sucesso!');
             }
+        }
+
+        // Calcular cenário principal
+        function calculateScenario() {
+            console.log('Calculando simulação...');
             
-            // Resetar dados
-            simulationData = null;
-            
-            // Resetar distribuição de carteira
-            document.getElementById('portfolioAssets').innerHTML = `
-                <div class="portfolio-asset">
-                    <input type="text" placeholder="Nome do ativo" class="asset-name">
-                    <input type="number" placeholder="%" class="asset-pct" min="1" max="100" onchange="validatePortfolio()">
-                    <button type="button" class="btn-remove" onclick="removeAsset(this)">Remover</button>
-                </div>
-            `;
-            
-            // Resetar cenários
-            document.getElementById('scenarios').innerHTML = `
-                <div class="scenario">
-                    <input type="text" placeholder="Nome do cenário" class="scenario-name">
-                    <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1">
-                    <button type="button" class="btn-remove" onclick="removeScenario(this)">Remover</button>
-                </div>
-            `;
-            
-            validatePortfolio();
-            setupExampleData();
+            try {
+                const inputs = readInputs();
+                console.log('Inputs lidos:', inputs);
+                
+                simulationData = calculateInvestmentScenario(inputs);
+                console.log('Dados calculados:', simulationData);
+                
+                displayResults(simulationData);
+                updateCharts(simulationData);
+                generateRecommendations(simulationData);
+                
+                // Mostrar seção de resultados
+                document.getElementById('resultsSection').style.display = 'block';
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Erro na simulação:', error);
+                alert('Erro ao calcular simulação: ' + error.message);
+            }
         }
 
         // Ler inputs do formulário
@@ -397,24 +1213,15 @@
                 specificParams = {
                     interestRate: parseFloat(document.getElementById('interestRate').value) / 100,
                     paymentFrequency: document.getElementById('paymentFrequency').value,
-                    interestType: document.getElementById('interestType').value
+                    interestType: document.getElementById('interestType').value,
+                    riskLevel: document.getElementById('riskLevel').value
                 };
             } else {
                 specificParams = {
-                    variationPct: parseFloat(document.getElementById('variationPct').value) / 100
+                    variationPct: parseFloat(document.getElementById('variationPct').value) / 100,
+                    volatility: document.getElementById('volatility').value
                 };
             }
-
-            // Ler cenários de comparação
-            const scenarios = [];
-            const scenarioElements = document.querySelectorAll('.scenario');
-            scenarioElements.forEach(element => {
-                const name = element.querySelector('.scenario-name').value || 'Cenário';
-                const variation = parseFloat(element.querySelector('.scenario-variation').value) / 100 || 0;
-                if (!isNaN(variation)) {
-                    scenarios.push({ name, variation });
-                }
-            });
 
             return {
                 type,
@@ -423,29 +1230,8 @@
                 horizon,
                 inflation,
                 fxVariation,
-                specificParams,
-                scenarios
+                specificParams
             };
-        }
-
-        // Calcular cenário principal
-        function calculateScenario() {
-            const inputs = readInputs();
-            simulationData = calculateInvestmentScenario(inputs);
-            
-            // Calcular cenários de comparação
-            const comparisonScenarios = [];
-            inputs.scenarios.forEach(scenario => {
-                const scenarioInputs = {...inputs, specificParams: { variationPct: scenario.variation }};
-                comparisonScenarios.push({
-                    name: scenario.name,
-                    data: calculateInvestmentScenario(scenarioInputs)
-                });
-            });
-
-            displayResults(simulationData, comparisonScenarios);
-            updateChart(simulationData, comparisonScenarios);
-            generateTextAnalysis(simulationData);
         }
 
         // Calcular cenário de investimento
@@ -456,13 +1242,14 @@
             let cashflows = [];
             let currentValue = amount;
             let totalNominalReturn = 0;
+            let totalInflationImpact = 0;
 
             for (let month = 1; month <= horizon; month++) {
                 let monthlyReturn = 0;
                 
                 // Calcular retorno baseado no tipo de investimento
                 if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
-                    const { interestRate, paymentFrequency, interestType } = specificParams;
+                    const { interestRate, interestType } = specificParams;
                     
                     if (interestType === 'simples') {
                         monthlyReturn = amount * interestRate / 12;
@@ -479,17 +1266,26 @@
                 totalNominalReturn += monthlyReturn;
                 currentValue += monthlyReturn;
 
-                // Aplicar inflação
-                const realValue = currentValue / Math.pow(1 + monthlyInflation, month);
+                // Calcular impacto da inflação
+                const inflationFactor = Math.pow(1 + monthlyInflation, month);
+                const realValue = currentValue / inflationFactor;
                 const inflationAdjusted = currentValue - realValue;
+                totalInflationImpact += inflationAdjusted;
+
+                // Determinar status
+                let status = 'neutral';
+                if (monthlyReturn > 0) status = 'positive';
+                else if (monthlyReturn < 0) status = 'negative';
 
                 cashflows.push({
                     period: month,
                     initialCapital: amount,
                     monthlyReturn,
                     accumulated: currentValue,
+                    totalReturn: currentValue - amount,
                     inflationAdjusted,
-                    realValue
+                    realValue,
+                    status
                 });
             }
 
@@ -512,94 +1308,136 @@
                     nominalReturnPct: (nominalGain / amount) * 100,
                     realReturnPct: (realGain / amount) * 100,
                     fxImpact,
-                    finalValueWithFX
+                    finalValueWithFX,
+                    totalInflationImpact,
+                    totalMonths: horizon
                 }
             };
         }
 
-        // Aplicar inflação e câmbio
-        function applyInflationAndFX(value, inflation, horizon, fxVariation) {
-            const realValue = value / Math.pow(1 + inflation, horizon/12);
-            const valueWithFX = realValue * (1 + fxVariation);
-            return valueWithFX;
-        }
-
         // Exibir resultados
-        function displayResults(mainScenario, comparisonScenarios) {
-            const resultsSection = document.getElementById('resultsSection');
-            resultsSection.style.display = 'block';
-
-            // Resumo numérico
-            const summary = mainScenario.summary;
-            const summaryHTML = `
-                <h3>Resumo do Investimento</h3>
-                <p><strong>Valor Investido:</strong> ${formatCurrency(summary.initialInvestment)} Kz</p>
-                <p><strong>Valor Final Nominal:</strong> ${formatCurrency(summary.finalValueNominal)} Kz</p>
-                <p><strong>Valor Final Real:</strong> ${formatCurrency(summary.finalValueReal)} Kz</p>
-                <p><strong>Ganho Nominal:</strong> ${formatCurrency(summary.nominalGain)} Kz (${summary.nominalReturnPct.toFixed(2)}%)</p>
-                <p><strong>Ganho Real:</strong> ${formatCurrency(summary.realGain)} Kz (${summary.realReturnPct.toFixed(2)}%)</p>
-                <p><strong>Impacto Cambial:</strong> ${formatCurrency(summary.fxImpact)} Kz</p>
-                <p><strong>Valor Final com Câmbio:</strong> ${formatCurrency(summary.finalValueWithFX)} Kz</p>
+        function displayResults(scenario) {
+            const summary = scenario.summary;
+            
+            // Indicadores Principais
+            const indicatorsHTML = `
+                <div class="indicator-card">
+                    <div class="indicator-label">Valor Final Nominal</div>
+                    <div class="indicator-value">${formatCurrency(summary.finalValueNominal)} Kz</div>
+                    <div class="indicator-label">Sem ajuste de inflação</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-label">Valor Final Real</div>
+                    <div class="indicator-value ${summary.realGain >= 0 ? 'positive' : 'negative'}">${formatCurrency(summary.finalValueReal)} Kz</div>
+                    <div class="indicator-label">Com ajuste de inflação</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-label">Rentabilidade Real</div>
+                    <div class="indicator-value ${summary.realReturnPct >= 0 ? 'positive' : 'negative'}">${summary.realReturnPct.toFixed(2)}%</div>
+                    <div class="indicator-label">Ganho real sobre inflação</div>
+                </div>
+                <div class="indicator-card">
+                    <div class="indicator-label">Impacto da Inflação</div>
+                    <div class="indicator-value negative">-${formatCurrency(summary.totalInflationImpact)} Kz</div>
+                    <div class="indicator-label">Perda pelo poder de compra</div>
+                </div>
             `;
-            document.getElementById('summaryResults').innerHTML = summaryHTML;
+            document.getElementById('keyIndicators').innerHTML = indicatorsHTML;
 
-            // Tabela de fluxos
+            // Resumo Executivo
+            const executiveHTML = `
+                <div class="summary-header">📈 Resumo Executivo</div>
+                <p>Seu investimento de <strong>${formatCurrency(summary.initialInvestment)} Kz</strong> em <strong>${scenario.inputs.assetName}</strong> 
+                durante <strong>${summary.totalMonths} meses</strong> resultou em:</p>
+                <p><strong>Valor Final Nominal:</strong> ${formatCurrency(summary.finalValueNominal)} Kz</p>
+                <p><strong>Valor Final Real:</strong> ${formatCurrency(summary.finalValueReal)} Kz (após inflação)</p>
+                <p><strong>Rentabilidade Real:</strong> <span class="${summary.realReturnPct >= 0 ? 'status-positive' : 'status-negative'}">${summary.realReturnPct.toFixed(2)}%</span></p>
+                <p><strong>Impacto da Inflação:</strong> -${formatCurrency(summary.totalInflationImpact)} Kz</p>
+            `;
+            document.getElementById('executiveSummary').innerHTML = executiveHTML;
+
+            // Análise Detalhada
+            const analysisHTML = `
+                <h4>📊 Análise Detalhada</h4>
+                <div class="analysis-section">
+                    <p><strong>Desempenho do Investimento:</strong></p>
+                    <p>${summary.realReturnPct > 0 ? 
+                        `Seu investimento superou a inflação em ${summary.realReturnPct.toFixed(2)}%, gerando ganho real de ${formatCurrency(summary.realGain)} Kz.` : 
+                        `Seu investimento não superou a inflação, resultando em perda real de ${formatCurrency(Math.abs(summary.realGain))} Kz.`
+                    }</p>
+                </div>
+                <div class="analysis-section">
+                    <p><strong>Impacto da Inflação:</strong></p>
+                    <p>A inflação de ${(scenario.inputs.inflation * 100).toFixed(2)}% ao ano reduziu seu poder de compra em ${formatCurrency(summary.totalInflationImpact)} Kz.</p>
+                </div>
+                <div class="analysis-section">
+                    <p><strong>Considerações Finais:</strong></p>
+                    <p>${summary.realReturnPct > 5 ? 
+                        'Excelente desempenho! O investimento superou significativamente a inflação.' :
+                        summary.realReturnPct > 0 ?
+                        'Bom desempenho! O investimento manteve seu poder de compra.' :
+                        'Atenção! O investimento não foi capaz de proteger seu capital contra a inflação.'
+                    }</p>
+                </div>
+            `;
+            document.getElementById('detailedAnalysis').innerHTML = analysisHTML;
+
+            // Tabela de Fluxos
             const tableBody = document.getElementById('cashflowBody');
             tableBody.innerHTML = '';
             
-            mainScenario.cashflows.forEach(cashflow => {
+            scenario.cashflows.forEach(cashflow => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${cashflow.period}</td>
                     <td>${formatCurrency(cashflow.initialCapital)}</td>
-                    <td>${formatCurrency(cashflow.monthlyReturn)}</td>
+                    <td class="${cashflow.status}">${formatCurrency(cashflow.monthlyReturn)}</td>
                     <td>${formatCurrency(cashflow.accumulated)}</td>
-                    <td>${formatCurrency(cashflow.inflationAdjusted)}</td>
+                    <td>${formatCurrency(cashflow.totalReturn)}</td>
+                    <td class="negative">-${formatCurrency(cashflow.inflationAdjusted)}</td>
                     <td>${formatCurrency(cashflow.realValue)}</td>
+                    <td class="status-${cashflow.status}">${cashflow.status === 'positive' ? '✅' : cashflow.status === 'negative' ? '❌' : '➖'}</td>
                 `;
                 tableBody.appendChild(row);
             });
         }
 
-        // Atualizar gráfico
-        function updateChart(mainScenario, comparisonScenarios) {
+        // Atualizar gráficos
+        function updateCharts(scenario) {
             const ctx = document.getElementById('investmentChart').getContext('2d');
+            const ctxComp = document.getElementById('compositionChart').getContext('2d');
             
-            if (currentChart) {
-                currentChart.destroy();
-            }
+            // Destruir gráficos existentes
+            if (currentChart) currentChart.destroy();
+            if (compositionChart) compositionChart.destroy();
 
-            const periods = mainScenario.cashflows.map(cf => cf.period);
-            const mainData = mainScenario.cashflows.map(cf => cf.accumulated);
+            const periods = scenario.cashflows.map(cf => `Mês ${cf.period}`);
+            const values = scenario.cashflows.map(cf => cf.accumulated);
+            const realValues = scenario.cashflows.map(cf => cf.realValue);
 
-            const datasets = [{
-                label: 'Cenário Principal',
-                data: mainData,
-                borderColor: 'rgb(75, 192, 192)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                tension: 0.1
-            }];
-
-            // Adicionar cenários de comparação
-            const colors = ['rgb(255, 99, 132)', 'rgb(255, 205, 86)', 'rgb(54, 162, 235)'];
-            comparisonScenarios.forEach((scenario, index) => {
-                if (index < 3) { // Máximo 3 cenários
-                    const scenarioData = scenario.data.cashflows.map(cf => cf.accumulated);
-                    datasets.push({
-                        label: scenario.name,
-                        data: scenarioData,
-                        borderColor: colors[index],
-                        backgroundColor: colors[index].replace('rgb', 'rgba').replace(')', ', 0.2)'),
-                        tension: 0.1
-                    });
-                }
-            });
-
+            // Gráfico de Evolução
             currentChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: periods,
-                    datasets: datasets
+                    datasets: [
+                        {
+                            label: 'Valor Nominal',
+                            data: values,
+                            borderColor: 'rgb(214, 174, 100)',
+                            backgroundColor: 'rgba(214, 174, 100, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Valor Real (Ajustado)',
+                            data: realValues,
+                            borderColor: 'rgb(46, 204, 113)',
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -621,241 +1459,159 @@
                     }
                 }
             });
-        }
 
-        // Gerar análise textual
-        function generateTextAnalysis(scenario) {
+            // Gráfico de Composição
             const summary = scenario.summary;
-            const { inflation, horizon } = scenario.inputs;
-            
-            let analysis = '<h3>Análise do Investimento</h3>';
-            
-            // Análise básica de retorno
-            if (summary.realReturnPct > 0) {
-                analysis += `<p>Seu investimento apresentou um retorno real positivo de ${summary.realReturnPct.toFixed(2)}%, o que significa que você superou a inflação de ${(inflation * 100).toFixed(2)}% ao ano. Em termos reais, seu patrimônio cresceu ${formatCurrency(summary.realGain)} Kz após considerar a perda do poder de compra.</p>`;
-            } else {
-                analysis += `<p>Seu investimento não conseguiu superar a inflação de ${(inflation * 100).toFixed(2)}% ao ano, resultando em um retorno real negativo de ${summary.realReturnPct.toFixed(2)}%. Isso significa que, embora o valor nominal tenha aumentado, seu poder de compra real diminuiu em ${formatCurrency(Math.abs(summary.realGain))} Kz.</p>`;
-            }
-
-            // Análise de horizonte
-            analysis += `<p>Em um horizonte de ${horizon} meses, o investimento transformou ${formatCurrency(summary.initialInvestment)} Kz em ${formatCurrency(summary.finalValueNominal)} Kz nominalmente. Após ajustar pela inflação, o valor real é de ${formatCurrency(summary.finalValueReal)} Kz.</p>`;
-
-            // Análise de riscos
-            analysis += `<p><strong>Principais riscos considerados:</strong>`;
-            analysis += `<br>- <strong>Risco inflacionário:</strong> A inflação de ${(inflation * 100).toFixed(2)}% anuais corroeu parte dos ganhos nominais`;
-            if (scenario.inputs.fxVariation !== 0) {
-                analysis += `<br>- <strong>Risco cambial:</strong> A variação cambial impactou o resultado em ${formatCurrency(summary.fxImpact)} Kz`;
-            }
-            analysis += `<br>- <strong>Risco de mercado:</strong> Flutuações nos retornos periódicos afetam o resultado final</p>`;
-
-            // Conclusão
-            if (summary.realReturnPct > 5) {
-                analysis += `<p>Este cenário demonstra um bom desempenho real, superando significativamente a inflação e gerando ganho real substancial.</p>`;
-            } else if (summary.realReturnPct > 0) {
-                analysis += `<p>O investimento manteve seu poder de compra, porém com margem reduzida acima da inflação.</p>`;
-            } else {
-                analysis += `<p>Neste cenário, o investimento não foi capaz de preservar o poder de compra do capital inicial.</p>`;
-            }
-
-            document.getElementById('textAnalysis').innerHTML = analysis;
+            compositionChart = new Chart(ctxComp, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Investimento Inicial', 'Ganho Nominal', 'Perda por Inflação'],
+                    datasets: [{
+                        data: [
+                            summary.initialInvestment,
+                            summary.nominalGain,
+                            Math.abs(summary.totalInflationImpact)
+                        ],
+                        backgroundColor: [
+                            'rgba(214, 174, 100, 0.8)',
+                            'rgba(46, 204, 113, 0.8)',
+                            'rgba(231, 76, 60, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(214, 174, 100)',
+                            'rgb(46, 204, 113)',
+                            'rgb(231, 76, 60)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw;
+                                    return `${label}: ${formatCurrency(value)} Kz`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
         }
 
-        // Gerar PDF - FUNÇÃO ATUALIZADA
-        function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const currentDate = new Date().toLocaleDateString('pt-PT');
-            const investmentType = document.getElementById('investmentType');
-            const typeText = investmentType.options[investmentType.selectedIndex].text;
-
-            let yPosition = 20;
-
-            // Cabeçalho
-            doc.setFontSize(16);
-            doc.text('Relatório de Simulação de Investimentos', 20, yPosition);
-            yPosition += 10;
+        // Gerar recomendações
+        function generateRecommendations(scenario) {
+            const summary = scenario.summary;
+            let recommendationsHTML = '<h4>💡 Recomendações</h4>';
             
-            doc.setFontSize(12);
-            doc.text(`Tipo de Investimento: ${typeText}`, 20, yPosition);
-            yPosition += 8;
-            
-            doc.setFontSize(10);
-            doc.text(`Origem das informações: Dados fornecidos pelo usuário — processados por Teca Capital Investimentos`, 20, yPosition);
-            yPosition += 6;
-            doc.text(`Data do download: ${currentDate}`, 20, yPosition);
-            yPosition += 15;
-
-            // Sumário Executivo
-            doc.setFontSize(14);
-            doc.text('Sumário Executivo', 20, yPosition);
-            yPosition += 10;
-            doc.setFontSize(10);
-            
-            const summary = simulationData.summary;
-            const summaryText = `Esta simulação demonstra um investimento de ${formatCurrency(summary.initialInvestment)} Kz que resultou em ${formatCurrency(summary.finalValueNominal)} Kz nominalmente. Após considerar a inflação, o valor real é de ${formatCurrency(summary.finalValueReal)} Kz, representando um ${summary.realReturnPct > 0 ? 'ganho' : 'perda'} real de ${Math.abs(summary.realReturnPct).toFixed(2)}%.`;
-            
-            const summaryLines = doc.splitTextToSize(summaryText, 170);
-            doc.text(summaryLines, 20, yPosition);
-            yPosition += summaryLines.length * 5 + 10;
-
-            // Tabela de Entradas
-            if (yPosition > 200) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            doc.setFontSize(14);
-            doc.text('Tabela de Entradas', 20, yPosition);
-            yPosition += 10;
-            doc.setFontSize(10);
-            
-            const inputs = simulationData.inputs;
-            const inputData = [
-                ['Parâmetro', 'Valor'],
-                ['Tipo de Investimento', typeText],
-                ['Nome do Ativo', inputs.assetName],
-                ['Valor Investido', `${formatCurrency(inputs.amount)} Kz`],
-                ['Horizonte', `${inputs.horizon} meses`],
-                ['Inflação Anual', `${(inputs.inflation * 100).toFixed(2)}%`],
-                ['Variação Cambial', `${(inputs.fxVariation * 100).toFixed(2)}%`]
-            ];
-
-            // Adicionar parâmetros específicos
-            if (inputs.type === 'obrigacoes-publicas' || inputs.type === 'obrigacoes-privadas') {
-                inputData.push(['Taxa de Juros', `${(inputs.specificParams.interestRate * 100).toFixed(2)}%`]);
-                inputData.push(['Frequência de Pagamento', inputs.specificParams.paymentFrequency]);
-                inputData.push(['Tipo de Juros', inputs.specificParams.interestType]);
+            if (summary.realReturnPct > 10) {
+                recommendationsHTML += `
+                    <div class="recommendation-item">
+                        <span class="recommendation-icon">🎯</span>
+                        <div>
+                            <strong>Excelente oportunidade!</strong> Continue com esta estratégia de investimento.
+                            A rentabilidade real está muito acima da inflação.
+                        </div>
+                    </div>
+                `;
+            } else if (summary.realReturnPct > 0) {
+                recommendationsHTML += `
+                    <div class="recommendation-item">
+                        <span class="recommendation-icon">👍</span>
+                        <div>
+                            <strong>Bom desempenho.</strong> Seu investimento está protegendo seu capital contra a inflação.
+                            Considere diversificar para melhorar os retornos.
+                        </div>
+                    </div>
+                `;
             } else {
-                inputData.push(['Variação Percentual', `${(inputs.specificParams.variationPct * 100).toFixed(2)}%`]);
+                recommendationsHTML += `
+                    <div class="recommendation-item">
+                        <span class="recommendation-icon">⚠️</span>
+                        <div>
+                            <strong>Atenção necessária.</strong> Seu investimento não está superando a inflação.
+                            Considere revisar sua estratégia ou buscar alternativas com melhor potencial.
+                        </div>
+                    </div>
+                `;
             }
 
-            doc.autoTable({
-                startY: yPosition,
-                head: [inputData[0]],
-                body: inputData.slice(1),
-                styles: { fontSize: 8 },
-                headStyles: { fillColor: [100, 100, 100] }
-            });
+            recommendationsHTML += `
+                <div class="recommendation-item">
+                    <span class="recommendation-icon">📚</span>
+                    <div>
+                        <strong>Educação Financeira:</strong> Continue aprendendo sobre investimentos. 
+                        A Teca Capital oferece recursos educativos para ajudar na sua jornada.
+                    </div>
+                </div>
+            `;
 
-            yPosition = doc.lastAutoTable.finalY + 10;
+            document.getElementById('recommendationsSection').innerHTML = recommendationsHTML;
+        }
 
-            // Tabela de Resultados
-            if (yPosition > 200) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            doc.setFontSize(14);
-            doc.text('Tabela de Resultados', 20, yPosition);
-            yPosition += 10;
-
-            const resultData = [
-                ['Métrica', 'Valor'],
-                ['Valor Final Nominal', `${formatCurrency(summary.finalValueNominal)} Kz`],
-                ['Valor Final Real', `${formatCurrency(summary.finalValueReal)} Kz`],
-                ['Ganho Nominal', `${formatCurrency(summary.nominalGain)} Kz (${summary.nominalReturnPct.toFixed(2)}%)`],
-                ['Ganho Real', `${formatCurrency(summary.realGain)} Kz (${summary.realReturnPct.toFixed(2)}%)`],
-                ['Impacto Cambial', `${formatCurrency(summary.fxImpact)} Kz`]
-            ];
-
-            doc.autoTable({
-                startY: yPosition,
-                head: [resultData[0]],
-                body: resultData.slice(1),
-                styles: { fontSize: 8 },
-                headStyles: { fillColor: [100, 100, 100] }
-            });
-
-            yPosition = doc.lastAutoTable.finalY + 10;
-
-            // Gráfico
-            if (yPosition > 150) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            doc.setFontSize(14);
-            doc.text('Gráfico de Evolução', 20, yPosition);
-            yPosition += 10;
-
-            // Converter canvas para imagem
-            const chartCanvas = document.getElementById('investmentChart');
-            const chartImage = chartCanvas.toDataURL('image/png');
-            doc.addImage(chartImage, 'PNG', 20, yPosition, 170, 80);
-            yPosition += 90;
-
-            // Análise Automática
-            if (yPosition > 200) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            doc.setFontSize(14);
-            doc.text('Análise Automática', 20, yPosition);
-            yPosition += 10;
-            doc.setFontSize(10);
-
-            const analysisText = document.getElementById('textAnalysis').textContent;
-            const analysisLines = doc.splitTextToSize(analysisText, 170);
-            doc.text(analysisLines, 20, yPosition);
-            yPosition += analysisLines.length * 5 + 10;
-
-            // Guia de Uso
-            if (yPosition > 200) {
-                doc.addPage();
-                yPosition = 20;
-            }
-            doc.setFontSize(14);
-            doc.text('Guia de Uso e Interpretação', 20, yPosition);
-            yPosition += 10;
-            doc.setFontSize(10);
-
-            const guideText = `
-• Taxa de valorização: Variação percentual do ativo no período
-• Inflação anual: Perda do poder de compra da moeda
-• Rentabilidade nominal: Ganho sem considerar inflação
-• Rentabilidade real: Ganho após descontar inflação (poder de compra real)
-• Se Rentabilidade Real for negativa: poder de compra diminuiu
-• Para nova simulação: Use o botão "Limpar / Nova Simulação"
-            `.trim();
-
-            const guideLines = doc.splitTextToSize(guideText, 170);
-            doc.text(guideLines, 20, yPosition);
-            yPosition += guideLines.length * 5 + 10;
-
-            // Nota final
-            doc.setFontSize(9);
-            doc.text('Documento processado pelo algoritmo da Teca Capital Investimentos.', 20, yPosition);
-
-            // Rodapé em todas as páginas
-            const pageCount = doc.internal.getNumberOfPages();
-            for (let i = 1; i <= pageCount; i++) {
-                doc.setPage(i);
-                doc.setFontSize(8);
-                doc.text('© Teca Capital Investimentos — Todos os direitos reservados', 20, 285);
-                doc.text(`Página ${i} de ${pageCount}`, 180, 285, null, null, 'right');
-            }
-
-            // Salvar PDF
-            doc.save(`relatorio_investimento_${currentDate.replace(/\//g, '-')}.pdf`);
-            
-            // Alerta de sucesso
-            alert('Relatório baixado com sucesso');
+        // Gerar PDF
+        function generatePDF() {
+            alert('Funcionalidade de PDF será implementada em breve!');
         }
 
         // Exportar CSV
         function exportCSV() {
-            if (!simulationData) return;
+            if (!simulationData) {
+                alert('Execute uma simulação primeiro!');
+                return;
+            }
 
-            let csvContent = "Período,Capital Inicial,Rendimento,Acumulado,Inflação Ajustada,Valor Real\n";
+            let csvContent = "Mês,Valor Inicial,Rendimento,Valor Final,Rendimento Acumulado,Inflação Ajustada,Valor Real,Status\n";
             
             simulationData.cashflows.forEach(cashflow => {
-                csvContent += `${cashflow.period},${cashflow.initialCapital},${cashflow.monthlyReturn},${cashflow.accumulated},${cashflow.inflationAdjusted},${cashflow.realValue}\n`;
+                csvContent += `${cashflow.period},${cashflow.initialCapital},${cashflow.monthlyReturn},${cashflow.accumulated},${cashflow.totalReturn},${cashflow.inflationAdjusted},${cashflow.realValue},${cashflow.status}\n`;
             });
 
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'fluxo_caixa_investimento.csv';
-            a.click();
-            window.URL.revokeObjectURL(url);
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `simulacao_investimento_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Partilhar resultados
+        function shareResults() {
+            if (!simulationData) {
+                alert('Execute uma simulação primeiro!');
+                return;
+            }
+
+            const summary = simulationData.summary;
+            const shareText = `📊 Resultado da Simulação Teca Capital:
+💰 Investimento: ${formatCurrency(summary.initialInvestment)} Kz
+📈 Valor Final: ${formatCurrency(summary.finalValueNominal)} Kz
+🎯 Rentabilidade Real: ${summary.realReturnPct.toFixed(2)}%
+📉 Impacto Inflação: -${formatCurrency(summary.totalInflationImpact)} Kz
+            
+Simulado em: ${new Date().toLocaleDateString('pt-PT')}`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Simulação de Investimento - Teca Capital',
+                    text: shareText
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Resultados copiados para a área de transferência!');
+                }).catch(() => {
+                    alert(shareText);
+                });
+            }
         }
 
         // Funções auxiliares
@@ -866,9 +1622,10 @@
             }).format(value);
         }
 
-        // Expor funções globalmente para os event listeners HTML
+        // Expor funções globalmente
         window.toggleInvestmentFields = toggleInvestmentFields;
         window.setVariation = setVariation;
+        window.setHorizon = setHorizon;
         window.addAsset = addAsset;
         window.removeAsset = removeAsset;
         window.validatePortfolio = validatePortfolio;
@@ -878,9 +1635,11 @@
         window.calculateScenario = calculateScenario;
         window.generatePDF = generatePDF;
         window.exportCSV = exportCSV;
+        window.shareResults = shareResults;
     </script>
+    
+        </main>
 
-    </main>
 
      <footer>
     <div>
