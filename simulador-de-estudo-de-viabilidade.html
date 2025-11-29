@@ -623,6 +623,287 @@
     }
 }
 
+/* Container responsivo otimizado para a tabela de fluxo de caixa */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--card-bg);
+    position: relative;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* Estilos específicos para a tabela de fluxo de caixa - VERSÃO CORRIGIDA */
+#tabela-fluxo-caixa {
+    width: 100%;
+    min-width: 1200px;
+    border-collapse: collapse;
+    margin: 0;
+    background: var(--card-bg);
+    table-layout: auto; /* Mudado para auto para melhor ajuste do conteúdo */
+}
+
+#tabela-fluxo-caixa th,
+#tabela-fluxo-caixa td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+    overflow: visible; /* Alterado para visible para garantir que o conteúdo seja mostrado */
+    text-overflow: clip; /* Remove ellipsis para mostrar conteúdo completo */
+    vertical-align: middle;
+    min-width: 120px; /* Largura mínima para garantir visibilidade */
+}
+
+/* Cabeçalhos fixos */
+#tabela-fluxo-caixa th {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 2px solid var(--primary-dark);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Primeira coluna (Ano) fixa */
+#tabela-fluxo-caixa th:first-child,
+#tabela-fluxo-caixa td:first-child {
+    position: sticky;
+    left: 0;
+    background: var(--primary-dark);
+    color: var(--bg-color);
+    z-index: 5;
+    min-width: 80px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#tabela-fluxo-caixa td:first-child {
+    background: var(--highlight-bg);
+    color: var(--text-color);
+    border-right: 2px solid var(--border-color);
+    font-weight: bold;
+}
+
+/* Estilos para linhas */
+#tabela-fluxo-caixa tr {
+    transition: var(--transition);
+}
+
+#tabela-fluxo-caixa tr:nth-child(even) {
+    background: var(--highlight-bg);
+}
+
+#tabela-fluxo-caixa tr:hover {
+    background: rgba(214, 174, 100, 0.15);
+}
+
+/* ESTILOS ESPECÍFICOS PARA CÉLULAS COM NÚMEROS - GARANTINDO VISIBILIDADE */
+#tabela-fluxo-caixa td {
+    font-family: 'Courier New', 'Monaco', 'Menlo', monospace; /* Melhor para números */
+    font-size: 0.85rem;
+    color: var(--text-color);
+    text-align: right; /* Alinhamento à direita para números */
+    background: transparent; /* Garante que o fundo seja visível */
+}
+
+/* Células de texto (como a coluna Ano) */
+#tabela-fluxo-caixa td:first-child {
+    text-align: center;
+    font-family: var(--font-primary); /* Fonte normal para texto */
+}
+
+/* Destaque para valores importantes */
+#tabela-fluxo-caixa td:nth-last-child(-n+3) {
+    font-weight: bold;
+    color: var(--primary-color);
+    background: rgba(214, 174, 100, 0.1);
+}
+
+/* Cores para valores positivos e negativos */
+#tabela-fluxo-caixa .valor-positivo {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+#tabela-fluxo-caixa .valor-negativo {
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+/* Garantir que o conteúdo seja totalmente visível */
+#tabela-fluxo-caixa td span,
+#tabela-fluxo-caixa td div {
+    display: block;
+    width: 100%;
+    overflow: visible;
+    white-space: nowrap;
+}
+
+/* Ajustes específicos para colunas numéricas */
+#tabela-fluxo-caixa td:nth-child(n+2):nth-child(-n+11) {
+    min-width: 140px; /* Largura maior para colunas numéricas */
+    padding: 10px 12px;
+}
+
+/* Colunas específicas com mais espaço */
+#tabela-fluxo-caixa td:nth-child(2), /* Receita */
+#tabela-fluxo-caixa td:nth-child(10), /* Resultado Líquido */
+#tabela-fluxo-caixa td:nth-child(11), /* Fluxo de Caixa */
+#tabela-fluxo-caixa td:nth-child(12) { /* Fluxo Acumulado */
+    min-width: 150px;
+    background: rgba(214, 174, 100, 0.05);
+    border-right: 1px solid var(--border-color);
+}
+
+/* Indicador visual de scroll */
+.table-responsive::after {
+    content: '↔ Arraste para ver todas as colunas';
+    position: sticky;
+    left: 0;
+    bottom: 10px;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    opacity: 0.8;
+    pointer-events: none;
+    background: rgba(13, 13, 13, 0.9);
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-left: 10px;
+    border: 1px solid var(--primary-color);
+}
+
+/* Estilo da barra de scroll personalizada */
+.table-responsive::-webkit-scrollbar {
+    height: 14px;
+    width: 14px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: var(--highlight-bg);
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 8px;
+    border: 3px solid var(--highlight-bg);
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+.table-responsive::-webkit-scrollbar-corner {
+    background: var(--highlight-bg);
+}
+
+/* Para Firefox */
+.table-responsive {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--highlight-bg);
+}
+
+/* Responsividade para telas maiores */
+@media (min-width: 1400px) {
+    .table-responsive {
+        overflow-x: auto;
+        max-height: 700px;
+    }
+    
+    #tabela-fluxo-caixa {
+        min-width: 1400px;
+    }
+    
+    #tabela-fluxo-caixa td {
+        font-size: 0.9rem;
+        padding: 12px 15px;
+    }
+}
+
+/* Melhorias para dispositivos móveis */
+@media (max-width: 768px) {
+    .table-responsive {
+        max-height: 500px;
+        border: 1px solid var(--border-color);
+    }
+    
+    #tabela-fluxo-caixa th,
+    #tabela-fluxo-caixa td {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+        min-width: 110px;
+    }
+    
+    #tabela-fluxo-caixa th:first-child,
+    #tabela-fluxo-caixa td:first-child {
+        min-width: 60px;
+        font-size: 0.8rem;
+    }
+    
+    .table-responsive::after {
+        content: '→ Deslize';
+        font-size: 0.7rem;
+        bottom: 5px;
+        padding: 3px 8px;
+    }
+}
+
+/* Garantir que todas as células tenham conteúdo visível */
+#tabela-fluxo-caixa td * {
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: inherit !important;
+}
+
+/* Remover qualquer sobreposição que possa esconder conteúdo */
+#tabela-fluxo-caixa {
+    z-index: 1;
+    position: relative;
+}
+
+#tabela-fluxo-caixa th,
+#tabela-fluxo-caixa td {
+    z-index: 2;
+}
+
+/* Estilo para garantir boa legibilidade dos números */
+#tabela-fluxo-caixa .numero {
+    font-feature-settings: "tnum"; /* Números tabulares para melhor alinhamento */
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+}
+
+/* Destaque para cabeçalhos de colunas numéricas */
+#tabela-fluxo-caixa th:nth-child(n+2) {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+/* Animações suaves */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#tabela-fluxo-caixa tbody tr {
+    animation: fadeIn 0.3s ease-out;
+}
+
+#tabela-fluxo-caixa tbody tr:nth-child(1) { animation-delay: 0.1s; }
+#tabela-fluxo-caixa tbody tr:nth-child(2) { animation-delay: 0.2s; }
+#tabela-fluxo-caixa tbody tr:nth-child(3) { animation-delay: 0.3s; }
+#tabela-fluxo-caixa tbody tr:nth-child(4) { animation-delay: 0.4s; }
+#tabela-fluxo-caixa tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+
     </style>
 </head>
 <body>
