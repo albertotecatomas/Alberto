@@ -500,64 +500,129 @@
             font-weight: bold;
         }
 
-        /* Tabela de Resultados */
-        .tabela-resultados {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
+        /* Container responsivo para a tabela */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: var(--card-bg);
+    position: relative;
+}
 
-        .tabela-resultados th,
-        .tabela-resultados td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
+/* Estilos específicos para a tabela de fluxo de caixa */
+#tabela-fluxo-caixa {
+    width: 100%;
+    min-width: 1200px; /* Largura mínima para garantir que todas as colunas sejam visíveis */
+    border-collapse: collapse;
+    margin: 0;
+    background: var(--card-bg);
+}
 
-        .tabela-resultados th {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            font-weight: bold;
-        }
+#tabela-fluxo-caixa th,
+#tabela-fluxo-caixa td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap; /* Impede quebra de linha */
+}
 
-        .tabela-resultados tr:nth-child(even) {
-            background: var(--highlight-bg);
-        }
+#tabela-fluxo-caixa th {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-        .tabela-resultados tr:hover {
-            background: rgba(214, 174, 100, 0.1);
-        }
+#tabela-fluxo-caixa tr:nth-child(even) {
+    background: var(--highlight-bg);
+}
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .simulador-container {
-                padding: 15px;
-            }
+#tabela-fluxo-caixa tr:hover {
+    background: rgba(214, 174, 100, 0.1);
+}
 
-            .conceitos-grid,
-            .indicadores-grid,
-            .graficos-container,
-            .passos-guia {
-                grid-template-columns: 1fr;
-            }
+/* Indicador visual de scroll */
+.table-responsive::after {
+    content: '↔';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    opacity: 0.7;
+    pointer-events: none;
+}
 
-            .moeda-opcoes,
-            .periodo-opcoes {
-                flex-direction: column;
-                gap: 5px;
-            }
+/* Estilo da barra de scroll personalizada */
+.table-responsive::-webkit-scrollbar {
+    height: 12px;
+}
 
-            .botao-principal,
-            .botao-secundario,
-            .botao-limpar {
-                width: 100%;
-                justify-content: center;
-                margin-right: 0;
-            }
-        }
+.table-responsive::-webkit-scrollbar-track {
+    background: var(--highlight-bg);
+    border-radius: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 6px;
+    border: 2px solid var(--highlight-bg);
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Para Firefox */
+.table-responsive {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--highlight-bg);
+}
+
+/* Responsividade para telas maiores */
+@media (min-width: 1400px) {
+    .table-responsive {
+        overflow-x: visible; /* Remove scroll em telas muito grandes */
+    }
+    
+    #tabela-fluxo-caixa {
+        min-width: auto; /* Permite que a tabela se ajuste naturalmente */
+        width: 100%;
+    }
+    
+    .table-responsive::after {
+        display: none; /* Remove o indicador de scroll */
+    }
+}
+
+/* Melhorias para dispositivos móveis */
+@media (max-width: 768px) {
+    .table-responsive {
+        border-radius: var(--border-radius);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    #tabela-fluxo-caixa th,
+    #tabela-fluxo-caixa td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .table-responsive::after {
+        content: 'Deslize para ver mais →';
+        font-size: 0.8rem;
+        top: 5px;
+        right: 5px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -784,31 +849,31 @@
                     </div>
                 </div>
 
-                <!-- Tabela de Fluxo de Caixa -->
-                <h3>Projeção de Fluxo de Caixa</h3>
-                <div class="table-responsive">
-                    <table id="tabela-fluxo-caixa" class="tabela-resultados">
-                        <thead>
-                            <tr>
-                                <th>Ano</th>
-                                <th>Receita</th>
-                                <th>Custos Variáveis</th>
-                                <th>Custos Fixos</th>
-                                <th>EBITDA</th>
-                                <th>Depreciação</th>
-                                <th>EBIT</th>
-                                <th>Juros</th>
-                                <th>Impostos</th>
-                                <th>Resultado Líquido</th>
-                                <th>Fluxo de Caixa</th>
-                                <th>Fluxo Acumulado</th>
-                            </tr>
-                        </thead>
-                        <tbody id="corpo-tabela-fluxo">
-                            <!-- Dados serão preenchidos via JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
+                        <!-- Substitua esta parte no seu código -->
+        <h3>Projeção de Fluxo de Caixa</h3>
+        <div class="table-responsive">
+            <table id="tabela-fluxo-caixa" class="tabela-resultados">
+                <thead>
+                    <tr>
+                        <th>Ano</th>
+                        <th>Receita</th>
+                        <th>Custos Variáveis</th>
+                        <th>Custos Fixos</th>
+                        <th>EBITDA</th>
+                        <th>Depreciação</th>
+                        <th>EBIT</th>
+                        <th>Juros</th>
+                        <th>Impostos</th>
+                        <th>Resultado Líquido</th>
+                        <th>Fluxo de Caixa</th>
+                        <th>Fluxo Acumulado</th>
+                    </tr>
+                </thead>
+                <tbody id="corpo-tabela-fluxo">
+                    <!-- Dados serão preenchidos via JavaScript -->
+                </tbody>
+            </table>
+        </div>
 
                 <!-- Gráficos -->
                 <div class="graficos-container">
