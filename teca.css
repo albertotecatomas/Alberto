@@ -6,6 +6,8 @@
     box-sizing: border-box;
 } 
 
+
+
 /* Configurações do Body */
 
 body {
@@ -92,6 +94,82 @@ header {
 
 .logo {
     max-height: 80px;
+}
+
+/*
+=====================================================
+RESPONSIVIDADE: HEADER E NAVEGAÇÃO
+=====================================================
+*/
+
+/* 1. Responsividade para Telas de Tablets Grandes e Desktops Pequenos (Max 1000px) */
+@media (max-width: 1000px) {
+    
+    /* Diminui a altura do cabeçalho para otimizar o espaço vertical */
+    header {
+        height: 85px;
+        padding: 10px 0;
+    }
+
+    /* Reduz o padding lateral da interface */
+    .interface {
+        padding: 0 15px;
+    }
+
+    /* Reduz ligeiramente o tamanho máximo do logo */
+    .logo {
+        max-height: 65px;
+    }
+
+    /* Reduz o espaçamento entre os itens da lista e o padding do container */
+    #lista {
+        gap: 15px; /* Reduz de 30px para 15px */
+        padding: 8px 15px;
+        border-radius: 15px 30px;
+    }
+
+    /* Reduz o tamanho da fonte dos links para que caibam horizontalmente */
+    .navitem a, .simula a {
+        font-size: 16px; /* Reduz de 20px para 16px */
+    }
+
+    /* Ajusta o padding de hover */
+    .navitem a:hover, .simula a:hover {
+        padding: 8px;
+    }
+    
+    /* Ajusta o sub-menu */
+    .sub-lista {
+        min-width: 200px;
+        padding: 15px;
+        border-radius: 15px 30px;
+    }
+}
+
+/* 2. Responsividade para Telas de Celulares (Mobile) e Tablets (Max 768px) */
+@media (max-width: 768px) {
+    /* Reduz mais a altura do header */
+    header {
+        height: 70px;
+    }
+    
+    .logo {
+        max-height: 50px;
+    }
+    
+    /* Reduz mais o espaçamento entre itens */
+    #lista {
+        gap: 8px; 
+        padding: 5px 8px;
+    }
+
+    /* Reduz mais a fonte */
+    .navitem a, .simula a {
+        font-size: 13px; /* Reduz para 13px */
+    }
+
+    /* O uso de `display: flex` e `justify-content: space-between` em `.interface` 
+       garante que o logo e o menu fiquem lado a lado, como solicitado. */
 }
 
 /* Configurações do Main */
@@ -540,6 +618,229 @@ main h1 strong {
     color: #ffffff;
     font-size: 0.95em;
     text-align: justify;
+}
+
+/*
+=====================================================
+RESPONSIVIDADE: CONTEÚDO PRINCIPAL (MAIN)
+=====================================================
+*/
+
+/* -----------------------------------------------------
+1. AJUSTES PARA TELAS GRANDES/MÉDIAS (Max 1200px)
+-----------------------------------------------------
+*/
+@media (max-width: 1200px) {
+    main {
+        padding: 15px;
+    }
+    
+    /* Redução de fonte geral */
+    body {
+        font-size: 15px;
+    }
+}
+
+
+/* -----------------------------------------------------
+2. TELAS DE COMPUTADOR PEQUENO E TABLETS (Max 1000px)
+   - Redução de fontes e adaptação de 4 para 3 colunas
+-----------------------------------------------------
+*/
+@media (max-width: 1000px) {
+
+    /* Seção de Título Principal */
+    .titulo {
+        font-size: 2.5em; /* Reduz de 3em */
+    }
+    
+    .p-titulo {
+        font-size: 1em; /* Reduz de 1.1em */
+    }
+    
+    /* Título de Seções Secundárias (Serviços) */
+    .S {
+        font-size: 2em; /* Reduz de 2.2em */
+    }
+
+    /* Cards de Serviços: Passa de 4 para 3 colunas */
+    .S-item {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 20px;
+    }
+    
+    .servico-item .s { 
+        font-size: 1.2em; /* Reduz de 1.3em */
+    }
+    
+    /* Seções Bodiva e Cripto: Reduz o gap */
+    #bodiva, #cripto {
+        gap: 30px;
+    }
+
+    .info1 h2, .info3 h2 {
+        font-size: 1.8em; /* Reduz de 2em */
+    }
+    
+    /* Título das Tabelas */
+    #bodiva h3, .h3-cripto {
+        font-size: 1.4em; /* Reduz de 1.6em */
+    }
+
+    /* Tabela: Reduz o padding para ganhar espaço (o `overflow-x: auto` já está no CSS original) */
+    .tabela th, .tabela td {
+        padding: 10px 12px;
+        font-size: 0.85em; /* Reduz de 0.9em */
+    }
+
+    /* Título da Biblioteca */
+    main .hb {
+        font-size: 3em; /* Reduz de 3.5em */
+    }
+    
+    .video-biblioteca {
+        height: 500px; /* Reduz a altura do vídeo */
+    }
+    
+    /* Títulos da Biblioteca (Artigo, Audio, Video) */
+    #artigo-section h2, #audio-section h2, #video-section h2 {
+        font-size: 1.8em; /* Reduz de 2em */
+    }
+
+    /* Cards da Biblioteca: Passa de 4 para 3 colunas */
+    #artigos, #audio, #videos {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    }
+    
+    .artigo1 p, .audio1 p, .video1 p {
+        font-size: 0.95em; /* Reduz de 1em */
+    }
+    
+    /* Indicadores: Passa de 4 para 3 colunas */
+    .indicators-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    /* Gráfico: Altura reduzida */
+    .chart-container {
+        height: 400px; 
+    }
+    
+    /* Análise: Reduz o grid para 2 colunas */
+    .analysis-content {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+
+/* -----------------------------------------------------
+3. MOBILE (Max 768px)
+   - Empilhamento Vertical Estratégico e Redução Extrema de Fontes
+-----------------------------------------------------
+*/
+@media (max-width: 768px) {
+    
+    main {
+        padding: 10px;
+    }
+
+    /* Seção de Título Principal: Empilhamento */
+    #imagem-principal {
+        flex-direction: column; 
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .titulo {
+        font-size: 2em; 
+        text-align: center;
+    }
+    
+    .imagem-teca-capital {
+        height: 200px; 
+        width: 100%;
+    }
+
+    /* Cards de Serviços: Passa para 2 colunas */
+    .S-item {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    /* Seções Bodiva e Cripto: Empilhamento */
+    #bodiva, #cripto {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    /* Vídeos/Imagens nas seções Bodiva/Cripto */
+    .infovideo, .banner-video {
+        width: 100%;
+    }
+
+    /* Biblioteca */
+    main .hb {
+        font-size: 2.5em;
+    }
+    
+    .video-biblioteca {
+        height: 250px;
+    }
+    
+    /* Cards da Biblioteca: Passa para 1 coluna */
+    #artigos, #audio, #videos {
+        grid-template-columns: 1fr;
+    }
+    
+    .artigo1, .audio1, .video1 {
+        padding: 20px;
+    }
+    
+    /* Indicadores: Passa para 2 colunas */
+    .indicators-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    /* Controles do Gráfico: Empilhamento vertical */
+    .control-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .chart-container {
+        height: 250px; /* Altura mínima para visualização mobile */
+    }
+    
+    /* Análise: Passa para 1 coluna */
+    .analysis-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* -----------------------------------------------------
+4. CELULARES MUITO PEQUENOS (Max 480px)
+-----------------------------------------------------
+*/
+@media (max-width: 480px) {
+    /* Diminui fontes principais */
+    .titulo {
+        font-size: 1.6em;
+    }
+    
+    .S, .economic-indicators-intro h2 {
+        font-size: 1.5em;
+    }
+    
+    /* Cards de Serviços: Passa para 1 coluna (evita o aperto) */
+    .S-item {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Indicadores: Passa para 1 coluna */
+    .indicators-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Conteudo do +Sobre */
