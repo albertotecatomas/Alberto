@@ -377,4 +377,643 @@ main h1 strong {
     transition: background-color 0.3s;
 }
 
+/* Título dos Indicadores */
+.economic-indicators-intro h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 30px;
+    color: rgb(214, 174, 100);
+}
+
+/* Layout da Grid para os Cards de Indicadores */
+.indicators-grid {
+    display: grid;
+    /* Adapta-se para ter entre 2 a 4 colunas dependendo do espaço */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.indicator-card {
+    background-color: #fefefe0e;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(214, 174, 100, 0.08);
+    border: 1px solid rgb(214, 174, 100);
+    height: 100%; /* Garante que todos tenham a mesma altura */
+}
+
+.indicator-card h3 {
+    font-size: 1.1em;
+    color: rgb(214, 174, 100);
+    margin-bottom: 5px;
+}
+
+.indicator-card p {
+    font-size: 0.9em;
+    color: #ffffff;
+}
+
+/* Seção de Controles do Gráfico */
+.chart-controls-section {
+    background-color: #343a40; /* Fundo escuro */
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.chart-controls-section h2 {
+    color: #d6ae64; /* Cor de destaque (ouro/âmbar) para títulos em fundo escuro */
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.chart-controls {
+    display: flex;
+    justify-content: center;
+}
+
+.control-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap; /* Para ser responsivo em ecrãs pequenos */
+    justify-content: center;
+    align-items: center;
+}
+
+.control-group select, .update-chart-btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1em;
+    border: 1px solid #495057;
+    background-color: #495057;
+    color: white;
+}
+
+.update-chart-btn {
+    background-color: #28a745; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+}
+
+.update-chart-btn:hover {
+    background-color: #218838;
+}
+
+/* Container do Gráfico */
+.chart-section {
+    background-color: #343a40; 
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+}
+
+.chart-container {
+    height: 500px; /* Altura fixa para o gráfico */
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+/* Tabela de Dados (Reutilizando estilos de tabela anteriores) */
+.table-section h2 {
+    font-size: 1.8em;
+    color: rgb(214, 174, 100);
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow-x: auto; /* Garante a rolagem horizontal */
+    margin-bottom: 50px;
+}
+
+/* O corpo da tabela já deve usar os estilos anteriores (economic-table é igual a .tabela) */
+.economic-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.economic-table th, .economic-table td {
+    border: 1px solid rgb(214, 174, 100);
+    padding: 10px;
+    text-align: center;
+    font-size: 0.85em; /* Fonte menor para caber mais colunas */
+}
+
+.economic-table thead th {
+    background-color: rgb(214, 174, 100);
+    color: rgb(0, 0, 0);
+}
+
+/* Seção de Análise */
+.analysis-section h2 {
+    font-size: 1.8em;
+    color: rgb(214, 174, 100);
+    margin-bottom: 30px;
+}
+
+.analysis-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.analysis-item {
+    background-color: #ffffff13;
+    padding: 20px;
+    border-left: 4px solid #d6ae64; /* Borda de destaque para a análise */
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(214, 174, 100, 0.05);
+}
+
+.analysis-item h4 {
+    color: #d6ae64;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.analysis-item p {
+    color: #ffffff;
+    font-size: 0.95em;
+    text-align: justify;
+}
+
+/* Conteudo do +Sobre */
+
+/* Título Principal */
+main h1.sobre {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: rgb(214, 174, 100);
+    border-bottom: 3px solid rgb(214, 174, 100); /* Linha de destaque */
+    padding-bottom: 15px;
+}
+
+/* Títulos de Seção (Quem Sou Eu, Teca Capital) */
+section h3, section h2 {
+    font-size: 2em;
+    color: #ffffff;
+    margin-bottom: 25px;
+    padding-top: 15px;
+    border-left: 5px solid rgb(214, 174, 100); /* Borda lateral azul como destaque */
+    padding-left: 15px;
+}
+
+section h3 strong {
+    color:rgb(214, 174, 100);
+}
+
+/*
+=====================================================
+2. SEÇÃO QUEM SOU EU
+=====================================================
+*/
+
+#quem-sou-eu {
+    margin-bottom: 60px;
+}
+
+/* Container principal usando Flexbox para dividir Imagem e Detalhes */
+#eu-sou {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; 
+}
+
+/* Estilo da Imagem do Fundador (eu1) */
+.eu1 {
+    flex: 0 0 350px; /* Largura fixa para a imagem em desktop */
+}
+
+.fundador {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(214, 174, 100, 0.2);
+    object-fit: cover;
+    aspect-ratio: 1/1.2; /* Proporção de retrato */
+}
+
+/* Container dos Detalhes (eu2) usando Grid */
+.eu2 {
+    flex: 1;
+    display: grid;
+    /* 2 colunas adaptáveis para os cards de detalhes */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Estilo dos Cards de Detalhes (eu21, eu22, etc.) */
+.eu21, .eu22, .eu23, .eu24, .eu25 {
+    background-color: #f8f9fa10;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid rgb(214, 174, 100);
+    box-shadow: 0 2px 5px rgba(214, 174, 100, 0.05);
+    transition: all 0.3s;
+}
+
+.eu21:hover, .eu22:hover, .eu23:hover, .eu24:hover, .eu25:hover {
+    box-shadow: 0 4px 10px rgba(252, 252, 252, 0.61);
+    border-color: rgb(0, 0, 0);
+}
+
+.eu2 h5 {
+    font-size: 1.25em;
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    border-bottom: 2px solid rgb(214, 174, 100);
+    padding-bottom: 5px;
+}
+
+.eu2 p {
+    font-size: 0.95em;
+    color: #f7f7f7;
+    margin-bottom: 5px;
+}
+
+.eu2 p strong {
+    color: rgb(214, 174, 100);
+}
+
+/*
+=====================================================
+3. SEÇÃO TECA CAPITAL (Missão, Visão, Valores)
+=====================================================
+*/
+
+section#teca-capital { 
+    margin-bottom: 60px;
+}
+
+/* Layout usando Grid para MVV */
+#tecacapital {
+    display: grid;
+    /* Define áreas nomeadas para um layout sofisticado em desktop */
+    grid-template-areas: 
+        "logo missao visao"
+        "logo valores valores";
+    gap: 25px;
+}
+
+.img-tecacapital {
+    grid-area: logo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 8px;
+}
+
+.img-tecacapital img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+}
+
+/* Estilo dos Cards de MVV */
+.missao, .visao, .valores {
+    background-color: #ffffff11;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #28a745; /* Destaque padrão: Verde (Success) */
+}
+
+/* Aplica cores de destaque diferentes para cada card */
+.missao { grid-area: missao; border-left-color: #007bff; } /* Azul */
+.visao { grid-area: visao; border-left-color: #d6ae64; } /* Dourado */
+.valores { grid-area: valores; }
+
+.missao h4, .visao h4, .valores h4 {
+    font-size: 1.5em;
+    color: rgb(214, 174, 100);
+    margin-bottom: 15px;
+}
+
+.valores ul {
+    list-style: none;
+    padding: 0;
+}
+
+.valores li {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    color: #f7f7f7;
+}
+
+.valores li strong {
+    color: rgba(214, 174, 100, 0.836);
+    display: block;
+    margin-bottom: 2px;
+}
+
+/*
+=====================================================
+4. SEÇÃO PROJETOS
+=====================================================
+*/
+
+#projectos-section h1 {
+    font-size: 2em;
+    text-align: center;
+    color: rgb(214, 174, 100);
+    margin-bottom: 30px;
+    border-bottom: none;
+}
+
+/* Layout usando Grid para os Projetos */
+#projectos {
+    display: grid;
+    /* 3 colunas adaptáveis para os cards de projetos */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.tecacapital, .mybase, .agroshre {
+    background-color: #fefefe18;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(214, 174, 100, 0.08);
+    transition: transform 0.3s;
+    border-top: 5px solid #d6ae64; /* Destaque superior em dourado */
+}
+
+.tecacapital:hover, .mybase:hover, .agroshre:hover {
+    transform: translateY(-5px);
+}
+
+.tecacapital h3, .mybase h3, .agroshre h3 {
+    font-size: 1.4em;
+    color: rgb(214, 174, 100);
+    margin-bottom: 10px;
+    padding-left: 0;
+    border-left: none;
+}
+
+.tecacapital p, .mybase p, .agroshre p {
+    font-size: 0.95em;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.tecacapital p:last-child, .mybase p:last-child, .agroshre p:last-child {
+    margin-top: 15px;
+    font-style: italic;
+    color: #faf9f9;
+}
+
+
+/*
+=====================================================
+5. RESPONSIVIDADE (MOBILE/TABLET)
+=====================================================
+*/
+
+@media (max-width: 900px) {
+    /* Secção Quem Sou Eu: Stack verticalmente */
+    #eu-sou {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eu1 {
+        flex: none;
+        width: 60%; 
+        margin-bottom: 20px;
+    }
+
+    /* Secção Teca Capital: Adapta-se para duas colunas */
+    #tecacapital {
+        grid-template-areas: 
+            "logo logo"
+            "missao visao"
+            "valores valores";
+        gap: 20px;
+    }
+
+    .img-tecacapital {
+        max-width: 150px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 20px;
+    }
+    
+    main h1.sobre {
+        font-size: 2.5em;
+    }
+
+    /* Secção Quem Sou Eu: Imagem maior e detalhes em coluna única */
+    .eu1 {
+        width: 80%;
+    }
+    
+    .eu2 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Secção Teca Capital: Stack verticalmente (uma coluna) */
+    #tecacapital {
+        grid-template-areas: 
+            "logo"
+            "missao"
+            "visao"
+            "valores";
+        gap: 15px;
+    }
+
+    /* Secção Projetos: Coluna única */
+    #projectos {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Configuração do Footer*/
+
+footer {
+    background-color: #030303; /* Azul Marinho Escuro - Tom futurista */
+    color: #f0f0f0; /* Texto claro */
+    padding: 40px 20px 20px;
+    border-top: 5px solid rgb(214, 174, 100); /* Linha de destaque profissional */
+}
+
+/* Container principal para alinhar e centralizar o conteúdo */
+footer > div {
+    max-width: 1200px; 
+    margin: 0 auto;
+    display: grid;
+    /* Define 3 áreas: Redes Sociais, Contato e a linha de Direitos Autorais */
+    grid-template-areas: 
+        "socialmidia contato"
+        "copyright copyright";
+    gap: 40px; 
+}
+
+/* Títulos das Seções (Redes Sociais, Contato) */
+footer h3 {
+    font-size: 1.5em;
+    color: #d6ae64; /* Dourado/Amarelo Suave para contraste futurista */
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgb(214, 174, 100);
+    padding-bottom: 5px;
+}
+
+
+/*
+=====================================================
+2. SEÇÃO REDES SOCIAIS
+=====================================================
+*/
+
+#socialmidia {
+    grid-area: socialmidia;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: #f0f0f0; 
+    font-size: 1.8em;
+    transition: color 0.3s, transform 0.3s;
+    position: relative;
+    padding: 5px;
+}
+
+.social-icons a:hover {
+    color: rgb(214, 174, 100); /* Efeito hover moderno em azul vibrante */
+    transform: translateY(-5px); /* Efeito de "levitar" */
+}
+
+/* Efeito de "glitch/brilho" ao passar o mouse */
+.social-icons a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 70%;
+    background: #f7f7f730; /* Fundo semi-transparente para o brilho */
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.4s ease-out;
+    z-index: -1;
+}
+
+.social-icons a:hover::before {
+    transform: translate(-50%, -50%) scale(1.5);
+}
+
+
+/*
+=====================================================
+3. SEÇÃO CONTATO
+=====================================================
+*/
+
+#Contato {
+    grid-area: contato;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: baseline; 
+    font-size: 0.95em;
+}
+
+.contact-item p {
+    font-weight: bold;
+    color: #d6ae64; /* Dourado para os labels */
+    margin-right: 10px;
+    flex-shrink: 0; /* Impede que o label encolha */
+}
+
+.contact-item a, .contact-item span {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: rgb(214, 174, 100); /* Azul para destaque em hover */
+}
+
+
+/*
+=====================================================
+4. DIREITOS AUTORAIS (TIMELINE)
+=====================================================
+*/
+
+.timeline {
+    grid-area: copyright;
+    text-align: center;
+    font-size: 0.85em;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ffffff; /* Linha divisória sutil */
+    color: rgb(214, 174, 100);
+    letter-spacing: 0.5px;
+}
+
+
+/*
+=====================================================
+5. RESPONSIVIDADE
+=====================================================
+*/
+
+@media (max-width: 768px) {
+    /* Mudar o layout do grid para uma única coluna */
+    footer > div {
+        grid-template-areas: 
+            "socialmidia"
+            "contato"
+            "copyright";
+        gap: 30px;
+    }
+
+    #socialmidia, #Contato {
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center; /* Centraliza os ícones */
+    }
+
+    .contact-info {
+        align-items: center; /* Centraliza os itens de contato */
+    }
+
+    .contact-item {
+        flex-direction: column; /* Empilha label e valor */
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-item p {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+}
+
 {}
