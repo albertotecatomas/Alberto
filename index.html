@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Fonte Fim -->
     <title>Teca Capital Investimentos</title>
     <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
     <link rel="stylesheet" href="teca.css">
@@ -11,157 +16,75 @@
 </head>
 <body>
     <header>
-        <h3 class="htc">Teca Capital Investimentos</h3>
-        <nav id="navt">
-             <ul id="lista">
-                <li class="navitem active"> <a href="index.html">Início</a>
-                </li>
-                <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
-                </li>   
-                <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
-                </li>
-                <li class="simula"> <a href="">Simuladores</a> 
-                    <ul class="sub-lista">
-                        <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
-                        <li class="sub-navitem"><a href="simulador-de-estudo-de-viabilidade.html">Estudo de Viabilidade</a></li>
-                        <li class="sub-navitem"><a href="simulador-de-investimentos.html">Investimentos Financeiros</a></li>
-                        <li class="sub-navitem"><a href="simulador-quiz.html">Quiz de Educação Financeira</a></li>
-                    </ul>    
-                </li>
-            </ul>
-        </nav>
+        <div class="interface"> 
+            
+            <div class="logo">
+            <a href="index.html"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
+            </div>
+
+            <nav id="navt">
+                <ul id="lista">
+                    <li class="navitem active"> <a href="index.html">Início</a>
+                    </li>
+                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
+                    </li>   
+                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
+                    </li>
+                    <li class="simula"> <a href=""> Simuladores ▽</a> 
+                        <ul class="sub-lista">
+                            <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
+                            <li class="sub-navitem"><a href="simulador-de-estudo-de-viabilidade.html">Est. Viabilidade</a></li>
+                            <li class="sub-navitem"><a href="simulador-de-investimentos.html">Mercados Financeiros</a></li>
+                            <li class="sub-navitem"><a href="simulador-quiz.html">Quiz</a></li>
+                        </ul>    
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
     </header>
        
     <main>
 
-       <div id="img1">
-            <div class="img11">
-                <h1 class="himg1">Seja Bem-vindo (a)</h1>
+       <div id="imagem-principal">
+            <div class="principal">
+                <h1 class="titulo">TRANFORMANDO INFORMAÇÕES EM <span>DECISÕES.</span></h1>
 
-                <p>A Teca Capital Investimentos é uma startuo de <strong>inteligência financeira</strong> e <strong>tecnologia</strong> focada em transformar dados em decisões estratégicas. Atuamos no desenvolvimento de soluções tecnológicas, análises econômicas e educação financeira, ajudando indivíduos e empresas a investir com clareza, reduzir riscos e maximizar resultados no mercado financeiro. Nosso compromisso é construir uma nova era de acesso ao conhecimento, autonomia e crescimento financeiro sustentável.</p>
+                <p class="p-titulo">A <strong class="strong-principal">Teca Capital Investimentos</strong> é uma startuo de <strong class="strong-principal">inteligência financeira</strong> e <strong class="strong-principal">tecnologia</strong> focada em transformar dados em decisões estratégicas. Atuamos no desenvolvimento de soluções tecnológicas, análises econômicas e educação financeira, ajudando indivíduos e empresas a investir com clareza, reduzir riscos e maximizar resultados no mercado financeiro. Nosso compromisso é construir uma nova era de acesso ao conhecimento, autonomia e crescimento financeiro sustentável.</p>
             </div>
+           
 
-            <div class="img12">
+            <div class="imagem-teca-capital">
+                
+            </div> 
 
-            </div>
-        </div>
-
-    
-        <h2 class="S">Serviços</h2>
-        <div class="s">Conheça nossos serviços exclusivos</div>
-
-        <div class="carousel-container">
-            <button class="carousel-btn prev">‹</button>
-            <div class="carousel-track">
-            <div class="servico-item">
-            <h4 class="s">Consultoria Financeira</h4>
-            <p>Oferecemos consultoria personalizada para ajudar você a tomar decisões financeiras informadas, desde planejamento de investimentos até gestão de riscos.</p>
-        </div>
-
-        <div class="servico-item">
-            <h4 class="s">Educação Financeira</h4>
-            <p>Disponibilizamos uma biblioteca rica em recursos educacionais, incluindo artigos, vídeos e cursos para capacitar você com conhecimentos financeiros essenciais.</p>
-        </div>
-
-        <div class="servico-item">
-            <h4 class="s">Simuladores</h4>
-            <p>Oferecemos uma variedade de simuladores financeiros para ajudar você a planejar e visualizar seus investimentos, estudos de viabilidade e quizzes educativos.</p>
-        </div>
-
-        <div class="servico-item">
-            <h4 class="s">E. Projeto de Investimento</h4>
-            <p>Analisamos e planejamos uma ideia de negócio ou aplicação financeira de forma estratégica, avaliando custos, riscos, retorno esperado e viabilidade econômico-financeira.</p>
-        </div>
-    </div>
-    <button class="carousel-btn next">›</button>
-    
-    <div class="carousel-indicators">
-        <span class="indicator active"></span>
-        <span class="indicator"></span>
-        <span class="indicator"></span>
-        <span class="indicator"></span>
-    </div>
-</div>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const track = document.querySelector('.carousel-track');
-    const items = document.querySelectorAll('.servico-item');
-    const prevBtn = document.querySelector('.carousel-btn.prev');
-    const nextBtn = document.querySelector('.carousel-btn.next');
-    const indicators = document.querySelectorAll('.indicator');
-    
-    let currentIndex = 0;
-    let autoPlayInterval;
-    const visibleItems = 3;
-    const itemWidth = items[0].offsetWidth + 20;
-
-    function updateCarousel() {
-        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        </div>  
         
-        indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentIndex);
-        });
-    }
+        <h2 class="S">Nossos <span>Serviços</span></h2>
+        
+        <div class="S-item">
 
-    function nextSlide() {
-        if (currentIndex < items.length - visibleItems) {
-        currentIndex++;
-        } else {
-        currentIndex = 0;
-        }
-        updateCarousel();
-    }
+            <div class="servico-item">
+                <h4 class="s">Consultoria Financeira</h4>
+                <p class="p-servicos">Oferecemos consultoria personalizada para ajudar você a tomar decisões financeiras informadas, desde planejamento de investimentos até gestão de riscos.</p>
+            </div>
 
-    function prevSlide() {
-        if (currentIndex > 0) {
-        currentIndex--;
-        } else {
-        currentIndex = items.length - visibleItems;
-        }
-        updateCarousel();
-    }
+            <div class="servico-item">
+                <h4 class="s">Educação Financeira</h4>
+                <p class="p-servicos">Disponibilizamos uma biblioteca rica em recursos educacionais, incluindo artigos, vídeos e cursos para capacitar você com conhecimentos financeiros essenciais.</p>
+            </div>
 
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(nextSlide, 4000);
-    }
+            <div class="servico-item">
+                <h4 class="s">Simuladores</h4>
+                <p class="p-servicos">Oferecemos uma variedade de simuladores financeiros para ajudar você a planejar e visualizar seus investimentos, estudos de viabilidade e quizzes educativos.</p>
+            </div>
 
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
+            <div class="servico-item">
+                <h4 class="s">Elab. Projeto de Investimento</h4>
+                <p class="p-servicos">Analisamos e planejamos uma ideia de negócio ou aplicação financeira de forma estratégica, avaliando custos, riscos, retorno esperado e viabilidade econômico-financeira.</p>
+            </div>
 
-    // Event listeners
-    prevBtn.addEventListener('click', () => {
-        stopAutoPlay();
-        prevSlide();
-        startAutoPlay();
-    });
-
-    nextBtn.addEventListener('click', () => {
-        stopAutoPlay();
-        nextSlide();
-        startAutoPlay();
-    });
-
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-        stopAutoPlay();
-        currentIndex = index;
-        updateCarousel();
-        startAutoPlay();
-        });
-    });
-
-    // Pausar auto-play quando o mouse estiver sobre o carousel
-    const carouselContainer = document.querySelector('.carousel-container');
-    carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-    carouselContainer.addEventListener('mouseleave', startAutoPlay);
-
-    // Iniciar auto-play
-    startAutoPlay();
-    updateCarousel();
-    });
-    </script>
+        </div>
 
     <div id="bodiva">
 
@@ -175,85 +98,86 @@
 
             <p>A Bolsa de Dívida e Valores de Angola é o mercado oficial de capitais de Angola, criada em 2 de julho de 2014 para facilitar a negociação de títulos públicos e privados, promovendo a transparência, liquidez e crescimento económico no país. Operando sob a supervisão da <strong>Comissão do Mercado de Capitais de Angola</strong>, a BODIVA conecta investidores, empresas e o Estado, permitindo a captação de recursos através da emissão e negociação de <strong>obrigações do tesouro, bilhetes do tesouro, obrigações privadas e ações</strong>. A sua missão é desenvolver um mercado financeiro moderno, seguro e eficiente, integrando Angola no sistema financeiro global e fortalecendo a confiança dos investidores no ambiente económico nacional.</p>
         </div>
+    </div>    
 
-    </div>
+    
 
             <h3>Empresas Cotadas no Mercado de Ações BODIVA</h3>
 
             <div class="tabela-container">
-    <table class="tabela">
-        <tr>
-            <th>Data de Cotação</th>
-            <th>Nome da Empresa</th>
-            <th>Tipo de ações</th>
-            <th>Nº de Ações Emitidas</th>
-            <th>Preço atual por Ações</th>
-            <th>Valor de Mercado</th>
-        </tr>
-        <tr>
-            <td>09/07/2022</td>
-            <td>Banco Angolano de Investimentos <strong>(BAI)</strong></td>
-            <td>Ordinárias</td>
-            <td>1.945.000</td>
-            <td>100.000 kz</td>
-            <td>194.500.000.000 kz</td>
-        </tr>
-        <tr>
-            <td>19/09/2022</td>
-            <td>Banco Caixa Geral de Angola <strong>(BCGA)</strong></td>
-            <td>Ordinárias</td>
-            <td>5.000.000</td>
-            <td>26.000 kz</td>
-            <td>130.000.000.000 kz</td>
-        </tr>
-        <tr>
-            <td>30/10/2024</td>
-            <td>ENSA - Seguros Angola <strong>(ENSA)</strong></td>
-            <td>Ordinárias</td>
-            <td>720.000</td>
-            <td>40.000 kz</td>
-            <td>28.800.000.000 kz</td>
-        </tr>
-        <tr>
-            <td>11/12/2024</td>
-            <td>Bolsa de Dívidas e Valores de Angola<strong>(BODIVA)</strong></td>
-            <td>Ordinárias</td>
-            <td>180.000</td>
-            <td>50.000 kz</td>
-            <td>9.000.000.000 kz</td>
-        </tr>
-        <tr>
-            <td>30/09/2025</td>
-            <td>Banco de Fomento Angola <strong>(BFA)</strong></td>
-            <td>Ordinárias</td>
-            <td>4.462.500</td>
-            <td>120.000 kz</td>
-            <td>360.000.000.000 kz</td>
-        </tr>
-    </table>
-</div>
-
-            <h3>Empresas Cotadas no Mercado de Obrigações BODIVA</h3>
-
-            <table class="tabela">
+                <table class="tabela">
                 <tr>
-                    <th>Data de Emissão</th>
+                    <th>Data de Cotação</th>
                     <th>Nome da Empresa</th>
-                    <th>Tipo de Obrigações</th>
-                    <th>Nº de Obrigações Emitidas</th>
-                    <th>Taxa de Juros</th>
-                    <th>Data de Vencimento</th>
-                    <th>Investimento Mínimo</th>
+                    <th>Tipo de ações</th>
+                    <th>Nº de Ações Emitidas</th>
+                    <th>Preço atual por Ações</th>
+                    <th>Valor de Mercado</th>
                 </tr>
                 <tr>
-                    <td>2023</td>
-                    <td>Sonangol S.A</td>
-                    <td>Obrigações Privadas</td>
-                    <td>7.500.000</td>
-                    <td>17,5% ao ano</td>
-                    <td>2028</td>
+                    <td>09/07/2022</td>
+                    <td>Banco Angolano de Investimentos <strong>(BAI)</strong></td>
+                    <td>Ordinárias</td>
+                    <td>1.945.000</td>
                     <td>100.000 kz</td>
-            </table>
+                    <td>194.500.000.000 kz</td>
+                </tr>
+                <tr>
+                    <td>19/09/2022</td>
+                    <td>Banco Caixa Geral de Angola <strong>(BCGA)</strong></td>
+                    <td>Ordinárias</td>
+                    <td>5.000.000</td>
+                    <td>26.000 kz</td>
+                    <td>130.000.000.000 kz</td>
+                </tr>
+                <tr>
+                    <td>30/10/2024</td>
+                    <td>ENSA - Seguros Angola <strong>(ENSA)</strong></td>
+                    <td>Ordinárias</td>
+                    <td>720.000</td>
+                    <td>40.000 kz</td>
+                    <td>28.800.000.000 kz</td>
+                </tr>
+                <tr>
+                    <td>11/12/2024</td>
+                    <td>Bolsa de Dívidas e Valores de Angola<strong> (BODIVA)</strong></td>
+                    <td>Ordinárias</td>
+                    <td>180.000</td>
+                    <td>50.000 kz</td>
+                    <td>9.000.000.000 kz</td>
+                </tr>
+                <tr>
+                    <td>30/09/2025</td>
+                    <td>Banco de Fomento Angola <strong>(BFA)</strong></td>
+                    <td>Ordinárias</td>
+                    <td>4.462.500</td>
+                    <td>120.000 kz</td>
+                    <td>360.000.000.000 kz</td>
+                </tr>
+                </table>
+            </div>
+
+                    <h3>Empresas Cotadas no Mercado de Obrigações BODIVA</h3>
+
+                    <table class="tabela">
+                        <tr>
+                            <th>Data de Emissão</th>
+                            <th>Nome da Empresa</th>
+                            <th>Tipo de Obrigações</th>
+                            <th>Nº de Obrigações Emitidas</th>
+                            <th>Taxa de Juros</th>
+                            <th>Data de Vencimento</th>
+                            <th>Investimento Mínimo</th>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>Sonangol S.A</td>
+                            <td>Obrigações Privadas</td>
+                            <td>7.500.000</td>
+                            <td>17,5% ao ano</td>
+                            <td>2028</td>
+                            <td>100.000 kz</td>
+                    </table>
             <a class="button" href="https://www.bodiva.ao/#gsc.tab=0" target="_blank">Acessar a Bolsa</a>
 
        <div id="cripto">
