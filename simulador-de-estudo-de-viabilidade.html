@@ -11,21 +11,17 @@
 </head>
 
 <body>
-    <header>
-        <div class="interface"> 
-            
+    <header role="banner">
+       <div class="interface tc-container"> 
             <div class="logo">
-            <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
+                <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
             </div>
 
-            <nav id="navt">
+            <nav id="navt" role="navigation" aria-label="Menu principal">
                 <ul id="lista">
-                    <li class="navitem active"> <a href="index.html">Início</a>
-                    </li>
-                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
-                    </li>   
-                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
-                    </li>
+                    <li class="navitem active"> <a href="index.html">Início</a></li>
+                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a></li>   
+                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a></li>
                     <li class="simula"> <a href=""> Simuladores ▽</a> 
                         <ul class="sub-lista">
                             <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
@@ -36,6 +32,16 @@
                     </li>
                 </ul>
             </nav>
+            
+            <!-- Botão Toggle Dark/Light -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
+                <svg class="theme-icon sun" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM3 12a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm18 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41L7.05 18.36a1 1 0 0 1-1.41 0zm12.73-12.73a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41l-1.42 1.42a1 1 0 0 1-1.41 0z"/>
+                </svg>
+                <svg class="theme-icon moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </button>
         </div>
     </header>
     
@@ -918,7 +924,7 @@
         <section id="simulador-viabilidade" class="simulador-container">
             <!-- Guia de Uso Detalhado -->
             <div class="guia-uso">
-                <h2>📋 Guia Completo do Simulador Teca Capital</h2>
+                <h2>📋 Guia Completo do Simulador Teca Capital ▼</h2>
                 <div class="passos-guia">
                     <div class="passo">
                         <h3><span class="passo-numero">1</span> Dados do Projeto</h3>

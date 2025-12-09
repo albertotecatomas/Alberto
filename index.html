@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-AO">
+<html lang="pt-AO" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,24 +12,20 @@
     <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
     <link rel="stylesheet" href="teca.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</style>
 </head>
+
 <body>
-    <header>
-        <div class="interface"> 
-            
+     <header role="banner">
+       <div class="interface tc-container"> 
             <div class="logo">
-            <a href="index.html"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
+                <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
             </div>
 
-            <nav id="navt">
+            <nav id="navt" role="navigation" aria-label="Menu principal">
                 <ul id="lista">
-                    <li class="navitem active"> <a href="index.html">Início</a>
-                    </li>
-                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
-                    </li>   
-                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
-                    </li>
+                    <li class="navitem active"> <a href="index.html">Início</a></li>
+                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a></li>   
+                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a></li>
                     <li class="simula"> <a href=""> Simuladores ▽</a> 
                         <ul class="sub-lista">
                             <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
@@ -40,262 +36,419 @@
                     </li>
                 </ul>
             </nav>
+            
+            <!-- Botão Toggle Dark/Light -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
+                <svg class="theme-icon sun" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM3 12a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm18 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41L7.05 18.36a1 1 0 0 1-1.41 0zm12.73-12.73a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41l-1.42 1.42a1 1 0 0 1-1.41 0z"/>
+                </svg>
+                <svg class="theme-icon moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </button>
         </div>
-        
     </header>
        
-    <main>
-
-       <div id="imagem-principal">
-            <div class="principal">
+    <main role="main">
+       <div id="imagem-principal" class="tc-container">
+            <div class="principal tc-col">
                 <h1 class="titulo">TRANFORMANDO INFORMAÇÕES EM <span>DECISÕES.</span></h1>
-
                 <p class="p-titulo">A <strong class="strong-principal">Teca Capital Investimentos</strong> é uma startuo de <strong class="strong-principal">inteligência financeira</strong> e <strong class="strong-principal">tecnologia</strong> focada em transformar dados em decisões estratégicas. Atuamos no desenvolvimento de soluções tecnológicas, análises econômicas e educação financeira, ajudando indivíduos e empresas a investir com clareza, reduzir riscos e maximizar resultados no mercado financeiro. Nosso compromisso é construir uma nova era de acesso ao conhecimento, autonomia e crescimento financeiro sustentável.</p>
             </div>
            
-
-            <div class="imagem-teca-capital">
-                
+            <div class="imagem-teca-capital tc-col">
+                <!-- Imagem mantida como background no CSS -->
             </div> 
-
         </div>  
         
         <h2 class="S">Nossos <span>Serviços</span></h2>
         
-        <div class="S-item">
-
-            <div class="servico-item">
+        <div class="S-item tc-grid">
+            <div class="servico-item tc-card">
                 <h4 class="s">Consultoria Financeira</h4>
                 <p class="p-servicos">Oferecemos consultoria personalizada para ajudar você a tomar decisões financeiras informadas, desde planejamento de investimentos até gestão de riscos.</p>
             </div>
 
-            <div class="servico-item">
+            <div class="servico-item tc-card">
                 <h4 class="s">Educação Financeira</h4>
                 <p class="p-servicos">Disponibilizamos uma biblioteca rica em recursos educacionais, incluindo artigos, vídeos e cursos para capacitar você com conhecimentos financeiros essenciais.</p>
             </div>
 
-            <div class="servico-item">
+            <div class="servico-item tc-card">
                 <h4 class="s">Simuladores</h4>
                 <p class="p-servicos">Oferecemos uma variedade de simuladores financeiros para ajudar você a planejar e visualizar seus investimentos, estudos de viabilidade e quizzes educativos.</p>
             </div>
 
-            <div class="servico-item">
+            <div class="servico-item tc-card">
                 <h4 class="s">Elab. Projeto de Investimento</h4>
                 <p class="p-servicos">Analisamos e planejamos uma ideia de negócio ou aplicação financeira de forma estratégica, avaliando custos, riscos, retorno esperado e viabilidade econômico-financeira.</p>
             </div>
-
         </div>
 
-    <div id="bodiva">
+        <div id="bodiva" class="tc-row">
+            <div class="info2 tc-col">
+                <div class="tc-video-wrap">
+                    <video class="infovideo" src="Video/2D Movimento de Mercadi.mp4" width="100%" autoplay muted loop playsinline aria-label="Animação de movimento de mercado"></video>
+                </div>
+            </div>
 
-        <div class="info2">
-            <video class="infovideo" src="Video/2D Movimento de Mercadi.mp4" width="100%" autoplay muted loop></video>
+            <div class="info1 tc-col">
+                <h2>Informações <strong>BODIVA</strong></h2>
+                <p>A Bolsa de Dívida e Valores de Angola é o mercado oficial de capitais de Angola, criada em 2 de julho de 2014 para facilitar a negociação de títulos públicos e privados, promovendo a transparência, liquidez e crescimento económico no país. Operando sob a supervisão da <strong>Comissão do Mercado de Capitais de Angola</strong>, a BODIVA conecta investidores, empresas e o Estado, permitindo a captação de recursos através da emissão e negociação de <strong>obrigações do tesouro, bilhetes do tesouro, obrigações privadas e ações</strong>. A sua missão é desenvolver um mercado financeiro moderno, seguro e eficiente, integrando Angola no sistema financeiro global e fortalecendo a confiança dos investidores no ambiente económico nacional.</p>
+            </div>
+        </div>    
 
-        </div>
+        <h3>Empresas Cotadas no Mercado de Ações BODIVA</h3>
 
-        <div class="info1">
-            <h2>Informações <strong>BODIVA</strong></h2>
-
-            <p>A Bolsa de Dívida e Valores de Angola é o mercado oficial de capitais de Angola, criada em 2 de julho de 2014 para facilitar a negociação de títulos públicos e privados, promovendo a transparência, liquidez e crescimento económico no país. Operando sob a supervisão da <strong>Comissão do Mercado de Capitais de Angola</strong>, a BODIVA conecta investidores, empresas e o Estado, permitindo a captação de recursos através da emissão e negociação de <strong>obrigações do tesouro, bilhetes do tesouro, obrigações privadas e ações</strong>. A sua missão é desenvolver um mercado financeiro moderno, seguro e eficiente, integrando Angola no sistema financeiro global e fortalecendo a confiança dos investidores no ambiente económico nacional.</p>
-        </div>
-    </div>    
-
-    
-
-            <h3>Empresas Cotadas no Mercado de Ações BODIVA</h3>
-
+        <div class="tc-overflow">
             <div class="tabela-container">
                 <table class="tabela">
-                <tr>
-                    <th>Data de Cotação</th>
-                    <th>Nome da Empresa</th>
-                    <th>Tipo de ações</th>
-                    <th>Nº de Ações Emitidas</th>
-                    <th>Preço atual por Ações</th>
-                    <th>Valor de Mercado</th>
-                </tr>
-                <tr>
-                    <td>09/07/2022</td>
-                    <td>Banco Angolano de Investimentos <strong>(BAI)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>1.945.000</td>
-                    <td>100.000 kz</td>
-                    <td>194.500.000.000 kz</td>
-                </tr>
-                <tr>
-                    <td>19/09/2022</td>
-                    <td>Banco Caixa Geral de Angola <strong>(BCGA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>5.000.000</td>
-                    <td>26.000 kz</td>
-                    <td>130.000.000.000 kz</td>
-                </tr>
-                <tr>
-                    <td>30/10/2024</td>
-                    <td>ENSA - Seguros Angola <strong>(ENSA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>720.000</td>
-                    <td>40.000 kz</td>
-                    <td>28.800.000.000 kz</td>
-                </tr>
-                <tr>
-                    <td>11/12/2024</td>
-                    <td>Bolsa de Dívidas e Valores de Angola<strong> (BODIVA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>180.000</td>
-                    <td>50.000 kz</td>
-                    <td>9.000.000.000 kz</td>
-                </tr>
-                <tr>
-                    <td>30/09/2025</td>
-                    <td>Banco de Fomento Angola <strong>(BFA)</strong></td>
-                    <td>Ordinárias</td>
-                    <td>4.462.500</td>
-                    <td>120.000 kz</td>
-                    <td>360.000.000.000 kz</td>
-                </tr>
-                </table>
-            </div>
-
-                    <h3>Empresas Cotadas no Mercado de Obrigações BODIVA</h3>
-
-                    <table class="tabela">
+                    <thead>
                         <tr>
-                            <th>Data de Emissão</th>
+                            <th>Data de Cotação</th>
                             <th>Nome da Empresa</th>
-                            <th>Tipo de Obrigações</th>
-                            <th>Nº de Obrigações Emitidas</th>
-                            <th>Taxa de Juros</th>
-                            <th>Data de Vencimento</th>
-                            <th>Investimento Mínimo</th>
+                            <th>Tipo de ações</th>
+                            <th>Nº de Ações Emitidas</th>
+                            <th>Preço atual por Ações</th>
+                            <th>Valor de Mercado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09/07/2022</td>
+                            <td>Banco Angolano de Investimentos <strong>(BAI)</strong></td>
+                            <td>Ordinárias</td>
+                            <td>1.945.000</td>
+                            <td>100.000 kz</td>
+                            <td>194.500.000.000 kz</td>
                         </tr>
                         <tr>
-                            <td>2023</td>
-                            <td>Sonangol S.A</td>
-                            <td>Obrigações Privadas</td>
-                            <td>7.500.000</td>
-                            <td>17,5% ao ano</td>
-                            <td>2028</td>
-                            <td>100.000 kz</td>
-                    </table>
-            <a class="button" href="https://www.bodiva.ao/#gsc.tab=0" target="_blank">Acessar a Bolsa</a>
-
-       <div id="cripto">
-
-            <div class="info3">
-                 <h2 class="timeline">Informações sobre Criptomoedas</h2>
-                 <p>As criptomoedas são moedas digitais que utilizam a <strong>criptografia</strong> para garantir transações seguras e controlar a criação de novas unidades. Elas operam em redes descentralizadas baseadas na tecnologia <strong>blockchain</strong>, que registra todas as transações de forma transparente e imutável. As criptomoedas oferecem vantagens como rapidez nas transações, baixos custos e acessibilidade global, mas também apresentam desafios como volatilidade, riscos de segurança e questões regulatórias. Exemplos populares incluem <strong>Bitcoin</strong>, <strong>Ethereum</strong> e <strong>USDT</strong>, cada uma com suas características e usos específicos no mercado financeiro digital.</p>
-            </div>
-
-            <div class="info4">
-                 <video class="banner-video" src="Video/Criptomoedas 2.mp4" width="100%" autoplay loop class="banner-video fade-in-up" muted aria-describedby="video-description"></video>
-            </div>
-
-       </div>
-           
-            <h3 class="h3-cripto">Principais Criptomoedas</h3>
-            <table class="tabela">
-                <tr>
-                    <th>Nome</th>
-                    <th>Símbolo</th>
-                    <th>Preço Máximo</th>
-                    <th>Oferta Máxima</th>
-                    <th>Capitalização de Mercado</th>
-                    <th>Volume de 24h</th>
-                </tr>
-                <tr>
-                    <td>Bitcoin</td>
-                    <td>BTC</td>
-                    <td>126.000 USD</td>
-                    <td>21 milhões BTC</td>
-                    <td>2 trilhões USD</td>
-                    <td>+72 Bilhões USD</td>
-                </tr>
-                <tr>
-                    <td>Ethereum</td>
-                    <td>ETH</td>
-                    <td>4.955,21 USD</td>
-                    <td>Ilimitada</td>
-                    <td>482,21 Bilhões USD</td>
-                    <td>+50 Bilhões USD</td>
-                </tr>
-                <tr>
-                    <td>Ripple</td>
-                    <td>XRP</td>
-                    <td>3,84 USD</td>
-                    <td>100 bilhões XRP</td>
-                    <td>145,85 bilhões USD</td>
-                    <td>+5 Bilhões USD</td>
-                </tr>
-                <tr>
-                    <td>Litecoin</td>
-                    <td>LTC</td>
-                    <td>413 USD</td>
-                    <td>84 milhões LTC</td>
-                    <td>7,25 bilhões USD</td>
-                    <td>+800 Milhões USD</td>
-                </tr>
-                <tr>
-                    <td>Cardano</td>
-                    <td>ADA</td>
-                    <td>3,1 USD</td>
-                    <td>45 Bilhões ADA</td>
-                    <td>24,12 bilhões USD</td>
-                    <td>+1 Bilhão USD</td>
-                </tr>
-            </table>
-            <p>Acessa a <strong>CoinMarketCap</strong> para mais informações sobre criptomoedas.</p><a class="button" href="https://coinmarketcap.com/" target="_blank">Acessar</a>
-        </section>
-
-    </main>
-
-    <footer>
-    <div>
-        <!-- REDES SOCIAIS -->
-        <div id="socialmidia">
-            <h3>Redes Sociais</h3>
-            <div class="social-icons">
-                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
+                            <td>19/09/2022</td>
+                            <td>Banco Caixa Geral de Angola <strong>(BCGA)</strong></td>
+                            <td>Ordinárias</td>
+                            <td>5.000.000</td>
+                            <td>26.000 kz</td>
+                            <td>130.000.000.000 kz</td>
+                        </tr>
+                        <tr>
+                            <td>30/10/2024</td>
+                            <td>ENSA - Seguros Angola <strong>(ENSA)</strong></td>
+                            <td>Ordinárias</td>
+                            <td>720.000</td>
+                            <td>40.000 kz</td>
+                            <td>28.800.000.000 kz</td>
+                        </tr>
+                        <tr>
+                            <td>11/12/2024</td>
+                            <td>Bolsa de Dívidas e Valores de Angola<strong> (BODIVA)</strong></td>
+                            <td>Ordinárias</td>
+                            <td>180.000</td>
+                            <td>50.000 kz</td>
+                            <td>9.000.000.000 kz</td>
+                        </tr>
+                        <tr>
+                            <td>30/09/2025</td>
+                            <td>Banco de Fomento Angola <strong>(BFA)</strong></td>
+                            <td>Ordinárias</td>
+                            <td>4.462.500</td>
+                            <td>120.000 kz</td>
+                            <td>360.000.000.000 kz</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- CONTATO -->
-        <div id="Contato">
-            <h3>Contato</h3>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <p>Gmail:</p>
-                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
-                        tecacapitalinvestimentostci@gmail.com
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <p>Telefone:</p>
-                    <a href="tel:+244923456789">
-                       +244 923 456 789
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <p>Endereço:</p>
-                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
+        <h3>Empresas Cotadas no Mercado de Obrigações BODIVA</h3>
+
+        <div class="tc-overflow">
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <th>Data de Emissão</th>
+                        <th>Nome da Empresa</th>
+                        <th>Tipo de Obrigações</th>
+                        <th>Nº de Obrigações Emitidas</th>
+                        <th>Taxa de Juros</th>
+                        <th>Data de Vencimento</th>
+                        <th>Investimento Mínimo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023</td>
+                        <td>Sonangol S.A</td>
+                        <td>Obrigações Privadas</td>
+                        <td>7.500.000</td>
+                        <td>17,5% ao ano</td>
+                        <td>2028</td>
+                        <td>100.000 kz</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a class="button" href="https://www.bodiva.ao/#gsc.tab=0" target="_blank">Acessar a Bolsa</a>
+
+        <div id="cripto" class="tc-row">
+            <div class="info3 tc-col">
+                <h2 class="timeline">Informações sobre Criptomoedas</h2>
+                <p>As criptomoedas são moedas digitais que utilizam a <strong>criptografia</strong> para garantir transações seguras e controlar a criação de novas unidades. Elas operam em redes descentralizadas baseadas na tecnologia <strong>blockchain</strong>, que registra todas as transações de forma transparente e imutável. As criptomoedas oferecem vantagens como rapidez nas transações, baixos custos e acessibilidade global, mas também apresentam desafios como volatilidade, riscos de segurança e questões regulatórias. Exemplos populares incluem <strong>Bitcoin</strong>, <strong>Ethereum</strong> e <strong>USDT</strong>, cada uma com suas características e usos específicos no mercado financeiro digital.</p>
+            </div>
+
+            <div class="info4 tc-col">
+                <div class="tc-video-wrap">
+                    <video class="banner-video" src="Video/Criptomoedas 2.mp4" width="100%" autoplay loop muted playsinline aria-describedby="video-description"></video>
                 </div>
             </div>
+        </div>
+           
+        <h3 class="h3-cripto">Principais Criptomoedas</h3>
+        
+        <div class="tc-overflow">
+            <table class="tabela">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Símbolo</th>
+                        <th>Preço Máximo</th>
+                        <th>Oferta Máxima</th>
+                        <th>Capitalização de Mercado</th>
+                        <th>Volume de 24h</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bitcoin</td>
+                        <td>BTC</td>
+                        <td>126.000 USD</td>
+                        <td>21 milhões BTC</td>
+                        <td>2 trilhões USD</td>
+                        <td>+72 Bilhões USD</td>
+                    </tr>
+                    <tr>
+                        <td>Ethereum</td>
+                        <td>ETH</td>
+                        <td>4.955,21 USD</td>
+                        <td>Ilimitada</td>
+                        <td>482,21 Bilhões USD</td>
+                        <td>+50 Bilhões USD</td>
+                    </tr>
+                    <tr>
+                        <td>Ripple</td>
+                        <td>XRP</td>
+                        <td>3,84 USD</td>
+                        <td>100 bilhões XRP</td>
+                        <td>145,85 bilhões USD</td>
+                        <td>+5 Bilhões USD</td>
+                    </tr>
+                    <tr>
+                        <td>Litecoin</td>
+                        <td>LTC</td>
+                        <td>413 USD</td>
+                        <td>84 milhões LTC</td>
+                        <td>7,25 bilhões USD</td>
+                        <td>+800 Milhões USD</td>
+                    </tr>
+                    <tr>
+                        <td>Cardano</td>
+                        <td>ADA</td>
+                        <td>3,1 USD</td>
+                        <td>45 Bilhões ADA</td>
+                        <td>24,12 bilhões USD</td>
+                        <td>+1 Bilhão USD</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
-        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
-    </div>
-</footer>
-    
+        <p>Acessa a <strong>CoinMarketCap</strong> para mais informações sobre criptomoedas.</p>
+        <a class="button" href="https://coinmarketcap.com/" target="_blank">Acessar</a>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="tc-footer-wrap">
+            <!-- REDES SOCIAIS -->
+            <div id="socialmidia" class="tc-footer-col">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@tecacapital" target="_blank" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CONTATO -->
+            <div id="Contato" class="tc-footer-col">
+                <h3>Contato</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <p>Gmail:</p>
+                        <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                            tecacapitalinvestimentostci@gmail.com
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Telefone:</p>
+                        <a href="tel:+244923456789">
+                           +244 923 456 789
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Endereço:</p>
+                        <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT EMBUTIDO PARA TEMA E UTILITÁRIOS -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // 1. GERENCIAMENTO DE TEMA
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Função para obter tema atual
+        function getCurrentTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) return savedTheme;
+            return prefersDarkScheme.matches ? 'dark' : 'light';
+        }
+        
+        // Função para aplicar tema
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Atualizar aria-pressed no botão
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'false' : 'true');
+            }
+            
+            // Atualizar ícone
+            updateThemeIcon(theme);
+        }
+        
+        // Função para alternar tema
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme') || getCurrentTheme();
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        }
+        
+        // Função para atualizar ícone
+        function updateThemeIcon(theme) {
+            if (!themeToggle) return;
+            
+            const sunIcon = themeToggle.querySelector('.tc-icon-sun');
+            const moonIcon = themeToggle.querySelector('.tc-icon-moon');
+            
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = theme === 'dark' ? 'block' : 'none';
+                moonIcon.style.display = theme === 'dark' ? 'none' : 'block';
+            }
+        }
+        
+        // Inicializar tema
+        const initialTheme = getCurrentTheme();
+        applyTheme(initialTheme);
+        
+        // Adicionar event listener ao botão
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+        }
+        
+        // 2. RESPONSIVIDADE DE TABELAS
+        function enhanceTables() {
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.closest('.tc-overflow')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-overflow';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+        }
+        
+        // 3. RESPONSIVIDADE DE VÍDEOS
+        function enhanceVideos() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                if (!video.closest('.tc-video-wrap')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-video-wrap';
+                    video.parentNode.insertBefore(wrapper, video);
+                    wrapper.appendChild(video);
+                }
+                
+                // Adicionar atributos de acessibilidade
+                if (!video.hasAttribute('playsinline')) {
+                    video.setAttribute('playsinline', '');
+                }
+                if (!video.hasAttribute('aria-label') && !video.hasAttribute('aria-describedby')) {
+                    video.setAttribute('aria-label', 'Vídeo de conteúdo relacionado');
+                }
+            });
+        }
+        
+        // 4. DETECÇÃO DE REDIMENSIONAMENTO PARA GRÁFICOS FUTUROS
+        function setupChartResize() {
+            // Esta função será estendida quando gráficos (Chart.js, etc.) forem adicionados
+            const charts = document.querySelectorAll('canvas[data-chart]');
+            if (charts.length > 0) {
+                window.addEventListener('resize', () => {
+                    charts.forEach(chart => {
+                        if (chart.chartInstance && typeof chart.chartInstance.resize === 'function') {
+                            chart.chartInstance.resize();
+                        }
+                    });
+                });
+            }
+        }
+        
+        // 5. INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', () => {
+            enhanceTables();
+            enhanceVideos();
+            setupChartResize();
+            
+            // Log para debugging
+            console.log('Teca Capital - Sistema de tema e responsividade carregado.');
+            console.log('Tema atual:', html.getAttribute('data-theme'));
+            console.log('Tabelas envolvidas:', document.querySelectorAll('.tc-overflow').length);
+        });
+        
+        // 6. LISTENER PARA PREFERÊNCIAS DO SISTEMA
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+    })();
+    </script>
 </body>
 </html>

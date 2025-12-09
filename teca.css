@@ -1,15 +1,12 @@
-/* Configurações Gerais */
-
+/* ORIGINAL CSS - NÃO ALTERAR */
+/* CONFIGURAÇÕES GERAIS */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
+}
 
-
-
-/* Configurações do Body */
-
+/* CONFIGURAÇÕES DO BODY */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
@@ -18,10 +15,9 @@ body {
     background-color: black;
     min-height: 100vh;
     padding-top: 60px;
-} 
+}
 
-/* Configurações do Header */
-
+/* CONFIGURAÇÕES DO HEADER */
 header {
     background-image: url(Imagem/earth-935468_1280.jpg);
     background-size: cover;
@@ -34,7 +30,7 @@ header {
     left: 0;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(214, 174, 100, 0.425);
-} 
+}
 
 .interface {
     max-width: 1200px;
@@ -62,7 +58,7 @@ header {
 .navitem a, .simula a {
     color: rgb(214, 174, 100);
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     transition: color 0.3s;
 }
@@ -81,99 +77,23 @@ header {
     top: 100%;
     left: 0;
     background-color: rgb(0, 0, 0);
-    min-width: 270px;
-    box-shadow: 0px 2px 5px rgb(214, 174,100);
+    min-width: 250px;
+    box-shadow: 0px 2px 5px rgb(214, 174, 100);
     border-radius: 20px 40px;
     padding: 20px;
+    z-index: 1001;
 }
 
 .simula:hover .sub-lista {
     display: block;
 }
 
-
 .logo {
     max-height: 80px;
+    width: auto;
 }
 
-/*
-=====================================================
-RESPONSIVIDADE: HEADER E NAVEGAÇÃO
-=====================================================
-*/
-
-/* 1. Responsividade para Telas de Tablets Grandes e Desktops Pequenos (Max 1000px) */
-@media (max-width: 1000px) {
-    
-    /* Diminui a altura do cabeçalho para otimizar o espaço vertical */
-    header {
-        height: 85px;
-        padding: 10px 0;
-    }
-
-    /* Reduz o padding lateral da interface */
-    .interface {
-        padding: 0 15px;
-    }
-
-    /* Reduz ligeiramente o tamanho máximo do logo */
-    .logo {
-        max-height: 65px;
-    }
-
-    /* Reduz o espaçamento entre os itens da lista e o padding do container */
-    #lista {
-        gap: 15px; /* Reduz de 30px para 15px */
-        padding: 8px 15px;
-        border-radius: 15px 30px;
-    }
-
-    /* Reduz o tamanho da fonte dos links para que caibam horizontalmente */
-    .navitem a, .simula a {
-        font-size: 16px; /* Reduz de 20px para 16px */
-    }
-
-    /* Ajusta o padding de hover */
-    .navitem a:hover, .simula a:hover {
-        padding: 8px;
-    }
-    
-    /* Ajusta o sub-menu */
-    .sub-lista {
-        min-width: 200px;
-        padding: 15px;
-        border-radius: 15px 30px;
-    }
-}
-
-/* 2. Responsividade para Telas de Celulares (Mobile) e Tablets (Max 768px) */
-@media (max-width: 768px) {
-    /* Reduz mais a altura do header */
-    header {
-        height: 70px;
-    }
-    
-    .logo {
-        max-height: 50px;
-    }
-    
-    /* Reduz mais o espaçamento entre itens */
-    #lista {
-        gap: 8px; 
-        padding: 5px 8px;
-    }
-
-    /* Reduz mais a fonte */
-    .navitem a, .simula a {
-        font-size: 13px; /* Reduz para 13px */
-    }
-
-    /* O uso de `display: flex` e `justify-content: space-between` em `.interface` 
-       garante que o logo e o menu fiquem lado a lado, como solicitado. */
-}
-
-/* Configurações do Main */
-
+/* CONFIGURAÇÕES DO MAIN */
 main {
     max-width: 1200px;
     margin: 40px auto;
@@ -199,7 +119,7 @@ main {
 }
 
 .titulo span {
-    color: rgb(214, 174,100);
+    color: rgb(214, 174, 100);
 }
 
 .p-titulo {
@@ -280,6 +200,7 @@ main {
     width: 100%; 
     height: auto;
     border-radius: 8px;
+    max-width: 100%;
 }
 
 .info1 h2, .info3 h2 {
@@ -293,42 +214,41 @@ main {
 }
 
 .tabela-container {
-    overflow-x: auto; /* Permite a rolagem horizontal em ecrãs pequenos (Responsividade!) */
+    overflow-x: auto;
     margin-bottom: 40px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tabela {
     width: 100%; 
-    border-collapse: collapse; /* Remove o espaço entre as células */
+    border-collapse: collapse;
     margin-top: 20px;
     box-shadow: 0 2px 4px rgba(214, 174, 100, 0.349);
+    min-width: 600px;
 }
 
 .tabela th, .tabela td {
-    border: 1px solid rgb(214, 174, 100); /* Linhas cinzentas claras */
+    border: 1px solid rgb(214, 174, 100);
     padding: 12px 15px;
     text-align: left;
     font-size: 0.9em;
 }
 
-/* Estilo do cabeçalho da tabela */
 .tabela th {
-    background-color:rgb(214, 174, 100);
+    background-color: rgb(214, 174, 100);
     color: rgb(0, 0, 0);
     font-weight: bold;
     text-transform: uppercase;
 }
 
-/* Estilo para linhas alternadas (Melhora a leitura!) */
 .tabela tr:nth-child(even) {
-    background-color: #0c0c0c; /* Linha clara */
+    background-color: #0c0c0c;
 }
 
 .tabela tr:hover {
-    background-color: rgba(214, 174, 100, 0.918); /* Destaca a linha ao passar o rato (UX) */
+    background-color: rgba(214, 174, 100, 0.918);
 }
 
-/* Para o título das tabelas */
 #bodiva h3, .h3-cripto {
     font-size: 1.6em;
     margin-top: 40px;
@@ -337,7 +257,7 @@ main {
 }
 
 .button {
-    display: inline-block; /* Permite definir padding e margem */
+    display: inline-block;
     background-color: rgb(214, 174, 100); 
     color: rgb(0, 0, 0);
     text-decoration: none;
@@ -346,16 +266,16 @@ main {
     font-weight: bold;
     margin-top: 20px;
     transition: background-color 0.3s;
+    border: 2px solid transparent;
 }
 
 .button:hover {
-    background-color: #000000; /* Fica ligeiramente mais escuro ao passar o rato */
-    border: solid 3px rgb(214, 174, 100);
+    background-color: #000000;
+    border: solid 2px rgb(214, 174, 100);
     color: rgb(214, 174, 100);
 }
 
-/* Conteudo da Biblioteca */
-
+/* CONTEÚDO DA BIBLIOTECA */
 main .hb {
     font-size: 3.5em;
     text-align: center;
@@ -374,6 +294,7 @@ main h1 strong {
     border-radius: 12px;
     margin-bottom: 50px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
 }
 
 #artigo-section, #audio-section, #video-section {
@@ -388,23 +309,23 @@ main h1 strong {
     display: flex;
     align-items: center;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .icon-artigo, .icon-audio, .icon-video {
-    width: 80px; /* Tamanho fixo para os ícones */
+    width: 80px;
     height: 80px;
     object-fit: contain;
 }
 
-/* Container de Cards (Artigos, Áudios, Vídeos) - Usando Grid */
+/* CONTAINER DE CARDS */
 #artigos, #audio, #videos {
     display: grid;
-    /* 1. GRID: 4 colunas para artigos e 3 para áudios/vídeos */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
-/* Estilo Comum para todos os Cards (artigo1, audio1, video1, etc.) */
+/* ESTILO COMUM PARA TODOS OS CARDS */
 .artigo1, .artigo2, .artigo3, .artigo4,
 .audio1, .audio2, .audio3,
 .video1, .video2 {
@@ -412,7 +333,7 @@ main h1 strong {
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(214, 174, 100, 0.05);
-    border-top: 5px solid rgb(214, 174, 100); /* Destaque no topo */
+    border-top: 5px solid rgb(214, 174, 100);
     transition: transform 0.3s;
 }
 
@@ -421,7 +342,6 @@ main h1 strong {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Conteúdo do Card */
 .artigo1 p, .audio1 p, .video1 p {
     font-size: 1em;
     color: #fffefe;
@@ -435,27 +355,13 @@ main h1 strong {
     margin-bottom: 15px;
 }
 
-/* Elementos Áudio e Vídeo */
 #audio audio, #videos video {
     width: 100%;
     margin-top: 15px;
     border-radius: 5px;
 }
 
-/* Botão (Mantendo o estilo anterior) */
-.button {
-    display: inline-block;
-    background-color: rgb(214, 174, 100);
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 20px 40px;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: background-color 0.3s;
-}
-
-/* Título dos Indicadores */
+/* INDICADORES ECONÔMICOS */
 .economic-indicators-intro h2 {
     font-size: 2em;
     text-align: center;
@@ -463,10 +369,8 @@ main h1 strong {
     color: rgb(214, 174, 100);
 }
 
-/* Layout da Grid para os Cards de Indicadores */
 .indicators-grid {
     display: grid;
-    /* Adapta-se para ter entre 2 a 4 colunas dependendo do espaço */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     margin-bottom: 50px;
@@ -478,7 +382,7 @@ main h1 strong {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(214, 174, 100, 0.08);
     border: 1px solid rgb(214, 174, 100);
-    height: 100%; /* Garante que todos tenham a mesma altura */
+    height: 100%;
 }
 
 .indicator-card h3 {
@@ -492,9 +396,9 @@ main h1 strong {
     color: #ffffff;
 }
 
-/* Seção de Controles do Gráfico */
+/* SEÇÃO DE CONTROLES DO GRÁFICO */
 .chart-controls-section {
-    background-color: #343a40; /* Fundo escuro */
+    background-color: #343a40;
     color: white;
     padding: 30px;
     border-radius: 12px;
@@ -502,7 +406,7 @@ main h1 strong {
 }
 
 .chart-controls-section h2 {
-    color: #d6ae64; /* Cor de destaque (ouro/âmbar) para títulos em fundo escuro */
+    color: #d6ae64;
     text-align: center;
     margin-bottom: 25px;
 }
@@ -515,7 +419,7 @@ main h1 strong {
 .control-group {
     display: flex;
     gap: 15px;
-    flex-wrap: wrap; /* Para ser responsivo em ecrãs pequenos */
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -530,34 +434,37 @@ main h1 strong {
 }
 
 .update-chart-btn {
-    background-color: #28a745; 
+    background-color: #28a745;
     cursor: pointer;
     transition: background-color 0.3s;
     font-weight: bold;
+    border: none;
 }
 
 .update-chart-btn:hover {
     background-color: #218838;
 }
 
-/* Container do Gráfico */
+/* CONTAINER DO GRÁFICO */
 .chart-section {
-    background-color: #343a40; 
+    background-color: #343a40;
     padding: 30px;
     border-radius: 12px;
     margin-bottom: 50px;
 }
 
 .chart-container {
-    height: 500px; /* Altura fixa para o gráfico */
+    height: 500px;
+    width: 100%;
 }
 
 .chart-wrapper {
     position: relative;
     height: 100%;
+    width: 100%;
 }
 
-/* Tabela de Dados (Reutilizando estilos de tabela anteriores) */
+/* TABELA DE DADOS */
 .table-section h2 {
     font-size: 1.8em;
     color: rgb(214, 174, 100);
@@ -565,21 +472,22 @@ main h1 strong {
 }
 
 .table-container {
-    overflow-x: auto; /* Garante a rolagem horizontal */
+    overflow-x: auto;
     margin-bottom: 50px;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* O corpo da tabela já deve usar os estilos anteriores (economic-table é igual a .tabela) */
 .economic-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 800px;
 }
 
 .economic-table th, .economic-table td {
     border: 1px solid rgb(214, 174, 100);
     padding: 10px;
     text-align: center;
-    font-size: 0.85em; /* Fonte menor para caber mais colunas */
+    font-size: 0.85em;
 }
 
 .economic-table thead th {
@@ -587,7 +495,7 @@ main h1 strong {
     color: rgb(0, 0, 0);
 }
 
-/* Seção de Análise */
+/* SEÇÃO DE ANÁLISE */
 .analysis-section h2 {
     font-size: 1.8em;
     color: rgb(214, 174, 100);
@@ -603,7 +511,7 @@ main h1 strong {
 .analysis-item {
     background-color: #ffffff13;
     padding: 20px;
-    border-left: 4px solid #d6ae64; /* Borda de destaque para a análise */
+    border-left: 4px solid #d6ae64;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(214, 174, 100, 0.05);
 }
@@ -620,226 +528,444 @@ main h1 strong {
     text-align: justify;
 }
 
-/*
-=====================================================
-RESPONSIVIDADE: CONTEÚDO PRINCIPAL (MAIN)
-=====================================================
-*/
+/* ========================================= */
+/* MEDIA QUERIES - RESPONSIVIDADE PROFISSIONAL */
+/* ========================================= */
 
-/* -----------------------------------------------------
-1. AJUSTES PARA TELAS GRANDES/MÉDIAS (Max 1200px)
------------------------------------------------------
-*/
-@media (max-width: 1200px) {
+/* FAIXA 1: ATÉ 1000px */
+@media screen and (max-width: 1000px) {
+    /* Header */
+    .interface {
+        padding: 0 15px;
+    }
+    
+    #lista {
+        gap: 20px;
+        padding: 10px;
+    }
+    
+    .navitem a, .simula a {
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+    
+    /* Main */
     main {
         padding: 15px;
+        margin: 30px auto;
     }
     
-    /* Redução de fonte geral */
-    body {
-        font-size: 15px;
-    }
-}
-
-
-/* -----------------------------------------------------
-2. TELAS DE COMPUTADOR PEQUENO E TABLETS (Max 1000px)
-   - Redução de fontes e adaptação de 4 para 3 colunas
------------------------------------------------------
-*/
-@media (max-width: 1000px) {
-
-    /* Seção de Título Principal */
     .titulo {
-        font-size: 2.5em; /* Reduz de 3em */
+        font-size: 2.5em;
     }
     
-    .p-titulo {
-        font-size: 1em; /* Reduz de 1.1em */
-    }
-    
-    /* Título de Seções Secundárias (Serviços) */
     .S {
-        font-size: 2em; /* Reduz de 2.2em */
+        font-size: 2em;
     }
-
-    /* Cards de Serviços: Passa de 4 para 3 colunas */
+    
     .S-item {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
     }
     
-    .servico-item .s { 
-        font-size: 1.2em; /* Reduz de 1.3em */
-    }
-    
-    /* Seções Bodiva e Cripto: Reduz o gap */
-    #bodiva, #cripto {
-        gap: 30px;
-    }
-
-    .info1 h2, .info3 h2 {
-        font-size: 1.8em; /* Reduz de 2em */
-    }
-    
-    /* Título das Tabelas */
-    #bodiva h3, .h3-cripto {
-        font-size: 1.4em; /* Reduz de 1.6em */
-    }
-
-    /* Tabela: Reduz o padding para ganhar espaço (o `overflow-x: auto` já está no CSS original) */
-    .tabela th, .tabela td {
-        padding: 10px 12px;
-        font-size: 0.85em; /* Reduz de 0.9em */
-    }
-
-    /* Título da Biblioteca */
+    /* Biblioteca */
     main .hb {
-        font-size: 3em; /* Reduz de 3.5em */
+        font-size: 3em;
     }
     
     .video-biblioteca {
-        height: 500px; /* Reduz a altura do vídeo */
+        height: 500px;
     }
     
-    /* Títulos da Biblioteca (Artigo, Audio, Video) */
-    #artigo-section h2, #audio-section h2, #video-section h2 {
-        font-size: 1.8em; /* Reduz de 2em */
-    }
-
-    /* Cards da Biblioteca: Passa de 4 para 3 colunas */
-    #artigos, #audio, #videos {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    /* Gráficos */
+    .chart-container {
+        height: 450px;
     }
     
-    .artigo1 p, .audio1 p, .video1 p {
-        font-size: 0.95em; /* Reduz de 1em */
-    }
-    
-    /* Indicadores: Passa de 4 para 3 colunas */
+    /* Indicadores */
     .indicators-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
-
-    /* Gráfico: Altura reduzida */
-    .chart-container {
-        height: 400px; 
-    }
-    
-    /* Análise: Reduz o grid para 2 colunas */
-    .analysis-content {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
 }
 
-
-/* -----------------------------------------------------
-3. MOBILE (Max 768px)
-   - Empilhamento Vertical Estratégico e Redução Extrema de Fontes
------------------------------------------------------
-*/
-@media (max-width: 768px) {
-    
-    main {
-        padding: 10px;
+/* FAIXA 2: ATÉ 900px */
+@media screen and (max-width: 900px) {
+    /* Header */
+    header {
+        height: 90px;
+        padding: 10px 0;
     }
-
-    /* Seção de Título Principal: Empilhamento */
+    
+    .logo {
+        max-height: 70px;
+    }
+    
+    #lista {
+        gap: 15px;
+        padding: 8px 12px;
+    }
+    
+    .navitem a, .simula a {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    
+    /* Main */
     #imagem-principal {
-        flex-direction: column; 
-        gap: 20px;
-        margin-bottom: 40px;
-    }
-    
-    .titulo {
-        font-size: 2em; 
-        text-align: center;
+        flex-direction: column;
+        gap: 30px;
     }
     
     .imagem-teca-capital {
-        height: 200px; 
+        height: 250px;
         width: 100%;
-    }
-
-    /* Cards de Serviços: Passa para 2 colunas */
-    .S-item {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        order: -1;
     }
     
-    /* Seções Bodiva e Cripto: Empilhamento */
+    .principal {
+        width: 100%;
+    }
+    
+    .titulo {
+        font-size: 2.2em;
+        text-align: center;
+    }
+    
+    .p-titulo {
+        text-align: center;
+    }
+    
+    /* Serviços */
+    .S-item {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .servico-item {
+        padding: 20px;
+    }
+    
+    /* Bodiva e Cripto */
     #bodiva, #cripto {
         flex-direction: column;
-        gap: 20px;
-        margin-bottom: 40px;
+        gap: 30px;
     }
     
-    /* Vídeos/Imagens nas seções Bodiva/Cripto */
-    .infovideo, .banner-video {
+    .info1, .info2, .info3, .info4 {
         width: 100%;
     }
+    
+    /* Cards */
+    #artigos, #audio, #videos {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+    
+    /* Análise */
+    .analysis-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
 
+/* FAIXA 3: ATÉ 700px */
+@media screen and (max-width: 700px) {
+    /* Body */
+    body {
+        padding-top: 80px;
+        font-size: 15px;
+    }
+    
+    /* Header */
+    header {
+        height: 80px;
+    }
+    
+    .logo {
+        max-height: 60px;
+    }
+    
+    #lista {
+        gap: 10px;
+        padding: 6px 10px;
+        border-radius: 15px 30px;
+    }
+    
+    .navitem a, .simula a {
+        font-size: 13px;
+        padding: 5px 8px;
+    }
+    
+    /* Submenu */
+    .sub-lista {
+        min-width: 200px;
+        padding: 15px;
+        border-radius: 15px 30px;
+    }
+    
+    /* Main */
+    main {
+        margin: 20px auto;
+        padding: 10px;
+    }
+    
+    .S {
+        font-size: 1.8em;
+    }
+    
+    /* Serviços */
+    .S-item {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Títulos */
+    .info1 h2, .info3 h2 {
+        font-size: 1.6em;
+    }
+    
+    #artigo-section h2, #audio-section h2, #video-section h2 {
+        font-size: 1.6em;
+        justify-content: center;
+    }
+    
+    .icon-artigo, .icon-audio, .icon-video {
+        width: 60px;
+        height: 60px;
+    }
+    
     /* Biblioteca */
     main .hb {
         font-size: 2.5em;
     }
     
     .video-biblioteca {
-        height: 250px;
+        height: 400px;
+        margin-bottom: 30px;
     }
     
-    /* Cards da Biblioteca: Passa para 1 coluna */
-    #artigos, #audio, #videos {
-        grid-template-columns: 1fr;
-    }
-    
-    .artigo1, .audio1, .video1 {
+    /* Gráficos */
+    .chart-controls-section,
+    .chart-section {
         padding: 20px;
     }
     
-    /* Indicadores: Passa para 2 colunas */
-    .indicators-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+    .chart-container {
+        height: 400px;
     }
     
-    /* Controles do Gráfico: Empilhamento vertical */
     .control-group {
         flex-direction: column;
-        gap: 10px;
+        align-items: stretch;
     }
     
-    .chart-container {
-        height: 250px; /* Altura mínima para visualização mobile */
+    .control-group select,
+    .update-chart-btn {
+        width: 100%;
+        margin-bottom: 10px;
     }
     
-    /* Análise: Passa para 1 coluna */
-    .analysis-content {
-        grid-template-columns: 1fr;
+    /* Indicadores */
+    .indicators-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
     }
 }
 
-/* -----------------------------------------------------
-4. CELULARES MUITO PEQUENOS (Max 480px)
------------------------------------------------------
-*/
-@media (max-width: 480px) {
-    /* Diminui fontes principais */
-    .titulo {
-        font-size: 1.6em;
+/* FAIXA 4: ATÉ 600px */
+@media screen and (max-width: 600px) {
+    /* Header */
+    header {
+        height: 70px;
     }
     
-    .S, .economic-indicators-intro h2 {
+    .interface {
+        padding: 0 10px;
+    }
+    
+    .logo {
+        max-height: 50px;
+    }
+    
+    #lista {
+        gap: 8px;
+        padding: 5px 8px;
+    }
+    
+    .navitem a, .simula a {
+        font-size: 12px;
+        padding: 4px 6px;
+        white-space: nowrap;
+    }
+    
+    /* Main */
+    .titulo {
+        font-size: 1.8em;
+    }
+    
+    .imagem-teca-capital {
+        height: 200px;
+    }
+    
+    /* Cards */
+    .artigo1, .artigo2, .artigo3, .artigo4,
+    .audio1, .audio2, .audio3,
+    .video1, .video2 {
+        padding: 15px;
+    }
+    
+    /* Botões */
+    .button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    /* Tabelas */
+    .tabela th, .tabela td {
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+    
+    .economic-table th, .economic-table td {
+        padding: 8px;
+        font-size: 0.75em;
+    }
+}
+
+/* FAIXA 5: ATÉ 450px */
+@media screen and (max-width: 450px) {
+    /* Body */
+    body {
+        padding-top: 70px;
+        font-size: 14px;
+    }
+    
+    /* Header */
+    header {
+        height: 65px;
+    }
+    
+    .logo {
+        max-height: 45px;
+    }
+    
+    #lista {
+        gap: 5px;
+        padding: 4px 6px;
+        border-radius: 10px 20px;
+    }
+    
+    .navitem a, .simula a {
+        font-size: 11px;
+        padding: 3px 5px;
+    }
+    
+    /* Main */
+    .titulo {
         font-size: 1.5em;
     }
     
-    /* Cards de Serviços: Passa para 1 coluna (evita o aperto) */
-    .S-item {
+    .S {
+        font-size: 1.5em;
+    }
+    
+    .servico-item .s {
+        font-size: 1.1em;
+    }
+    
+    /* Biblioteca */
+    main .hb {
+        font-size: 2em;
+    }
+    
+    .video-biblioteca {
+        height: 300px;
+    }
+    
+    /* Cards */
+    #artigos, #audio, #videos {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Indicadores */
+    .indicators-grid {
         grid-template-columns: 1fr;
     }
     
-    /* Indicadores: Passa para 1 coluna */
-    .indicators-grid {
+    .indicator-card {
+        padding: 12px;
+    }
+    
+    /* Análise */
+    .analysis-content {
         grid-template-columns: 1fr;
+    }
+    
+    .analysis-item {
+        padding: 15px;
+    }
+    
+    /* Gráficos */
+    .chart-container {
+        height: 350px;
+    }
+    
+    .chart-controls-section h2,
+    .chart-section h2,
+    .table-section h2,
+    .analysis-section h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* AJUSTES ESPECÍFICOS PARA MOBILE */
+@media screen and (max-width: 768px) {
+    /* Submenu mobile-friendly */
+    .simula .sub-lista {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 300px;
+        margin-top: 10px;
+    }
+    
+    /* Melhorar toque em mobile */
+    .navitem a, .simula a,
+    .button,
+    .update-chart-btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Ajustar padding para toque */
+    .servico-item,
+    .artigo1, .artigo2, .artigo3, .artigo4,
+    .audio1, .audio2, .audio3,
+    .video1, .video2 {
+        padding: 20px;
+    }
+}
+
+/* AJUSTES DE IMPRESSÃO */
+@media print {
+    header {
+        position: static;
+        box-shadow: none;
+    }
+    
+    body {
+        padding-top: 0;
+        color: black;
+        background: white;
+    }
+    
+    .button,
+    .update-chart-btn {
+        display: none;
     }
 }
 
@@ -1314,6 +1440,339 @@ footer h3 {
     .contact-item p {
         margin-right: 0;
         margin-bottom: 5px;
+    }
+}
+/* FIM DO CSS ORIGINAL */
+
+
+/*
+=====================================================
+APÊNDICE: VARIÁVEIS, THEME LIGHT, RESPONSIVIDADE & AJUSTES
+=====================================================
+*/
+
+/* 1. VARIÁVEIS CSS E ANIMAÇÕES GLOBAIS (APENAS PARA USO NO APÊNDICE) */
+
+:root {
+    /* Cores Padrão (Tema Dark/Default) */
+    --tc-bg-primary: #000000; /* Fundo principal (body) */
+    --tc-bg-secondary: #0c0c0c; /* Fundo secundário (footer, nav, chart wrappers) */
+    --tc-text-primary: #ffffff; /* Texto principal */
+    --tc-text-secondary: #f0f0f0; /* Texto secundário */
+    --tc-accent: rgb(214, 174, 100); /* O Dourado Original (DESTAQUE) */
+    --tc-shadow-color: rgba(214, 174, 100, 0.425);
+    --tc-card-bg-dark: rgba(255, 254, 254, 0.041); /* Fundo dos cards no tema Dark */
+    --tc-card-bg-light-contrast: #1a1a1a; /* Fundo escuro para cards no tema light (regra absoluta) */
+    
+    /* Configuração de Animação */
+    --tc-transition-speed: 0.3s;
+    --tc-animation-duration: 1s;
+}
+
+/* Aplicação de Transições (Micro animações) */
+* {
+    transition: background-color var(--tc-transition-speed) ease, 
+                color var(--tc-transition-speed) ease, 
+                border-color var(--tc-transition-speed) ease,
+                box-shadow var(--tc-transition-speed) ease,
+                transform var(--tc-transition-speed) ease;
+}
+
+/* 2. LIGHT THEME OVERRIDES (data-theme="light") */
+
+[data-theme="light"] {
+    /* Cores Básicas - Regra Absoluta */
+    --tc-bg-primary: #ffffff;
+    --tc-bg-secondary: #f8f8f8;
+    --tc-text-primary: #000000;
+    --tc-text-secondary: #333333;
+    --tc-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Aplicação do Tema Light sobre seletores originais */
+[data-theme="light"] body {
+    color: var(--tc-text-primary); 
+    background-color: var(--tc-bg-primary); 
+    padding-top: 100px; /* Consistência com altura do header */
+}
+
+/* HEADER/NAV */
+[data-theme="light"] header {
+    background-image: none; /* Remove a imagem para melhor legibilidade/estética light */
+    background-color: var(--tc-bg-secondary);
+    box-shadow: 0 4px 8px var(--tc-shadow-color);
+}
+
+[data-theme="light"] #lista {
+    border: solid 2px var(--tc-accent);
+    box-shadow: 0 4px 8px var(--tc-shadow-color);
+}
+
+[data-theme="light"] .navitem a:hover, 
+[data-theme="light"] .simula a:hover {
+    color: var(--tc-accent);
+    background-color: rgba(214, 174, 100, 0.1); /* Toque de fundo no hover */
+}
+
+[data-theme="light"] .sub-lista {
+    background-color: var(--tc-bg-secondary); 
+    box-shadow: 0px 2px 5px var(--tc-shadow-color);
+    border: 1px solid var(--tc-accent);
+}
+
+/* TÍTULOS E TEXTOS */
+[data-theme="light"] .titulo,
+[data-theme="light"] .titulo span,
+[data-theme="light"] .S,
+[data-theme="light"] .S span,
+[data-theme="light"] main h1.sobre,
+[data-theme="light"] section h3, 
+[data-theme="light"] section h2,
+[data-theme="light"] .economic-indicators-intro h2,
+[data-theme="light"] .table-section h2,
+[data-theme="light"] .analysis-section h2,
+[data-theme="light"] .info1 h2, [data-theme="light"] .info3 h2,
+[data-theme="light"] #bodiva h3, [data-theme="light"] .h3-cripto,
+[data-theme="light"] main h1.sobre,
+[data-theme="light"] main .hb,
+[data-theme="light"] .economic-indicators-intro h2 {
+    color: var(--tc-accent); /* H1-H6 Accent */
+}
+
+[data-theme="light"] .p-titulo,
+[data-theme="light"] .p-titulo .strong-principal {
+    color: var(--tc-text-primary); /* Parágrafos pretos */
+}
+
+/* CARDS E DIVS DE FUNDO */
+[data-theme="light"] .servico-item,
+[data-theme="light"] .artigo1, [data-theme="light"] .artigo2, [data-theme="light"] .artigo3, [data-theme="light"] .artigo4,
+[data-theme="light"] .audio1, [data-theme="light"] .audio2, [data-theme="light"] .audio3,
+[data-theme="light"] .video1, [data-theme="light"] .video2,
+[data-theme="light"] .indicator-card,
+[data-theme="light"] .analysis-item,
+[data-theme="light"] .eu21, [data-theme="light"] .eu22, [data-theme="light"] .eu23, [data-theme="light"] .eu24, [data-theme="light"] .eu25,
+[data-theme="light"] .missao, [data-theme="light"] .visao, [data-theme="light"] .valores,
+[data-theme="light"] .tecacapital, [data-theme="light"] .mybase, [data-theme="light"] .agroshre,
+[data-theme="light"] .chart-controls-section,
+[data-theme="light"] .chart-section {
+    background-color: var(--tc-card-bg-light-contrast); /* Fundo preto para cards (Regra Absoluta) */
+    color: var(--tc-text-secondary);
+    border: 1px solid var(--tc-accent); /* Adiciona borda accent para todos os cards light */
+}
+
+/* Textos dentro dos cards escuros (regra absoluta) */
+[data-theme="light"] .servico-item .p-servicos,
+[data-theme="light"] .artigo1 p, [data-theme="light"] .audio1 p, [data-theme="light"] .video1 p,
+[data-theme="light"] .indicator-card p,
+[data-theme="light"] .analysis-item p,
+[data-theme="light"] .eu2 p,
+[data-theme="light"] .valores li {
+    color: var(--tc-text-primary); /* Texto branco dentro do fundo preto do card */
+}
+
+/* Títulos internos dos cards */
+[data-theme="light"] .servico-item .s,
+[data-theme="light"] .indicator-card h3,
+[data-theme="light"] .analysis-item h4,
+[data-theme="light"] .eu2 h5,
+[data-theme="light"] .missao h4, [data-theme="light"] .visao h4, [data-theme="light"] .valores h4,
+[data-theme="light"] .tecacapital h3, [data-theme="light"] .mybase h3, [data-theme="light"] .agroshre h3 {
+    color: var(--tc-accent);
+}
+
+/* TABELAS */
+[data-theme="light"] .tabela,
+[data-theme="light"] .economic-table {
+    box-shadow: 0 2px 4px var(--tc-shadow-color);
+}
+
+[data-theme="light"] .tabela th, [data-theme="light"] .tabela td,
+[data-theme="light"] .economic-table th, [data-theme="light"] .economic-table td {
+    border: 1px solid var(--tc-accent);
+    color: var(--tc-text-primary);
+}
+
+[data-theme="light"] .tabela tr:nth-child(even) {
+    background-color: var(--tc-bg-secondary); /* Cinza claro suave */
+}
+
+[data-theme="light"] .tabela tr:hover {
+    background-color: rgba(214, 174, 100, 0.5); /* Hover com Accent */
+}
+
+/* FOOTER (Regra Absoluta) */
+[data-theme="light"] footer {
+    background-color: var(--tc-bg-secondary); 
+    color: var(--tc-text-primary);
+    border-top: 5px solid var(--tc-accent);
+}
+
+[data-theme="light"] footer h3 {
+    color: var(--tc-accent);
+    border-bottom: 2px solid var(--tc-accent);
+}
+
+[data-theme="light"] .social-icons a {
+    color: var(--tc-text-primary);
+}
+
+[data-theme="light"] .contact-item p {
+    color: var(--tc-accent);
+}
+
+[data-theme="light"] .contact-item a, [data-theme="light"] .contact-item span {
+    color: var(--tc-text-primary);
+}
+
+[data-theme="light"] .timeline {
+    border-top: 1px solid var(--tc-text-primary);
+    color: var(--tc-accent);
+}
+
+
+/* 3. ESTILO DO BOTÃO DE TEMA (theme-toggle) */
+
+.theme-toggle {
+    background-color: var(--tc-accent);
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--tc-transition-speed) ease;
+    box-shadow: 0 2px 5px var(--tc-shadow-color);
+}
+
+.theme-toggle:hover {
+    background-color: rgba(214, 174, 100, 0.8);
+    box-shadow: 0 4px 8px var(--tc-shadow-color);
+}
+
+.theme-toggle svg {
+    fill: currentColor;
+    width: 20px;
+    height: 20px;
+}
+
+/* 4. AJUSTES FINOS DE RESPONSIVIDADE E CENTRALIZAÇÃO */
+
+/* Centralização da Biblioteca (Regra Absoluta) */
+@media screen and (max-width: 900px) {
+    #artigo-section h2, #audio-section h2, #video-section h2 {
+        /* Garante que o ícone e o título fiquem em coluna para melhor leitura */
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .icon-artigo, .icon-audio, .icon-video {
+        margin: 0 auto;
+    }
+}
+
+/* Ajustes de Padding no Mobile para evitar estouro em MQs mais amplas */
+@media screen and (max-width: 800px) {
+    .interface {
+        padding: 0 10px;
+    }
+    
+    /* Biblioteca/Controles de Gráfico - Otimização de espaço */
+    .control-group {
+        gap: 10px;
+    }
+    
+    .control-group select, .update-chart-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    /* Diminui o padding do container para dispositivos muito pequenos */
+    .interface {
+        padding: 0 5px;
+    }
+
+    /* Reduz ainda mais o tamanho da fonte para manter o menu visível */
+    #lista {
+        gap: 5px;
+        padding: 5px 8px;
+    }
+    
+    .navitem a, .simula a {
+        font-size: 11px;
+    }
+    
+    /* Empilhamento de Colunas Padrão para divs de conteúdo (se o original não o fez) */
+    #bodiva, #cripto {
+        gap: 20px;
+    }
+    
+    .infovideo, .banner-video {
+        height: 200px; /* Reduz altura do video banner */
+    }
+}
+
+@media screen and (max-width: 250px) {
+    /* Fallback para telas extremamente pequenas */
+    header {
+        height: 120px;
+        padding: 10px 0;
+    }
+    
+    .interface {
+        flex-direction: column;
+    }
+    
+    #lista {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .navitem a, .simula a {
+        font-size: 10px;
+        padding: 2px 4px;
+    }
+}
+
+
+/* 5. ACESSIBILIDADE E PREFERS REDUCED MOTION */
+
+/* Foco Visível para Teclado */
+.navitem a:focus,
+.simula a:focus,
+.button:focus,
+.update-chart-btn:focus,
+.theme-toggle:focus,
+.social-icons a:focus {
+    outline: 2px solid var(--tc-accent);
+    outline-offset: 3px;
+}
+
+/* Desabilitar Animações e Transições */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0s !important;
+        animation-duration: 0s !important;
+        transition: none !important;
+    }
+
+    /* Desliga transform do hover dos cards */
+    .servico-item:hover, 
+    .tecacapital:hover, .mybase:hover, .agroshre:hover,
+    .social-icons a:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .social-icons a:hover::before {
+        transform: translate(-50%, -50%) scale(0) !important;
     }
 }
 

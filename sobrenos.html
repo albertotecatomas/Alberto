@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-AO">
+<html lang="pt-AO" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teca Capital Investimentos</title>
+    <title>Teca Capital Investimentos - Sobre Nós</title>
     <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
     <link rel="stylesheet" href="teca.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</style>
 </head>
 
 <body>
-    <header>
-       <div class="interface"> 
-            
+    <header role="banner">
+       <div class="interface tc-container"> 
             <div class="logo">
-            <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
+                <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
             </div>
 
-            <nav id="navt">
+            <nav id="navt" role="navigation" aria-label="Menu principal">
                 <ul id="lista">
-                    <li class="navitem active"> <a href="index.html">Início</a>
-                    </li>
-                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
-                    </li>   
-                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
-                    </li>
+                    <li class="navitem"> <a href="index.html">Início</a></li>
+                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a></li>   
+                    <li class="navitem active"> <a href="sobrenos.html">+Sobre</a></li>
                     <li class="simula"> <a href=""> Simuladores ▽</a> 
                         <ul class="sub-lista">
                             <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
@@ -36,173 +31,287 @@
                     </li>
                 </ul>
             </nav>
+            
+            <!-- Botão Toggle Dark/Light -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
+                <svg class="theme-icon sun" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM3 12a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm18 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41L7.05 18.36a1 1 0 0 1-1.41 0zm12.73-12.73a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41l-1.42 1.42a1 1 0 0 1-1.41 0z"/>
+                </svg>
+                <svg class="theme-icon moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </button>
         </div>
     </header>
 
-    <main>
+    <main role="main">
+        <div class="tc-container">
+            <h1 class="sobre">+Sobre a Startup e Seu Criador</h1>
 
-        <h1 class="sobre">+Sobre a Startup e Seu Criador</h1>
-
-        <section id="quem-sou-eu">
-            <h3>Quem <strong>Sou Eu</strong></h3>
-            <div id="eu-sou">
-                <div class="eu1">
-                    <img class="fundador" src="Imagem/Alberto Teca Tomas Promocional.jpeg" width="100%" alt="foto alberto teca tomás">
-                </div>
-
-                <div class="eu2">
-                    <div class="eu21">
-                        <h5>Dados Pessoais</h5>
-                        <p><strong>Nome:</strong> Alberto Teca Tomás</p>
-                        <p><strong>Data de Nascimento:</strong> 03/03/2001</p>
-                        <p><strong>Naturalidade:</strong> Angola-Uíge-Negage</p>
+            <section id="quem-sou-eu" aria-labelledby="quem-sou-heading">
+                <h3 id="quem-sou-heading">Quem <strong>Sou Eu</strong></h3>
+                <div id="eu-sou" class="tc-row">
+                    <div class="eu1 tc-col">
+                        <div class="tc-img-wrap">
+                            <img class="fundador" src="Imagem/Alberto Teca Tomas Promocional.jpeg" width="100%" alt="Foto de Alberto Teca Tomás - Fundador da Teca Capital Investimentos">
+                        </div>
                     </div>
 
-                    <div class="eu22">
-                        <h5>Formação Acadêmica</h5>
-                        <p><strong>Ensino Médio:</strong> Finanças</p>
-                        <p><strong>Ensino Superior:</strong> Contabilidade e Finanças</p>
-                    </div>
+                    <div class="eu2 tc-col">
+                        <div class="eu21 tc-info-card">
+                            <h5>Dados Pessoais</h5>
+                            <p><strong>Nome:</strong> Alberto Teca Tomás</p>
+                            <p><strong>Data de Nascimento:</strong> 03/03/2001</p>
+                            <p><strong>Naturalidade:</strong> Angola-Uíge-Negage</p>
+                        </div>
 
-                    <div class="eu23">
-                        <h5>Hobys</h5>
-                        <p><strong>Ler:</strong> Manhwas, Mangás, Livros</p>
-                        <p><strong>Assistir:</strong> Animes, Séries, Filmes, Podcast</p>
-                        <p><strong>Jogar:</strong> Video Games, Jogos de Tabuleiro</p>
-                        <p><strong>Música:</strong> Rock, Rap Nerd, K-Pop, Pop, Hip-Hop, Gospel, Rap</p>
-                    </div>
+                        <div class="eu22 tc-info-card">
+                            <h5>Formação Acadêmica</h5>
+                            <p><strong>Ensino Médio:</strong> Finanças</p>
+                            <p><strong>Ensino Superior:</strong> Contabilidade e Finanças</p>
+                        </div>
 
-                    <div class="eu24">
-                        <h5>Minhas Inspirações</h5>
-                        <p><strong>Mãe e Pai:</strong> Elisa Natália, Lando David</p>
-                        <p><strong>Empreendedores:</strong> Elon Musk, Bill Gates, Steve Jobs, Mark Zuckerberg, Jeff Bezos</p>
-                        <p><strong>Market-Makeres:</strong> Euclises Francisco, Fernando Urlchi, Bruno Perine, Nunu Baio, Isabel Dos Santos,</p>
-                    </div>
+                        <div class="eu23 tc-info-card">
+                            <h5>Hobbies</h5>
+                            <p><strong>Ler:</strong> Manhwas, Mangás, Livros</p>
+                            <p><strong>Assistir:</strong> Animes, Séries, Filmes, Podcast</p>
+                            <p><strong>Jogar:</strong> Video Games, Jogos de Tabuleiro</p>
+                            <p><strong>Música:</strong> Rock, Rap Nerd, K-Pop, Pop, Hip-Hop, Gospel, Rap</p>
+                        </div>
 
-                    <div class="eu25">
-                        <h5>Minhas habilidades</h5>
+                        <div class="eu24 tc-info-card">
+                            <h5>Minhas Inspirações</h5>
+                            <p><strong>Mãe e Pai:</strong> Elisa Natália, Lando David</p>
+                            <p><strong>Empreendedores:</strong> Elon Musk, Bill Gates, Steve Jobs, Mark Zuckerberg, Jeff Bezos</p>
+                            <p><strong>Market-Makers:</strong> Euclises Francisco, Fernando Urlchi, Bruno Perine, Nunu Baio, Isabel Dos Santos</p>
+                        </div>
+
+                        <div class="eu25 tc-info-card">
+                            <h5>Minhas Habilidades</h5>
                             <p><strong>Técnicas:</strong> Análise de Dados, Gestão Financeira, Planejamento Estratégico e Execução, Análise Macroeconômica</p>
                             <p><strong>Pessoais:</strong> Comunicação Eficaz, Resolução de Problemas, Adaptabilidade, Trabalho em Equipe</p>
-                            <p><strong>Ferramentas:</strong> Office, Power BI, CSS, HTML, Javascript, SQL, Python, Git e Github</p>
+                            <p><strong>Ferramentas:</strong> Office, Power BI, CSS, HTML, JavaScript, SQL, Python, Git e GitHub</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="teca-capital" aria-labelledby="teca-capital-heading">
+                <h2 id="teca-capital-heading">Sobre a Teca Capital</h2>
+
+                <div id="tecacapital" class="tc-row">
+                    <div class="img-tecacapital tc-col">
+                        <div class="tc-logo-wrap">
+                            <img src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" width="100%" alt="Logo Teca Capital Investimentos">
+                        </div>
+                    </div>
+
+                    <div class="missao tc-col tc-mission-card">
+                        <h4>Missão</h4>
+                        <p>Proporcionar soluções financeiras inovadoras e acessíveis que capacitem indivíduos e empresas a alcançar seus objetivos financeiros, promovendo educação financeira e inclusão econômica.</p>
+                    </div>
+
+                    <div class="visao tc-col tc-vision-card">
+                        <h4>Visão</h4>
+                        <p>Ser reconhecida como a principal startup de investimentos financeiros em Angola e em África, liderando a transformação digital do setor financeiro e promovendo o crescimento sustentável dos nossos clientes.</p>
+                    </div>
+
+                    <div class="valores tc-col tc-values-card">
+                        <h4>Valores</h4>
+                        <ul class="tc-values-list">
+                            <li><strong>Inovação:</strong> Estamos comprometidos em desenvolver soluções financeiras inovadoras que atendam às necessidades em constante evolução dos nossos clientes.</li>
+                            <li><strong>Transparência:</strong> Valorizamos a honestidade e a clareza em todas as nossas interações, garantindo que nossos clientes estejam sempre informados sobre suas opções financeiras.</li>
+                            <li><strong>Educação Financeira:</strong> Acreditamos que a educação financeira é fundamental para o sucesso financeiro, e nos dedicamos a fornecer recursos educacionais para capacitar nossos clientes.</li>
+                            <li><strong>Inclusão Econômica:</strong> Trabalhamos para tornar os serviços financeiros acessíveis a todos, independentemente de sua situação econômica ou localização geográfica.</li>
+                            <li><strong>Sustentabilidade:</strong> Comprometemo-nos a promover práticas financeiras responsáveis que contribuam para o desenvolvimento sustentável das comunidades em que operamos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projectos-section" aria-labelledby="projectos-heading">
+                <h1 id="projectos-heading">Meus Projectos</h1>
+
+                <div id="projectos" class="tc-row">
+                    <div class="tecacapital tc-col tc-project-card">
+                        <h3>Teca Capital Investimentos</h3>
+                        <p><strong>Status:</strong> <span class="tc-status-operando">Operando</span></p>
+                        <p><strong>Proprietário:</strong> Alberto Teca Tomás</p>
+                        <p><strong>Setor:</strong> Financeiro</p>
+                        <p>Plataforma de investimentos financeiros que oferece soluções inovadoras para indivíduos e empresas, promovendo educação financeira e inclusão econômica.</p>
+                    </div>
+
+                    <div class="mybase tc-col tc-project-card">
+                        <h3>MyBase</h3>
+                        <p><strong>Status:</strong> <span class="tc-status-desenvolvimento">Em Desenvolvimento</span></p>
+                        <p><strong>Proprietário:</strong> Alberto Teca Tomás</p>
+                        <p><strong>Setor:</strong> Tecnologia da Informação</p>
+                        <p>Plataforma de gestão de dados pessoais e profissionais, oferecendo ferramentas para organização, armazenamento seguro e compartilhamento eficiente de informações.</p>
+                    </div>
+
+                    <div class="agroshre tc-col tc-project-card">
+                        <h3>AgroShre</h3>
+                        <p><strong>Status:</strong> <span class="tc-status-planejado">Planejado</span></p>
+                        <p><strong>Proprietários:</strong> Manuel Cabanga & Alberto Teca Tomás</p>
+                        <p><strong>Setor:</strong> Agronegócio</p>
+                        <p>Plataforma digital que conecta agricultores, fornecedores e consumidores, facilitando a comercialização de produtos agrícolas e promovendo práticas sustentáveis no agronegócio.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="tc-container">
+            <div class="tc-row">
+                <!-- REDES SOCIAIS -->
+                <div id="socialmidia" class="tc-col">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank" aria-label="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@tecacapital" target="_blank" aria-label="TikTok">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
 
+                <!-- CONTATO -->
+                <div id="Contato" class="tc-col">
+                    <h3>Contato</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <p>Gmail:</p>
+                            <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                                tecacapitalinvestimentostci@gmail.com
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <p>Telefone:</p>
+                            <a href="tel:+244923456789">
+                                +244 923 456 789
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <p>Endereço:</p>
+                            <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-        </section>
-
-        <section #teca-capital>
-            <h2>Sobre a Teca Capital</h2>
-
-            <div id="tecacapital">
-                <div class="img-tecacapital">
-                    <img src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" width="20%" alt="logo teca capital investimentos">
-                </div>
-
-                <div class="missao">
-                    <h4>Missão</h4>
-                    <p>Proporcionar soluções financeiras inovadoras e acessíveis que capacitem indivíduos e empresas a alcançar seus objetivos financeiros, promovendo educação financeira e inclusão econômica.</p>
-                </div>
-
-                <div class="visao" >
-                    <h4>Visão</h4>
-                    <p>Ser reconhecida como a principal startup de investimentos financeiros em Angola e em África, liderando a transformação digital do setor financeiro e promovendo o crescimento sustentável dos nossos clientes.</p>
-                </div>
-
-                <div class="valores">
-                    <h4>Valores</h4>
-                    <ul>
-                        <li><strong>Inovação:</strong> Estamos comprometidos em desenvolver soluções financeiras inovadoras que atendam às necessidades em constante evolução dos nossos clientes.</li>
-                        <li><strong>Transparência:</strong> Valorizamos a honestidade e a clareza em todas as nossas interações, garantindo que nossos clientes estejam sempre informados sobre suas opções financeiras.</li>
-                        <li><strong>Educação Financeira:</strong> Acreditamos que a educação financeira é fundamental para o sucesso financeiro, e nos dedicamos a fornecer recursos educacionais para capacitar nossos clientes.</li>
-                        <li><strong>Inclusão Econômica:</strong> Trabalhamos para tornar os serviços financeiros acessíveis a todos, independentemente de sua situação econômica ou localização geográfica.</li>
-                        <li><strong>Sustentabilidade:</strong> Comprometemo-nos a promover práticas financeiras responsáveis que contribuam para o desenvolvimento sustentável das comunidades em que operamos.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="projectos-section">
-            <h1>Meus Projectos</h1>
-
-            <div id="projectos">
-
-                <div class="tecacapital">
-                    <h3>Teca Capital Investimentos</h3>
-                    <p><strong>Status:</strong> Operando</p>
-                    <p><strong>Propretário:</strong> Alberto Teca Tomás</p>
-                    <p><strong>Sector:</strong> Financeiro</p>
-                    <p>Plataforma de investimentos financeiros que oferece soluções inovadoras para indivíduos e empresas, promovendo educação financeira e inclusão econômica.</p>
-                </div>
-
-                <div class="mybase">
-                    <h3>MyBase</h3>
-                    <p><strong>Status:</strong> Em Desenvolvimento</p>
-                    <p><strong>Propretário:</strong> Alberto Teca Tomás</p>
-                    <p><strong>Sector:</strong> Tecnologia da Informação</p>
-                    <p>Plataforma de gestão de dados pessoais e profissionais, oferecendo ferramentas para organização, armazenamento seguro e compartilhamento eficiente de informações.</p>
-                </div>
-
-                <div class="agroshre">
-                    <h3>AgroShre</h3>
-                    <p><strong>Status:</strong> Planejado</p>
-                    <p><strong>Propretários:</strong> Manuel Cabanga & Alberto Teca Tomás</p>
-                    <p><strong>Sector:</strong> Agronegócio</p>
-                    <p>Plataforma digital que conecta agricultores, fornecedores e consumidores, facilitando a comercialização de produtos agrícolas e promovendo práticas sustentáveis no agronegócio.</p>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-    <div>
-        <!-- REDES SOCIAIS -->
-        <div id="socialmidia">
-            <h3>Redes Sociais</h3>
-            <div class="social-icons">
-                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
+            <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
         </div>
+    </footer>
 
-        <!-- CONTATO -->
-        <div id="Contato">
-            <h3>Contato</h3>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <p>Gmail:</p>
-                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
-                        tecacapitalinvestimentostci@gmail.com
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <p>Telefone:</p>
-                    <a href="tel:+244923456789">
-                         +244 923 456 789
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <p>Endereço:</p>
-                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
-                </div>
-            </div>
-        </div>
-        
-        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
-    </div>
-</footer>
-    
+    <!-- (B) SNIPPET JS EMBUTIDO -->
+    <script>
+        // Theme Toggle e Persistência (igual ao anterior para consistência)
+        class ThemeManager {
+            constructor() {
+                this.toggleBtn = document.getElementById('theme-toggle');
+                this.html = document.documentElement;
+                this.init();
+            }
+
+            init() {
+                if (!this.toggleBtn) return;
+
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (savedTheme) {
+                    this.setTheme(savedTheme);
+                } else {
+                    this.setTheme(prefersDark ? 'dark' : 'light');
+                }
+
+                this.toggleBtn.addEventListener('click', () => this.toggleTheme());
+                
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                    if (!localStorage.getItem('theme')) {
+                        this.setTheme(e.matches ? 'dark' : 'light');
+                    }
+                });
+            }
+
+            setTheme(theme) {
+                this.html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                
+                if (this.toggleBtn) {
+                    const isDark = theme === 'dark';
+                    this.toggleBtn.setAttribute('aria-pressed', isDark);
+                    
+                    const sunIcon = this.toggleBtn.querySelector('.sun');
+                    const moonIcon = this.toggleBtn.querySelector('.moon');
+                    if (sunIcon) sunIcon.style.display = isDark ? 'none' : 'block';
+                    if (moonIcon) moonIcon.style.display = isDark ? 'block' : 'none';
+                }
+            }
+
+            toggleTheme() {
+                const currentTheme = this.html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                this.setTheme(newTheme);
+            }
+        }
+
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar gerenciador de tema
+            new ThemeManager();
+            
+            // Correção de IDs duplicados (se houver)
+            this.fixDuplicateIds();
+            
+            // Suporte para prefers-reduced-motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (prefersReducedMotion.matches) {
+                document.documentElement.style.setProperty('--animation-duration', '0s');
+            }
+            
+            // Adicionar navegação por teclado melhorada
+            this.enhanceKeyboardNavigation();
+        });
+
+        // Função para melhorar navegação por teclado
+        function enhanceKeyboardNavigation() {
+            const focusableElements = document.querySelectorAll(
+                'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+            );
+            
+            focusableElements.forEach(element => {
+                element.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' && element.tagName !== 'BUTTON' && element.tagName !== 'INPUT') {
+                        e.preventDefault();
+                        element.click();
+                    }
+                });
+            });
+        }
+
+        // Função para corrigir IDs duplicados (preventivo)
+        function fixDuplicateIds() {
+            const allElements = document.querySelectorAll('[id]');
+            const idMap = new Map();
+            
+            allElements.forEach(element => {
+                const id = element.id;
+                if (idMap.has(id)) {
+                    console.warn(`ID duplicado encontrado: ${id}. Considerar renomear.`);
+                } else {
+                    idMap.set(id, element);
+                }
+            });
+        }
+    </script>
 </body>
 </html>

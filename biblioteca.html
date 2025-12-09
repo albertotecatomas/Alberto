@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-AO">
+<html lang="pt-AO" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +7,20 @@
     <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
     <link rel="stylesheet" href="teca.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-</style>
 </head>
 
 <body>
-    <header>
-       <div class="interface"> 
-            
+    <header role="banner">
+       <div class="interface tc-container"> 
             <div class="logo">
-            <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
+                <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
             </div>
 
-            <nav id="navt">
+            <nav id="navt" role="navigation" aria-label="Menu principal">
                 <ul id="lista">
-                    <li class="navitem active"> <a href="index.html">Início</a>
-                    </li>
-                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a>
-                    </li>   
-                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a>
-                    </li>
+                    <li class="navitem active"> <a href="index.html">Início</a></li>
+                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a></li>   
+                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a></li>
                     <li class="simula"> <a href=""> Simuladores ▽</a> 
                         <ul class="sub-lista">
                             <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
@@ -36,566 +31,713 @@
                     </li>
                 </ul>
             </nav>
+            
+            <!-- Botão Toggle Dark/Light -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
+                <svg class="theme-icon sun" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM3 12a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm18 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41L7.05 18.36a1 1 0 0 1-1.41 0zm12.73-12.73a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41l-1.42 1.42a1 1 0 0 1-1.41 0z"/>
+                </svg>
+                <svg class="theme-icon moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </button>
         </div>
     </header>
 
-    <main>
-         <h1 class="hb">Biblioteca do <strong>Saber</strong></h1>
-        <video class="video-biblioteca" src="Video/Estudando em casa.mp4" width="100%" autoplay muted loop></video>
+    <main role="main">
+        <div class="tc-container">
+            <h1 class="hb">Biblioteca do <strong>Saber</strong></h1>
+            <video class="video-biblioteca" src="Video/Estudando em casa.mp4" width="100%" autoplay muted loop></video>
 
-        <section id="artigo-section">
-        <img class="icon-artigo" src="Icon/artigo.png" width="7%"  alt="">
-            <h2>Leias resumos e análises de livros populares</h2>
+            <section id="artigo-section" aria-labelledby="artigo-heading">
+                <img class="icon-artigo" src="Icon/artigo.png" width="7%" alt="Ícone de artigo">
+                <h2 id="artigo-heading">Leias resumos e análises de livros populares</h2>
 
-        <div id="artigos">
+                <div id="artigos" class="tc-row">
+                    <div class="artigo1 tc-col">
+                        <p>Livro: A Psicologia do Dinheiro</p>
+                        <p>Autor: Morgan Housel</p>
+                        <p>Data de Publicação: 2021</p>
+                        <a href="Resumos de Livros em PDF/Padrões de Sucesso e Fracasso na Psicologia do Dinheiro.pdf" target="_blank" class="button">Ler o resumo</a>
+                    </div>
 
-            <div class="artigo1">
-                <p>Livro: A Psicologia do Dinheiro</p>
-                <p>Autor: Morgan Housel</p>
-                <p>Data de Publicação: 2021</p>
-                <a href="Resumos de Livros em PDF/Padrões de Sucesso e Fracasso na Psicologia do Dinheiro.pdf" target="_blank" class="button">Ler o resumo</a>
-            </div>
+                    <div class="artigo2 tc-col">
+                        <p>Livro: Bitcoin – A Moeda Digital</p>
+                        <p>Autor: Fernando Ulrich</p>
+                        <p>Data de Publicação: 2014</p>
+                        <a href="Resumos de Livros em PDF/Bitcoin - Alternativa Tecnológica Contra a Tirania Monetária.pdf" target="_blank" class="button">Ler o resumo</a>
+                    </div>  
 
-            <div class="artigo2">
-                <p>Livro: Bitcoin – A Moeda Digital</p>
-                <p>Autor:  Fernando Ulrich</p>
-                <p>Data de Publicação: 2014</p>
-                <a href="Resumos de Livros em PDF/Bitcoin - Alternativa Tecnológica Contra a Tirania Monetária.pdf" target="_blank" class="button">Ler o resumo</a>
-            </div>  
+                    <div class="artigo3 tc-col">
+                        <p>Livro: As 48 Leis do Poder</p>
+                        <p>Autor: Robert Greene</p>
+                        <p>Data de Publicação: 1998</p>
+                        <a href="Resumos de Livros em PDF/Manual de Gestão Estratégica de Relações Profissionais.pdf" target="_blank" class="button">Ler o resumo</a>
+                    </div>
 
-            <div class="artigo3">
-                <p>Livro:  As 48 Leis do Poder</p>
-                <p>Autor: Robert Greene</p>
-                <p>Data de Publicação: 1998</p>
-                <a href="Resumos de Livros em PDF/Manual de Gestão Estratégica de Relações Profissionais.pdf" target="_blank" class="button">Ler o resumo</a>
-            </div>
+                    <div class="artigo4 tc-col">
+                        <p>Livro: A Riqueza das Nações</p>
+                        <p>Autor: Adam Smith</p>
+                        <p>Data de Publicação: 1776</p>
+                        <a href="Resumos de Livros em PDF/O Valor das Trocas na Era Moderna sob o Olhar de Adam Smith.pdf" target="_blank" class="button">Ler o resumo</a>
+                    </div>
+                </div>
+            </section>
 
-            <div class="artigo4">
-                <p>Livro: A Riqueza das Nações</p>
-                <p>Autor: Adam Smith</p>
-                <p>Data de Publicação: 1776</p>
-                <a href="Resumos de Livros em PDF/O Valor das Trocas na Era Moderna sob o Olhar de Adam Smith.pdf" target="_blank" class="button">Ler o resumo</a>
-            </div>
+            <section id="audio-section" aria-labelledby="audio-heading">
+                <img class="icon-audio" src="Icon/audio 2.png" width="7%" alt="Ícone de áudio">
+                <h2 id="audio-heading">Ouça Resumos em Áudio de Livros</h2>
+
+                <div id="audio" class="tc-row">
+                    <div class="audio1 tc-col">
+                        <p>Livro: A Psicologia do Dinheiro</p>
+                        <p>Autor: Morgan Housel</p>
+                        <audio controls>
+                            <source src="audio/Limpar_fortunas_Comportamento_vence_inteligência_financeira.m4a" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                    <div class="audio2 tc-col">
+                        <p>Livro: Bitcoin – A Moeda Digital</p>
+                        <p>Autor: Fernando Ulrich</p>
+                        <audio controls>
+                            <source src="audio/Bitcoin_Crise_2008_Gasto_Duplo_Blockchain.m4a" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                    <div class="audio3 tc-col">
+                        <p>Livro: Os Segredos da Mente Milionária</p>
+                        <p>Autor: T. Harv Eker</p>
+                        <audio controls>
+                            <source src="audio/Segredos_da_Mente_Milionária_Descodificar_Código_Financeiro.m4a" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </section>
+
+            <section id="video-section" aria-labelledby="video-heading">
+                <img class="icon-video" src="Icon/video.png" width="7%" alt="Ícone de vídeo">
+                <h2 id="video-heading">Vídeos Educativos</h2>
+                <div id="videos" class="tc-row">
+                    <div class="video1 tc-col">
+                        <p>Título: O que é Bitcoin</p>
+                        <p>Autor: IA</p>
+                        <p>Baseado em: Bitcoin – A Moeda Digital</p>
+                        <video controls width="100%">
+                            <source class="video-education" src="Video/O_que_é_a_Bitcoin_.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div class="video2 tc-col">
+                        <p>Título: Destilando As 48 Leis do Poder</p>
+                        <p>Autor: IA</p>
+                        <p>Baseado em: 48 Leis do Poder</p>
+                        <video controls width="100%">
+                            <source class="video-education" src="Video/Destilando__As_48_Leis_do_Poder_.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        </section>
+        <section id="economia-section" aria-labelledby="economia-heading">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <section id="audio-section">
+            <div class="container tc-container">
+                <!-- Seção de Cards Explicativos -->
+                <section class="economic-indicators-intro">
+                    <h2 id="economia-heading">Entenda os Indicadores Econômicos</h2>
+                    <div class="indicators-grid tc-row">
+                        <div class="indicator-card tc-col">
+                            <h3>🏛️ PIB (Produto Interno Bruto)</h3>
+                            <p>Valor total de todos os bens e serviços produzidos no país. Principal indicador do tamanho da economia.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>👤 PIB Per Capita</h3>
+                            <p>PIB dividido pela população. Mostra a riqueza média por pessoa no país.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>💰 Despesa Fiscal</h3>
+                            <p>Total de gastos do governo em saúde, educação, infraestrutura e serviços públicos.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>💱 Câmbio Médio (Kz/USD)</h3>
+                            <p>Valor de 1 dólar americano em kwanza. Mostra a força da moeda nacional.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>💼 Salário Mínimo</h3>
+                            <p>Menor valor que pode ser pago a um trabalhador por mês em milhares de Kz.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>📈 Taxa de Emprego</h3>
+                            <p>Percentual da população em idade ativa que está trabalhando.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>📉 Taxa de Desemprego</h3>
+                            <p>Percentual da população que quer trabalhar mas não encontra emprego.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>📊 Balança Comercial</h3>
+                            <p>Diferença entre exportações e importações. Positivo = superávit, Negativo = déficit.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>🏦 Dívida Externa</h3>
+                            <p>Total que o país deve a credores estrangeiros em mil milhões de USD.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>🌍 Investimento Estrangeiro</h3>
+                            <p>Dinheiro que empresas estrangeiras investem no país em mil milhões de USD.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>💸 Fluxo de Capital</h3>
+                            <p>Entrada e saída de dinheiro do país. Positivo = mais entrada, Negativo = mais saída.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>📊 Taxa de Juros</h3>
+                            <p>Custo do dinheiro. Controlada pelo Banco Central para controlar inflação.</p>
+                        </div>
+                        <div class="indicator-card tc-col">
+                            <h3>📈 Taxa de Inflação</h3>
+                            <p>Aumento geral dos preços. Mede quanto os produtos ficaram mais caros no período.</p>
+                        </div>
+                    </div>
+                </section>
 
-            <img class="icon-audio" src="Icon/audio 2.png" width="7%" alt="icone de audio">
-                <h2>Ouça Resumos em Áudio de Livros</h2>
+                <!-- Controles do Gráfico -->
+                <section class="chart-controls-section">
+                    <h2>📈 Personalize o Gráfico Interativo</h2>
+                    <div class="chart-controls">
+                        <div class="control-group">
+                            <select id="indicatorEco1">
+                                <option value="">-- Selecionar 1º Indicador --</option>
+                                <option value="pib" selected>PIB (Bilhões USD)</option>
+                                <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
+                                <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
+                                <option value="cambio">Câmbio Médio (Kz/USD)</option>
+                                <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
+                                <option value="taxaEmprego">Taxa de Emprego (%)</option>
+                                <option value="taxaDesemprego">Taxa de Desemprego (%)</option>
+                                <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
+                                <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
+                                <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
+                                <option value="fluxoCapital">Fluxo de Capital (Mil Milhões USD)</option>
+                                <option value="taxaJuros">Taxa de Juros (%)</option>
+                                <option value="taxaInflacao">Taxa de Inflação (%)</option>
+                            </select>
+                            
+                            <select id="indicatorEco2">
+                                <option value="">-- Selecionar 2º Indicador --</option>
+                                <option value="pib">PIB (Bilhões USD)</option>
+                                <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
+                                <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
+                                <option value="cambio" selected>Câmbio Médio (Kz/USD)</option>
+                                <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
+                                <option value="taxaEmprego">Taxa de Emprego (%)</option>
+                                <option value="taxaDesemprego">Taxa de Desemprego (%)</option>
+                                <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
+                                <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
+                                <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
+                                <option value="fluxoCapital">Fluxo de Capital (Mil Milhões USD)</option>
+                                <option value="taxaJuros">Taxa de Juros (%)</option>
+                                <option value="taxaInflacao">Taxa de Inflação (%)</option>
+                            </select>
+                            
+                            <select id="indicatorEco3">
+                                <option value="">-- Selecionar 3º Indicador --</option>
+                                <option value="pib">PIB (Bilhões USD)</option>
+                                <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
+                                <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
+                                <option value="cambio">Câmbio Médio (Kz/USD)</option>
+                                <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
+                                <option value="taxaEmprego">Taxa de Emprego (%)</option>
+                                <option value="taxaDesemprego" selected>Taxa de Desemprego (%)</option>
+                                <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
+                                <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
+                                <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
+                                <option value="fluxoCapital">Fluxo de Capital (Mil Milhões USD)</option>
+                                <option value="taxaJuros">Taxa de Juros (%)</option>
+                                <option value="taxaInflacao">Taxa de Inflação (%)</option>
+                            </select>
+                            
+                            <button class="update-chart-btn" onclick="updateEconomicChart()">Atualizar Gráfico</button>
+                        </div>
+                    </div>
+                </section>
 
-            <div id="audio">
-                <div class="audio1">
-                    <p>Livro: A Psicologia do Dinheiro</p>
-                    <p>Autor: Morgan Housel</p>
-                    <audio controls>
-                        <source src="audio/Limpar_fortunas_Comportamento_vence_inteligência_financeira.m4a" type="audio/mpeg">
-                    </audio>
-                </div>
+                <!-- Gráfico Interativo -->
+                <section class="chart-section">
+                    <div class="chart-container">
+                        <div class="chart-wrapper tc-chart-wrap">
+                            <canvas id="economicChart"></canvas>
+                        </div>
+                    </div>
+                </section>
 
-                <div class="audio2">
-                    <p>Livro: Bitcoin – A Moeda Digital</p>
-                    <p>Autor:  Fernando Ulrich</p>
-                    <audio controls>
-                        <source src="audio/Bitcoin_Crise_2008_Gasto_Duplo_Blockchain.m4a" type="audio/mpeg"> 
-                </div>
+                <!-- Tabela de Dados -->
+                <section class="table-section">
+                    <h2>📋 Tabela Completa de Dados Econômicos (2015-2024)</h2>
+                    <div class="table-container tc-overflow">
+                        <table class="economic-table">
+                            <thead>
+                                <tr>
+                                    <th>Ano</th>
+                                    <th>PIB (B USD)</th>
+                                    <th>PIB PC (M USD)</th>
+                                    <th>Desp. Fiscal</th>
+                                    <th>Câmbio</th>
+                                    <th>Salário Mín.</th>
+                                    <th>Emprego (%)</th>
+                                    <th>Desemp. (%)</th>
+                                    <th>Balança Com.</th>
+                                    <th>Dívida Ext.</th>
+                                    <th>Inv. Estrang.</th>
+                                    <th>Fluxo Cap.</th>
+                                    <th>Juros (%)</th>
+                                    <th>Inflação (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="economicTableBody">
+                                <!-- Dados preenchidos pelo JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
 
-                <div class="audio3">
-                    <p>Livro: Os Segredos da Mente Milionária</p>
-                    <p>Autor: T. Harv Eker</p>
-                    <audio controls>
-                        <source src="audio/Segredos_da_Mente_Milionária_Descodificar_Código_Financeiro.m4a" type="audio/mpeg">
-                </div>
-
+                <!-- Análise dos Dados -->
+                <section class="analysis-section">
+                    <h2>🔍 Análise dos Indicadores Econômicos</h2>
+                    <div class="analysis-content">
+                        <div class="analysis-item">
+                            <h4>📈 Volatilidade do PIB e Dependência Petrolífera</h4>
+                            <p>O PIB angolano apresentou flutuações significativas entre 2015-2024, refletindo a forte dependência do petróleo. A queda de 41,7% entre 2015-2016 demonstra o impacto da crise petrolífera, enquanto a recuperação posterior foi gradual mas instável, com nova contração observada em 2023-2024.</p>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <h4>💱 Pressão Cambial e Inflacionária</h4>
+                            <p>O câmbio se depreciou 466,7% no período, passando de 150 para 850 Kz/USD. Esta desvalorização acentuada, combinada com a inflação volátil (picos de 35% em 2016 e 30% em 2024), criou um ambiente macroeconômico desafiador para a população e empresas.</p>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <h4>📊 Desafios Estruturais do Mercado de Trabalho</h4>
+                            <p>A taxa de desemprego apresentou tendência de alta, atingindo 32% em 2024. Isso reflete dificuldades estruturais na geração de empregos formais e a necessidade urgente de diversificação econômica para além do setor petrolífero.</p>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <h4>🏦 Expansão Fiscal e Vulnerabilidade Externa</h4>
+                            <p>A despesa fiscal cresceu 408,6% entre 2015-2024, indicando expansão do Estado. A dívida externa também mostrou aumento significativo, passando de 36,3 para 46,8 mil milhões de USD, sinalizando vulnerabilidade financeira externa.</p>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <h4>🌍 Investimentos e Fluxos de Capital</h4>
+                            <p>O investimento estrangeiro apresentou redução ao longo do período, enquanto os fluxos de capital tornaram-se negativos recentemente, indicando saída de recursos do país. A balança comercial manteve-se superavitária, porém dependente das exportações de petróleo.</p>
+                        </div>
+                        
+                        <div class="analysis-item">
+                            <h4>📊 Política Monetária e Controle de Preços</h4>
+                            <p>O Banco Nacional utilizou a taxa de juros como principal instrumento de controle inflacionário, elevando-a para 19,5% em 2024. Esta política visa conter a inflação, mas também impacta negativamente o crédito e o investimento privado.</p>
+                        </div>
+                    </div>
+                </section>
             </div>
 
-        </section>
+            <script>
+                // Dados econômicos completos
+                const economicData = [
+                    {ano: 2024, pib: 80.4, pibPerCapita: 2.36, despesaFiscal: 17.8, cambio: 850, salarioMinimo: 32.2, taxaEmprego: 60, taxaDesemprego: 32, balancaComercial: 22.6, dividaExterna: 46.8, investimentoEstrangeiro: 9.87, fluxoCapital: -6.02, taxaJuros: 19.5, taxaInflacao: 30},
+                    {ano: 2023, pib: 84.88, pibPerCapita: 2.33, despesaFiscal: 14.9, cambio: 720, salarioMinimo: 32.2, taxaEmprego: null, taxaDesemprego: null, balancaComercial: 21.81, dividaExterna: 49.6, investimentoEstrangeiro: 8.8, fluxoCapital: -4.06, taxaJuros: 17, taxaInflacao: 13},
+                    {ano: 2022, pib: 104.4, pibPerCapita: 2.38, despesaFiscal: 11.9, cambio: 440, salarioMinimo: 32.2, taxaEmprego: 62, taxaDesemprego: 30.5, balancaComercial: 32.76, dividaExterna: 52.1, investimentoEstrangeiro: 7.01, fluxoCapital: -7.85, taxaJuros: 20, taxaInflacao: 27},
+                    {ano: 2021, pib: 66.51, pibPerCapita: 2.39, despesaFiscal: 9.21, cambio: 580, salarioMinimo: 21.5, taxaEmprego: 62.5, taxaDesemprego: 31, balancaComercial: 21.79, dividaExterna: 52.3, investimentoEstrangeiro: 6.53, fluxoCapital: -6.15, taxaJuros: 17.62, taxaInflacao: 25},
+                    {ano: 2020, pib: 48.5, pibPerCapita: 2.43, despesaFiscal: 7.67, cambio: 480, salarioMinimo: 21.5, taxaEmprego: 61, taxaDesemprego: 32, balancaComercial: 11.39, dividaExterna: 50.1, investimentoEstrangeiro: 6.31, fluxoCapital: -2.93, taxaJuros: 15.5, taxaInflacao: 22},
+                    {ano: 2019, pib: 70.9, pibPerCapita: 2.66, despesaFiscal: 5.98, cambio: 420, salarioMinimo: 21.5, taxaEmprego: 60, taxaDesemprego: 29, balancaComercial: 20.59, dividaExterna: 49.5, investimentoEstrangeiro: 8.09, fluxoCapital: -3.5, taxaJuros: 15.5, taxaInflacao: 17},
+                    {ano: 2018, pib: 79.44, pibPerCapita: 2.78, despesaFiscal: 5.21, cambio: 250, salarioMinimo: 16.5, taxaEmprego: 61, taxaDesemprego: 28.8, balancaComercial: 24.9, dividaExterna: 54, investimentoEstrangeiro: 7.5, fluxoCapital: -7.43, taxaJuros: 17.5, taxaInflacao: 19.8},
+                    {ano: 2017, pib: 73.69, pibPerCapita: 2.91, despesaFiscal: 4.81, cambio: 180, salarioMinimo: 16.5, taxaEmprego: null, taxaDesemprego: 20, balancaComercial: 20.15, dividaExterna: 43.4, investimentoEstrangeiro: 6.1, fluxoCapital: -4.15, taxaJuros: 16, taxaInflacao: 29},
+                    {ano: 2016, pib: 52.76, pibPerCapita: 3.02, despesaFiscal: 4.3, cambio: 160, salarioMinimo: 15, taxaEmprego: null, taxaDesemprego: 19, balancaComercial: 14.54, dividaExterna: 44.4, investimentoEstrangeiro: 11.1, fluxoCapital: 5.29, taxaJuros: 14.5, taxaInflacao: 35},
+                    {ano: 2015, pib: 90.5, pibPerCapita: 3.21, despesaFiscal: 3.5, cambio: 150, salarioMinimo: 15, taxaEmprego: null, taxaDesemprego: null, balancaComercial: 12.48, dividaExterna: 36.3, investimentoEstrangeiro: 16.2, fluxoCapital: 8.45, taxaJuros: 9.93, taxaInflacao: 10}
+                ].sort((a, b) => a.ano - b.ano);
 
-        <section id="video-section">
-            <img class="icon-video" src="Icon/video.png" width="7%" alt="">
-            <h2>Vídeos Educativos</h2>
-            <div id="videos">
-                <div class="video1">
-                    <p>Título: O que é Bitcoin</p>
-                    <p>Autor: IA</p>
-                    <p>Baseado em: Bitcoin – A Moeda Digital</p>
-                    <video controls width="100%">
-                        <source class="video-education" src="Video/O_que_é_a_Bitcoin_.mp4" type="video/mp4">
-                    </video>
-                </div>
+                // Configurações completas dos indicadores
+                const economicIndicatorConfigs = {
+                    pib: { label: 'PIB (Bilhões USD)', color: 'rgb(6, 64, 167)' },
+                    pibPerCapita: { label: 'PIB Per Capita (Mil USD)', color: 'rgb(54, 162, 235)' },
+                    despesaFiscal: { label: 'Despesa Fiscal (Mil Bilhões Kz)', color: 'rgb(255, 99, 132)' },
+                    cambio: { label: 'Câmbio Médio (Kz/USD)', color: 'rgb(75, 192, 192)' },
+                    salarioMinimo: { label: 'Salário Mínimo (Mil Kz)', color: 'rgb(255, 159, 64)' },
+                    taxaEmprego: { label: 'Taxa de Emprego (%)', color: 'rgb(153, 102, 255)' },
+                    taxaDesemprego: { label: 'Taxa de Desemprego (%)', color: 'rgb(201, 203, 207)' },
+                    balancaComercial: { label: 'Balança Comercial (Mil Milhões USD)', color: 'rgb(40, 167, 69)' },
+                    dividaExterna: { label: 'Dívida Externa (Mil Milhões USD)', color: 'rgb(220, 53, 69)' },
+                    investimentoEstrangeiro: { label: 'Investimento Estrangeiro (Mil Milhões USD)', color: 'rgb(253, 126, 20)' },
+                    fluxoCapital: { label: 'Fluxo de Capital (Mil Milhões USD)', color: 'rgb(32, 201, 151)' },
+                    taxaJuros: { label: 'Taxa de Juros (%)', color: 'rgb(111, 66, 193)' },
+                    taxaInflacao: { label: 'Taxa de Inflação (%)', color: 'rgb(214, 174, 100)' }
+                };
 
-                <div class="video2">
-                    <p>Título: Destilando As 48 Leis do Poder</p>
-                    <p>Autor:  IA</p>
-                    <p>Baseado em: 48 Leis do Poder</p>
-                    <video controls width="100%">
-                        <source class="video-education" src="Video/Destilando__As_48_Leis_do_Poder_.mp4" type="video/mp4">
-                    </video>
-                </div>
+                let currentEconomicChart = null;
 
-        </section>
-
-        <section id="economia-section">
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <div class="container">
-        <!-- Seção de Cards Explicativos -->
-        <section class="economic-indicators-intro">
-            <h2>Entenda os Indicadores Econômicos</h2>
-            <div class="indicators-grid">
-                <div class="indicator-card">
-                    <h3>🏛️ PIB (Produto Interno Bruto)</h3>
-                    <p>Valor total de todos os bens e serviços produzidos no país. Principal indicador do tamanho da economia.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>👤 PIB Per Capita</h3>
-                    <p>PIB dividido pela população. Mostra a riqueza média por pessoa no país.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>💰 Despesa Fiscal</h3>
-                    <p>Total de gastos do governo em saúde, educação, infraestrutura e serviços públicos.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>💱 Câmbio Médio (Kz/USD)</h3>
-                    <p>Valor de 1 dólar americano em kwanza. Mostra a força da moeda nacional.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>💼 Salário Mínimo</h3>
-                    <p>Menor valor que pode ser pago a um trabalhador por mês em milhares de Kz.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>📈 Taxa de Emprego</h3>
-                    <p>Percentual da população em idade ativa que está trabalhando.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>📉 Taxa de Desemprego</h3>
-                    <p>Percentual da população que quer trabalhar mas não encontra emprego.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>📊 Balança Comercial</h3>
-                    <p>Diferença entre exportações e importações. Positivo = superávit, Negativo = déficit.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>🏦 Dívida Externa</h3>
-                    <p>Total que o país deve a credores estrangeiros em mil milhões de USD.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>🌍 Investimento Estrangeiro</h3>
-                    <p>Dinheiro que empresas estrangeiras investem no país em mil milhões de USD.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>💸 Fluxo de Capital</h3>
-                    <p>Entrada e saída de dinheiro do país. Positivo = mais entrada, Negativo = mais saída.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>📊 Taxa de Juros</h3>
-                    <p>Custo do dinheiro. Controlada pelo Banco Central para controlar inflação.</p>
-                </div>
-                <div class="indicator-card">
-                    <h3>📈 Taxa de Inflação</h3>
-                    <p>Aumento geral dos preços. Mede quanto os produtos ficaram mais caros no período.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Controles do Gráfico -->
-        <section class="chart-controls-section">
-            <h2>📈 Personalize o Gráfico Interativo</h2>
-            <div class="chart-controls">
-                <div class="control-group">
-                    <select id="indicatorEco1">
-                        <option value="">-- Selecionar 1º Indicador --</option>
-                        <option value="pib" selected>PIB (Bilhões USD)</option>
-                        <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
-                        <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
-                        <option value="cambio">Câmbio Médio (Kz/USD)</option>
-                        <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
-                        <option value="taxaEmprego">Taxa de Emprego (%)</option>
-                        <option value="taxaDesemprego">Taxa de Desemprego (%)</option>
-                        <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
-                        <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
-                        <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
-                        <option value="fluxoCapital">Fluxo de Capital (Mil Milhões USD)</option>
-                        <option value="taxaJuros">Taxa de Juros (%)</option>
-                        <option value="taxaInflacao">Taxa de Inflação (%)</option>
-                    </select>
+                // Preencher tabela com dados econômicos
+                function populateEconomicTable() {
+                    const tbody = document.getElementById('economicTableBody');
+                    if (!tbody) {
+                        console.error('Elemento economicTableBody não encontrado!');
+                        return;
+                    }
                     
-                    <select id="indicatorEco2">
-                        <option value="">-- Selecionar 2º Indicador --</option>
-                        <option value="pib">PIB (Bilhões USD)</option>
-                        <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
-                        <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
-                        <option value="cambio" selected>Câmbio Médio (Kz/USD)</option>
-                        <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
-                        <option value="taxaEmprego">Taxa de Emprego (%)</option>
-                        <option value="taxaDesemprego">Taxa de Desemprego (%)</option>
-                        <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
-                        <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
-                        <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
-                        <option value="fluxoCapital">Fluxo de Capital (Mil Milhões USD)</option>
-                        <option value="taxaJuros">Taxa de Juros (%)</option>
-                        <option value="taxaInflacao">Taxa de Inflação (%)</option>
-                    </select>
-                    
-                    <select id="indicatorEco3">
-                        <option value="">-- Selecionar 3º Indicador --</option>
-                        <option value="pib">PIB (Bilhões USD)</option>
-                        <option value="pibPerCapita">PIB Per Capita (Mil USD)</option>
-                        <option value="despesaFiscal">Despesa Fiscal (Mil Bilhões Kz)</option>
-                        <option value="cambio">Câmbio Médio (Kz/USD)</option>
-                        <option value="salarioMinimo">Salário Mínimo (Mil Kz)</option>
-                        <option value="taxaEmprego">Taxa de Emprego (%)</option>
-                        <option value="taxaDesemprego" selected>Taxa de Desemprego (%)</option>
-                        <option value="balancaComercial">Balança Comercial (Mil Milhões USD)</option>
-                        <option value="dividaExterna">Dívida Externa (Mil Milhões USD)</option>
-                        <option value="investimentoEstrangeiro">Investimento Estrangeiro (Mil Milhões USD)</option>
-                        <option value="fluxoCapital">Fluxo de Capital (Mil Milhões USD)</option>
-                        <option value="taxaJuros">Taxa de Juros (%)</option>
-                        <option value="taxaInflacao">Taxa de Inflação (%)</option>
-                    </select>
-                    
-                    <button class="update-chart-btn" onclick="updateEconomicChart()">Atualizar Gráfico</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gráfico Interativo -->
-        <section class="chart-section">
-            <div class="chart-container">
-                <div class="chart-wrapper">
-                    <canvas id="economicChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tabela de Dados -->
-        <section class="table-section">
-            <h2>📋 Tabela Completa de Dados Econômicos (2015-2024)</h2>
-            <div class="table-container">
-                <table class="economic-table">
-                    <thead>
+                    tbody.innerHTML = economicData.map(row => `
                         <tr>
-                            <th>Ano</th>
-                            <th>PIB (B USD)</th>
-                            <th>PIB PC (M USD)</th>
-                            <th>Desp. Fiscal</th>
-                            <th>Câmbio</th>
-                            <th>Salário Mín.</th>
-                            <th>Emprego (%)</th>
-                            <th>Desemp. (%)</th>
-                            <th>Balança Com.</th>
-                            <th>Dívida Ext.</th>
-                            <th>Inv. Estrang.</th>
-                            <th>Fluxo Cap.</th>
-                            <th>Juros (%)</th>
-                            <th>Inflação (%)</th>
+                            <td><strong>${row.ano}</strong></td>
+                            <td>${row.pib}</td>
+                            <td>${row.pibPerCapita}</td>
+                            <td>${row.despesaFiscal}</td>
+                            <td>${row.cambio}</td>
+                            <td>${row.salarioMinimo}</td>
+                            <td>${row.taxaEmprego ?? 'N/D'}</td>
+                            <td>${row.taxaDesemprego ?? 'N/D'}</td>
+                            <td>${row.balancaComercial}</td>
+                            <td>${row.dividaExterna}</td>
+                            <td>${row.investimentoEstrangeiro}</td>
+                            <td>${row.fluxoCapital}</td>
+                            <td>${row.taxaJuros}</td>
+                            <td>${row.taxaInflacao}</td>
                         </tr>
-                    </thead>
-                    <tbody id="economicTableBody">
-                        <!-- Dados preenchidos pelo JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Análise dos Dados -->
-        <section class="analysis-section">
-            <h2>🔍 Análise dos Indicadores Econômicos</h2>
-            <div class="analysis-content">
-                <div class="analysis-item">
-                    <h4>📈 Volatilidade do PIB e Dependência Petrolífera</h4>
-                    <p>O PIB angolano apresentou flutuações significativas entre 2015-2024, refletindo a forte dependência do petróleo. A queda de 41,7% entre 2015-2016 demonstra o impacto da crise petrolífera, enquanto a recuperação posterior foi gradual mas instável, com nova contração observada em 2023-2024.</p>
-                </div>
-                
-                <div class="analysis-item">
-                    <h4>💱 Pressão Cambial e Inflacionária</h4>
-                    <p>O câmbio se depreciou 466,7% no período, passando de 150 para 850 Kz/USD. Esta desvalorização acentuada, combinada com a inflação volátil (picos de 35% em 2016 e 30% em 2024), criou um ambiente macroeconômico desafiador para a população e empresas.</p>
-                </div>
-                
-                <div class="analysis-item">
-                    <h4>📊 Desafios Estruturais do Mercado de Trabalho</h4>
-                    <p>A taxa de desemprego apresentou tendência de alta, atingindo 32% em 2024. Isso reflete dificuldades estruturais na geração de empregos formais e a necessidade urgente de diversificação econômica para além do setor petrolífero.</p>
-                </div>
-                
-                <div class="analysis-item">
-                    <h4>🏦 Expansão Fiscal e Vulnerabilidade Externa</h4>
-                    <p>A despesa fiscal cresceu 408,6% entre 2015-2024, indicando expansão do Estado. A dívida externa também mostrou aumento significativo, passando de 36,3 para 46,8 mil milhões de USD, sinalizando vulnerabilidade financeira externa.</p>
-                </div>
-                
-                <div class="analysis-item">
-                    <h4>🌍 Investimentos e Fluxos de Capital</h4>
-                    <p>O investimento estrangeiro apresentou redução ao longo do período, enquanto os fluxos de capital tornaram-se negativos recentemente, indicando saída de recursos do país. A balança comercial manteve-se superavitária, porém dependente das exportações de petróleo.</p>
-                </div>
-                
-                <div class="analysis-item">
-                    <h4>📊 Política Monetária e Controle de Preços</h4>
-                    <p>O Banco Nacional utilizou a taxa de juros como principal instrumento de controle inflacionário, elevando-a para 19,5% em 2024. Esta política visa conter a inflação, mas também impacta negativamente o crédito e o investimento privado.</p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        // Dados econômicos completos
-        const economicData = [
-            {ano: 2024, pib: 80.4, pibPerCapita: 2.36, despesaFiscal: 17.8, cambio: 850, salarioMinimo: 32.2, taxaEmprego: 60, taxaDesemprego: 32, balancaComercial: 22.6, dividaExterna: 46.8, investimentoEstrangeiro: 9.87, fluxoCapital: -6.02, taxaJuros: 19.5, taxaInflacao: 30},
-            {ano: 2023, pib: 84.88, pibPerCapita: 2.33, despesaFiscal: 14.9, cambio: 720, salarioMinimo: 32.2, taxaEmprego: null, taxaDesemprego: null, balancaComercial: 21.81, dividaExterna: 49.6, investimentoEstrangeiro: 8.8, fluxoCapital: -4.06, taxaJuros: 17, taxaInflacao: 13},
-            {ano: 2022, pib: 104.4, pibPerCapita: 2.38, despesaFiscal: 11.9, cambio: 440, salarioMinimo: 32.2, taxaEmprego: 62, taxaDesemprego: 30.5, balancaComercial: 32.76, dividaExterna: 52.1, investimentoEstrangeiro: 7.01, fluxoCapital: -7.85, taxaJuros: 20, taxaInflacao: 27},
-            {ano: 2021, pib: 66.51, pibPerCapita: 2.39, despesaFiscal: 9.21, cambio: 580, salarioMinimo: 21.5, taxaEmprego: 62.5, taxaDesemprego: 31, balancaComercial: 21.79, dividaExterna: 52.3, investimentoEstrangeiro: 6.53, fluxoCapital: -6.15, taxaJuros: 17.62, taxaInflacao: 25},
-            {ano: 2020, pib: 48.5, pibPerCapita: 2.43, despesaFiscal: 7.67, cambio: 480, salarioMinimo: 21.5, taxaEmprego: 61, taxaDesemprego: 32, balancaComercial: 11.39, dividaExterna: 50.1, investimentoEstrangeiro: 6.31, fluxoCapital: -2.93, taxaJuros: 15.5, taxaInflacao: 22},
-            {ano: 2019, pib: 70.9, pibPerCapita: 2.66, despesaFiscal: 5.98, cambio: 420, salarioMinimo: 21.5, taxaEmprego: 60, taxaDesemprego: 29, balancaComercial: 20.59, dividaExterna: 49.5, investimentoEstrangeiro: 8.09, fluxoCapital: -3.5, taxaJuros: 15.5, taxaInflacao: 17},
-            {ano: 2018, pib: 79.44, pibPerCapita: 2.78, despesaFiscal: 5.21, cambio: 250, salarioMinimo: 16.5, taxaEmprego: 61, taxaDesemprego: 28.8, balancaComercial: 24.9, dividaExterna: 54, investimentoEstrangeiro: 7.5, fluxoCapital: -7.43, taxaJuros: 17.5, taxaInflacao: 19.8},
-            {ano: 2017, pib: 73.69, pibPerCapita: 2.91, despesaFiscal: 4.81, cambio: 180, salarioMinimo: 16.5, taxaEmprego: null, taxaDesemprego: 20, balancaComercial: 20.15, dividaExterna: 43.4, investimentoEstrangeiro: 6.1, fluxoCapital: -4.15, taxaJuros: 16, taxaInflacao: 29},
-            {ano: 2016, pib: 52.76, pibPerCapita: 3.02, despesaFiscal: 4.3, cambio: 160, salarioMinimo: 15, taxaEmprego: null, taxaDesemprego: 19, balancaComercial: 14.54, dividaExterna: 44.4, investimentoEstrangeiro: 11.1, fluxoCapital: 5.29, taxaJuros: 14.5, taxaInflacao: 35},
-            {ano: 2015, pib: 90.5, pibPerCapita: 3.21, despesaFiscal: 3.5, cambio: 150, salarioMinimo: 15, taxaEmprego: null, taxaDesemprego: null, balancaComercial: 12.48, dividaExterna: 36.3, investimentoEstrangeiro: 16.2, fluxoCapital: 8.45, taxaJuros: 9.93, taxaInflacao: 10}
-        ].sort((a, b) => a.ano - b.ano);
-
-        // Configurações completas dos indicadores
-        const economicIndicatorConfigs = {
-            pib: { label: 'PIB (Bilhões USD)', color: 'rgb(6, 64, 167)' },
-            pibPerCapita: { label: 'PIB Per Capita (Mil USD)', color: 'rgb(54, 162, 235)' },
-            despesaFiscal: { label: 'Despesa Fiscal (Mil Bilhões Kz)', color: 'rgb(255, 99, 132)' },
-            cambio: { label: 'Câmbio Médio (Kz/USD)', color: 'rgb(75, 192, 192)' },
-            salarioMinimo: { label: 'Salário Mínimo (Mil Kz)', color: 'rgb(255, 159, 64)' },
-            taxaEmprego: { label: 'Taxa de Emprego (%)', color: 'rgb(153, 102, 255)' },
-            taxaDesemprego: { label: 'Taxa de Desemprego (%)', color: 'rgb(201, 203, 207)' },
-            balancaComercial: { label: 'Balança Comercial (Mil Milhões USD)', color: 'rgb(40, 167, 69)' },
-            dividaExterna: { label: 'Dívida Externa (Mil Milhões USD)', color: 'rgb(220, 53, 69)' },
-            investimentoEstrangeiro: { label: 'Investimento Estrangeiro (Mil Milhões USD)', color: 'rgb(253, 126, 20)' },
-            fluxoCapital: { label: 'Fluxo de Capital (Mil Milhões USD)', color: 'rgb(32, 201, 151)' },
-            taxaJuros: { label: 'Taxa de Juros (%)', color: 'rgb(111, 66, 193)' },
-            taxaInflacao: { label: 'Taxa de Inflação (%)', color: 'rgb(214, 174, 100)' }
-        };
-
-        let currentEconomicChart = null;
-
-        // Preencher tabela com dados econômicos
-        function populateEconomicTable() {
-            const tbody = document.getElementById('economicTableBody');
-            if (!tbody) {
-                console.error('Elemento economicTableBody não encontrado!');
-                return;
-            }
-            
-            tbody.innerHTML = economicData.map(row => `
-                <tr>
-                    <td><strong>${row.ano}</strong></td>
-                    <td>${row.pib}</td>
-                    <td>${row.pibPerCapita}</td>
-                    <td>${row.despesaFiscal}</td>
-                    <td>${row.cambio}</td>
-                    <td>${row.salarioMinimo}</td>
-                    <td>${row.taxaEmprego ?? 'N/D'}</td>
-                    <td>${row.taxaDesemprego ?? 'N/D'}</td>
-                    <td>${row.balancaComercial}</td>
-                    <td>${row.dividaExterna}</td>
-                    <td>${row.investimentoEstrangeiro}</td>
-                    <td>${row.fluxoCapital}</td>
-                    <td>${row.taxaJuros}</td>
-                    <td>${row.taxaInflacao}</td>
-                </tr>
-            `).join('');
-        }
-
-        // Atualizar gráfico econômico
-        function updateEconomicChart() {
-            const canvas = document.getElementById('economicChart');
-            if (!canvas) {
-                console.error('Canvas economicChart não encontrado!');
-                return;
-            }
-            
-            const ctx = canvas.getContext('2d');
-            const anos = economicData.map(d => d.ano);
-            
-            const indicators = [
-                document.getElementById('indicatorEco1')?.value,
-                document.getElementById('indicatorEco2')?.value,
-                document.getElementById('indicatorEco3')?.value
-            ].filter(ind => ind && ind !== '');
-
-            if (indicators.length === 0) {
-                alert('Selecione pelo menos um indicador!');
-                return;
-            }
-
-            // Destruir gráfico anterior se existir
-            if (currentEconomicChart) {
-                currentEconomicChart.destroy();
-            }
-
-            // Criar datasets para o gráfico
-            const datasets = indicators.map((indicator, index) => {
-                const config = economicIndicatorConfigs[indicator];
-                if (!config) {
-                    console.error(`Configuração não encontrada para o indicador: ${indicator}`);
-                    return null;
+                    `).join('');
                 }
 
-                return {
-                    label: config.label,
-                    data: economicData.map(d => d[indicator]),
-                    borderColor: config.color,
-                    backgroundColor: config.color.replace('rgb', 'rgba').replace(')', ', 0.1)'),
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: config.color,
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointRadius: 6,
-                    pointHoverRadius: 8
-                };
-            }).filter(dataset => dataset !== null);
+                // Atualizar gráfico econômico
+                function updateEconomicChart() {
+                    const canvas = document.getElementById('economicChart');
+                    if (!canvas) {
+                        console.error('Canvas economicChart não encontrado!');
+                        return;
+                    }
+                    
+                    const ctx = canvas.getContext('2d');
+                    const anos = economicData.map(d => d.ano);
+                    
+                    const indicators = [
+                        document.getElementById('indicatorEco1')?.value,
+                        document.getElementById('indicatorEco2')?.value,
+                        document.getElementById('indicatorEco3')?.value
+                    ].filter(ind => ind && ind !== '');
 
-            if (datasets.length === 0) {
-                console.error('Nenhum dataset válido foi criado!');
-                return;
+                    if (indicators.length === 0) {
+                        alert('Selecione pelo menos um indicador!');
+                        return;
+                    }
+
+                    // Destruir gráfico anterior se existir
+                    if (currentEconomicChart) {
+                        currentEconomicChart.destroy();
+                    }
+
+                    // Criar datasets para o gráfico
+                    const datasets = indicators.map((indicator, index) => {
+                        const config = economicIndicatorConfigs[indicator];
+                        if (!config) {
+                            console.error(`Configuração não encontrada para o indicador: ${indicator}`);
+                            return null;
+                        }
+
+                        return {
+                            label: config.label,
+                            data: economicData.map(d => d[indicator]),
+                            borderColor: config.color,
+                            backgroundColor: config.color.replace('rgb', 'rgba').replace(')', ', 0.1)'),
+                            borderWidth: 3,
+                            tension: 0.4,
+                            fill: true,
+                            pointBackgroundColor: config.color,
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        };
+                    }).filter(dataset => dataset !== null);
+
+                    if (datasets.length === 0) {
+                        console.error('Nenhum dataset válido foi criado!');
+                        return;
+                    }
+
+                    // Criar o gráfico
+                    try {
+                        currentEconomicChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: anos,
+                                datasets: datasets
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { 
+                                        position: 'top',
+                                        labels: { 
+                                            color: '#fff', 
+                                            font: { size: 12 },
+                                            padding: 15
+                                        }
+                                    },
+                                    title: { 
+                                        display: true, 
+                                        text: 'Evolução dos Indicadores Econômicos de Angola (2015-2024)',
+                                        color: '#d6ae64',
+                                        font: { size: 16, weight: 'bold' },
+                                        padding: 20
+                                    },
+                                    tooltip: {
+                                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                        titleColor: '#d6ae64',
+                                        bodyColor: '#fff',
+                                        borderColor: '#d6ae64',
+                                        borderWidth: 1
+                                    }
+                                },
+                                scales: {
+                                    x: { 
+                                        grid: { 
+                                            color: 'rgba(255, 255, 255, 0.1)',
+                                            drawBorder: false
+                                        },
+                                        ticks: { 
+                                            color: '#fff',
+                                            font: { size: 11 }
+                                        }
+                                    },
+                                    y: { 
+                                        grid: { 
+                                            color: 'rgba(255, 255, 255, 0.1)',
+                                            drawBorder: false
+                                        },
+                                        ticks: { 
+                                            color: '#fff',
+                                            font: { size: 11 }
+                                        },
+                                        beginAtZero: false
+                                    }
+                                },
+                                interaction: {
+                                    intersect: false,
+                                    mode: 'index'
+                                },
+                                animation: {
+                                    duration: 1000,
+                                    easing: 'easeOutQuart'
+                                }
+                            }
+                        });
+                    } catch (error) {
+                        console.error('Erro ao criar gráfico:', error);
+                        alert('Erro ao criar gráfico. Verifique o console para mais detalhes.');
+                    }
+                }
+
+                // Inicializar quando o DOM estiver carregado
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log('DOM carregado, inicializando gráfico econômico...');
+                    
+                    // Aguardar um pouco para garantir que tudo esteja carregado
+                    setTimeout(() => {
+                        populateEconomicTable();
+                        updateEconomicChart();
+                    }, 100);
+                });
+
+                // Exportar funções para escopo global
+                window.updateEconomicChart = updateEconomicChart;
+                window.populateEconomicTable = populateEconomicTable;
+            </script>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="tc-container">
+            <!-- REDES SOCIAIS -->
+            <div id="socialmidia" class="tc-col">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@tecacapital" target="_blank" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CONTATO -->
+            <div id="Contato" class="tc-col">
+                <h3>Contato</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <p>Gmail:</p>
+                        <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                            tecacapitalinvestimentostci@gmail.com
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Telefone:</p>
+                        <a href="tel:+244923456789">
+                            +244 923 456 789
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Endereço:</p>
+                        <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- (B) SNIPPET JS EMBUTIDO -->
+    <script>
+        // Theme Toggle e Persistência
+        class ThemeManager {
+            constructor() {
+                this.toggleBtn = document.getElementById('theme-toggle');
+                this.html = document.documentElement;
+                this.init();
             }
 
-            // Criar o gráfico
-            try {
-                currentEconomicChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: anos,
-                        datasets: datasets
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { 
-                                position: 'top',
-                                labels: { 
-                                    color: '#fff', 
-                                    font: { size: 12 },
-                                    padding: 15
-                                }
-                            },
-                            title: { 
-                                display: true, 
-                                text: 'Evolução dos Indicadores Econômicos de Angola (2015-2024)',
-                                color: '#d6ae64',
-                                font: { size: 16, weight: 'bold' },
-                                padding: 20
-                            },
-                            tooltip: {
-                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                                titleColor: '#d6ae64',
-                                bodyColor: '#fff',
-                                borderColor: '#d6ae64',
-                                borderWidth: 1
-                            }
-                        },
-                        scales: {
-                            x: { 
-                                grid: { 
-                                    color: 'rgba(255, 255, 255, 0.1)',
-                                    drawBorder: false
-                                },
-                                ticks: { 
-                                    color: '#fff',
-                                    font: { size: 11 }
-                                }
-                            },
-                            y: { 
-                                grid: { 
-                                    color: 'rgba(255, 255, 255, 0.1)',
-                                    drawBorder: false
-                                },
-                                ticks: { 
-                                    color: '#fff',
-                                    font: { size: 11 }
-                                },
-                                beginAtZero: false
-                            }
-                        },
-                        interaction: {
-                            intersect: false,
-                            mode: 'index'
-                        },
-                        animation: {
-                            duration: 1000,
-                            easing: 'easeOutQuart'
-                        }
+            init() {
+                if (!this.toggleBtn) return;
+
+                // Carregar tema salvo ou detectar preferência do sistema
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                
+                if (savedTheme) {
+                    this.setTheme(savedTheme);
+                } else {
+                    this.setTheme(prefersDark ? 'dark' : 'light');
+                }
+
+                // Event listeners
+                this.toggleBtn.addEventListener('click', () => this.toggleTheme());
+                
+                // Observar mudanças no sistema
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                    if (!localStorage.getItem('theme')) {
+                        this.setTheme(e.matches ? 'dark' : 'light');
                     }
                 });
-            } catch (error) {
-                console.error('Erro ao criar gráfico:', error);
-                alert('Erro ao criar gráfico. Verifique o console para mais detalhes.');
+            }
+
+            setTheme(theme) {
+                this.html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                
+                // Atualizar botão
+                if (this.toggleBtn) {
+                    const isDark = theme === 'dark';
+                    this.toggleBtn.setAttribute('aria-pressed', isDark);
+                    
+                    // Alternar ícones
+                    const sunIcon = this.toggleBtn.querySelector('.sun');
+                    const moonIcon = this.toggleBtn.querySelector('.moon');
+                    if (sunIcon) sunIcon.style.display = isDark ? 'none' : 'block';
+                    if (moonIcon) moonIcon.style.display = isDark ? 'block' : 'none';
+                }
+                
+                // Forçar redesenho do gráfico se existir
+                this.updateChartTheme();
+            }
+
+            toggleTheme() {
+                const currentTheme = this.html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                this.setTheme(newTheme);
+            }
+
+            updateChartTheme() {
+                // Se houver gráfico Chart.js, atualizar cores
+                if (window.currentEconomicChart && window.currentEconomicChart.options) {
+                    const isDark = this.html.getAttribute('data-theme') === 'dark';
+                    const textColor = isDark ? '#fff' : '#000';
+                    const gridColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                    
+                    window.currentEconomicChart.options.scales.x.ticks.color = textColor;
+                    window.currentEconomicChart.options.scales.x.grid.color = gridColor;
+                    window.currentEconomicChart.options.scales.y.ticks.color = textColor;
+                    window.currentEconomicChart.options.scales.y.grid.color = gridColor;
+                    window.currentEconomicChart.options.plugins.legend.labels.color = textColor;
+                    
+                    window.currentEconomicChart.update('none');
+                }
             }
         }
 
-        // Inicializar quando o DOM estiver carregado
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM carregado, inicializando gráfico econômico...');
+        // Responsividade para Gráficos
+        class ChartResizer {
+            constructor() {
+                this.charts = [];
+                this.init();
+            }
+
+            init() {
+                // Observar redimensionamento da janela
+                let resizeTimeout;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => this.handleResize(), 250);
+                });
+
+                // Usar ResizeObserver se disponível
+                if ('ResizeObserver' in window) {
+                    this.observer = new ResizeObserver(entries => {
+                        entries.forEach(entry => {
+                            if (entry.target.classList.contains('tc-chart-wrap')) {
+                                this.resizeChart();
+                            }
+                        });
+                    });
+
+                    // Observar wrappers de gráficos
+                    document.querySelectorAll('.tc-chart-wrap').forEach(wrapper => {
+                        this.observer.observe(wrapper);
+                    });
+                }
+            }
+
+            registerChart(chart) {
+                this.charts.push(chart);
+            }
+
+            handleResize() {
+                this.resizeChart();
+            }
+
+            resizeChart() {
+                // Redimensionar gráfico Chart.js se existir
+                if (window.currentEconomicChart) {
+                    window.currentEconomicChart.resize();
+                }
+            }
+        }
+
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar gerenciador de tema
+            new ThemeManager();
             
-            // Aguardar um pouco para garantir que tudo esteja carregado
-            setTimeout(() => {
-                populateEconomicTable();
-                updateEconomicChart();
-            }, 100);
+            // Inicializar redimensionador de gráficos
+            window.chartResizer = new ChartResizer();
+            
+            // Adicionar suporte para prefers-reduced-motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (prefersReducedMotion.matches) {
+                document.documentElement.style.setProperty('--animation-duration', '0s');
+            }
         });
-
-        // Exportar funções para escopo global
-        window.updateEconomicChart = updateEconomicChart;
-        window.populateEconomicTable = populateEconomicTable;
     </script>
-
-        </section>
-
-    </main>
-
-    <footer>
-    <div>
-        <!-- REDES SOCIAIS -->
-        <div id="socialmidia">
-            <h3>Redes Sociais</h3>
-            <div class="social-icons">
-                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- CONTATO -->
-        <div id="Contato">
-            <h3>Contato</h3>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <p>Gmail:</p>
-                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
-                        tecacapitalinvestimentostci@gmail.com
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <p>Telefone:</p>
-                    <a href="tel:+244923456789">
-                    +244 923 456 789
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <p>Endereço:</p>
-                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
-                </div>
-            </div>
-        </div>
-        
-        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
-    </div>
-</footer>
-    
 </body>
 </html>
