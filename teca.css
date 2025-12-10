@@ -1462,7 +1462,7 @@ APÊNDICE: VARIÁVEIS, THEME LIGHT, RESPONSIVIDADE & AJUSTES
     --tc-accent: rgb(214, 174, 100); /* O Dourado Original (DESTAQUE) */
     --tc-shadow-color: rgba(214, 174, 100, 0.425);
     --tc-card-bg-dark: rgba(255, 254, 254, 0.041); /* Fundo dos cards no tema Dark */
-    --tc-card-bg-light-contrast: #1a1a1a; /* Fundo escuro para cards no tema light (regra absoluta) */
+    --tc-card-bg-light-contrast: #faf9f91a; /* Fundo escuro para cards no tema light (regra absoluta) */
     
     /* Configuração de Animação */
     --tc-transition-speed: 0.3s;
