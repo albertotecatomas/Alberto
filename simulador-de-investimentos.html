@@ -24,13 +24,7 @@
                     <li class="navitem active"> <a href="index.html">Início</a></li>
                     <li class="navitem"> <a href="biblioteca.html">Biblioteca</a></li>   
                     <li class="navitem"> <a href="sobrenos.html">+Sobre</a></li>
-                    <li class="simula"> <a href=""> Simuladores ▽</a> 
-                        <ul class="sub-lista">
-                            <li class="sub-navitem"><a href="simulador-de-contabilidade.html">Contabilidade</a></li>
-                            <li class="sub-navitem"><a href="simulador-de-estudo-de-viabilidade.html">Est. Viabilidade</a></li>
-                            <li class="sub-navitem"><a href="simulador-de-investimentos.html">Mercados Financeiros</a></li>
-                            <li class="sub-navitem"><a href="simulador-quiz.html">Quiz</a></li>
-                        </ul>    
+                    <li class="navitem"> <a href="simuladores.html"> Simuladores</a>   
                     </li>
                 </ul>
             </nav>
@@ -1526,9 +1520,846 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgb(194, 154, 80);
         }
+
+        /* ========================================
+   CSS DE RESPONSIVIDADE CORRIGIDO
+   PARA RESOLVER PROBLEMAS DE LAYOUT
+======================================== */
+
+/* ========================================
+   CORREÇÕES GERAIS DE LAYOUT
+======================================== */
+@media screen and (max-width: 1200px) {
+    /* Garantir que o main tenha padding adequado */
+    main {
+        padding: 15px !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Corrigir container do dashboard */
+    #dashboard {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+    
+    /* Corrigir grid principal */
+    .dashboard-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 20px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Sidebar ocupando 100% da largura */
+    .portfolio-summary {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Seção de ativos ocupando 100% */
+    .assets-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+/* ========================================
+   CORREÇÕES PARA TELAS < 1000px
+======================================== */
+@media screen and (max-width: 999px) {
+    /* CORREÇÃO CRÍTICA: Reset completo do layout */
+    * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    main {
+        padding: 10px !important;
+        min-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Dashboard container corrigido */
+    #dashboard {
+        width: 100% !important;
+        min-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+    
+    /* HEADER DO DASHBOARD - Corrigido */
+    .dashboard-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto 20px auto !important;
+        padding: 15px !important;
+        gap: 15px !important;
+    }
+    
+    .user-info {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    .dashboard-header h2 {
+        font-size: 1.4rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .header-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+        align-items: center !important;
+    }
+    
+    .header-actions button {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 44px !important;
+        font-size: 0.9rem !important;
+        padding: 12px !important;
+        margin: 0 !important;
+    }
+    
+    /* GRID PRINCIPAL - Corrigido */
+    .dashboard-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 20px !important;
+    }
+    
+    /* SIDEBAR - Corrigido */
+    .portfolio-summary {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    .summary-card, 
+    .portfolio-allocation-details, 
+    .performance-ranking, 
+    .positions-list {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 15px !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* SEÇÃO DE ATIVOS - Corrigido */
+    .assets-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    /* TABS - Corrigido */
+    .asset-tabs {
+        display: flex !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 10px !important;
+        margin: 0 !important;
+        gap: 8px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: thin !important;
+    }
+    
+    .asset-tabs .tab {
+        flex-shrink: 0 !important;
+        padding: 10px 15px !important;
+        font-size: 0.85rem !important;
+        min-width: auto !important;
+    }
+    
+    /* CONTAINER DE ATIVOS - CRÍTICO CORRIGIDO */
+    .assets-container {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+        gap: 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        justify-items: center !important;
+    }
+    
+    /* CARTÕES DE ATIVOS - CORREÇÃO COMPLETA */
+    .asset-card {
+        width: 100% !important;
+        min-width: 280px !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 15px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        border: 2px solid var(--gray-medium) !important;
+        border-radius: 12px !important;
+        background: var(--gray-dark) !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    /* Garantir que os cards não quebrem */
+    .asset-card > * {
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
+    
+    /* Header do card */
+    .asset-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+    
+    .asset-icon {
+        font-size: 2rem !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .asset-info {
+        flex: 1 !important;
+        min-width: 0 !important; /* Permite que o texto quebre */
+    }
+    
+    .asset-info h4 {
+        font-size: 1rem !important;
+        line-height: 1.2 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .ticker {
+        font-size: 0.85rem !important;
+        color: rgba(255, 255, 255, 0.6) !important;
+    }
+    
+    /* Preço do ativo */
+    .asset-price {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+    
+    .price-value {
+        font-size: 1.3rem !important;
+        font-weight: 700 !important;
+        word-break: break-word !important;
+    }
+    
+    .price-change {
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Informações de crypto/bonds */
+    .crypto-info,
+    .bond-info {
+        width: 100% !important;
+        padding: 10px !important;
+        margin: 0 !important;
+        font-size: 0.85rem !important;
+        box-sizing: border-box !important;
+    }
+    
+    .crypto-info p,
+    .bond-info p {
+        margin: 5px 0 !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Gráfico mini */
+    .asset-chart-mini {
+        width: 100% !important;
+        height: 80px !important;
+        margin: 10px 0 !important;
+        position: relative !important;
+    }
+    
+    .asset-chart-mini canvas {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+    }
+    
+    /* AÇÕES DO CARD - CORREÇÃO CRÍTICA */
+    .asset-actions {
+        display: flex !important;
+        width: 100% !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
+        justify-content: space-between !important;
+    }
+    
+    .btn-buy,
+    .btn-sell {
+        flex: 1 !important;
+        min-width: 0 !important; /* Permite que os botões encolham */
+        min-height: 44px !important;
+        padding: 10px !important;
+        font-size: 0.9rem !important;
+        border: none !important;
+        border-radius: 8px !important;
+        cursor: pointer !important;
+        font-weight: 600 !important;
+        text-align: center !important;
+        transition: all 0.2s ease !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .btn-buy {
+        background: var(--success) !important;
+        color: white !important;
+    }
+    
+    .btn-sell {
+        background: var(--danger) !important;
+        color: white !important;
+    }
+    
+    /* Garantir que os botões sejam clicáveis */
+    .btn-buy:hover,
+    .btn-sell:hover {
+        opacity: 0.9 !important;
+        transform: translateY(-1px) !important;
+    }
+    
+    /* HISTÓRICO DE TRANSAÇÕES - Scroll obrigatório */
+    .transaction-history {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 20px 0 0 0 !important;
+        padding: 15px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .history-table-container {
+        overflow-x: auto !important;
+        width: 100% !important;
+        -webkit-overflow-scrolling: touch !important;
+        border: 1px solid var(--gray-medium) !important;
+        border-radius: 8px !important;
+        margin-top: 10px !important;
+        position: relative !important;
+    }
+    
+    /* Indicador de scroll */
+    .history-table-container::after {
+        content: '→ Deslize para ver mais →' !important;
+        position: absolute !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        font-size: 0.8rem !important;
+        color: var(--accent-green) !important;
+        opacity: 0.7 !important;
+        pointer-events: none !important;
+    }
+    
+    #transactions-table {
+        min-width: 800px !important;
+        width: 100% !important;
+        font-size: 0.85rem !important;
+        border-collapse: collapse !important;
+    }
+    
+    #transactions-table th {
+        background: var(--gray-medium) !important;
+        padding: 12px 8px !important;
+        text-align: left !important;
+        position: sticky !important;
+        left: 0 !important;
+        white-space: nowrap !important;
+    }
+    
+    #transactions-table td {
+        padding: 10px 8px !important;
+        border-bottom: 1px solid var(--gray-medium) !important;
+        white-space: nowrap !important;
+    }
+    
+    /* MODAL - Correção */
+    .modal-content {
+        width: 95% !important;
+        max-width: 500px !important;
+        margin: 10% auto !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* ONBOARDING - Correção */
+    #onboarding {
+        padding: 20px 15px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .onboarding-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .profile-cards,
+    .scenario-cards {
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+    }
+    
+    .balance-options {
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 100% !important;
+        gap: 8px !important;
+    }
+    
+    .balance-options button {
+        width: 100% !important;
+        padding: 12px !important;
+        min-height: 44px !important;
+    }
+}
+
+/* ========================================
+   CORREÇÕES PARA TELAS < 768px (MOBILE)
+======================================== */
+@media screen and (max-width: 767px) {
+    main {
+        padding: 8px !important;
+        min-width: 100vw !important;
+    }
+    
+    /* Dashboard header mais compacto */
+    .dashboard-header {
+        padding: 12px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .dashboard-header h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Cards em grid de 1 coluna */
+    .assets-container {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    .asset-card {
+        min-width: 100% !important;
+        padding: 12px !important;
+    }
+    
+    /* Botões maiores para touch */
+    .btn-buy,
+    .btn-sell {
+        min-height: 46px !important;
+        font-size: 0.95rem !important;
+        padding: 12px !important;
+    }
+    
+    /* Tabela com scroll mais visível */
+    .history-table-container {
+        border-width: 2px !important;
+    }
+    
+    .history-table-container::after {
+        content: '⇨ Deslize ⇨' !important;
+        font-size: 0.75rem !important;
+        animation: pulseArrow 1.5s infinite !important;
+    }
+    
+    @keyframes pulseArrow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+    }
+    
+    /* Modal ocupa tela cheia */
+    .modal-content {
+        width: 100% !important;
+        height: 100vh !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding: 20px !important;
+    }
+    
+    /* Ajustar fontes */
+    .asset-info h4 {
+        font-size: 0.95rem !important;
+    }
+    
+    .price-value {
+        font-size: 1.2rem !important;
+    }
+    
+    .balance-item {
+        font-size: 0.85rem !important;
+    }
+    
+    /* Balance options em coluna única */
+    .balance-options {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .balance-options button {
+        padding: 14px !important;
+        min-height: 50px !important;
+    }
+}
+
+/* ========================================
+   CORREÇÕES PARA TELAS < 480px (MOBILE PEQUENO)
+======================================== */
+@media screen and (max-width: 479px) {
+    main {
+        padding: 5px !important;
+    }
+    
+    /* Header ultra compacto */
+    .dashboard-header {
+        padding: 10px !important;
+        gap: 10px !important;
+    }
+    
+    .dashboard-header h2 {
+        font-size: 1.1rem !important;
+    }
+    
+    .scenario-badge {
+        font-size: 0.8rem !important;
+        padding: 4px 10px !important;
+    }
+    
+    /* Cards ainda mais compactos */
+    .asset-card {
+        padding: 10px !important;
+        gap: 10px !important;
+    }
+    
+    .asset-icon {
+        font-size: 1.8rem !important;
+    }
+    
+    .asset-info h4 {
+        font-size: 0.9rem !important;
+    }
+    
+    .price-value {
+        font-size: 1.1rem !important;
+    }
+    
+    /* Botões em coluna se necessário */
+    @media screen and (max-width: 350px) {
+        .asset-actions {
+            flex-direction: column !important;
+            gap: 8px !important;
+        }
+        
+        .btn-buy,
+        .btn-sell {
+            width: 100% !important;
+        }
+    }
+    
+    /* Tabela com scroll mínimo */
+    #transactions-table {
+        min-width: 700px !important;
+        font-size: 0.8rem !important;
+    }
+    
+    /* Balance items em coluna */
+    .balance-item {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+    }
+    
+    .balance-item .label {
+        font-size: 0.75rem !important;
+    }
+    
+    .balance-item .value {
+        font-size: 0.8rem !important;
+        width: 100% !important;
+        text-align: left !important;
+    }
+}
+
+/* ========================================
+   CORREÇÕES PARA CENTRALIZAÇÃO
+======================================== */
+@media screen and (max-width: 999px) {
+    /* Centralizar tudo no main */
+    main {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        width: 100vw !important;
+        min-height: 100vh !important;
+        overflow-x: hidden !important;
+    }
+    
+    /* Centralizar o dashboard */
+    #dashboard {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Centralizar o onboarding */
+    #onboarding {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    
+    .onboarding-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+    
+    /* Centralizar cards de ativos */
+    .assets-container {
+        justify-items: center !important;
+    }
+    
+    .asset-card {
+        align-items: flex-start !important;
+    }
+    
+    /* Centralizar elementos da sidebar */
+    .summary-card,
+    .portfolio-allocation-details,
+    .performance-ranking,
+    .positions-list {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    
+    .balance-info {
+        width: 100% !important;
+    }
+    
+    /* Centralizar botões */
+    .btn-primary,
+    .btn-secondary,
+    .btn-danger {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* ========================================
+   CORREÇÕES PARA EVITAR QUEBRA DE ELEMENTOS
+======================================== */
+@media screen and (max-width: 999px) {
+    /* Prevenir quebra de texto */
+    * {
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+    
+    /* Garantir que containers não quebrem */
+    .dashboard-header,
+    .portfolio-summary,
+    .assets-section,
+    .transaction-history {
+        flex-shrink: 0 !important;
+        min-width: 0 !important;
+    }
+    
+    /* Prevenir overflow horizontal */
+    body, html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+    
+    /* Fixar largura máxima dos cards */
+    .asset-card {
+        max-width: calc(100vw - 20px) !important;
+    }
+    
+    /* Scroll horizontal suave para tabelas */
+    .history-table-container {
+        scroll-behavior: smooth !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* Estilizar scrollbar */
+    .history-table-container::-webkit-scrollbar {
+        height: 8px !important;
+    }
+    
+    .history-table-container::-webkit-scrollbar-track {
+        background: var(--gray-dark) !important;
+        border-radius: 4px !important;
+    }
+    
+    .history-table-container::-webkit-scrollbar-thumb {
+        background: var(--accent-green) !important;
+        border-radius: 4px !important;
+    }
+    
+    .history-table-container::-webkit-scrollbar-thumb:hover {
+        background: rgb(194, 154, 80) !important;
+    }
+}
+
+/* ========================================
+   CORREÇÕES ESPECÍFICAS PARA ELEMENTOS QUEBRADOS
+======================================== */
+@media screen and (max-width: 999px) {
+    /* Corrigir posição de elementos flutuantes */
+    .asset-actions {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+    }
+    
+    /* Corrigir altura dos containers */
+    .asset-card {
+        min-height: auto !important;
+        height: auto !important;
+    }
+    
+    /* Garantir que gráficos fiquem visíveis */
+    .asset-chart-mini {
+        min-height: 80px !important;
+        max-height: 80px !important;
+    }
+    
+    /* Corrigir alinhamento de ícones */
+    .asset-header {
+        align-items: flex-start !important;
+    }
+    
+    /* Corrigir espaçamento entre elementos */
+    .asset-card > * {
+        margin-bottom: 8px !important;
+    }
+    
+    .asset-card > *:last-child {
+        margin-bottom: 0 !important;
+    }
+    
+    /* Garantir que botões sejam sempre visíveis */
+    .btn-buy,
+    .btn-sell {
+        opacity: 1 !important;
+        visibility: visible !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+}
+
+/* ========================================
+   AJUSTES FINAIS DE VISUALIZAÇÃO
+======================================== */
+@media screen and (max-width: 999px) {
+    /* Melhorar contraste em telas pequenas */
+    .asset-card {
+        border: 2px solid var(--gray-medium) !important;
+        background: var(--gray-dark) !important;
+    }
+    
+    /* Aumentar área de toque */
+    .btn-buy,
+    .btn-sell,
+    .btn-sell-small,
+    .tab,
+    .profile-card,
+    .scenario-card {
+        cursor: pointer !important;
+        -webkit-tap-highlight-color: rgba(214, 174, 100, 0.3) !important;
+    }
+    
+    /* Feedback visual para toque */
+    .btn-buy:active,
+    .btn-sell:active {
+        transform: scale(0.98) !important;
+    }
+    
+    /* Garantir que textos não desapareçam */
+    .price-value,
+    .asset-info h4 {
+        color: var(--text-white) !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3) !important;
+    }
+    
+    /* Indicador de que há mais conteúdo */
+    .asset-tabs {
+        position: relative !important;
+    }
+    
+    .asset-tabs::after {
+        content: '›' !important;
+        position: absolute !important;
+        right: 5px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        font-size: 1.5rem !important;
+        color: var(--accent-green) !important;
+        pointer-events: none !important;
+    }
+}
     </style>
-</head>
-<body>
+
 
 <main>
     
