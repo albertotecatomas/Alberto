@@ -1684,7 +1684,7 @@ html[data-theme="light"] .social-icons a:hover {
   }
   
   .simula a::after {
-    content: "▼";
+    content: "";
     font-size: 10px;
     transition: transform 0.3s;
   }
@@ -2031,38 +2031,3 @@ html[data-theme="light"] .timeline {
     transform: none;
   }
 }
-
-
-================================================================================
-RELATÓRIO FINAL
-================================================================================
-
-AÇÕES REALIZADAS:
-1. Centralização dos ícones e H2 na biblioteca com flexbox
-2. Sistema de tema Dark/Light completo com variáveis CSS
-3. Scroll obrigatório para tabelas com classe .tc-overflow
-4. Menu/Submenu funcionando em mobile com :focus-within e classe .open
-5. Responsividade global com breakpoints: 1000px, 900px, 800px, 700px, 500px, 450px, 250px
-6. Ajustes para gráficos no modo light (SVG e Chart.js)
-7. Footer adaptado para tema light mantendo contraste
-
-SELETORES POTENCIALMENTE CONFLITANTES (8):
-1. html[data-theme="light"] - Overrides múltiplos
-2. .tc-overflow - Utilitário para tabelas
-3. .tc-theme-toggle - Botão de alternar tema
-4. .simula.open - Estado JS do submenu
-5. @media (max-width: 1000px) - Novas regras de empilhamento
-6. #artigo-section h2, etc. - Centralização específica
-7. html[data-theme="light"] p - Sobrescreve cor dos parágrafos
-8. :root --tc-* - Variáveis CSS podem afetar especificidade
-
-SNIPPETS HTML/JS RECOMENDADOS:
-1. Botão de tema: <button class="tc-theme-toggle" aria-label="Alternar tema"><span>Modo Claro</span></button>
-2. Wrapper para tabelas: <div class="tc-overflow"><table>...</table></div>
-3. JS completo em arquivo separado com funções: tcToggleTheme(), tcSubmenuToggle()
-
-CONFIRMAÇÃO: NENHUMA LINHA DO CSS ORIGINAL FOI ALTERADA/REMOVIDA.
-Todas as melhorias foram adicionadas como apêndice, mantendo 100% do código original.
-*/
-
-{}

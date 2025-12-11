@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teca Capital Investimentos</title>
+    <title>Teca Capital Investimentos | Simulador de Mercados Financeiros</title>
     <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
     <link rel="stylesheet" href="teca.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
@@ -51,1605 +51,3566 @@
         <main>
 
     <style>
-        :root {
-            --primary-color: rgb(214, 174, 100);
-            --primary-dark: rgb(180, 145, 75);
-            --primary-light: rgba(214, 174, 100, 0.2);
-            --secondary-color: #ffffff;
-            --accent-color: #4ecdc4;
-            --success-color: #2ecc71;
-            --warning-color: #f39c12;
-            --error-color: #e74c3c;
-            --bg-color: #000000;
-            --card-bg: #0d0d0d;
-            --highlight-bg: #111111;
-            --border-color: rgba(214, 174, 100, 0.3);
-            --text-color: #ffffff;
-            --text-muted: #888888;
-            --shadow: 0 4px 20px rgba(214, 174, 100, 0.15);
-            --border-radius: 12px;
-            --transition: all 0.3s ease;
-        }
-
+        /* ========================================
+           RESET E BASE
+        ======================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-primary: rgb(0, 0, 0);
+            --accent-green: rgb(214, 174, 100);
+            --text-white: rgb(255, 255, 255);
+            --success: rgb(34, 197, 94);
+            --danger: rgb(239, 68, 68);
+            --warning: rgb(234, 179, 8);
+            --gray-dark: rgb(23, 23, 23);
+            --gray-medium: rgb(38, 38, 38);
+            --gray-light: rgb(64, 64, 64);
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-white);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        main {
+            width: 100%;
+            min-height: 100vh;
             padding: 20px;
         }
 
-        .simulator-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
+        /* ========================================
+           ONBOARDING
+        ======================================== */
+        #onboarding {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            margin-bottom: 10px;
+        .onboarding-container h1 {
             font-size: 2.5rem;
-        }
-
-        .subtitle {
+            color: var(--accent-green);
             text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-
-        h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        h3 {
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        h4 {
-            color: var(--primary-color);
             margin-bottom: 10px;
+            animation: fadeInDown 0.6s ease;
         }
 
-        /* Remove list styles */
-        ul, ol {
-            list-style: none;
-        }
-
-        /* Guia de Uso Expandido */
-        .usage-guide-expanded {
+        .onboarding-container h2 {
+            font-size: 1.5rem;
+            color: var(--text-white);
+            text-align: center;
             margin-bottom: 30px;
+            font-weight: 300;
+            animation: fadeInDown 0.8s ease;
         }
 
-        .guide-accordion {
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            background: var(--highlight-bg);
+        .info-box {
+            background: var(--gray-dark);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
             padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            color: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .accordion-header:hover {
-            background: rgba(214, 174, 100, 0.1);
-        }
-
-        .accordion-content {
-            background: var(--card-bg);
-            padding: 25px;
-        }
-
-        .guide-sections {
-            display: grid;
-            gap: 25px;
-        }
-
-        .guide-section {
-            background: var(--highlight-bg);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .indicators-explanation {
-            display: grid;
-            gap: 10px;
-        }
-
-        .indicator-item {
+            margin-bottom: 40px;
             display: flex;
             gap: 15px;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
+            align-items: flex-start;
+            animation: fadeIn 1s ease;
         }
 
-        .indicator-name {
-            font-weight: bold;
-            color: var(--primary-color);
-            min-width: 180px;
+        .info-box .icon {
+            font-size: 2rem;
+            flex-shrink: 0;
         }
 
-        .indicator-desc {
-            color: var(--text-muted);
-            flex: 1;
+        .info-box p {
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Form Sections */
-        .form-section {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: var(--transition);
+        .info-box strong {
+            color: var(--accent-green);
         }
 
-        .form-section:hover {
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .form-group {
+        /* Formulário */
+        #user-setup {
             display: flex;
             flex-direction: column;
+            gap: 30px;
         }
 
-        label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--secondary-color);
-        }
-
-        input, select {
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
+        #user-setup input,
+        #user-setup select {
+            width: 100%;
+            padding: 15px;
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
             border-radius: 8px;
-            background: var(--highlight-bg);
-            color: var(--text-color);
+            color: var(--text-white);
             font-size: 1rem;
             transition: var(--transition);
         }
 
-        input:focus, select:focus {
+        #user-setup input:focus,
+        #user-setup select:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px var(--primary-light);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(214, 174, 100, 0.1);
         }
 
-        .field-hint {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-
-        .section-description {
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        /* Quick Buttons */
-        .quick-buttons-container {
-            margin-top: 20px;
-        }
-
-        .quick-buttons {
+        /* Cards de perfil */
+        .profile-selector,
+        .scenario-selector {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .btn-quick {
-            padding: 10px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: var(--highlight-bg);
-            color: var(--text-color);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-
-        .btn-quick.positive {
-            border-color: var(--success-color);
-            color: var(--success-color);
-        }
-
-        .btn-quick.positive:hover {
-            background: var(--success-color);
-            color: var(--bg-color);
-        }
-
-        .btn-quick.negative {
-            border-color: var(--error-color);
-            color: var(--error-color);
-        }
-
-        .btn-quick.negative:hover {
-            background: var(--error-color);
-            color: var(--bg-color);
-        }
-
-        .btn-quick-small {
-            padding: 6px 12px;
-            font-size: 0.85rem;
-        }
-
-        .quick-horizons {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px;
-            flex-wrap: wrap;
-        }
-
-        .horizon-input {
-            display: flex;
-            align-items: center;
-        }
-
-        .input-suffix {
-            margin-left: 10px;
-            color: var(--text-muted);
-        }
-
-        /* Portfolio and Scenarios */
-        .portfolio-asset, .scenario {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .portfolio-asset, .scenario {
-                flex-direction: column;
-            }
-        }
-
-        .portfolio-asset input, .scenario input {
-            flex: 1;
-        }
-
-        .btn-add, .btn-remove {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .btn-add {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            font-weight: 600;
-        }
-
-        .btn-add:hover {
-            background: var(--primary-dark);
-        }
-
-        .btn-remove {
-            background: var(--error-color);
-            color: white;
-        }
-
-        .btn-remove:hover {
-            background: #c0392b;
-        }
-
-        .portfolio-total {
-            margin-top: 10px;
-            font-weight: bold;
-            color: var(--success-color);
-        }
-
-        .portfolio-hint, .scenario-examples {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        /* Form Actions */
-        .form-actions {
-            display: flex;
+            flex-direction: column;
             gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
         }
 
-        .btn-simulate, .btn-reset {
-            padding: 15px 30px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition);
-            min-width: 200px;
+        .profile-selector label,
+        .scenario-selector label,
+        .balance-selector label,
+        .update-interval label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            margin-bottom: 10px;
         }
 
-        .btn-simulate {
-            background: var(--primary-color);
-            color: var(--bg-color);
-        }
-
-        .btn-simulate:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-reset {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-reset:hover {
-            background: var(--primary-light);
-        }
-
-        /* Results Section */
-        .results {
-            margin-top: 40px;
-        }
-
-        .key-indicators {
+        .profile-cards,
+        .scenario-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 15px;
         }
 
-        .indicator-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+        .profile-card,
+        .scenario-card {
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 12px;
             padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
             text-align: center;
+        }
+
+        .profile-card:hover,
+        .scenario-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 174, 100, 0.2);
+        }
+
+        .profile-card.selected,
+        .scenario-card.selected {
+            border-color: var(--accent-green);
+            background: rgba(214, 174, 100, 0.1);
+            box-shadow: 0 0 20px rgba(214, 174, 100, 0.3);
+        }
+
+        .profile-card .icon,
+        .scenario-card .icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .profile-card h3,
+        .scenario-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--accent-green);
+        }
+
+        .profile-card p,
+        .scenario-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        /* Seleção de saldo */
+        .balance-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .balance-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .balance-options button {
+            padding: 15px;
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .indicator-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-
-        .indicator-value {
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .indicator-label {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .positive { color: var(--success-color); }
-        .negative { color: var(--error-color); }
-        .neutral { color: var(--warning-color); }
-
-        /* Executive Summary */
-        .executive-summary {
-            background: var(--highlight-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
-        .summary-header {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        /* Detailed Analysis */
-        .detailed-analysis {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
-        .analysis-section {
-            margin-bottom: 20px;
-        }
-
-        .analysis-section:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Table Styles */
-        .cashflow-section {
-            margin-bottom: 30px;
-        }
-
-        .table-container {
-            overflow-x: auto;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            background: var(--card-bg);
-        }
-
-        #cashflowTable {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-
-        #cashflowTable th {
-            background: var(--primary-color);
-            color: var(--bg-color);
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-        }
-
-        #cashflowTable td {
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        #cashflowTable tr:nth-child(even) {
-            background: var(--highlight-bg);
-        }
-
-        #cashflowTable tr:hover {
+        .balance-options button:hover {
+            border-color: var(--accent-green);
             background: rgba(214, 174, 100, 0.1);
         }
 
-        /* Charts Section */
-        .charts-section {
+        .balance-options button.selected {
+            border-color: var(--accent-green);
+            background: var(--accent-green);
+            color: var(--bg-primary);
+        }
+
+        /* Botões */
+        .btn-primary,
+        .btn-secondary,
+        .btn-danger {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            box-shadow: 0 5px 15px rgba(214, 174, 100, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgb(194, 154, 80);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(214, 174, 100, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--gray-dark);
+            color: var(--text-white);
+            border: 2px solid var(--gray-medium);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-green);
+            background: rgba(214, 174, 100, 0.1);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--text-white);
+        }
+
+        .btn-danger:hover {
+            background: rgb(220, 50, 50);
+        }
+
+        /* ========================================
+           DASHBOARD
+        ======================================== */
+        #dashboard {
+            max-width: 1600px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 30px;
+            padding: 20px;
+            background: var(--gray-dark);
+            border-radius: 12px;
+            border: 2px solid var(--gray-medium);
         }
 
-        .chart-row {
+        .dashboard-header h2 {
+            font-size: 1.8rem;
+            color: var(--accent-green);
+        }
+
+        .scenario-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(214, 174, 100, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Grid principal */
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 350px 1fr;
             gap: 20px;
-            margin-bottom: 20px;
         }
 
-        @media (max-width: 768px) {
-            .chart-row {
-                grid-template-columns: 1fr;
-            }
+        /* Sidebar - Resumo do portfólio */
+        .portfolio-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .chart-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+        .summary-card {
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 12px;
             padding: 20px;
         }
 
-        .chart-container canvas {
-            max-height: 300px;
+        .summary-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        /* Recommendations */
-        .recommendations {
-            background: var(--highlight-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
-        .recommendation-item {
+        .balance-info {
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
             gap: 15px;
-            margin-bottom: 15px;
-            padding: 15px;
-            background: var(--card-bg);
-            border-radius: 8px;
         }
 
-        .recommendation-icon {
-            font-size: 1.5rem;
-            margin-top: 2px;
-        }
-
-        /* Export Actions */
-        .export-actions {
+        .balance-item {
             display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-medium);
         }
 
-        .btn-download, .btn-export, .btn-share {
-            padding: 12px 25px;
+        .balance-item.highlight {
             border: none;
-            border-radius: var(--border-radius);
+            padding: 15px;
+            background: rgba(214, 174, 100, 0.1);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .balance-item .label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .balance-item .value {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .value.pnl.positive {
+            color: var(--success);
+        }
+
+        .value.pnl.negative {
+            color: var(--danger);
+        }
+
+        /* Gráfico de alocação */
+        .allocation-chart {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .allocation-chart h4 {
+            font-size: 1rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+
+        /* Detalhes de Alocação */
+        .portfolio-allocation-details {
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .portfolio-allocation-details h4 {
+            font-size: 1.1rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+
+        .allocation-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: var(--gray-medium);
+            border-radius: 8px;
+            cursor: help;
+            transition: var(--transition);
+        }
+
+        .allocation-item:hover {
+            background: var(--gray-light);
+            transform: translateX(5px);
+        }
+
+        .allocation-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .allocation-name {
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .allocation-percent {
+            font-weight: 700;
+            color: var(--text-white);
+            font-size: 1.1rem;
+        }
+
+        .allocation-bar-container {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .allocation-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), rgb(194, 154, 80));
+            border-radius: 4px;
+            transition: width 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .allocation-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        .allocation-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .allocation-value {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .allocation-pnl {
+            font-weight: 600;
+        }
+
+        /* Ranking de Desempenho */
+        .performance-ranking {
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .performance-ranking > h4 {
+            font-size: 1.1rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+
+        .ranking-section {
+            margin-bottom: 20px;
+        }
+
+        .ranking-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .ranking-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gray-medium);
+        }
+
+        .ranking-title.positive {
+            color: var(--success);
+        }
+
+        .ranking-title.negative {
+            color: var(--danger);
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: var(--gray-medium);
+            border-radius: 6px;
+            margin-bottom: 8px;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .ranking-item:hover {
+            background: var(--gray-light);
+            transform: translateX(5px);
+        }
+
+        .ranking-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Badge especial para 1º lugar */
+        .ranking-item:first-child {
+            border-left-color: gold;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), var(--gray-medium));
+        }
+
+        .ranking-item:first-child .ranking-position {
+            color: gold;
+            font-size: 1.1rem;
+        }
+
+        /* Badge para 2º lugar */
+        .ranking-item:nth-child(2) {
+            border-left-color: silver;
+            background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), var(--gray-medium));
+        }
+
+        /* Badge para 3º lugar */
+        .ranking-item:nth-child(3) {
+            border-left-color: #cd7f32;
+            background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), var(--gray-medium));
+        }
+
+        .ranking-position {
+            font-weight: 700;
+            color: var(--accent-green);
+            min-width: 30px;
+        }
+
+        .ranking-ticker {
+            flex: 1;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .ranking-value {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .ranking-value.positive {
+            color: var(--success);
+        }
+
+        .ranking-value.negative {
+            color: var(--danger);
+        }
+
+        /* Badge de Diversificação */
+        .diversification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 2px solid;
+        }
+
+        .diversification-badge.danger {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .diversification-badge.warning {
+            background: rgba(234, 179, 8, 0.2);
+            border-color: var(--warning);
+            color: var(--warning);
+        }
+
+        .diversification-badge.accent-green {
+            background: rgba(214, 174, 100, 0.2);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .diversification-badge.success {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .badge-icon {
+            font-size: 1rem;
+        }
+
+        /* Posições abertas */
+        .positions-list {
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .positions-list h4 {
+            font-size: 1.1rem;
+            color: var(--accent-green);
+            margin-bottom: 15px;
+        }
+
+        .position-item {
+            background: var(--gray-medium);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .position-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .position-header strong {
+            color: var(--accent-green);
+            font-size: 1.1rem;
+        }
+
+        .quantity {
+            background: rgba(214, 174, 100, 0.2);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .position-details p {
+            font-size: 0.85rem;
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .position-details .positive {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .position-details .negative {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .btn-sell-small {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-sell-small:hover {
+            background: rgb(220, 50, 50);
+        }
+
+        /* Seção de ativos */
+        .assets-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .asset-tabs {
+            display: flex;
+            gap: 10px;
+            background: var(--gray-dark);
+            padding: 10px;
+            border-radius: 12px;
+            border: 2px solid var(--gray-medium);
+            overflow-x: auto;
+        }
+
+        .asset-tabs .tab {
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .asset-tabs .tab:hover {
+            color: var(--accent-green);
+            background: rgba(214, 174, 100, 0.1);
+        }
+
+        .asset-tabs .tab.active {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            border-color: var(--accent-green);
+        }
+
+        /* Explicação Educacional */
+        .asset-explanation {
+            margin-bottom: 15px;
+        }
+
+        .btn-info {
+            padding: 10px 20px;
+            background: rgba(214, 174, 100, 0.2);
+            border: 2px solid var(--accent-green);
+            border-radius: 8px;
+            color: var(--accent-green);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-info:hover {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+        }
+
+        .explanation-box {
+            margin-top: 15px;
+            padding: 20px;
+            background: var(--gray-dark);
+            border: 2px solid var(--accent-green);
+            border-radius: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation-box h4 {
+            color: var(--accent-green);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .explanation-box p {
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Container de ativos */
+        .assets-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .asset-card {
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 12px;
+            padding: 20px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .asset-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(214, 174, 100, 0.2);
+        }
+
+        .asset-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .asset-icon {
+            font-size: 2.5rem;
+        }
+
+        .asset-info h4 {
+            font-size: 1.1rem;
+            color: var(--accent-green);
+            margin-bottom: 5px;
+        }
+
+        .ticker {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+
+        .asset-price {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .price-change {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .price-change.positive {
+            color: var(--success);
+        }
+
+        .price-change.negative {
+            color: var(--danger);
+        }
+
+        /* Informações de Crypto Expandidas */
+        .crypto-info {
+            background: var(--gray-medium);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .supply-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .supply-item .label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .supply-item .value {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .bond-info {
+            background: var(--gray-medium);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .bond-info p {
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Gráficos maiores */
+        .asset-chart-mini {
+            height: 100px;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        .asset-chart-mini canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .asset-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-buy,
+        .btn-sell {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
         }
 
-        .btn-download {
-            background: var(--primary-color);
-            color: var(--bg-color);
+        .btn-buy {
+            background: var(--success);
+            color: white;
         }
 
-        .btn-export {
-            background: var(--accent-color);
-            color: var(--bg-color);
+        .btn-buy:hover {
+            background: rgb(25, 175, 75);
         }
 
-        .btn-share {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+        .btn-sell {
+            background: var(--danger);
+            color: white;
         }
 
-        .btn-download:hover, .btn-export:hover, .btn-share:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+        .btn-sell:hover {
+            background: rgb(220, 50, 50);
         }
 
-        /* Type Descriptions */
-        .type-selector {
-            margin-bottom: 20px;
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
         }
 
-        .type-description {
-            background: var(--primary-light);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
+        .modal-content {
+            background: var(--gray-dark);
+            border: 2px solid var(--accent-green);
+            margin: 5% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close:hover {
+            color: var(--danger);
+        }
+
+        .asset-details {
+            margin: 20px 0;
             padding: 15px;
-            margin-top: 10px;
-            color: var(--text-color);
-            font-size: 0.95rem;
+            background: var(--gray-medium);
+            border-radius: 8px;
         }
 
-        /* Status badges */
-        .status-positive {
-            color: var(--success-color);
-            font-weight: bold;
+        .asset-details h4 {
+            color: var(--accent-green);
+            margin-bottom: 10px;
         }
 
-        .status-negative {
-            color: var(--error-color);
-            font-weight: bold;
+        .trade-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .status-neutral {
-            color: var(--warning-color);
-            font-weight: bold;
+        .trade-form label {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .trade-form input {
+            padding: 12px;
+            background: var(--gray-medium);
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            color: var(--text-white);
+            font-size: 1rem;
+        }
+
+        .trade-form input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+        }
+
+        .trade-summary {
+            padding: 15px;
+            background: rgba(214, 174, 100, 0.1);
+            border-radius: 8px;
+        }
+
+        .trade-summary p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        .trade-summary .warning {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+        }
+
+        /* Histórico de transações */
+        .transaction-history {
+            margin-top: 40px;
+            background: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .transaction-history h3 {
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .history-table-container {
+            overflow-x: auto;
+        }
+
+        #transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #transactions-table th {
+            background: var(--gray-medium);
+            padding: 12px;
+            text-align: left;
+            color: var(--accent-green);
+            font-weight: 600;
+            border-bottom: 2px solid var(--gray-light);
+        }
+
+        #transactions-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        #transactions-table tbody tr:hover {
+            background: var(--gray-medium);
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge.buy {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+
+        .badge.sell {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        .positive {
+            color: var(--success);
+        }
+
+        .negative {
+            color: var(--danger);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            font-style: italic;
+        }
+
+        /* Notificações */
+        .notification {
+            position: fixed;
+            top: -100px;
+            right: 20px;
+            background: var(--gray-dark);
+            border: 2px solid var(--accent-green);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            transition: top 0.3s ease;
+            max-width: 400px;
+        }
+
+        .notification.show {
+            top: 20px;
+        }
+
+        .notification.success {
+            border-color: var(--success);
+        }
+
+        .notification.error {
+            border-color: var(--danger);
+        }
+
+        .notification.warning {
+            border-color: var(--warning);
+        }
+
+        /* ========================================
+           RESPONSIVIDADE
+        ======================================== */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-summary {
+                order: 2;
+            }
+            
+            .assets-section {
+                order: 1;
+            }
+            
+            .assets-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            main {
+                padding: 10px;
+            }
+            
+            .onboarding-container h1 {
+                font-size: 1.75rem;
+            }
+            
+            .onboarding-container h2 {
+                font-size: 1.25rem;
+            }
+            
+            .profile-cards,
+            .scenario-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .balance-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .header-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .header-actions button {
+                width: 100%;
+            }
+            
+            .asset-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .asset-tabs .tab {
+                font-size: 0.85rem;
+                padding: 10px 15px;
+            }
+            
+            .assets-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .asset-card {
+                padding: 15px;
+            }
+            
+            .asset-icon {
+                font-size: 2rem;
+            }
+            
+            .asset-info h4 {
+                font-size: 1rem;
+            }
+            
+            .price-value {
+                font-size: 1.25rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+                margin: 10% auto;
+            }
+            
+            #transactions-table {
+                font-size: 0.85rem;
+            }
+            
+            #transactions-table th,
+            #transactions-table td {
+                padding: 8px;
+            }
+            
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+
+            /* Responsividade para alocação e ranking */
+            .portfolio-allocation-details,
+            .performance-ranking {
+                padding: 15px;
+            }
+            
+            .allocation-item {
+                padding: 10px;
+            }
+            
+            .allocation-header {
+                font-size: 0.9rem;
+            }
+            
+            .allocation-percent {
+                font-size: 1rem;
+            }
+            
+            .ranking-item {
+                padding: 8px;
+                font-size: 0.85rem;
+            }
+            
+            .ranking-position {
+                min-width: 25px;
+                font-size: 0.9rem;
+            }
+            
+            .ranking-value {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .onboarding-container h1 {
+                font-size: 1.5rem;
+            }
+            
+            .onboarding-container h2 {
+                font-size: 1rem;
+            }
+            
+            .info-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-card .icon,
+            .scenario-card .icon {
+                font-size: 2.5rem;
+            }
+            
+            .profile-card h3,
+            .scenario-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .profile-card p,
+            .scenario-card p {
+                font-size: 0.85rem;
+            }
+            
+            .balance-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-primary,
+            .btn-secondary,
+            .btn-danger {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+            
+            .dashboard-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .summary-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .balance-item .label {
+                font-size: 0.85rem;
+            }
+            
+            .balance-item .value {
+                font-size: 0.9rem;
+            }
+            
+            #transactions-table {
+                font-size: 0.75rem;
+            }
+            
+            #transactions-table th,
+            #transactions-table td {
+                padding: 6px 4px;
+            }
+
+            .portfolio-allocation-details h4,
+            .performance-ranking h4 {
+                font-size: 1rem;
+            }
+            
+            .allocation-name,
+            .ranking-ticker {
+                font-size: 0.85rem;
+            }
+            
+            .allocation-details {
+                font-size: 0.75rem;
+            }
+            
+            .ranking-title {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========================================
+           ANIMAÇÕES
+        ======================================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            to {
+                left: 100%;
+            }
+        }
+
+        /* Efeito de hover nos cards */
+        .asset-card,
+        .profile-card,
+        .scenario-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .asset-card::before,
+        .profile-card::before,
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(214, 174, 100, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .asset-card:hover::before,
+        .profile-card:hover::before,
+        .scenario-card:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gray-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(194, 154, 80);
         }
     </style>
+</head>
+<body>
 
-        <div class="simulator-container">
-            <h1>Simulador de Investimentos Teca Capital</h1>
-            <p class="subtitle">Simule diferentes cenários de investimentos financeiro e entenda os resultados como um profissional</p>
-
-            <!-- Guia de Uso Expandido -->
-            <section class="usage-guide-expanded">
-                <details class="guide-accordion">
-                    <summary class="accordion-header">
-                        <span>📘 Como usar este simulador? (Guia Completo)</span>
-                        <span class="accordion-icon">▼</span>
-                    </summary>
-                    <div class="accordion-content">
-                        <div class="guide-sections">
-                            <div class="guide-section">
-                                <h4>🎯 Para Iniciantes:</h4>
-                                <ul>
-                                    <li><strong>Comece simples:</strong> Use apenas os campos básicos primeiro</li>
-                                    <li><strong>Valor a Investir:</strong> Digite quanto dinheiro pretende aplicar</li>
-                                    <li><strong>Horizonte:</strong> Escolha por quantos meses quer manter o investimento</li>
-                                    <li><strong>Variação esperada:</strong> Use os botões rápidos (+5%, +10%, etc.)</li>
-                                    <li><strong>Clique em "Calcular Simulação"</strong> para ver os resultados</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="guide-section">
-                                <h4>📈 Explicação dos Indicadores:</h4>
-                                <div class="indicators-explanation">
-                                    <div class="indicator-item">
-                                        <span class="indicator-name">Rentabilidade Nominal:</span>
-                                        <span class="indicator-desc">Ganho/pedida sem considerar a inflação (valor bruto)</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-name">Rentabilidade Real:</span>
-                                        <span class="indicator-desc">Ganho/perda REAL após descontar a inflação (poder de compra)</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-name">Inflação Ajustada:</span>
-                                        <span class="indicator-desc">Quanto a inflação "comeu" do seu rendimento</span>
-                                    </div>
-                                    <div class="indicator-item">
-                                        <span class="indicator-name">Impacto Cambial:</span>
-                                        <span class="indicator-desc">Efeito da variação do câmbio no seu investimento</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="guide-section">
-                                <h4>💡 Dicas Importantes:</h4>
-                                <ul>
-                                    <li><strong>Rentabilidade REAL é o que importa:</strong> Se for negativa, você perdeu poder de compra</li>
-                                    <li><strong>Compare cenários:</strong> Use a seção de comparação para testar diferentes variações</li>
-                                    <li><strong>Considere a inflação:</strong> Em Angola, a inflação histórica é alta - não ignore!</li>
-                                    <li><strong>Diversifique:</strong> Use a distribuição de carteira para simular investimentos múltiplos</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </details>
-            </section>
-
-            <!-- Menu de seleção do tipo de investimento -->
-            <section class="investment-type">
-                <h2>🎯 Tipo de Investimento</h2>
-                <div class="type-selector">
-                    <select id="investmentType">
-                        <option value="acoes">📈 Ações (Bolsa de Valores)</option>
-                        <option value="cripto">₿ Criptomoedas</option>
-                        <option value="obrigacoes-publicas">🏛️ Obrigações Públicas (Tesouro)</option>
-                        <option value="obrigacoes-privadas">🏢 Obrigações Privadas (Empresas)</option>
-                    </select>
-                    <div class="type-description" id="typeDescription">
-                        Investimento em empresas listadas na bolsa de valores - maior risco, maior potencial
-                    </div>
-                </div>
-            </section>
-
-            <!-- Formulário principal -->
-            <section class="main-form">
-                <h2>⚙️ Parâmetros do Investimento</h2>
-                <form id="investmentForm">
-                    <!-- Dados Básicos -->
-                    <div class="form-section">
-                        <h3>📝 Dados Básicos</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="assetName">Nome do Ativo:</label>
-                                <input type="text" id="assetName" placeholder="Ex: SONANGOL, UNITEL, BTC..." value="Exemplo Ação" required>
-                                <span class="field-hint">Digite o nome do ativo que pretende simular</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="investmentAmount">Valor a Investir (Kz):</label>
-                                <input type="number" id="investmentAmount" min="1000" step="1000" placeholder="100000" value="100000" required>
-                                <span class="field-hint">Valor mínimo: 1.000 Kz</span>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="startDate">Data de Início (opcional):</label>
-                                <input type="date" id="startDate">
-                                <span class="field-hint">Data em que começaria o investimento</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="timeHorizon">Horizonte de Investimento:</label>
-                                <div class="horizon-input">
-                                    <input type="number" id="timeHorizon" min="1" max="600" value="12" required>
-                                    <span class="input-suffix">meses</span>
-                                </div>
-                                <div class="quick-horizons">
-                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(6)">6 meses</button>
-                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(12)">1 ano</button>
-                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(36)">3 anos</button>
-                                    <button type="button" class="btn-quick btn-quick-small" onclick="setHorizon(60)">5 anos</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Campos específicos para renda fixa -->
-                    <div id="fixedIncomeFields" class="form-section" style="display: none;">
-                        <h3>💰 Parâmetros de Renda Fixa</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="interestRate">Taxa de Juros Anual (%):</label>
-                                <input type="number" id="interestRate" min="1" max="100" step="0.1" placeholder="15.5" value="12.0">
-                                <span class="field-hint">Taxa de juros anual oferecida pelo título</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="paymentFrequency">Pagamento de Cupão:</label>
-                                <select id="paymentFrequency">
-                                    <option value="mensal">Mensal</option>
-                                    <option value="trimestral">Trimestral</option>
-                                    <option value="semestral">Semestral</option>
-                                    <option value="anual">Anual</option>
-                                    <option value="zero">Zero Cupão (sem pagamentos)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="interestType">Tipo de Juros:</label>
-                                <select id="interestType">
-                                    <option value="composto">Juros Compostos</option>
-                                    <option value="simples">Juros Simples</option>
-                                </select>
-                                <span class="field-hint">Compostos: juros sobre juros | Simples: apenas sobre capital inicial</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="riskLevel">Nível de Risco:</label>
-                                <select id="riskLevel">
-                                    <option value="baixo">Baixo (Tesouro)</option>
-                                    <option value="medio">Médio (Empresas sólidas)</option>
-                                    <option value="alto">Alto (Empresas em crescimento)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Campos específicos para ações/cripto -->
-                    <div id="variableIncomeFields" class="form-section">
-                        <h3>📊 Projeção de Rentabilidade</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="variationPct">Variação Mensal Esperada (%):</label>
-                                <input type="number" id="variationPct" min="-100" max="100" step="0.1" placeholder="5.0" value="5.0" required>
-                                <span class="field-hint">Valor positivo para ganhos, negativo para perdas</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="volatility">Volatilidade (Risco):</label>
-                                <select id="volatility">
-                                    <option value="baixa">Baixa (±5%)</option>
-                                    <option value="media" selected>Média (±15%)</option>
-                                    <option value="alta">Alta (±30%)</option>
-                                    <option value="muito-alta">Muito Alta (±50%)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="quick-buttons-container">
-                            <h4>Variações Rápidas - Clique para usar:</h4>
-                            <div class="quick-buttons">
-                                <button type="button" class="btn-quick positive" onclick="setVariation(2)">+2%</button>
-                                <button type="button" class="btn-quick positive" onclick="setVariation(5)">+5%</button>
-                                <button type="button" class="btn-quick positive" onclick="setVariation(10)">+10%</button>
-                                <button type="button" class="btn-quick positive" onclick="setVariation(15)">+15%</button>
-                                <button type="button" class="btn-quick negative" onclick="setVariation(-2)">-2%</button>
-                                <button type="button" class="btn-quick negative" onclick="setVariation(-5)">-5%</button>
-                                <button type="button" class="btn-quick negative" onclick="setVariation(-10)">-10%</button>
-                                <button type="button" class="btn-quick negative" onclick="setVariation(-20)">-20%</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Parâmetros macroeconômicos -->
-                    <div class="form-section macro-params">
-                        <h3>🌍 Cenário Macroeconômico</h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="inflationRate">Inflação Anual (%):</label>
-                                <input type="number" id="inflationRate" value="20.0" min="0" max="100" step="0.1" required>
-                                <span class="field-hint">Inflação média esperada - histórico Angola: 15-25%</span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="fxVariation">Variação Cambial Kz/USD (%):</label>
-                                <input type="number" id="fxVariation" value="10.0" min="-100" max="100" step="0.1">
-                                <span class="field-hint">Valor positivo: Kz desvaloriza | Negativo: Kz valoriza</span>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="economicScenario">Cenário Econômico:</label>
-                                <select id="economicScenario">
-                                    <option value="otimista">Otimista (Crescimento)</option>
-                                    <option value="estavel" selected>Estável</option>
-                                    <option value="recessao">Recessão</option>
-                                    <option value="crise">Crise Econômica</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Distribuição de carteira -->
-                    <div class="form-section portfolio-distribution">
-                        <h3>🎯 Distribuição da Carteira (Opcional)</h3>
-                        <p class="section-description">Simule uma carteira diversificada com múltiplos ativos</p>
-                        <div id="portfolioAssets">
-                            <div class="portfolio-asset">
-                                <input type="text" placeholder="Nome do ativo" class="asset-name" value="Ação Principal">
-                                <input type="number" placeholder="%" class="asset-pct" min="1" max="100" value="100" onchange="validatePortfolio()">
-                                <button type="button" class="btn-remove" onclick="removeAsset(this)">🗑️ Remover</button>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-add" onclick="addAsset()">+ Adicionar Ativo</button>
-                        <div id="portfolioTotal" class="portfolio-total">Total: 100%</div>
-                        <div class="portfolio-hint">Dica: Diversificar reduz riscos! Ex: 50% ações, 30% obrigações, 20% cripto</div>
-                    </div>
-
-                    <!-- Comparação de cenários -->
-                    <div class="form-section scenario-comparison">
-                        <h3>🔍 Comparação de Cenários (Opcional)</h3>
-                        <p class="section-description">Compare este investimento com outras opções</p>
-                        <div id="scenarios">
-                            <div class="scenario">
-                                <input type="text" placeholder="Nome do cenário" class="scenario-name" value="Poupança Bancária">
-                                <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1" value="2.0">
-                                <button type="button" class="btn-remove" onclick="removeScenario(this)">🗑️ Remover</button>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-add" onclick="addScenario()">+ Adicionar Cenário</button>
-                        <div class="scenario-examples">
-                            <strong>Exemplos comuns:</strong> Poupança (2%), Inflação (0%), Obrigações (8-12%), Ações (10-15%)
-                        </div>
-                    </div>
-                </form>
-
-                <div class="form-actions">
-                    <button type="button" class="btn-simulate" onclick="calculateScenario()">
-                        🚀 Calcular Simulação
-                    </button>
-                    <button type="button" class="btn-reset" onclick="resetSimulation()">
-                        🔄 Limpar / Nova Simulação
-                    </button>
-                </div>
-            </section>
-
-            <!-- Resultados -->
-            <section class="results" id="resultsSection" style="display: none;">
-                <h2>📊 Resultados da Simulação</h2>
-                
-                <!-- Indicadores Principais -->
-                <div class="key-indicators" id="keyIndicators"></div>
-
-                <!-- Resumo Executivo -->
-                <div class="executive-summary" id="executiveSummary"></div>
-
-                <!-- Análise Detalhada -->
-                <div class="detailed-analysis" id="detailedAnalysis"></div>
-
-                <!-- Tabela de fluxos -->
-                <div class="cashflow-section">
-                    <h3>📋 Evolução Mês a Mês</h3>
-                    <div class="table-container">
-                        <table id="cashflowTable">
-                            <thead>
-                                <tr>
-                                    <th>Mês</th>
-                                    <th>Valor Inicial</th>
-                                    <th>Rendimento</th>
-                                    <th>Valor Final</th>
-                                    <th>Rend. Acumulado</th>
-                                    <th>Inflação Acum.</th>
-                                    <th>Valor Real</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cashflowBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Gráficos -->
-                <div class="charts-section">
-                    <div class="chart-row">
-                        <div class="chart-container">
-                            <h3>📈 Evolução do Investimento</h3>
-                            <canvas id="investmentChart"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <h3>🥧 Composição de Resultados</h3>
-                            <canvas id="compositionChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recomendações -->
-                <div class="recommendations" id="recommendationsSection"></div>
-
-                <!-- Ações de exportação -->
-                <div class="export-actions">
-                    <button class="btn-download" onclick="generatePDF()">
-                        📄 Baixar Relatório Completo (PDF)
-                    </button>
-                    <button class="btn-export" onclick="exportCSV()">
-                        📊 Exportar Dados (CSV)
-                    </button>
-                    <button class="btn-share" onclick="shareResults()">
-                        🔗 Partilhar Resultados
-                    </button>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <script>
-        // Variáveis globais
-        let currentChart = null;
-        let compositionChart = null;
-        let simulationData = null;
-
-        // Inicialização
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Simulador inicializado');
-            setupEventListeners();
-            setupExampleData();
-        });
-
-        // Configurar event listeners
-        function setupEventListeners() {
-            const investmentType = document.getElementById('investmentType');
-            investmentType.addEventListener('change', toggleInvestmentFields);
-            
-            // Prevenir submissão do formulário
-            document.getElementById('investmentForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                calculateScenario();
-            });
-        }
-
-        // Configurar dados de exemplo
-        function setupExampleData() {
-            document.getElementById('assetName').value = 'Exemplo Ação';
-            document.getElementById('investmentAmount').value = '100000';
-            document.getElementById('timeHorizon').value = '12';
-            document.getElementById('variationPct').value = '5.0';
-            document.getElementById('inflationRate').value = '20.0';
-            document.getElementById('fxVariation').value = '10.0';
-        }
-
-        // Alternar campos conforme tipo de investimento
-        function toggleInvestmentFields() {
-            const type = document.getElementById('investmentType').value;
-            const fixedIncomeFields = document.getElementById('fixedIncomeFields');
-            const variableIncomeFields = document.getElementById('variableIncomeFields');
-
-            const descriptions = {
-                'acoes': 'Investimento em empresas listadas na bolsa de valores - maior risco, maior potencial de retorno',
-                'cripto': 'Investimento em criptomoedas - alta volatilidade, potencial de retorno elevado',
-                'obrigacoes-publicas': 'Empréstimo ao governo - baixo risco, retorno previsível',
-                'obrigacoes-privadas': 'Empréstimo a empresas - risco moderado, retorno superior à poupança'
-            };
-            
-            document.getElementById('typeDescription').textContent = descriptions[type] || '';
-
-            if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
-                fixedIncomeFields.style.display = 'block';
-                variableIncomeFields.style.display = 'none';
-            } else {
-                fixedIncomeFields.style.display = 'none';
-                variableIncomeFields.style.display = 'block';
-            }
-        }
-
-        // Definir variação rápida
-        function setVariation(percent) {
-            document.getElementById('variationPct').value = percent;
-        }
-
-        // Definir horizonte rápido
-        function setHorizon(months) {
-            document.getElementById('timeHorizon').value = months;
-        }
-
-        // Adicionar ativo à carteira
-        function addAsset() {
-            const container = document.getElementById('portfolioAssets');
-            const assetDiv = document.createElement('div');
-            assetDiv.className = 'portfolio-asset';
-            assetDiv.innerHTML = `
-                <input type="text" placeholder="Nome do ativo" class="asset-name" value="Novo Ativo">
-                <input type="number" placeholder="%" class="asset-pct" min="1" max="100" value="0" onchange="validatePortfolio()">
-                <button type="button" class="btn-remove" onclick="removeAsset(this)">🗑️ Remover</button>
-            `;
-            container.appendChild(assetDiv);
-            validatePortfolio();
-        }
-
-        // Remover ativo da carteira
-        function removeAsset(button) {
-            button.parentElement.remove();
-            validatePortfolio();
-        }
-
-        // Validar distribuição da carteira
-        function validatePortfolio() {
-            const percentages = document.querySelectorAll('.asset-pct');
-            let total = 0;
-            
-            percentages.forEach(input => {
-                const value = parseFloat(input.value) || 0;
-                total += value;
-            });
-
-            const totalElement = document.getElementById('portfolioTotal');
-            totalElement.textContent = `Total: ${total}%`;
-            
-            if (total !== 100 && percentages.length > 0) {
-                totalElement.className = 'portfolio-total negative';
-            } else {
-                totalElement.className = 'portfolio-total positive';
-            }
-        }
-
-        // Adicionar cenário de comparação
-        function addScenario() {
-            const container = document.getElementById('scenarios');
-            const scenarioDiv = document.createElement('div');
-            scenarioDiv.className = 'scenario';
-            scenarioDiv.innerHTML = `
-                <input type="text" placeholder="Nome do cenário" class="scenario-name" value="Novo Cenário">
-                <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1" value="5.0">
-                <button type="button" class="btn-remove" onclick="removeScenario(this)">🗑️ Remover</button>
-            `;
-            container.appendChild(scenarioDiv);
-        }
-
-        // Remover cenário
-        function removeScenario(button) {
-            button.parentElement.remove();
-        }
-
-        // Limpar simulação
-        function resetSimulation() {
-            if (confirm('Tem certeza que deseja limpar todos os dados e começar uma nova simulação?')) {
-                // Limpar formulário
-                document.getElementById('investmentForm').reset();
-                
-                // Limpar resultados
-                document.getElementById('resultsSection').style.display = 'none';
-                document.getElementById('keyIndicators').innerHTML = '';
-                document.getElementById('executiveSummary').innerHTML = '';
-                document.getElementById('detailedAnalysis').innerHTML = '';
-                document.getElementById('cashflowBody').innerHTML = '';
-                document.getElementById('recommendationsSection').innerHTML = '';
-                
-                // Resetar gráficos
-                if (currentChart) {
-                    currentChart.destroy();
-                    currentChart = null;
-                }
-                if (compositionChart) {
-                    compositionChart.destroy();
-                    compositionChart = null;
-                }
-                
-                // Resetar dados
-                simulationData = null;
-                
-                // Resetar distribuição de carteira
-                document.getElementById('portfolioAssets').innerHTML = `
-                    <div class="portfolio-asset">
-                        <input type="text" placeholder="Nome do ativo" class="asset-name" value="Ação Principal">
-                        <input type="number" placeholder="%" class="asset-pct" min="1" max="100" value="100" onchange="validatePortfolio()">
-                        <button type="button" class="btn-remove" onclick="removeAsset(this)">🗑️ Remover</button>
-                    </div>
-                `;
-                
-                // Resetar cenários
-                document.getElementById('scenarios').innerHTML = `
-                    <div class="scenario">
-                        <input type="text" placeholder="Nome do cenário" class="scenario-name" value="Poupança Bancária">
-                        <input type="number" placeholder="Variação %" class="scenario-variation" min="-100" max="100" step="0.1" value="2.0">
-                        <button type="button" class="btn-remove" onclick="removeScenario(this)">🗑️ Remover</button>
-                    </div>
-                `;
-                
-                validatePortfolio();
-                setupExampleData();
-                
-                alert('Simulação reiniciada com sucesso!');
-            }
-        }
-
-        // Calcular cenário principal
-        function calculateScenario() {
-            console.log('Calculando simulação...');
-            
-            try {
-                const inputs = readInputs();
-                console.log('Inputs lidos:', inputs);
-                
-                simulationData = calculateInvestmentScenario(inputs);
-                console.log('Dados calculados:', simulationData);
-                
-                displayResults(simulationData);
-                updateCharts(simulationData);
-                generateRecommendations(simulationData);
-                
-                // Mostrar seção de resultados
-                document.getElementById('resultsSection').style.display = 'block';
-                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
-                
-            } catch (error) {
-                console.error('Erro na simulação:', error);
-                alert('Erro ao calcular simulação: ' + error.message);
-            }
-        }
-
-        // Ler inputs do formulário
-        function readInputs() {
-            const type = document.getElementById('investmentType').value;
-            const assetName = document.getElementById('assetName').value;
-            const amount = parseFloat(document.getElementById('investmentAmount').value);
-            const horizon = parseInt(document.getElementById('timeHorizon').value);
-            const inflation = parseFloat(document.getElementById('inflationRate').value) / 100;
-            const fxVariation = parseFloat(document.getElementById('fxVariation').value) / 100;
-
-            let specificParams = {};
-            
-            if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
-                specificParams = {
-                    interestRate: parseFloat(document.getElementById('interestRate').value) / 100,
-                    paymentFrequency: document.getElementById('paymentFrequency').value,
-                    interestType: document.getElementById('interestType').value,
-                    riskLevel: document.getElementById('riskLevel').value
-                };
-            } else {
-                specificParams = {
-                    variationPct: parseFloat(document.getElementById('variationPct').value) / 100,
-                    volatility: document.getElementById('volatility').value
-                };
-            }
-
-            return {
-                type,
-                assetName,
-                amount,
-                horizon,
-                inflation,
-                fxVariation,
-                specificParams
-            };
-        }
-
-        // Calcular cenário de investimento
-        function calculateInvestmentScenario(inputs) {
-            const { type, assetName, amount, horizon, inflation, fxVariation, specificParams } = inputs;
-            const monthlyInflation = Math.pow(1 + inflation, 1/12) - 1;
-            
-            let cashflows = [];
-            let currentValue = amount;
-            let totalNominalReturn = 0;
-            let totalInflationImpact = 0;
-
-            for (let month = 1; month <= horizon; month++) {
-                let monthlyReturn = 0;
-                
-                // Calcular retorno baseado no tipo de investimento
-                if (type === 'obrigacoes-publicas' || type === 'obrigacoes-privadas') {
-                    const { interestRate, interestType } = specificParams;
-                    
-                    if (interestType === 'simples') {
-                        monthlyReturn = amount * interestRate / 12;
-                    } else {
-                        // Juros compostos
-                        monthlyReturn = currentValue * interestRate / 12;
-                    }
-                } else {
-                    // Ações ou criptomoedas
-                    const { variationPct } = specificParams;
-                    monthlyReturn = currentValue * variationPct;
-                }
-
-                totalNominalReturn += monthlyReturn;
-                currentValue += monthlyReturn;
-
-                // Calcular impacto da inflação
-                const inflationFactor = Math.pow(1 + monthlyInflation, month);
-                const realValue = currentValue / inflationFactor;
-                const inflationAdjusted = currentValue - realValue;
-                totalInflationImpact += inflationAdjusted;
-
-                // Determinar status
-                let status = 'neutral';
-                if (monthlyReturn > 0) status = 'positive';
-                else if (monthlyReturn < 0) status = 'negative';
-
-                cashflows.push({
-                    period: month,
-                    initialCapital: amount,
-                    monthlyReturn,
-                    accumulated: currentValue,
-                    totalReturn: currentValue - amount,
-                    inflationAdjusted,
-                    realValue,
-                    status
-                });
-            }
-
-            // Aplicar variação cambial
-            const finalValueWithFX = currentValue * (1 + fxVariation);
-            const fxImpact = finalValueWithFX - currentValue;
-
-            const nominalGain = currentValue - amount;
-            const realGain = (currentValue / Math.pow(1 + inflation, horizon/12)) - amount;
-
-            return {
-                inputs,
-                cashflows,
-                summary: {
-                    initialInvestment: amount,
-                    finalValueNominal: currentValue,
-                    finalValueReal: currentValue / Math.pow(1 + inflation, horizon/12),
-                    nominalGain,
-                    realGain,
-                    nominalReturnPct: (nominalGain / amount) * 100,
-                    realReturnPct: (realGain / amount) * 100,
-                    fxImpact,
-                    finalValueWithFX,
-                    totalInflationImpact,
-                    totalMonths: horizon
-                }
-            };
-        }
-
-        // Exibir resultados
-        function displayResults(scenario) {
-            const summary = scenario.summary;
-            
-            // Indicadores Principais
-            const indicatorsHTML = `
-                <div class="indicator-card">
-                    <div class="indicator-label">Valor Final Nominal</div>
-                    <div class="indicator-value">${formatCurrency(summary.finalValueNominal)} Kz</div>
-                    <div class="indicator-label">Sem ajuste de inflação</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-label">Valor Final Real</div>
-                    <div class="indicator-value ${summary.realGain >= 0 ? 'positive' : 'negative'}">${formatCurrency(summary.finalValueReal)} Kz</div>
-                    <div class="indicator-label">Com ajuste de inflação</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-label">Rentabilidade Real</div>
-                    <div class="indicator-value ${summary.realReturnPct >= 0 ? 'positive' : 'negative'}">${summary.realReturnPct.toFixed(2)}%</div>
-                    <div class="indicator-label">Ganho real sobre inflação</div>
-                </div>
-                <div class="indicator-card">
-                    <div class="indicator-label">Impacto da Inflação</div>
-                    <div class="indicator-value negative">-${formatCurrency(summary.totalInflationImpact)} Kz</div>
-                    <div class="indicator-label">Perda pelo poder de compra</div>
-                </div>
-            `;
-            document.getElementById('keyIndicators').innerHTML = indicatorsHTML;
-
-            // Resumo Executivo
-            const executiveHTML = `
-                <div class="summary-header">📈 Resumo Executivo</div>
-                <p>Seu investimento de <strong>${formatCurrency(summary.initialInvestment)} Kz</strong> em <strong>${scenario.inputs.assetName}</strong> 
-                durante <strong>${summary.totalMonths} meses</strong> resultou em:</p>
-                <p><strong>Valor Final Nominal:</strong> ${formatCurrency(summary.finalValueNominal)} Kz</p>
-                <p><strong>Valor Final Real:</strong> ${formatCurrency(summary.finalValueReal)} Kz (após inflação)</p>
-                <p><strong>Rentabilidade Real:</strong> <span class="${summary.realReturnPct >= 0 ? 'status-positive' : 'status-negative'}">${summary.realReturnPct.toFixed(2)}%</span></p>
-                <p><strong>Impacto da Inflação:</strong> -${formatCurrency(summary.totalInflationImpact)} Kz</p>
-            `;
-            document.getElementById('executiveSummary').innerHTML = executiveHTML;
-
-            // Análise Detalhada
-            const analysisHTML = `
-                <h4>📊 Análise Detalhada</h4>
-                <div class="analysis-section">
-                    <p><strong>Desempenho do Investimento:</strong></p>
-                    <p>${summary.realReturnPct > 0 ? 
-                        `Seu investimento superou a inflação em ${summary.realReturnPct.toFixed(2)}%, gerando ganho real de ${formatCurrency(summary.realGain)} Kz.` : 
-                        `Seu investimento não superou a inflação, resultando em perda real de ${formatCurrency(Math.abs(summary.realGain))} Kz.`
-                    }</p>
-                </div>
-                <div class="analysis-section">
-                    <p><strong>Impacto da Inflação:</strong></p>
-                    <p>A inflação de ${(scenario.inputs.inflation * 100).toFixed(2)}% ao ano reduziu seu poder de compra em ${formatCurrency(summary.totalInflationImpact)} Kz.</p>
-                </div>
-                <div class="analysis-section">
-                    <p><strong>Considerações Finais:</strong></p>
-                    <p>${summary.realReturnPct > 5 ? 
-                        'Excelente desempenho! O investimento superou significativamente a inflação.' :
-                        summary.realReturnPct > 0 ?
-                        'Bom desempenho! O investimento manteve seu poder de compra.' :
-                        'Atenção! O investimento não foi capaz de proteger seu capital contra a inflação.'
-                    }</p>
-                </div>
-            `;
-            document.getElementById('detailedAnalysis').innerHTML = analysisHTML;
-
-            // Tabela de Fluxos
-            const tableBody = document.getElementById('cashflowBody');
-            tableBody.innerHTML = '';
-            
-            scenario.cashflows.forEach(cashflow => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${cashflow.period}</td>
-                    <td>${formatCurrency(cashflow.initialCapital)}</td>
-                    <td class="${cashflow.status}">${formatCurrency(cashflow.monthlyReturn)}</td>
-                    <td>${formatCurrency(cashflow.accumulated)}</td>
-                    <td>${formatCurrency(cashflow.totalReturn)}</td>
-                    <td class="negative">-${formatCurrency(cashflow.inflationAdjusted)}</td>
-                    <td>${formatCurrency(cashflow.realValue)}</td>
-                    <td class="status-${cashflow.status}">${cashflow.status === 'positive' ? '✅' : cashflow.status === 'negative' ? '❌' : '➖'}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Atualizar gráficos
-        function updateCharts(scenario) {
-            const ctx = document.getElementById('investmentChart').getContext('2d');
-            const ctxComp = document.getElementById('compositionChart').getContext('2d');
-            
-            // Destruir gráficos existentes
-            if (currentChart) currentChart.destroy();
-            if (compositionChart) compositionChart.destroy();
-
-            const periods = scenario.cashflows.map(cf => `Mês ${cf.period}`);
-            const values = scenario.cashflows.map(cf => cf.accumulated);
-            const realValues = scenario.cashflows.map(cf => cf.realValue);
-
-            // Gráfico de Evolução
-            currentChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: periods,
-                    datasets: [
-                        {
-                            label: 'Valor Nominal',
-                            data: values,
-                            borderColor: 'rgb(214, 174, 100)',
-                            backgroundColor: 'rgba(214, 174, 100, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        },
-                        {
-                            label: 'Valor Real (Ajustado)',
-                            data: realValues,
-                            borderColor: 'rgb(46, 204, 113)',
-                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Evolução do Investimento'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            ticks: {
-                                callback: function(value) {
-                                    return formatCurrency(value);
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Gráfico de Composição
-            const summary = scenario.summary;
-            compositionChart = new Chart(ctxComp, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Investimento Inicial', 'Ganho Nominal', 'Perda por Inflação'],
-                    datasets: [{
-                        data: [
-                            summary.initialInvestment,
-                            summary.nominalGain,
-                            Math.abs(summary.totalInflationImpact)
-                        ],
-                        backgroundColor: [
-                            'rgba(214, 174, 100, 0.8)',
-                            'rgba(46, 204, 113, 0.8)',
-                            'rgba(231, 76, 60, 0.8)'
-                        ],
-                        borderColor: [
-                            'rgb(214, 174, 100)',
-                            'rgb(46, 204, 113)',
-                            'rgb(231, 76, 60)'
-                        ],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const label = context.label || '';
-                                    const value = context.raw;
-                                    return `${label}: ${formatCurrency(value)} Kz`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Gerar recomendações
-        function generateRecommendations(scenario) {
-            const summary = scenario.summary;
-            let recommendationsHTML = '<h4>💡 Recomendações</h4>';
-            
-            if (summary.realReturnPct > 10) {
-                recommendationsHTML += `
-                    <div class="recommendation-item">
-                        <span class="recommendation-icon">🎯</span>
-                        <div>
-                            <strong>Excelente oportunidade!</strong> Continue com esta estratégia de investimento.
-                            A rentabilidade real está muito acima da inflação.
-                        </div>
-                    </div>
-                `;
-            } else if (summary.realReturnPct > 0) {
-                recommendationsHTML += `
-                    <div class="recommendation-item">
-                        <span class="recommendation-icon">👍</span>
-                        <div>
-                            <strong>Bom desempenho.</strong> Seu investimento está protegendo seu capital contra a inflação.
-                            Considere diversificar para melhorar os retornos.
-                        </div>
-                    </div>
-                `;
-            } else {
-                recommendationsHTML += `
-                    <div class="recommendation-item">
-                        <span class="recommendation-icon">⚠️</span>
-                        <div>
-                            <strong>Atenção necessária.</strong> Seu investimento não está superando a inflação.
-                            Considere revisar sua estratégia ou buscar alternativas com melhor potencial.
-                        </div>
-                    </div>
-                `;
-            }
-
-            recommendationsHTML += `
-                <div class="recommendation-item">
-                    <span class="recommendation-icon">📚</span>
-                    <div>
-                        <strong>Educação Financeira:</strong> Continue aprendendo sobre investimentos. 
-                        A Teca Capital oferece recursos educativos para ajudar na sua jornada.
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('recommendationsSection').innerHTML = recommendationsHTML;
-        }
-
-        // Gerar PDF
-        function generatePDF() {
-            alert('Funcionalidade de PDF será implementada em breve!');
-        }
-
-        // Exportar CSV
-        function exportCSV() {
-            if (!simulationData) {
-                alert('Execute uma simulação primeiro!');
-                return;
-            }
-
-            let csvContent = "Mês,Valor Inicial,Rendimento,Valor Final,Rendimento Acumulado,Inflação Ajustada,Valor Real,Status\n";
-            
-            simulationData.cashflows.forEach(cashflow => {
-                csvContent += `${cashflow.period},${cashflow.initialCapital},${cashflow.monthlyReturn},${cashflow.accumulated},${cashflow.totalReturn},${cashflow.inflationAdjusted},${cashflow.realValue},${cashflow.status}\n`;
-            });
-
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.setAttribute('href', url);
-            link.setAttribute('download', `simulacao_investimento_${new Date().toISOString().split('T')[0]}.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Partilhar resultados
-        function shareResults() {
-            if (!simulationData) {
-                alert('Execute uma simulação primeiro!');
-                return;
-            }
-
-            const summary = simulationData.summary;
-            const shareText = `📊 Resultado da Simulação Teca Capital:
-💰 Investimento: ${formatCurrency(summary.initialInvestment)} Kz
-📈 Valor Final: ${formatCurrency(summary.finalValueNominal)} Kz
-🎯 Rentabilidade Real: ${summary.realReturnPct.toFixed(2)}%
-📉 Impacto Inflação: -${formatCurrency(summary.totalInflationImpact)} Kz
-            
-Simulado em: ${new Date().toLocaleDateString('pt-PT')}`;
-
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Simulação de Investimento - Teca Capital',
-                    text: shareText
-                });
-            } else {
-                navigator.clipboard.writeText(shareText).then(() => {
-                    alert('Resultados copiados para a área de transferência!');
-                }).catch(() => {
-                    alert(shareText);
-                });
-            }
-        }
-
-        // Funções auxiliares
-        function formatCurrency(value) {
-            return new Intl.NumberFormat('pt-AO', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            }).format(value);
-        }
-
-        // Expor funções globalmente
-        window.toggleInvestmentFields = toggleInvestmentFields;
-        window.setVariation = setVariation;
-        window.setHorizon = setHorizon;
-        window.addAsset = addAsset;
-        window.removeAsset = removeAsset;
-        window.validatePortfolio = validatePortfolio;
-        window.addScenario = addScenario;
-        window.removeScenario = removeScenario;
-        window.resetSimulation = resetSimulation;
-        window.calculateScenario = calculateScenario;
-        window.generatePDF = generatePDF;
-        window.exportCSV = exportCSV;
-        window.shareResults = shareResults;
-    </script>
+<main>
     
+    <!-- ========================================
+         ONBOARDING (Configuração inicial)
+    ======================================== -->
+    <section id="onboarding">
+        <div class="onboarding-container">
+            <h1>Simulador de Mercado Financeiro</h1>
+            <h2>TECA CAPITAL INVESTIMENTOS</h2>
+            
+            <div class="info-box">
+                <span class="icon">ℹ️</span>
+                <div>
+                    <p><strong>Simulador Fictício para Fins Educacionais:</strong></p>
+                    <p>Este simulador permite que você entenda como o mercado financeiro funciona na vida real, sem correr nenhum risco. Todas as simulações, preços e movimentações são fictícias e não representam desempenho real de empresas, ativos ou instituições financeiras. O objetivo é puramente educacional e de aprendizado.</p>
+                </div>
+            </div>
+
+            <form id="user-setup">
+                
+                <!-- Nome -->
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="investor-name" 
+                        placeholder="Seu nome completo" 
+                        required 
+                        autocomplete="name"
+                    >
+                </div>
+                
+                <!-- Região -->
+                <div class="form-group">
+                    <select id="region" required>
+                        <option value="">Selecione a província</option>
+                        <option value="bengo">Bengo</option>
+                        <option value="benguela">Benguela</option>
+                        <option value="bie">Bié</option>
+                        <option value="cabinda">Cabinda</option>
+                        <option value="cuando-cubango">Cuando Cubango</option>
+                        <option value="cuanza-norte">Cuanza Norte</option>
+                        <option value="cuanza-sul">Cuanza Sul</option>
+                        <option value="cunene">Cunene</option>
+                        <option value="huambo">Huambo</option>
+                        <option value="huila">Huíla</option>
+                        <option value="luanda">Luanda</option>
+                        <option value="lunda-norte">Lunda Norte</option>
+                        <option value="lunda-sul">Lunda Sul</option>
+                        <option value="malanje">Malanje</option>
+                        <option value="moxico">Moxico</option>
+                        <option value="namibe">Namibe</option>
+                        <option value="uige">Uíge</option>
+                        <option value="zaire">Zaire</option>
+                        <option value="outro-pais">🌍 Outro País</option>
+                    </select>
+                </div>
+                
+                <!-- Sexo -->
+                <div class="form-group">
+                    <select id="gender" required>
+                        <option value="">Sexo</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                        <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                    </select>
+                </div>
+                
+                <!-- Perfil de Investidor -->
+                <div class="profile-selector">
+                    <label>Perfil de Investidor:</label>
+                    <div class="profile-cards">
+                        
+                        <div class="profile-card" data-profile="conservador">
+                            <span class="icon">🛡️</span>
+                            <h3>Conservador</h3>
+                            <p>Prefere segurança e previsibilidade. Aceita retornos menores em troca de menor risco. Foco principal em renda fixa (títulos públicos e privados).</p>
+                        </div>
+                        
+                        <div class="profile-card" data-profile="moderado">
+                            <span class="icon">⚖️</span>
+                            <h3>Moderado</h3>
+                            <p>Equilibra risco e retorno. Diversifica a carteira entre renda fixa (40-60%) e renda variável (40-60%). Busca crescimento com proteção.</p>
+                        </div>
+                        
+                        <div class="profile-card" data-profile="agressivo">
+                            <span class="icon">🚀</span>
+                            <h3>Agressivo</h3>
+                            <p>Busca máximos retornos e aceita alta volatilidade. Foco principal em renda variável: ações, ETFs e criptomoedas. Tolera oscilações significativas.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Cenário Econômico -->
+                <div class="scenario-selector">
+                    <label>Cenário Econômico:</label>
+                    <div class="scenario-cards">
+                        
+                        <div class="scenario-card" data-scenario="estavel">
+                            <span class="icon">📈</span>
+                            <h3>Estável</h3>
+                            <p>Economia equilibrada com poder de compra estável. População tem capacidade de poupar e investir. Ativos apresentam variações normais e previsíveis no mercado.</p>
+                        </div>
+                        
+                        <div class="scenario-card" data-scenario="crise">
+                            <span class="icon">📉</span>
+                            <h3>Crise/Instável</h3>
+                            <p>Economia em recessão. Baixo poder de compra. Ações e ativos variáveis despencam. Investidores migram para títulos públicos em busca de segurança.</p>
+                        </div>
+                        
+                        <div class="scenario-card" data-scenario="crescimento">
+                            <span class="icon">🔥</span>
+                            <h3>Crescimento</h3>
+                            <p>Economia aquecida com alto poder de compra e investimento estrangeiro. Ações, ETFs e criptomoedas valorizam significativamente. Mercado otimista.</p>
+                        </div>
+                        
+                        <div class="scenario-card" data-scenario="angola-especial">
+                            <span class="icon">🇦🇴</span>
+                            <h3>Cenário Angola Especial</h3>
+                            <p>Realidade específica de Angola: Ações da BODIVA com valorização de +100% a +300% ao ano. Alta demanda por títulos públicos. Mercado cripto segue tendências globais em USD.</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Saldo Inicial -->
+                <div class="balance-selector">
+                    <label>Saldo Inicial para Simulação (Kz):</label>
+                    <div class="balance-options">
+                        <button type="button" data-balance="50000">50 mil Kz</button>
+                        <button type="button" data-balance="100000">100 mil Kz</button>
+                        <button type="button" data-balance="500000">500 mil Kz</button>
+                        <button type="button" data-balance="1000000">1 milhão Kz</button>
+                        <button type="button" data-balance="5000000">5 milhões Kz</button>
+                        <button type="button" data-balance="10000000">10 milhões Kz</button>
+                        <button type="button" data-balance="50000000">50 milhões Kz</button>
+                        <button type="button" data-balance="100000000">100 milhões Kz</button>
+                        <button type="button" data-balance="500000000">500 milhões Kz</button>
+                        <button type="button" data-balance="1000000000">1 bilhão Kz</button>
+                        <button type="button" data-balance="5000000000">5 bilhões Kz</button>
+                        <button type="button" data-balance="10000000000">10 bilhões Kz</button>
+                    </div>
+                </div>
+
+                <!-- Intervalo de Atualização -->
+                <div class="update-interval">
+                    <label>Intervalo de Atualização dos Preços:</label>
+                    <select id="tick-interval" required>
+                        <option value="3000">3 segundos (Demo rápida)</option>
+                        <option value="30000">30 segundos</option>
+                        <option value="60000" selected>1 minuto</option>
+                        <option value="120000">2 minutos (Recomendado)</option>
+                        <option value="300000">5 minutos</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary">Iniciar Simulação 🚀</button>
+                
+            </form>
+        </div>
+    </section>
+
+    <!-- ========================================
+         DASHBOARD PRINCIPAL
+    ======================================== -->
+    <section id="dashboard" style="display:none;">
+        
+        <!-- Header do Dashboard -->
+        <div class="dashboard-header">
+            <div class="user-info">
+                <h2>Bem-vindo(a), <span id="user-name-display"></span> 👋</h2>
+                <p class="scenario-badge">Cenário: <span id="scenario-display"></span></p>
+            </div>
+            <div class="header-actions">
+                <button id="export-portfolio" class="btn-secondary">
+                    📸 Exportar Carteira (Imagem)
+                </button>
+                <button id="export-excel" class="btn-secondary">
+                    📊 Exportar (Excel/CSV)
+                </button>
+                <button id="reset-simulation" class="btn-danger">
+                    🔄 Reiniciar Simulação
+                </button>
+            </div>
+        </div>
+
+        <!-- Grid Principal -->
+        <div class="dashboard-grid">
+            
+            <!-- SIDEBAR: Resumo da Carteira -->
+            <aside class="portfolio-summary">
+                
+                <!-- Card de Resumo -->
+                <div class="summary-card">
+                    <h3>💼 Sua Carteira</h3>
+                    <div class="balance-info">
+                        
+                        <div class="balance-item">
+                            <span class="label">Saldo Disponível:</span>
+                            <span class="value" id="available-balance">0 Kz</span>
+                        </div>
+                        
+                        <div class="balance-item">
+                            <span class="label">Total Investido:</span>
+                            <span class="value" id="invested-amount">0 Kz</span>
+                        </div>
+                        
+                        <div class="balance-item">
+                            <span class="label">Valor Atual:</span>
+                            <span class="value" id="current-value">0 Kz</span>
+                        </div>
+                        
+                        <div class="balance-item highlight">
+                            <span class="label">Lucro/Prejuízo Total:</span>
+                            <span class="value pnl" id="total-pnl">0 Kz (0%)</span>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Gráfico de Alocação -->
+                    <div class="allocation-chart">
+                        <h4>📊 Alocação de Ativos</h4>
+                        <canvas id="allocation-pie" width="200" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Detalhes de Alocação -->
+                <div class="portfolio-allocation-details">
+                    <div id="diversification-badge"></div>
+                    <h4>📊 Alocação por Ativo</h4>
+                    <div id="allocation-list">
+                        <p class="empty-state">Nenhum ativo na carteira</p>
+                    </div>
+                </div>
+
+                <!-- Ranking de Desempenho -->
+                <div class="performance-ranking">
+                    <h4>🏆 Desempenho dos Ativos</h4>
+                    
+                    <div class="ranking-section">
+                        <h5 class="ranking-title positive">📈 Maiores Ganhos</h5>
+                        <div id="top-performers">
+                            <p class="empty-state">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="ranking-section">
+                        <h5 class="ranking-title negative">📉 Maiores Perdas</h5>
+                        <div id="worst-performers">
+                            <p class="empty-state">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Posições Abertas -->
+                <div class="positions-list">
+                    <h4>📌 Posições Abertas</h4>
+                    <div id="open-positions">
+                        <p class="empty-state">Nenhuma posição aberta ainda.</p>
+                    </div>
+                </div>
+                
+            </aside>
+
+            <!-- CONTEÚDO PRINCIPAL: Ativos Disponíveis -->
+            <div class="assets-section">
+                
+                <!-- Tabs de Categorias -->
+                <div class="asset-tabs">
+                    <button class="tab active" data-category="acoes">🏢 Ações</button>
+                    <button class="tab" data-category="etfs">📦 ETFs</button>
+                    <button class="tab" data-category="cripto">₿ Criptomoedas</button>
+                    <button class="tab" data-category="titulosPublicos">🏛️ Títulos Públicos</button>
+                    <button class="tab" data-category="titulosPrivados">🏦 Títulos Privados</button>
+                </div>
+
+                <!-- Explicação Educacional -->
+                <div class="asset-explanation">
+                    <button class="btn-info" id="info-btn">
+                        ℹ️ O que é isso?
+                    </button>
+                    <div id="explanation-content" class="explanation-box" style="display:none;">
+                        <!-- Conteúdo dinâmico -->
+                    </div>
+                </div>
+
+                <!-- Container de Ativos -->
+                <div class="assets-container" id="assets-list">
+                    <!-- Cards de ativos gerados dinamicamente via JavaScript -->
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Modal de Compra/Venda -->
+        <div id="trade-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 id="modal-title">Comprar Ativo</h3>
+                
+                <div class="asset-details">
+                    <h4 id="modal-asset-name"></h4>
+                    <p>Preço Atual: <span id="modal-price"></span></p>
+                    <p id="modal-extra-info"></p>
+                    <div id="crypto-purchase-options" style="display:none; margin-top: 10px;">
+                        <label style="display: block; margin-bottom: 8px;">
+                            <input type="radio" name="purchase-type" value="full" checked>
+                            Comprar em <span id="unit-name">BTC</span> (unidades completas)
+                        </label>
+                        <label style="display: block;">
+                            <input type="radio" name="purchase-type" value="fraction">
+                            Comprar em <span id="fraction-name">Satoshi</span> (frações)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="trade-form">
+                    <label for="trade-quantity">Quantidade:</label>
+                    <input 
+                        type="number" 
+                        id="trade-quantity" 
+                        min="1" 
+                        step="1" 
+                        placeholder="Ex: 10"
+                    >
+                    
+                    <div class="trade-summary">
+                        <p><strong>Total da Operação:</strong> <span id="trade-total">0 Kz</span></p>
+                        <p class="warning" id="insufficient-funds" style="display:none;">
+                            ⚠️ Saldo insuficiente para esta operação
+                        </p>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button id="confirm-trade" class="btn-primary">Confirmar</button>
+                        <button id="cancel-trade" class="btn-secondary">Cancelar</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Histórico de Transações -->
+        <section class="transaction-history">
+            <h3>📜 Histórico de Transações</h3>
+            <div class="history-table-container">
+                <table id="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Data/Hora</th>
+                            <th>Ativo</th>
+                            <th>Tipo</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                            <th>Total</th>
+                            <th>P&L</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-body">
+                        <tr>
+                            <td colspan="7" class="empty-state">Nenhuma transação ainda.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </section>
+
+</main>
+
+<script>
+    // ========================================
+    // ESTADO GLOBAL DA APLICAÇÃO
+    // ========================================
+    const AppState = {
+        user: {
+            name: '',
+            region: '',
+            gender: '',
+            profile: '',
+            scenario: '',
+            initialBalance: 0,
+            availableBalance: 0,
+            tickInterval: 60000
+        },
+        
+        portfolio: {
+            positions: [],
+            transactions: [],
+            totalInvested: 0,
+            currentValue: 0,
+            totalPnL: 0
+        },
+        
+        market: {
+            assets: {},
+            lastUpdate: null,
+            intervalId: null
+        }
+    };
+
+    // ========================================
+    // BASE DE DADOS DE ATIVOS ATUALIZADA
+    // ========================================
+    const ASSETS_DATABASE = {
+        acoes: [
+            {
+                id: 'BAI',
+                name: 'Banco Angolano de Investimentos',
+                ticker: 'BAI',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 1200,
+                volatility: 0.015,
+                icon: '🏦'
+            },
+            {
+                id: 'BFA',
+                name: 'Banco de Fomento Angola',
+                ticker: 'BFA',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 950,
+                volatility: 0.012,
+                icon: '🏦'
+            },
+            {
+                id: 'BCG',
+                name: 'Banco Caixa Geral Angola',
+                ticker: 'BCG',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 880,
+                volatility: 0.013,
+                icon: '🏦'
+            },
+            {
+                id: 'BODIVA',
+                name: 'Bolsa de Dívida e Valores de Angola',
+                ticker: 'BODIVA',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 45,
+                volatility: 0.02,
+                icon: '📊'
+            },
+            {
+                id: 'ENSA',
+                name: 'Empresa Nacional de Seguros de Angola',
+                ticker: 'ENSA',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 520,
+                volatility: 0.018,
+                icon: '🛡️'
+            },
+            {
+                id: 'SONANGOL',
+                name: 'Sonangol E.P.',
+                ticker: 'SNGL',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 1500,
+                volatility: 0.014,
+                icon: '⛽'
+            },
+            {
+                id: 'TAAG',
+                name: 'TAAG Linhas Aéreas de Angola',
+                ticker: 'TAAG',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 380,
+                volatility: 0.025,
+                icon: '✈️'
+            },
+            {
+                id: 'UNITEL',
+                name: 'Unitel S.A.',
+                ticker: 'UNTL',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 720,
+                volatility: 0.016,
+                icon: '📱'
+            },
+            {
+                id: 'BPC',
+                name: 'Banco de Poupança e Crédito',
+                ticker: 'BPC',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 650,
+                volatility: 0.011,
+                icon: '🏦'
+            },
+            {
+                id: 'BCI',
+                name: 'Banco Comercial e de Investimentos',
+                ticker: 'BCI',
+                type: 'acao',
+                country: 'AO',
+                exchange: 'BODIVA',
+                initialPrice: 590,
+                volatility: 0.014,
+                icon: '🏦'
+            }
+        ],
+        
+        etfs: [
+            {
+                id: 'ETF_ANGOLA_INDEX',
+                name: 'ETF BODIVA Index',
+                ticker: 'BODIVA-ETF',
+                type: 'etf',
+                description: 'Acompanha as principais empresas da BODIVA',
+                initialPrice: 85,
+                volatility: 0.010,
+                icon: '📦'
+            },
+            {
+                id: 'ETF_BTC',
+                name: 'Bitcoin ETF',
+                ticker: 'BTC-ETF',
+                type: 'etf',
+                description: 'Acompanha o preço do Bitcoin',
+                initialPrice: 120,
+                currency: 'USD',
+                volatility: 0.045,
+                icon: '₿'
+            },
+            {
+                id: 'ETF_ETH',
+                name: 'Ethereum ETF',
+                ticker: 'ETH-ETF',
+                type: 'etf',
+                description: 'Acompanha o preço do Ethereum',
+                initialPrice: 95,
+                currency: 'USD',
+                volatility: 0.040,
+                icon: 'Ξ'
+            },
+            {
+                id: 'ETF_CRYPTO_COMBO',
+                name: 'Crypto Combo ETF',
+                ticker: 'CRYPTO-COMBO',
+                type: 'etf',
+                description: 'Combina BTC (70%) + ETH (30%)',
+                initialPrice: 50,
+                currency: 'USD',
+                volatility: 0.048,
+                icon: '💎'
+            }
+        ],
+        
+        cripto: [
+            {
+                id: 'BTC',
+                name: 'Bitcoin',
+                ticker: 'BTC',
+                type: 'cripto',
+                initialPrice: 95000,
+                currency: 'USDT',
+                supplyMax: 21000000,
+                supplyCirc: 19800000,
+                volatility: 0.06,
+                icon: '₿',
+                minPurchaseUnit: 0.00000001,
+                unitName: 'BTC',
+                fractionName: 'Satoshi',
+                satoshisPerBTC: 100000000,
+                decimals: 8
+            },
+            {
+                id: 'ETH',
+                name: 'Ethereum',
+                ticker: 'ETH',
+                type: 'cripto',
+                initialPrice: 3500,
+                currency: 'USDT',
+                supplyMax: null,
+                supplyCirc: 120000000,
+                volatility: 0.05,
+                icon: 'Ξ',
+                minPurchaseUnit: 0.000000000000000001,
+                unitName: 'ETH',
+                fractionName: 'Wei',
+                weiPerETH: 1000000000000000000,
+                decimals: 18
+            },
+            {
+                id: 'BNB',
+                name: 'Binance Coin',
+                ticker: 'BNB',
+                type: 'cripto',
+                initialPrice: 650,
+                currency: 'USDT',
+                supplyMax: 200000000,
+                supplyCirc: 155000000,
+                volatility: 0.045,
+                icon: '🔶',
+                minPurchaseUnit: 0.00000001,
+                unitName: 'BNB',
+                fractionName: 'Jager',
+                decimals: 8
+            },
+            {
+                id: 'SOL',
+                name: 'Solana',
+                ticker: 'SOL',
+                type: 'cripto',
+                initialPrice: 230,
+                currency: 'USDT',
+                supplyMax: null,
+                supplyCirc: 470000000,
+                volatility: 0.08,
+                icon: '◎',
+                minPurchaseUnit: 0.00000001,
+                unitName: 'SOL',
+                fractionName: 'Lamport',
+                decimals: 9
+            },
+            {
+                id: 'XRP',
+                name: 'Ripple',
+                ticker: 'XRP',
+                type: 'cripto',
+                initialPrice: 2.5,
+                currency: 'USDT',
+                supplyMax: 100000000000,
+                supplyCirc: 57000000000,
+                volatility: 0.055,
+                icon: '◈',
+                minPurchaseUnit: 0.000001,
+                unitName: 'XRP',
+                fractionName: 'Drop',
+                decimals: 6
+            },
+            {
+                id: 'ADA',
+                name: 'Cardano',
+                ticker: 'ADA',
+                type: 'cripto',
+                initialPrice: 1.1,
+                currency: 'USDT',
+                supplyMax: 45000000000,
+                supplyCirc: 36000000000,
+                volatility: 0.05,
+                icon: '₳',
+                minPurchaseUnit: 0.000001,
+                unitName: 'ADA',
+                fractionName: 'Lovelace',
+                decimals: 6
+            },
+            {
+                id: 'DOGE',
+                name: 'Dogecoin',
+                ticker: 'DOGE',
+                type: 'cripto',
+                initialPrice: 0.38,
+                currency: 'USDT',
+                supplyMax: null,
+                supplyCirc: 147000000000,
+                volatility: 0.09,
+                icon: '🐕',
+                minPurchaseUnit: 0.01,
+                unitName: 'DOGE',
+                fractionName: 'Dogetoshi',
+                decimals: 2
+            },
+            {
+                id: 'MATIC',
+                name: 'Polygon',
+                ticker: 'MATIC',
+                type: 'cripto',
+                initialPrice: 0.95,
+                currency: 'USDT',
+                supplyMax: 10000000000,
+                supplyCirc: 9400000000,
+                volatility: 0.065,
+                icon: '⬡',
+                minPurchaseUnit: 0.000001,
+                unitName: 'MATIC',
+                fractionName: 'Wei',
+                decimals: 18
+            },
+            {
+                id: 'DOT',
+                name: 'Polkadot',
+                ticker: 'DOT',
+                type: 'cripto',
+                initialPrice: 8.5,
+                currency: 'USDT',
+                supplyMax: null,
+                supplyCirc: 1400000000,
+                volatility: 0.058,
+                icon: '●',
+                minPurchaseUnit: 0.00000001,
+                unitName: 'DOT',
+                fractionName: 'Planck',
+                decimals: 10
+            },
+            {
+                id: 'AVAX',
+                name: 'Avalanche',
+                ticker: 'AVAX',
+                type: 'cripto',
+                initialPrice: 42,
+                currency: 'USDT',
+                supplyMax: 720000000,
+                supplyCirc: 450000000,
+                volatility: 0.07,
+                icon: '🔺',
+                minPurchaseUnit: 0.00000001,
+                unitName: 'AVAX',
+                fractionName: 'Nano AVAX',
+                decimals: 9
+            }
+        ],
+        
+        titulosPublicos: [
+            {
+                id: 'OT_2Y',
+                name: 'Obrigação do Tesouro 2 Anos',
+                ticker: 'OT-2Y',
+                type: 'titulo-publico',
+                maturity: 2,
+                couponRate: 0.17,
+                initialPrice: 100000,
+                volatility: 0.002,
+                icon: '🏛️'
+            },
+            {
+                id: 'OT_3Y',
+                name: 'Obrigação do Tesouro 3 Anos',
+                ticker: 'OT-3Y',
+                type: 'titulo-publico',
+                maturity: 3,
+                couponRate: 0.18,
+                initialPrice: 100000,
+                volatility: 0.002,
+                icon: '🏛️'
+            },
+            {
+                id: 'OT_5Y',
+                name: 'Obrigação do Tesouro 5 Anos',
+                ticker: 'OT-5Y',
+                type: 'titulo-publico',
+                maturity: 5,
+                couponRate: 0.20,
+                initialPrice: 100000,
+                volatility: 0.002,
+                icon: '🏛️'
+            },
+            {
+                id: 'OT_7Y',
+                name: 'Obrigação do Tesouro 7 Anos',
+                ticker: 'OT-7Y',
+                type: 'titulo-publico',
+                maturity: 7,
+                couponRate: 0.22,
+                initialPrice: 100000,
+                volatility: 0.002,
+                icon: '🏛️'
+            },
+            {
+                id: 'OT_10Y',
+                name: 'Obrigação do Tesouro 10 Anos',
+                ticker: 'OT-10Y',
+                type: 'titulo-publico',
+                maturity: 10,
+                couponRate: 0.24,
+                initialPrice: 100000,
+                volatility: 0.002,
+                icon: '🏛️'
+            },
+            {
+                id: 'BT_1Y',
+                name: 'Bilhete do Tesouro 1 Ano',
+                ticker: 'BT-1Y',
+                type: 'titulo-publico',
+                maturity: 1,
+                couponRate: 0.16,
+                initialPrice: 50000,
+                volatility: 0.001,
+                icon: '📄'
+            }
+        ],
+        
+        titulosPrivados: [
+            {
+                id: 'OP_BAI_3Y',
+                name: 'Obrigação Privada BAI 3 Anos',
+                ticker: 'OP-BAI-3Y',
+                type: 'titulo-privado',
+                issuer: 'BAI',
+                maturity: 3,
+                couponRate: 0.15,
+                initialPrice: 75000,
+                volatility: 0.005,
+                icon: '🏦'
+            },
+            {
+                id: 'OP_UNITEL_2Y',
+                name: 'Obrigação Privada Unitel 2 Anos',
+                ticker: 'OP-UNTL-2Y',
+                type: 'titulo-privado',
+                issuer: 'Unitel',
+                maturity: 2,
+                couponRate: 0.14,
+                initialPrice: 50000,
+                volatility: 0.006,
+                icon: '📱'
+            }
+        ]
+    };
+
+    // Explicações Educacionais
+    const ASSET_EXPLANATIONS = {
+        acoes: {
+            title: "🏢 O que são Ações?",
+            content: "Ações são pequenas partes de uma empresa. Ao comprar ações, você se torna sócio e pode lucrar com a valorização da empresa ou receber dividendos. O preço varia conforme oferta e demanda no mercado. Ao adicionar ações na sua carteira, você está investindo em renda variável - o valor pode subir ou descer diariamente."
+        },
+        etfs: {
+            title: "📦 O que são ETFs?",
+            content: "ETFs (Exchange Traded Funds) são fundos que agrupam vários ativos. Permitem investir em múltiplas empresas ou criptomoedas de uma vez, com menor custo e maior diversificação. São negociados como ações e oferecem exposição a diversos mercados simultaneamente."
+        },
+        cripto: {
+            title: "₿ O que são Criptomoedas?",
+            content: "Criptomoedas são moedas digitais descentralizadas baseadas em blockchain. Exemplos: Bitcoin (BTC), Ethereum (ETH). São altamente voláteis e podem valorizar ou desvalorizar rapidamente. Você pode comprar frações (Satoshis para BTC, Wei para ETH) sem precisar comprar a moeda inteira."
+        },
+        titulosPublicos: {
+            title: "🏛️ O que são Títulos Públicos?",
+            content: "São dívidas do governo. Você empresta dinheiro ao Estado e recebe juros fixos no vencimento. São considerados investimentos de baixo risco e renda previsível. Ao adicionar na carteira, você verá o valor final que receberá na data de vencimento."
+        },
+        titulosPrivados: {
+            title: "🏦 O que são Títulos Privados?",
+            content: "Similares aos públicos, mas emitidos por empresas privadas. Oferecem juros fixos, mas com risco ligeiramente maior que títulos públicos. Retorno previsível no vencimento. Ideais para diversificar entre renda fixa pública e privada."
+        }
+    };
+
+    // Taxa de câmbio fixa
+    const USD_TO_KZ = 830;
+
+    // ========================================
+    // FUNÇÕES UTILITÁRIAS
+    // ========================================
+    function formatCurrency(value) {
+        return `${value.toLocaleString('pt-AO', {minimumFractionDigits: 2, maximumFractionDigits: 2})} Kz`;
+    }
+
+    function getScenarioLabel(scenario) {
+        const labels = {
+            'estavel': '📈 Estável',
+            'crise': '📉 Crise/Instável',
+            'crescimento': '🔥 Crescimento',
+            'angola-especial': '🇦🇴 Angola Especial'
+        };
+        return labels[scenario] || scenario;
+    }
+
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 100);
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 4000);
+    }
+
+    function randomNormal(mean = 0, stdDev = 1) {
+        const u1 = Math.random();
+        const u2 = Math.random();
+        const z0 = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+        return mean + z0 * stdDev;
+    }
+
+    function convertCryptoUnits(asset, quantity, fromUnit) {
+        if (asset.type !== 'cripto') return quantity;
+        
+        if (fromUnit === 'fraction') {
+            // Converter de fração para unidade completa
+            if (asset.id === 'BTC') {
+                return quantity / asset.satoshisPerBTC;
+            } else if (asset.id === 'ETH') {
+                return quantity / asset.weiPerETH;
+            }
+            // Para outras criptos, usar minPurchaseUnit como divisor
+            return quantity * asset.minPurchaseUnit;
+        }
+        
+        return quantity;
+    }
+
+    function calculateDiversificationScore() {
+        const positions = AppState.portfolio.positions.length;
+        
+        if (positions === 0) return { score: 0, label: 'Sem investimentos', color: 'gray' };
+        if (positions === 1) return { score: 1, label: 'Não diversificado', color: 'danger' };
+        if (positions <= 3) return { score: 2, label: 'Baixa diversificação', color: 'warning' };
+        if (positions <= 6) return { score: 3, label: 'Diversificação moderada', color: 'accent-green' };
+        if (positions <= 10) return { score: 4, label: 'Bem diversificado', color: 'success' };
+        return { score: 5, label: 'Altamente diversificado', color: 'success' };
+    }
+
+    // ========================================
+    // ENGINE DE MERCADO
+    // ========================================
+    function calculateNextPrice(asset, scenario) {
+        const current = asset.currentPrice || asset.initialPrice;
+        let vol = asset.volatility;
+        let drift = 0;
+        
+        switch(scenario) {
+            case 'estavel':
+                break;
+                
+            case 'crise':
+                if (asset.type === 'acao' || asset.type === 'etf') {
+                    vol *= 2.5;
+                    drift = -0.015;
+                } else if (asset.type.includes('titulo')) {
+                    drift = 0.005;
+                } else if (asset.type === 'cripto') {
+                    vol *= 1.8;
+                    drift = -0.01;
+                }
+                break;
+                
+            case 'crescimento':
+                if (asset.type === 'acao' || asset.type === 'etf' || asset.type === 'cripto') {
+                    drift = 0.02;
+                    vol *= 1.2;
+                }
+                break;
+                
+            case 'angola-especial':
+                if (asset.country === 'AO' && asset.type === 'acao') {
+                    drift = 0.025;
+                    vol *= 0.8;
+                } else if (asset.type.includes('titulo')) {
+                    drift = 0.008;
+                } else if (asset.type === 'cripto') {
+                    vol *= 1.5;
+                }
+                break;
+        }
+        
+        const changePct = drift + randomNormal(0, vol);
+        let newPrice = current * (1 + changePct);
+        
+        const minPrice = asset.initialPrice * 0.01;
+        const maxPrice = asset.initialPrice * 50;
+        newPrice = Math.max(minPrice, Math.min(maxPrice, newPrice));
+        
+        if (asset.type === 'cripto') {
+            const decimals = asset.decimals || 8;
+            return parseFloat(newPrice.toFixed(decimals));
+        } else {
+            return parseFloat(newPrice.toFixed(2));
+        }
+    }
+
+    function initializeMarket() {
+        Object.keys(ASSETS_DATABASE).forEach(category => {
+            ASSETS_DATABASE[category].forEach(asset => {
+                AppState.market.assets[asset.id] = {
+                    ...asset,
+                    currentPrice: asset.initialPrice,
+                    previousPrice: asset.initialPrice,
+                    priceHistory: [asset.initialPrice],
+                    timestamp: Date.now()
+                };
+            });
+        });
+    }
+
+    function updateMarketPrices() {
+        const scenario = AppState.user.scenario;
+        
+        Object.keys(AppState.market.assets).forEach(assetId => {
+            const asset = AppState.market.assets[assetId];
+            asset.previousPrice = asset.currentPrice;
+            asset.currentPrice = calculateNextPrice(asset, scenario);
+            
+            asset.priceHistory.push(asset.currentPrice);
+            if (asset.priceHistory.length > 100) {
+                asset.priceHistory.shift();
+            }
+            
+            asset.timestamp = Date.now();
+        });
+        
+        AppState.market.lastUpdate = Date.now();
+        
+        updateAssetsUI();
+        updatePortfolioUI();
+        updateChartsUI();
+    }
+
+    function startMarketUpdates() {
+        if (AppState.market.intervalId) {
+            clearInterval(AppState.market.intervalId);
+        }
+        
+        AppState.market.intervalId = setInterval(() => {
+            updateMarketPrices();
+        }, AppState.user.tickInterval);
+    }
+
+    function stopMarketUpdates() {
+        if (AppState.market.intervalId) {
+            clearInterval(AppState.market.intervalId);
+            AppState.market.intervalId = null;
+        }
+    }
+
+    // ========================================
+    // SISTEMA DE COMPRA E VENDA
+    // ========================================
+    function buyAsset(assetId, quantity) {
+        const asset = AppState.market.assets[assetId];
+        if (!asset) return { success: false, message: 'Ativo não encontrado' };
+        
+        // Verificar se é compra fracionada de cripto
+        const purchaseType = document.querySelector('input[name="purchase-type"]:checked')?.value || 'full';
+        let actualQuantity = quantity;
+        
+        if (asset.type === 'cripto' && purchaseType === 'fraction') {
+            actualQuantity = convertCryptoUnits(asset, quantity, 'fraction');
+        }
+        
+        const price = asset.currentPrice;
+        let total = price * actualQuantity;
+        
+        if (asset.currency === 'USD' || asset.currency === 'USDT') {
+            total *= USD_TO_KZ;
+        }
+        
+        if (total > AppState.user.availableBalance) {
+            return { 
+                success: false, 
+                message: '⚠️ Saldo insuficiente para esta operação' 
+            };
+        }
+        
+        AppState.user.availableBalance -= total;
+        
+        const existingPosition = AppState.portfolio.positions.find(p => p.assetId === assetId);
+        
+        if (existingPosition) {
+            const totalQuantity = existingPosition.quantity + actualQuantity;
+            const totalCost = (existingPosition.avgPrice * existingPosition.quantity) + total;
+            existingPosition.avgPrice = totalCost / totalQuantity;
+            existingPosition.quantity = totalQuantity;
+        } else {
+            AppState.portfolio.positions.push({
+                assetId,
+                name: asset.name,
+                ticker: asset.ticker,
+                type: asset.type,
+                quantity: actualQuantity,
+                avgPrice: total / actualQuantity,
+                purchasePrice: price,
+                currentPrice: price,
+                pnl: 0,
+                pnlPercent: 0
+            });
+        }
+        
+        AppState.portfolio.transactions.push({
+            timestamp: new Date().toISOString(),
+            assetId,
+            assetName: asset.name,
+            type: 'buy',
+            quantity: actualQuantity,
+            price,
+            total,
+            pnl: 0
+        });
+        
+        updatePortfolioMetrics();
+        saveToLocalStorage();
+        
+        const displayQuantity = asset.type === 'cripto' && purchaseType === 'fraction' ? 
+            `${quantity} ${asset.fractionName}` : 
+            `${actualQuantity} ${asset.ticker}`;
+            
+        return { 
+            success: true, 
+            message: `✅ Compra realizada: ${displayQuantity} por ${formatCurrency(total)}` 
+        };
+    }
+
+    function sellAsset(assetId, quantity) {
+        const asset = AppState.market.assets[assetId];
+        if (!asset) return { success: false, message: 'Ativo não encontrado' };
+        
+        const position = AppState.portfolio.positions.find(p => p.assetId === assetId);
+        if (!position) {
+            return { success: false, message: 'Você não possui este ativo' };
+        }
+        
+        if (quantity > position.quantity) {
+            return { success: false, message: 'Quantidade insuficiente para venda' };
+        }
+        
+        const price = asset.currentPrice;
+        let total = price * quantity;
+        
+        if (asset.currency === 'USD' || asset.currency === 'USDT') {
+            total *= USD_TO_KZ;
+        }
+        
+        const costBasis = position.avgPrice * quantity;
+        const grossPnL = total - costBasis;
+        
+        let tax = 0;
+        if (grossPnL > 0) {
+            tax = grossPnL * 0.10;
+        }
+        
+        const netPnL = grossPnL - tax;
+        const netTotal = total - tax;
+        
+        AppState.user.availableBalance += netTotal;
+        
+        position.quantity -= quantity;
+        
+        if (position.quantity === 0) {
+            const index = AppState.portfolio.positions.indexOf(position);
+            AppState.portfolio.positions.splice(index, 1);
+        }
+        
+        AppState.portfolio.transactions.push({
+            timestamp: new Date().toISOString(),
+            assetId,
+            assetName: asset.name,
+            type: 'sell',
+            quantity,
+            price,
+            total: netTotal,
+            grossPnL,
+            tax,
+            pnl: netPnL
+        });
+        
+        updatePortfolioMetrics();
+        saveToLocalStorage();
+        
+        return { 
+            success: true, 
+            message: `✅ Venda realizada: ${quantity}x ${asset.ticker} | P&L: ${formatCurrency(netPnL)} (após IAC: ${formatCurrency(tax)})` 
+        };
+    }
+
+    function updatePortfolioMetrics() {
+        let totalInvested = 0;
+        let currentValue = 0;
+        
+        AppState.portfolio.positions.forEach(position => {
+            const asset = AppState.market.assets[position.assetId];
+            const currentPrice = asset.currentPrice;
+            
+            let priceInKz = currentPrice;
+            if (asset.currency === 'USD' || asset.currency === 'USDT') {
+                priceInKz *= USD_TO_KZ;
+            }
+            
+            position.currentPrice = priceInKz;
+            
+            const invested = position.avgPrice * position.quantity;
+            const current = priceInKz * position.quantity;
+            
+            position.pnl = current - invested;
+            position.pnlPercent = ((current - invested) / invested) * 100;
+            
+            totalInvested += invested;
+            currentValue += current;
+        });
+        
+        AppState.portfolio.totalInvested = totalInvested;
+        AppState.portfolio.currentValue = currentValue;
+        AppState.portfolio.totalPnL = currentValue - totalInvested;
+    }
+
+    // ========================================
+    // INTERFACE DO USUÁRIO
+    // ========================================
+    function renderAssetsUI(category) {
+        const container = document.getElementById('assets-list');
+        const assets = ASSETS_DATABASE[category] || [];
+        
+        container.innerHTML = '';
+        
+        assets.forEach(assetData => {
+            const asset = AppState.market.assets[assetData.id];
+            if (!asset) return;
+            
+            const priceChange = asset.currentPrice - asset.previousPrice;
+            const priceChangePct = (priceChange / asset.previousPrice) * 100;
+            const changeClass = priceChange >= 0 ? 'positive' : 'negative';
+            const changeIcon = priceChange >= 0 ? '📈' : '📉';
+            
+            let priceDisplay;
+            if (asset.currency === 'USD' || asset.currency === 'USDT') {
+                priceDisplay = `$${asset.currentPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 6})}`;
+            } else {
+                priceDisplay = `${asset.currentPrice.toLocaleString('pt-AO')} Kz`;
+            }
+            
+            const card = document.createElement('div');
+            card.className = 'asset-card';
+            card.innerHTML = `
+                <div class="asset-header">
+                    <span class="asset-icon">${asset.icon}</span>
+                    <div class="asset-info">
+                        <h4>${asset.name}</h4>
+                        <span class="ticker">${asset.ticker}</span>
+                    </div>
+                </div>
+                
+                <div class="asset-price">
+                    <span class="price-value">${priceDisplay}</span>
+                    <span class="price-change ${changeClass}">
+                        ${changeIcon} ${priceChangePct >= 0 ? '+' : ''}${priceChangePct.toFixed(2)}%
+                    </span>
+                </div>
+                
+                ${asset.type === 'cripto' ? `
+                    <div class="crypto-info">
+                        <p class="supply-item">
+                            <span class="label">🔢 Supply Máximo:</span>
+                            <span class="value">${asset.supplyMax ? asset.supplyMax.toLocaleString() : '∞ (Ilimitado)'}</span>
+                        </p>
+                        <p class="supply-item">
+                            <span class="label">💎 Em Circulação:</span>
+                            <span class="value">${asset.supplyCirc.toLocaleString()}</span>
+                        </p>
+                        <p class="supply-item">
+                            <span class="label">📊 % Circulação:</span>
+                            <span class="value">${asset.supplyMax ? ((asset.supplyCirc / asset.supplyMax) * 100).toFixed(2) + '%' : 'N/A'}</span>
+                        </p>
+                    </div>
+                ` : ''}
+                
+                ${asset.type.includes('titulo') ? `
+                    <div class="bond-info">
+                        <p>Maturidade: ${asset.maturity} ano(s)</p>
+                        <p>Taxa: ${(asset.couponRate * 100).toFixed(1)}% a.a.</p>
+                        <p>Retorno previsto: ${formatCurrency(asset.initialPrice * (1 + asset.couponRate * asset.maturity))}</p>
+                    </div>
+                ` : ''}
+                
+                <div class="asset-chart-mini">
+                    <canvas id="chart-${asset.id}" width="300" height="100"></canvas>
+                </div>
+                
+                <div class="asset-actions">
+                    <button class="btn-buy" onclick="openTradeModal('${asset.id}', 'buy')">
+                        🛒 Comprar
+                    </button>
+                    <button class="btn-sell" onclick="openTradeModal('${asset.id}', 'sell')">
+                        💰 Vender
+                    </button>
+                </div>
+            `;
+            
+            container.appendChild(card);
+            renderMiniChart(asset.id, asset.priceHistory);
+        });
+    }
+
+    function renderMiniChart(assetId, history) {
+        const canvas = document.getElementById(`chart-${assetId}`);
+        if (!canvas || history.length < 2) return;
+        
+        // Ajustar tamanho para preencher container
+        const parent = canvas.parentElement;
+        canvas.width = parent.offsetWidth;
+        canvas.height = 100;
+        
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        
+        ctx.clearRect(0, 0, width, height);
+        
+        const min = Math.min(...history);
+        const max = Math.max(...history);
+        const range = max - min || 1;
+        
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgb(214, 174, 100)';
+        ctx.lineWidth = 2;
+        
+        history.forEach((price, index) => {
+            const x = (index / (history.length - 1)) * width;
+            const y = height - ((price - min) / range) * height;
+            
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+        
+        ctx.stroke();
+        
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        
+        const gradient = ctx.createLinearGradient(0, 0, 0, height);
+        gradient.addColorStop(0, 'rgba(214, 174, 100, 0.3)');
+        gradient.addColorStop(1, 'rgba(214, 174, 100, 0)');
+        ctx.fillStyle = gradient;
+        ctx.fill();
+    }
+
+    function updatePortfolioUI() {
+        // 1. Atualizar saldos
+        document.getElementById('available-balance').textContent = formatCurrency(AppState.user.availableBalance);
+        document.getElementById('invested-amount').textContent = formatCurrency(AppState.portfolio.totalInvested);
+        document.getElementById('current-value').textContent = formatCurrency(AppState.portfolio.currentValue);
+        
+        // 2. Atualizar P&L total
+        const pnlElement = document.getElementById('total-pnl');
+        const pnl = AppState.portfolio.totalPnL;
+        const pnlPct = AppState.portfolio.totalInvested > 0 
+            ? (pnl / AppState.portfolio.totalInvested) * 100 
+            : 0;
+        
+        pnlElement.textContent = `${formatCurrency(pnl)} (${pnlPct >= 0 ? '+' : ''}${pnlPct.toFixed(2)}%)`;
+        pnlElement.className = `value pnl ${pnl >= 0 ? 'positive' : 'negative'}`;
+        
+        // 3. Atualizar posições abertas
+        const positionsContainer = document.getElementById('open-positions');
+        if (AppState.portfolio.positions.length === 0) {
+            positionsContainer.innerHTML = '<p class="empty-state">Nenhuma posição aberta ainda.</p>';
+        } else {
+            positionsContainer.innerHTML = AppState.portfolio.positions.map(position => {
+                const pnlClass = position.pnl >= 0 ? 'positive' : 'negative';
+                return `
+                    <div class="position-item">
+                        <div class="position-header">
+                            <strong>${position.ticker}</strong>
+                            <span class="quantity">${position.quantity}x</span>
+                        </div>
+                        <div class="position-details">
+                            <p>Preço médio: ${formatCurrency(position.avgPrice)}</p>
+                            <p>Atual: ${formatCurrency(position.currentPrice)}</p>
+                            <p class="${pnlClass}">
+                                P&L: ${formatCurrency(position.pnl)} (${position.pnlPercent >= 0 ? '+' : ''}${position.pnlPercent.toFixed(2)}%)
+                            </p>
+                        </div>
+                        <button class="btn-sell-small" onclick="openTradeModal('${position.assetId}', 'sell')">
+                            Vender
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 4. Atualizar gráfico de alocação (pizza)
+        renderAllocationChart();
+        
+        // 5. Atualizar detalhes de alocação por ativo
+        updateAllocationDetails();
+        
+        // 6. Atualizar badge de diversificação
+        updateDiversificationBadge();
+        
+        // 7. Atualizar ranking de desempenho
+        updatePerformanceRanking();
+        
+        // 8. Salvar estado
+        saveToLocalStorage();
+    }
+
+    function updateAllocationDetails() {
+        const container = document.getElementById('allocation-list');
+        
+        if (AppState.portfolio.positions.length === 0) {
+            container.innerHTML = '<p class="empty-state">Nenhum ativo na carteira</p>';
+            return;
+        }
+        
+        const totalValue = AppState.portfolio.currentValue || 1;
+        
+        const allocations = AppState.portfolio.positions.map(position => {
+            const asset = AppState.market.assets[position.assetId];
+            let currentPrice = asset.currentPrice;
+            
+            if (asset.currency === 'USD' || asset.currency === 'USDT') {
+                currentPrice *= USD_TO_KZ;
+            }
+            
+            const positionValue = currentPrice * position.quantity;
+            const percentage = (positionValue / totalValue) * 100;
+            
+            return {
+                name: position.name,
+                ticker: position.ticker,
+                value: positionValue,
+                percentage: percentage,
+                pnl: position.pnl,
+                pnlPercent: position.pnlPercent,
+                quantity: position.quantity,
+                avgPrice: position.avgPrice
+            };
+        });
+        
+        allocations.sort((a, b) => b.percentage - a.percentage);
+        
+        container.innerHTML = allocations.map(alloc => {
+            const pnlClass = alloc.pnl >= 0 ? 'positive' : 'negative';
+            const barWidth = Math.min(alloc.percentage, 100);
+            
+            return `
+                <div class="allocation-item" 
+                     title="Quantidade: ${alloc.quantity} | Preço médio: ${formatCurrency(alloc.avgPrice)} | Valor total: ${formatCurrency(alloc.value)}">
+                    <div class="allocation-header">
+                        <span class="allocation-name">${alloc.ticker}</span>
+                        <span class="allocation-percent">${alloc.percentage.toFixed(2)}%</span>
+                    </div>
+                    <div class="allocation-bar-container">
+                        <div class="allocation-bar" style="width: ${barWidth}%"></div>
+                    </div>
+                    <div class="allocation-details">
+                        <span class="allocation-value">${formatCurrency(alloc.value)}</span>
+                        <span class="allocation-pnl ${pnlClass}">
+                            ${alloc.pnl >= 0 ? '+' : ''}${alloc.pnlPercent.toFixed(2)}%
+                        </span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function updateDiversificationBadge() {
+        const container = document.getElementById('diversification-badge');
+        const diversification = calculateDiversificationScore();
+        
+        container.innerHTML = `
+            <div class="diversification-badge ${diversification.color}">
+                <span class="badge-icon">📊</span>
+                <span class="badge-label">${diversification.label}</span>
+            </div>
+        `;
+    }
+
+    function updatePerformanceRanking() {
+        const topContainer = document.getElementById('top-performers');
+        const worstContainer = document.getElementById('worst-performers');
+        
+        if (AppState.portfolio.positions.length === 0) {
+            topContainer.innerHTML = '<p class="empty-state">-</p>';
+            worstContainer.innerHTML = '<p class="empty-state">-</p>';
+            return;
+        }
+        
+        // Criar cópia e ordenar por P&L percentual
+        const sortedPositions = [...AppState.portfolio.positions].sort((a, b) => {
+            return b.pnlPercent - a.pnlPercent;
+        });
+        
+        // Top 3 ganhadores
+        const topPerformers = sortedPositions.slice(0, 3).filter(p => p.pnl > 0);
+        
+        if (topPerformers.length === 0) {
+            topContainer.innerHTML = '<p class="empty-state">Nenhum ativo em ganho</p>';
+        } else {
+            topContainer.innerHTML = topPerformers.map((position, index) => {
+                const pnlClass = 'positive';
+                return `
+                    <div class="ranking-item">
+                        <span class="ranking-position">${index + 1}º</span>
+                        <span class="ranking-ticker">${position.ticker}</span>
+                        <span class="ranking-value ${pnlClass}">
+                            +${position.pnlPercent.toFixed(2)}%
+                        </span>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Top 3 perdedores
+        const worstPerformers = sortedPositions.slice().reverse().slice(0, 3).filter(p => p.pnl < 0);
+        
+        if (worstPerformers.length === 0) {
+            worstContainer.innerHTML = '<p class="empty-state">Nenhum ativo em perda</p>';
+        } else {
+            worstContainer.innerHTML = worstPerformers.map((position, index) => {
+                const pnlClass = 'negative';
+                return `
+                    <div class="ranking-item">
+                        <span class="ranking-position">${index + 1}º</span>
+                        <span class="ranking-ticker">${position.ticker}</span>
+                        <span class="ranking-value ${pnlClass}">
+                            ${position.pnlPercent.toFixed(2)}%
+                        </span>
+                    </div>
+                `;
+            }).join('');
+        }
+    }
+
+    function renderAllocationChart() {
+        const canvas = document.getElementById('allocation-pie');
+        if (!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width = 200;
+        const height = canvas.height = 200;
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const radius = Math.min(width, height) / 2 - 10;
+        
+        ctx.clearRect(0, 0, width, height);
+        
+        if (AppState.portfolio.positions.length === 0) {
+            ctx.fillStyle = 'rgba(214, 174, 100, 0.3)';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillStyle = '#fff';
+            ctx.font = '14px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('Sem posições', centerX, centerY);
+            return;
+        }
+        
+        const total = AppState.portfolio.currentValue || 1;
+        const colors = [
+            'rgb(214, 174, 100)',
+            'rgb(100, 150, 200)',
+            'rgb(255, 200, 100)',
+            'rgb(255, 100, 150)',
+            'rgb(150, 100, 255)'
+        ];
+        
+        let startAngle = -Math.PI / 2;
+        
+        AppState.portfolio.positions.forEach((position, index) => {
+            let value = position.currentPrice * position.quantity;
+            
+            const sliceAngle = (value / total) * 2 * Math.PI;
+            
+            ctx.fillStyle = colors[index % colors.length];
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            startAngle += sliceAngle;
+        });
+    }
+
+    function updateTransactionsUI() {
+        const tbody = document.getElementById('transactions-body');
+        
+        if (AppState.portfolio.transactions.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Nenhuma transação ainda.</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = AppState.portfolio.transactions
+            .slice()
+            .reverse()
+            .map(tx => {
+                const typeLabel = tx.type === 'buy' ? '🛒 Compra' : '💰 Venda';
+                const typeClass = tx.type === 'buy' ? 'buy' : 'sell';
+                const pnlClass = tx.pnl >= 0 ? 'positive' : 'negative';
+                
+                return `
+                    <tr>
+                        <td>${new Date(tx.timestamp).toLocaleString('pt-AO')}</td>
+                        <td><strong>${tx.assetName}</strong></td>
+                        <td><span class="badge ${typeClass}">${typeLabel}</span></td>
+                        <td>${tx.quantity}</td>
+                        <td>${formatCurrency(tx.price)}</td>
+                        <td>${formatCurrency(tx.total)}</td>
+                        <td class="${pnlClass}">
+                            ${tx.type === 'sell' ? formatCurrency(tx.pnl) : '-'}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+    }
+
+    function openTradeModal(assetId, type) {
+        const modal = document.getElementById('trade-modal');
+        const asset = AppState.market.assets[assetId];
+        
+        document.getElementById('modal-title').textContent = type === 'buy' ? '🛒 Comprar Ativo' : '💰 Vender Ativo';
+        document.getElementById('modal-asset-name').textContent = asset.name;
+        
+        let priceDisplay;
+        if (asset.currency === 'USD' || asset.currency === 'USDT') {
+            priceDisplay = `$${asset.currentPrice.toFixed(2)} (≈ ${formatCurrency(asset.currentPrice * USD_TO_KZ)})`;
+        } else {
+            priceDisplay = formatCurrency(asset.currentPrice);
+        }
+        
+        document.getElementById('modal-price').textContent = priceDisplay;
+        
+        // Configurar opções de compra fracionada para cripto
+        const cryptoOptions = document.getElementById('crypto-purchase-options');
+        const quantityInput = document.getElementById('trade-quantity');
+        
+        if (asset.type === 'cripto' && type === 'buy') {
+            cryptoOptions.style.display = 'block';
+            document.getElementById('unit-name').textContent = asset.unitName;
+            document.getElementById('fraction-name').textContent = asset.fractionName;
+            
+            // Configurar input baseado no tipo de compra
+            quantityInput.min = asset.minPurchaseUnit;
+            quantityInput.step = asset.minPurchaseUnit;
+            quantityInput.placeholder = `Ex: 0.005 ${asset.unitName} ou 500000 ${asset.fractionName}`;
+        } else {
+            cryptoOptions.style.display = 'none';
+            quantityInput.min = 1;
+            quantityInput.step = 1;
+            quantityInput.placeholder = 'Ex: 10';
+        }
+        
+        let extraInfo = '';
+        if (type === 'sell') {
+            const position = AppState.portfolio.positions.find(p => p.assetId === assetId);
+            if (position) {
+                extraInfo = `Quantidade disponível: ${position.quantity}`;
+            } else {
+                extraInfo = 'Você não possui este ativo';
+            }
+        }
+        document.getElementById('modal-extra-info').textContent = extraInfo;
+        
+        modal.style.display = 'block';
+        modal.dataset.assetId = assetId;
+        modal.dataset.type = type;
+        
+        quantityInput.value = '';
+        quantityInput.oninput = () => calculateTradeTotal(assetId, type);
+    }
+
+    function calculateTradeTotal(assetId, type) {
+        const asset = AppState.market.assets[assetId];
+        const quantity = parseFloat(document.getElementById('trade-quantity').value) || 0;
+        
+        if (quantity <= 0) {
+            document.getElementById('trade-total').textContent = '0 Kz';
+            document.getElementById('insufficient-funds').style.display = 'none';
+            document.getElementById('confirm-trade').disabled = true;
+            return;
+        }
+        
+        let total = 0;
+        
+        if (asset.type === 'cripto' && type === 'buy') {
+            const purchaseType = document.querySelector('input[name="purchase-type"]:checked')?.value || 'full';
+            let actualQuantity = quantity;
+            
+            if (purchaseType === 'fraction') {
+                actualQuantity = convertCryptoUnits(asset, quantity, 'fraction');
+            }
+            
+            total = asset.currentPrice * actualQuantity;
+        } else {
+            total = asset.currentPrice * quantity;
+        }
+        
+        if (asset.currency === 'USD' || asset.currency === 'USDT') {
+            total *= USD_TO_KZ;
+        }
+        
+        document.getElementById('trade-total').textContent = formatCurrency(total);
+        
+        const warning = document.getElementById('insufficient-funds');
+        if (type === 'buy' && total > AppState.user.availableBalance) {
+            warning.style.display = 'block';
+            document.getElementById('confirm-trade').disabled = true;
+        } else {
+            warning.style.display = 'none';
+            document.getElementById('confirm-trade').disabled = false;
+        }
+    }
+
+    function closeTradeModal() {
+        document.getElementById('trade-modal').style.display = 'none';
+    }
+
+    function updateChartsUI() {
+        Object.keys(AppState.market.assets).forEach(assetId => {
+            const asset = AppState.market.assets[assetId];
+            const canvas = document.getElementById(`chart-${assetId}`);
+            if (canvas) {
+                renderMiniChart(assetId, asset.priceHistory);
+            }
+        });
+        
+        renderAllocationChart();
+    }
+
+    function updateAssetsUI() {
+        const activeTab = document.querySelector('.asset-tabs .tab.active');
+        if (activeTab) {
+            const category = activeTab.dataset.category;
+            renderAssetsUI(category);
+        }
+    }
+
+    function showExplanation() {
+        const box = document.getElementById('explanation-content');
+        const activeTab = document.querySelector('.asset-tabs .tab.active');
+        
+        if (!activeTab) return;
+        
+        const category = activeTab.dataset.category;
+        const explanation = ASSET_EXPLANATIONS[category];
+        
+        if (box.style.display === 'none') {
+            box.innerHTML = `
+                <h4>${explanation.title}</h4>
+                <p>${explanation.content}</p>
+            `;
+            box.style.display = 'block';
+        } else {
+            box.style.display = 'none';
+        }
+    }
+
+    // ========================================
+    // PERSISTÊNCIA E EXPORTAÇÃO
+    // ========================================
+    function saveToLocalStorage() {
+        const state = {
+            user: AppState.user,
+            portfolio: AppState.portfolio,
+            market: {
+                assets: AppState.market.assets,
+                lastUpdate: AppState.market.lastUpdate
+            },
+            version: '1.1'
+        };
+        localStorage.setItem('teca_simulator_v1', JSON.stringify(state));
+    }
+
+    function loadFromLocalStorage() {
+        const saved = localStorage.getItem('teca_simulator_v1');
+        if (!saved) return false;
+        
+        try {
+            const state = JSON.parse(saved);
+            
+            if (!state.version || state.version < '1.1') {
+                console.warn('Versão incompatível, reiniciando simulação');
+                return false;
+            }
+            
+            AppState.user = state.user;
+            AppState.portfolio = state.portfolio;
+            AppState.market.assets = state.market.assets;
+            AppState.market.lastUpdate = state.market.lastUpdate;
+            
+            return true;
+        } catch (error) {
+            console.error('Erro ao carregar estado:', error);
+            return false;
+        }
+    }
+
+    function clearLocalStorage() {
+        localStorage.removeItem('teca_simulator_v1');
+    }
+
+    async function exportPortfolioAsImage() {
+        showNotification('📸 Exportando carteira...', 'info');
+        
+        const canvas = document.createElement('canvas');
+        canvas.width = 800;
+        canvas.height = 600;
+        const ctx = canvas.getContext('2d');
+        
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, 800, 600);
+        
+        ctx.fillStyle = 'rgb(214, 174, 100)';
+        ctx.font = 'bold 32px sans-serif';
+        ctx.fillText('TECA CAPITAL INVESTIMENTOS', 50, 60);
+        
+        ctx.fillStyle = '#fff';
+        ctx.font = '20px sans-serif';
+        ctx.fillText(`Carteira de ${AppState.user.name}`, 50, 100);
+        
+        ctx.font = '18px sans-serif';
+        let y = 150;
+        ctx.fillText(`Saldo Disponível: ${formatCurrency(AppState.user.availableBalance)}`, 50, y);
+        y += 30;
+        ctx.fillText(`Investido: ${formatCurrency(AppState.portfolio.totalInvested)}`, 50, y);
+        y += 30;
+        ctx.fillText(`Valor Atual: ${formatCurrency(AppState.portfolio.currentValue)}`, 50, y);
+        y += 30;
+        
+        const pnlColor = AppState.portfolio.totalPnL >= 0 ? 'rgb(34, 197, 94)' : 'rgb(239, 68, 68)';
+        ctx.fillStyle = pnlColor;
+        ctx.fillText(`P&L: ${formatCurrency(AppState.portfolio.totalPnL)}`, 50, y);
+        
+        ctx.fillStyle = '#fff';
+        y += 50;
+        ctx.fillText('Posições Abertas:', 50, y);
+        y += 30;
+        
+        AppState.portfolio.positions.forEach(position => {
+            ctx.font = '16px sans-serif';
+            ctx.fillText(`${position.ticker}: ${position.quantity}x @ ${formatCurrency(position.avgPrice)}`, 70, y);
+            y += 25;
+        });
+        
+        canvas.toBlob(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `carteira_${AppState.user.name}_${Date.now()}.png`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showNotification('✅ Carteira exportada com sucesso!', 'success');
+        });
+    }
+
+    function exportPortfolioAsExcel() {
+        let csv = 'TECA CAPITAL INVESTIMENTOS - Carteira de Investimentos\n\n';
+        csv += `Investidor:,${AppState.user.name}\n`;
+        csv += `Data:,${new Date().toLocaleDateString('pt-AO')}\n`;
+        csv += `Cenário:,${AppState.user.scenario}\n\n`;
+        
+        csv += 'RESUMO\n';
+        csv += `Saldo Disponível:,${AppState.user.availableBalance}\n`;
+        csv += `Investido:,${AppState.portfolio.totalInvested}\n`;
+        csv += `Valor Atual:,${AppState.portfolio.currentValue}\n`;
+        csv += `P&L Total:,${AppState.portfolio.totalPnL}\n\n`;
+        
+        csv += 'POSIÇÕES\n';
+        csv += 'Ativo,Ticker,Quantidade,Preço Médio,Preço Atual,P&L,P&L %\n';
+        AppState.portfolio.positions.forEach(p => {
+            csv += `${p.name},${p.ticker},${p.quantity},${p.avgPrice},${p.currentPrice},${p.pnl},${p.pnlPercent}\n`;
+        });
+        
+        csv += '\nTRANSAÇÕES\n';
+        csv += 'Data/Hora,Ativo,Tipo,Quantidade,Preço,Total,P&L\n';
+        AppState.portfolio.transactions.forEach(tx => {
+            csv += `${tx.timestamp},${tx.assetName},${tx.type},${tx.quantity},${tx.price},${tx.total},${tx.pnl || 0}\n`;
+        });
+        
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `carteira_${AppState.user.name}_${Date.now()}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        showNotification('✅ Dados exportados em CSV/Excel!', 'success');
+    }
+
+    // ========================================
+    // INICIALIZAÇÃO DA APLICAÇÃO
+    // ========================================
+    function setupOnboarding() {
+        const form = document.getElementById('user-setup');
+        
+        document.querySelectorAll('.profile-card').forEach(card => {
+            card.onclick = function() {
+                document.querySelectorAll('.profile-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                AppState.user.profile = this.dataset.profile;
+            };
+        });
+        
+        document.querySelectorAll('.scenario-card').forEach(card => {
+            card.onclick = function() {
+                document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                AppState.user.scenario = this.dataset.scenario;
+            };
+        });
+        
+        document.querySelectorAll('.balance-options button').forEach(btn => {
+            btn.onclick = function() {
+                document.querySelectorAll('.balance-options button').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                AppState.user.initialBalance = parseInt(this.dataset.balance);
+                AppState.user.availableBalance = parseInt(this.dataset.balance);
+            };
+        });
+        
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            
+            AppState.user.name = document.getElementById('investor-name').value.trim();
+            AppState.user.region = document.getElementById('region').value;
+            AppState.user.gender = document.getElementById('gender').value;
+            AppState.user.tickInterval = parseInt(document.getElementById('tick-interval').value);
+            
+            if (!AppState.user.name) {
+                showNotification('⚠️ Por favor, insira seu nome', 'error');
+                return;
+            }
+            
+            if (!AppState.user.profile) {
+                showNotification('⚠️ Por favor, selecione seu perfil de investidor', 'error');
+                return;
+            }
+            
+            if (!AppState.user.scenario) {
+                showNotification('⚠️ Por favor, selecione o cenário econômico', 'error');
+                return;
+            }
+            
+            if (!AppState.user.initialBalance) {
+                showNotification('⚠️ Por favor, selecione o saldo inicial', 'error');
+                return;
+            }
+            
+            initializeSimulation();
+        };
+    }
+
+    function initializeSimulation() {
+        showNotification('🚀 Iniciando simulação...', 'info');
+        
+        initializeMarket();
+        showDashboard();
+        startMarketUpdates();
+        saveToLocalStorage();
+    }
+
+    function showDashboard() {
+        document.getElementById('onboarding').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        
+        document.getElementById('user-name-display').textContent = AppState.user.name;
+        document.getElementById('scenario-display').textContent = getScenarioLabel(AppState.user.scenario);
+        
+        renderAssetsUI('acoes');
+        updatePortfolioUI();
+        updateTransactionsUI();
+        setupAssetTabs();
+        
+        // Configurar botão de explicação
+        document.getElementById('info-btn').onclick = showExplanation;
+    }
+
+    function setupAssetTabs() {
+        document.querySelectorAll('.asset-tabs .tab').forEach(tab => {
+            tab.onclick = function() {
+                document.querySelectorAll('.asset-tabs .tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                const category = this.dataset.category;
+                renderAssetsUI(category);
+                
+                // Fechar explicação quando mudar de tab
+                document.getElementById('explanation-content').style.display = 'none';
+            };
+        });
+    }
+
+    // ========================================
+    // EVENT LISTENERS
+    // ========================================
+    document.addEventListener('DOMContentLoaded', function() {
+        const hasSavedState = loadFromLocalStorage();
+        
+        if (hasSavedState) {
+            if (confirm('Detectamos uma simulação em andamento. Deseja continuar?')) {
+                showDashboard();
+                startMarketUpdates();
+                return;
+            } else {
+                clearLocalStorage();
+            }
+        }
+        
+        setupOnboarding();
+    });
+
+    // Modal handlers
+    document.getElementById('confirm-trade').onclick = function() {
+        const modal = document.getElementById('trade-modal');
+        const assetId = modal.dataset.assetId;
+        const type = modal.dataset.type;
+        const quantityInput = document.getElementById('trade-quantity');
+        const quantity = parseFloat(quantityInput.value);
+        
+        if (!quantity || quantity <= 0) {
+            alert('⚠️ Quantidade inválida');
+            return;
+        }
+        
+        // Validar quantidade mínima para cripto
+        const asset = AppState.market.assets[assetId];
+        if (asset.type === 'cripto') {
+            const purchaseType = document.querySelector('input[name="purchase-type"]:checked')?.value || 'full';
+            if (purchaseType === 'full' && quantity < asset.minPurchaseUnit) {
+                alert(`⚠️ Quantidade mínima é ${asset.minPurchaseUnit} ${asset.unitName}`);
+                return;
+            }
+        }
+        
+        let result;
+        if (type === 'buy') {
+            result = buyAsset(assetId, quantity);
+        } else {
+            result = sellAsset(assetId, quantity);
+        }
+        
+        if (result.success) {
+            showNotification(result.message, 'success');
+            closeTradeModal();
+            updatePortfolioUI();
+            updateTransactionsUI();
+        } else {
+            showNotification(result.message, 'error');
+        }
+    };
+
+    document.getElementById('cancel-trade').onclick = closeTradeModal;
+    document.querySelector('.modal .close').onclick = closeTradeModal;
+
+    // Export handlers
+    document.getElementById('export-portfolio').onclick = exportPortfolioAsImage;
+    document.getElementById('export-excel').onclick = exportPortfolioAsExcel;
+
+    // Reset handler
+    document.getElementById('reset-simulation').onclick = function() {
+        if (confirm('⚠️ Tem certeza que deseja reiniciar a simulação? Todos os dados serão perdidos.')) {
+            stopMarketUpdates();
+            clearLocalStorage();
+            location.reload();
+        }
+    };
+
+    // Configurar opções de compra fracionada
+    document.addEventListener('change', function(e) {
+        if (e.target.name === 'purchase-type') {
+            const assetId = document.getElementById('trade-modal').dataset.assetId;
+            const type = document.getElementById('trade-modal').dataset.type;
+            if (assetId && type === 'buy') {
+                calculateTradeTotal(assetId, type);
+            }
+        }
+    });
+
+    // Global functions para onclick handlers
+    window.openTradeModal = openTradeModal;
+</script>
+      
         </main>
 
 
