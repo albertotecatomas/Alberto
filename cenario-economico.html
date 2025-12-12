@@ -1,0 +1,2958 @@
+<!DOCTYPE html>
+<html lang="pt-AO" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Fonte Fim -->
+    <title>Teca Capital Investimentos</title>
+    <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
+    <link rel="stylesheet" href="teca.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+     <header role="banner">
+       <div class="interface tc-container"> 
+            <div class="logo">
+                <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
+            </div>
+
+            <nav id="navt" role="navigation" aria-label="Menu principal">
+                <ul id="lista">
+                    <li class="navitem active"> <a href="index.html">Início</a></li>
+                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a></li>   
+                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a></li>
+                    <li class="navitem"> <a href="simuladores.html"> Simuladores</a>   
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Botão Toggle Dark/Light -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
+                <svg class="theme-icon sun" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM3 12a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm18 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41L7.05 18.36a1 1 0 0 1-1.41 0zm12.73-12.73a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41l-1.42 1.42a1 1 0 0 1-1.41 0z"/>
+                </svg>
+                <svg class="theme-icon moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+   
+    <style>
+        /* ==================== RESET E BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Segoe UI', sans-serif;
+            background: #000000;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ==================== TIPOGRAFIA ==================== */
+        h2 {
+            color: #D6AE64;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            color: #D6AE64;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #D6AE64;
+            padding-bottom: 10px;
+        }
+
+        h4 {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        h5 {
+            color: #FFFFFF;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* ==================== SEÇÕES ==================== */
+        section {
+            background: rgba(214, 174, 100, 0.05);
+            border: 1px solid rgba(214, 174, 100, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* ==================== FORMULÁRIO INICIAL ==================== */
+        #formulario-inicial {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        #formulario-inicial input,
+        #formulario-inicial select {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #D6AE64;
+            background: rgba(0, 0, 0, 0.8);
+            color: #FFFFFF;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        #formulario-inicial button {
+            width: 100%;
+            padding: 18px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #D6AE64, #FFD700);
+            border: none;
+            border-radius: 8px;
+            color: #000000;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #formulario-inicial button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(214, 174, 100, 0.5);
+        }
+
+        /* ==================== CENÁRIOS ==================== */
+        .cenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .cenario-btn {
+            background: rgba(214, 174, 100, 0.1);
+            border: 2px solid #D6AE64;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .cenario-btn:hover {
+            background: rgba(214, 174, 100, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(214, 174, 100, 0.4);
+        }
+
+        .cenario-btn.ativo {
+            background: rgba(214, 174, 100, 0.4);
+            border-color: #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .cenario-btn .icone {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .cenario-btn h4 {
+            color: #D6AE64;
+            margin-bottom: 8px;
+        }
+
+        .cenario-btn p {
+            color: #FFFFFF;
+            font-size: 14px;
+        }
+
+        /* ==================== INPUTS E SLIDERS ==================== */
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group label {
+            display: block;
+            color: #D6AE64;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .input-group input[type="number"],
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #D6AE64;
+            background: rgba(0, 0, 0, 0.6);
+            color: #FFFFFF;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-container label {
+            display: block;
+            color: #D6AE64;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: linear-gradient(to right, #FF0000 0%, #FFD700 50%, #00FF00 100%);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider-container input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #D6AE64;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(214, 174, 100, 0.8);
+        }
+
+        .slider-container input[type="range"]::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #D6AE64;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(214, 174, 100, 0.8);
+        }
+
+        .valor-destaque {
+            display: inline-block;
+            margin-left: 15px;
+            padding: 8px 16px;
+            background: rgba(214, 174, 100, 0.3);
+            border: 1px solid #D6AE64;
+            border-radius: 6px;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* ==================== TABELAS ==================== */
+        .tabela-container {
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: 500px;
+            border: 2px solid #D6AE64;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            background: #D6AE64;
+            z-index: 10;
+        }
+
+        thead th {
+            padding: 15px;
+            text-align: left;
+            color: #000000;
+            font-weight: bold;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        tbody td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(214, 174, 100, 0.2);
+            color: #FFFFFF;
+        }
+
+        tbody tr:hover {
+            background: rgba(214, 174, 100, 0.1);
+        }
+
+        .setor-valor {
+            width: 120px;
+            padding: 8px;
+            border: 1px solid #D6AE64;
+            background: rgba(0, 0, 0, 0.6);
+            color: #FFFFFF;
+            border-radius: 4px;
+        }
+
+        .setor-percentual {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .total-row {
+            background: rgba(214, 174, 100, 0.3);
+            font-weight: bold;
+        }
+
+        .total-row td {
+            color: #FFD700 !important;
+            font-size: 1.1rem;
+        }
+
+        /* ==================== BOXES E CARDS ==================== */
+        .explicacao-box,
+        .analise-box,
+        .impactos-box,
+        .status-box,
+        .explicacao-detalhada,
+        .causas-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #D6AE64;
+        }
+
+        .explicacao-box {
+            background: rgba(214, 174, 100, 0.1);
+            border-left-color: #D6AE64;
+        }
+
+        .verde {
+            background: rgba(0, 255, 0, 0.1);
+            border-left-color: #00FF00;
+            color: #00FF00;
+        }
+
+        .amarelo {
+            background: rgba(255, 215, 0, 0.1);
+            border-left-color: #FFD700;
+            color: #FFD700;
+        }
+
+        .vermelho {
+            background: rgba(255, 0, 0, 0.1);
+            border-left-color: #FF0000;
+            color: #FF0000;
+        }
+
+        .azul {
+            background: rgba(0, 150, 255, 0.1);
+            border-left-color: #0096FF;
+            color: #0096FF;
+        }
+
+        .alerta-box {
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        /* ==================== RESULTADOS ==================== */
+        .resultados-pessoa,
+        .resultados-empresa {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .resultado-card {
+            background: rgba(214, 174, 100, 0.1);
+            border: 1px solid #D6AE64;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .valor-impacto {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .resultado-final {
+            grid-column: 1 / -1;
+            background: rgba(214, 174, 100, 0.2);
+            border: 2px solid #D6AE64;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .valor-grande {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* ==================== GRÁFICOS ==================== */
+        .grafico-container {
+            background: rgba(214, 174, 100, 0.05);
+            border: 1px solid #D6AE64;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            height: 450px;
+        }
+
+        .grafico-container canvas {
+            max-height: 380px;
+        }
+
+        /* ==================== BOTÕES ==================== */
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #D6AE64, #FFD700);
+            border: none;
+            border-radius: 6px;
+            color: #000000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(214, 174, 100, 0.5);
+        }
+
+        .opcao-btn {
+            background: rgba(214, 174, 100, 0.2);
+            border: 2px solid #D6AE64;
+            color: #FFFFFF;
+            margin: 5px;
+        }
+
+        .opcao-btn.ativo {
+            background: linear-gradient(135deg, #D6AE64, #FFD700);
+            color: #000000;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        #btnExportar {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        /* ==================== RESPONSIVIDADE ==================== */
+        @media (max-width: 1900px) {
+            main {
+                max-width: 100%;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.3rem;
+            }
+            
+            h4 {
+                font-size: 1.1rem;
+            }
+            
+            .cenarios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resultados-pessoa,
+            .resultados-empresa {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 15px;
+            }
+            
+            .grafico-container {
+                height: 350px;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            thead th,
+            tbody td {
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
+            }
+            
+            .valor-grande {
+                font-size: 1.5rem;
+            }
+            
+            .grafico-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            main {
+                padding: 10px;
+            }
+            
+            section {
+                padding: 12px;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            button {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            h2 {
+                font-size: 1.1rem;
+            }
+            
+            h3 {
+                font-size: 1rem;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            .valor-destaque {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+        }
+
+        /* ==================== ANIMAÇÕES ==================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* ==================== SCROLLBAR ==================== */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #D6AE64;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD700;
+        }
+
+        /* ==================== UTILIDADES ==================== */
+        .hidden {
+            display: none !important;
+        }
+
+        .metricas-emprego {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .comparacao-divida {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metrica-card {
+            background: rgba(214, 174, 100, 0.1);
+            border: 1px solid #D6AE64;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .opcoes-emissao {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tipo-educacao {
+            display: grid;
+            gap: 20px;
+        }
+
+        .simulador-emprestimo .resultados-emprestimo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .resultado-item {
+            background: rgba(214, 174, 100, 0.1);
+            border: 1px solid #D6AE64;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .prioridades-investimento {
+            margin-top: 20px;
+        }
+
+        .prioridade-card {
+            background: rgba(214, 174, 100, 0.1);
+            border: 1px solid #D6AE64;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <!-- 1️⃣ FORMULÁRIO INICIAL -->
+        <section id="formulario-inicial">
+            <h2>Bem-vindo ao Simulador de Cenários Econômicos</h2>
+            
+            <input type="text" id="nomeUsuario" placeholder="Seu nome">
+            
+            <select id="regiao">
+                <option value="">Selecione sua província</option>
+                <option value="luanda">Luanda</option>
+                <option value="benguela">Benguela</option>
+                <option value="huambo">Huambo</option>
+                <option value="huila">Huíla</option>
+                <option value="cabinda">Cabinda</option>
+                <option value="uige">Uíge</option>
+                <option value="zaire">Zaire</option>
+                <option value="lunda-norte">Lunda Norte</option>
+                <option value="lunda-sul">Lunda Sul</option>
+                <option value="malanje">Malanje</option>
+                <option value="moxico">Moxico</option>
+                <option value="cuanza-norte">Cuanza Norte</option>
+                <option value="cuanza-sul">Cuanza Sul</option>
+                <option value="cunene">Cunene</option>
+                <option value="bie">Bié</option>
+                <option value="cuando-cubango">Cuando Cubango</option>
+                <option value="namibe">Namibe</option>
+                <option value="bengo">Bengo</option>
+            </select>
+            
+            <select id="sexo">
+                <option value="">Selecione seu sexo</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="nao-dizer">Prefiro não dizer</option>
+            </select>
+            
+            <button id="btnIniciar" onclick="iniciarSimulacao()">Iniciar Simulação</button>
+        </section>
+
+        <!-- SIMULADOR PRINCIPAL (inicialmente oculto) -->
+        <div id="simulador-principal" class="hidden">
+            <!-- 2️⃣ CENÁRIOS ECONÔMICOS -->
+            <section id="selecao-cenarios">
+                <h3>📊 Selecione o Cenário Econômico</h3>
+                
+                <div class="cenarios-grid">
+                    <button class="cenario-btn" onclick="selecionarCenario('expansionista')">
+                        <span class="icone">📈</span>
+                        <h4>Expansionista</h4>
+                        <p>Economia em crescimento acelerado</p>
+                    </button>
+                    
+                    <button class="cenario-btn" onclick="selecionarCenario('retracionista')">
+                        <span class="icone">📉</span>
+                        <h4>Retracionista</h4>
+                        <p>Economia em desaceleração</p>
+                    </button>
+                    
+                    <button class="cenario-btn" onclick="selecionarCenario('normal')">
+                        <span class="icone">➡️</span>
+                        <h4>Normal/Estável</h4>
+                        <p>Economia equilibrada</p>
+                    </button>
+                    
+                    <button class="cenario-btn" onclick="selecionarCenario('crise-nacional')">
+                        <span class="icone">⚠️</span>
+                        <h4>Crise Nacional</h4>
+                        <p>Crise localizada em Angola</p>
+                    </button>
+                    
+                    <button class="cenario-btn" onclick="selecionarCenario('crise-global')">
+                        <span class="icone">🌍</span>
+                        <h4>Crise Global</h4>
+                        <p>Crises sistêmicas (ex: 2008, petróleo)</p>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3️⃣ PAINEL DE INDICADORES -->
+            
+            <!-- A) PIB e Setores Produtivos -->
+            <section id="painel-pib">
+                <h3>💰 PIB e Setores Produtivos</h3>
+                
+                <div class="indicador-principal">
+                    <label>PIB Total (Bilhões USD)</label>
+                    <input type="number" id="pibTotal" value="80.4" min="0" step="0.1" oninput="atualizarSetores()">
+                    <span class="explicacao">ℹ️ Produto Interno Bruto: soma de tudo que o país produz</span>
+                </div>
+                
+                <div class="tabela-setores">
+                    <h4>📊 Contribuição por Setor</h4>
+                    <div class="tabela-container">
+                        <table id="tabelaSetores">
+                            <thead>
+                                <tr>
+                                    <th>Setor</th>
+                                    <th>Contribuição (B USD)</th>
+                                    <th>% do PIB</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>⛽ Petróleo/Energia</td>
+                                    <td><input type="number" class="setor-valor" data-setor="petroleo" value="48.24" step="0.1" oninput="atualizarSetores()"></td>
+                                    <td class="setor-percentual">60%</td>
+                                    <td><button onclick="explicarSetor('petroleo')">ℹ️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>🌾 Agricultura</td>
+                                    <td><input type="number" class="setor-valor" data-setor="agricultura" value="8.04" step="0.1" oninput="atualizarSetores()"></td>
+                                    <td class="setor-percentual">10%</td>
+                                    <td><button onclick="explicarSetor('agricultura')">ℹ️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>🏭 Indústria</td>
+                                    <td><input type="number" class="setor-valor" data-setor="industria" value="12.06" step="0.1" oninput="atualizarSetores()"></td>
+                                    <td class="setor-percentual">15%</td>
+                                    <td><button onclick="explicarSetor('industria')">ℹ️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>🏥 Saúde</td>
+                                    <td><input type="number" class="setor-valor" data-setor="saude" value="4.02" step="0.1" oninput="atualizarSetores()"></td>
+                                    <td class="setor-percentual">5%</td>
+                                    <td><button onclick="explicarSetor('saude')">ℹ️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>📚 Educação</td>
+                                    <td><input type="number" class="setor-valor" data-setor="educacao" value="4.02" step="0.1" oninput="atualizarSetores()"></td>
+                                    <td class="setor-percentual">5%</td>
+                                    <td><button onclick="explicarSetor('educacao')">ℹ️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>🐟 Pesca</td>
+                                    <td><input type="number" class="setor-valor" data-setor="pesca" value="2.01" step="0.1" oninput="atualizarSetores()"></td>
+                                    <td class="setor-percentual">2.5%</td>
+                                    <td><button onclick="explicarSetor('pesca')">ℹ️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>🏗️ Construção</td>
+                                    <td><input type="number" class="setor-valor" data-setor="construcao" value="2.01" step="0.1" oninput="atualizarSetores()"></td>
+                                    <td class="setor-percentual">2.5%</td>
+                                    <td><button onclick="explicarSetor('construcao')">ℹ️</button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="total-row">
+                                    <td><strong>TOTAL</strong></td>
+                                    <td id="totalSetores"><strong>80.4</strong></td>
+                                    <td><strong>100%</strong></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                
+                <div id="alerta-pib" class="alerta-box" style="display:none;">
+                    ⚠️ A soma dos setores não corresponde ao PIB total!
+                </div>
+            </section>
+
+            <!-- B) Preço do Petróleo -->
+            <section id="painel-petroleo">
+                <h3>⛽ Preço do Petróleo</h3>
+                
+                <div class="slider-container">
+                    <label>Preço por Barril (USD)</label>
+                    <input type="range" id="precoPetroleo" min="20" max="1000" value="80" step="1" oninput="atualizarPetroleo()">
+                    <span id="valorPetroleo" class="valor-destaque">$80</span>
+                </div>
+                
+                <div class="info-petroleo">
+                    <p><strong>ℹ️ Contexto:</strong></p>
+                    <p>Histórico máximo: ~$200/barril</p>
+                    <p>Angola depende 60-90% do petróleo para seu PIB</p>
+                </div>
+                
+                <div id="impactos-petroleo" class="impactos-box">
+                    <h4>📊 Impactos na Economia Angolana:</h4>
+                    <ul id="lista-impactos-petroleo">
+                        <!-- Preenchido dinamicamente -->
+                    </ul>
+                </div>
+                
+                <div class="input-group">
+                    <label>Barris Vendidos (Milhões/ano)</label>
+                    <input type="number" id="barrisVendidos" value="500" min="0" step="10" oninput="atualizarReceitaPetroleo()">
+                </div>
+                
+                <div class="resultado-destaque">
+                    <h4>💰 Receita Anual do Petróleo:</h4>
+                    <p id="receitaPetroleo" class="valor-grande">$40 Bilhões</p>
+                </div>
+            </section>
+
+            <!-- C) Dívida Pública -->
+            <section id="painel-divida">
+                <h3>💰 Dívida Pública</h3>
+                
+                <div class="input-group">
+                    <label>Dívida Externa (Bilhões USD)</label>
+                    <input type="number" id="dividaExterna" value="46.8" step="0.1" oninput="avaliarDivida()">
+                </div>
+                
+                <div class="comparacao-divida">
+                    <div class="metrica">
+                        <h4>PIB</h4>
+                        <p id="pibComparacao" class="valor-grande">$80.4 B</p>
+                    </div>
+                    <div class="metrica">
+                        <h4>Dívida/PIB</h4>
+                        <p id="ratioDivida" class="valor-grande">58.2%</p>
+                    </div>
+                </div>
+                
+                <div id="analise-divida" class="analise-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </section>
+
+            <!-- D) Inflação -->
+            <section id="painel-inflacao">
+                <h3>📈 Inflação</h3>
+                
+                <div class="slider-container">
+                    <label>Taxa de Inflação Anual (%)</label>
+                    <input type="range" id="inflacao" min="0" max="50" value="30" step="0.5" oninput="atualizarInflacao()">
+                    <span id="valorInflacao" class="valor-destaque">30%</span>
+                </div>
+                
+                <div class="explicacao-box">
+                    <h4>ℹ️ O que é Inflação?</h4>
+                    <p>Inflação é o aumento generalizado dos preços de bens e serviços. Quanto maior a inflação, menos seu dinheiro compra.</p>
+                </div>
+                
+                <div id="causas-inflacao" class="causas-box">
+                    <h4>🔍 Principais Causas da Inflação:</h4>
+                    <ul>
+                        <li><strong>Impressão excessiva de dinheiro:</strong> Quanto mais dinheiro impresso, menos vale cada nota</li>
+                        <li><strong>Pouca oferta + muita demanda:</strong> Produtos escassos ficam mais caros</li>
+                        <li><strong>Desvalorização da moeda:</strong> Kwanza fraco = importações mais caras</li>
+                        <li><strong>Custos de produção:</strong> Energia, transporte, matéria-prima mais caros</li>
+                    </ul>
+                </div>
+                
+                <div id="impactos-inflacao" class="impactos-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </section>
+
+            <!-- E) Taxa de Juros -->
+            <section id="painel-juros">
+                <h3>🏦 Taxa de Juros (BNA)</h3>
+                
+                <div class="slider-container">
+                    <label>Taxa de Juros de Referência (%)</label>
+                    <input type="range" id="taxaJuros" min="5" max="30" value="19.5" step="0.5" oninput="atualizarJuros()">
+                    <span id="valorJuros" class="valor-destaque">19.5%</span>
+                </div>
+                
+                <div class="explicacao-box">
+                    <h4>ℹ️ O que é Taxa de Juros?</h4>
+                    <p>É o "preço do dinheiro". Quanto maior a taxa, mais caro fica pedir empréstimos. O Banco Nacional de Angola (BNA) usa os juros para controlar a inflação.</p>
+                </div>
+                
+                <div id="impactos-juros" class="impactos-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+                
+                <div class="simulador-emprestimo">
+                    <h4>💳 Simulador de Empréstimo</h4>
+                    
+                    <div class="input-group">
+                        <label>Valor do Empréstimo (Kz)</label>
+                        <input type="number" id="valorEmprestimo" value="5000000" step="100000" oninput="calcularEmprestimo()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Prazo (meses)</label>
+                        <input type="number" id="prazoEmprestimo" value="24" min="6" max="360" oninput="calcularEmprestimo()">
+                    </div>
+                    
+                    <div class="resultados-emprestimo">
+                        <div class="resultado-item">
+                            <h5>Juros Total:</h5>
+                            <p id="jurosTotal" class="valor-destaque">Kz 0</p>
+                        </div>
+                        <div class="resultado-item">
+                            <h5>Valor Total a Pagar:</h5>
+                            <p id="totalPagar" class="valor-destaque">Kz 0</p>
+                        </div>
+                        <div class="resultado-item">
+                            <h5>Parcela Mensal:</h5>
+                            <p id="parcelaMensal" class="valor-destaque">Kz 0</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- F) Taxa de Câmbio -->
+            <section id="painel-cambio">
+                <h3>💱 Taxa de Câmbio</h3>
+                
+                <div class="slider-container">
+                    <label>Kz por USD</label>
+                    <input type="range" id="taxaCambio" min="150" max="1500" value="850" step="10" oninput="atualizarCambio()">
+                    <span id="valorCambio" class="valor-destaque">850 Kz/USD</span>
+                </div>
+                
+                <div class="explicacao-box">
+                    <h4>ℹ️ O que é Taxa de Câmbio?</h4>
+                    <p>É quanto vale o Kwanza em relação ao Dólar. Quanto maior o número, mais fraco está o Kwanza.</p>
+                    <p><strong>Exemplo:</strong> Se 1 USD = 850 Kz, significa que você precisa de 850 Kwanzas para comprar 1 Dólar.</p>
+                </div>
+                
+                <div class="comparacao-historica">
+                    <h4>📊 Comparação Histórica:</h4>
+                    <p>2015: 150 Kz/USD</p>
+                    <p>2024: 850 Kz/USD</p>
+                    <p><strong>Depreciação: 466.7%</strong></p>
+                </div>
+                
+                <div id="status-moeda" class="status-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+                
+                <div id="impactos-cambio" class="impactos-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </section>
+
+            <!-- G) Emissão de Moeda -->
+            <section id="painel-emissao">
+                <h3>🖨️ Emissão de Moeda</h3>
+                
+                <div class="opcoes-emissao">
+                    <button class="opcao-btn" onclick="definirEmissao('menos')">
+                        📉 Emitir MENOS
+                    </button>
+                    <button class="opcao-btn ativo" onclick="definirEmissao('normal')">
+                        ➡️ Padrão Normal
+                    </button>
+                    <button class="opcao-btn" onclick="definirEmissao('mais')">
+                        📈 Emitir MAIS
+                    </button>
+                </div>
+                
+                <div class="explicacao-box">
+                    <h4>ℹ️ O que é Emissão de Moeda?</h4>
+                    <p>É quando o Banco Nacional de Angola "imprime" mais dinheiro (hoje principalmente digital). Parece bom ter mais dinheiro, mas há consequências!</p>
+                </div>
+                
+                <div id="explicacao-emissao" class="explicacao-detalhada">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </section>
+
+            <!-- H) Taxa de Emprego/Desemprego -->
+            <section id="painel-emprego">
+                <h3>👷 Mercado de Trabalho</h3>
+                
+                <div class="metricas-emprego">
+                    <div class="metrica-card">
+                        <h4>Taxa de Emprego</h4>
+                        <input type="range" id="taxaEmprego" min="50" max="80" value="60" step="1" oninput="atualizarEmprego()">
+                        <p id="valorEmprego" class="valor-destaque">60%</p>
+                    </div>
+                    
+                    <div class="metrica-card">
+                        <h4>Taxa de Desemprego</h4>
+                        <p id="valorDesemprego" class="valor-destaque">32%</p>
+                    </div>
+                </div>
+                
+                <div class="explicacao-box">
+                    <h4>ℹ️ Como funciona?</h4>
+                    <p><strong>Taxa de Emprego:</strong> % da população ativa que tem emprego formal</p>
+                    <p><strong>Taxa de Desemprego:</strong> % da população ativa que procura emprego mas não encontra</p>
+                    <p><em>Nota: Os dois não somam 100% porque há pessoas fora da força de trabalho (estudantes, aposentados, etc.)</em></p>
+                </div>
+                
+                <div id="analise-emprego" class="analise-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+                
+                <div class="fatores-emprego">
+                    <h4>📊 O que afeta o emprego?</h4>
+                    <ul>
+                        <li><strong>✅ Aumenta emprego:</strong> Investimentos, economia crescendo, juros baixos, empresas expandindo</li>
+                        <li><strong>❌ Diminui emprego:</strong> Crise econômica, juros altos, empresas fechando, recessão</li>
+                        <li><strong>🤖 IA e Automação:</strong> Substitui empregos repetitivos, mas cria novos tipos de trabalho</li>
+                        <li><strong>🎓 Educação Técnica:</strong> Mais cursos técnicos = mais pessoas capacitadas para produzir</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- I) Nível Educacional e Produtividade -->
+            <section id="painel-educacao">
+                <h3>🎓 Educação e Produtividade</h3>
+                
+                <div class="tipo-educacao">
+                    <h4>Distribuição da Força de Trabalho:</h4>
+                    
+                    <div class="input-group">
+                        <label>Cursos Técnicos (%)</label>
+                        <input type="range" id="cursosTecnicos" min="0" max="100" value="20" oninput="atualizarEducacao()">
+                        <span id="valorTecnicos">20%</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Ensino Superior (%)</label>
+                        <input type="range" id="ensinoSuperior" min="0" max="100" value="15" oninput="atualizarEducacao()">
+                        <span id="valorSuperior">15%</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Sem Qualificação Formal (%)</label>
+                        <p id="semQualificacao" class="valor-destaque">65%</p>
+                    </div>
+                </div>
+                
+                <div class="explicacao-box">
+                    <h4>ℹ️ Diferença Crucial:</h4>
+                    <p><strong>Cursos Técnicos:</strong> Ensinam a FAZER (mecânica, eletricidade, enfermagem, programação). Geram PRODUÇÃO imediata.</p>
+                    <p><strong>Ensino Superior:</strong> Especialização teórica. Importante, mas não garante produtividade se não houver aplicação prática.</p>
+                    <p><strong>Realidade Angolana:</strong> Muitos graduados desempregados porque estudaram teoria sem desenvolver habilidades práticas.</p>
+                </div>
+                
+                <div id="impacto-educacao" class="impactos-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+                
+                <div class="producao-box">
+                    <h4>🏭 Impacto na Produção Nacional:</h4>
+                    <p id="indiceProdutividade" class="valor-grande">Índice: 0</p>
+                    <div id="analise-produtividade"></div>
+                </div>
+            </section>
+
+            <!-- 4️⃣ SIMULAÇÃO PARA PESSOA FÍSICA -->
+            <section id="simulacao-pessoa">
+                <h3>👤 Simulação para Pessoa Física</h3>
+                
+                <div class="input-group">
+                    <label>💰 Seu Salário Mensal (Kz)</label>
+                    <input type="number" id="salarioPessoa" value="300000" step="10000" oninput="calcularPoderCompra()">
+                </div>
+                
+                <div class="resultados-pessoa">
+                    <h4>📊 Análise do seu Poder de Compra:</h4>
+                    
+                    <div class="resultado-card">
+                        <h5>Impacto da Inflação:</h5>
+                        <p id="impactoInflacaoPessoa" class="valor-impacto"></p>
+                    </div>
+                    
+                    <div class="resultado-card">
+                        <h5>Impacto do Câmbio:</h5>
+                        <p id="impactoCambioPessoa" class="valor-impacto"></p>
+                    </div>
+                    
+                    <div class="resultado-card">
+                        <h5>Impacto dos Juros:</h5>
+                        <p id="impactoJurosPessoa" class="valor-impacto"></p>
+                    </div>
+                    
+                    <div class="resultado-final">
+                        <h4>💡 Resultado Final:</h4>
+                        <p id="resultadoFinalPessoa" class="valor-grande"></p>
+                    </div>
+                </div>
+                
+                <div id="explicacao-pessoa" class="explicacao-detalhada">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </section>
+
+            <!-- 5️⃣ SIMULAÇÃO PARA EMPRESA -->
+            <section id="simulacao-empresa">
+                <h3>🏢 Simulação para Empresa</h3>
+                
+                <div class="tipo-empresa">
+                    <h4>Tipo de Empresa:</h4>
+                    <select id="tipoEmpresa" onchange="calcularEmpresa()">
+                        <option value="interna">Produz Internamente (em Angola)</option>
+                        <option value="importa">Depende de Importações</option>
+                        <option value="mista">Mista (Produz e Importa)</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>💼 Faturamento Mensal (Kz)</label>
+                    <input type="number" id="faturamentoEmpresa" value="10000000" step="100000" oninput="calcularEmpresa()">
+                </div>
+                
+                <div class="input-group">
+                    <label>👥 Número de Funcionários</label>
+                    <input type="number" id="numFuncionarios" value="50" step="1" oninput="calcularEmpresa()">
+                </div>
+                
+                <div class="input-group">
+                    <label>💰 Reserva Cambial? (USD ou Bitcoin)</label>
+                    <select id="reservaCambial" onchange="calcularEmpresa()">
+                        <option value="nao">Não</option>
+                        <option value="sim">Sim</option>
+                    </select>
+                </div>
+                
+                <div class="resultados-empresa">
+                    <h4>📊 Análise da Empresa:</h4>
+                    
+                    <div class="resultado-card">
+                        <h5>Impacto no Custo:</h5>
+                        <p id="impactoCustoEmpresa" class="valor-impacto"></p>
+                    </div>
+                    
+                    <div class="resultado-card">
+                        <h5>Capacidade de Pagar Funcionários:</h5>
+                        <p id="capacidadePagamento" class="valor-impacto"></p>
+                    </div>
+                    
+                    <div class="resultado-final">
+                        <h4>💡 Situação da Empresa:</h4>
+                        <p id="resultadoFinalEmpresa" class="valor-grande"></p>
+                    </div>
+                </div>
+                
+                <div id="explicacao-empresa" class="explicacao-detalhada">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </section>
+
+            <!-- 6️⃣ RECOMENDAÇÕES DO GOVERNO -->
+            <section id="recomendacoes-governo">
+                <h3>🏛️ Recomendações para o Governo</h3>
+                
+                <div id="analise-cenario-governo">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+                
+                <div class="prioridades-investimento">
+                    <h4>🎯 Áreas Prioritárias para Investimento:</h4>
+                    <div id="lista-prioridades">
+                        <!-- Preenchido dinamicamente -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7️⃣ COMPARAÇÃO COM DADOS REAIS -->
+            <section id="comparacao-historica">
+                <h3>📊 Comparação com Dados Reais de Angola</h3>
+                
+                <div class="selector-ano">
+                    <label>Selecione um ano para comparar:</label>
+                    <select id="anoComparacao" onchange="compararComHistorico()">
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024" selected>2024</option>
+                    </select>
+                </div>
+                
+                <div class="tabela-comparacao">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Indicador</th>
+                                <th>Seu Cenário</th>
+                                <th>Realidade <span id="anoSelecionado">2024</span></th>
+                                <th>Diferença</th>
+                            </tr>
+                        </thead>
+                        <tbody id="corpo-comparacao">
+                            <!-- Preenchido dinamicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="analise-comparacao" class="analise-box">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </section>
+
+            <!-- 8️⃣ GRÁFICOS INTERATIVOS -->
+            <section id="graficos-dashboard">
+                <h3>📈 Dashboard de Gráficos</h3>
+                
+                <div class="grafico-container">
+                    <h4>PIB por Setor</h4>
+                    <canvas id="graficoPIBSetores"></canvas>
+                </div>
+                
+                <div class="grafico-container">
+                    <h4>Evolução Histórica de Angola (2015-2024)</h4>
+                    <canvas id="graficoEvolucao"></canvas>
+                </div>
+                
+                <div class="grafico-container">
+                    <h4>Seu Cenário vs Realidade 2024</h4>
+                    <canvas id="graficoComparacao"></canvas>
+                </div>
+                
+                <div class="grafico-container">
+                    <h4>Impacto no Poder de Compra</h4>
+                    <canvas id="graficoPoderCompra"></canvas>
+                </div>
+            </section>
+
+            <!-- 9️⃣ EXPORTAÇÃO DO CENÁRIO -->
+            <section id="exportacao">
+                <h3>💾 Exportar Cenário</h3>
+                
+                <button id="btnExportar" onclick="exportarCenario()">
+                    📸 Exportar Resumo como Imagem
+                </button>
+                
+                <div id="preview-exportacao" style="display:none;">
+                    <!-- Preview do que será exportado -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Área oculta para gerar imagem -->
+        <div id="area-captura" style="position: absolute; left: -9999px; width: 1200px; background: #000; color: #fff; padding: 40px; font-family: Arial, sans-serif;">
+            <!-- Conteúdo será preenchido dinamicamente -->
+        </div>
+    </main>
+
+    <script>
+        // ==================== DADOS ECONÔMICOS DE ANGOLA ====================
+        const angolaDados = {
+            anos: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+            
+            pib: [90.5, 55.76, 73.69, 79.44, 70.9, 48.5, 66.512, 104.4, 84.88, 80.4],
+            
+            pibPerCapita: [3.21, 3.02, 2.91, 2.78, 2.66, 2.43, 2.39, 2.38, 2.33, 2.36],
+            
+            despesaFiscal: [3.2, 4.3, 4.8, 5.2, 5.98, 7.67, 9.21, 11.94, 14.97, 17.8],
+            
+            cambio: [150, 160, 180, 250, 400, 480, 580, 400, 720, 850],
+            
+            salarioMinimo: [15, 15, 16.5, 16.5, 21.5, 21.5, 21.5, 32.2, 32.2, 32.2],
+            
+            emprego: [null, null, null, 61, 60, 61, 62.5, 62, null, 60],
+            
+            desemprego: [null, 19, 20, 28, 29, 32, 31, 30.5, null, 32],
+            
+            balancaComercial: [12.48, 14.54, 20.15, 28.82, 20.59, 11.39, 21.79, 32.76, 21.81, 22.6],
+            
+            dividaExterna: [36.3, 44.4, 43.4, 47.55, 49.5, 50.16, 52.3, 52.17, 49.6, 46.8],
+            
+            investimentoEstrangeiro: [16.2, 11.1, 6.1, -7.4, 8.09, 6.31, 6.53, 7.01, 8.8, 9.87],
+            
+            fluxoCapital: [8.45, 5.29, -4.15, 17.5, -3.5, -2.93, -6.15, -7.85, -4.06, -6.02],
+            
+            juros: [9.9, 14.5, 16, 19.8, 15.5, 15.5, 17.6, 20, 17, 19.5],
+            
+            inflacao: [10, 35, 29, 19.8, 17, 22, 25, 27, 13, 30]
+        };
+
+        // ==================== VARIÁVEIS GLOBAIS ====================
+        let usuario = null;
+        let emissaoAtual = 'normal';
+        let charts = {};
+        let debounceTimer;
+
+        // ==================== EXPLICAÇÕES DOS CENÁRIOS ====================
+        const explicacoesCenarios = {
+            'expansionista': {
+                titulo: 'Cenário Expansionista',
+                descricao: 'Economia em fase de crescimento acelerado. Investimentos aumentam, emprego cresce, consumo sobe.',
+                impactos: [
+                    '✅ PIB em crescimento',
+                    '✅ Taxa de desemprego diminui',
+                    '✅ Investimento estrangeiro aumenta',
+                    '⚠️ Risco de inflação se crescimento for muito rápido'
+                ]
+            },
+            'retracionista': {
+                titulo: 'Cenário Retracionista',
+                descricao: 'Economia desacelerando. Consumo e investimento caem, desemprego aumenta.',
+                impactos: [
+                    '📉 PIB em queda',
+                    '📉 Taxa de desemprego aumenta',
+                    '📉 Investimento estrangeiro diminui',
+                    '⚠️ Risco de recessão prolongada'
+                ]
+            },
+            'normal': {
+                titulo: 'Cenário Normal/Estável',
+                descricao: 'Economia equilibrada, com crescimento moderado e inflação controlada.',
+                impactos: [
+                    '➡️ PIB cresce moderadamente',
+                    '➡️ Taxa de desemprego estável',
+                    '➡️ Investimento estrangeiro constante',
+                    '✅ Cenário ideal para planejamento'
+                ]
+            },
+            'crise-nacional': {
+                titulo: 'Crise Nacional',
+                descricao: 'Crise localizada em Angola, geralmente relacionada ao preço do petróleo ou problemas políticos.',
+                impactos: [
+                    '❌ PIB em queda acentuada',
+                    '❌ Desemprego dispara',
+                    '❌ Kwanza se desvaloriza rapidamente',
+                    '❌ Inflação descontrolada'
+                ]
+            },
+            'crise-global': {
+                titulo: 'Crise Global',
+                descricao: 'Crises sistêmicas que afetam todo o mundo, como a crise de 2008 ou crises do petróleo.',
+                impactos: [
+                    '⚠️ Economia mundial contrai',
+                    '⚠️ Comércio internacional reduz',
+                    '⚠️ Investimento estrangeiro cai',
+                    '⚠️ Preço das commodities oscila'
+                ]
+            }
+        };
+
+        // ==================== FUNÇÕES PRINCIPAIS ====================
+
+        // 1️⃣ FORMULÁRIO INICIAL
+        function iniciarSimulacao() {
+            const nome = document.getElementById('nomeUsuario').value;
+            const regiao = document.getElementById('regiao').value;
+            const sexo = document.getElementById('sexo').value;
+            
+            if (!nome || !regiao || !sexo) {
+                alert('⚠️ Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            usuario = { nome, regiao, sexo };
+            
+            document.getElementById('formulario-inicial').style.display = 'none';
+            document.getElementById('simulador-principal').classList.remove('hidden');
+            
+            inicializarGraficos();
+            atualizarTodosGraficos();
+        }
+
+        // 2️⃣ CENÁRIOS ECONÔMICOS
+        function selecionarCenario(tipo) {
+            document.querySelectorAll('.cenario-btn').forEach(btn => btn.classList.remove('ativo'));
+            event.target.closest('.cenario-btn').classList.add('ativo');
+            
+            const cenario = explicacoesCenarios[tipo];
+            alert(`${cenario.titulo}\n\n${cenario.descricao}\n\nImpactos:\n${cenario.impactos.join('\n')}`);
+            
+            aplicarCenario(tipo);
+        }
+
+        function aplicarCenario(tipo) {
+            switch(tipo) {
+                case 'expansionista':
+                    document.getElementById('pibTotal').value = 100;
+                    document.getElementById('inflacao').value = 15;
+                    document.getElementById('taxaJuros').value = 12;
+                    document.getElementById('taxaCambio').value = 400;
+                    document.getElementById('taxaEmprego').value = 70;
+                    break;
+                case 'retracionista':
+                    document.getElementById('pibTotal').value = 60;
+                    document.getElementById('inflacao').value = 8;
+                    document.getElementById('taxaJuros').value = 25;
+                    document.getElementById('taxaCambio').value = 1200;
+                    document.getElementById('taxaEmprego').value = 55;
+                    break;
+                case 'crise-nacional':
+                    document.getElementById('pibTotal').value = 40;
+                    document.getElementById('inflacao').value = 45;
+                    document.getElementById('taxaJuros').value = 30;
+                    document.getElementById('taxaCambio').value = 1500;
+                    document.getElementById('taxaEmprego').value = 50;
+                    break;
+            }
+            
+            atualizarTodosGraficos();
+        }
+
+        // 3️⃣ PAINEL DE INDICADORES
+
+        // A) PIB e Setores
+        function atualizarSetores() {
+            let soma = 0;
+            const inputs = document.querySelectorAll('.setor-valor');
+            const pibTotal = parseFloat(document.getElementById('pibTotal').value);
+            
+            inputs.forEach(input => {
+                const valor = parseFloat(input.value) || 0;
+                soma += valor;
+                
+                const percentual = (valor / pibTotal * 100).toFixed(1);
+                input.closest('tr').querySelector('.setor-percentual').textContent = percentual + '%';
+            });
+            
+            document.getElementById('totalSetores').innerHTML = `<strong>${soma.toFixed(2)}</strong>`;
+            
+            const alerta = document.getElementById('alerta-pib');
+            if (Math.abs(soma - pibTotal) > 0.1) {
+                alerta.style.display = 'block';
+                alerta.className = 'alerta-box vermelho';
+            } else {
+                alerta.style.display = 'none';
+            }
+            
+            atualizarGraficoPIB();
+            gerarRecomendacoesGoverno();
+        }
+
+        function explicarSetor(setor) {
+            const explicacoes = {
+                'petroleo': 'Responsável por 60-90% do PIB angolano. Alta dependência torna economia vulnerável.',
+                'agricultura': 'Potencial enorme, mas pouco explorado. Angola importa 80% dos alimentos.',
+                'industria': 'Base da produção nacional. Indústria leve pode substituir importações.',
+                'saude': 'Setor essencial. Investir em saúde aumenta produtividade da população.',
+                'educacao': 'Educação gera capital humano. Cursos técnicos têm alto retorno.',
+                'pesca': 'Costa de 1.600km com grande potencial pesqueiro subutilizado.',
+                'construcao': 'Gera empregos e infraestrutura. Importante para desenvolvimento.'
+            };
+            alert(explicacoes[setor] || 'Informação não disponível');
+        }
+
+        // B) Preço do Petróleo
+        function atualizarPetroleo() {
+            const preco = parseFloat(document.getElementById('precoPetroleo').value);
+            document.getElementById('valorPetroleo').textContent = `$${preco}`;
+            
+            const listaImpactos = document.getElementById('lista-impactos-petroleo');
+            
+            if (preco < 40) {
+                listaImpactos.innerHTML = `
+                    <li class="vermelho">📉 PIB cairá drasticamente</li>
+                    <li class="vermelho">📉 Receitas do governo reduzidas</li>
+                    <li class="vermelho">📉 Possível aumento do desemprego</li>
+                    <li class="vermelho">📉 Pressão sobre câmbio (Kwanza desvaloriza)</li>
+                    <li class="amarelo">⚠️ Cortes em investimentos públicos</li>
+                `;
+            } else if (preco < 70) {
+                listaImpactos.innerHTML = `
+                    <li class="amarelo">⚠️ PIB com crescimento moderado</li>
+                    <li class="amarelo">⚠️ Receitas do governo estáveis</li>
+                    <li class="amarelo">⚠️ Câmbio pode oscilar</li>
+                `;
+            } else if (preco < 120) {
+                listaImpactos.innerHTML = `
+                    <li class="verde">✅ PIB em crescimento saudável</li>
+                    <li class="verde">✅ Receitas do governo robustas</li>
+                    <li class="verde">✅ Kwanza tende a se valorizar</li>
+                    <li class="verde">✅ Mais investimentos públicos possíveis</li>
+                `;
+            } else {
+                listaImpactos.innerHTML = `
+                    <li class="verde">✅ PIB em crescimento acelerado</li>
+                    <li class="verde">✅ Receitas do governo muito altas</li>
+                    <li class="verde">✅ Kwanza valorizado</li>
+                    <li class="amarelo">⚠️ Risco de inflação por excesso de receitas</li>
+                    <li class="amarelo">⚠️ Dependência excessiva do petróleo aumenta risco</li>
+                `;
+            }
+            
+            atualizarReceitaPetroleo();
+        }
+
+        function atualizarReceitaPetroleo() {
+            const preco = parseFloat(document.getElementById('precoPetroleo').value);
+            const barris = parseFloat(document.getElementById('barrisVendidos').value) * 1000000;
+            const receita = (preco * barris / 1000000000).toFixed(2);
+            
+            document.getElementById('receitaPetroleo').textContent = `$${receita} Bilhões`;
+        }
+
+        // C) Dívida Pública
+        function avaliarDivida() {
+            const divida = parseFloat(document.getElementById('dividaExterna').value);
+            const pib = parseFloat(document.getElementById('pibTotal').value);
+            const ratio = (divida / pib * 100).toFixed(1);
+            
+            document.getElementById('pibComparacao').textContent = `$${pib} B`;
+            document.getElementById('ratioDivida').textContent = `${ratio}%`;
+            
+            const analiseDiv = document.getElementById('analise-divida');
+            
+            if (ratio > 100) {
+                analiseDiv.className = 'analise-box vermelho';
+                analiseDiv.innerHTML = `
+                    <h4>🚨 DÍVIDA INSUSTENTÁVEL</h4>
+                    <p><strong>A dívida é maior que o PIB!</strong></p>
+                    <ul>
+                        <li>❌ País deve mais do que produz em um ano</li>
+                        <li>❌ Alto risco de calote (default)</li>
+                        <li>❌ Juros consumirão grande parte do orçamento</li>
+                        <li>❌ Dificuldade para novos empréstimos</li>
+                        <li>⚠️ Necessário ajuste fiscal urgente</li>
+                    </ul>
+                `;
+            } else if (ratio > 70) {
+                analiseDiv.className = 'analise-box amarelo';
+                analiseDiv.innerHTML = `
+                    <h4>⚠️ DÍVIDA ALTA</h4>
+                    <p><strong>Dívida em nível preocupante</strong></p>
+                    <ul>
+                        <li>⚠️ Sustentável, mas com riscos</li>
+                        <li>⚠️ Pouco espaço fiscal para novos investimentos</li>
+                        <li>⚠️ Vulnerável a choques econômicos</li>
+                        <li>💡 Recomendado reduzir endividamento</li>
+                    </ul>
+                `;
+            } else if (ratio > 40) {
+                analiseDiv.className = 'analise-box verde';
+                analiseDiv.innerHTML = `
+                    <h4>✅ DÍVIDA MODERADA</h4>
+                    <p><strong>Nível de endividamento aceitável</strong></p>
+                    <ul>
+                        <li>✅ Dívida gerenciável</li>
+                        <li>✅ Espaço para investimentos públicos</li>
+                        <li>✅ Baixo risco de crise fiscal</li>
+                        <li>💡 Manter disciplina fiscal</li>
+                    </ul>
+                `;
+            } else {
+                analiseDiv.className = 'analise-box verde';
+                analiseDiv.innerHTML = `
+                    <h4>✅ DÍVIDA BAIXA</h4>
+                    <p><strong>Situação fiscal saudável</strong></p>
+                    <ul>
+                        <li>✅ Amplo espaço fiscal</li>
+                        <li>✅ Pode investir em infraestrutura</li>
+                        <li>✅ Alta capacidade de endividamento futuro</li>
+                        <li>💡 Oportunidade para investimentos estratégicos</li>
+                    </ul>
+                `;
+            }
+        }
+
+        // D) Inflação
+        function atualizarInflacao() {
+            const inflacao = parseFloat(document.getElementById('inflacao').value);
+            document.getElementById('valorInflacao').textContent = `${inflacao}%`;
+            
+            const impactosDiv = document.getElementById('impactos-inflacao');
+            
+            if (inflacao < 5) {
+                impactosDiv.className = 'impactos-box verde';
+                impactosDiv.innerHTML = `
+                    <h4>✅ INFLAÇÃO CONTROLADA</h4>
+                    <ul>
+                        <li>✅ Preços estáveis</li>
+                        <li>✅ Poder de compra preservado</li>
+                        <li>✅ Ambiente favorável para investimentos</li>
+                    </ul>
+                `;
+            } else if (inflacao < 10) {
+                impactosDiv.className = 'impactos-box verde';
+                impactosDiv.innerHTML = `
+                    <h4>✅ INFLAÇÃO MODERADA</h4>
+                    <ul>
+                        <li>✅ Economia saudável</li>
+                        <li>⚠️ Pequena perda de poder de compra</li>
+                        <li>💡 BNA deve monitorar de perto</li>
+                    </ul>
+                `;
+            } else if (inflacao < 20) {
+                impactosDiv.className = 'impactos-box amarelo';
+                impactosDiv.innerHTML = `<h4>⚠️ INFLAÇÃO ELEVADA</h4>
+                    <ul>
+                        <li>⚠️ Perda significativa de poder de compra</li>
+                        <li>⚠️ Salários não acompanham preços</li>
+                        <li>⚠️ Poupanças desvalorizam rapidamente</li>
+                        <li>💡 BNA deve subir taxa de juros</li>
+                    </ul>
+                `;
+            } else {
+                impactosDiv.className = 'impactos-box vermelho';
+                impactosDiv.innerHTML = `
+                    <h4>🚨 INFLAÇÃO CRÍTICA</h4>
+                    <ul>
+                        <li>❌ População perde poder de compra rapidamente</li>
+                        <li>❌ "O dinheiro de ontem não é o dinheiro de hoje"</li>
+                        <li>❌ Mesmo com aumento de salário, não consegue comprar o mesmo</li>
+                        <li>❌ Empresas aumentam preços constantemente</li>
+                        <li>⚠️ Risco de hiperinflação</li>
+                        <li>💡 Necessário medidas urgentes do BNA</li>
+                    </ul>
+                `;
+            }
+            
+            calcularPoderCompra();
+        }
+
+        // E) Taxa de Juros
+        function atualizarJuros() {
+            const juros = parseFloat(document.getElementById('taxaJuros').value);
+            document.getElementById('valorJuros').textContent = `${juros}%`;
+            
+            const impactosDiv = document.getElementById('impactos-juros');
+            
+            if (juros < 10) {
+                impactosDiv.className = 'impactos-box verde';
+                impactosDiv.innerHTML = `
+                    <h4>✅ JUROS BAIXOS</h4>
+                    <p><strong>Estímulo à Economia:</strong></p>
+                    <ul>
+                        <li>✅ Empréstimos mais baratos</li>
+                        <li>✅ Mais consumo e investimento</li>
+                        <li>✅ Empresas expandem negócios</li>
+                        <li>✅ Famílias compram casas, carros</li>
+                        <li>⚠️ Risco: Se economia já está aquecida, pode gerar inflação</li>
+                    </ul>
+                `;
+            } else if (juros < 15) {
+                impactosDiv.className = 'impactos-box verde';
+                impactosDiv.innerHTML = `
+                    <h4>✅ JUROS MODERADOS</h4>
+                    <ul>
+                        <li>✅ Equilíbrio entre crescimento e controle da inflação</li>
+                        <li>✅ Empréstimos ainda acessíveis</li>
+                        <li>💡 Nível considerado saudável</li>
+                    </ul>
+                `;
+            } else if (juros < 20) {
+                impactosDiv.className = 'impactos-box amarelo';
+                impactosDiv.innerHTML = `
+                    <h4>⚠️ JUROS ELEVADOS</h4>
+                    <p><strong>Restrição Econômica:</strong></p>
+                    <ul>
+                        <li>⚠️ Empréstimos caros</li>
+                        <li>⚠️ Consumo desacelera</li>
+                        <li>⚠️ Empresas investem menos</li>
+                        <li>✅ Controla inflação alta</li>
+                        <li>⚠️ Pode causar recessão se mantido por muito tempo</li>
+                    </ul>
+                `;
+            } else {
+                impactosDiv.className = 'impactos-box vermelho';
+                impactosDiv.innerHTML = `
+                    <h4>🚨 JUROS MUITO ALTOS</h4>
+                    <p><strong>Economia Retraída:</strong></p>
+                    <ul>
+                        <li>❌ Empréstimos muito caros</li>
+                        <li>❌ Menos dinheiro em circulação</li>
+                        <li>❌ Consumo e investimento paralisados</li>
+                        <li>❌ Desemprego pode aumentar</li>
+                        <li>✅ Objetivo: Controlar inflação crítica</li>
+                        <li>⚠️ Risco de recessão profunda</li>
+                    </ul>
+                `;
+            }
+            
+            calcularEmprestimo();
+        }
+
+        function calcularEmprestimo() {
+            const valor = parseFloat(document.getElementById('valorEmprestimo').value);
+            const prazo = parseFloat(document.getElementById('prazoEmprestimo').value);
+            const jurosAnual = parseFloat(document.getElementById('taxaJuros').value);
+            const jurosMensal = jurosAnual / 12 / 100;
+            
+            const parcela = valor * (jurosMensal * Math.pow(1 + jurosMensal, prazo)) / (Math.pow(1 + jurosMensal, prazo) - 1);
+            const totalPagar = parcela * prazo;
+            const jurosTotal = totalPagar - valor;
+            
+            document.getElementById('jurosTotal').textContent = `Kz ${jurosTotal.toLocaleString('pt-AO', {minimumFractionDigits: 2})}`;
+            document.getElementById('totalPagar').textContent = `Kz ${totalPagar.toLocaleString('pt-AO', {minimumFractionDigits: 2})}`;
+            document.getElementById('parcelaMensal').textContent = `Kz ${parcela.toLocaleString('pt-AO', {minimumFractionDigits: 2})}`;
+        }
+
+        // F) Taxa de Câmbio
+        function atualizarCambio() {
+            const cambio = parseFloat(document.getElementById('taxaCambio').value);
+            document.getElementById('valorCambio').textContent = `${cambio} Kz/USD`;
+            
+            const statusDiv = document.getElementById('status-moeda');
+            const impactosDiv = document.getElementById('impactos-cambio');
+            
+            if (cambio < 300) {
+                statusDiv.className = 'status-box verde';
+                statusDiv.innerHTML = '<h4>✅ KWANZA FORTE</h4>';
+                
+                impactosDiv.className = 'impactos-box verde';
+                impactosDiv.innerHTML = `
+                    <h4>Impactos do Kwanza Forte:</h4>
+                    <ul>
+                        <li>✅ Importações mais baratas</li>
+                        <li>✅ Viagens ao exterior mais acessíveis</li>
+                        <li>✅ Inflação controlada (produtos importados custam menos)</li>
+                        <li>✅ Poder de compra da população aumenta</li>
+                        <li>⚠️ Exportações ficam mais caras (menos competitivas)</li>
+                        <li>⚠️ Pode prejudicar indústria local</li>
+                    </ul>
+                `;
+            } else if (cambio < 600) {
+                statusDiv.className = 'status-box verde';
+                statusDiv.innerHTML = '<h4>✅ KWANZA ESTÁVEL</h4>';
+                
+                impactosDiv.className = 'impactos-box verde';
+                impactosDiv.innerHTML = `
+                    <h4>Impactos do Kwanza Estável:</h4>
+                    <ul>
+                        <li>✅ Equilíbrio entre importações e exportações</li>
+                        <li>✅ Previsibilidade para empresas</li>
+                        <li>✅ Inflação sob controle</li>
+                        <li>💡 Cenário ideal para economia</li>
+                    </ul>
+                `;
+            } else if (cambio < 900) {
+                statusDiv.className = 'status-box amarelo';
+                statusDiv.innerHTML = '<h4>⚠️ KWANZA FRACO</h4>';
+                
+                impactosDiv.className = 'impactos-box amarelo';
+                impactosDiv.innerHTML = `
+                    <h4>Impactos do Kwanza Fraco:</h4>
+                    <ul>
+                        <li>⚠️ Importações mais caras</li>
+                        <li>⚠️ Inflação aumenta (produtos custam mais)</li>
+                        <li>⚠️ Poder de compra da população cai</li>
+                        <li>⚠️ Viagens ao exterior mais caras</li>
+                        <li>✅ Exportações mais competitivas</li>
+                        <li>💡 Mas Angola importa mais do que exporta!</li>
+                    </ul>
+                `;
+            } else {
+                statusDiv.className = 'status-box vermelho';
+                statusDiv.innerHTML = '<h4>🚨 KWANZA MUITO FRACO</h4>';
+                
+                impactosDiv.className = 'impactos-box vermelho';
+                impactosDiv.innerHTML = `
+                    <h4>Impactos do Kwanza Muito Fraco:</h4>
+                    <ul>
+                        <li>❌ Importações extremamente caras</li>
+                        <li>❌ Inflação dispara</li>
+                        <li>❌ População perde muito poder de compra</li>
+                        <li>❌ Empresas que importam têm custos altíssimos</li>
+                        <li>❌ Crise cambial</li>
+                        <li>⚠️ <strong>CRÍTICO para Angola:</strong> País depende de importações!</li>
+                    </ul>
+                `;
+            }
+            
+            calcularPoderCompra();
+        }
+
+        // G) Emissão de Moeda
+        function definirEmissao(tipo) {
+            emissaoAtual = tipo;
+            
+            document.querySelectorAll('.opcao-btn').forEach(btn => btn.classList.remove('ativo'));
+            event.target.classList.add('ativo');
+            
+            const explicacaoDiv = document.getElementById('explicacao-emissao');
+            
+            if (tipo === 'menos') {
+                explicacaoDiv.className = 'explicacao-detalhada verde';
+                explicacaoDiv.innerHTML = `
+                    <h4>📉 EMITIR MENOS MOEDA</h4>
+                    <p><strong>Política Monetária Contracionista</strong></p>
+                    <ul>
+                        <li>✅ Menos dinheiro em circulação</li>
+                        <li>✅ Kwanza tende a se valorizar</li>
+                        <li>✅ Inflação diminui</li>
+                        <li>⚠️ Pode desacelerar economia</li>
+                        <li>⚠️ Menos crédito disponível</li>
+                        <li>💡 Usado quando inflação está muito alta</li>
+                    </ul>
+                `;
+                
+                const inflacaoAtual = parseFloat(document.getElementById('inflacao').value);
+                document.getElementById('inflacao').value = Math.max(0, inflacaoAtual - 5);
+                atualizarInflacao();
+                
+            } else if (tipo === 'normal') {
+                explicacaoDiv.className = 'explicacao-detalhada azul';
+                explicacaoDiv.innerHTML = `
+                    <h4>➡️ EMISSÃO NORMAL (Padrão)</h4>
+                    <p><strong>Política Monetária Equilibrada</strong></p>
+                    <ul>
+                        <li>✅ Emissão controlada de moeda</li>
+                        <li>✅ Acompanha crescimento da economia</li>
+                        <li>✅ Mantém estabilidade</li>
+                        <li>💡 Cenário ideal em economia estável</li>
+                    </ul>
+                `;
+                
+            } else if (tipo === 'mais') {
+                explicacaoDiv.className = 'explicacao-detalhada vermelho';
+                explicacaoDiv.innerHTML = `
+                    <h4>📈 EMITIR MAIS MOEDA</h4>
+                    <p><strong>Política Monetária Expansionista</strong></p>
+                    <ul>
+                        <li>⚠️ Mais dinheiro em circulação</li>
+                        <li>⚠️ Kwanza desvaloriza</li>
+                        <li>❌ <strong>INFLAÇÃO AUMENTA!</strong></li>
+                        <li>❌ "Mais dinheiro para comprar menos coisas"</li>
+                        <li>❌ População perde poder de compra</li>
+                        <li>💡 <strong>Exemplo Real:</strong> Muitos países que imprimiram muito dinheiro sofreram hiperinflação (Venezuela, Zimbábue)</li>
+                        <li>⚠️ Pode ser usado temporariamente em crises para estimular economia, mas é arriscado!</li>
+                    </ul>
+                `;
+                
+                const inflacaoAtual = parseFloat(document.getElementById('inflacao').value);
+                document.getElementById('inflacao').value = Math.min(50, inflacaoAtual + 10);
+                atualizarInflacao();
+                
+                const cambioAtual = parseFloat(document.getElementById('taxaCambio').value);
+                document.getElementById('taxaCambio').value = Math.min(1500, cambioAtual + 100);
+                atualizarCambio();
+            }
+            
+            atualizarTodosGraficos();
+        }
+
+        // H) Emprego
+        function atualizarEmprego() {
+            const emprego = parseFloat(document.getElementById('taxaEmprego').value);
+            const desemprego = 100 - emprego - 8;
+            
+            document.getElementById('valorEmprego').textContent = `${emprego}%`;
+            document.getElementById('valorDesemprego').textContent = `${desemprego.toFixed(1)}%`;
+            
+            const analiseDiv = document.getElementById('analise-emprego');
+            
+            if (desemprego < 10) {
+                analiseDiv.className = 'analise-box verde';
+                analiseDiv.innerHTML = `
+                    <h4>✅ PLENO EMPREGO</h4>
+                    <ul>
+                        <li>✅ Economia muito aquecida</li>
+                        <li>✅ Maioria da população trabalhando</li>
+                        <li>✅ Renda alta, consumo forte</li>
+                        <li>⚠️ Pode gerar inflação por excesso de demanda</li>
+                    </ul>
+                `;
+            } else if (desemprego < 20) {
+                analiseDiv.className = 'analise-box verde';
+                analiseDiv.innerHTML = `
+                    <h4>✅ DESEMPREGO MODERADO</h4>
+                    <ul>
+                        <li>✅ Situação aceitável</li>
+                        <li>💡 Sempre há desemprego friccional (pessoas mudando de emprego)</li>
+                        <li>💡 Mercado de trabalho saudável</li>
+                    </ul>
+                `;
+            } else if (desemprego < 30) {
+                analiseDiv.className = 'analise-box amarelo';
+                analiseDiv.innerHTML = `
+                    <h4>⚠️ DESEMPREGO ALTO</h4>
+                    <ul>
+                        <li>⚠️ Muitas pessoas sem oportunidades</li>
+                        <li>⚠️ Renda da população cai</li>
+                        <li>⚠️ Consumo diminui</li>
+                        <li>⚠️ Qualidade de vida piora</li>
+                        <li>💡 Necessário políticas de geração de emprego</li>
+                    </ul>
+                `;
+            } else {
+                analiseDiv.className = 'analise-box vermelho';
+                analiseDiv.innerHTML = `
+                    <h4>🚨 DESEMPREGO CRÍTICO</h4>
+                    <ul>
+                        <li>❌ População ativa sem trabalho</li>
+                        <li>❌ Pobreza aumenta</li>
+                        <li>❌ Criminalidade tende a crescer</li>
+                        <li>❌ Desespero social</li>
+                        <li>❌ Economia parada</li>
+                        <li>⚠️ <strong>Situação atual de Angola (32%)</strong></li>
+                        <li>💡 Urgente: Diversificar economia além do petróleo</li>
+                    </ul>
+                `;
+            }
+        }
+
+        // I) Educação
+        function atualizarEducacao() {
+            const tecnicos = parseFloat(document.getElementById('cursosTecnicos').value);
+            const superior = parseFloat(document.getElementById('ensinoSuperior').value);
+            const semQualif = 100 - tecnicos - superior;
+            
+            document.getElementById('valorTecnicos').textContent = `${tecnicos}%`;
+            document.getElementById('valorSuperior').textContent = `${superior}%`;
+            document.getElementById('semQualificacao').textContent = `${semQualif}%`;
+            
+            const indiceProd = (tecnicos * 1.5 + superior * 0.8 + semQualif * 0.3).toFixed(1);
+            document.getElementById('indiceProdutividade').textContent = `Índice: ${indiceProd}`;
+            
+            const impactoDiv = document.getElementById('impacto-educacao');
+            const analiseDiv = document.getElementById('analise-produtividade');
+            
+            if (tecnicos > 40) {
+                impactoDiv.className = 'impactos-box verde';
+                impactoDiv.innerHTML = `
+                    <h4>✅ FORÇA DE TRABALHO QUALIFICADA</h4>
+                    <ul>
+                        <li>✅ Alta capacidade produtiva</li>
+                        <li>✅ Indústria pode crescer</li>
+                        <li>✅ Menos dependência de importações</li>
+                        <li>✅ Produtos "Made in Angola" viáveis</li>
+                    </ul>
+                `;
+                
+                analiseDiv.innerHTML = `<p class="verde">A produção nacional pode substituir importações em vários setores!</p>`;
+                
+            } else if (tecnicos > 20) {
+                impactoDiv.className = 'impactos-box amarelo';
+                impactoDiv.innerHTML = `
+                    <h4>⚠️ QUALIFICAÇÃO MODERADA</h4>
+                    <ul>
+                        <li>⚠️ Alguma capacidade produtiva</li>
+                        <li>⚠️ Ainda dependente de importações</li>
+                        <li>💡 Necessário investir mais em cursos técnicos</li>
+                    </ul>
+                `;
+                
+                analiseDiv.innerHTML = `<p class="amarelo">Produção insuficiente. País ainda importa demais.</p>`;
+                
+            } else {
+                impactoDiv.className = 'impactos-box vermelho';
+                impactoDiv.innerHTML = `
+                    <h4>🚨 BAIXA QUALIFICAÇÃO TÉCNICA</h4>
+                    <ul>
+                        <li>❌ Pouca capacidade de produção</li>
+                        <li>❌ Indústria fraca ou inexistente</li>
+                        <li>❌ Alta dependência de importações</li>
+                        <li>❌ <strong>Situação atual de Angola</strong></li>
+                        <li>💡 Urgente: Criar mais escolas técnicas!</li>
+                    </ul>
+                `;
+                
+                analiseDiv.innerHTML = `<p class="vermelho">Angola não produz internamente. Depende de importar tudo!</p>`;
+            }
+            
+            const setorIndustrial = document.querySelector('[data-setor="industria"]');
+            if (setorIndustrial) {
+                const pibTotal = parseFloat(document.getElementById('pibTotal').value);
+                const novoValorIndustria = (tecnicos / 100 * 0.3 * pibTotal).toFixed(2);
+                setorIndustrial.value = novoValorIndustria;
+                atualizarSetores();
+            }
+        }
+
+        // 4️⃣ SIMULAÇÃO PARA PESSOA FÍSICA
+        function calcularPoderCompra() {
+            const salario = parseFloat(document.getElementById('salarioPessoa').value);
+            const inflacao = parseFloat(document.getElementById('inflacao').value);
+            const cambio = parseFloat(document.getElementById('taxaCambio').value);
+            const juros = parseFloat(document.getElementById('taxaJuros').value);
+            
+            const perdaInflacao = (inflacao / 100 * salario).toFixed(2);
+            const salarioRealInflacao = (salario - perdaInflacao).toFixed(2);
+            
+            const impactoCambio = cambio > 600 ? -(cambio - 600) / 10 : (600 - cambio) / 10;
+            const perdaCambio = (Math.abs(impactoCambio) / 100 * salario * 0.6).toFixed(2);
+            
+            const impactoJuros = juros > 15 ? 'Empréstimos muito caros' : 'Empréstimos acessíveis';
+            
+            const ganhoPerda = -perdaInflacao - perdaCambio;
+            const percentual = (ganhoPerda / salario * 100).toFixed(1);
+            
+            document.getElementById('impactoInflacaoPessoa').innerHTML = `
+                <span class="vermelho">-${perdaInflacao} Kz</span><br>
+                <small>Seu salário perde ${inflacao}% do valor devido à inflação</small>
+            `;
+            
+            if (cambio > 600) {
+                document.getElementById('impactoCambioPessoa').innerHTML = `
+                    <span class="vermelho">-${perdaCambio} Kz</span><br>
+                    <small>Produtos importados estão ${(cambio/600*100 - 100).toFixed(0)}% mais caros</small>
+                `;
+            } else {
+                document.getElementById('impactoCambioPessoa').innerHTML = `
+                    <span class="verde">+${perdaCambio} Kz</span><br>
+                    <small>Produtos importados estão mais baratos</small>
+                `;
+            }
+            
+            document.getElementById('impactoJurosPessoa').textContent = impactoJuros;
+            
+            if (percentual < -10) {
+                document.getElementById('resultadoFinalPessoa').innerHTML = `
+                    <span class="vermelho">PERDEU ${Math.abs(percentual)}% do poder de compra</span>
+                `;
+                
+                document.getElementById('explicacao-pessoa').className = 'explicacao-detalhada vermelho';
+                document.getElementById('explicacao-pessoa').innerHTML = `
+                    <h4>🚨 Sua Situação Econômica Piorou</h4>
+                    <p>Mesmo ganhando ${salario.toLocaleString('pt-AO')} Kz, você perdeu poder de compra devido a:</p>
+                    <ul>
+                        <li>Inflação alta corroendo seu salário</li>
+                        <li>Kwanza fraco encarecendo produtos importados</li>
+                        <li>Custo de vida aumentando mais rápido que seu salário</li>
+                    </ul>
+                    <p><strong>💡 O que fazer?</strong></p>
+                    <ul>
+                        <li>Buscar fontes de renda adicionais</li>
+                        <li>Investir em ativos que protejam contra inflação</li>
+                        <li>Reduzir consumo de produtos importados</li>
+                    </ul>
+                `;
+            } else if (percentual < 0) {
+                document.getElementById('resultadoFinalPessoa').innerHTML = `
+                    <span class="amarelo">PERDEU ${Math.abs(percentual)}% do poder de compra</span>
+                `;
+                
+                document.getElementById('explicacao-pessoa').className = 'explicacao-detalhada amarelo';
+                document.getElementById('explicacao-pessoa').innerHTML = `
+                    <h4>⚠️ Pequena Perda de Poder de Compra</h4>
+                    <p>A inflação e o câmbio afetaram negativamente seu salário, mas de forma moderada.</p>
+                `;
+            } else {
+                document.getElementById('resultadoFinalPessoa').innerHTML = `
+                    <span class="verde">GANHOU ${percentual}% de poder de compra</span>
+                `;
+                
+                document.getElementById('explicacao-pessoa').className = 'explicacao-detalhada verde';
+                document.getElementById('explicacao-pessoa').innerHTML = `
+                    <h4>✅ Sua Situação Econômica Melhorou!</h4>
+                    <p>Com economia estável, você consegue comprar mais com o mesmo salário.</p>
+                `;
+            }
+        }
+
+        // 5️⃣ SIMULAÇÃO PARA EMPRESA
+        function calcularEmpresa() {
+            const tipo = document.getElementById('tipoEmpresa').value;
+            const faturamento = parseFloat(document.getElementById('faturamentoEmpresa').value);
+            const funcionarios = parseFloat(document.getElementById('numFuncionarios').value);
+            const reserva = document.getElementById('reservaCambial').value;
+            const cambio = parseFloat(document.getElementById('taxaCambio').value);
+            const inflacao = parseFloat(document.getElementById('inflacao').value);
+            
+            let impactoCusto = 0;
+            let explicacao = '';
+            
+            if (tipo === 'interna') {
+                impactoCusto = inflacao * 0.5;
+                
+                if (cambio > 600) {
+                    explicacao = `
+                        <h4>✅ Vantagem Competitiva!</h4>
+                        <p>Sua empresa PRODUZ localmente, então é menos afetada pelo Kwanza fraco.</p>
+                        <ul>
+                            <li>✅ Custos principalmente em Kwanza</li>
+                            <li>✅ Competitiva contra importados (que estão caros)</li>
+                            <li>⚠️ Inflação ainda afeta custos internos (+${inflacao}%)</li>
+                            <li>💡 Oportunidade de expandir mercado!</li>
+                        </ul>
+                    `;
+                } else {
+                    explicacao = `
+                        <h4>⚠️ Concorrência com Importados</h4>
+                        <p>Com Kwanza forte, produtos importados ficam mais baratos e competem com você.</p>
+                    `;
+                }
+                
+            } else if (tipo === 'importa') {
+                if (reserva === 'sim') {
+                    impactoCusto = inflacao * 0.3;
+                    
+                    explicacao = `
+                        <h4>✅ Protegida pela Reserva Cambial!</h4>
+                        <p>Você tem reservas em USD/Bitcoin, então está parcialmente protegido.</p>
+                        <ul>
+                            <li>✅ Pode comprar insumos sem sofrer tanto com câmbio</li>
+                            <li>✅ Vantagem sobre concorrentes sem reserva</li>
+                            <li>⚠️ Inflação ainda afeta custos operacionais (+${inflacao}%)</li>
+                        </ul>
+                    `;
+                } else {
+                    impactoCusto = (cambio / 600 - 1) * 100 + inflacao;
+                    
+                    explicacao = `
+                        <h4>🚨 CUSTOS DISPARARAM!</h4>
+                        <p>Sua empresa importa E não tem reserva cambial. Situação crítica!</p>
+                        <ul>
+                            <li>❌ Kwanza fraco: Importações ${(cambio/600*100 - 100).toFixed(0)}% mais caras</li>
+                            <li>❌ Inflação: Custos operacionais +${inflacao}%</li>
+                            <li>❌ Impacto total: +${impactoCusto.toFixed(1)}% nos custos</li>
+                            <li>💡 <strong>Ação Urgente:</strong> Criar reserva cambial ou produzir localmente</li>
+                        </ul>
+                    `;
+                }
+                
+            } else {
+                impactoCusto = ((cambio / 600 - 1) * 50 + inflacao * 0.7);
+                
+                explicacao = `
+                    <h4>⚠️ Impacto Misto</h4>
+                    <p>Parte da sua operação é protegida (produção local), parte é vulnerável (importações).</p>
+                `;
+            }
+            
+            const custoFuncionarios = funcionarios * 300000;
+            const margemOperacional = faturamento * 0.3;
+            const custoAjustado = margemOperacional * (1 + impactoCusto / 100);
+            
+            if (custoAjustado > custoFuncionarios * 1.5) {
+                document.getElementById('capacidadePagamento').innerHTML = `
+                    <span class="verde">✅ EXCELENTE</span><br>
+                    <small>Pode pagar funcionários confortavelmente e até aumentar salários</small>
+                `;
+            } else if (custoAjustado > custoFuncionarios) {
+                document.getElementById('capacidadePagamento').innerHTML = `
+                    <span class="verde">✅ BOA</span><br>
+                    <small>Consegue pagar funcionários sem problemas</small>
+                `;
+            } else if (custoAjustado > custoFuncionarios * 0.8) {
+                document.getElementById('capacidadePagamento').innerHTML = `
+                    <span class="amarelo">⚠️ APERTADA</span><br>
+                    <small>Consegue pagar, mas com pouca margem</small>
+                `;
+            } else {
+                document.getElementById('capacidadePagamento').innerHTML = `
+                    <span class="vermelho">❌ CRÍTICA</span><br>
+                    <small>Dificuldade para manter folha de pagamento</small>
+                `;
+            }
+            
+            document.getElementById('impactoCustoEmpresa').innerHTML = `
+                <span class="${impactoCusto > 20 ? 'vermelho' : impactoCusto > 10 ? 'amarelo' : 'verde'}">
+                    ${impactoCusto > 0 ? '+' : ''}${impactoCusto.toFixed(1)}%
+                </span><br>
+                <small>Variação nos custos operacionais</small>
+            `;
+            
+            document.getElementById('explicacao-empresa').innerHTML = explicacao;
+        }
+
+        // 6️⃣ RECOMENDAÇÕES DO GOVERNO
+        function gerarRecomendacoesGoverno() {
+            const pib = parseFloat(document.getElementById('pibTotal').value);
+            const inflacao = parseFloat(document.getElementById('inflacao').value);
+            const desemprego = parseFloat(document.getElementById('valorDesemprego').textContent);
+            const divida = parseFloat(document.getElementById('dividaExterna').value);
+            const ratioDivida = divida / pib * 100;
+            
+            const analiseDiv = document.getElementById('analise-cenario-governo');
+            const prioridadesDiv = document.getElementById('lista-prioridades');
+            
+            let cenario = '';
+            let acao = '';
+            let prioridades = [];
+            
+            if (inflacao > 20 || desemprego > 30 || ratioDivida > 100) {
+                cenario = 'CRÍTICO';
+                acao = 'REDUZIR GASTOS';
+                
+                analiseDiv.className = 'analise-box vermelho';
+                analiseDiv.innerHTML = `
+                    <h4>🚨 CENÁRIO CRÍTICO</h4>
+                    <p><strong>Ação Recomendada: CONTROLAR GASTOS E FAZER AJUSTES</strong></p>
+                    <ul>
+                        <li>❌ Inflação muito alta (${inflacao}%)</li>
+                        <li>❌ Desemprego crítico (${desemprego}%)</li>
+                        <li>❌ Dívida insustentável (${ratioDivida.toFixed(1)}% do PIB)</li>
+                        <li>💡 Foco: Estabilizar economia antes de expandir gastos</li>
+                    </ul>
+                `;
+                
+                prioridades = [
+                    { area: 'Controle da Inflação', razao: 'Prioridade absoluta para estabilizar economia' },
+                    { area: 'Geração de Empregos', razao: 'Desemprego em nível crítico' },
+                    { area: 'Redução da Dívida', razao: 'Endividamento insustentável' }
+                ];
+                
+            } else if (inflacao < 10 && desemprego < 20 && ratioDivida < 60) {
+                cenario = 'POSITIVO';
+                acao = 'INVESTIR MAIS';
+                
+                analiseDiv.className = 'analise-box verde';
+                analiseDiv.innerHTML = `
+                    <h4>✅ CENÁRIO POSITIVO</h4>
+                    <p><strong>Ação Recomendada: INVESTIR EM INFRAESTRUTURA E DESENVOLVIMENTO</strong></p>
+                    <ul>
+                        <li>✅ Inflação controlada (${inflacao}%)</li>
+                        <li>✅ Desemprego moderado (${desemprego}%)</li>
+                        <li>✅ Dívida sustentável (${ratioDivida.toFixed(1)}% do PIB)</li>
+                        <li>💡 Oportunidade: Investir em setores estratégicos</li>
+                    </ul>
+                `;
+                
+                const setores = [];
+                document.querySelectorAll('.setor-valor').forEach(input => {
+                    const setor = input.dataset.setor;
+                    const valor = parseFloat(input.value);
+                    const percentual = (valor / pib * 100);
+                    setores.push({ nome: setor, percentual, valor });
+                });
+                
+                setores.sort((a, b) => a.percentual - b.percentual);
+                
+                prioridades = setores.slice(0, 3).map(s => ({
+                    area: s.nome.charAt(0).toUpperCase() + s.nome.slice(1),
+                    razao: `Representa apenas ${s.percentual.toFixed(1)}% do PIB - pode crescer muito mais`
+                }));
+                
+            } else {
+                cenario = 'ESTÁVEL';
+                acao = 'MANTER INVESTIMENTOS';
+                
+                analiseDiv.className = 'analise-box azul';
+                analiseDiv.innerHTML = `
+                    <h4>➡️ CENÁRIO ESTÁVEL</h4>
+                    <p><strong>Ação Recomendada: MANTER INVESTIMENTOS ATUAIS</strong></p>
+                    <ul>
+                        <li>💡 Economia equilibrada</li>
+                        <li>💡 Continuar políticas atuais</li>
+                        <li>💡 Monitorar indicadores de perto</li>
+                    </ul>
+                `;
+                
+                prioridades = [
+                    { area: 'Educação Técnica', razao: 'Aumentar capacidade produtiva do país' },
+                    { area: 'Agricultura', razao: 'Reduzir dependência de importações alimentares' },
+                    { area: 'Indústria', razao: 'Diversificar economia além do petróleo' }
+                ];
+            }
+            
+            prioridadesDiv.innerHTML = prioridades.map((p, i) => `
+                <div class="prioridade-card">
+                    <h5>${i + 1}. ${p.area}</h5>
+                    <p>${p.razao}</p>
+                </div>
+            `).join('');
+        }
+
+        // 7️⃣ COMPARAÇÃO COM DADOS REAIS
+        function compararComHistorico() {
+            const ano = document.getElementById('anoComparacao').value;
+            const indice = angolaDados.anos.indexOf(parseInt(ano));
+            
+            document.getElementById('anoSelecionado').textContent = ano;
+            
+            const pibSimulado = parseFloat(document.getElementById('pibTotal').value);
+            const inflacaoSimulada = parseFloat(document.getElementById('inflacao').value);
+            const jurosSimulados = parseFloat(document.getElementById('taxaJuros').value);
+            const cambioSimulado = parseFloat(document.getElementById('taxaCambio').value);
+            
+            const comparacoes = [
+                {
+                    indicador: 'PIB (B USD)',
+                    simulado: pibSimulado.toFixed(2),
+                    real: angolaDados.pib[indice],
+                    diferenca: ((pibSimulado - angolaDados.pib[indice]) / angolaDados.pib[indice] * 100).toFixed(1)
+                },
+                {
+                    indicador: 'Inflação (%)',
+                    simulado: inflacaoSimulada.toFixed(1),
+                    real: angolaDados.inflacao[indice],
+                    diferenca: (inflacaoSimulada - angolaDados.inflacao[indice]).toFixed(1)
+                },
+                {
+                    indicador: 'Taxa de Juros (%)',
+                    simulado: jurosSimulados.toFixed(1),
+                    real: angolaDados.juros[indice],
+                    diferenca: (jurosSimulados - angolaDados.juros[indice]).toFixed(1)
+                },
+                {
+                    indicador: 'Câmbio (Kz/USD)',
+                    simulado: cambioSimulado,
+                    real: angolaDados.cambio[indice],
+                    diferenca: ((cambioSimulado - angolaDados.cambio[indice]) / angolaDados.cambio[indice] * 100).toFixed(1)
+                }
+            ];
+            
+            const tbody = document.getElementById('corpo-comparacao');
+            tbody.innerHTML = comparacoes.map(c => `
+                <tr>
+                    <td><strong>${c.indicador}</strong></td>
+                    <td>${c.simulado}</td>
+                    <td>${c.real}</td>
+                    <td class="${parseFloat(c.diferenca) > 0 ? 'verde' : 'vermelho'}">
+                        ${parseFloat(c.diferenca) > 0 ? '+' : ''}${c.diferenca}${c.indicador.includes('%') ? ' pp' : '%'}
+                    </td>
+                </tr>
+            `).join('');
+            
+            const analiseDiv = document.getElementById('analise-comparacao');
+            
+            if (pibSimulado > angolaDados.pib[indice] * 1.2) {
+                analiseDiv.className = 'analise-box verde';
+                analiseDiv.innerHTML = `
+                    <h4>✅ SEU CENÁRIO É MAIS OTIMISTA</h4>
+                    <p>Você simulou uma economia ${((pibSimulado / angolaDados.pib[indice] - 1) * 100).toFixed(0)}% maior que a realidade de ${ano}.</p>
+                    <p><strong>Isso seria possível se:</strong></p>
+                    <ul>
+                        <li>Preço do petróleo fosse muito mais alto</li>
+                        <li>Angola diversificasse sua economia</li>
+                        <li>Investimento estrangeiro aumentasse significativamente</li>
+                        <li>Produção agrícola e industrial crescessem</li>
+                    </ul>
+                `;
+            } else if (pibSimulado < angolaDados.pib[indice] * 0.8) {
+                analiseDiv.className = 'analise-box vermelho';
+                analiseDiv.innerHTML = `
+                    <h4>⚠️ SEU CENÁRIO É MAIS PESSIMISTA</h4>
+                    <p>Você simulou uma economia ${((1 - pibSimulado / angolaDados.pib[indice]) * 100).toFixed(0)}% menor que a realidade de ${ano}.</p>
+                    <p><strong>Isso aconteceria se:</strong></p>
+                    <ul>
+                        <li>Preço do petróleo desabasse</li>
+                        <li>Crise econômica global severa</li>
+                        <li>Fuga massiva de investimentos</li>
+                    </ul>
+                `;
+            } else {
+                analiseDiv.className = 'analise-box azul';
+                analiseDiv.innerHTML = `
+                    <h4>➡️ SEU CENÁRIO É PRÓXIMO DA REALIDADE</h4>
+                    <p>Você simulou uma economia similar à realidade de ${ano}.</p>
+                    <p>Continue explorando diferentes variáveis para entender como cada uma afeta a economia!</p>
+                `;
+            }
+        }
+
+        // 8️⃣ GRÁFICOS
+        function inicializarGraficos() {
+            // Gráfico de PIB por Setor
+            const ctxPIB = document.getElementById('graficoPIBSetores').getContext('2d');
+            charts.pibSetores = new Chart(ctxPIB, {
+                type: 'pie',
+                data: {
+                    labels: ['Petróleo', 'Agricultura', 'Indústria', 'Saúde', 'Educação', 'Pesca', 'Construção'],
+                    datasets: [{
+                        data: [60, 10, 15, 5, 5, 2.5, 2.5],
+                        backgroundColor: [
+                            '#D6AE64',
+                            '#FFD700',
+                            '#00FF00',
+                            '#FF6B6B',
+                            '#4ECDC4',
+                            '#45B7D1',
+                            '#96CEB4'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#FFFFFF' }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribuição do PIB por Setor',
+                            color: '#D6AE64'
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de Evolução Histórica
+            const ctxEvolucao = document.getElementById('graficoEvolucao').getContext('2d');
+            charts.evolucao = new Chart(ctxEvolucao, {
+                type: 'line',
+                data: {
+                    labels: angolaDados.anos,
+                    datasets: [
+                        {
+                            label: 'PIB (B USD)',
+                            data: angolaDados.pib,
+                            borderColor: '#D6AE64',
+                            backgroundColor: 'rgba(214, 174, 100, 0.1)',
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Inflação (%)',
+                            data: angolaDados.inflacao,
+                            borderColor: '#FF6B6B',
+                            backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                            yAxisID: 'y1'
+                        },
+                        {
+                            label: 'Desemprego (%)',
+                            data: angolaDados.desemprego,
+                            borderColor: '#FFD700',
+                            backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#FFFFFF' }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Indicadores Econômicos de Angola (2015-2024)',
+                            color: '#D6AE64'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#FFFFFF' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            ticks: { color: '#D6AE64' },
+                            grid: { color: 'rgba(214, 174, 100, 0.1)' },
+                            title: {
+                                display: true,
+                                text: 'PIB (Bilhões USD)',
+                                color: '#D6AE64'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            ticks: { color: '#FF6B6B' },
+                            grid: { display: false },
+                            title: {
+                                display: true,
+                                text: 'Percentual (%)',
+                                color: '#FF6B6B'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de Comparação
+            const ctxComparacao = document.getElementById('graficoComparacao').getContext('2d');
+            charts.comparacao = new Chart(ctxComparacao, {
+                type: 'bar',
+                data: {
+                    labels: ['PIB', 'Inflação', 'Juros', 'Desemprego'],
+                    datasets: [
+                        {
+                            label: 'Seu Cenário',
+                            data: [80.4, 30, 19.5, 32],
+                            backgroundColor: '#D6AE64'
+                        },
+                        {
+                            label: 'Realidade 2024',
+                            data: [80.4, 30, 19.5, 32],
+                            backgroundColor: '#00FF00'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#FFFFFF' }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Comparação: Seu Cenário vs Realidade',
+                            color: '#D6AE64'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#FFFFFF' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#FFFFFF' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de Poder de Compra
+            const ctxPoderCompra = document.getElementById('graficoPoderCompra').getContext('2d');
+            charts.poderCompra = new Chart(ctxPoderCompra, {
+                type: 'bar',
+                data: {
+                    labels: ['Impacto Inflação', 'Impacto Câmbio', 'Impacto Juros', 'RESULTADO FINAL'],
+                    datasets: [{
+                        label: 'Variação (%)',
+                        data: [-30, -15, -5, -50],
+                        backgroundColor: ['#FF6B6B', '#FFD700', '#FFA500', '#FF0000']
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'Impacto no Seu Poder de Compra',
+                            color: '#D6AE64'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#FFFFFF' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#FFFFFF' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function atualizarTodosGraficos() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                atualizarGraficoPIB();
+                atualizarGraficoComparacao();
+                atualizarGraficoPoderCompra();
+            }, 300);
+        }
+
+        function atualizarGraficoPIB() {
+            const setores = [];
+            const valores = [];
+            
+            document.querySelectorAll('.setor-valor').forEach(input => {
+                const tr = input.closest('tr');
+                const nomeSetor = tr.querySelector('td:first-child').textContent;
+                const valor = parseFloat(input.value);
+                setores.push(nomeSetor);
+                valores.push(valor);
+            });
+            
+            if (charts.pibSetores) {
+                charts.pibSetores.data.labels = setores;
+                charts.pibSetores.data.datasets[0].data = valores;
+                charts.pibSetores.update();
+            }
+        }
+
+        function atualizarGraficoComparacao() {
+            const pibSimulado = parseFloat(document.getElementById('pibTotal').value);
+            const inflacaoSimulada = parseFloat(document.getElementById('inflacao').value);
+            const jurosSimulados = parseFloat(document.getElementById('taxaJuros').value);
+            const desempregoSimulado = parseFloat(document.getElementById('valorDesemprego').textContent);
+            
+            const pibReal = 80.4;
+            const inflacaoReal = 30;
+            const jurosReais = 19.5;
+            const desempregoReal = 32;
+            
+            if (charts.comparacao) {
+                charts.comparacao.data.datasets[0].data = [pibSimulado, inflacaoSimulada, jurosSimulados, desempregoSimulado];
+                charts.comparacao.data.datasets[1].data = [pibReal, inflacaoReal, jurosReais, desempregoReal];
+                charts.comparacao.update();
+            }
+        }
+
+        function atualizarGraficoPoderCompra() {
+            const salario = parseFloat(document.getElementById('salarioPessoa').value);
+            const inflacao = parseFloat(document.getElementById('inflacao').value);
+            const cambio = parseFloat(document.getElementById('taxaCambio').value);
+            const juros = parseFloat(document.getElementById('taxaJuros').value);
+            
+            const impactoInflacao = -inflacao;
+            const impactoCambio = cambio > 600 ? -((cambio - 600) / 600 * 60) : ((600 - cambio) / 600 * 30);
+            const impactoJuros = juros > 15 ? -(juros - 15) : 0;
+            const resultadoFinal = impactoInflacao + impactoCambio + impactoJuros;
+            
+            if (charts.poderCompra) {
+                charts.poderCompra.data.datasets[0].data = [
+                    impactoInflacao.toFixed(1),
+                    impactoCambio.toFixed(1),
+                    impactoJuros.toFixed(1),
+                    resultadoFinal.toFixed(1)
+                ];
+                
+                charts.poderCompra.data.datasets[0].backgroundColor = [
+                    impactoInflacao < 0 ? '#FF6B6B' : '#00FF00',
+                    impactoCambio < 0 ? '#FFD700' : '#00FF00',
+                    impactoJuros < 0 ? '#FFA500' : '#00FF00',
+                    resultadoFinal < 0 ? '#FF0000' : '#00FF00'
+                ];
+                
+                charts.poderCompra.update();
+            }
+        }
+
+        // 9️⃣ EXPORTAÇÃO
+        function exportarCenario() {
+            const usuario = {
+                nome: document.getElementById('nomeUsuario').value,
+                regiao: document.getElementById('regiao').options[document.getElementById('regiao').selectedIndex].text
+            };
+            
+            const cenario = {
+                tipo: document.querySelector('.cenario-btn.ativo') ? document.querySelector('.cenario-btn.ativo h4').textContent : 'Personalizado',
+                pib: parseFloat(document.getElementById('pibTotal').value),
+                inflacao: parseFloat(document.getElementById('inflacao').value),
+                juros: parseFloat(document.getElementById('taxaJuros').value),
+                cambio: parseFloat(document.getElementById('taxaCambio').value),
+                desemprego: parseFloat(document.getElementById('valorDesemprego').textContent)
+            };
+            
+            const resultado = document.getElementById('resultadoFinalPessoa').textContent;
+            const qualidadeVida = resultado.includes('GANHOU') ? 'Melhorou ✅' : 'Piorou ❌';
+            
+            const areaCaptura = document.getElementById('area-captura');
+            areaCaptura.innerHTML = `
+                <div style="border: 3px solid #D6AE64; padding: 30px; border-radius: 15px;">
+                    <div style="text-align: center; border-bottom: 2px solid #D6AE64; padding-bottom: 20px; margin-bottom: 30px;">
+                        <h1 style="color: #D6AE64; margin: 0; font-size: 32px;">📊 SIMULADOR DE CENÁRIOS ECONÔMICOS</h1>
+                        <p style="color: #FFD700; margin: 10px 0 0 0; font-size: 18px;">ANGOLA 2015-2024</p>
+                    </div>
+                    
+                    <div style="background: rgba(214, 174, 100, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                        <h2 style="color: #D6AE64; margin: 0 0 15px 0; font-size: 24px;">👤 Informações</h2>
+                        <p style="margin: 5px 0; font-size: 16px;"><strong>Nome:</strong> ${usuario.nome}</p>
+                        <p style="margin: 5px 0; font-size: 16px;"><strong>Região:</strong> ${usuario.regiao}</p>
+                        <p style="margin: 5px 0; font-size: 16px;"><strong>Cenário:</strong> ${cenario.tipo}</p>
+                        <p style="margin: 5px 0; font-size: 16px;"><strong>Data:</strong> ${new Date().toLocaleDateString('pt-AO')}</p>
+                    </div>
+                    
+                    <div style="background: rgba(214, 174, 100, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                        <h2 style="color: #D6AE64; margin: 0 0 15px 0; font-size: 24px;">🌍 Indicadores Econômicos</h2>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                            <div>
+                                <p style="margin: 5px 0; font-size: 16px;"><strong>PIB:</strong> $${cenario.pib} Bilhões</p>
+                                <p style="margin: 5px 0; font-size: 16px;"><strong>Inflação:</strong> ${cenario.inflacao}%</p>
+                                <p style="margin: 5px 0; font-size: 16px;"><strong>Taxa de Juros:</strong> ${cenario.juros}%</p>
+                            </div>
+                            <div>
+                                <p style="margin: 5px 0; font-size: 16px;"><strong>Câmbio:</strong> ${cenario.cambio} Kz/USD</p>
+                                <p style="margin: 5px 0; font-size: 16px;"><strong>Desemprego:</strong> ${cenario.desemprego}%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: ${qualidadeVida.includes('Melhorou') ? 'rgba(0, 255, 0, 0.1)' : 'rgba(255, 0, 0, 0.1)'}; padding: 20px; border-radius: 10px; text-align: center;">
+                        <h2 style="color: ${qualidadeVida.includes('Melhorou') ? '#00FF00' : '#FF0000'}; margin: 0 0 10px 0; font-size: 28px;">
+                            Resultado Final: ${qualidadeVida}
+                        </h2>
+                        <p style="font-size: 18px; margin: 0;">${resultado}</p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #D6AE64;">
+                        <p style="color: #D6AE64; margin: 0; font-size: 14px;">Simulação gerada pelo Simulador Econômico de Angola</p>
+                        <p style="color: #FFD700; margin: 5px 0 0 0; font-size: 12px;">Dados reais 2015-2024 | Simulação educativa</p>
+                    </div>
+                </div>
+            `;
+            
+            html2canvas(areaCaptura, {
+                backgroundColor: '#000000',
+                scale: 2
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `cenario-economico-${usuario.nome.replace(/\s/g, '-')}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                alert('✅ Cenário exportado com sucesso!');
+            });
+        }
+
+        // ==================== INICIALIZAÇÃO ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            calcularEmprestimo();
+            calcularPoderCompra();
+            calcularEmpresa();
+            atualizarPetroleo();
+            atualizarInflacao();
+            atualizarJuros();
+            atualizarCambio();
+            atualizarEmprego();
+            atualizarEducacao();
+            avaliarDivida();
+            gerarRecomendacoesGoverno();
+            compararComHistorico();
+        });
+    </script>
+
+    </main>
+
+    <footer role="contentinfo">
+        <div class="tc-footer-wrap">
+            <!-- REDES SOCIAIS -->
+            <div id="socialmidia" class="tc-footer-col">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@tecacapital" target="_blank" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CONTATO -->
+            <div id="Contato" class="tc-footer-col">
+                <h3>Contato</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <p>Gmail:</p>
+                        <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                            tecacapitalinvestimentostci@gmail.com
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Telefone:</p>
+                        <a href="tel:+244923456789">
+                           +244 923 456 789
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Endereço:</p>
+                        <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT EMBUTIDO PARA TEMA E UTILITÁRIOS -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // 1. GERENCIAMENTO DE TEMA
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Função para obter tema atual
+        function getCurrentTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) return savedTheme;
+            return prefersDarkScheme.matches ? 'dark' : 'light';
+        }
+        
+        // Função para aplicar tema
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Atualizar aria-pressed no botão
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'false' : 'true');
+            }
+            
+            // Atualizar ícone
+            updateThemeIcon(theme);
+        }
+        
+        // Função para alternar tema
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme') || getCurrentTheme();
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        }
+        
+        // Função para atualizar ícone
+        function updateThemeIcon(theme) {
+            if (!themeToggle) return;
+            
+            const sunIcon = themeToggle.querySelector('.tc-icon-sun');
+            const moonIcon = themeToggle.querySelector('.tc-icon-moon');
+            
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = theme === 'dark' ? 'block' : 'none';
+                moonIcon.style.display = theme === 'dark' ? 'none' : 'block';
+            }
+        }
+        
+        // Inicializar tema
+        const initialTheme = getCurrentTheme();
+        applyTheme(initialTheme);
+        
+        // Adicionar event listener ao botão
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+        }
+        
+        // 2. RESPONSIVIDADE DE TABELAS
+        function enhanceTables() {
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.closest('.tc-overflow')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-overflow';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+        }
+        
+        // 3. RESPONSIVIDADE DE VÍDEOS
+        function enhanceVideos() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                if (!video.closest('.tc-video-wrap')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-video-wrap';
+                    video.parentNode.insertBefore(wrapper, video);
+                    wrapper.appendChild(video);
+                }
+                
+                // Adicionar atributos de acessibilidade
+                if (!video.hasAttribute('playsinline')) {
+                    video.setAttribute('playsinline', '');
+                }
+                if (!video.hasAttribute('aria-label') && !video.hasAttribute('aria-describedby')) {
+                    video.setAttribute('aria-label', 'Vídeo de conteúdo relacionado');
+                }
+            });
+        }
+        
+        // 4. DETECÇÃO DE REDIMENSIONAMENTO PARA GRÁFICOS FUTUROS
+        function setupChartResize() {
+            // Esta função será estendida quando gráficos (Chart.js, etc.) forem adicionados
+            const charts = document.querySelectorAll('canvas[data-chart]');
+            if (charts.length > 0) {
+                window.addEventListener('resize', () => {
+                    charts.forEach(chart => {
+                        if (chart.chartInstance && typeof chart.chartInstance.resize === 'function') {
+                            chart.chartInstance.resize();
+                        }
+                    });
+                });
+            }
+        }
+        
+        // 5. INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', () => {
+            enhanceTables();
+            enhanceVideos();
+            setupChartResize();
+            
+            // Log para debugging
+            console.log('Teca Capital - Sistema de tema e responsividade carregado.');
+            console.log('Tema atual:', html.getAttribute('data-theme'));
+            console.log('Tabelas envolvidas:', document.querySelectorAll('.tc-overflow').length);
+        });
+        
+        // 6. LISTENER PARA PREFERÊNCIAS DO SISTEMA
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+    })();
+    </script>
+    
+</body>
+</html>
