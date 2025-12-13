@@ -1,0 +1,3173 @@
+<!DOCTYPE html>
+<html lang="pt-AO" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Fonte Fim -->
+    <title>Teca Capital Investimentos | Minha Empresa na Bolsa de Valores</title>
+    <link rel="shortcut icon" href="Imagem/Teca Capital Investimentos Logo - Sem letra.png" type="image/x-icon">
+    <link rel="stylesheet" href="teca.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+
+<body>
+     <header role="banner">
+       <div class="interface tc-container"> 
+            <div class="logo">
+                <a href="#"> <img class="logo" src="Imagem/Teca Capital Investimentos Logo - Sem letra.png" alt="Teca Capital Investimentos Logo"></a> 
+            </div>
+
+            <nav id="navt" role="navigation" aria-label="Menu principal">
+                <ul id="lista">
+                    <li class="navitem active"> <a href="index.html">Início</a></li>
+                    <li class="navitem"> <a href="biblioteca.html">Biblioteca</a></li>   
+                    <li class="navitem"> <a href="sobrenos.html">+Sobre</a></li>
+                    <li class="navitem"> <a href="simuladores.html"> Simuladores</a>   
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Botão Toggle Dark/Light -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" aria-pressed="false">
+                <svg class="theme-icon sun" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-15a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zM3 12a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2H4a1 1 0 0 1-1-1zm18 0a1 1 0 0 1 1-1h2a1 1 0 0 1 0 2h-2a1 1 0 0 1-1-1zM5.64 5.64a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41L5.64 7.05a1 1 0 0 1 0-1.41zm12.73 12.73a1 1 0 0 1 1.41 0l1.42 1.42a1 1 0 0 1-1.41 1.41l-1.42-1.42a1 1 0 0 1 0-1.41zM5.64 18.36a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41L7.05 18.36a1 1 0 0 1-1.41 0zm12.73-12.73a1 1 0 0 1 0-1.41l1.42-1.42a1 1 0 0 1 1.41 1.41l-1.42 1.42a1 1 0 0 1-1.41 0z"/>
+                </svg>
+                <svg class="theme-icon moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+
+    <main>
+
+    <style>
+        /* VARIÁVEIS CSS */
+        :root {
+            --cor-fundo: #000000;
+            --cor-primaria: #D6AE64;
+            --cor-destaque-positivo: #00FF00;
+            --cor-destaque-negativo: #FF0000;
+            --cor-alerta: #FFFF00;
+            --cor-texto: #FFFFFF;
+            --cor-texto-secundario: #CCCCCC;
+            --cor-borda: #333333;
+            --cor-fundo-card: #111111;
+            --cor-fundo-input: #222222;
+            --sombra-card: 0 4px 12px rgba(214, 174, 100, 0.15);
+            --transicao-padrao: all 0.3s ease;
+        }
+        
+        /* RESET E ESTILOS GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        main {
+            min-height: 100vh;
+            width: 100%;
+        }
+        
+        /* TIPOGRAFIA */
+        h1, h2, h3, h4 {
+            color: var(--cor-primaria);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--cor-primaria), #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--cor-primaria);
+            padding-bottom: 8px;
+            margin-top: 25px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: var(--cor-texto-secundario);
+        }
+        
+        small {
+            font-size: 0.85rem;
+            color: var(--cor-texto-secundario);
+        }
+        
+        /* BOTÕES */
+        .btn {
+            display: inline-block;
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transicao-padrao);
+            text-decoration: none;
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: #E8C170;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(214, 174, 100, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--cor-primaria);
+            color: var(--cor-primaria);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(214, 174, 100, 0.1);
+        }
+        
+        .btn-success {
+            background-color: var(--cor-destaque-positivo);
+            color: var(--cor-fundo);
+        }
+        
+        .btn-danger {
+            background-color: var(--cor-destaque-negativo);
+            color: var(--cor-texto);
+        }
+        
+        .btn-warning {
+            background-color: var(--cor-alerta);
+            color: var(--cor-fundo);
+        }
+        
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        /* CARDS E CONTAINERS */
+        .card {
+            background-color: var(--cor-fundo-card);
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--sombra-card);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+        
+        /* FORMULÁRIOS */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--cor-texto);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--cor-fundo-input);
+            border: 1px solid var(--cor-borda);
+            border-radius: 4px;
+            color: var(--cor-texto);
+            font-size: 1rem;
+            transition: var(--transicao-padrao);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--cor-primaria);
+            box-shadow: 0 0 0 2px rgba(214, 174, 100, 0.2);
+        }
+        
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .slider-container {
+            margin-top: 15px;
+        }
+        
+        .slider-value {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 5px;
+            color: var(--cor-primaria);
+        }
+        
+        /* TABELAS */
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        th {
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        tr:hover {
+            background-color: rgba(214, 174, 100, 0.05);
+        }
+        
+        /* ESTILOS PARA MÉTRICAS */
+        .metricas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .metrica-card {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--cor-primaria);
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        .metrica-valor {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .positivo {
+            color: var(--cor-destaque-positivo);
+        }
+        
+        .negativo {
+            color: var(--cor-destaque-negativo);
+        }
+        
+        .neutro {
+            color: var(--cor-texto);
+        }
+        
+        .alerta {
+            color: var(--cor-alerta);
+        }
+        
+        /* GRÁFICO */
+        #graficoContainer {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: var(--cor-fundo-card);
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda);
+        }
+        
+        #canvasGrafico {
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+        
+        .info-grafico {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        /* NOTÍCIAS */
+        .noticias-container {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: var(--cor-fundo-card);
+            border-radius: 8px;
+            border: 1px solid var(--cor-borda);
+        }
+        
+        .noticia-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid;
+            display: none;
+        }
+        
+        .noticia-item.ativa {
+            display: block;
+        }
+        
+        .noticia-boa {
+            border-left-color: var(--cor-destaque-positivo);
+        }
+        
+        .noticia-neutra {
+            border-left-color: var(--cor-texto-secundario);
+        }
+        
+        .noticia-ruim {
+            border-left-color: var(--cor-destaque-negativo);
+        }
+        
+        /* EVENTOS CORPORATIVOS */
+        .eventos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .evento-btn {
+            padding: 10px 15px;
+            background-color: var(--cor-fundo-input);
+            border: 1px solid var(--cor-borda);
+            border-radius: 4px;
+            color: var(--cor-texto);
+            cursor: pointer;
+            transition: var(--transicao-padrao);
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .evento-btn:hover {
+            background-color: rgba(214, 174, 100, 0.1);
+            border-color: var(--cor-primaria);
+        }
+        
+        /* ACORDEÃO */
+        .accordion {
+            margin: 25px 0;
+        }
+        
+        .accordion-item {
+            margin-bottom: 10px;
+            border: 1px solid var(--cor-borda);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            padding: 15px;
+            background-color: var(--cor-fundo-input);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transicao-padrao);
+        }
+        
+        .accordion-header:hover {
+            background-color: rgba(214, 174, 100, 0.1);
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion-content.aberto {
+            padding: 15px;
+            max-height: 1000px;
+        }
+        
+        /* UTILITÁRIOS */
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        
+        .mt-20 {
+            margin-top: 20px;
+        }
+        
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .flex-column {
+            flex-direction: column;
+        }
+        
+        .flex-row {
+            flex-direction: row;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        .align-center {
+            align-items: center;
+        }
+        
+        .wrap {
+            flex-wrap: wrap;
+        }
+        
+        .gap-10 {
+            gap: 10px;
+        }
+        
+        .gap-20 {
+            gap: 20px;
+        }
+        
+        /* CABEÇALHO DA CARTEIRA */
+        .carteira-header {
+            background: linear-gradient(135deg, rgba(214, 174, 100, 0.1), rgba(0, 0, 0, 0.3));
+            border: 1px solid var(--cor-primaria);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .carteira-header h2 {
+            border-bottom: none;
+            margin-top: 0;
+            color: var(--cor-primaria);
+        }
+        
+        .empresa-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* LAYOUT HÍBRIDO */
+        .hibrido-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .hibrido-col {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* MODAIS E ALERTAS */
+        .alert {
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border-left: 4px solid;
+        }
+        
+        .alert-warning {
+            background-color: rgba(255, 255, 0, 0.1);
+            border-left-color: var(--cor-alerta);
+            color: var(--cor-alerta);
+        }
+        
+        .alert-danger {
+            background-color: rgba(255, 0, 0, 0.1);
+            border-left-color: var(--cor-destaque-negativo);
+            color: var(--cor-destaque-negativo);
+        }
+        
+        .alert-success {
+            background-color: rgba(0, 255, 0, 0.1);
+            border-left-color: var(--cor-destaque-positivo);
+            color: var(--cor-destaque-positivo);
+        }
+        
+        /* RESPONSIVIDADE */
+        @media (max-width: 1500px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.3rem; }
+            .container { padding: 15px; }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 1.9rem; }
+            h2 { font-size: 1.4rem; }
+            h3 { font-size: 1.2rem; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; }
+            .metricas-container { grid-template-columns: repeat(2, 1fr); }
+            .hibrido-container { flex-direction: column; }
+        }
+        
+        @media (max-width: 500px) {
+            h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
+            .container { padding: 10px; }
+            .card { padding: 15px; }
+            .metricas-container { grid-template-columns: 1fr; }
+            .empresa-info { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 450px) {
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
+            h3 { font-size: 1rem; }
+            body { font-size: 0.9rem; }
+            .btn { padding: 10px; }
+            .carteira-header { padding: 15px 10px; }
+            .info-grafico { flex-direction: column; }
+        }
+        
+        /* ANIMAÇÕES */
+        @keyframes piscarVerde {
+            0% { background-color: rgba(0, 255, 0, 0); }
+            50% { background-color: rgba(0, 255, 0, 0.1); }
+            100% { background-color: rgba(0, 255, 0, 0); }
+        }
+        
+        @keyframes piscarVermelho {
+            0% { background-color: rgba(255, 0, 0, 0); }
+            50% { background-color: rgba(255, 0, 0, 0.1); }
+            100% { background-color: rgba(255, 0, 0, 0); }
+        }
+        
+        .animacao-valorizacao {
+            animation: piscarVerde 1s ease;
+        }
+        
+        .animacao-desvalorizacao {
+            animation: piscarVermelho 1s ease;
+        }
+        
+        /* PROGRESSO DAS ETAPAS */
+        .etapas-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .etapas-container:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--cor-borda);
+            z-index: 1;
+        }
+        
+        .etapa {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .etapa-indicador {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--cor-borda);
+            color: var(--cor-texto);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            transition: var(--transicao-padrao);
+        }
+        
+        .etapa.ativa .etapa-indicador {
+            background-color: var(--cor-primaria);
+            color: var(--cor-fundo);
+            transform: scale(1.1);
+        }
+        
+        .etapa-concluida .etapa-indicador {
+            background-color: var(--cor-destaque-positivo);
+        }
+        
+        .etapa-nome {
+            font-size: 0.9rem;
+            color: var(--cor-texto-secundario);
+        }
+        
+        .etapa.ativa .etapa-nome {
+            color: var(--cor-primaria);
+            font-weight: bold;
+        }
+    </style>
+    
+        <div class="container">
+            <!-- FASE 1: INTRODUÇÃO -->
+            <section id="fase-introducao" class="fase">
+                <div class="card text-center">
+                    <h1>🏦 SIMULADOR TECA CAPITAL INVESTIMENTOS</h1>
+                    <h2>"Minha Empresa na Bolsa de Valores"</h2>
+                    <p class="mb-30">Desenvolvido por <strong>Alberto Teca Tomás</strong></p>
+                    
+                    <div class="card" style="max-width: 800px; margin: 0 auto;">
+                        <h3>🎯 Objetivo Educativo</h3>
+                        <p>Este simulador tem como objetivo educar sobre o processo completo de cotação de empresas na <strong>BODIVA (Bolsa de Dívida e Valores de Angola)</strong>, abrangendo desde a preparação inicial até a operação no mercado secundário.</p>
+                        
+                        <p>Você aprenderá sobre:</p>
+                        <ul style="text-align: left; margin: 15px 0 15px 30px; color: var(--cor-texto-secundario);">
+                            <li>Processo completo de listagem na BODIVA</li>
+                            <li>Mercado Primário (OPV - Oferta Pública de Venda)</li>
+                            <li>Mercado Secundário com trading em tempo real</li>
+                            <li>Eventos corporativos (dividendos, emissões, recompras)</li>
+                            <li>Múltiplos cenários econômicos</li>
+                            <li>Tipos de instrumentos: Ações, Obrigações e Híbrido</li>
+                        </ul>
+                        
+                        <div class="alert alert-warning">
+                            <strong>⚠️ AVISO IMPORTANTE:</strong> Esta é uma simulação fictícia para fins educacionais. Os valores, cenários e resultados não representam a realidade do mercado financeiro angolano nem constituem recomendação de investimento.
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button id="btnIniciar" class="btn">🚀 INICIAR SIMULAÇÃO</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FASE 2: FORMULÁRIO DE CONFIGURAÇÃO -->
+            <section id="fase-configuracao" class="fase hidden">
+                <div class="etapas-container">
+                    <div class="etapa ativa">
+                        <div class="etapa-indicador">1</div>
+                        <div class="etapa-nome">Configuração</div>
+                    </div>
+                    <div class="etapa">
+                        <div class="etapa-indicador">2</div>
+                        <div class="etapa-nome">Educação</div>
+                    </div>
+                    <div class="etapa">
+                        <div class="etapa-indicador">3</div>
+                        <div class="etapa-nome">OPV</div>
+                    </div>
+                    <div class="etapa">
+                        <div class="etapa-indicador">4</div>
+                        <div class="etapa-nome">Mercado</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>📋 Configuração da Sua Empresa</h2>
+                    <p>Preencha os dados da empresa que será listada na BODIVA:</p>
+                    
+                    <form id="formConfiguracao">
+                        <div class="form-group">
+                            <label for="nomeEmpresa">1. Nome da Empresa *</label>
+                            <input type="text" id="nomeEmpresa" required placeholder="Ex: TECA CAPITAL INVESTIMENTOS S.A.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nomePresidente">2. Nome do Presidente *</label>
+                            <input type="text" id="nomePresidente" required placeholder="Ex: Alberto Teca Tomás">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="provincia">3. Província *</label>
+                            <select id="provincia" required>
+                                <option value="">Selecione uma província</option>
+                                <option value="Luanda">Luanda</option>
+                                <option value="Bengo">Bengo</option>
+                                <option value="Benguela">Benguela</option>
+                                <option value="Bié">Bié</option>
+                                <option value="Cabinda">Cabinda</option>
+                                <option value="Cuando Cubango">Cuando Cubango</option>
+                                <option value="Cuanza Norte">Cuanza Norte</option>
+                                <option value="Cuanza Sul">Cuanza Sul</option>
+                                <option value="Cunene">Cunene</option>
+                                <option value="Huambo">Huambo</option>
+                                <option value="Huíla">Huíla</option>
+                                <option value="Lunda Norte">Lunda Norte</option>
+                                <option value="Lunda Sul">Lunda Sul</option>
+                                <option value="Malanje">Malanje</option>
+                                <option value="Moxico">Moxico</option>
+                                <option value="Namibe">Namibe</option>
+                                <option value="Uíge">Uíge</option>
+                                <option value="Zaire">Zaire</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="setor">4. Setor de Atuação *</label>
+                            <select id="setor" required>
+                                <option value="">Selecione um setor</option>
+                                <option value="Financeiro">Financeiro</option>
+                                <option value="Agrícola">Agrícola</option>
+                                <option value="Energético">Energético</option>
+                                <option value="Telecomunicações">Telecomunicações</option>
+                                <option value="Educacional">Educacional</option>
+                                <option value="Tecnológico">Tecnológico</option>
+                                <option value="Infraestrutura">Infraestrutura</option>
+                                <option value="Transporte">Transporte</option>
+                                <option value="Saúde">Saúde</option>
+                                <option value="Comércio">Comércio</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cenarioEconomico">5. Cenário Econômico *</label>
+                            <select id="cenarioEconomico" required>
+                                <option value="">Selecione um cenário</option>
+                                <option value="estavel">Estável - Variações moderadas (±5%)</option>
+                                <option value="crescimento">Crescimento - Alta valorização frequente (10-20%)</option>
+                                <option value="instavel">Instável - Alta desvalorização frequente</option>
+                                <option value="angola-novo">Angola Novo (0-5 anos) - Baixa volatilidade diária</option>
+                                <option value="angola-maduro">Angola Maduro (5-10+ anos) - Alta volatilidade</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="capitalSocial">6. Capital Social (AOA Kwanzas) *</label>
+                            <input type="number" id="capitalSocial" required min="1000000" value="1000000000">
+                            <small>Valor mínimo recomendado: AOA 1.000.000,00</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>7. Tipo de Emissão *</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="tipoAcoes" name="tipoEmissao" value="acoes" checked>
+                                    <label for="tipoAcoes">Ações</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="tipoObrigacoes" name="tipoEmissao" value="obrigacoes">
+                                    <label for="tipoObrigacoes">Obrigações</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="tipoHibrido" name="tipoEmissao" value="hibrido">
+                                    <label for="tipoHibrido">Híbrido (Ações + Obrigações)</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="tipoAcaoGroup">
+                            <label>8. Tipo de Ação (se aplicável)</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="acaoOrdinaria" name="tipoAcao" value="ordinaria" checked>
+                                    <label for="acaoOrdinaria">Ordinária</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="acaoPreferencial" name="tipoAcao" value="preferencial">
+                                    <label for="acaoPreferencial">Preferencial</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>9. Alcance de Investidores *</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="alcanceAngola" name="alcance" value="angola" checked>
+                                    <label for="alcanceAngola">Angola (26,6M potenciais)</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="alcanceGlobal" name="alcance" value="global">
+                                    <label for="alcanceGlobal">Global (7 bilhões de pessoas)</label>
+                                </div>
+                            </div>
+                            
+                            <div class="slider-container">
+                                <label for="alcancePercentual">Percentual do mercado a atingir:</label>
+                                <input type="range" id="alcancePercentual" min="0" max="100" value="10" step="1">
+                                <div class="slider-value" id="alcancePercentualValue">10%</div>
+                                <small>Quanto maior o alcance, maior a liquidez potencial no mercado secundário.</small>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button type="button" id="btnVoltarIntro" class="btn btn-secondary">⬅️ VOLTAR</button>
+                            <button type="submit" id="btnAvancarEducacao" class="btn">PRÓXIMO ➡️</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            
+            <!-- FASE 3: PROCESSOS EDUCATIVOS -->
+            <section id="fase-educacao" class="fase hidden">
+                <div class="etapas-container">
+                    <div class="etapa etapa-concluida">
+                        <div class="etapa-indicador">✓</div>
+                        <div class="etapa-nome">Configuração</div>
+                    </div>
+                    <div class="etapa ativa">
+                        <div class="etapa-indicador">2</div>
+                        <div class="etapa-nome">Educação</div>
+                    </div>
+                    <div class="etapa">
+                        <div class="etapa-indicador">3</div>
+                        <div class="etapa-nome">OPV</div>
+                    </div>
+                    <div class="etapa">
+                        <div class="etapa-indicador">4</div>
+                        <div class="etapa-nome">Mercado</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>📚 Processo de Listagem na BODIVA</h2>
+                    <p>Etapas educativas sobre como uma empresa se torna uma sociedade aberta e é listada na bolsa de valores.</p>
+                    
+                    <div id="conteudoEducacao">
+                        <!-- Conteúdo será carregado dinamicamente -->
+                        <div class="etapa-educativa ativa" id="etapa-1">
+                            <h3>1. Transformação em Sociedade Aberta (S.A.)</h3>
+                            <p>Para ser listada na BODIVA, uma empresa deve primeiro se constituir como uma Sociedade Aberta (S.A.). Isso envolve:</p>
+                            <ul style="margin-left: 30px; margin-bottom: 15px; color: var(--cor-texto-secundario);">
+                                <li>Registro nos órgãos competentes</li>
+                                <li>Adaptação do estatuto social</li>
+                                <li>Criação de órgãos de governança corporativa</li>
+                                <li>Divulgação pública de informações</li>
+                            </ul>
+                            <p>A transformação em S.A. permite que a empresa tenha capital aberto ao público, com ações negociáveis no mercado de capitais.</p>
+                        </div>
+                        
+                        <div class="etapa-educativa hidden" id="etapa-2">
+                            <h3>2. Requisitos Mínimos de Capital e Documentação</h3>
+                            <p>A BODIVA estabelece requisitos mínimos para a listagem:</p>
+                            <ul style="margin-left: 30px; margin-bottom: 15px; color: var(--cor-texto-secundario);">
+                                <li><strong>Capital Social Mínimo:</strong> Valor definido conforme o segmento</li>
+                                <li><strong>Demonstrações Financeiras:</strong> Últimos 3 anos auditadas</li>
+                                <li><strong>Prospecto:</strong> Documento detalhado sobre a empresa e a emissão</li>
+                                <li><strong>Histórico Corporativo:</strong> Pelo menos 2 anos de operação</li>
+                            </ul>
+                            <p>A documentação deve ser submetida à CMC (Comissão do Mercado de Capitais) para aprovação.</p>
+                        </div>
+                        
+                        <div class="etapa-educativa hidden" id="etapa-3">
+                            <h3>3. Auditoria e Demonstrações Financeiras</h3>
+                            <p>Todas as demonstrações financeiras devem ser auditadas por uma firma de auditoria independente registrada na CMC:</p>
+                            <ul style="margin-left: 30px; margin-bottom: 15px; color: var(--cor-texto-secundario);">
+                                <li>Balanço Patrimonial</li>
+                                <li>Demonstração de Resultados</li>
+                                <li>Demonstração de Fluxos de Caixa</li>
+                                <li>Demonstração de Mutações do Patrimônio Líquido</li>
+                            </ul>
+                            <p>A auditoria garante a confiabilidade das informações financeiras fornecidas aos investidores.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="button" id="btnVoltarConfig" class="btn btn-secondary">⬅️ ANTERIOR</button>
+                        <button type="button" id="btnAvancarEtapa" class="btn">PRÓXIMO ETAPA ➡️</button>
+                        <button type="button" id="btnPularParaOPV" class="btn">PULAR PARA OPV</button>
+                    </div>
+                    
+                    <div class="mt-20">
+                        <div class="alert alert-warning">
+                            <strong>Nota:</strong> O processo completo de listagem tem 10 etapas educativas. Você pode avançar por todas ou pular para a Oferta Pública de Venda (OPV).
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FASE 4: MERCADO PRIMÁRIO (OPV) -->
+            <section id="fase-opv" class="fase hidden">
+                <div class="etapas-container">
+                    <div class="etapa etapa-concluida">
+                        <div class="etapa-indicador">✓</div>
+                        <div class="etapa-nome">Configuração</div>
+                    </div>
+                    <div class="etapa etapa-concluida">
+                        <div class="etapa-indicador">✓</div>
+                        <div class="etapa-nome">Educação</div>
+                    </div>
+                    <div class="etapa ativa">
+                        <div class="etapa-indicador">3</div>
+                        <div class="etapa-nome">OPV</div>
+                    </div>
+                    <div class="etapa">
+                        <div class="etapa-indicador">4</div>
+                        <div class="etapa-nome">Mercado</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>💰 Mercado Primário - Oferta Pública (OPV)</h2>
+                    <p>Configure os detalhes da oferta pública de venda para captar recursos no mercado primário.</p>
+                    
+                    <div id="opvContainer">
+                        <!-- Conteúdo será carregado dinamicamente conforme o tipo de emissão -->
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button type="button" id="btnVoltarEducacao" class="btn btn-secondary">⬅️ ANTERIOR</button>
+                        <button type="button" id="btnConcluirOPV" class="btn btn-success">CONCLUIR OPV</button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FASE 5: CONCLUSÃO DA OPV -->
+            <section id="fase-conclusao-opv" class="fase hidden">
+                <div class="card text-center">
+                    <h2>✅ Oferta Pública Concluída com Sucesso!</h2>
+                    
+                    <div class="card" style="max-width: 800px; margin: 20px auto;">
+                        <h3>Resumo da OPV</h3>
+                        <div id="resumoOPV" class="metricas-container mt-20">
+                            <!-- Conteúdo será carregado dinamicamente -->
+                        </div>
+                        
+                        <div class="alert alert-success mt-20">
+                            <strong>🎉 Parabéns!</strong> Sua empresa concluiu com sucesso a Oferta Pública de Venda na BODIVA. Agora suas ações/obrigações estão prontas para negociação no mercado secundário.
+                        </div>
+                        
+                        <div class="btn-group mt-30">
+                            <button type="button" id="btnIrMercadoSecundario" class="btn">🚀 IR PARA MERCADO SECUNDÁRIO</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FASE 6: MERCADO SECUNDÁRIO -->
+            <section id="fase-mercado-secundario" class="fase hidden">
+                <!-- CABEÇALHO DA CARTEIRA -->
+                <div class="carteira-header">
+                    <h2>🏦 SIMULADOR TECA CAPITAL INVESTIMENTOS</h2>
+                    <p>Desenvolvido por Alberto Teca Tomás</p>
+                    
+                    <div class="empresa-info" id="empresaInfoHeader">
+                        <!-- Preenchido dinamicamente -->
+                    </div>
+                </div>
+                
+                <!-- SE AÇÕES/HÍBRIDO: CARTEIRA DE AÇÕES -->
+                <div id="carteiraAcoes" class="card hidden">
+                    <h2>📊 Carteira de Ações</h2>
+                    
+                    <div class="metricas-container" id="metricasAcoes">
+                        <!-- Métricas em tempo real -->
+                    </div>
+                    
+                    <h3>Eventos Corporativos</h3>
+                    <p>Clique nos eventos abaixo para simular seu impacto no mercado:</p>
+                    
+                    <div class="eventos-container">
+                        <div class="evento-btn" data-evento="lucro-recorde">☑️ Anunciar Lucro Recorde</div>
+                        <div class="evento-btn" data-evento="lucro-normal">☑️ Anunciar Lucro Normal</div>
+                        <div class="evento-btn" data-evento="lucro-abaixo">☑️ Anunciar Lucro Abaixo</div>
+                        <div class="evento-btn" data-evento="escandalo">☑️ Escândalo de Corrupção</div>
+                        <div class="evento-btn" data-evento="parceria">☑️ Nova Parceria Estratégica</div>
+                    </div>
+                    
+                    <div class="flex wrap gap-20 mt-30">
+                        <!-- Gestão de Dividendos -->
+                        <div class="card" style="flex: 1; min-width: 300px;">
+                            <h3>Gestão de Dividendos</h3>
+                            
+                            <div class="form-group">
+                                <label for="lucroAnual">Lucro esperado anual (AOA):</label>
+                                <input type="number" id="lucroAnual" min="0" value="100000000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="resultadoAnunciar">Resultado a anunciar:</label>
+                                <select id="resultadoAnunciar">
+                                    <option value="extraordinario">Extraordinário</option>
+                                    <option value="normal" selected>Normal</option>
+                                    <option value="ruim">Ruim</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="percentualDividendos">% de dividendos a distribuir:</label>
+                                <input type="range" id="percentualDividendos" min="0" max="100" value="25" step="1">
+                                <div class="slider-value" id="percentualDividendosValue">25%</div>
+                            </div>
+                            
+                            <div id="alertaDividendos" class="alert" style="margin-top: 15px;">
+                                <!-- Alertas serão exibidos aqui -->
+                            </div>
+                            
+                            <button type="button" id="btnDistribuirDividendos" class="btn">💸 DISTRIBUIR DIVIDENDOS</button>
+                        </div>
+                        
+                        <!-- Emissão Adicional de Ações -->
+                        <div class="card" style="flex: 1; min-width: 300px;">
+                            <h3>Emissão Adicional de Ações</h3>
+                            
+                            <div class="form-group">
+                                <label for="novasAcoes">Quantidade de novas ações:</label>
+                                <input type="number" id="novasAcoes" min="0" value="0">
+                                <small>Ou use o slider abaixo para % das ações retidas</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="percentualRetidas">% das ações retidas a emitir:</label>
+                                <input type="range" id="percentualRetidas" min="0" max="100" value="0" step="1">
+                                <div class="slider-value" id="percentualRetidasValue">0%</div>
+                            </div>
+                            
+                            <div id="alertaEmissao" class="alert" style="margin-top: 15px;">
+                                <!-- Alertas serão exibidos aqui -->
+                            </div>
+                            
+                            <button type="button" id="btnEmitirAcoes" class="btn">📈 EMITIR NOVAS AÇÕES</button>
+                        </div>
+                        
+                        <!-- Recompra de Ações -->
+                        <div class="card" style="flex: 1; min-width: 300px;">
+                            <h3>Recompra de Ações (Buyback)</h3>
+                            
+                            <div class="form-group">
+                                <label for="acoesRecomprar">Quantidade a recomprar:</label>
+                                <input type="number" id="acoesRecomprar" min="0" value="0">
+                                <small>Ou use o slider abaixo para % das ações em circulação</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="percentualRecompra">% das ações em circulação:</label>
+                                <input type="range" id="percentualRecompra" min="0" max="100" value="0" step="1">
+                                <div class="slider-value" id="percentualRecompraValue">0%</div>
+                            </div>
+                            
+                            <div id="custoRecompra" class="metrica-card mt-15">
+                                <div>Custo estimado:</div>
+                                <div class="metrica-valor" id="custoRecompraValor">AOA 0</div>
+                            </div>
+                            
+                            <button type="button" id="btnRecomprarAcoes" class="btn mt-15">🔄 EXECUTAR RECOMPRA</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SE OBRIGAÇÕES/HÍBRIDO: CARTEIRA DE OBRIGAÇÕES -->
+                <div id="carteiraObrigacoes" class="card hidden">
+                    <h2>📄 Carteira de Obrigações</h2>
+                    
+                    <div class="metricas-container" id="metricasObrigacoes">
+                        <!-- Métricas de obrigações -->
+                    </div>
+                </div>
+                
+                <!-- SE HÍBRIDO: ALERTAS ESPECIAIS -->
+                <div id="alertasHibrido" class="card hidden">
+                    <h3>⚠️ Alertas Especiais - Modo Híbrido</h3>
+                    <div id="alertasHibridoConteudo">
+                        <!-- Alertas de endividamento e cobertura de juros -->
+                    </div>
+                </div>
+                
+                <!-- GRÁFICO EM TEMPO REAL -->
+                <div class="card">
+                    <h2>📈 Gráfico em Tempo Real</h2>
+                    
+                    <div id="graficoContainer">
+                        <canvas id="canvasGrafico"></canvas>
+                    </div>
+                    
+                    <div class="info-grafico">
+                        <div>
+                            <strong>Empresa:</strong> <span id="infoEmpresaGrafico">-</span>
+                            <strong>Ticker:</strong> <span id="infoTickerGrafico">-</span>
+                        </div>
+                        <div>
+                            <strong>Preço atual:</strong> <span id="infoPrecoAtualGrafico" class="positivo">AOA 0 (USD 0)</span>
+                        </div>
+                        <div>
+                            <strong>Variação:</strong> <span id="infoVariacaoGrafico" class="positivo">0%</span>
+                        </div>
+                        <div>
+                            <strong>Última atualização:</strong> <span id="infoAtualizacaoGrafico">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning mt-15">
+                        <small><strong>Legenda de tempo fictício:</strong> 3 segundos real = 1 atualização | 1 minuto real = 1 dia fictício | 3 minutos real = 1 mês fictício | 36 minutos real = 1 ano fictício</small>
+                    </div>
+                </div>
+                
+                <!-- NOTÍCIAS EM LOOP -->
+                <div class="noticias-container">
+                    <h2>📰 Notícias do Mercado</h2>
+                    <p>Notícias rotativas relacionadas ao setor da empresa (apenas para fins educativos):</p>
+                    
+                    <div class="noticia-item noticia-boa ativa" id="noticia-1">
+                        <h3>Boa notícia: Crescimento no setor</h3>
+                        <p>O setor de tecnologia apresenta crescimento de 15% no último trimestre, impulsionado por investimentos em infraestrutura digital.</p>
+                    </div>
+                    
+                    <div class="noticia-item noticia-neutra" id="noticia-2">
+                        <h3>Notícia neutra: Estabilidade cambial</h3>
+                        <p>O kwanza mantém estabilidade frente ao dólar, com variação de apenas 0,5% no mês. Especialistas preveem manutenção da política cambial.</p>
+                    </div>
+                    
+                    <div class="noticia-item noticia-ruim" id="noticia-3">
+                        <h3>Notícia preocupante: Inflação alta</h3>
+                        <p>Índice de inflação atinge 18% no acumulado do ano, acima da meta estabelecida pelo banco central. Economistas alertam para possível aumento da taxa básica de juros.</p>
+                    </div>
+                    
+                    <div class="alert alert-warning mt-15">
+                        <small><strong>⚠️ IMPORTANTE:</strong> As notícias influenciam a percepção dos investidores na vida real, mas neste simulador, o preço é determinado exclusivamente pelos eventos especiais que você aciona e pelo cenário econômico selecionado.</small>
+                    </div>
+                </div>
+                
+                <!-- SEÇÕES EDUCATIVAS -->
+                <div class="accordion">
+                    <h2>📚 Seções Educativas</h2>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>1. Análise Fundamentalista vs Técnica</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Análise Fundamentalista:</strong> Avalia o valor intrínseco de uma empresa com base em indicadores financeiros, setoriais e econômicos. Inclui análise de balanços, lucros, dividendos, endividamento, etc.</p>
+                            <p><strong>Análise Técnica:</strong> Estuda o movimento dos preços e volumes no gráfico para prever tendências futuras. Utiliza indicadores como médias móveis, suportes, resistências e padrões gráficos.</p>
+                            <p><strong>No simulador:</strong> Use a análise fundamentalista para tomar decisões sobre dividendos, emissões e recompras. Observe o gráfico para identificar tendências de preço.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>2. Como a Empresa Usa o Dinheiro Captado</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Fluxo do Mercado Primário:</strong> Investidor → Mercado Primário (OPV) → Empresa recebe os recursos</p>
+                            <p><strong>Usos possíveis do capital captado:</strong></p>
+                            <ul style="margin-left: 30px; margin-bottom: 15px; color: var(--cor-texto-secundario);">
+                                <li><strong>Expansão:</strong> Abertura de novas unidades, entrada em novos mercados</li>
+                                <li><strong>Quitação de dívidas:</strong> Redução do endividamento, melhoria do balanço</li>
+                                <li><strong>Capital de giro:</strong> Financiamento das operações do dia a dia</li>
+                                <li><strong>Pesquisa e Desenvolvimento (P&D):</strong> Inovação, novos produtos</li>
+                                <li><strong>Aquisições:</strong> Compra de outras empresas</li>
+                            </ul>
+                            <p><strong>Diferença crucial:</strong> No Mercado Primário a empresa recebe o dinheiro. No Mercado Secundário apenas os investidores negociam entre si.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>3. Valorização e Desvalorização de Ações</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p>O preço das ações é determinado pela <strong>lei da oferta e demanda</strong>:</p>
+                            <ul style="margin-left: 30px; margin-bottom: 15px; color: var(--cor-texto-secundario);">
+                                <li><strong>Fatores de valorização (alta):</strong>
+                                    <ul style="margin-left: 20px;">
+                                        <li>Lucros acima das expectativas</li>
+                                        <li>Parcerias estratégicas importantes</li>
+                                        <li>Expectativas positivas sobre o futuro</li>
+                                        <li>Redução da oferta (recompra de ações)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Fatores de desvalorização (baixa):</strong>
+                                    <ul style="margin-left: 20px;">
+                                        <li>Prejuízos ou lucros abaixo do esperado</li>
+                                        <li>Escândalos corporativos</li>
+                                        <li>Aumento excessivo da oferta (emissão adicional)</li>
+                                        <li>Perspectivas econômicas negativas</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>No simulador, você pode acionar eventos que simulam esses fatores e observar o impacto imediato no gráfico.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-group mt-30">
+                    <button type="button" id="btnReiniciarSimulacao" class="btn btn-secondary">🔄 REINICIAR SIMULAÇÃO</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // ============================================
+        // VARIÁVEIS GLOBAIS E ESTADO DO SIMULADOR
+        // ============================================
+        let estadoSimulador = {
+            faseAtual: 'introducao',
+            empresa: {},
+            configuracao: {},
+            opv: {},
+            mercado: {
+                historicoPrecos: [],
+                precoAtual: 0,
+                precoAnterior: 0,
+                variacaoPercentual: 0,
+                volume: 0,
+                beta: 1.0,
+                dividendYield: 0,
+                lpa: 0,
+                pl: 0,
+                roi: 0,
+                ultimaAtualizacao: new Date(),
+                eventoAtivo: null,
+                eventoExpiraEm: null
+            },
+            noticiaAtual: 0,
+            intervaloGrafico: null,
+            intervaloNoticias: null,
+            tempoSimulacao: 0
+        };
+
+        // ============================================
+        // DADOS REGULATÓRIOS BODIVA
+        // ============================================
+        const regrasBODIVA = {
+            enquadramento_legal: {
+                lei_base: "Lei n.º 22/15, de 31 de Agosto - Código dos Valores Mobiliários (CVM)",
+                autoridade: "CMC - Comissão do Mercado de Capitais",
+                bolsa: "BODIVA - Bolsa de Dívida e Valores de Angola"
+            },
+            
+            requisitos_acoes: {
+                estatuto: "Sociedade Aberta (S.A.)",
+                auditoria: "Demonstrações financeiras auditadas obrigatórias",
+                agente_intermediacao: "Obrigatório (Sociedade Corretora ou SDVM)",
+                prospecto: "Obrigatório",
+                governanca: "Estrutura de governança corporativa adequada"
+            },
+            
+            requisitos_obrigacoes: {
+                montante_minimo_listagem: "AOA 60.000.000,00",
+                notacao_risco: "Recomendada (especialmente sem garantias)",
+                prospecto: "Obrigatório para oferta pública",
+                oferta_particular: "< 150 investidores institucionais (sem Prospecto formal)"
+            },
+            
+            segmentos: {
+                MBA: "Mercado de Bolsa de Ações (renda variável)",
+                MBOP: "Mercado de Bolsa de Obrigações Privadas (renda fixa)",
+                MBTT: "Mercado de Bolsa de Títulos do Tesouro (dívida soberana)",
+                MROV: "Mercado de Registo de Operações OTC (liquidação D+1)",
+                MVMF: "Mercado de Valores Mobiliários Fracionados (acesso retalho)"
+            },
+            
+            processo_listagem: [
+                "1. Transformação em S.A.",
+                "2. Registo inicial na BODIVA",
+                "3. Contratação de agente de intermediação",
+                "4. Elaboração e registo do Prospecto na CMC",
+                "5. Auditoria e demonstrações financeiras",
+                "6. Oferta Pública (Mercado Primário)",
+                "7. Admissão à negociação (Mercado Secundário)",
+                "8. Deveres contínuos de informação"
+            ],
+            
+            custos_estimados: "3% a 10% do montante total da emissão",
+            tempo_processo: "6 a 18 meses (média: 9 meses)",
+            
+            principio_cmc: {
+                base_legal: "Art. 164.º, n.º 5 do CVM",
+                criterio: "CMC aprova ofertas baseada ESTRITAMENTE em LEGALIDADE",
+                nao_garante: "CMC NÃO garante situação econômica, viabilidade ou qualidade dos valores",
+                responsabilidade: "Emitente é totalmente responsável pela veracidade das informações"
+            }
+        };
+
+        // ============================================
+        // INICIALIZAÇÃO DO SIMULADOR
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            inicializarEventListeners();
+            inicializarSliders();
+            inicializarAccordion();
+        });
+
+        function inicializarEventListeners() {
+            // Navegação entre fases
+            document.getElementById('btnIniciar').addEventListener('click', () => mudarFase('configuracao'));
+            document.getElementById('btnVoltarIntro').addEventListener('click', () => mudarFase('introducao'));
+            document.getElementById('btnVoltarConfig').addEventListener('click', () => mudarFase('configuracao'));
+            document.getElementById('btnVoltarEducacao').addEventListener('click', () => mudarFase('educacao'));
+            
+            // Formulário de configuração
+            document.getElementById('formConfiguracao').addEventListener('submit', function(e) {
+                e.preventDefault();
+                processarConfiguracao();
+                mudarFase('educacao');
+            });
+            
+            // Educação
+            document.getElementById('btnAvancarEtapa').addEventListener('click', avancarEtapaEducacao);
+            document.getElementById('btnPularParaOPV').addEventListener('click', () => mudarFase('opv'));
+            
+            // Mercado secundário
+            document.getElementById('btnIrMercadoSecundario').addEventListener('click', iniciarMercadoSecundario);
+            document.getElementById('btnReiniciarSimulacao').addEventListener('click', reiniciarSimulacao);
+            
+            // Eventos corporativos
+            document.querySelectorAll('.evento-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const evento = this.getAttribute('data-evento');
+                    acionarEventoCorporativo(evento);
+                });
+            });
+            
+            // Dividendos
+            document.getElementById('btnDistribuirDividendos').addEventListener('click', distribuirDividendos);
+            
+            // Emissão de ações
+            document.getElementById('btnEmitirAcoes').addEventListener('click', emitirAcoes);
+            
+            // Recompra de ações
+            document.getElementById('btnRecomprarAcoes').addEventListener('click', recomprarAcoes);
+            
+            // Tipo de emissão
+            document.querySelectorAll('input[name="tipoEmissao"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const tipo = this.value;
+                    document.getElementById('tipoAcaoGroup').classList.toggle('hidden', tipo !== 'acoes' && tipo !== 'hibrido');
+                });
+            });
+            
+            // Concluir OPV
+            document.getElementById('btnConcluirOPV').addEventListener('click', concluirOPV);
+        }
+
+        function inicializarSliders() {
+            const alcanceSlider = document.getElementById('alcancePercentual');
+            const alcanceValue = document.getElementById('alcancePercentualValue');
+            
+            alcanceSlider.addEventListener('input', function() {
+                alcanceValue.textContent = `${this.value}%`;
+            });
+            
+            const dividendosSlider = document.getElementById('percentualDividendos');
+            const dividendosValue = document.getElementById('percentualDividendosValue');
+            
+            dividendosSlider.addEventListener('input', function() {
+                dividendosValue.textContent = `${this.value}%`;
+                atualizarAlertaDividendos(parseInt(this.value));
+            });
+            
+            const emissaoSlider = document.getElementById('percentualRetidas');
+            const emissaoValue = document.getElementById('percentualRetidasValue');
+            
+            emissaoSlider.addEventListener('input', function() {
+                emissaoValue.textContent = `${this.value}%`;
+                atualizarAlertaEmissao(parseInt(this.value));
+            });
+            
+            const recompraSlider = document.getElementById('percentualRecompra');
+            const recompraValue = document.getElementById('percentualRecompraValue');
+            
+            recompraSlider.addEventListener('input', function() {
+                recompraValue.textContent = `${this.value}%`;
+                calcularCustoRecompra();
+            });
+            
+            // Calcular custo inicial da recompra
+            calcularCustoRecompra();
+        }
+
+        function inicializarAccordion() {
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isOpen = content.classList.contains('aberto');
+                    
+                    // Fechar todos os outros
+                    document.querySelectorAll('.accordion-content').forEach(item => {
+                        item.classList.remove('aberto');
+                    });
+                    
+                    // Abrir/fechar este
+                    if (!isOpen) {
+                        content.classList.add('aberto');
+                    }
+                    
+                    // Atualizar seta
+                    const arrow = this.querySelector('span:last-child');
+                    arrow.textContent = isOpen ? '▼' : '▲';
+                });
+            });
+        }
+
+        // ============================================
+        // GERENCIAMENTO DE FASES
+        // ============================================
+        function mudarFase(faseDestino) {
+            // Esconder todas as fases
+            document.querySelectorAll('.fase').forEach(fase => {
+                fase.classList.add('hidden');
+            });
+            
+            // Mostrar fase de destino
+            document.getElementById(`fase-${faseDestino}`).classList.remove('hidden');
+            estadoSimulador.faseAtual = faseDestino;
+            
+            // Ações específicas para cada fase
+            switch(faseDestino) {
+                case 'configuracao':
+                    atualizarEtapas(1);
+                    break;
+                case 'educacao':
+                    atualizarEtapas(2);
+                    break;
+                case 'opv':
+                    atualizarEtapas(3);
+                    carregarFormularioOPV();
+                    break;
+                case 'conclusao-opv':
+                    atualizarEtapas(3);
+                    mostrarResumoOPV();
+                    break;
+                case 'mercado-secundario':
+                    atualizarEtapas(4);
+                    iniciarSimulacaoMercado();
+                    break;
+            }
+        }
+
+        function atualizarEtapas(etapaAtiva) {
+            document.querySelectorAll('.etapa').forEach((etapa, index) => {
+                etapa.classList.remove('ativa', 'etapa-concluida');
+                
+                if (index + 1 === etapaAtiva) {
+                    etapa.classList.add('ativa');
+                } else if (index + 1 < etapaAtiva) {
+                    etapa.classList.add('etapa-concluida');
+                }
+            });
+        }
+
+        // ============================================
+        // PROCESSAMENTO DA CONFIGURAÇÃO
+        // ============================================
+        function processarConfiguracao() {
+            // Coletar dados do formulário
+            estadoSimulador.configuracao = {
+                nomeEmpresa: document.getElementById('nomeEmpresa').value,
+                nomePresidente: document.getElementById('nomePresidente').value,
+                provincia: document.getElementById('provincia').value,
+                setor: document.getElementById('setor').value,
+                cenarioEconomico: document.getElementById('cenarioEconomico').value,
+                capitalSocial: parseInt(document.getElementById('capitalSocial').value),
+                tipoEmissao: document.querySelector('input[name="tipoEmissao"]:checked').value,
+                tipoAcao: document.querySelector('input[name="tipoAcao"]:checked')?.value || null,
+                alcance: document.querySelector('input[name="alcance"]:checked').value,
+                alcancePercentual: parseInt(document.getElementById('alcancePercentual').value)
+            };
+            
+            // Criar objeto empresa inicial
+            estadoSimulador.empresa = {
+                nome: estadoSimulador.configuracao.nomeEmpresa,
+                presidente: estadoSimulador.configuracao.nomePresidente,
+                provincia: estadoSimulador.configuracao.provincia,
+                setor: estadoSimulador.configuracao.setor,
+                capitalSocial: estadoSimulador.configuracao.capitalSocial,
+                tipoEmissao: estadoSimulador.configuracao.tipoEmissao,
+                tipoAcao: estadoSimulador.configuracao.tipoAcao,
+                cenarioEconomico: estadoSimulador.configuracao.cenarioEconomico,
+                alcanceInvestidores: calcularInvestidoresPotenciais(),
+                dataFundacao: new Date().toISOString().split('T')[0]
+            };
+            
+            // Gerar ticker baseado no nome da empresa
+            estadoSimulador.empresa.ticker = gerarTicker(estadoSimulador.empresa.nome);
+        }
+
+        function calcularInvestidoresPotenciais() {
+            const base = estadoSimulador.configuracao.alcance === 'angola' ? 26600000 : 7000000000;
+            const percentual = estadoSimulador.configuracao.alcancePercentual / 100;
+            return Math.round(base * percentual);
+        }
+
+        function gerarTicker(nomeEmpresa) {
+            // Extrair iniciais e limitar a 4 caracteres
+            const palavras = nomeEmpresa.split(' ');
+            let ticker = '';
+            
+            for (let palavra of palavras) {
+                if (palavra.length > 0 && /[A-Za-z]/.test(palavra[0])) {
+                    ticker += palavra[0].toUpperCase();
+                }
+            }
+            
+            // Adicionar número se necessário para ter 4 caracteres
+            while (ticker.length < 4) {
+                ticker += 'X';
+            }
+            
+            // Limitar a 4 caracteres
+            ticker = ticker.substring(0, 4);
+            
+            return ticker + '.BA';
+        }
+
+        // ============================================
+        // PROCESSO EDUCACIONAL
+        // ============================================
+        let etapaEducacaoAtual = 1;
+        const totalEtapasEducacao = 10;
+
+        function avancarEtapaEducacao() {
+            // Esconder etapa atual
+            document.getElementById(`etapa-${etapaEducacaoAtual}`).classList.remove('ativa');
+            document.getElementById(`etapa-${etapaEducacaoAtual}`).classList.add('hidden');
+            
+            // Avançar etapa
+            etapaEducacaoAtual++;
+            
+            // Se chegou ao fim, ir para OPV
+            if (etapaEducacaoAtual > totalEtapasEducacao) {
+                mudarFase('opv');
+                return;
+            }
+            
+            // Mostrar próxima etapa
+            document.getElementById(`etapa-${etapaEducacaoAtual}`).classList.remove('hidden');
+            document.getElementById(`etapa-${etapaEducacaoAtual}`).classList.add('ativa');
+            
+            // Atualizar botão se for a última etapa
+            const btnAvancar = document.getElementById('btnAvancarEtapa');
+            if (etapaEducacaoAtual === totalEtapasEducacao) {
+                btnAvancar.textContent = 'CONCLUIR EDUCAÇÃO ➡️';
+            }
+        }
+
+        // ============================================
+        // MERCADO PRIMÁRIO (OPV)
+        // ============================================
+        function carregarFormularioOPV() {
+            const container = document.getElementById('opvContainer');
+            const tipoEmissao = estadoSimulador.configuracao.tipoEmissao;
+            
+            let html = '';
+            
+            if (tipoEmissao === 'acoes' || tipoEmissao === 'hibrido') {
+                html += `
+                    <h3>Configuração da Emissão de Ações</h3>
+                    <div class="form-group">
+                        <label for="totalAcoes">Total de ações a emitir:</label>
+                        <input type="number" id="totalAcoes" min="1000" value="1000000">
+                        <small>Número total de ações da empresa (incluindo as que não serão ofertadas)</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="acoesPublico">Ações que irão a público:</label>
+                        <input type="number" id="acoesPublico" min="100" value="200000">
+                        <small>Quantidade de ações disponíveis para investidores (free float)</small>
+                        <div id="percentualFreeFloat" class="slider-value">20%</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="precoNominalAcao">Preço nominal por ação (AOA):</label>
+                        <input type="number" id="precoNominalAcao" min="10" value="100">
+                        <small>Preço inicial de cada ação na OPV</small>
+                    </div>
+                    
+                    <div class="metricas-container" id="calculosAcoes">
+                        <!-- Cálculos serão atualizados dinamicamente -->
+                    </div>
+                `;
+            }
+            
+            if (tipoEmissao === 'obrigacoes' || tipoEmissao === 'hibrido') {
+                if (tipoEmissao === 'hibrido') {
+                    html += '<hr class="mt-30 mb-30">';
+                }
+                
+                html += `
+                    <h3>Configuração da Emissão de Obrigações</h3>
+                    <div class="form-group">
+                        <label for="totalObrigacoes">Total de obrigações:</label>
+                        <input type="number" id="totalObrigacoes" min="100" value="50000">
+                        <small>Número total de obrigações a emitir</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="valorNominalObrigacao">Valor nominal por obrigação (AOA):</label>
+                        <input type="number" id="valorNominalObrigacao" min="1000" value="10000">
+                        <small>Valor de face de cada obrigação</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taxaJuros">Taxa de juros (% a.a.):</label>
+                        <input type="number" id="taxaJuros" min="1" max="30" step="0.1" value="12">
+                        <small>Taxa de juros anual sobre o valor nominal</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prazoMaturidade">Prazo de maturidade:</label>
+                        <input type="range" id="prazoMaturidade" min="6" max="60" step="6" value="24">
+                        <div class="slider-value" id="prazoMaturidadeValue">24 meses (2 anos)</div>
+                        <small>Período até o vencimento das obrigações (6 meses a 5 anos)</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loteMinimo">Lote mínimo:</label>
+                        <input type="number" id="loteMinimo" min="1" value="10">
+                        <small>Número mínimo de obrigações por transação</small>
+                    </div>
+                    
+                    <div class="alert alert-warning" id="alertaMontanteMinimo" style="display: none;">
+                        <strong>⚠️ ATENÇÃO:</strong> Montante mínimo para listagem de obrigações na BODIVA é AOA 60.000.000,00
+                    </div>
+                    
+                    <div class="metricas-container" id="calculosObrigacoes">
+                        <!-- Cálculos serão atualizados dinamicamente -->
+                    </div>
+                `;
+            }
+            
+            if (tipoEmissao === 'hibrido') {
+                html += `
+                    <hr class="mt-30 mb-30">
+                    <h3>Ordem de Emissão - Modo Híbrido</h3>
+                    <div class="form-group">
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="ordemAcoesPrimeiro" name="ordemEmissao" value="acoes" checked>
+                                <label for="ordemAcoesPrimeiro">Ações primeiro, depois Obrigações</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="ordemObrigacoesPrimeiro" name="ordemEmissao" value="obrigacoes">
+                                <label for="ordemObrigacoesPrimeiro">Obrigações primeiro, depois Ações</label>
+                            </div>
+                        </div>
+                        <small>A ordem pode influenciar a percepção do mercado sobre a estratégia de captação</small>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+            
+            // Adicionar listeners para os novos inputs
+            adicionarListenersOPV();
+            atualizarCalculosOPV();
+        }
+
+        function adicionarListenersOPV() {
+            // Listeners para atualizar cálculos em tempo real
+            const inputsOPV = ['totalAcoes', 'acoesPublico', 'precoNominalAcao', 'totalObrigacoes', 'valorNominalObrigacao', 'taxaJuros', 'prazoMaturidade', 'loteMinimo'];
+            
+            inputsOPV.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', atualizarCalculosOPV);
+                }
+            });
+            
+            // Listener especial para o slider de prazo
+            const prazoSlider = document.getElementById('prazoMaturidade');
+            const prazoValue = document.getElementById('prazoMaturidadeValue');
+            
+            if (prazoSlider) {
+                prazoSlider.addEventListener('input', function() {
+                    const meses = parseInt(this.value);
+                    const anos = meses / 12;
+                    prazoValue.textContent = `${meses} meses (${anos.toFixed(1)} anos)`;
+                    atualizarCalculosOPV();
+                });
+            }
+        }
+
+        function atualizarCalculosOPV() {
+            const tipoEmissao = estadoSimulador.configuracao.tipoEmissao;
+            
+            // Cálculos para ações (se aplicável)
+            if (tipoEmissao === 'acoes' || tipoEmissao === 'hibrido') {
+                const totalAcoes = parseInt(document.getElementById('totalAcoes')?.value) || 0;
+                const acoesPublico = parseInt(document.getElementById('acoesPublico')?.value) || 0;
+                const precoNominal = parseInt(document.getElementById('precoNominalAcao')?.value) || 0;
+                
+                const percentualFreeFloat = totalAcoes > 0 ? (acoesPublico / totalAcoes * 100).toFixed(1) : 0;
+                const capitalCaptar = acoesPublico * precoNominal;
+                const valorMercado = totalAcoes * precoNominal;
+                
+                // Atualizar display do percentual
+                const percentualElement = document.getElementById('percentualFreeFloat');
+                if (percentualElement) {
+                    percentualElement.textContent = `${percentualFreeFloat}%`;
+                }
+                
+                // Atualizar cálculos
+                const calculosAcoes = document.getElementById('calculosAcoes');
+                if (calculosAcoes) {
+                    calculosAcoes.innerHTML = `
+                        <div class="metrica-card">
+                            <div>Capital a captar:</div>
+                            <div class="metrica-valor">AOA ${formatarNumero(capitalCaptar)}</div>
+                        </div>
+                        <div class="metrica-card">
+                            <div>Valor de mercado inicial:</div>
+                            <div class="metrica-valor">AOA ${formatarNumero(valorMercado)}</div>
+                        </div>
+                        <div class="metrica-card">
+                            <div>Free float:</div>
+                            <div class="metrica-valor">${percentualFreeFloat}%</div>
+                        </div>
+                    `;
+                }
+                
+                // Salvar dados para uso posterior
+                if (!estadoSimulador.opv.acoes) estadoSimulador.opv.acoes = {};
+                estadoSimulador.opv.acoes = {
+                    totalAcoes,
+                    acoesPublico,
+                    precoNominal,
+                    percentualFreeFloat: parseFloat(percentualFreeFloat),
+                    capitalCaptar,
+                    valorMercado
+                };
+            }
+            
+            // Cálculos para obrigações (se aplicável)
+            if (tipoEmissao === 'obrigacoes' || tipoEmissao === 'hibrido') {
+                const totalObrigacoes = parseInt(document.getElementById('totalObrigacoes')?.value) || 0;
+                const valorNominal = parseInt(document.getElementById('valorNominalObrigacao')?.value) || 0;
+                const taxaJuros = parseFloat(document.getElementById('taxaJuros')?.value) || 0;
+                const prazoMeses = parseInt(document.getElementById('prazoMaturidade')?.value) || 0;
+                const loteMinimo = parseInt(document.getElementById('loteMinimo')?.value) || 0;
+                
+                const capitalCaptar = totalObrigacoes * valorNominal;
+                const prazoAnos = prazoMeses / 12;
+                const jurosTotal = capitalCaptar * (taxaJuros / 100) * prazoAnos;
+                const dividaTotal = capitalCaptar + jurosTotal;
+                const cupomPeriodico = valorNominal * (taxaJuros / 100) * (prazoMeses / 12) / prazoMeses;
+                const investimentoMinimo = loteMinimo * valorNominal;
+                
+                // Verificar montante mínimo
+                const alertaMontante = document.getElementById('alertaMontanteMinimo');
+                if (alertaMontante) {
+                    alertaMontante.style.display = capitalCaptar < 60000000 ? 'block' : 'none';
+                }
+                
+                // Atualizar cálculos
+                const calculosObrigacoes = document.getElementById('calculosObrigacoes');
+                if (calculosObrigacoes) {
+                    calculosObrigacoes.innerHTML = `
+                        <div class="metrica-card">
+                            <div>Capital a captar:</div>
+                            <div class="metrica-valor">AOA ${formatarNumero(capitalCaptar)}</div>
+                        </div>
+                        <div class="metrica-card">
+                            <div>Total de juros a pagar:</div>
+                            <div class="metrica-valor">AOA ${formatarNumero(jurosTotal)}</div>
+                        </div>
+                        <div class="metrica-card">
+                            <div>Dívida total (principal + juros):</div>
+                            <div class="metrica-valor">AOA ${formatarNumero(dividaTotal)}</div>
+                        </div>
+                        <div class="metrica-card">
+                            <div>Cupom por período:</div>
+                            <div class="metrica-valor">AOA ${formatarNumero(cupomPeriodico)}</div>
+                        </div>
+                        <div class="metrica-card">
+                            <div>Investimento mínimo:</div>
+                            <div class="metrica-valor">AOA ${formatarNumero(investimentoMinimo)}</div>
+                        </div>
+                    `;
+                }
+                
+                // Salvar dados para uso posterior
+                if (!estadoSimulador.opv.obrigacoes) estadoSimulador.opv.obrigacoes = {};
+                estadoSimulador.opv.obrigacoes = {
+                    totalObrigacoes,
+                    valorNominal,
+                    taxaJuros,
+                    prazoMeses,
+                    prazoAnos,
+                    loteMinimo,
+                    capitalCaptar,
+                    jurosTotal,
+                    dividaTotal,
+                    cupomPeriodico,
+                    investimentoMinimo
+                };
+            }
+        }
+
+        function concluirOPV() {
+            // Validar dados da OPV
+            const tipoEmissao = estadoSimulador.configuracao.tipoEmissao;
+            let valido = true;
+            
+            if (tipoEmissao === 'obrigacoes' || tipoEmissao === 'hibrido') {
+                const capitalCaptar = estadoSimulador.opv.obrigacoes?.capitalCaptar || 0;
+                if (capitalCaptar < 60000000) {
+                    alert('Para emissão de obrigações, o montante mínimo é AOA 60.000.000,00. Ajuste os valores e tente novamente.');
+                    valido = false;
+                }
+            }
+            
+            if (valido) {
+                // Salvar ordem de emissão se for híbrido
+                if (tipoEmissao === 'hibrido') {
+                    estadoSimulador.opv.ordemEmissao = document.querySelector('input[name="ordemEmissao"]:checked').value;
+                }
+                
+                // Inicializar dados de mercado
+                if (tipoEmissao === 'acoes' || tipoEmissao === 'hibrido') {
+                    estadoSimulador.mercado.precoAtual = estadoSimulador.opv.acoes.precoNominal;
+                    estadoSimulador.mercado.precoAnterior = estadoSimulador.opv.acoes.precoNominal;
+                    
+                    // Inicializar histórico de preços
+                    for (let i = 0; i < 30; i++) {
+                        estadoSimulador.mercado.historicoPrecos.push({
+                            tempo: i,
+                            preco: estadoSimulador.opv.acoes.precoNominal * (0.95 + Math.random() * 0.1)
+                        });
+                    }
+                }
+                
+                mudarFase('conclusao-opv');
+            }
+        }
+
+        function mostrarResumoOPV() {
+            const container = document.getElementById('resumoOPV');
+            const tipoEmissao = estadoSimulador.configuracao.tipoEmissao;
+            
+            let html = '';
+            
+            html += `
+                <div class="metrica-card">
+                    <div>Nome da Empresa:</div>
+                    <div class="metrica-valor">${estadoSimulador.empresa.nome}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>Ticker:</div>
+                    <div class="metrica-valor">${estadoSimulador.empresa.ticker}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>Tipo de Emissão:</div>
+                    <div class="metrica-valor">${tipoEmissao === 'acoes' ? 'Ações' : tipoEmissao === 'obrigacoes' ? 'Obrigações' : 'Híbrido'}</div>
+                </div>
+            `;
+            
+            if (tipoEmissao === 'acoes' || tipoEmissao === 'hibrido') {
+                html += `
+                    <div class="metrica-card">
+                        <div>Capital captado (Ações):</div>
+                        <div class="metrica-valor">AOA ${formatarNumero(estadoSimulador.opv.acoes.capitalCaptar)}</div>
+                    </div>
+                    
+                    <div class="metrica-card">
+                        <div>Valor de mercado inicial:</div>
+                        <div class="metrica-valor">AOA ${formatarNumero(estadoSimulador.opv.acoes.valorMercado)}</div>
+                    </div>
+                    
+                    <div class="metrica-card">
+                        <div>Preço inicial por ação:</div>
+                        <div class="metrica-valor">AOA ${formatarNumero(estadoSimulador.opv.acoes.precoNominal)}</div>
+                    </div>
+                `;
+            }
+            
+            if (tipoEmissao === 'obrigacoes' || tipoEmissao === 'hibrido') {
+                html += `
+                    <div class="metrica-card">
+                        <div>Capital captado (Obrigações):</div>
+                        <div class="metrica-valor">AOA ${formatarNumero(estadoSimulador.opv.obrigacoes.capitalCaptar)}</div>
+                    </div>
+                    
+                    <div class="metrica-card">
+                        <div>Total de dívida (capital + juros):</div>
+                        <div class="metrica-valor">AOA ${formatarNumero(estadoSimulador.opv.obrigacoes.dividaTotal)}</div>
+                    </div>
+                    
+                    <div class="metrica-card">
+                        <div>Taxa de juros anual:</div>
+                        <div class="metrica-valor">${estadoSimulador.opv.obrigacoes.taxaJuros}%</div>
+                    </div>
+                `;
+            }
+            
+            if (tipoEmissao === 'hibrido') {
+                html += `
+                    <div class="metrica-card">
+                        <div>Ordem de emissão:</div>
+                        <div class="metrica-valor">${estadoSimulador.opv.ordemEmissao === 'acoes' ? 'Ações primeiro' : 'Obrigações primeiro'}</div>
+                    </div>
+                    
+                    <div class="metrica-card">
+                        <div>Capital total captado:</div>
+                        <div class="metrica-valor">AOA ${formatarNumero(estadoSimulador.opv.acoes.capitalCaptar + estadoSimulador.opv.obrigacoes.capitalCaptar)}</div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // ============================================
+        // MERCADO SECUNDÁRIO
+        // ============================================
+        function iniciarMercadoSecundario() {
+            mudarFase('mercado-secundario');
+        }
+
+        function iniciarSimulacaoMercado() {
+            // Atualizar informações da empresa no cabeçalho
+            atualizarInformacoesEmpresa();
+            
+            // Mostrar/ocultar seções conforme tipo de emissão
+            const tipoEmissao = estadoSimulador.configuracao.tipoEmissao;
+            
+            if (tipoEmissao === 'acoes' || tipoEmissao === 'hibrido') {
+                document.getElementById('carteiraAcoes').classList.remove('hidden');
+                atualizarMetricasAcoes();
+            }
+            
+            if (tipoEmissao === 'obrigacoes' || tipoEmissao === 'hibrido') {
+                document.getElementById('carteiraObrigacoes').classList.remove('hidden');
+                atualizarMetricasObrigacoes();
+            }
+            
+            if (tipoEmissao === 'hibrido') {
+                document.getElementById('alertasHibrido').classList.remove('hidden');
+                atualizarAlertasHibrido();
+            }
+            
+            // Inicializar gráfico
+            inicializarGrafico();
+            
+            // Iniciar loops de atualização
+            estadoSimulador.intervaloGrafico = setInterval(atualizarMercado, 3000); // A cada 3 segundos
+            estadoSimulador.intervaloNoticias = setInterval(rotacionarNoticias, 10000); // A cada 10 segundos
+            
+            // Atualizar tempo de simulação
+            estadoSimulador.intervaloTempo = setInterval(() => {
+                estadoSimulador.tempoSimulacao += 1;
+            }, 3000);
+        }
+
+        function atualizarInformacoesEmpresa() {
+            const container = document.getElementById('empresaInfoHeader');
+            const empresa = estadoSimulador.empresa;
+            
+            container.innerHTML = `
+                <div class="info-item">
+                    <span>🏢</span>
+                    <span><strong>Empresa:</strong> ${empresa.nome}</span>
+                </div>
+                
+                <div class="info-item">
+                    <span>👔</span>
+                    <span><strong>Presidente:</strong> ${empresa.presidente}</span>
+                </div>
+                
+                <div class="info-item">
+                    <span>🏭</span>
+                    <span><strong>Setor:</strong> ${empresa.setor}</span>
+                </div>
+                
+                <div class="info-item">
+                    <span>📍</span>
+                    <span><strong>Província:</strong> ${empresa.provincia}</span>
+                </div>
+                
+                <div class="info-item">
+                    <span>📊</span>
+                    <span><strong>Tipo:</strong> ${estadoSimulador.configuracao.tipoEmissao === 'acoes' ? 'Ações' : estadoSimulador.configuracao.tipoEmissao === 'obrigacoes' ? 'Obrigações' : 'Híbrido'}</span>
+                </div>
+            `;
+            
+            // Atualizar também no gráfico
+            document.getElementById('infoEmpresaGrafico').textContent = empresa.nome;
+            document.getElementById('infoTickerGrafico').textContent = empresa.ticker;
+        }
+
+        function atualizarMetricasAcoes() {
+            const container = document.getElementById('metricasAcoes');
+            
+            if (!container) return;
+            
+            const preco = estadoSimulador.mercado.precoAtual;
+            const variacao = estadoSimulador.mercado.variacaoPercentual;
+            const valorMercado = estadoSimulador.opv.acoes.totalAcoes * preco;
+            const valorCirculacao = estadoSimulador.opv.acoes.acoesPublico * preco;
+            const percentualCirculacao = (estadoSimulador.opv.acoes.acoesPublico / estadoSimulador.opv.acoes.totalAcoes * 100).toFixed(1);
+            
+            // Calcular LPA (Lucro por Ação) baseado no lucro anual
+            const lucroAnual = parseInt(document.getElementById('lucroAnual')?.value) || 100000000;
+            const lpa = estadoSimulador.opv.acoes.totalAcoes > 0 ? lucroAnual / estadoSimulador.opv.acoes.totalAcoes : 0;
+            
+            // Calcular P/L
+            const pl = preco > 0 ? (preco / lpa).toFixed(1) : 0;
+            
+            // Calcular ROI (simplificado)
+            const precoInicial = estadoSimulador.opv.acoes.precoNominal;
+            const roi = precoInicial > 0 ? ((preco - precoInicial) / precoInicial * 100).toFixed(1) : 0;
+            
+            // Atualizar estado
+            estadoSimulador.mercado.lpa = lpa;
+            estadoSimulador.mercado.pl = pl;
+            estadoSimulador.mercado.roi = roi;
+            estadoSimulador.mercado.dividendYield = 0; // Será atualizado quando dividendos forem distribuídos
+            
+            container.innerHTML = `
+                <div class="metrica-card">
+                    <div>💰 Valor de Mercado</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(valorMercado)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📊 Valor em Circulação</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(valorCirculacao)} (${percentualCirculacao}%)</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📈 Preço Atual da Ação</div>
+                    <div class="metrica-valor ${variacao >= 0 ? 'positivo' : 'negativo'}">AOA ${formatarNumero(preco)}</div>
+                    <div class="${variacao >= 0 ? 'positivo' : 'negativo'}">${variacao >= 0 ? '+' : ''}${variacao.toFixed(2)}%</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📉 Beta (β)</div>
+                    <div class="metrica-valor">${estadoSimulador.mercado.beta.toFixed(2)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>💵 Dividend Yield</div>
+                    <div class="metrica-valor">${estadoSimulador.mercado.dividendYield.toFixed(2)}%</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📊 Lucro por Ação (LPA)</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(lpa)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📊 P/L Ratio</div>
+                    <div class="metrica-valor">${pl}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>💰 ROI</div>
+                    <div class="metrica-valor ${roi >= 0 ? 'positivo' : 'negativo'}">${roi}%</div>
+                </div>
+            `;
+        }
+
+        function atualizarMetricasObrigacoes() {
+            const container = document.getElementById('metricasObrigacoes');
+            
+            if (!container) return;
+            
+            const obrigacoes = estadoSimulador.opv.obrigacoes;
+            
+            container.innerHTML = `
+                <div class="metrica-card">
+                    <div>📄 Total emitido</div>
+                    <div class="metrica-valor">${formatarNumero(obrigacoes.totalObrigacoes)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>💰 Valor nominal/unidade</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(obrigacoes.valorNominal)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📊 Total captado</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(obrigacoes.capitalCaptar)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>💵 Taxa de juros (% a.a.)</div>
+                    <div class="metrica-valor">${obrigacoes.taxaJuros}%</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📅 Maturidade</div>
+                    <div class="metrica-valor">${obrigacoes.prazoMeses} meses</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>🔄 Cupom (periódico)</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(obrigacoes.cupomPeriodico)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>⚠️ Passivo total</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(obrigacoes.dividaTotal)}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>📈 Lote mínimo</div>
+                    <div class="metrica-valor">${obrigacoes.loteMinimo} un.</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>💸 Investimento mínimo</div>
+                    <div class="metrica-valor">AOA ${formatarNumero(obrigacoes.investimentoMinimo)}</div>
+                </div>
+            `;
+        }
+
+        function atualizarAlertasHibrido() {
+            const container = document.getElementById('alertasHibridoConteudo');
+            
+            if (!container) return;
+            
+            // Calcular índice de endividamento
+            const dividaTotal = estadoSimulador.opv.obrigacoes.dividaTotal;
+            const patrimonioLiquido = estadoSimulador.opv.acoes.valorMercado;
+            const indiceEndividamento = patrimonioLiquido > 0 ? (dividaTotal / patrimonioLiquido * 100).toFixed(1) : 0;
+            
+            // Calcular cobertura de juros
+            const lucroOperacional = parseInt(document.getElementById('lucroAnual')?.value) || 100000000;
+            const despesaJuros = estadoSimulador.opv.obrigacoes.jurosTotal / estadoSimulador.opv.obrigacoes.prazoAnos;
+            const coberturaJuros = despesaJuros > 0 ? (lucroOperacional / despesaJuros).toFixed(1) : 0;
+            
+            // Determinar alertas
+            let alertaEndividamento = '';
+            let classeEndividamento = 'neutro';
+            
+            if (indiceEndividamento < 50) {
+                alertaEndividamento = 'Saudável';
+            } else if (indiceEndividamento < 100) {
+                alertaEndividamento = 'Moderado';
+                classeEndividamento = 'alerta';
+            } else if (indiceEndividamento < 200) {
+                alertaEndividamento = '⚠️ ALTO';
+                classeEndividamento = 'alerta';
+            } else {
+                alertaEndividamento = '⚠️ CRÍTICO';
+                classeEndividamento = 'negativo';
+            }
+            
+            let alertaCobertura = '';
+            let classeCobertura = 'neutro';
+            
+            if (coberturaJuros > 3.0) {
+                alertaCobertura = 'Excelente';
+                classeCobertura = 'positivo';
+            } else if (coberturaJuros > 1.5) {
+                alertaCobertura = 'Adequado';
+            } else {
+                alertaCobertura = '⚠️ DIFICULDADE EM PAGAR JUROS';
+                classeCobertura = 'negativo';
+            }
+            
+            container.innerHTML = `
+                <div class="metrica-card">
+                    <div>Índice de Endividamento</div>
+                    <div class="metrica-valor ${classeEndividamento}">${indiceEndividamento}%</div>
+                    <div class="${classeEndividamento}">${alertaEndividamento}</div>
+                </div>
+                
+                <div class="metrica-card">
+                    <div>Cobertura de Juros</div>
+                    <div class="metrica-valor ${classeCobertura}">${coberturaJuros}</div>
+                    <div class="${classeCobertura}">${alertaCobertura}</div>
+                </div>
+            `;
+        }
+
+        // ============================================
+        // GRÁFICO EM TEMPO REAL
+        // ============================================
+        let graficoCtx = null;
+        let dadosGrafico = [];
+
+        function inicializarGrafico() {
+            const canvas = document.getElementById('canvasGrafico');
+            graficoCtx = canvas.getContext('2d');
+            
+            // Ajustar tamanho do canvas
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            // Inicializar dados do gráfico
+            dadosGrafico = estadoSimulador.mercado.historicoPrecos.map(ponto => ponto.preco);
+            
+            // Desenhar gráfico inicial
+            desenharGrafico();
+        }
+
+        function desenharGrafico() {
+            if (!graficoCtx) return;
+            
+            const canvas = document.getElementById('canvasGrafico');
+            const width = canvas.width;
+            const height = canvas.height;
+            const padding = 40;
+            const graficoWidth = width - padding * 2;
+            const graficoHeight = height - padding * 2;
+            
+            // Limpar canvas
+            graficoCtx.clearRect(0, 0, width, height);
+            
+            // Desenhar fundo
+            graficoCtx.fillStyle = 'rgba(0, 0, 0, 0)';
+            graficoCtx.fillRect(0, 0, width, height);
+            
+            // Calcular valores para escalas
+            const dados = dadosGrafico.slice(-30); // Últimos 30 pontos
+            const maxValor = Math.max(...dados);
+            const minValor = Math.min(...dados);
+            const valorRange = maxValor - minValor || 1;
+            
+            // Desenhar grade
+            graficoCtx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            graficoCtx.lineWidth = 1;
+            
+            // Linhas horizontais
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (graficoHeight * (1 - i/5));
+                graficoCtx.beginPath();
+                graficoCtx.moveTo(padding, y);
+                graficoCtx.lineTo(width - padding, y);
+                graficoCtx.stroke();
+                
+                // Valor da linha
+                graficoCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                graficoCtx.font = '12px Arial';
+                const valor = minValor + (valorRange * i/5);
+                graficoCtx.fillText(formatarNumero(valor), 5, y + 4);
+            }
+            
+            // Linhas verticais (tempo)
+            for (let i = 0; i <= 5; i++) {
+                const x = padding + (graficoWidth * i/5);
+                graficoCtx.beginPath();
+                graficoCtx.moveTo(x, padding);
+                graficoCtx.lineTo(x, height - padding);
+                graficoCtx.stroke();
+            }
+            
+            // Desenhar linha do gráfico
+            if (dados.length > 1) {
+                graficoCtx.beginPath();
+                graficoCtx.strokeStyle = estadoSimulador.mercado.variacaoPercentual >= 0 ? '#00FF00' : '#FF0000';
+                graficoCtx.lineWidth = 2;
+                
+                for (let i = 0; i < dados.length; i++) {
+                    const x = padding + (graficoWidth * i / (dados.length - 1));
+                    const y = padding + graficoHeight * (1 - (dados[i] - minValor) / valorRange);
+                    
+                    if (i === 0) {
+                        graficoCtx.moveTo(x, y);
+                    } else {
+                        graficoCtx.lineTo(x, y);
+                    }
+                }
+                
+                graficoCtx.stroke();
+                
+                // Desenhar pontos
+                for (let i = 0; i < dados.length; i++) {
+                    const x = padding + (graficoWidth * i / (dados.length - 1));
+                    const y = padding + graficoHeight * (1 - (dados[i] - minValor) / valorRange);
+                    
+                    graficoCtx.beginPath();
+                    graficoCtx.arc(x, y, 3, 0, Math.PI * 2);
+                    graficoCtx.fillStyle = estadoSimulador.mercado.variacaoPercentual >= 0 ? '#00FF00' : '#FF0000';
+                    graficoCtx.fill();
+                }
+            }
+            
+            // Títulos
+            graficoCtx.fillStyle = '#FFFFFF';
+            graficoCtx.font = '14px Arial';
+            graficoCtx.fillText('Preço da Ação (AOA)', width / 2 - 50, 20);
+            
+            // Legenda do tempo
+            graficoCtx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            graficoCtx.font = '12px Arial';
+            graficoCtx.fillText('Tempo →', width - 50, height - 10);
+        }
+
+        // ============================================
+        // ATUALIZAÇÃO DO MERCADO
+        // ============================================
+        function atualizarMercado() {
+            // Atualizar preço com base no cenário e eventos
+            const novoPreco = calcularNovoPreco();
+            
+            // Atualizar estado
+            estadoSimulador.mercado.precoAnterior = estadoSimulador.mercado.precoAtual;
+            estadoSimulador.mercado.precoAtual = novoPreco;
+            estadoSimulador.mercado.variacaoPercentual = ((novoPreco - estadoSimulador.mercado.precoAnterior) / estadoSimulador.mercado.precoAnterior * 100);
+            
+            // Atualizar histórico
+            estadoSimulador.mercado.historicoPrecos.push({
+                tempo: estadoSimulador.mercado.historicoPrecos.length,
+                preco: novoPreco
+            });
+            
+            // Manter histórico limitado
+            if (estadoSimulador.mercado.historicoPrecos.length > 100) {
+                estadoSimulador.mercado.historicoPrecos.shift();
+            }
+            
+            // Atualizar dados do gráfico
+            dadosGrafico = estadoSimulador.mercado.historicoPrecos.map(ponto => ponto.preco);
+            
+            // Atualizar beta dinamicamente
+            atualizarBeta();
+            
+            // Atualizar interface
+            atualizarInterfaceMercado();
+            
+            // Verificar expiração de evento
+            verificarExpiracoEvento();
+        }
+
+        function calcularNovoPreco() {
+            const precoAtual = estadoSimulador.mercado.precoAtual || estadoSimulador.opv.acoes?.precoNominal || 100;
+            const cenario = estadoSimulador.configuracao.cenarioEconomico;
+            
+            // Verificar se há evento especial ativo
+            if (estadoSimulador.mercado.eventoAtivo && estadoSimulador.mercado.eventoExpiraEn > estadoSimulador.tempoSimulacao) {
+                return aplicarEventoEspecial(precoAtual);
+            }
+            
+            // Aplicar variação baseada no cenário
+            let variacaoPercentual = 0;
+            
+            switch(cenario) {
+                case 'estavel':
+                    // Variações moderadas (±5%)
+                    if (Math.random() > 0.5) {
+                        variacaoPercentual = (Math.random() * 5); // 0 a +5%
+                    } else {
+                        variacaoPercentual = -(Math.random() * 5); // 0 a -5%
+                    }
+                    break;
+                    
+                case 'crescimento':
+                    // Alta valorização frequente (10-20%)
+                    if (Math.random() > 0.3) {
+                        variacaoPercentual = 10 + (Math.random() * 10); // +10 a +20%
+                    } else {
+                        variacaoPercentual = -(Math.random() * 10); // 0 a -10%
+                    }
+                    break;
+                    
+                case 'instavel':
+                    // Alta desvalorização frequente
+                    if (Math.random() > 0.8) {
+                        variacaoPercentual = Math.random() * 10; // 0 a +10%
+                    } else {
+                        variacaoPercentual = -(10 + Math.random() * 20); // -10 a -30%
+                    }
+                    break;
+                    
+                case 'angola-novo':
+                    // Baixa volatilidade diária (2-5%)
+                    variacaoPercentual = (Math.random() * 6) - 3; // -3 a +3%
+                    break;
+                    
+                case 'angola-maduro':
+                    // Alta volatilidade (-15% a +15%)
+                    variacaoPercentual = (Math.random() * 30) - 15; // -15 a +15%
+                    break;
+                    
+                default:
+                    variacaoPercentual = (Math.random() * 10) - 5; // -5 a +5%
+            }
+            
+            // Aplicar efeito de liquidez baseado no alcance
+            const liquidez = calcularLiquidez();
+            if (liquidez === 'alta') {
+                variacaoPercentual += 1; // Tendência de valorização
+            } else if (liquidez === 'baixa') {
+                variacaoPercentual -= 1; // Tendência de desvalorização
+            }
+            
+            // Calcular novo preço
+            const novoPreco = precoAtual * (1 + variacaoPercentual / 100);
+            
+            return Math.max(novoPreco, 0.01); // Preço mínimo de 0.01 AOA
+        }
+
+        function calcularLiquidez() {
+            const investidoresPotenciais = estadoSimulador.empresa.alcanceInvestidores;
+            const acoesEmCirculacao = estadoSimulador.opv.acoes?.acoesPublico || 1;
+            
+            const taxa = investidoresPotenciais / acoesEmCirculacao;
+            
+            if (taxa > 100) return 'alta';
+            if (taxa > 50) return 'media';
+            return 'baixa';
+        }
+
+        function aplicarEventoEspecial(precoAtual) {
+            const evento = estadoSimulador.mercado.eventoAtivo;
+            
+            switch(evento) {
+                case 'lucro-recorde':
+                    // Valorização: +15% a +30%
+                    return precoAtual * (1.15 + Math.random() * 0.15);
+                    
+                case 'lucro-normal':
+                    // Mantém padrão do cenário
+                    return precoAtual * (0.99 + Math.random() * 0.02);
+                    
+                case 'lucro-abaixo':
+                    // Desvalorização: -10% a -25%
+                    return precoAtual * (0.75 + Math.random() * 0.15);
+                    
+                case 'escandalo':
+                    // Desvalorização catastrófica: -30% a -50%
+                    return precoAtual * (0.5 + Math.random() * 0.2);
+                    
+                case 'parceria':
+                    // Valorização: +10% a +20%
+                    return precoAtual * (1.1 + Math.random() * 0.1);
+                    
+                default:
+                    return precoAtual;
+            }
+        }
+
+        function atualizarBeta() {
+            let beta = 1.0; // Beta padrão
+            
+            // Ajuste por cenário
+            const cenario = estadoSimulador.configuracao.cenarioEconomico;
+            switch(cenario) {
+                case 'angola-maduro':
+                case 'instavel':
+                    beta += 0.5;
+                    break;
+                case 'angola-novo':
+                    beta -= 0.3;
+                    break;
+                case 'crescimento':
+                    beta += 0.2;
+                    break;
+            }
+            
+            // Ajuste por evento ativo
+            if (estadoSimulador.mercado.eventoAtivo) {
+                switch(estadoSimulador.mercado.eventoAtivo) {
+                    case 'escandalo':
+                        beta += 1.0;
+                        break;
+                    case 'lucro-recorde':
+                        beta += 0.3;
+                        break;
+                    case 'parceria':
+                        beta += 0.2;
+                        break;
+                }
+            }
+            
+            estadoSimulador.mercado.beta = Math.max(beta, 0.1);
+        }
+
+        function atualizarInterfaceMercado() {
+            // Atualizar informações do gráfico
+            document.getElementById('infoPrecoAtualGrafico').textContent = `AOA ${formatarNumero(estadoSimulador.mercado.precoAtual)} (USD ${formatarNumero(estadoSimulador.mercado.precoAtual / 850)})`;
+            document.getElementById('infoVariacaoGrafico').textContent = `${estadoSimulador.mercado.variacaoPercentual >= 0 ? '+' : ''}${estadoSimulador.mercado.variacaoPercentual.toFixed(2)}%`;
+            
+            // Aplicar classe de cor
+            const variacaoElement = document.getElementById('infoVariacaoGrafico');
+            const precoElement = document.getElementById('infoPrecoAtualGrafico');
+            
+            if (estadoSimulador.mercado.variacaoPercentual >= 0) {
+                variacaoElement.className = 'positivo';
+                precoElement.className = 'positivo';
+            } else {
+                variacaoElement.className = 'negativo';
+                precoElement.className = 'negativo';
+            }
+            
+            // Atualizar hora da última atualização
+            const agora = new Date();
+            document.getElementById('infoAtualizacaoGrafico').textContent = agora.toLocaleTimeString('pt-PT');
+            
+            // Atualizar métricas de ações
+            if (estadoSimulador.configuracao.tipoEmissao === 'acoes' || estadoSimulador.configuracao.tipoEmissao === 'hibrido') {
+                atualizarMetricasAcoes();
+            }
+            
+            // Atualizar alertas híbridos
+            if (estadoSimulador.configuracao.tipoEmissao === 'hibrido') {
+                atualizarAlertasHibrido();
+            }
+            
+            // Redesenhar gráfico
+            desenharGrafico();
+        }
+
+        function verificarExpiracoEvento() {
+            if (estadoSimulador.mercado.eventoAtivo && estadoSimulador.mercado.eventoExpiraEn <= estadoSimulador.tempoSimulacao) {
+                estadoSimulador.mercado.eventoAtivo = null;
+                estadoSimulador.mercado.eventoExpiraEn = null;
+                
+                // Mostrar notificação de evento expirado
+                mostrarNotificacao('Evento corporativo expirou. O preço agora segue apenas o cenário econômico.', 'info');
+            }
+        }
+
+        // ============================================
+        // EVENTOS CORPORATIVOS
+        // ============================================
+        function acionarEventoCorporativo(evento) {
+            // Definir evento ativo
+            estadoSimulador.mercado.eventoAtivo = evento;
+            estadoSimulador.mercado.eventoExpiraEn = estadoSimulador.tempoSimulacao + 10; // Expira em 10 ciclos (30 segundos)
+            
+            // Mostrar notificação
+            let mensagem = '';
+            switch(evento) {
+                case 'lucro-recorde':
+                    mensagem = 'Lucro recorde anunciado! Expectativa de valorização significativa.';
+                    break;
+                case 'lucro-normal':
+                    mensagem = 'Lucro dentro do esperado. Mercado deve reagir de forma neutra.';
+                    break;
+                case 'lucro-abaixo':
+                    mensagem = 'Lucro abaixo das expectativas. Possível desvalorização.';
+                    break;
+                case 'escandalo':
+                    mensagem = 'Escândalo de corrupção revelado! Desvalorização catastrófica esperada.';
+                    break;
+                case 'parceria':
+                    mensagem = 'Nova parceria estratégica anunciada! Valorização esperada.';
+                    break;
+            }
+            
+            mostrarNotificacao(mensagem, evento === 'escandalo' ? 'erro' : 'sucesso');
+            
+            // Adicionar animação de destaque
+            const container = document.querySelector('.carteira-header');
+            if (evento === 'escandalo' || evento === 'lucro-abaixo') {
+                container.classList.add('animacao-desvalorizacao');
+                setTimeout(() => container.classList.remove('animacao-desvalorizacao'), 1000);
+            } else {
+                container.classList.add('animacao-valorizacao');
+                setTimeout(() => container.classList.remove('animacao-valorizacao'), 1000);
+            }
+            
+            // Atualizar interface imediatamente
+            atualizarMercado();
+        }
+
+        // ============================================
+        // GESTÃO DE DIVIDENDOS
+        // ============================================
+        function atualizarAlertaDividendos(percentual) {
+            const alertaDiv = document.getElementById('alertaDividendos');
+            let mensagem = '';
+            let tipo = '';
+            
+            if (percentual === 0) {
+                mensagem = '⚠️ Sem dividendos - Desmotiva investidores';
+                tipo = 'alert-warning';
+            } else if (percentual < 20) {
+                mensagem = '⚠️ ALERTA: Estratégia não divulgada preocupa mercado';
+                tipo = 'alert-warning';
+            } else if (percentual === 25) {
+                mensagem = 'Mínimo padrão recomendado';
+                tipo = 'alert-success';
+            } else if (percentual >= 20 && percentual <= 70) {
+                mensagem = 'Faixa normal e saudável';
+                tipo = 'alert-success';
+            } else if (percentual > 70) {
+                mensagem = '⚠️ ALERTA CRÍTICO: Possível manobra desesperada';
+                tipo = 'alert-danger';
+            }
+            
+            // Verificar se é >70% + cenário ruim + lucro baixo
+            if (percentual > 70 && estadoSimulador.configuracao.cenarioEconomico === 'instavel' && document.getElementById('resultadoAnunciar').value === 'ruim') {
+                mensagem = '⚠️ ALERTA CRÍTICO: Empresa pode estar atraindo investidores artificialmente antes de colapso';
+                tipo = 'alert-danger';
+            }
+            
+            alertaDiv.innerHTML = mensagem;
+            alertaDiv.className = `alert ${tipo}`;
+        }
+
+        function distribuirDividendos() {
+            const percentual = parseInt(document.getElementById('percentualDividendos').value);
+            const lucroAnual = parseInt(document.getElementById('lucroAnual').value);
+            const resultado = document.getElementById('resultadoAnunciar').value;
+            
+            // Calcular valor total dos dividendos
+            const valorDividendos = lucroAnual * (percentual / 100);
+            
+            // Calcular dividendos por ação
+            const acoesTotais = estadoSimulador.opv.acoes.totalAcoes;
+            const dividendosPorAcao = acoesTotais > 0 ? valorDividendos / acoesTotais : 0;
+            
+            // Calcular dividend yield
+            const precoAtual = estadoSimulador.mercado.precoAtual;
+            const dividendYield = precoAtual > 0 ? (dividendosPorAcao / precoAtual * 100) : 0;
+            
+            // Atualizar estado
+            estadoSimulador.mercado.dividendYield = dividendYield;
+            
+            // Impacto no preço da ação
+            let impactoPercentual = 0;
+            if (percentual >= 50 && percentual <= 70) {
+                impactoPercentual = 5 + (Math.random() * 5); // +5% a +10%
+            } else if (percentual < 20) {
+                impactoPercentual = -(3 + Math.random() * 2); // -3% a -5%
+            } else {
+                impactoPercentual = (Math.random() * 4) - 2; // -2% a +2%
+            }
+            
+            // Aplicar impacto ao preço
+            estadoSimulador.mercado.precoAnterior = estadoSimulador.mercado.precoAtual;
+            estadoSimulador.mercado.precoAtual = estadoSimulador.mercado.precoAtual * (1 + impactoPercentual / 100);
+            estadoSimulador.mercado.variacaoPercentual = ((estadoSimulador.mercado.precoAtual - estadoSimulador.mercado.precoAnterior) / estadoSimulador.mercado.precoAnterior * 100);
+            
+            // Mostrar notificação
+            const mensagem = `Dividendos de ${percentual}% distribuídos! Valor total: AOA ${formatarNumero(valorDividendos)} (${formatarNumero(dividendosPorAcao)} por ação). Impacto no preço: ${impactoPercentual >= 0 ? '+' : ''}${impactoPercentual.toFixed(1)}%`;
+            mostrarNotificacao(mensagem, impactoPercentual >= 0 ? 'sucesso' : 'erro');
+            
+            // Atualizar interface
+            atualizarMetricasAcoes();
+            desenharGrafico();
+        }
+
+        // ============================================
+        // EMISSÃO ADICIONAL DE AÇÕES
+        // ============================================
+        function atualizarAlertaEmissao(percentual) {
+            const alertaDiv = document.getElementById('alertaEmissao');
+            let mensagem = '';
+            let tipo = '';
+            
+            if (percentual >= 20 && percentual <= 50) {
+                mensagem = 'Moderado - Aceitável com demanda';
+                tipo = 'alert-success';
+            } else if (percentual > 50 && percentual <= 80) {
+                mensagem = '⚠️ ALTO - Risco de queda se demanda baixa';
+                tipo = 'alert-warning';
+            } else if (percentual === 100) {
+                mensagem = '⚠️ CRÍTICO - Perda total de controle';
+                tipo = 'alert-danger';
+            } else if (percentual > 80 && percentual < 100) {
+                mensagem = '⚠️ MUITO ALTO - Risco significativo';
+                tipo = 'alert-danger';
+            } else {
+                mensagem = 'Baixo - Impacto limitado';
+                tipo = '';
+            }
+            
+            alertaDiv.innerHTML = mensagem;
+            alertaDiv.className = `alert ${tipo}`;
+        }
+
+        function emitirAcoes() {
+            let quantidade = parseInt(document.getElementById('novasAcoes').value);
+            const percentual = parseInt(document.getElementById('percentualRetidas').value);
+            
+            // Se quantidade é 0 mas percentual não, calcular baseado no percentual
+            if (quantidade === 0 && percentual > 0) {
+                const acoesRetidas = estadoSimulador.opv.acoes.totalAcoes - estadoSimulador.opv.acoes.acoesPublico;
+                quantidade = Math.floor(acoesRetidas * (percentual / 100));
+            }
+            
+            if (quantidade <= 0) {
+                mostrarNotificacao('Insira uma quantidade válida de ações para emitir.', 'erro');
+                return;
+            }
+            
+            // Atualizar total de ações
+            estadoSimulador.opv.acoes.totalAcoes += quantidade;
+            
+            // Determinar efeito no preço baseado na relação oferta/demanda
+            const liquidez = calcularLiquidez();
+            let impactoPercentual = 0;
+            
+            if (liquidez === 'alta') {
+                // Demanda alta absorve oferta
+                impactoPercentual = (Math.random() * 4) - 2; // -2% a +2%
+            } else if (liquidez === 'media') {
+                // Oferta > Demanda moderada
+                impactoPercentual = -(2 + Math.random() * 3); // -2% a -5%
+            } else {
+                // Oferta > Demanda significativa
+                impactoPercentual = -(5 + Math.random() * 15); // -5% a -20%
+            }
+            
+            // Aplicar impacto ao preço
+            estadoSimulador.mercado.precoAnterior = estadoSimulador.mercado.precoAtual;
+            estadoSimulador.mercado.precoAtual = estadoSimulador.mercado.precoAtual * (1 + impactoPercentual / 100);
+            estadoSimulador.mercado.variacaoPercentual = ((estadoSimulador.mercado.precoAtual - estadoSimulador.mercado.precoAnterior) / estadoSimulador.mercado.precoAnterior * 100);
+            
+            // Mostrar notificação
+            const mensagem = `${formatarNumero(quantidade)} novas ações emitidas. Total de ações agora: ${formatarNumero(estadoSimulador.opv.acoes.totalAcoes)}. Impacto no preço: ${impactoPercentual >= 0 ? '+' : ''}${impactoPercentual.toFixed(1)}%`;
+            mostrarNotificacao(mensagem, impactoPercentual >= 0 ? 'sucesso' : 'erro');
+            
+            // Atualizar interface
+            atualizarMetricasAcoes();
+            desenharGrafico();
+        }
+
+        // ============================================
+        // RECOMPRA DE AÇÕES
+        // ============================================
+        function calcularCustoRecompra() {
+            const quantidade = parseInt(document.getElementById('acoesRecomprar').value);
+            const percentual = parseInt(document.getElementById('percentualRecompra').value);
+            
+            let quantidadeCalculada = quantidade;
+            
+            // Se quantidade é 0 mas percentual não, calcular baseado no percentual
+            if (quantidade === 0 && percentual > 0) {
+                const acoesCirculacao = estadoSimulador.opv.acoes.acoesPublico;
+                quantidadeCalculada = Math.floor(acoesCirculacao * (percentual / 100));
+            }
+            
+            const custo = quantidadeCalculada * estadoSimulador.mercado.precoAtual;
+            document.getElementById('custoRecompraValor').textContent = `AOA ${formatarNumero(custo)}`;
+        }
+
+        function recomprarAcoes() {
+            let quantidade = parseInt(document.getElementById('acoesRecomprar').value);
+            const percentual = parseInt(document.getElementById('percentualRecompra').value);
+            
+            // Se quantidade é 0 mas percentual não, calcular baseado no percentual
+            if (quantidade === 0 && percentual > 0) {
+                const acoesCirculacao = estadoSimulador.opv.acoes.acoesPublico;
+                quantidade = Math.floor(acoesCirculacao * (percentual / 100));
+            }
+            
+            if (quantidade <= 0) {
+                mostrarNotificacao('Insira uma quantidade válida de ações para recomprar.', 'erro');
+                return;
+            }
+            
+            // Verificar se há ações suficientes em circulação
+            if (quantidade > estadoSimulador.opv.acoes.acoesPublico) {
+                mostrarNotificacao(`Não é possível recomprar mais ações (${formatarNumero(quantidade)}) do que as disponíveis em circulação (${formatarNumero(estadoSimulador.opv.acoes.acoesPublico)}).`, 'erro');
+                return;
+            }
+            
+            // Atualizar ações em circulação
+            estadoSimulador.opv.acoes.acoesPublico -= quantidade;
+            
+            // Efeito no preço (valorização por redução da oferta)
+            const impactoPercentual = 5 + (Math.random() * 10); // +5% a +15%
+            
+            // Aplicar impacto ao preço
+            estadoSimulador.mercado.precoAnterior = estadoSimulador.mercado.precoAtual;
+            estadoSimulador.mercado.precoAtual = estadoSimulador.mercado.precoAtual * (1 + impactoPercentual / 100);
+            estadoSimulador.mercado.variacaoPercentual = ((estadoSimulador.mercado.precoAtual - estadoSimulador.mercado.precoAnterior) / estadoSimulador.mercado.precoAnterior * 100);
+            
+            // Mostrar notificação
+            const custo = quantidade * estadoSimulador.mercado.precoAnterior;
+            const mensagem = `${formatarNumero(quantidade)} ações recompradas por AOA ${formatarNumero(custo)}. Ações em circulação agora: ${formatarNumero(estadoSimulador.opv.acoes.acoesPublico)}. Impacto no preço: +${impactoPercentual.toFixed(1)}%`;
+            mostrarNotificacao(mensagem, 'sucesso');
+            
+            // Atualizar interface
+            atualizarMetricasAcoes();
+            calcularCustoRecompra();
+            desenharGrafico();
+        }
+
+        // ============================================
+        // NOTÍCIAS EM LOOP
+        // ============================================
+        function rotacionarNoticias() {
+            // Esconder notícia atual
+            document.querySelectorAll('.noticia-item').forEach(item => {
+                item.classList.remove('ativa');
+            });
+            
+            // Avançar para próxima notícia
+            estadoSimulador.noticiaAtual = (estadoSimulador.noticiaAtual + 1) % 3;
+            
+            // Mostrar nova notícia
+            document.getElementById(`noticia-${estadoSimulador.noticiaAtual + 1}`).classList.add('ativa');
+        }
+
+        // ============================================
+        // UTILITÁRIOS
+        // ============================================
+        function formatarNumero(numero) {
+            if (numero >= 1000000000) {
+                return (numero / 1000000000).toFixed(2) + 'B';
+            } else if (numero >= 1000000) {
+                return (numero / 1000000).toFixed(2) + 'M';
+            } else if (numero >= 1000) {
+                return (numero / 1000).toFixed(2) + 'K';
+            } else {
+                return numero.toFixed(2);
+            }
+        }
+
+        function mostrarNotificacao(mensagem, tipo) {
+            // Criar elemento de notificação
+            const notificacao = document.createElement('div');
+            notificacao.className = `alert ${tipo === 'erro' ? 'alert-danger' : tipo === 'sucesso' ? 'alert-success' : 'alert-warning'}`;
+            notificacao.style.position = 'fixed';
+            notificacao.style.top = '20px';
+            notificacao.style.right = '20px';
+            notificacao.style.zIndex = '1000';
+            notificacao.style.maxWidth = '400px';
+            notificacao.innerHTML = `<strong>${tipo === 'erro' ? '⚠️' : tipo === 'sucesso' ? '✅' : 'ℹ️'}</strong> ${mensagem}`;
+            
+            // Adicionar ao documento
+            document.body.appendChild(notificacao);
+            
+            // Remover após 5 segundos
+            setTimeout(() => {
+                notificacao.style.opacity = '0';
+                notificacao.style.transition = 'opacity 0.5s';
+                setTimeout(() => {
+                    if (notificacao.parentNode) {
+                        notificacao.parentNode.removeChild(notificacao);
+                    }
+                }, 500);
+            }, 5000);
+        }
+
+        function reiniciarSimulacao() {
+            // Parar intervalos
+            clearInterval(estadoSimulador.intervaloGrafico);
+            clearInterval(estadoSimulador.intervaloNoticias);
+            clearInterval(estadoSimulador.intervaloTempo);
+            
+            // Resetar estado
+            estadoSimulador = {
+                faseAtual: 'introducao',
+                empresa: {},
+                configuracao: {},
+                opv: {},
+                mercado: {
+                    historicoPrecos: [],
+                    precoAtual: 0,
+                    precoAnterior: 0,
+                    variacaoPercentual: 0,
+                    volume: 0,
+                    beta: 1.0,
+                    dividendYield: 0,
+                    lpa: 0,
+                    pl: 0,
+                    roi: 0,
+                    ultimaAtualizacao: new Date(),
+                    eventoAtivo: null,
+                    eventoExpiraEn: null
+                },
+                noticiaAtual: 0,
+                intervaloGrafico: null,
+                intervaloNoticias: null,
+                tempoSimulacao: 0
+            };
+            
+            // Resetar formulários
+            document.getElementById('formConfiguracao').reset();
+            document.getElementById('percentualDividendosValue').textContent = '25%';
+            document.getElementById('alcancePercentualValue').textContent = '10%';
+            
+            // Voltar para fase inicial
+            mudarFase('introducao');
+            
+            // Mostrar notificação
+            mostrarNotificacao('Simulação reiniciada com sucesso!', 'sucesso');
+        }
+
+        // ============================================
+        // MANIPULAÇÃO DE REDIMENSIONAMENTO
+        // ============================================
+        window.addEventListener('resize', function() {
+            if (graficoCtx) {
+                const canvas = document.getElementById('canvasGrafico');
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+                desenharGrafico();
+            }
+        });
+    </script>
+
+    </main>
+
+
+    <footer role="contentinfo">
+        <div class="tc-footer-wrap">
+            <!-- REDES SOCIAIS -->
+            <div id="socialmidia" class="tc-footer-col">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@tecacapital" target="_blank" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CONTATO -->
+            <div id="Contato" class="tc-footer-col">
+                <h3>Contato</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <p>Gmail:</p>
+                        <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                            tecacapitalinvestimentostci@gmail.com
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Telefone:</p>
+                        <a href="tel:+244923456789">
+                           +244 923 456 789
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Endereço:</p>
+                        <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT EMBUTIDO PARA TEMA E UTILITÁRIOS -->
+    <script>
+    (function() {
+        'use strict';
+        
+        // 1. GERENCIAMENTO DE TEMA
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Função para obter tema atual
+        function getCurrentTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) return savedTheme;
+            return prefersDarkScheme.matches ? 'dark' : 'light';
+        }
+        
+        // Função para aplicar tema
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Atualizar aria-pressed no botão
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'false' : 'true');
+            }
+            
+            // Atualizar ícone
+            updateThemeIcon(theme);
+        }
+        
+        // Função para alternar tema
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme') || getCurrentTheme();
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        }
+        
+        // Função para atualizar ícone
+        function updateThemeIcon(theme) {
+            if (!themeToggle) return;
+            
+            const sunIcon = themeToggle.querySelector('.tc-icon-sun');
+            const moonIcon = themeToggle.querySelector('.tc-icon-moon');
+            
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = theme === 'dark' ? 'block' : 'none';
+                moonIcon.style.display = theme === 'dark' ? 'none' : 'block';
+            }
+        }
+        
+        // Inicializar tema
+        const initialTheme = getCurrentTheme();
+        applyTheme(initialTheme);
+        
+        // Adicionar event listener ao botão
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+        }
+        
+        // 2. RESPONSIVIDADE DE TABELAS
+        function enhanceTables() {
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.closest('.tc-overflow')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-overflow';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+        }
+        
+        // 3. RESPONSIVIDADE DE VÍDEOS
+        function enhanceVideos() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                if (!video.closest('.tc-video-wrap')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-video-wrap';
+                    video.parentNode.insertBefore(wrapper, video);
+                    wrapper.appendChild(video);
+                }
+                
+                // Adicionar atributos de acessibilidade
+                if (!video.hasAttribute('playsinline')) {
+                    video.setAttribute('playsinline', '');
+                }
+                if (!video.hasAttribute('aria-label') && !video.hasAttribute('aria-describedby')) {
+                    video.setAttribute('aria-label', 'Vídeo de conteúdo relacionado');
+                }
+            });
+        }
+        
+        // 4. DETECÇÃO DE REDIMENSIONAMENTO PARA GRÁFICOS FUTUROS
+        function setupChartResize() {
+            // Esta função será estendida quando gráficos (Chart.js, etc.) forem adicionados
+            const charts = document.querySelectorAll('canvas[data-chart]');
+            if (charts.length > 0) {
+                window.addEventListener('resize', () => {
+                    charts.forEach(chart => {
+                        if (chart.chartInstance && typeof chart.chartInstance.resize === 'function') {
+                            chart.chartInstance.resize();
+                        }
+                    });
+                });
+            }
+        }
+        
+        // 5. INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', () => {
+            enhanceTables();
+            enhanceVideos();
+            setupChartResize();
+            
+            // Log para debugging
+            console.log('Teca Capital - Sistema de tema e responsividade carregado.');
+            console.log('Tema atual:', html.getAttribute('data-theme'));
+            console.log('Tabelas envolvidas:', document.querySelectorAll('.tc-overflow').length);
+        });
+        
+        // 6. LISTENER PARA PREFERÊNCIAS DO SISTEMA
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+    })();
+    </script>
+    
+</body>
+</html>
