@@ -5305,6 +5305,2210 @@ Como prática inicial necessária que, baixe imediatamente uma cópia do Decreto
 
     </section>
 
+    <section>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET E BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Cores principais */
+            --primary-color: rgb(214, 174, 100);
+            --primary-dark: rgb(180, 145, 80);
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #0d0d0d;
+            --text-primary: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --text-muted: #888888;
+            
+            /* Cores semânticas */
+            --debito-bg: #FFD700;
+            --debito-text: #000000;
+            --credito-bg: #4CAF50;
+            --credito-text: #000000;
+            --error: #F44336;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --info: #2196F3;
+            
+            /* Espaçamento */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2.5rem;
+            --spacing-xl: 4rem;
+            
+            /* Bordas */
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            
+            /* Sombras */
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 20px rgba(214, 174, 100, 0.3);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* ===== TIPOGRAFIA ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: var(--spacing-xs);
+            margin-top: var(--spacing-lg);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-secondary);
+        }
+
+        small {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid rgba(214, 174, 100, 0.2);
+            box-shadow: var(--shadow-light);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== FORMULÁRIOS ===== */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius-md);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(214, 174, 100, 0.1);
+        }
+
+        .form-control[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .form-control[type="number"]::-webkit-inner-spin-button,
+        .form-control[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23D6AE64' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 12px;
+            padding-right: 40px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-sm);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+        }
+
+        /* ===== BOTÕES ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: #000;
+            border: none;
+            border-radius: var(--border-radius-md);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(214, 174, 100, 0.1);
+        }
+
+        .btn-danger {
+            background-color: var(--error);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #d32f2f;
+        }
+
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #388e3c;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.875rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        /* ===== LISTA DE OPERAÇÕES ===== */
+        .operations-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: var(--spacing-md);
+        }
+
+        .operation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-xs);
+            border-left: 4px solid transparent;
+        }
+
+        .operation-item:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .operation-item.debito {
+            border-left-color: var(--debito-bg);
+        }
+
+        .operation-item.credito {
+            border-left-color: var(--credito-bg);
+        }
+
+        .operation-info {
+            flex: 1;
+        }
+
+        .operation-value {
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            margin: 0 var(--spacing-sm);
+        }
+
+        .operation-actions {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        /* ===== RAZÃO CONTÁBIL ===== */
+        .razao-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @media (min-width: 768px) {
+            .razao-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .razao-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .razao-card {
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .razao-card.debito {
+            background-color: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .razao-card.credito {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .razao-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .razao-conta {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .razao-valor {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .razao-valor.debito {
+            color: var(--debito-bg);
+        }
+
+        .razao-valor.credito {
+            color: var(--credito-bg);
+        }
+
+        /* ===== TABELAS ===== */
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .table th {
+            background-color: rgba(214, 174, 100, 0.2);
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .table .total-row {
+            background-color: rgba(214, 174, 100, 0.1);
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .table .positive {
+            color: var(--credito-bg);
+        }
+
+        .table .negative {
+            color: var(--debito-bg);
+        }
+
+        /* ===== BALANÇO PATRIMONIAL ===== */
+        .balanco-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @media (min-width: 768px) {
+            .balanco-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .balanco-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .balanco-section {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .balanco-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .balanco-total {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-sm);
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== DRE E FLUXO DE CAIXA ===== */
+        .dre-container, .fluxo-container {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .dre-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dre-line.total {
+            font-weight: 700;
+            color: var(--primary-color);
+            border-top: 2px solid rgba(214, 174, 100, 0.3);
+            border-bottom: none;
+            margin-top: var(--spacing-sm);
+            padding-top: var(--spacing-sm);
+        }
+
+        .dre-label {
+            flex: 1;
+            color: var(--text-secondary);
+        }
+
+        .dre-value {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            min-width: 120px;
+            text-align: right;
+        }
+
+        .dre-value.positive {
+            color: var(--credito-bg);
+        }
+
+        .dre-value.negative {
+            color: var(--debito-bg);
+        }
+
+        /* ===== NOTAS EXPLICATIVAS ===== */
+        .notas-container {
+            background-color: rgba(214, 174, 100, 0.05);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            border: 1px solid rgba(214, 174, 100, 0.2);
+        }
+
+        .nota-item {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .nota-titulo {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .nota-texto {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ===== MENSAGENS E ALERTAS ===== */
+        .alert {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .alert-success {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            color: var(--credito-bg);
+        }
+
+        .alert-error {
+            background-color: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            color: var(--error);
+        }
+
+        .alert-warning {
+            background-color: rgba(255, 152, 0, 0.1);
+            border: 1px solid rgba(255, 152, 0, 0.3);
+            color: var(--warning);
+        }
+
+        .alert-info {
+            background-color: rgba(33, 150, 243, 0.1);
+            border: 1px solid rgba(33, 150, 243, 0.3);
+            color: var(--info);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 767px) {
+            main {
+                padding: var(--spacing-sm);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .razao-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .balanco-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: var(--spacing-sm);
+            }
+            
+            .operation-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--spacing-xs);
+            }
+            
+            .operation-actions {
+                align-self: flex-end;
+            }
+        }
+
+        /* ===== UTILITÁRIOS ===== */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-1 { margin-top: var(--spacing-xs); }
+        .mt-2 { margin-top: var(--spacing-sm); }
+        .mt-3 { margin-top: var(--spacing-md); }
+        .mt-4 { margin-top: var(--spacing-lg); }
+        .mt-5 { margin-top: var(--spacing-xl); }
+
+        .mb-1 { margin-bottom: var(--spacing-xs); }
+        .mb-2 { margin-bottom: var(--spacing-sm); }
+        .mb-3 { margin-bottom: var(--spacing-md); }
+        .mb-4 { margin-bottom: var(--spacing-lg); }
+        .mb-5 { margin-bottom: var(--spacing-xl); }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .gap-1 { gap: var(--spacing-xs); }
+        .gap-2 { gap: var(--spacing-sm); }
+        .gap-3 { gap: var(--spacing-md); }
+
+        .w-100 { width: 100%; }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        /* ===== ESTILOS DE IMPRESSÃO ===== */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .card {
+                border: 1px solid #ccc;
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+            
+            .btn, .operation-actions, .search-container {
+                display: none !important;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                color: black;
+            }
+            
+            .table th {
+                background-color: #f0f0f0;
+                color: black;
+            }
+            
+            .table td {
+                color: black;
+            }
+        }
+    </style>
+
+        <h1>Simulador Prático - Contabilidade</h1>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            <div>
+                <strong>Instruções:</strong> Insira operações comerciais e o sistema calculará automaticamente os lançamentos contábeis seguindo o PGCA.
+            </div>
+        </div>
+        
+        <div class="container">
+            <!-- Coluna Esquerda: Entrada de Dados -->
+            <div>
+                <!-- Formulário de Operação -->
+                <div class="card">
+                    <h3>➕ Nova Operação</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="tipoOperacao">Tipo de Operação *</label>
+                        <select id="tipoOperacao" class="form-control">
+                            <option value="">Selecione uma operação...</option>
+                            <optgroup label="Operações Financeiras Básicas">
+                                <option value="1">1. Constituição de capital social em dinheiro</option>
+                                <option value="2">2. Compra de mercadorias a crédito (com IVA 14%)</option>
+                                <option value="3">3. Compra de mercadorias à vista (com IVA)</option>
+                                <option value="4">4. Venda de mercadorias a crédito (com IVA)</option>
+                                <option value="5">5. Venda de mercadorias à vista (com IVA)</option>
+                                <option value="6">6. Pagamento a fornecedor</option>
+                                <option value="7">7. Recebimento de cliente</option>
+                            </optgroup>
+                            <optgroup label="Investimentos e Imobilizado">
+                                <option value="8">8. Aquisição de imobilizado à vista</option>
+                                <option value="9">9. Aquisição de imobilizado a prazo</option>
+                                <option value="10">10. Amortização mensal de imobilizado</option>
+                                <option value="24">24. Venda de imobilizado com ganho</option>
+                                <option value="25">25. Venda de imobilizado com perda</option>
+                            </optgroup>
+                            <optgroup label="Financiamento">
+                                <option value="11">11. Obtenção de empréstimo bancário</option>
+                                <option value="12">12. Pagamento de prestação de empréstimo</option>
+                            </optgroup>
+                            <optgroup label="Pessoal e Encargos">
+                                <option value="14">14. Processamento de folha de salários</option>
+                                <option value="15">15. Encargos sociais (INSS patronal 8%)</option>
+                                <option value="16">16. Pagamento de salários líquidos</option>
+                                <option value="17">17. Entrega de IRT ao Estado</option>
+                            </optgroup>
+                            <optgroup label="Fiscal">
+                                <option value="26">26. Apuramento do IVA (a pagar)</option>
+                                <option value="27">27. Apuramento do IVA (a recuperar)</option>
+                                <option value="28">28. Pagamento do IVA ao Estado</option>
+                            </optgroup>
+                            <optgroup label="Ajustes e Provisões">
+                                <option value="13">13. Provisão para cobranças duvidosas</option>
+                                <option value="29">29. Recebimento de adiantamento de cliente</option>
+                                <option value="30">30. Faturação descontando adiantamento</option>
+                                <option value="31">31. Custo das Mercadorias Vendidas (CMVMC)</option>
+                            </optgroup>
+                            <optgroup label="Outras Operações">
+                                <option value="18">18. Pagamento de Fornecimentos e Serviços Externos</option>
+                                <option value="19">19. Aquisição de software</option>
+                                <option value="20">20. Amortização de software</option>
+                                <option value="21">21. Investimento financeiro</option>
+                                <option value="22">22. Rendimento de investimento</option>
+                                <option value="23">23. Venda de investimento</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="valor">Valor (AOA) *</label>
+                        <input type="number" id="valor" class="form-control" min="0" step="0.01" placeholder="0,00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="descricao">Descrição (opcional)</label>
+                        <input type="text" id="descricao" class="form-control" maxlength="200" placeholder="Descrição da operação">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="data">Data *</label>
+                        <input type="date" id="data" class="form-control" value="">
+                    </div>
+                    
+                    <!-- Campos condicionais -->
+                    <div id="camposCondicionais" class="hidden">
+                        <div class="form-group" id="campoIVA">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="incluiIVA">
+                                <label for="incluiIVA">Inclui IVA 14%?</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group hidden" id="campoVidaUtil">
+                            <label class="form-label" for="vidaUtil">Vida Útil (meses)</label>
+                            <input type="number" id="vidaUtil" class="form-control" min="1" value="60">
+                        </div>
+                        
+                        <div class="form-group hidden" id="campoPrazo">
+                            <label class="form-label" for="prazo">Prazo (meses)</label>
+                            <input type="number" id="prazo" class="form-control" min="1" value="12">
+                        </div>
+                        
+                        <div class="form-group hidden" id="campoTaxaJuro">
+                            <label class="form-label" for="taxaJuro">Taxa de Juro (% ao mês)</label>
+                            <input type="number" id="taxaJuro" class="form-control" min="0" step="0.01" value="1">
+                        </div>
+                    </div>
+                    
+                    <button id="btnAdicionar" class="btn btn-block">
+                        <i class="fas fa-plus"></i> Adicionar Operação
+                    </button>
+                </div>
+                
+                <!-- Lista de Operações -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>📋 Operações Registadas</h3>
+                        <small id="contadorOperacoes">0/50 operações</small>
+                    </div>
+                    
+                    <div id="operationsList" class="operations-list">
+                        <!-- Operações serão adicionadas aqui dinamicamente -->
+                        <div class="text-center" style="color: var(--text-muted); padding: var(--spacing-lg);">
+                            Nenhuma operação registada ainda
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button id="btnCalcular" class="btn btn-success btn-block" disabled>
+                            <i class="fas fa-calculator"></i> Calcular Resultado
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coluna Direita: Resultados -->
+            <div>
+                <!-- Razão Contábil -->
+                <div class="card hidden" id="razaoSection">
+                    <h3>📝 Razão Contábil</h3>
+                    
+                    <div class="razao-container">
+                        <div class="razao-col">
+                            <h4 style="color: var(--debito-bg);">DÉBITO</h4>
+                            <div id="razaoDebito"></div>
+                        </div>
+                        <div class="razao-col">
+                            <h4 style="color: var(--credito-bg);">CRÉDITO</h4>
+                            <div id="razaoCredito"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <div id="razaoEquilibrio" class="alert alert-success hidden">
+                            <i class="fas fa-check-circle"></i> Equilíbrio verificado: Débitos = Créditos
+                        </div>
+                        <div id="razaoDesequilibrio" class="alert alert-error hidden">
+                            <i class="fas fa-exclamation-circle"></i> <span id="mensagemErro"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Balancete de Verificação -->
+                <div class="card hidden" id="balanceteSection">
+                    <h3>📊 Balancete de Verificação</h3>
+                    
+                    <div class="table-responsive">
+                        <table class="table" id="balanceteTable">
+                            <thead>
+                                <tr>
+                                    <th>Conta</th>
+                                    <th>Nome</th>
+                                    <th>Débito</th>
+                                    <th>Crédito</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Linhas serão adicionadas dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Balanço Patrimonial -->
+                <div class="card hidden" id="balancoSection">
+                    <h3>💰 Balanço Patrimonial</h3>
+                    
+                    <div class="balanco-container">
+                        <!-- ATIVO -->
+                        <div class="balanco-col">
+                            <div class="balanco-section">
+                                <div class="balanco-header">
+                                    <h4>ATIVO</h4>
+                                    <small>Inicial vs Final</small>
+                                </div>
+                                <div id="ativoContent"></div>
+                                <div class="balanco-total" id="totalAtivo">0,00 AOA</div>
+                            </div>
+                        </div>
+                        
+                        <!-- PASSIVO + PATRIMÔNIO LÍQUIDO -->
+                        <div class="balanco-col">
+                            <div class="balanco-section">
+                                <div class="balanco-header">
+                                    <h4>PASSIVO</h4>
+                                    <small>Inicial vs Final</small>
+                                </div>
+                                <div id="passivoContent"></div>
+                                <div class="balanco-total" id="totalPassivo">0,00 AOA</div>
+                            </div>
+                            
+                            <div class="balanco-section">
+                                <div class="balanco-header">
+                                    <h4>PATRIMÔNIO LÍQUIDO</h4>
+                                    <small>Inicial vs Final</small>
+                                </div>
+                                <div id="patrimonioContent"></div>
+                                <div class="balanco-total" id="totalPatrimonio">0,00 AOA</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <div id="balancoEquilibrio" class="alert alert-success hidden">
+                            <i class="fas fa-balance-scale"></i> Equilíbrio verificado: Ativo = Passivo + Patrimônio Líquido
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demonstração do Resultado (DRE) -->
+                <div class="card hidden" id="dreSection">
+                    <h3>📈 Demonstração do Resultado (DRE)</h3>
+                    
+                    <div class="dre-container">
+                        <div id="dreContent"></div>
+                    </div>
+                </div>
+                
+                <!-- Fluxo de Caixa -->
+                <div class="card hidden" id="fluxoSection">
+                    <h3>💵 Fluxo de Caixa</h3>
+                    
+                    <div class="fluxo-container">
+                        <div id="fluxoContent"></div>
+                    </div>
+                </div>
+                
+                <!-- Notas Explicativas -->
+                <div class="card hidden" id="notasSection">
+                    <h3>📋 Notas Explicativas</h3>
+                    
+                    <div class="notas-container">
+                        <div id="notasContent"></div>
+                    </div>
+                </div>
+                
+                <!-- Botões de Exportação -->
+                <div class="card hidden" id="exportSection">
+                    <h3>📤 Exportar Resultados</h3>
+                    <div class="btn-group">
+                        <button id="btnExportPDF" class="btn btn-secondary">
+                            <i class="fas fa-file-pdf"></i> Exportar PDF
+                        </button>
+                        <button id="btnImprimir" class="btn btn-secondary">
+                            <i class="fas fa-print"></i> Imprimir
+                        </button>
+                        <button id="btnReiniciar" class="btn btn-danger">
+                            <i class="fas fa-redo"></i> Reiniciar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ============================================
+        // SISTEMA PGCA - CATÁLOGO DE CONTAS
+        // ============================================
+        
+        const PGCA = {
+            config: {
+                taxaIVA: 0.14,
+                taxaII: 0.25,
+                taxaINSSPatronal: 0.08,
+                taxaINSSTrabalhador: 0.03,
+                taxaIRT: 0.15 // Taxa simplificada
+            },
+            
+            contas: {
+                // Classe 1: Meios Fixos e Investimentos
+                '11.3': { codigo: '11.3', nome: 'Equipamento Básico', natureza: 'Ativo' },
+                '11.4': { codigo: '11.4', nome: 'Equipamento Industrial', natureza: 'Ativo' },
+                '11.5': { codigo: '11.5', nome: 'Equipamento de Transporte', natureza: 'Ativo' },
+                '12.1': { codigo: '12.1', nome: 'Terrenos e Recursos Naturais', natureza: 'Ativo' },
+                '13.1': { codigo: '13.1', nome: 'Amortizações Acumuladas', natureza: 'Ativo (Retificadora)' },
+                '14.1': { codigo: '14.1', nome: 'Software', natureza: 'Ativo' },
+                
+                // Classe 2: Existências
+                '21.1': { codigo: '21.1', nome: 'Matérias-primas', natureza: 'Ativo' },
+                '21.2': { codigo: '21.2', nome: 'Mercadorias', natureza: 'Ativo' },
+                '21.3': { codigo: '21.3', nome: 'Produtos Acabados', natureza: 'Ativo' },
+                '71.1': { codigo: '71.1', nome: 'Custo das Mercadorias Vendidas', natureza: 'Despesa' },
+                
+                // Classe 3: Terceiros
+                '31.1': { codigo: '31.1', nome: 'Clientes', natureza: 'Ativo' },
+                '31.2': { codigo: '31.2', nome: 'Adiantamentos de Clientes', natureza: 'Passivo' },
+                '31.3': { codigo: '31.3', nome: 'Provisão para Devedores Duvidosos', natureza: 'Ativo (Retificadora)' },
+                '32.1': { codigo: '32.1', nome: 'Fornecedores', natureza: 'Passivo' },
+                '33.1': { codigo: '33.1', nome: 'Empréstimos Bancários', natureza: 'Passivo' },
+                '34.1': { codigo: '34.1', nome: 'Imposto Industrial', natureza: 'Passivo' },
+                '34.2': { codigo: '34.2', nome: 'IRT a Pagar', natureza: 'Passivo' },
+                '34.5': { codigo: '34.5', nome: 'IVA a Pagar', natureza: 'Passivo' },
+                '34.5.1': { codigo: '34.5.1', nome: 'IVA Suportado', natureza: 'Ativo' },
+                '34.5.2': { codigo: '34.5.2', nome: 'IVA Liquidado', natureza: 'Passivo' },
+                '35.1': { codigo: '35.1', nome: 'Fornecimentos e Serviços Externos', natureza: 'Passivo' },
+                '35.2': { codigo: '35.2', nome: 'Salários a Pagar', natureza: 'Passivo' },
+                '35.3': { codigo: '35.3', nome: 'INSS a Pagar', natureza: 'Passivo' },
+                
+                // Classe 4: Meios Monetários
+                '41.1': { codigo: '41.1', nome: 'Caixa', natureza: 'Ativo' },
+                '43.1': { codigo: '43.1', nome: 'Depósitos à Ordem', natureza: 'Ativo' },
+                '44.1': { codigo: '44.1', nome: 'Depósitos a Prazo', natureza: 'Ativo' },
+                
+                // Classe 5: Capital e Reservas
+                '51.1': { codigo: '51.1', nome: 'Capital Social', natureza: 'Patrimônio Líquido' },
+                '55.1': { codigo: '55.1', nome: 'Resultados Transitados', natureza: 'Patrimônio Líquido' },
+                '56.1': { codigo: '56.1', nome: 'Resultado do Exercício', natureza: 'Patrimônio Líquido' },
+                
+                // Classe 6: Proveitos e Ganhos
+                '61.1': { codigo: '61.1', nome: 'Vendas de Mercadorias', natureza: 'Receita' },
+                '62.1': { codigo: '62.1', nome: 'Prestação de Serviços', natureza: 'Receita' },
+                '64.1': { codigo: '64.1', nome: 'Juros Ativos', natureza: 'Receita' },
+                '66.1': { codigo: '66.1', nome: 'Outros Proveitos e Ganhos', natureza: 'Receita' },
+                
+                // Classe 7: Custos e Perdas
+                '72.1': { codigo: '72.1', nome: 'Salários', natureza: 'Despesa' },
+                '73.1': { codigo: '73.1', nome: 'Encargos Sociais', natureza: 'Despesa' },
+                '74.1': { codigo: '74.1', nome: 'Amortizações do Exercício', natureza: 'Despesa' },
+                '75.1': { codigo: '75.1', nome: 'Fornecimentos e Serviços Externos (Custo)', natureza: 'Despesa' },
+                '76.1': { codigo: '76.1', nome: 'Juros Passivos', natureza: 'Despesa' },
+                '77.1': { codigo: '77.1', nome: 'Provisões do Exercício', natureza: 'Despesa' },
+                '78.1': { codigo: '78.1', nome: 'Outros Custos e Perdas', natureza: 'Despesa' },
+                
+                // Classe 8: Resultados
+                '88.1': { codigo: '88.1', nome: 'Imposto sobre o Rendimento', natureza: 'Resultado' }
+            },
+            
+            regras: {
+                // Operação 1: Constituição de capital social em dinheiro
+                '1': {
+                    descricao: 'Constituição de capital social em dinheiro',
+                    lancamentos: (valor, dados) => [
+                        { conta: '43.1', tipo: 'D', valor: valor },
+                        { conta: '51.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 2: Compra de mercadorias a crédito (com IVA 14%)
+                '2': {
+                    descricao: 'Compra de mercadorias a crédito com IVA',
+                    lancamentos: (valor, dados) => {
+                        const incluiIVA = dados.incluiIVA || false;
+                        if (incluiIVA) {
+                            const base = valor / (1 + PGCA.config.taxaIVA);
+                            const iva = base * PGCA.config.taxaIVA;
+                            return [
+                                { conta: '21.2', tipo: 'D', valor: base },
+                                { conta: '34.5.1', tipo: 'D', valor: iva },
+                                { conta: '32.1', tipo: 'C', valor: valor }
+                            ];
+                        } else {
+                            return [
+                                { conta: '21.2', tipo: 'D', valor: valor },
+                                { conta: '32.1', tipo: 'C', valor: valor }
+                            ];
+                        }
+                    }
+                },
+                
+                // Operação 3: Compra de mercadorias à vista (com IVA)
+                '3': {
+                    descricao: 'Compra de mercadorias à vista com IVA',
+                    lancamentos: (valor, dados) => {
+                        const incluiIVA = dados.incluiIVA || false;
+                        if (incluiIVA) {
+                            const base = valor / (1 + PGCA.config.taxaIVA);
+                            const iva = base * PGCA.config.taxaIVA;
+                            return [
+                                { conta: '21.2', tipo: 'D', valor: base },
+                                { conta: '34.5.1', tipo: 'D', valor: iva },
+                                { conta: '43.1', tipo: 'C', valor: valor }
+                            ];
+                        } else {
+                            return [
+                                { conta: '21.2', tipo: 'D', valor: valor },
+                                { conta: '43.1', tipo: 'C', valor: valor }
+                            ];
+                        }
+                    }
+                },
+                
+                // Operação 4: Venda de mercadorias a crédito (com IVA)
+                '4': {
+                    descricao: 'Venda de mercadorias a crédito com IVA',
+                    lancamentos: (valor, dados) => {
+                        const incluiIVA = dados.incluiIVA || false;
+                        if (incluiIVA) {
+                            const base = valor / (1 + PGCA.config.taxaIVA);
+                            const iva = base * PGCA.config.taxaIVA;
+                            return [
+                                { conta: '31.1', tipo: 'D', valor: valor },
+                                { conta: '61.1', tipo: 'C', valor: base },
+                                { conta: '34.5.2', tipo: 'C', valor: iva }
+                            ];
+                        } else {
+                            return [
+                                { conta: '31.1', tipo: 'D', valor: valor },
+                                { conta: '61.1', tipo: 'C', valor: valor }
+                            ];
+                        }
+                    }
+                },
+                
+                // Operação 5: Venda de mercadorias à vista (com IVA)
+                '5': {
+                    descricao: 'Venda de mercadorias à vista com IVA',
+                    lancamentos: (valor, dados) => {
+                        const incluiIVA = dados.incluiIVA || false;
+                        if (incluiIVA) {
+                            const base = valor / (1 + PGCA.config.taxaIVA);
+                            const iva = base * PGCA.config.taxaIVA;
+                            return [
+                                { conta: '43.1', tipo: 'D', valor: valor },
+                                { conta: '61.1', tipo: 'C', valor: base },
+                                { conta: '34.5.2', tipo: 'C', valor: iva }
+                            ];
+                        } else {
+                            return [
+                                { conta: '43.1', tipo: 'D', valor: valor },
+                                { conta: '61.1', tipo: 'C', valor: valor }
+                            ];
+                        }
+                    }
+                },
+                
+                // Operação 6: Pagamento a fornecedor
+                '6': {
+                    descricao: 'Pagamento a fornecedor',
+                    lancamentos: (valor) => [
+                        { conta: '32.1', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 7: Recebimento de cliente
+                '7': {
+                    descricao: 'Recebimento de cliente',
+                    lancamentos: (valor) => [
+                        { conta: '43.1', tipo: 'D', valor: valor },
+                        { conta: '31.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 8: Aquisição de imobilizado à vista
+                '8': {
+                    descricao: 'Aquisição de imobilizado à vista',
+                    lancamentos: (valor) => [
+                        { conta: '11.3', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 9: Aquisição de imobilizado a prazo
+                '9': {
+                    descricao: 'Aquisição de imobilizado a prazo',
+                    lancamentos: (valor) => [
+                        { conta: '11.3', tipo: 'D', valor: valor },
+                        { conta: '32.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 10: Amortização mensal de imobilizado
+                '10': {
+                    descricao: 'Amortização mensal de imobilizado',
+                    lancamentos: (valor, dados) => {
+                        const vidaUtil = dados.vidaUtil || 60;
+                        const amortizacao = valor / vidaUtil;
+                        return [
+                            { conta: '74.1', tipo: 'D', valor: amortizacao },
+                            { conta: '13.1', tipo: 'C', valor: amortizacao }
+                        ];
+                    }
+                },
+                
+                // Operação 11: Obtenção de empréstimo bancário
+                '11': {
+                    descricao: 'Obtenção de empréstimo bancário',
+                    lancamentos: (valor) => [
+                        { conta: '43.1', tipo: 'D', valor: valor },
+                        { conta: '33.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 12: Pagamento de prestação de empréstimo (capital + juros)
+                '12': {
+                    descricao: 'Pagamento de prestação de empréstimo',
+                    lancamentos: (valor, dados) => {
+                        const prazo = dados.prazo || 12;
+                        const taxa = (dados.taxaJuro || 1) / 100;
+                        const prestacao = valor * (taxa * Math.pow(1 + taxa, prazo)) / (Math.pow(1 + taxa, prazo) - 1);
+                        const juros = valor * taxa;
+                        const capital = prestacao - juros;
+                        return [
+                            { conta: '33.1', tipo: 'D', valor: capital },
+                            { conta: '76.1', tipo: 'D', valor: juros },
+                            { conta: '43.1', tipo: 'C', valor: prestacao }
+                        ];
+                    }
+                },
+                
+                // Operação 13: Provisão para cobranças duvidosas
+                '13': {
+                    descricao: 'Provisão para cobranças duvidosas',
+                    lancamentos: (valor) => [
+                        { conta: '77.1', tipo: 'D', valor: valor },
+                        { conta: '31.3', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 14: Processamento de folha de salários
+                '14': {
+                    descricao: 'Processamento de folha de salários',
+                    lancamentos: (valor) => [
+                        { conta: '72.1', tipo: 'D', valor: valor },
+                        { conta: '35.2', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 15: Encargos sociais (INSS patronal 8%)
+                '15': {
+                    descricao: 'Encargos sociais (INSS patronal)',
+                    lancamentos: (valor) => {
+                        const inss = valor * PGCA.config.taxaINSSPatronal;
+                        return [
+                            { conta: '73.1', tipo: 'D', valor: inss },
+                            { conta: '35.3', tipo: 'C', valor: inss }
+                        ];
+                    }
+                },
+                
+                // Operação 16: Pagamento de salários líquidos
+                '16': {
+                    descricao: 'Pagamento de salários líquidos',
+                    lancamentos: (valor) => [
+                        { conta: '35.2', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 17: Entrega de IRT ao Estado
+                '17': {
+                    descricao: 'Entrega de IRT ao Estado',
+                    lancamentos: (valor) => [
+                        { conta: '34.2', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 18: Pagamento de Fornecimentos e Serviços Externos (FSE)
+                '18': {
+                    descricao: 'Pagamento de Fornecimentos e Serviços Externos',
+                    lancamentos: (valor) => [
+                        { conta: '35.1', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 19: Aquisição de software
+                '19': {
+                    descricao: 'Aquisição de software',
+                    lancamentos: (valor) => [
+                        { conta: '14.1', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 20: Amortização de software
+                '20': {
+                    descricao: 'Amortização de software',
+                    lancamentos: (valor, dados) => {
+                        const vidaUtil = dados.vidaUtil || 36;
+                        const amortizacao = valor / vidaUtil;
+                        return [
+                            { conta: '74.1', tipo: 'D', valor: amortizacao },
+                            { conta: '14.1', tipo: 'C', valor: amortizacao }
+                        ];
+                    }
+                },
+                
+                // Operação 21: Investimento financeiro
+                '21': {
+                    descricao: 'Investimento financeiro',
+                    lancamentos: (valor) => [
+                        { conta: '44.1', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 22: Rendimento de investimento
+                '22': {
+                    descricao: 'Rendimento de investimento',
+                    lancamentos: (valor) => [
+                        { conta: '43.1', tipo: 'D', valor: valor },
+                        { conta: '64.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 23: Venda de investimento
+                '23': {
+                    descricao: 'Venda de investimento',
+                    lancamentos: (valor) => [
+                        { conta: '43.1', tipo: 'D', valor: valor },
+                        { conta: '44.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 24: Venda de imobilizado com ganho
+                '24': {
+                    descricao: 'Venda de imobilizado com ganho',
+                    lancamentos: (valor, dados) => {
+                        const custo = valor * 0.7; // Suposição: custo é 70% do valor de venda
+                        const ganho = valor - custo;
+                        return [
+                            { conta: '43.1', tipo: 'D', valor: valor },
+                            { conta: '11.3', tipo: 'C', valor: custo },
+                            { conta: '66.1', tipo: 'C', valor: ganho }
+                        ];
+                    }
+                },
+                
+                // Operação 25: Venda de imobilizado com perda
+                '25': {
+                    descricao: 'Venda de imobilizado com perda',
+                    lancamentos: (valor, dados) => {
+                        const custo = valor * 1.3; // Suposição: custo é 130% do valor de venda
+                        const perda = custo - valor;
+                        return [
+                            { conta: '43.1', tipo: 'D', valor: valor },
+                            { conta: '78.1', tipo: 'D', valor: perda },
+                            { conta: '11.3', tipo: 'C', valor: custo }
+                        ];
+                    }
+                },
+                
+                // Operação 26: Apuramento do IVA (a pagar)
+                '26': {
+                    descricao: 'Apuramento do IVA a pagar',
+                    lancamentos: (valor) => [
+                        { conta: '34.5.2', tipo: 'D', valor: valor },
+                        { conta: '34.5', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 27: Apuramento do IVA (a recuperar)
+                '27': {
+                    descricao: 'Apuramento do IVA a recuperar',
+                    lancamentos: (valor) => [
+                        { conta: '34.5', tipo: 'D', valor: valor },
+                        { conta: '34.5.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 28: Pagamento do IVA ao Estado
+                '28': {
+                    descricao: 'Pagamento do IVA ao Estado',
+                    lancamentos: (valor) => [
+                        { conta: '34.5', tipo: 'D', valor: valor },
+                        { conta: '43.1', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 29: Recebimento de adiantamento de cliente
+                '29': {
+                    descricao: 'Recebimento de adiantamento de cliente',
+                    lancamentos: (valor) => [
+                        { conta: '43.1', tipo: 'D', valor: valor },
+                        { conta: '31.2', tipo: 'C', valor: valor }
+                    ]
+                },
+                
+                // Operação 30: Faturação descontando adiantamento
+                '30': {
+                    descricao: 'Faturação descontando adiantamento',
+                    lancamentos: (valor, dados) => {
+                        const adiantamento = valor * 0.3; // Suposição: 30% foi adiantamento
+                        const saldo = valor - adiantamento;
+                        return [
+                            { conta: '31.2', tipo: 'D', valor: adiantamento },
+                            { conta: '31.1', tipo: 'D', valor: saldo },
+                            { conta: '61.1', tipo: 'C', valor: valor }
+                        ];
+                    }
+                },
+                
+                // Operação 31: Custo das Mercadorias Vendidas (CMVMC)
+                '31': {
+                    descricao: 'Custo das Mercadorias Vendidas',
+                    lancamentos: (valor) => [
+                        { conta: '71.1', tipo: 'D', valor: valor },
+                        { conta: '21.2', tipo: 'C', valor: valor }
+                    ]
+                }
+            }
+        };
+
+        // ============================================
+        // SISTEMA DE GERENCIAMENTO
+        // ============================================
+        
+        class SimuladorPGCA {
+            constructor() {
+                // Estado da aplicação (em memória - sem LocalStorage)
+                this.estado = {
+                    operacoes: [],
+                    saldoContas: {},
+                    resultadoProcessado: false
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.setDataAtual();
+                this.atualizarContadorOperacoes();
+            }
+            
+            setupEventListeners() {
+                // Eventos do formulário
+                document.getElementById('tipoOperacao').addEventListener('change', (e) => this.toggleCamposCondicionais(e.target.value));
+                document.getElementById('btnAdicionar').addEventListener('click', () => this.adicionarOperacao());
+                document.getElementById('btnCalcular').addEventListener('click', () => this.calcularResultado());
+                document.getElementById('btnExportPDF').addEventListener('click', () => this.exportarPDF());
+                document.getElementById('btnImprimir').addEventListener('click', () => this.imprimir());
+                document.getElementById('btnReiniciar').addEventListener('click', () => this.reiniciar());
+            }
+            
+            setDataAtual() {
+                const hoje = new Date();
+                const dataFormatada = hoje.toISOString().split('T')[0];
+                document.getElementById('data').value = dataFormatada;
+            }
+            
+            toggleCamposCondicionais(tipo) {
+                const camposDiv = document.getElementById('camposCondicionais');
+                const campoIVA = document.getElementById('campoIVA');
+                const campoVidaUtil = document.getElementById('campoVidaUtil');
+                const campoPrazo = document.getElementById('campoPrazo');
+                const campoTaxaJuro = document.getElementById('campoTaxaJuro');
+                
+                // Resetar todos os campos condicionais
+                campoIVA.classList.add('hidden');
+                campoVidaUtil.classList.add('hidden');
+                campoPrazo.classList.add('hidden');
+                campoTaxaJuro.classList.add('hidden');
+                camposDiv.classList.add('hidden');
+                
+                // Mostrar campos específicos baseados no tipo
+                if (tipo) {
+                    camposDiv.classList.remove('hidden');
+                    
+                    // Operações que podem ter IVA
+                    const operacoesComIVA = ['2', '3', '4', '5'];
+                    if (operacoesComIVA.includes(tipo)) {
+                        campoIVA.classList.remove('hidden');
+                    }
+                    
+                    // Operações que requerem vida útil
+                    const operacoesComVidaUtil = ['10', '20'];
+                    if (operacoesComVidaUtil.includes(tipo)) {
+                        campoVidaUtil.classList.remove('hidden');
+                    }
+                    
+                    // Operações que requerem prazo
+                    const operacoesComPrazo = ['12'];
+                    if (operacoesComPrazo.includes(tipo)) {
+                        campoPrazo.classList.remove('hidden');
+                        campoTaxaJuro.classList.remove('hidden');
+                    }
+                }
+            }
+            
+            adicionarOperacao() {
+                const tipo = document.getElementById('tipoOperacao').value;
+                const valorInput = document.getElementById('valor').value;
+                const descricao = document.getElementById('descricao').value;
+                const data = document.getElementById('data').value;
+                
+                // Validações
+                if (!tipo) {
+                    this.mostrarAlerta('Selecione um tipo de operação', 'error');
+                    return;
+                }
+                
+                const valor = parseFloat(valorInput);
+                if (!valor || valor <= 0) {
+                    this.mostrarAlerta('Insira um valor válido maior que zero', 'error');
+                    return;
+                }
+                
+                if (this.estado.operacoes.length >= 50) {
+                    this.mostrarAlerta('Limite de 50 operações atingido', 'warning');
+                    return;
+                }
+                
+                // Coletar dados condicionais
+                const dados = {};
+                const incluiIVA = document.getElementById('incluiIVA');
+                if (incluiIVA && !incluiIVA.classList.contains('hidden')) {
+                    dados.incluiIVA = incluiIVA.checked;
+                }
+                
+                const vidaUtil = document.getElementById('vidaUtil');
+                if (vidaUtil && !vidaUtil.classList.contains('hidden')) {
+                    dados.vidaUtil = parseInt(vidaUtil.value);
+                }
+                
+                const prazo = document.getElementById('prazo');
+                if (prazo && !prazo.classList.contains('hidden')) {
+                    dados.prazo = parseInt(prazo.value);
+                }
+                
+                const taxaJuro = document.getElementById('taxaJuro');
+                if (taxaJuro && !taxaJuro.classList.contains('hidden')) {
+                    dados.taxaJuro = parseFloat(taxaJuro.value);
+                }
+                
+                // Criar operação
+                const operacao = {
+                    id: Date.now(),
+                    tipo: parseInt(tipo),
+                    valor: valor,
+                    descricao: descricao || PGCA.regras[tipo].descricao,
+                    data: data,
+                    dados: dados,
+                    lancamentos: PGCA.regras[tipo].lancamentos(valor, dados)
+                };
+                
+                // Adicionar ao estado
+                this.estado.operacoes.push(operacao);
+                this.estado.resultadoProcessado = false;
+                
+                // Atualizar UI
+                this.atualizarListaOperacoes();
+                this.atualizarContadorOperacoes();
+                this.resetarFormulario();
+                
+                // Habilitar botão de calcular
+                document.getElementById('btnCalcular').disabled = false;
+                
+                this.mostrarAlerta('Operação adicionada com sucesso!', 'success');
+            }
+            
+            removerOperacao(id) {
+                if (confirm('Remover esta operação?')) {
+                    this.estado.operacoes = this.estado.operacoes.filter(op => op.id !== id);
+                    this.estado.resultadoProcessado = false;
+                    this.atualizarListaOperacoes();
+                    this.atualizarContadorOperacoes();
+                    
+                    if (this.estado.operacoes.length === 0) {
+                        document.getElementById('btnCalcular').disabled = true;
+                    }
+                    
+                    this.mostrarAlerta('Operação removida', 'info');
+                }
+            }
+            
+            atualizarListaOperacoes() {
+                const lista = document.getElementById('operationsList');
+                const operacoes = this.estado.operacoes;
+                
+                if (operacoes.length === 0) {
+                    lista.innerHTML = '<div class="text-center" style="color: var(--text-muted); padding: var(--spacing-lg);">Nenhuma operação registada ainda</div>';
+                    return;
+                }
+                
+                let html = '';
+                operacoes.forEach(op => {
+                    const tipoTexto = PGCA.regras[op.tipo.toString()].descricao;
+                    const valorFormatado = this.formatarMoeda(op.valor);
+                    
+                    html += `
+                        <div class="operation-item">
+                            <div class="operation-info">
+                                <div><strong>${tipoTexto}</strong></div>
+                                <small>${op.data} • ${op.descricao}</small>
+                            </div>
+                            <div class="operation-value">${valorFormatado} AOA</div>
+                            <div class="operation-actions">
+                                <button class="btn btn-small btn-danger" onclick="simulador.removerOperacao(${op.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                lista.innerHTML = html;
+            }
+            
+            atualizarContadorOperacoes() {
+                const contador = document.getElementById('contadorOperacoes');
+                contador.textContent = `${this.estado.operacoes.length}/50 operações`;
+                
+                // Alertas progressivos
+                if (this.estado.operacoes.length >= 45) {
+                    contador.style.color = 'var(--error)';
+                    if (this.estado.operacoes.length === 45) {
+                        this.mostrarAlerta('Atingiu 45 operações. Limite: 50 operações.', 'warning');
+                    }
+                } else if (this.estado.operacoes.length >= 30) {
+                    contador.style.color = 'var(--warning)';
+                } else {
+                    contador.style.color = 'var(--text-muted)';
+                }
+            }
+            
+            resetarFormulario() {
+                document.getElementById('tipoOperacao').value = '';
+                document.getElementById('valor').value = '';
+                document.getElementById('descricao').value = '';
+                this.toggleCamposCondicionais('');
+                this.setDataAtual();
+            }
+            
+            mostrarAlerta(mensagem, tipo = 'info') {
+                // Criar alerta temporário
+                const alerta = document.createElement('div');
+                alerta.className = `alert alert-${tipo} fade-in`;
+                alerta.innerHTML = `
+                    <i class="fas fa-${tipo === 'success' ? 'check-circle' : tipo === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <div>${mensagem}</div>
+                `;
+                
+                const container = document.querySelector('.container');
+                container.insertBefore(alerta, container.firstChild);
+                
+                // Remover após 5 segundos
+                setTimeout(() => {
+                    alerta.classList.add('hidden');
+                    setTimeout(() => alerta.remove(), 300);
+                }, 5000);
+            }
+            
+            calcularResultado() {
+                try {
+                    // Resetar estado anterior
+                    this.estado.saldoContas = {};
+                    this.estado.resultadoProcessado = true;
+                    
+                    // Processar todas as operações
+                    this.estado.operacoes.forEach(op => {
+                        op.lancamentos.forEach(lancamento => {
+                            this.atualizarSaldoConta(lancamento.conta, lancamento.tipo, lancamento.valor);
+                        });
+                    });
+                    
+                    // Gerar demonstrações
+                    this.gerarRazaoContabil();
+                    this.gerarBalancete();
+                    this.gerarBalanco();
+                    this.gerarDRE();
+                    this.gerarFluxoCaixa();
+                    this.gerarNotasExplicativas();
+                    
+                    // Mostrar seções de resultados
+                    this.mostrarSecoesResultados();
+                    
+                    // Mudar texto do botão
+                    document.getElementById('btnCalcular').innerHTML = '<i class="fas fa-sync-alt"></i> Recalcular';
+                    
+                    this.mostrarAlerta('Resultados calculados com sucesso!', 'success');
+                } catch (error) {
+                    console.error('Erro ao calcular:', error);
+                    this.mostrarAlerta('Erro ao calcular resultados: ' + error.message, 'error');
+                }
+            }
+            
+            atualizarSaldoConta(conta, tipo, valor) {
+                if (!this.estado.saldoContas[conta]) {
+                    this.estado.saldoContas[conta] = { debito: 0, credito: 0 };
+                }
+                
+                if (tipo === 'D') {
+                    this.estado.saldoContas[conta].debito += valor;
+                } else {
+                    this.estado.saldoContas[conta].credito += valor;
+                }
+            }
+            
+            gerarRazaoContabil() {
+                const razaoDebito = document.getElementById('razaoDebito');
+                const razaoCredito = document.getElementById('razaoCredito');
+                
+                let htmlDebito = '';
+                let htmlCredito = '';
+                let totalDebito = 0;
+                let totalCredito = 0;
+                
+                // Agrupar lançamentos por operação
+                this.estado.operacoes.forEach((op, index) => {
+                    const tipoTexto = PGCA.regras[op.tipo.toString()].descricao;
+                    
+                    op.lancamentos.forEach(lancamento => {
+                        const contaInfo = PGCA.contas[lancamento.conta];
+                        const valorFormatado = this.formatarMoeda(lancamento.valor);
+                        
+                        const card = `
+                            <div class="razao-card ${lancamento.tipo === 'D' ? 'debito' : 'credito'}">
+                                <div class="razao-header">
+                                    <div class="razao-conta">${lancamento.conta} - ${contaInfo.nome}</div>
+                                    <div class="razao-valor ${lancamento.tipo === 'D' ? 'debito' : 'credito'}">${valorFormatado}</div>
+                                </div>
+                                <small>${tipoTexto} • ${op.data}</small>
+                            </div>
+                        `;
+                        
+                        if (lancamento.tipo === 'D') {
+                            htmlDebito += card;
+                            totalDebito += lancamento.valor;
+                        } else {
+                            htmlCredito += card;
+                            totalCredito += lancamento.valor;
+                        }
+                    });
+                });
+                
+                razaoDebito.innerHTML = htmlDebito || '<div class="text-center" style="color: var(--text-muted); padding: var(--spacing-md);">Nenhum lançamento a débito</div>';
+                razaoCredito.innerHTML = htmlCredito || '<div class="text-center" style="color: var(--text-muted); padding: var(--spacing-md);">Nenhum lançamento a crédito</div>';
+                
+                // Verificar equilíbrio
+                const diferenca = Math.abs(totalDebito - totalCredito);
+                const equilibrio = diferenca < 0.01; // Tolerância de 0.01
+                
+                if (equilibrio) {
+                    document.getElementById('razaoEquilibrio').classList.remove('hidden');
+                    document.getElementById('razaoDesequilibrio').classList.add('hidden');
+                } else {
+                    document.getElementById('razaoDesequilibrio').classList.remove('hidden');
+                    document.getElementById('mensagemErro').textContent = 
+                        `Desequilíbrio detectado: Débitos (${this.formatarMoeda(totalDebito)}) ≠ Créditos (${this.formatarMoeda(totalCredito)})`;
+                    document.getElementById('razaoEquilibrio').classList.add('hidden');
+                }
+            }
+            
+            gerarBalancete() {
+                const tbody = document.querySelector('#balanceteTable tbody');
+                let html = '';
+                let totalDebito = 0;
+                let totalCredito = 0;
+                
+                // Ordenar contas por código
+                const contasOrdenadas = Object.keys(this.estado.saldoContas).sort();
+                
+                contasOrdenadas.forEach(codigo => {
+                    const saldo = this.estado.saldoContas[codigo];
+                    const contaInfo = PGCA.contas[codigo];
+                    const saldoConta = saldo.debito - saldo.credito;
+                    const natureza = contaInfo ? contaInfo.natureza : 'Indefinida';
+                    
+                    if (Math.abs(saldo.debito) > 0 || Math.abs(saldo.credito) > 0) {
+                        html += `
+                            <tr>
+                                <td>${codigo}</td>
+                                <td>${contaInfo ? contaInfo.nome : 'Conta não encontrada'} (${natureza})</td>
+                                <td>${saldo.debito > 0 ? this.formatarMoeda(saldo.debito) : '-'}</td>
+                                <td>${saldo.credito > 0 ? this.formatarMoeda(saldo.credito) : '-'}</td>
+                                <td class="${saldoConta > 0 ? 'positive' : saldoConta < 0 ? 'negative' : ''}">
+                                    ${Math.abs(saldoConta) > 0 ? this.formatarMoeda(Math.abs(saldoConta)) + (saldoConta > 0 ? ' D' : ' C') : '-'}
+                                </td>
+                            </tr>
+                        `;
+                        
+                        totalDebito += saldo.debito;
+                        totalCredito += saldo.credito;
+                    }
+                });
+                
+                // Linha de totais
+                html += `
+                    <tr class="total-row">
+                        <td colspan="2"><strong>TOTAIS</strong></td>
+                        <td><strong>${this.formatarMoeda(totalDebito)}</strong></td>
+                        <td><strong>${this.formatarMoeda(totalCredito)}</strong></td>
+                        <td><strong>${this.formatarMoeda(Math.abs(totalDebito - totalCredito))} ${totalDebito > totalCredito ? 'D' : totalCredito > totalDebito ? 'C' : '-'}</strong></td>
+                    </tr>
+                `;
+                
+                tbody.innerHTML = html;
+            }
+            
+            gerarBalanco() {
+                // Calcular totais por classe
+                let ativoTotal = 0;
+                let passivoTotal = 0;
+                let patrimonioTotal = 0;
+                
+                // Estrutura para agrupar por classe
+                const agrupamento = {
+                    ativo: [],
+                    passivo: [],
+                    patrimonio: []
+                };
+                
+                Object.keys(this.estado.saldoContas).forEach(codigo => {
+                    const saldo = this.estado.saldoContas[codigo];
+                    const contaInfo = PGCA.contas[codigo];
+                    const saldoConta = saldo.debito - saldo.credito;
+                    
+                    if (contaInfo && Math.abs(saldoConta) > 0) {
+                        const item = {
+                            codigo,
+                            nome: contaInfo.nome,
+                            valor: Math.abs(saldoConta),
+                            natureza: saldoConta > 0 ? 'D' : 'C'
+                        };
+                        
+                        // Classificar por natureza
+                        if (contaInfo.natureza === 'Ativo') {
+                            agrupamento.ativo.push(item);
+                            ativoTotal += saldoConta > 0 ? saldoConta : 0;
+                        } else if (contaInfo.natureza === 'Passivo') {
+                            agrupamento.passivo.push(item);
+                            passivoTotal += saldoConta < 0 ? Math.abs(saldoConta) : 0;
+                        } else if (contaInfo.natureza === 'Patrimônio Líquido') {
+                            agrupamento.patrimonio.push(item);
+                            patrimonioTotal += saldoConta < 0 ? Math.abs(saldoConta) : 0;
+                        }
+                    }
+                });
+                
+                // Gerar HTML para Ativo
+                let ativoHTML = '';
+                agrupamento.ativo.forEach(item => {
+                    ativoHTML += `
+                        <div class="dre-line">
+                            <div class="dre-label">${item.codigo} - ${item.nome}</div>
+                            <div class="dre-value">${this.formatarMoeda(item.valor)}</div>
+                        </div>
+                    `;
+                });
+                document.getElementById('ativoContent').innerHTML = ativoHTML || '<div class="text-center" style="color: var(--text-muted); padding: var(--spacing-md);">Sem movimentação</div>';
+                document.getElementById('totalAtivo').textContent = `${this.formatarMoeda(ativoTotal)} AOA`;
+                
+                // Gerar HTML para Passivo
+                let passivoHTML = '';
+                agrupamento.passivo.forEach(item => {
+                    passivoHTML += `
+                        <div class="dre-line">
+                            <div class="dre-label">${item.codigo} - ${item.nome}</div>
+                            <div class="dre-value">${this.formatarMoeda(item.valor)}</div>
+                        </div>
+                    `;
+                });
+                document.getElementById('passivoContent').innerHTML = passivoHTML || '<div class="text-center" style="color: var(--text-muted); padding: var(--spacing-md);">Sem movimentação</div>';
+                document.getElementById('totalPassivo').textContent = `${this.formatarMoeda(passivoTotal)} AOA`;
+                
+                // Gerar HTML para Patrimônio Líquido
+                let patrimonioHTML = '';
+                agrupamento.patrimonio.forEach(item => {
+                    patrimonioHTML += `
+                        <div class="dre-line">
+                            <div class="dre-label">${item.codigo} - ${item.nome}</div>
+                            <div class="dre-value">${this.formatarMoeda(item.valor)}</div>
+                        </div>
+                    `;
+                });
+                document.getElementById('patrimonioContent').innerHTML = patrimonioHTML || '<div class="text-center" style="color: var(--text-muted); padding: var(--spacing-md);">Sem movimentação</div>';
+                document.getElementById('totalPatrimonio').textContent = `${this.formatarMoeda(patrimonioTotal)} AOA`;
+                
+                // Verificar equilíbrio
+                const diferenca = Math.abs(ativoTotal - (passivoTotal + patrimonioTotal));
+                if (diferenca < 0.01) {
+                    document.getElementById('balancoEquilibrio').classList.remove('hidden');
+                } else {
+                    document.getElementById('balancoEquilibrio').classList.add('hidden');
+                    this.mostrarAlerta(`Desequilíbrio no balanço: ${this.formatarMoeda(diferenca)}`, 'warning');
+                }
+            }
+            
+            gerarDRE() {
+                // Calcular receitas e despesas
+                let receitasTotal = 0;
+                let despesasTotal = 0;
+                
+                Object.keys(this.estado.saldoContas).forEach(codigo => {
+                    const saldo = this.estado.saldoContas[codigo];
+                    const contaInfo = PGCA.contas[codigo];
+                    const saldoConta = saldo.debito - saldo.credito;
+                    
+                    if (contaInfo && Math.abs(saldoConta) > 0) {
+                        if (contaInfo.natureza === 'Receita') {
+                            receitasTotal += saldoConta < 0 ? Math.abs(saldoConta) : 0;
+                        } else if (contaInfo.natureza === 'Despesa') {
+                            despesasTotal += saldoConta > 0 ? saldoConta : 0;
+                        }
+                    }
+                });
+                
+                const resultadoBruto = receitasTotal - despesasTotal;
+                const impostoIndustrial = resultadoBruto > 0 ? resultadoBruto * PGCA.config.taxaII : 0;
+                const resultadoLiquido = resultadoBruto - impostoIndustrial;
+                
+                let html = `
+                    <div class="dre-line">
+                        <div class="dre-label">RECEITAS</div>
+                        <div class="dre-value positive">${this.formatarMoeda(receitasTotal)}</div>
+                    </div>
+                    
+                    <div class="dre-line">
+                        <div class="dre-label">(-) DESPESAS</div>
+                        <div class="dre-value negative">${this.formatarMoeda(despesasTotal)}</div>
+                    </div>
+                    
+                    <div class="dre-line total">
+                        <div class="dre-label">RESULTADO BRUTO</div>
+                        <div class="dre-value ${resultadoBruto >= 0 ? 'positive' : 'negative'}">${this.formatarMoeda(resultadoBruto)}</div>
+                    </div>
+                    
+                    <div class="dre-line">
+                        <div class="dre-label">(-) Imposto Industrial (25%)</div>
+                        <div class="dre-value negative">${this.formatarMoeda(impostoIndustrial)}</div>
+                    </div>
+                    
+                    <div class="dre-line total">
+                        <div class="dre-label">RESULTADO LÍQUIDO DO EXERCÍCIO</div>
+                        <div class="dre-value ${resultadoLiquido >= 0 ? 'positive' : 'negative'}">${this.formatarMoeda(resultadoLiquido)}</div>
+                    </div>
+                `;
+                
+                document.getElementById('dreContent').innerHTML = html;
+            }
+            
+            gerarFluxoCaixa() {
+                // Calcular fluxos por atividade
+                let operacional = 0;
+                let investimento = 0;
+                let financiamento = 0;
+                
+                this.estado.operacoes.forEach(op => {
+                    // Classificar operações por tipo de fluxo
+                    switch(op.tipo) {
+                        // Operacionais
+                        case 4: case 5: case 6: case 7: case 14: case 15: case 16: case 17: case 18: case 28:
+                            operacional += op.valor * (op.tipo === 6 || op.tipo === 16 || op.tipo === 17 || op.tipo === 18 || op.tipo === 28 ? -1 : 1);
+                            break;
+                        // Investimento
+                        case 8: case 9: case 10: case 19: case 20: case 21: case 22: case 23: case 24: case 25:
+                            investimento += op.valor * (op.tipo === 8 || op.tipo === 9 || op.tipo === 19 || op.tipo === 21 ? -1 : 1);
+                            break;
+                        // Financiamento
+                        case 1: case 11: case 12:
+                            financiamento += op.valor * (op.tipo === 12 ? -1 : 1);
+                            break;
+                    }
+                });
+                
+                const variacaoCaixa = operacional + investimento + financiamento;
+                
+                let html = `
+                    <div class="dre-line">
+                        <div class="dre-label">ATIVIDADES OPERACIONAIS</div>
+                        <div class="dre-value ${operacional >= 0 ? 'positive' : 'negative'}">${this.formatarMoeda(operacional)}</div>
+                    </div>
+                    
+                    <div class="dre-line">
+                        <div class="dre-label">ATIVIDADES DE INVESTIMENTO</div>
+                        <div class="dre-value ${investimento >= 0 ? 'positive' : 'negative'}">${this.formatarMoeda(investimento)}</div>
+                    </div>
+                    
+                    <div class="dre-line">
+                        <div class="dre-label">ATIVIDADES DE FINANCIAMENTO</div>
+                        <div class="dre-value ${financiamento >= 0 ? 'positive' : 'negative'}">${this.formatarMoeda(financiamento)}</div>
+                    </div>
+                    
+                    <div class="dre-line total">
+                        <div class="dre-label">VARIAÇÃO LÍQUIDA DE CAIXA</div>
+                        <div class="dre-value ${variacaoCaixa >= 0 ? 'positive' : 'negative'}">${this.formatarMoeda(variacaoCaixa)}</div>
+                    </div>
+                `;
+                
+                document.getElementById('fluxoContent').innerHTML = html;
+            }
+            
+            gerarNotasExplicativas() {
+                const dataAtual = new Date().toLocaleDateString('pt-AO');
+                const numOperacoes = this.estado.operacoes.length;
+                
+                let html = `
+                    <div class="nota-item">
+                        <div class="nota-titulo">1. Base de Apresentação</div>
+                        <div class="nota-texto">
+                            Estas demonstrações financeiras foram geradas automaticamente pelo Simulador de Contabilidade PGCA 
+                            em ${dataAtual}, com base em ${numOperacoes} operações registadas. Os valores estão expressos em 
+                            Kwanzas Angolanos (AOA).
+                        </div>
+                    </div>
+                    
+                    <div class="nota-item">
+                        <div class="nota-titulo">2. Políticas Contábeis Aplicadas</div>
+                        <div class="nota-texto">
+                            - Método das Partidas Dobradas conforme PGCA Angolano<br>
+                            - IVA à taxa de 14%<br>
+                            - Imposto Industrial à taxa de 25% sobre o lucro tributável<br>
+                            - Amortizações pelo método linear<br>
+                            - Provisões reconhecidas quando existe obrigação presente
+                        </div>
+                    </div>
+                    
+                    <div class="nota-item">
+                        <div class="nota-titulo">3. Análise das Principais Contas</div>
+                        <div class="nota-texto">
+                `;
+                
+                // Adicionar análise das 5 contas com maior saldo
+                const contasComSaldo = [];
+                Object.keys(this.estado.saldoContas).forEach(codigo => {
+                    const saldo = this.estado.saldoContas[codigo];
+                    const saldoConta = Math.abs(saldo.debito - saldo.credito);
+                    if (saldoConta > 0) {
+                        const contaInfo = PGCA.contas[codigo];
+                        contasComSaldo.push({
+                            codigo,
+                            nome: contaInfo ? contaInfo.nome : 'Desconhecida',
+                            valor: saldoConta,
+                            natureza: saldo.debito > saldo.credito ? 'Devedor' : 'Credor'
+                        });
+                    }
+                });
+                
+                // Ordenar por valor
+                contasComSaldo.sort((a, b) => b.valor - a.valor);
+                
+                // Adicionar as 5 principais
+                contasComSaldo.slice(0, 5).forEach(conta => {
+                    html += `• ${conta.codigo} - ${conta.nome}: ${this.formatarMoeda(conta.valor)} (${conta.natureza})<br>`;
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                    
+                    <div class="nota-item">
+                        <div class="nota-titulo">4. Eventos Subsequentes</div>
+                        <div class="nota-texto">
+                            Não existem eventos subsequentes à data das demonstrações financeiras que requeiram ajustes 
+                            ou divulgação adicional.
+                        </div>
+                    </div>
+                    
+                    <div class="nota-item">
+                        <div class="nota-titulo">5. Contingências</div>
+                        <div class="nota-texto">
+                            Não existem contingências significativas que possam afetar a posição financeira da entidade.
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('notasContent').innerHTML = html;
+            }
+            
+            mostrarSecoesResultados() {
+                const secoes = [
+                    'razaoSection',
+                    'balanceteSection',
+                    'balancoSection',
+                    'dreSection',
+                    'fluxoSection',
+                    'notasSection',
+                    'exportSection'
+                ];
+                
+                secoes.forEach(secao => {
+                    document.getElementById(secao).classList.remove('hidden');
+                });
+            }
+            
+            formatarMoeda(valor) {
+                return new Intl.NumberFormat('pt-AO', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }).format(valor);
+            }
+            
+            exportarPDF() {
+                this.mostrarAlerta('Funcionalidade de exportação PDF em desenvolvimento', 'info');
+                // Em uma implementação real, usaríamos uma biblioteca como jsPDF
+                // Mas conforme restrições, não podemos usar bibliotecas externas
+            }
+            
+            imprimir() {
+                window.print();
+            }
+            
+            reiniciar() {
+                if (confirm('Tem certeza que deseja reiniciar? Todos os dados serão perdidos.')) {
+                    this.estado = {
+                        operacoes: [],
+                        saldoContas: {},
+                        resultadoProcessado: false
+                    };
+                    
+                    // Resetar UI
+                    this.atualizarListaOperacoes();
+                    this.atualizarContadorOperacoes();
+                    document.getElementById('btnCalcular').disabled = true;
+                    document.getElementById('btnCalcular').innerHTML = '<i class="fas fa-calculator"></i> Calcular Resultado';
+                    
+                    // Ocultar seções de resultados
+                    const secoes = [
+                        'razaoSection',
+                        'balanceteSection',
+                        'balancoSection',
+                        'dreSection',
+                        'fluxoSection',
+                        'notasSection',
+                        'exportSection'
+                    ];
+                    
+                    secoes.forEach(secao => {
+                        document.getElementById(secao).classList.add('hidden');
+                    });
+                    
+                    this.mostrarAlerta('Simulador reiniciado com sucesso!', 'success');
+                }
+            }
+        }
+
+        // ============================================
+        // INICIALIZAÇÃO DA APLICAÇÃO
+        // ============================================
+        
+        let simulador;
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Adicionar ícones Font Awesome via JavaScript (para evitar dependência externa no CSS)
+            const style = document.createElement('style');
+            style.textContent = `
+                .fa, .fas, .far, .fal, .fab {
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                }
+                .fa, .fas {
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 900;
+                }
+                .fa-check-circle:before { content: "\\f058"; }
+                .fa-exclamation-circle:before { content: "\\f06a"; }
+                .fa-info-circle:before { content: "\\f05a"; }
+                .fa-plus:before { content: "\\f067"; }
+                .fa-calculator:before { content: "\\f1ec"; }
+                .fa-trash:before { content: "\\f1f8"; }
+                .fa-sync-alt:before { content: "\\f2f1"; }
+                .fa-file-pdf:before { content: "\\f1c1"; }
+                .fa-print:before { content: "\\f02f"; }
+                .fa-redo:before { content: "\\f2f9"; }
+                .fa-balance-scale:before { content: "\\f24e"; }
+            `;
+            document.head.appendChild(style);
+            
+            // Inicializar simulador
+            simulador = new SimuladorPGCA();
+            
+            // Expor simulador globalmente (para uso nos event listeners inline)
+            window.simulador = simulador;
+        });
+    </script>
+
+    </section>
+
     </main>
 
      <footer>
