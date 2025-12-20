@@ -847,7 +847,7 @@
             </div>
         </div>
 
-       <section id="conteudo-educacional" class="teca-content">
+    <section id="conteudo-educacional" class="teca-content">
     <style>
         /* ===== VARIÁVEIS E CONFIGURAÇÕES ===== */
         :root {
@@ -862,8 +862,6 @@
             --bg-primary: #000000;
             --bg-secondary: #0a0a0a;
             --bg-tertiary: #141414;
-            --bg-card: #1a1a1a;
-            --bg-elevated: #242424;
             
             --text-primary: #ffffff;
             --text-secondary: #e0e0e0;
@@ -895,8 +893,6 @@
             --bg-primary: #f8f9fa;
             --bg-secondary: #ffffff;
             --bg-tertiary: #f1f3f4;
-            --bg-card: #ffffff;
-            --bg-elevated: #ffffff;
             
             --text-primary: #1a1a1a;
             --text-secondary: #333333;
@@ -922,122 +918,126 @@
             box-sizing: border-box;
         }
         
-        /* ===== TIPOGRAFIA RESPONSIVA ===== */
+        /* ===== TIPOGRAFIA ===== */
         .teca-content h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
             background: linear-gradient(135deg, var(--primary-gold) 0%, #ffeba0 50%, var(--primary-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-align: center;
             line-height: 1.2;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gold-light);
         }
         
         .teca-content h2 {
-            font-size: clamp(1.4rem, 4vw, 2.5rem);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 700;
-            margin: 2.5rem 0 1rem;
+            margin: 3.5rem 0 1.8rem;
             color: var(--primary-gold);
-            padding-bottom: 0.5rem;
+            line-height: 1.3;
         }
         
         .teca-content h3 {
-            font-size: clamp(1.1rem, 3vw, 1.8rem);
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
             font-weight: 600;
-            margin: 1.5rem 0 0.75rem;
+            margin: 2.5rem 0 1.2rem;
             color: var(--text-primary);
+            line-height: 1.4;
         }
         
         .teca-content p {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            line-height: 1.6;
-            margin-bottom: 1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
             color: var(--text-secondary);
+            text-align: justify;
         }
         
         .teca-content ul, .teca-content ol {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
+            margin: 2rem 0;
+            padding-left: 1.8rem;
         }
         
         .teca-content li {
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
+            margin-bottom: 1rem;
+            line-height: 1.6;
             color: var(--text-secondary);
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
         
-        /* ===== TEXTO DESTACADO SEM CAIXA ===== */
-        .highlight-text {
-            margin: 2rem 0;
+        /* ===== SEÇÕES SEM CAIXAS ===== */
+        .section-container {
+            margin: 3.5rem 0;
             padding: 0;
-            background: transparent;
-            border-left: none;
         }
         
-        /* ===== TABELAS RESPONSIVAS SEM CAIXAS ===== */
+        .highlight-text {
+            background: var(--gold-light);
+            border-left: 4px solid var(--primary-gold);
+            padding: 2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+        }
+        
+        /* ===== TABELAS SEM CAIXAS ===== */
         .table-responsive {
             overflow-x: auto;
-            margin: 2rem 0;
-            border-radius: var(--border-radius);
+            margin: 3rem 0;
+            border-radius: var(--border-radius-sm);
         }
         
         .teca-content table {
             width: 100%;
             border-collapse: collapse;
             min-width: 600px;
-            background: transparent;
+            margin: 0;
         }
         
         .teca-content th {
-            background: transparent;
+            background: var(--gold-light);
             color: var(--primary-gold);
             font-weight: 600;
-            padding: 0.75rem;
+            padding: 1.2rem 1rem;
             text-align: left;
             border-bottom: 2px solid var(--primary-gold);
-            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
         }
         
         .teca-content td {
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--gold-light);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-secondary);
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+        
+        [data-theme="light"] .teca-content td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
         
         .teca-content tbody tr:hover {
             background: var(--gold-lighter);
         }
         
-        /* ===== SLIDESHOW ===== */
+        /* ===== SLIDESHOW RESPONSIVO ===== */
         .slideshow-container {
             position: relative;
-            max-width: 800px;
-            margin: 2rem auto;
+            width: 100%;
+            margin: 4rem 0;
             border-radius: var(--border-radius-lg);
             overflow: hidden;
+            box-shadow: var(--shadow-lg);
         }
         
         .slideshow {
             position: relative;
             width: 100%;
-            height: 400px;
-            background: transparent;
-        }
-        
-        @media (max-width: 768px) {
-            .slideshow {
-                height: 300px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .slideshow {
-                height: 250px;
-            }
+            height: 500px;
+            background: var(--bg-tertiary);
         }
         
         .slide {
@@ -1051,7 +1051,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 2rem;
             cursor: pointer;
         }
         
@@ -1075,110 +1075,18 @@
         
         .slideshow-controls {
             position: absolute;
-            bottom: 1rem;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.75rem;
-            z-index: 10;
-        }
-        
-        .slideshow-btn {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-        }
-        
-        .slideshow-btn:hover {
-            background: var(--primary-gold);
-            transform: scale(1.1);
-        }
-        
-        .slide-indicators {
-            display: flex;
-            gap: 0.4rem;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.4rem;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .indicator.active {
-            background: var(--primary-gold);
-            transform: scale(1.2);
-        }
-        
-        /* ===== VISUALIZADOR DE IMAGENS ===== */
-        .image-viewer-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-        
-        [data-theme="light"] .image-viewer-overlay {
-            background: rgba(255, 255, 255, 0.98);
-        }
-        
-        .image-viewer-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .image-viewer-img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .image-viewer-controls {
-            position: absolute;
-            bottom: 2rem;
+            bottom: 1.5rem;
             left: 0;
             right: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 1rem;
-            z-index: 10000;
+            z-index: 10;
         }
         
-        .image-viewer-btn {
-            background: rgba(255, 255, 255, 0.2);
+        .slideshow-btn {
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             border: none;
             width: 50px;
@@ -1188,114 +1096,209 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             transition: var(--transition);
             backdrop-filter: blur(10px);
+            z-index: 11;
         }
         
-        .image-viewer-btn:hover {
+        .slideshow-btn:hover {
             background: var(--primary-gold);
             transform: scale(1.1);
         }
         
-        .close-viewer {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
+        .slide-counter {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* ===== MODAL PARA IMAGENS EM TELA CHEIA ===== */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .image-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .modal-image {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-gold);
+            color: black;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 10000;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .modal-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             transition: var(--transition);
             backdrop-filter: blur(10px);
             z-index: 10000;
         }
         
-        .close-viewer:hover {
-            background: #ff4444;
-            transform: scale(1.1);
+        .modal-nav:hover {
+            background: var(--primary-gold);
+            color: black;
+            transform: translateY(-50%) scale(1.1);
         }
         
-        .image-counter {
-            color: white;
-            font-size: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+        .modal-prev {
+            left: 20px;
         }
         
-        [data-theme="light"] .image-counter {
-            color: var(--text-primary);
-            background: rgba(255, 255, 255, 0.8);
+        .modal-next {
+            right: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         
         /* ===== MULTIMÍDIA ===== */
         .media-container {
-            margin: 2rem 0;
+            margin: 4rem 0;
         }
         
         .media-section {
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
         
         .media-section h2 {
             margin-top: 0;
-            margin-bottom: 1rem;
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
         }
         
         .media-section video {
             width: 100%;
             border-radius: var(--border-radius);
-            background: var(--bg-primary);
+            background: var(--bg-tertiary);
+            margin: 1rem 0;
         }
         
-        .media-section img {
+        .clickable-image {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: var(--border-radius);
             width: 100%;
             height: auto;
-            border-radius: var(--border-radius);
+            margin: 1rem 0;
+        }
+        
+        .clickable-image:hover {
+            transform: scale(1.01);
         }
         
         .media-section audio {
             width: 100%;
-            margin-top: 1rem;
+            margin: 1.5rem 0;
         }
         
         .media-section p {
-            margin-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
             color: var(--text-tertiary);
-            font-size: clamp(0.9rem, 2vw, 1rem);
         }
         
-        /* ===== RESPONSIVIDADE AVANÇADA ===== */
+        /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 1000px) {
-            .teca-content {
-                padding: 1.5rem 1rem;
-            }
-            
             .teca-content h1 {
-                font-size: 2.2rem;
+                font-size: clamp(2.2rem, 4vw, 3rem);
+                margin-bottom: 2rem;
             }
             
             .teca-content h2 {
-                font-size: 1.6rem;
+                font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+                margin: 3rem 0 1.5rem;
             }
             
             .teca-content h3 {
-                font-size: 1.3rem;
+                font-size: clamp(1.3rem, 2.8vw, 1.6rem);
+                margin: 2rem 0 1rem;
             }
             
-            .teca-content p,
+            .teca-content p {
+                font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+            }
+            
             .teca-content li {
-                font-size: 1rem;
+                font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+            }
+            
+            .teca-content th {
+                font-size: clamp(0.9rem, 1.4vw, 1rem);
+                padding: 1rem 0.8rem;
+            }
+            
+            .teca-content td {
+                font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+                padding: 0.8rem;
             }
         }
         
@@ -1305,107 +1308,232 @@
             }
             
             .teca-content h1 {
-                font-size: 1.8rem;
+                font-size: clamp(2rem, 6vw, 2.8rem);
+                margin-bottom: 1.8rem;
+                padding-bottom: 0.8rem;
             }
             
             .teca-content h2 {
-                font-size: 1.4rem;
+                font-size: clamp(1.4rem, 5vw, 2rem);
+                margin: 2.5rem 0 1.3rem;
             }
             
             .teca-content h3 {
-                font-size: 1.1rem;
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+                margin: 1.8rem 0 0.9rem;
             }
             
-            .teca-content p,
+            .teca-content p {
+                font-size: clamp(0.92rem, 2.5vw, 1rem);
+                line-height: 1.6;
+                margin-bottom: 1.5rem;
+            }
+            
             .teca-content li {
-                font-size: 0.95rem;
+                font-size: clamp(0.92rem, 2.5vw, 1rem);
+                margin-bottom: 0.8rem;
             }
             
-            .teca-content th,
-            .teca-content td {
-                font-size: 0.9rem;
-                padding: 0.5rem;
+            .teca-content ul, .teca-content ol {
+                padding-left: 1.5rem;
+                margin: 1.5rem 0;
             }
             
-            .image-viewer-btn {
-                width: 40px;
-                height: 40px;
+            .section-container {
+                margin: 2.5rem 0;
+            }
+            
+            .highlight-text {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .slideshow {
+                height: 350px;
+            }
+            
+            .slideshow-btn {
+                width: 45px;
+                height: 45px;
                 font-size: 1.2rem;
             }
             
-            .close-viewer {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
+            .slide-counter {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .table-responsive {
+                margin: 2rem 0;
+            }
+            
+            .teca-content table {
+                min-width: 500px;
+            }
+            
+            .modal-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+                top: 15px;
+                left: 15px;
             }
         }
         
-        @media (max-width: 450px) {
-            .teca-content {
-                padding: 0.75rem;
-            }
-            
+        @media (max-width: 600px) {
             .teca-content h1 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
+                font-size: clamp(1.8rem, 7vw, 2.4rem);
             }
             
             .teca-content h2 {
-                font-size: 1.2rem;
-                margin: 1.5rem 0 0.75rem;
+                font-size: clamp(1.3rem, 6vw, 1.8rem);
             }
             
             .teca-content h3 {
-                font-size: 1rem;
-                margin: 1.25rem 0 0.5rem;
+                font-size: clamp(1.1rem, 5vw, 1.4rem);
             }
             
-            .teca-content p,
+            .teca-content p {
+                font-size: clamp(0.9rem, 3vw, 0.98rem);
+            }
+            
             .teca-content li {
-                font-size: 0.9rem;
+                font-size: clamp(0.9rem, 3vw, 0.98rem);
+            }
+            
+            .slideshow {
+                height: 280px;
+            }
+            
+            .slideshow-controls {
+                bottom: 1rem;
+                gap: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .teca-content h1 {
+                font-size: clamp(1.6rem, 8vw, 2.2rem);
+                margin-bottom: 1.5rem;
+            }
+            
+            .teca-content h2 {
+                font-size: clamp(1.2rem, 7vw, 1.6rem);
+                margin: 2rem 0 1rem;
+            }
+            
+            .teca-content h3 {
+                font-size: clamp(1rem, 6vw, 1.3rem);
+                margin: 1.5rem 0 0.8rem;
+            }
+            
+            .teca-content p {
+                font-size: clamp(0.88rem, 3.5vw, 0.95rem);
+                line-height: 1.5;
+                margin-bottom: 1.2rem;
+            }
+            
+            .teca-content li {
+                font-size: clamp(0.88rem, 3.5vw, 0.95rem);
+                margin-bottom: 0.7rem;
                 line-height: 1.5;
             }
             
             .teca-content ul, .teca-content ol {
-                padding-left: 1.25rem;
+                padding-left: 1.2rem;
+                margin: 1.2rem 0;
             }
             
-            .teca-content th,
+            .teca-content th {
+                font-size: clamp(0.82rem, 2vw, 0.9rem);
+                padding: 0.8rem 0.6rem;
+            }
+            
             .teca-content td {
-                font-size: 0.85rem;
-                padding: 0.4rem;
+                font-size: clamp(0.8rem, 2vw, 0.85rem);
+                padding: 0.6rem;
             }
             
             .slideshow {
-                height: 200px;
+                height: 220px;
             }
             
             .slideshow-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 0.9rem;
-            }
-            
-            .image-viewer-btn {
-                width: 35px;
-                height: 35px;
+                width: 40px;
+                height: 40px;
                 font-size: 1rem;
             }
             
-            .close-viewer {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-                top: 1rem;
-                right: 1rem;
+            .slide-counter {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
             }
             
-            .image-counter {
-                font-size: 0.9rem;
-                padding: 0.4rem 0.8rem;
+            .modal-nav {
+                width: 44px;
+                height: 44px;
+                font-size: 1.3rem;
+            }
+            
+            .modal-prev {
+                left: 10px;
+            }
+            
+            .modal-next {
+                right: 10px;
+            }
+            
+            .modal-close {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2rem;
+                top: 10px;
+                left: 10px;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .teca-content h1 {
+                font-size: clamp(1.5rem, 9vw, 2rem);
+            }
+            
+            .teca-content h2 {
+                font-size: clamp(1.1rem, 8vw, 1.4rem);
+            }
+            
+            .teca-content h3 {
+                font-size: clamp(0.95rem, 7vw, 1.2rem);
+            }
+            
+            .teca-content p {
+                font-size: clamp(0.85rem, 4vw, 0.9rem);
+            }
+            
+            .teca-content li {
+                font-size: clamp(0.85rem, 4vw, 0.9rem);
+            }
+            
+            .slideshow {
+                height: 180px;
             }
         }
     </style>
+
+    <!-- MODAL PARA VISUALIZAÇÃO DE IMAGENS EM TELA CHEIA -->
+    <div class="image-modal" id="imageModal">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <button class="modal-nav modal-prev" onclick="prevModalImage()">❮</button>
+        <div class="modal-content">
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+        <button class="modal-nav modal-next" onclick="nextModalImage()">❯</button>
+    </div>
 
     <h1>Simuladores da Teca Capital Investimentos</h1>
     
@@ -1418,97 +1546,103 @@
         <p>Autoria clássica relacionada ao papel dos meios audiovisuais na aprendizagem aparece em Edgar Dale, com seu Cone da Experiência, que enfatiza o valor de métodos audiovisuais para reforçar a aprendizagem além do texto tradicional. Ele desenvolveu metodologias que associam filmes, imagens e experiências a melhora na retenção e compreensão do conteúdo.</p>
     </div>
 
-    <h2>Educação Tradicional vs Educação Audiovisual/Digital</h2>
-    
-    <h3>1. Estrutura e Método</h3>
-    <p>A educação tradicional baseia-se em aulas presenciais com o professor como transmissor principal do conteúdo, seguindo horários fixos, currículos rígidos e métodos conteudistas, onde o foco muitas vezes é a memorização e repetição de informações. Esse modelo pode desenvolver disciplina e interação social, mas nem sempre favorece o desenvolvimento de habilidades práticas ou pensamento crítico por si só.</p>
-    
-    <p>A educação audiovisual e digital incorpora tecnologias como vídeo, áudio, gráficos, animações e simuladores, permitindo ao aprendiz interagir com o conteúdo e experimentar cenários de forma ativa, promovendo aprendizagem experiencial e multimodal.</p>
-    
-    <h3>2. Retenção e Engajamento</h3>
-    <p>A retenção de informação com a educação tradicional tende a ser menor quando comparada com métodos multimídia; estudos sugerem que alunos podem reter apenas 10–20% do que é apresentado em aulas expositivas tradicionais.</p>
-    
-    <p>Já o uso de tecnologias audiovisuais e multimídia pode elevar a retenção de informações para até 65% ou mais, porque engaja múltiplos sentidos, visual, auditivo e cognitivo, o que aumenta o armazenamento e recuperação do conteúdo aprendido.</p>
-    
-    <h3>3. Flexibilidade e Acesso</h3>
-    <p>A educação tradicional exige presença física e horários fixos, o que limita a flexibilidade para quem trabalha, viaja ou tem outros compromissos.</p>
-    
-    <p>Ambientes digitais audiovisuais permitem que o aprendiz acesse conteúdos quando e onde for favorecendo o próprio ritmo, revisões e personalização. Estudos demonstram que plataformas online podem aumentar taxas de retenção e conclusão de cursos justamente por oferecer esta flexibilidade.</p>
-    
-    <h3>4. Aprendizagem Ativa vs Passiva</h3>
-    <p>A abordagem tradicional muitas vezes mantém o aluno em posição passiva, recebendo informação sem a necessidade de experimentação prática.</p>
-    
-    <p>A educação audiovisual favorece uma aprendizagem ativa por meio de simuladores, quizzes, animações e interações alinhando-se com o conceito de "learning by doing" (aprender fazendo), que tem suporte em pedagogias contemporâneas de educação digital.</p>
-    
-    <h3>5. Competências e Habilidades do Século XXI</h3>
-    <p>Metodologias tradicionais frequentemente preparam bem para habilidades básicas, mas podem ser lentas em desenvolver pensamento crítico, adaptabilidade e autonomia, que são essenciais em ambientes dinâmicos e mercados modernos.</p>
-    
-    <p>O uso sistemático de ferramentas audiovisuais e digitais incentiva o desenvolvimento de pensamento analítico, resolução de problemas e autogestão da aprendizagem, competências valorizadas no mercado global (iiscientific.com).</p>
-    
-    <h3>6. Personalização e Inclusão</h3>
-    <p>Nas salas tradicionais, a personalização é limitada; todos seguem o mesmo ritmo e metodologia.</p>
-    
-    <p>Ferramentas digitais, especialmente as que combinam audiovisual e interatividade, permitem traçar rotas de aprendizagem personalizadas com base no desempenho e nas preferências individuais, reduzindo barreiras para diferentes perfis de estudantes (iiscientific.com).</p>
-
-    <h2>Resumo de Forças e Limitações</h2>
-    
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th>Aspecto</th>
-                    <th>Educação Tradicional</th>
-                    <th>Educação Audiovisual/Digital</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Retenção de conteúdo</td>
-                    <td>Moderada a baixa</td>
-                    <td>Alta (multissensorial) (KCAV)</td>
-                </tr>
-                <tr>
-                    <td>Flexibilidade</td>
-                    <td>Baixa</td>
-                    <td>Alta (acesso remoto) (online.uj.ac.za)</td>
-                </tr>
-                <tr>
-                    <td>Engajamento</td>
-                    <td>Variável</td>
-                    <td>Elevado (interativo) (Editora Verde)</td>
-                </tr>
-                <tr>
-                    <td>Personalização</td>
-                    <td>Limitada</td>
-                    <td>Alta (adaptação individual) (iiscientific.com)</td>
-                </tr>
-                <tr>
-                    <td>Desenvolvimento de habilidades práticas</td>
-                    <td>Média</td>
-                    <td>Excelente (simuladores e interatividade) (KCAV)</td>
-                </tr>
-                <tr>
-                    <td>Estrutura</td>
-                    <td>Fixa</td>
-                    <td>Flexível</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="section-container">
+        <h2>Educação Tradicional vs Educação Audiovisual/Digital</h2>
+        
+        <h3>1. Estrutura e Método</h3>
+        <p>A educação tradicional baseia-se em aulas presenciais com o professor como transmissor principal do conteúdo, seguindo horários fixos, currículos rígidos e métodos conteudistas, onde o foco muitas vezes é a memorização e repetição de informações. Esse modelo pode desenvolver disciplina e interação social, mas nem sempre favorece o desenvolvimento de habilidades práticas ou pensamento crítico por si só.</p>
+        
+        <p>A educação audiovisual e digital incorpora tecnologias como vídeo, áudio, gráficos, animações e simuladores, permitindo ao aprendiz interagir com o conteúdo e experimentar cenários de forma ativa, promovendo aprendizagem experiencial e multimodal.</p>
+        
+        <h3>2. Retenção e Engajamento</h3>
+        <p>A retenção de informação com a educação tradicional tende a ser menor quando comparada com métodos multimídia; estudos sugerem que alunos podem reter apenas 10–20% do que é apresentado em aulas expositivas tradicionais.</p>
+        
+        <p>Já o uso de tecnologias audiovisuais e multimídia pode elevar a retenção de informações para até 65% ou mais, porque engaja múltiplos sentidos, visual, auditivo e cognitivo, o que aumenta o armazenamento e recuperação do conteúdo aprendido.</p>
+        
+        <h3>3. Flexibilidade e Acesso</h3>
+        <p>A educação tradicional exige presença física e horários fixos, o que limita a flexibilidade para quem trabalha, viaja ou tem outros compromissos.</p>
+        
+        <p>Ambientes digitais audiovisuais permitem que o aprendiz acesse conteúdos quando e onde for favorecendo o próprio ritmo, revisões e personalização. Estudos demonstram que plataformas online podem aumentar taxas de retenção e conclusão de cursos justamente por oferecer esta flexibilidade.</p>
+        
+        <h3>4. Aprendizagem Ativa vs Passiva</h3>
+        <p>A abordagem tradicional muitas vezes mantém o aluno em posição passiva, recebendo informação sem a necessidade de experimentação prática.</p>
+        
+        <p>A educação audiovisual favorece uma aprendizagem ativa por meio de simuladores, quizzes, animações e interações alinhando-se com o conceito de "learning by doing" (aprender fazendo), que tem suporte em pedagogias contemporâneas de educação digital.</p>
+        
+        <h3>5. Competências e Habilidades do Século XXI</h3>
+        <p>Metodologias tradicionais frequentemente preparam bem para habilidades básicas, mas podem ser lentas em desenvolver pensamento crítico, adaptabilidade e autonomia, que são essenciais em ambientes dinâmicos e mercados modernos.</p>
+        
+        <p>O uso sistemático de ferramentas audiovisuais e digitais incentiva o desenvolvimento de pensamento analítico, resolução de problemas e autogestão da aprendizagem, competências valorizadas no mercado global (iiscientific.com).</p>
+        
+        <h3>6. Personalização e Inclusão</h3>
+        <p>Nas salas tradicionais, a personalização é limitada; todos seguem o mesmo ritmo e metodologia.</p>
+        
+        <p>Ferramentas digitais, especialmente as que combinam audiovisual e interatividade, permitem traçar rotas de aprendizagem personalizadas com base no desempenho e nas preferências individuais, reduzindo barreiras para diferentes perfis de estudantes (iiscientific.com).</p>
     </div>
-    
-    <p>A proposta da Teca Capital Investimentos de usar simuladores e conteúdos audiovisuais educativos capitaliza exatamente os pontos fortes do modelo digital:</p>
-    
-    <ul>
-        <li>Aprendizagem ativa e interativa: os simuladores estimulam o pensamento crítico e a aplicação prática.</li>
-        <li>Retenção superior de conteúdo: apoiada por multimídia que engaja mais que texto ou palestra apenas.</li>
-        <li>Flexibilidade e autonomia: permitindo ao usuário aprender quando e como quiser, essencial para adultos e profissionais em formação.</li>
-        <li>Personalização, porque cada aluno pode navegar em conteúdo à sua velocidade e necessidade, algo que a educação tradicional nem sempre consegue oferecer. (KCAV)</li>
-    </ul>
 
-    <h2>Educação Híbrida</h2>
-    <p>A educação do presente e do futuro não é "ou tradicional ou audiovisual" é a integração inteligente dos dois. A educação tradicional continua essencial por oferecer estrutura, base teórica, método, disciplina e raciocínio lógico, enquanto a educação audiovisual entra para resolver o que o modelo clássico não consegue escalar bem: visualização, prática, interação, autonomia e experimentação sem risco. Quando esses dois mundos se unem, o aprendizado deixa de ser apenas transmissão de conteúdo e passa a ser construção ativa de conhecimento, o aluno entende o conceito, vê como ele funciona e aplica na prática.</p>
-    
-    <p>É exatamente nesse ponto que a Teca Capital Investimentos se destaca. A plataforma nasce para fundir teoria sólida com tecnologia audiovisual interativa, usando simuladores, gráficos dinâmicos, vídeos, áudios, exercícios práticos, quizzes e análise de cenários como extensão natural do ensino tradicional. O conteúdo não substitui a base académica, ele potencializa, acelera a compreensão e reduz a distância entre aprender e saber fazer. Com múltiplos serviços dentro desse nicho, a Teca Capital cria um ecossistema educacional híbrido, onde aprender é entender, testar, errar, ajustar e evoluir tudo no mesmo ambiente, isso não é tendência, é direção.</p>
+    <div class="section-container">
+        <h2>Resumo de Forças e Limitações</h2>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Educação Tradicional</th>
+                        <th>Educação Audiovisual/Digital</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Retenção de conteúdo</td>
+                        <td>Moderada a baixa</td>
+                        <td>Alta (multissensorial) (KCAV)</td>
+                    </tr>
+                    <tr>
+                        <td>Flexibilidade</td>
+                        <td>Baixa</td>
+                        <td>Alta (acesso remoto) (online.uj.ac.za)</td>
+                    </tr>
+                    <tr>
+                        <td>Engajamento</td>
+                        <td>Variável</td>
+                        <td>Elevado (interativo) (Editora Verde)</td>
+                    </tr>
+                    <tr>
+                        <td>Personalização</td>
+                        <td>Limitada</td>
+                        <td>Alta (adaptação individual) (iiscientific.com)</td>
+                    </tr>
+                    <tr>
+                        <td>Desenvolvimento de habilidades práticas</td>
+                        <td>Média</td>
+                        <td>Excelente (simuladores e interatividade) (KCAV)</td>
+                    </tr>
+                    <tr>
+                        <td>Estrutura</td>
+                        <td>Fixa</td>
+                        <td>Flexível</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p>A proposta da Teca Capital Investimentos de usar simuladores e conteúdos audiovisuais educativos capitaliza exatamente os pontos fortes do modelo digital:</p>
+        
+        <ul>
+            <li>Aprendizagem ativa e interativa: os simuladores estimulam o pensamento crítico e a aplicação prática.</li>
+            <li>Retenção superior de conteúdo: apoiada por multimídia que engaja mais que texto ou palestra apenas.</li>
+            <li>Flexibilidade e autonomia: permitindo ao usuário aprender quando e como quiser, essencial para adultos e profissionais em formação.</li>
+            <li>Personalização, porque cada aluno pode navegar em conteúdo à sua velocidade e necessidade, algo que a educação tradicional nem sempre consegue oferecer. (KCAV)</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2>Educação Híbrida</h2>
+        <p>A educação do presente e do futuro não é "ou tradicional ou audiovisual" é a integração inteligente dos dois. A educação tradicional continua essencial por oferecer estrutura, base teórica, método, disciplina e raciocínio lógico, enquanto a educação audiovisual entra para resolver o que o modelo clássico não consegue escalar bem: visualização, prática, interação, autonomia e experimentação sem risco. Quando esses dois mundos se unem, o aprendizado deixa de ser apenas transmissão de conteúdo e passa a ser construção ativa de conhecimento, o aluno entende o conceito, vê como ele funciona e aplica na prática.</p>
+        
+        <p>É exatamente nesse ponto que a Teca Capital Investimentos se destaca. A plataforma nasce para fundir teoria sólida com tecnologia audiovisual interativa, usando simuladores, gráficos dinâmicos, vídeos, áudios, exercícios práticos, quizzes e análise de cenários como extensão natural do ensino tradicional. O conteúdo não substitui a base académica, ele potencializa, acelera a compreensão e reduz a distância entre aprender e saber fazer. Com múltiplos serviços dentro desse nicho, a Teca Capital cria um ecossistema educacional híbrido, onde aprender é entender, testar, errar, ajustar e evoluir tudo no mesmo ambiente, isso não é tendência, é direção.</p>
+    </div>
 
     <!-- MULTIMÍDIA INTEGRADA -->
     <div class="media-container">
@@ -1519,64 +1653,27 @@
 
         <div class="media-section">
             <h2>Infográfico</h2>
-            <img src="Imagem/Aprender fazendo Teca Capital Investimentos.png" width="100%" alt="infografico da teca capital">
+            <p>Clique na imagem para visualizar em tela cheia:</p>
+            <img src="Imagem/Aprender fazendo Teca Capital Investimentos.png" 
+                 class="clickable-image" 
+                 alt="infografico da teca capital"
+                 onclick="openModal('Imagem/Aprender fazendo Teca Capital Investimentos.png', true)">
         </div>
 
         <div class="media-section">
             <h2>Apresentação dos Nossos Simuladores</h2>
-            <p>O que são? Como funcionam? E quem está por tras disso? e o nosso objetivos com eles</p>
+            <p>O que são? Como funcionam? E quem está por trás disso? E os nossos objetivos com eles</p>
             
             <!-- SLIDESHOW -->
             <div class="slideshow-container">
                 <div class="slideshow">
-                    <div class="slide active" data-index="0">
-                        <img src="Imagem/1A.png" alt="Simulador 1" data-index="0">
-                    </div>
-                    <div class="slide" data-index="1">
-                        <img src="Imagem/2A.png" alt="Simulador 2" data-index="1">
-                    </div>
-                    <div class="slide" data-index="2">
-                        <img src="Imagem/A3.png" alt="Simulador 3" data-index="2">
-                    </div>
-                    <div class="slide" data-index="3">
-                        <img src="Imagem/A4.png" alt="Simulador 4" data-index="3">
-                    </div>
-                    <div class="slide" data-index="4">
-                        <img src="Imagem/A5.png" alt="Simulador 5" data-index="4">
-                    </div>
-                    <div class="slide" data-index="5">
-                        <img src="Imagem/A6.png" alt="Simulador 6" data-index="5">
-                    </div>
-                    <div class="slide" data-index="6">
-                        <img src="Imagem/A7.png" alt="Simulador 7" data-index="6">
-                    </div>
-                    <div class="slide" data-index="7">
-                        <img src="Imagem/A8.png" alt="Simulador 8" data-index="7">
-                    </div>
-                    <div class="slide" data-index="8">
-                        <img src="Imagem/A9.png" alt="Simulador 9" data-index="8">
-                    </div>
-                    <div class="slide" data-index="9">
-                        <img src="Imagem/A10.png" alt="Simulador 10" data-index="9">
-                    </div>
-                    <div class="slide" data-index="10">
-                        <img src="Imagem/A11.png" alt="Simulador 11" data-index="10">
-                    </div>
-                    <div class="slide" data-index="11">
-                        <img src="Imagem/A12.png" alt="Simulador 12" data-index="11">
-                    </div>
-                    <div class="slide" data-index="12">
-                        <img src="Imagem/A13.png" alt="Simulador 13" data-index="12">
-                    </div>
-                    <div class="slide" data-index="13">
-                        <img src="Imagem/A14.png" alt="Simulador 14" data-index="13">
-                    </div>
+                    <!-- Slides serão inseridos via JavaScript -->
                 </div>
                 
                 <div class="slideshow-controls">
                     <button class="slideshow-btn prev-btn" aria-label="Imagem anterior">❮</button>
-                    <div class="slide-indicators">
-                        <!-- Gerado via JavaScript -->
+                    <div class="slide-counter">
+                        <span id="currentSlide">1</span> / <span id="totalSlides">14</span>
                     </div>
                     <button class="slideshow-btn next-btn" aria-label="Próxima imagem">❯</button>
                 </div>
@@ -1591,208 +1688,308 @@
         </div>
     </div>
 
-    <!-- VISUALIZADOR DE IMAGENS -->
-    <div class="image-viewer-overlay">
-        <button class="close-viewer" aria-label="Fechar visualizador">×</button>
-        <div class="image-viewer-container">
-            <img class="image-viewer-img" src="" alt="">
-            <div class="image-viewer-controls">
-                <button class="image-viewer-btn prev-viewer-btn" aria-label="Imagem anterior">❮</button>
-                <div class="image-counter">1 / 14</div>
-                <button class="image-viewer-btn next-viewer-btn" aria-label="Próxima imagem">❯</button>
-            </div>
-        </div>
+    <div class="section-container">
+        <h2>O simulador da Teca Capital Investimentos: o que é e como funciona</h2>
+        <p>A Teca Capital Investimentos disponibiliza atualmente seis simuladores educacionais, todos focados nas Ciências Económicas, concebidos para transformar teoria em prática por meio de interação direta, análise de dados e experimentação sem risco. Cada simulador funciona como um laboratório digital, permitindo que o usuário compreenda como os conceitos funcionam no mundo real. No futuro, essa mesma lógica será expandida para áreas como saúde, agricultura, engenharia e outros setores estratégicos.</p>
+        
+        <h3>1. Simulador de Contabilidade Prática</h3>
+        <p>Este simulador foi criado para ensinar a linguagem dos negócios de forma aplicada. O usuário aprende a registrar transações, compreender débitos e créditos, elaborar balanços patrimoniais, demonstrações de resultados e interpretar informações financeiras essenciais. É ideal para estudantes, empreendedores e gestores que precisam entender como a contabilidade reflete a realidade financeira de uma empresa e apoia a tomada de decisões.</p>
+        
+        <h3>2. Simulador de Estudo de Viabilidade</h3>
+        <p>Aqui o foco é responder à pergunta-chave de qualquer projeto: vale a pena investir? O simulador permite analisar mercados, projetar receitas, estimar custos, calcular lucros e retorno sobre o investimento (ROI). O usuário pode testar diferentes cenários antes de investir dinheiro real, tornando a ferramenta essencial para quem pretende abrir um negócio, expandir uma empresa ou lançar um novo produto.</p>
+        
+        <h3>3. Simulador de Mercados Financeiros</h3>
+        <p>Este ambiente replica o funcionamento do mercado financeiro de forma controlada. O usuário pode simular investimentos em ações, criptomoedas, títulos e ETFs, aprendendo na prática sobre diversificação de carteira, análise de risco, volatilidade e comportamento do mercado. O objetivo é ensinar como investir de forma consciente, estratégica e sem exposição a perdas reais.</p>
+        
+        <h3>4. Quiz do Mercado</h3>
+        <p>O Quiz do Mercado é uma ferramenta de aprendizagem ativa, baseada em perguntas e respostas sobre economia, finanças, negócios, mercado angolano e global. O sistema de pontuação e ranking estimula o raciocínio rápido, a revisão de conceitos e a evolução contínua do conhecimento, tornando o aprendizado mais dinâmico e envolvente.</p>
+        
+        <h3>5. Simulador de Cenários Económicos</h3>
+        <p>Neste simulador, o usuário compreende como a economia funciona como um sistema interligado. São apresentados diferentes cenários económicos, explicando indicadores como inflação, crescimento, emprego, políticas públicas e o papel do Estado. O foco é mostrar como essas variáveis afetam o dinheiro, as empresas, o emprego e a qualidade de vida, ajudando o usuário a interpretar a economia angolana de forma clara e prática.</p>
+        
+        <h3>6. Simulador "Minha Empresa na Bolsa de Valores"</h3>
+        <p>Este simulador permite experimentar como seria ter uma empresa listada na Bolsa de Valores. O usuário aprende sobre os processos do mercado primário e secundário, entende como uma empresa é avaliada, acompanha a precificação do ativo em tempo real e pode simular a emissão de ações ou obrigações. É uma ferramenta essencial para compreender o funcionamento do mercado de capitais e o acesso das empresas ao financiamento via bolsa.</p>
+        
+        <p>Em conjunto, esses seis simuladores formam o núcleo educacional da Teca Capital Investimentos, oferecendo uma experiência prática, audiovisual e interativa nas ciências económicas. A mesma arquitetura será futuramente aplicada a outros setores estratégicos, mantendo o mesmo princípio: aprender fazendo, testando cenários e tomando decisões informadas.</p>
     </div>
-
-    <h2>O simulador da Teca Capital Investimentos: o que é e como funciona</h2>
-    <p>A Teca Capital Investimentos disponibiliza atualmente seis simuladores educacionais, todos focados nas Ciências Económicas, concebidos para transformar teoria em prática por meio de interação direta, análise de dados e experimentação sem risco. Cada simulador funciona como um laboratório digital, permitindo que o usuário compreenda como os conceitos funcionam no mundo real. No futuro, essa mesma lógica será expandida para áreas como saúde, agricultura, engenharia e outros setores estratégicos.</p>
-    
-    <h3>1. Simulador de Contabilidade Prática</h3>
-    <p>Este simulador foi criado para ensinar a linguagem dos negócios de forma aplicada. O usuário aprende a registrar transações, compreender débitos e créditos, elaborar balanços patrimoniais, demonstrações de resultados e interpretar informações financeiras essenciais. É ideal para estudantes, empreendedores e gestores que precisam entender como a contabilidade reflete a realidade financeira de uma empresa e apoia a tomada de decisões.</p>
-    
-    <h3>2. Simulador de Estudo de Viabilidade</h3>
-    <p>Aqui o foco é responder à pergunta-chave de qualquer projeto: vale a pena investir? O simulador permite analisar mercados, projetar receitas, estimar custos, calcular lucros e retorno sobre o investimento (ROI). O usuário pode testar diferentes cenários antes de investir dinheiro real, tornando a ferramenta essencial para quem pretende abrir um negócio, expandir uma empresa ou lançar um novo produto.</p>
-    
-    <h3>3. Simulador de Mercados Financeiros</h3>
-    <p>Este ambiente replica o funcionamento do mercado financeiro de forma controlada. O usuário pode simular investimentos em ações, criptomoedas, títulos e ETFs, aprendendo na prática sobre diversificação de carteira, análise de risco, volatilidade e comportamento do mercado. O objetivo é ensinar como investir de forma consciente, estratégica e sem exposição a perdas reais.</p>
-    
-    <h3>4. Quiz do Mercado</h3>
-    <p>O Quiz do Mercado é uma ferramenta de aprendizagem ativa, baseada em perguntas e respostas sobre economia, finanças, negócios, mercado angolano e global. O sistema de pontuação e ranking estimula o raciocínio rápido, a revisão de conceitos e a evolução contínua do conhecimento, tornando o aprendizado mais dinâmico e envolvente.</p>
-    
-    <h3>5. Simulador de Cenários Económicos</h3>
-    <p>Neste simulador, o usuário compreende como a economia funciona como um sistema interligado. São apresentados diferentes cenários económicos, explicando indicadores como inflação, crescimento, emprego, políticas públicas e o papel do Estado. O foco é mostrar como essas variáveis afetam o dinheiro, as empresas, o emprego e a qualidade de vida, ajudando o usuário a interpretar a economia angolana de forma clara e prática.</p>
-    
-    <h3>6. Simulador "Minha Empresa na Bolsa de Valores"</h3>
-    <p>Este simulador permite experimentar como seria ter uma empresa listada na Bolsa de Valores. O usuário aprende sobre os processos do mercado primário e secundário, entende como uma empresa é avaliada, acompanha a precificação do ativo em tempo real e pode simular a emissão de ações ou obrigações. É uma ferramenta essencial para compreender o funcionamento do mercado de capitais e o acesso das empresas ao financiamento via bolsa.</p>
-    
-    <p>Em conjunto, esses seis simuladores formam o núcleo educacional da Teca Capital Investimentos, oferecendo uma experiência prática, audiovisual e interativa nas ciências económicas. A mesma arquitetura será futuramente aplicada a outros setores estratégicos, mantendo o mesmo princípio: aprender fazendo, testando cenários e tomando decisões informadas.</p>
 
     <div class="highlight-text">
         <h2>O Motivo por trás de tudo</h2>
         <p>Para mim, Alberto Teca Tomás, aprender nunca foi apenas ouvir dizer ou o professor falou. Aprender de verdade é testar, experimentar, errar, ajustar e comprovar se funciona. É assim que exploramos o nosso potencial, fazemos descobertas reais e criamos soluções úteis para o mundo. Com o avanço acelerado da inteligência artificial, o acesso à informação e à educação tornou-se descentralizado; memorizar e repetir perdeu valor. O que passa a importar é analisar, pensar criticamente, interpretar dados, emitir opiniões fundamentadas e tomar decisões. Ao mesmo tempo, tecnologias como blockchain, tokenização, energia nuclear, carros autónomos e robótica estão a redefinir o trabalho: tarefas repetitivas desaparecem, profissões mudam, outras surgem, e muita gente ficará perdida sem ferramentas adequadas. A Teca Capital nasce exatamente para isso: unir experiência prática, tecnologia e dados para mostrar o passado, explicar o presente e dar direção para o futuro, capacitando pessoas a aprender fazendo e a decidir com consciência. O futuro é claro para mim, vou transformar a educação em Angola através da tecnologia, colocar o país no mapa do mundo e mudar vidas com conhecimento aplicado.</p>
         
-        <p style="text-align: center; font-weight: bold; margin-top: 2rem; color: var(--primary-gold);">Eu Sou Inevitável</p>
+        <p style="text-align: center; font-weight: bold; font-size: 1.2rem; margin-top: 2rem; color: var(--primary-gold);">Eu Sou Inevitável</p>
     </div>
 
     <script>
-        // ===== SLIDESHOW AUTOMÁTICO =====
+        // ===== CONFIGURAÇÃO DAS IMAGENS =====
+        const slideImages = [
+            'Imagem/1A.png',
+            'Imagem/2A.png',
+            'Imagem/A3.png',
+            'Imagem/A4.png',
+            'Imagem/A5.png',
+            'Imagem/A6.png',
+            'Imagem/A7.png',
+            'Imagem/A8.png',
+            'Imagem/A9.png',
+            'Imagem/A10.png',
+            'Imagem/A11.png',
+            'Imagem/A12.png',
+            'Imagem/A13.png',
+            'Imagem/A14.png'
+        ];
+
+        const slideAltTexts = [
+            'Simulador 1',
+            'Simulador 2',
+            'Simulador 3',
+            'Simulador 4',
+            'Simulador 5',
+            'Simulador 6',
+            'Simulador 7',
+            'Simulador 8',
+            'Simulador 9',
+            'Simulador 10',
+            'Simulador 11',
+            'Simulador 12',
+            'Simulador 13',
+            'Simulador 14'
+        ];
+
+        // ===== VARIÁVEIS GLOBAIS =====
+        let currentSlide = 0;
+        let currentModalImageIndex = 0;
+        let slideInterval;
+        let isModalOpen = false;
+        let isInfographicModal = false;
+
+        // ===== INICIALIZAÇÃO =====
         document.addEventListener('DOMContentLoaded', function() {
+            initSlideshow();
+            initVideoControls();
+            updateSlideCounter();
+        });
+
+        // ===== SLIDESHOW =====
+        function initSlideshow() {
+            const slideshow = document.querySelector('.slideshow');
+            
+            // Criar slides dinamicamente
+            slideImages.forEach((src, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.dataset.index = index;
+                
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = slideAltTexts[index];
+                img.loading = 'lazy';
+                
+                // Adicionar evento de clique para abrir no modal
+                slide.addEventListener('click', () => openModal(src, index));
+                
+                slide.appendChild(img);
+                slideshow.appendChild(slide);
+            });
+            
             const slides = document.querySelectorAll('.slide');
-            const slideImages = document.querySelectorAll('.slide img');
-            const indicatorsContainer = document.querySelector('.slide-indicators');
             const prevBtn = document.querySelector('.prev-btn');
             const nextBtn = document.querySelector('.next-btn');
-            let currentSlide = 0;
-            let slideInterval;
             
-            // Imagens para o visualizador
-            const imagePaths = [
-                'Imagem/1A.png',
-                'Imagem/2A.png',
-                'Imagem/A3.png',
-                'Imagem/A4.png',
-                'Imagem/A5.png',
-                'Imagem/A6.png',
-                'Imagem/A7.png',
-                'Imagem/A8.png',
-                'Imagem/A9.png',
-                'Imagem/A10.png',
-                'Imagem/A11.png',
-                'Imagem/A12.png',
-                'Imagem/A13.png',
-                'Imagem/A14.png'
-            ];
+            // Mostrar slide inicial
+            showSlide(0);
             
-            // Criar indicadores
-            slides.forEach((_, index) => {
-                const indicator = document.createElement('div');
-                indicator.className = 'indicator';
-                indicator.dataset.index = index;
-                indicator.addEventListener('click', () => goToSlide(index));
-                indicatorsContainer.appendChild(indicator);
-            });
-            
-            const indicators = document.querySelectorAll('.indicator');
-            
-            // Função para mostrar slide
-            function showSlide(index) {
-                // Esconder todos os slides
-                slides.forEach(slide => slide.classList.remove('active'));
-                indicators.forEach(ind => ind.classList.remove('active'));
-                
-                // Mostrar slide atual
-                slides[index].classList.add('active');
-                indicators[index].classList.add('active');
-                currentSlide = index;
-            }
-            
-            // Função para ir para slide específico
-            function goToSlide(index) {
-                showSlide(index);
-                resetInterval();
-            }
-            
-            // Próximo slide
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }
-            
-            // Slide anterior
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                showSlide(currentSlide);
-            }
-            
-            // Iniciar intervalo automático
-            function startInterval() {
-                slideInterval = setInterval(nextSlide, 5000); // 5 segundos
-            }
-            
-            // Resetar intervalo
-            function resetInterval() {
-                clearInterval(slideInterval);
-                startInterval();
-            }
-            
-            // ===== VISUALIZADOR DE IMAGENS =====
-            const viewerOverlay = document.querySelector('.image-viewer-overlay');
-            const viewerImg = document.querySelector('.image-viewer-img');
-            const closeViewerBtn = document.querySelector('.close-viewer');
-            const prevViewerBtn = document.querySelector('.prev-viewer-btn');
-            const nextViewerBtn = document.querySelector('.next-viewer-btn');
-            const imageCounter = document.querySelector('.image-counter');
-            let currentViewerIndex = 0;
-            
-            // Abrir visualizador
-            function openViewer(index) {
-                currentViewerIndex = index;
-                viewerImg.src = imagePaths[index];
-                imageCounter.textContent = `${index + 1} / ${imagePaths.length}`;
-                viewerOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-            
-            // Fechar visualizador
-            function closeViewer() {
-                viewerOverlay.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            
-            // Próxima imagem no visualizador
-            function nextViewerImage() {
-                currentViewerIndex = (currentViewerIndex + 1) % imagePaths.length;
-                viewerImg.src = imagePaths[currentViewerIndex];
-                imageCounter.textContent = `${currentViewerIndex + 1} / ${imagePaths.length}`;
-            }
-            
-            // Imagem anterior no visualizador
-            function prevViewerImage() {
-                currentViewerIndex = (currentViewerIndex - 1 + imagePaths.length) % imagePaths.length;
-                viewerImg.src = imagePaths[currentViewerIndex];
-                imageCounter.textContent = `${currentViewerIndex + 1} / ${imagePaths.length}`;
-            }
-            
-            // Event listeners para clicar nas imagens
-            slideImages.forEach((img, index) => {
-                img.addEventListener('click', () => openViewer(index));
-            });
-            
-            // Event listeners para visualizador
-            closeViewerBtn.addEventListener('click', closeViewer);
-            prevViewerBtn.addEventListener('click', prevViewerImage);
-            nextViewerBtn.addEventListener('click', nextViewerImage);
-            
-            // Fechar visualizador com ESC
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && viewerOverlay.style.display === 'flex') {
-                    closeViewer();
-                }
-            });
-            
-            // Navegar visualizador com setas
-            document.addEventListener('keydown', (e) => {
-                if (viewerOverlay.style.display !== 'flex') return;
-                
-                if (e.key === 'ArrowLeft') {
-                    prevViewerImage();
-                } else if (e.key === 'ArrowRight') {
-                    nextViewerImage();
-                }
-            });
-            
-            // Event listeners para slideshow
-            prevBtn.addEventListener('click', () => {
+            // Event listeners
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 prevSlide();
                 resetInterval();
             });
             
-            nextBtn.addEventListener('click', () => {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 nextSlide();
                 resetInterval();
             });
             
-            // Controles de teclado para o vídeo
+            // Controles por teclado
+            document.addEventListener('keydown', (e) => {
+                if (isModalOpen) {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                    } else if (e.key === 'ArrowLeft') {
+                        if (!isInfographicModal) prevModalImage();
+                    } else if (e.key === 'ArrowRight') {
+                        if (!isInfographicModal) nextModalImage();
+                    }
+                } else {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                        resetInterval();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                        resetInterval();
+                    }
+                }
+            });
+            
+            // Iniciar intervalo automático
+            startInterval();
+            
+            // Pausar slideshow quando hover
+            const slideshowContainer = document.querySelector('.slideshow-container');
+            slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            slideshowContainer.addEventListener('mouseleave', startInterval);
+            
+            // Touch controls para mobile
+            initTouchControls(slideshowContainer);
+        }
+        
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentSlide = index;
+            updateSlideCounter();
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slideImages.length;
+            showSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slideImages.length) % slideImages.length;
+            showSlide(currentSlide);
+        }
+        
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 5000); // 5 segundos
+        }
+        
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+        
+        function updateSlideCounter() {
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('totalSlides').textContent = slideImages.length;
+        }
+        
+        // ===== MODAL =====
+        function openModal(src, index = 0, isInfographic = false) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            modalImage.src = src;
+            modalImage.alt = isInfographic ? 'Infográfico da Teca Capital' : slideAltTexts[index];
+            
+            isInfographicModal = isInfographic;
+            
+            // Se for uma imagem do slideshow, usar o índice correspondente
+            if (!isInfographic) {
+                currentModalImageIndex = index;
+                // Mostrar controles de navegação
+                document.querySelector('.modal-prev').style.display = 'flex';
+                document.querySelector('.modal-next').style.display = 'flex';
+            } else {
+                // Esconder controles de navegação para infográfico
+                document.querySelector('.modal-prev').style.display = 'none';
+                document.querySelector('.modal-next').style.display = 'none';
+            }
+            
+            modal.classList.add('active');
+            isModalOpen = true;
+            document.body.style.overflow = 'hidden';
+            
+            // Adicionar evento para fechar com ESC
+            document.addEventListener('keydown', handleModalKeydown);
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            isModalOpen = false;
+            isInfographicModal = false;
+            document.body.style.overflow = '';
+            
+            // Remover evento do teclado
+            document.removeEventListener('keydown', handleModalKeydown);
+        }
+        
+        function nextModalImage() {
+            if (isInfographicModal) return;
+            
+            currentModalImageIndex = (currentModalImageIndex + 1) % slideImages.length;
+            document.getElementById('modalImage').src = slideImages[currentModalImageIndex];
+            document.getElementById('modalImage').alt = slideAltTexts[currentModalImageIndex];
+        }
+        
+        function prevModalImage() {
+            if (isInfographicModal) return;
+            
+            currentModalImageIndex = (currentModalImageIndex - 1 + slideImages.length) % slideImages.length;
+            document.getElementById('modalImage').src = slideImages[currentModalImageIndex];
+            document.getElementById('modalImage').alt = slideAltTexts[currentModalImageIndex];
+        }
+        
+        function handleModalKeydown(e) {
+            if (!isModalOpen) return;
+            
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        }
+        
+        // Fechar modal ao clicar fora da imagem
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this || e.target.classList.contains('modal-content')) {
+                closeModal();
+            }
+        });
+        
+        // ===== CONTROLES DE TOUCH PARA MOBILE =====
+        function initTouchControls(container) {
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
+            
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, false);
+            
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            }, false);
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const xDiff = touchStartX - touchEndX;
+                const yDiff = touchStartY - touchEndY;
+                
+                // Verificar se é um swipe horizontal (não vertical)
+                if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                    if (Math.abs(xDiff) > swipeThreshold) {
+                        if (xDiff > 0) {
+                            // Swipe para a esquerda - próxima imagem
+                            nextSlide();
+                        } else {
+                            // Swipe para a direita - imagem anterior
+                            prevSlide();
+                        }
+                        resetInterval();
+                    }
+                }
+            }
+        }
+        
+        // ===== CONTROLES DE VÍDEO =====
+        function initVideoControls() {
             const video = document.querySelector('video');
             if (video) {
                 video.addEventListener('keydown', (e) => {
@@ -1806,23 +2003,7 @@
                     }
                 });
             }
-            
-            // Inicializar
-            showSlide(0);
-            startInterval();
-            
-            // Pausar slideshow quando hover
-            const slideshow = document.querySelector('.slideshow-container');
-            slideshow.addEventListener('mouseenter', () => clearInterval(slideInterval));
-            slideshow.addEventListener('mouseleave', startInterval);
-            
-            // Fechar visualizador ao clicar fora da imagem
-            viewerOverlay.addEventListener('click', (e) => {
-                if (e.target === viewerOverlay) {
-                    closeViewer();
-                }
-            });
-        });
+        }
     </script>
 </section>
 
