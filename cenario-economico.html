@@ -49,633 +49,857 @@
     <main>
    
     <style>
+
         /* ==================== RESET E BASE ==================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', 'Segoe UI', sans-serif;
-            background: #000000;
-            color: #FFFFFF;
-            line-height: 1.6;
-        }
-
-        main {
-            max-width: 1400px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        /* ==================== TIPOGRAFIA ==================== */
-        h2 {
-            color: #D6AE64;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        h3 {
-            color: #D6AE64;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #D6AE64;
-            padding-bottom: 10px;
-        }
-
-        h4 {
-            color: #FFD700;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        h5 {
-            color: #FFFFFF;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        /* ==================== SEÇÕES ==================== */
-        section {
-            background: rgba(214, 174, 100, 0.05);
-            border: 1px solid rgba(214, 174, 100, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        /* ==================== FORMULÁRIO INICIAL ==================== */
-        #formulario-inicial {
-            max-width: 600px;
-            margin: 50px auto;
-            text-align: center;
-        }
-
-        #formulario-inicial input,
-        #formulario-inicial select {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 2px solid #D6AE64;
-            background: rgba(0, 0, 0, 0.8);
-            color: #FFFFFF;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-
-        #formulario-inicial button {
-            width: 100%;
-            padding: 18px;
-            margin-top: 20px;
-            background: linear-gradient(135deg, #D6AE64, #FFD700);
-            border: none;
-            border-radius: 8px;
-            color: #000000;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        #formulario-inicial button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(214, 174, 100, 0.5);
-        }
-
-        /* ==================== CENÁRIOS ==================== */
-        .cenarios-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .cenario-btn {
-            background: rgba(214, 174, 100, 0.1);
-            border: 2px solid #D6AE64;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .cenario-btn:hover {
-            background: rgba(214, 174, 100, 0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(214, 174, 100, 0.4);
-        }
-
-        .cenario-btn.ativo {
-            background: rgba(214, 174, 100, 0.4);
-            border-color: #FFD700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-        }
-
-        .cenario-btn .icone {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .cenario-btn h4 {
-            color: #D6AE64;
-            margin-bottom: 8px;
-        }
-
-        .cenario-btn p {
-            color: #FFFFFF;
-            font-size: 14px;
-        }
-
-        /* ==================== INPUTS E SLIDERS ==================== */
-        .input-group {
-            margin: 20px 0;
-        }
-
-        .input-group label {
-            display: block;
-            color: #D6AE64;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .input-group input[type="number"],
-        .input-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #D6AE64;
-            background: rgba(0, 0, 0, 0.6);
-            color: #FFFFFF;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-
-        .slider-container {
-            margin: 20px 0;
-        }
-
-        .slider-container label {
-            display: block;
-            color: #D6AE64;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .slider-container input[type="range"] {
-            width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: linear-gradient(to right, #FF0000 0%, #FFD700 50%, #00FF00 100%);
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        .slider-container input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #D6AE64;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(214, 174, 100, 0.8);
-        }
-
-        .slider-container input[type="range"]::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #D6AE64;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(214, 174, 100, 0.8);
-        }
-
-        .valor-destaque {
-            display: inline-block;
-            margin-left: 15px;
-            padding: 8px 16px;
-            background: rgba(214, 174, 100, 0.3);
-            border: 1px solid #D6AE64;
-            border-radius: 6px;
-            color: #FFD700;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        /* ==================== TABELAS ==================== */
-        .tabela-container {
-            overflow-x: auto;
-            overflow-y: auto;
-            max-height: 500px;
-            border: 2px solid #D6AE64;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        thead {
-            position: sticky;
-            top: 0;
-            background: #D6AE64;
-            z-index: 10;
-        }
-
-        thead th {
-            padding: 15px;
-            text-align: left;
-            color: #000000;
-            font-weight: bold;
-            border-bottom: 2px solid #FFD700;
-        }
-
-        tbody td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(214, 174, 100, 0.2);
-            color: #FFFFFF;
-        }
-
-        tbody tr:hover {
-            background: rgba(214, 174, 100, 0.1);
-        }
-
-        .setor-valor {
-            width: 120px;
-            padding: 8px;
-            border: 1px solid #D6AE64;
-            background: rgba(0, 0, 0, 0.6);
-            color: #FFFFFF;
-            border-radius: 4px;
-        }
-
-        .setor-percentual {
-            color: #FFD700;
-            font-weight: bold;
-        }
-
-        .total-row {
-            background: rgba(214, 174, 100, 0.3);
-            font-weight: bold;
-        }
-
-        .total-row td {
-            color: #FFD700 !important;
-            font-size: 1.1rem;
-        }
-
-        /* ==================== BOXES E CARDS ==================== */
-        .explicacao-box,
-        .analise-box,
-        .impactos-box,
-        .status-box,
-        .explicacao-detalhada,
-        .causas-box {
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 4px solid #D6AE64;
-        }
-
-        .explicacao-box {
-            background: rgba(214, 174, 100, 0.1);
-            border-left-color: #D6AE64;
-        }
-
-        .verde {
-            background: rgba(0, 255, 0, 0.1);
-            border-left-color: #00FF00;
-            color: #00FF00;
-        }
-
-        .amarelo {
-            background: rgba(255, 215, 0, 0.1);
-            border-left-color: #FFD700;
-            color: #FFD700;
-        }
-
-        .vermelho {
-            background: rgba(255, 0, 0, 0.1);
-            border-left-color: #FF0000;
-            color: #FF0000;
-        }
-
-        .azul {
-            background: rgba(0, 150, 255, 0.1);
-            border-left-color: #0096FF;
-            color: #0096FF;
-        }
-
-        .alerta-box {
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        /* ==================== RESULTADOS ==================== */
-        .resultados-pessoa,
-        .resultados-empresa {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .resultado-card {
-            background: rgba(214, 174, 100, 0.1);
-            border: 1px solid #D6AE64;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .valor-impacto {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .resultado-final {
-            grid-column: 1 / -1;
-            background: rgba(214, 174, 100, 0.2);
-            border: 2px solid #D6AE64;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-        }
-
-        .valor-grande {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        /* ==================== GRÁFICOS ==================== */
-        .grafico-container {
-            background: rgba(214, 174, 100, 0.05);
-            border: 1px solid #D6AE64;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            height: 450px;
-        }
-
-        .grafico-container canvas {
-            max-height: 380px;
-        }
-
-        /* ==================== BOTÕES ==================== */
-        button {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #D6AE64, #FFD700);
-            border: none;
-            border-radius: 6px;
-            color: #000000;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 16px;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(214, 174, 100, 0.5);
-        }
-
-        .opcao-btn {
-            background: rgba(214, 174, 100, 0.2);
-            border: 2px solid #D6AE64;
-            color: #FFFFFF;
-            margin: 5px;
-        }
-
-        .opcao-btn.ativo {
-            background: linear-gradient(135deg, #D6AE64, #FFD700);
-            color: #000000;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-        }
-
-        #btnExportar {
-            width: 100%;
-            padding: 20px;
-            font-size: 20px;
-            margin: 20px 0;
-        }
-
-        /* ==================== RESPONSIVIDADE ==================== */
-        @media (max-width: 1900px) {
-            main {
-                max-width: 100%;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 700px) {
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            h3 {
-                font-size: 1.3rem;
-            }
-            
-            h4 {
-                font-size: 1.1rem;
-            }
-            
-            .cenarios-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .resultados-pessoa,
-            .resultados-empresa {
-                grid-template-columns: 1fr;
-            }
-            
-            section {
-                padding: 15px;
-            }
-            
-            .grafico-container {
-                height: 350px;
-            }
-            
-            table {
-                font-size: 14px;
-            }
-            
-            thead th,
-            tbody td {
-                padding: 8px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            h2 {
-                font-size: 1.3rem;
-            }
-            
-            h3 {
-                font-size: 1.1rem;
-            }
-            
-            .valor-grande {
-                font-size: 1.5rem;
-            }
-            
-            .grafico-container {
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 500px) {
-            main {
-                padding: 10px;
-            }
-            
-            section {
-                padding: 12px;
-            }
-            
-            h2 {
-                font-size: 1.2rem;
-            }
-            
-            button {
-                padding: 10px 18px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 450px) {
-            h2 {
-                font-size: 1.1rem;
-            }
-            
-            h3 {
-                font-size: 1rem;
-            }
-            
-            table {
-                font-size: 12px;
-            }
-            
-            .valor-destaque {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
-        }
-
-        /* ==================== ANIMAÇÕES ==================== */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        section {
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        /* ==================== SCROLLBAR ==================== */
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #D6AE64;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #FFD700;
-        }
-
-        /* ==================== UTILIDADES ==================== */
-        .hidden {
-            display: none !important;
-        }
-
-        .metricas-emprego {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .comparacao-divida {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .metrica-card {
-            background: rgba(214, 174, 100, 0.1);
-            border: 1px solid #D6AE64;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .opcoes-emissao {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .tipo-educacao {
-            display: grid;
-            gap: 20px;
-        }
-
-        .simulador-emprestimo .resultados-emprestimo {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .resultado-item {
-            background: rgba(214, 174, 100, 0.1);
-            border: 1px solid #D6AE64;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .prioridades-investimento {
-            margin-top: 20px;
-        }
-
-        .prioridade-card {
-            background: rgba(214, 174, 100, 0.1);
-            border: 1px solid #D6AE64;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Segoe UI', sans-serif;
+    background: #000000;
+    color: #FFFFFF;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* ==================== TIPOGRAFIA ==================== */
+h2 {
+    color: #D6AE64;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h3 {
+    color: #D6AE64;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #D6AE64;
+    padding-bottom: 10px;
+}
+
+h4 {
+    color: #FFD700;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+h5 {
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* ==================== SEÇÕES ==================== */
+section {
+    background: rgba(214, 174, 100, 0.05);
+    border: 1px solid rgba(214, 174, 100, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+/* ==================== FORMULÁRIO INICIAL ==================== */
+#formulario-inicial {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#formulario-inicial input,
+#formulario-inicial select {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #D6AE64;
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+#formulario-inicial button {
+    width: 100%;
+    padding: 18px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #D6AE64, #FFD700);
+    border: none;
+    border-radius: 8px;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#formulario-inicial button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(214, 174, 100, 0.5);
+}
+
+/* ==================== CENÁRIOS ==================== */
+.cenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.cenario-btn {
+    background: rgba(214, 174, 100, 0.1);
+    border: 2px solid #D6AE64;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cenario-btn:hover {
+    background: rgba(214, 174, 100, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(214, 174, 100, 0.4);
+}
+
+.cenario-btn.ativo {
+    background: rgba(214, 174, 100, 0.4);
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.cenario-btn .icone {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cenario-btn h4 {
+    color: #D6AE64;
+    margin-bottom: 8px;
+}
+
+.cenario-btn p {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+/* ==================== INPUTS E SLIDERS ==================== */
+.input-group {
+    margin: 20px 0;
+}
+
+.input-group label {
+    display: block;
+    color: #D6AE64;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.input-group input[type="number"],
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #D6AE64;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.slider-container {
+    margin: 20px 0;
+}
+
+.slider-container label {
+    display: block;
+    color: #D6AE64;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.slider-container input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #FF0000 0%, #FFD700 50%, #00FF00 100%);
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #D6AE64;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(214, 174, 100, 0.8);
+}
+
+.slider-container input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #D6AE64;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(214, 174, 100, 0.8);
+}
+
+.valor-destaque {
+    display: inline-block;
+    margin-left: 15px;
+    padding: 8px 16px;
+    background: rgba(214, 174, 100, 0.3);
+    border: 1px solid #D6AE64;
+    border-radius: 6px;
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ==================== TABELAS ==================== */
+.tabela-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 500px;
+    border: 2px solid #D6AE64;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background: #D6AE64;
+    z-index: 10;
+}
+
+thead th {
+    padding: 15px;
+    text-align: left;
+    color: #000000;
+    font-weight: bold;
+    border-bottom: 2px solid #FFD700;
+}
+
+tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(214, 174, 100, 0.2);
+    color: #FFFFFF;
+}
+
+tbody tr:hover {
+    background: rgba(214, 174, 100, 0.1);
+}
+
+.setor-valor {
+    width: 120px;
+    padding: 8px;
+    border: 1px solid #D6AE64;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+    border-radius: 4px;
+}
+
+.setor-percentual {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.total-row {
+    background: rgba(214, 174, 100, 0.3);
+    font-weight: bold;
+}
+
+.total-row td {
+    color: #FFD700 !important;
+    font-size: 1.1rem;
+}
+
+/* ==================== BOXES E CARDS ==================== */
+.explicacao-box,
+.analise-box,
+.impactos-box,
+.status-box,
+.explicacao-detalhada,
+.causas-box {
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 4px solid #D6AE64;
+}
+
+.explicacao-box {
+    background: rgba(214, 174, 100, 0.1);
+    border-left-color: #D6AE64;
+}
+
+.verde {
+    background: rgba(0, 255, 0, 0.1);
+    border-left-color: #00FF00;
+    color: #00FF00;
+}
+
+.amarelo {
+    background: rgba(255, 215, 0, 0.1);
+    border-left-color: #FFD700;
+    color: #FFD700;
+}
+
+.vermelho {
+    background: rgba(255, 0, 0, 0.1);
+    border-left-color: #FF0000;
+    color: #FF0000;
+}
+
+.azul {
+    background: rgba(0, 150, 255, 0.1);
+    border-left-color: #0096FF;
+    color: #0096FF;
+}
+
+.alerta-box {
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* ==================== RESULTADOS ==================== */
+.resultados-pessoa,
+.resultados-empresa {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.resultado-card {
+    background: rgba(214, 174, 100, 0.1);
+    border: 1px solid #D6AE64;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.valor-impacto {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.resultado-final {
+    grid-column: 1 / -1;
+    background: rgba(214, 174, 100, 0.2);
+    border: 2px solid #D6AE64;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+}
+
+.valor-grande {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ==================== GRÁFICOS ==================== */
+.grafico-container {
+    background: rgba(214, 174, 100, 0.05);
+    border: 1px solid #D6AE64;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    height: 450px;
+    min-height: 300px;
+}
+
+.grafico-container canvas {
+    max-height: 380px;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* ==================== BOTÕES ==================== */
+button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #D6AE64, #FFD700);
+    border: none;
+    border-radius: 6px;
+    color: #000000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(214, 174, 100, 0.5);
+}
+
+.opcao-btn {
+    background: rgba(214, 174, 100, 0.2);
+    border: 2px solid #D6AE64;
+    color: #FFFFFF;
+    margin: 5px;
+    flex: 1;
+    min-width: 0;
+}
+
+.opcao-btn.ativo {
+    background: linear-gradient(135deg, #D6AE64, #FFD700);
+    color: #000000;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+#btnExportar {
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 1900px) {
+    main {
+        max-width: 100%;
+        padding: 15px;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    main {
+        margin: 30px auto;
+        padding: 15px;
+    }
+    
+    section {
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+    
+    .cenarios-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    
+    .resultados-pessoa,
+    .resultados-empresa {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    
+    .grafico-container {
+        height: 400px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+    
+    h4 {
+        font-size: 1.1rem;
+    }
+    
+    .cenarios-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .cenario-btn {
+        padding: 15px;
+        min-height: 160px;
+    }
+    
+    .cenario-btn .icone {
+        font-size: 2.5rem;
+    }
+    
+    .resultados-pessoa,
+    .resultados-empresa {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .grafico-container {
+        height: 350px;
+        padding: 15px;
+    }
+    
+    table {
+        font-size: 14px;
+        min-width: 600px;
+    }
+    
+    thead th,
+    tbody td {
+        padding: 10px;
+    }
+    
+    .setor-valor {
+        width: 100px;
+        padding: 6px;
+    }
+    
+    .resultado-card {
+        padding: 15px;
+        min-height: 140px;
+    }
+    
+    .valor-grande {
+        font-size: 1.7rem;
+    }
+    
+    .metricas-emprego,
+    .comparacao-divida {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .opcoes-emissao {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .opcao-btn {
+        flex: 1 0 calc(50% - 8px);
+        min-width: 0;
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        margin: 15px auto;
+        padding: 12px;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+        border-bottom-width: 1px;
+    }
+    
+    .valor-grande {
+        font-size: 1.5rem;
+    }
+    
+    .grafico-container {
+        height: 300px;
+        padding: 12px;
+    }
+    
+    .valor-destaque {
+        font-size: 16px;
+        padding: 6px 12px;
+        margin-left: 10px;
+    }
+    
+    .resultado-final {
+        padding: 20px;
+    }
+    
+    #formulario-inicial {
+        margin: 30px auto;
+        padding: 0 15px;
+    }
+    
+    #formulario-inicial button {
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    .simulador-emprestimo .resultados-emprestimo {
+        grid-template-columns: 1fr;
+    }
+    
+    .prioridade-card {
+        padding: 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    main {
+        padding: 10px;
+        margin: 10px auto;
+    }
+    
+    section {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+    
+    button {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+    
+    #btnExportar {
+        padding: 16px;
+        font-size: 18px;
+    }
+    
+    .cenario-btn {
+        min-height: 140px;
+        padding: 12px;
+    }
+    
+    .cenario-btn .icone {
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+    
+    .grafico-container {
+        height: 250px;
+        padding: 10px;
+    }
+    
+    .explicacao-box,
+    .analise-box,
+    .impactos-box,
+    .status-box,
+    .explicacao-detalhada,
+    .causas-box {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .tabela-container {
+        margin: 15px 0;
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 450px) {
+    h2 {
+        font-size: 1.1rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+    
+    h4 {
+        font-size: 0.95rem;
+    }
+    
+    table {
+        font-size: 12px;
+        min-width: 500px;
+    }
+    
+    .valor-destaque {
+        font-size: 14px;
+        padding: 5px 10px;
+        margin-left: 8px;
+    }
+    
+    .resultado-card {
+        padding: 12px;
+        min-height: 120px;
+    }
+    
+    .valor-impacto {
+        font-size: 1.3rem;
+    }
+    
+    .opcoes-emissao {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .opcao-btn {
+        flex: 1 0 100%;
+        width: 100%;
+    }
+    
+    .tipo-educacao {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    main {
+        padding: 8px;
+    }
+    
+    section {
+        padding: 12px;
+    }
+    
+    h2 {
+        font-size: 1rem;
+    }
+    
+    .grafico-container {
+        height: 200px;
+    }
+    
+    .cenario-btn {
+        min-height: 130px;
+    }
+    
+    .cenario-btn p {
+        font-size: 12px;
+    }
+}
+
+/* ==================== ANIMAÇÕES ==================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ==================== SCROLLBAR ==================== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D6AE64;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #FFD700;
+}
+
+/* ==================== UTILIDADES ==================== */
+.hidden {
+    display: none !important;
+}
+
+.metricas-emprego {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.comparacao-divida {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.metrica-card {
+    background: rgba(214, 174, 100, 0.1);
+    border: 1px solid #D6AE64;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.opcoes-emissao {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.tipo-educacao {
+    display: grid;
+    gap: 20px;
+}
+
+.simulador-emprestimo .resultados-emprestimo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.resultado-item {
+    background: rgba(214, 174, 100, 0.1);
+    border: 1px solid #D6AE64;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.prioridades-investimento {
+    margin-top: 20px;
+}
+
+.prioridade-card {
+    background: rgba(214, 174, 100, 0.1);
+    border: 1px solid #D6AE64;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
     </style>
-</head>
-<body>
+
     <main>
         <!-- 1️⃣ FORMULÁRIO INICIAL -->
         <section id="formulario-inicial">
