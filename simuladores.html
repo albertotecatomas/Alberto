@@ -847,6 +847,705 @@
             </div>
         </div>
 
+       <section id="conteudo-educacional" class="teca-content">
+    <style>
+        /* ===== VARIÁVEIS E CONFIGURAÇÕES ===== */
+        :root {
+            --primary-gold: rgb(214, 174, 100);
+            --primary-gold-rgb: 214, 174, 100;
+            --gold-dark: rgb(194, 154, 80);
+            --gold-darker: rgb(174, 134, 60);
+            --gold-light: rgba(214, 174, 100, 0.15);
+            --gold-lighter: rgba(214, 174, 100, 0.08);
+            --gold-glow: rgba(214, 174, 100, 0.4);
+            
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-elevated: #242424;
+            
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-tertiary: #a0a0a0;
+            --text-muted: #666666;
+            
+            --border-radius: 16px;
+            --border-radius-sm: 10px;
+            --border-radius-lg: 24px;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --shadow-gold: 0 0 20px rgba(214, 174, 100, 0.3);
+            
+            --transition: all 0.3s ease;
+        }
+        
+        /* ===== LIGHT MODE ===== */
+        [data-theme="light"] {
+            --primary-gold: rgb(184, 134, 11);
+            --primary-gold-rgb: 184, 134, 11;
+            --gold-dark: rgb(154, 114, 11);
+            --gold-darker: rgb(134, 94, 11);
+            --gold-light: rgba(184, 134, 11, 0.1);
+            --gold-lighter: rgba(184, 134, 11, 0.05);
+            --gold-glow: rgba(184, 134, 11, 0.2);
+            
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f3f4;
+            --bg-card: #ffffff;
+            --bg-elevated: #ffffff;
+            
+            --text-primary: #1a1a1a;
+            --text-secondary: #333333;
+            --text-tertiary: #555555;
+            --text-muted: #888888;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.15);
+            --shadow-gold: 0 0 20px rgba(184, 134, 11, 0.15);
+        }
+        
+        /* ===== ESTILOS GERAIS ===== */
+        .teca-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+        
+        .teca-content * {
+            box-sizing: border-box;
+        }
+        
+        /* ===== TIPOGRAFIA ===== */
+        .teca-content h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, #ffeba0 50%, var(--primary-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .teca-content h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin: 3rem 0 1.5rem;
+            color: var(--primary-gold);
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 0.5rem;
+        }
+        
+        .teca-content h3 {
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+        
+        .teca-content p {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .teca-content ul, .teca-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        
+        .teca-content li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        
+        /* ===== CARDS E SEÇÕES ===== */
+        .content-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        [data-theme="light"] .content-card {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .highlight-text {
+            background: var(--gold-light);
+            border-left: 4px solid var(--primary-gold);
+            padding: 1.5rem;
+            border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        /* ===== TABELAS RESPONSIVAS ===== */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        [data-theme="light"] .table-responsive {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .teca-content table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            background: var(--bg-elevated);
+        }
+        
+        .teca-content th {
+            background: var(--gold-light);
+            color: var(--primary-gold);
+            font-weight: 600;
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 2px solid var(--primary-gold);
+        }
+        
+        .teca-content td {
+            padding: 0.875rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+        
+        [data-theme="light"] .teca-content td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .teca-content tbody tr:hover {
+            background: var(--gold-lighter);
+        }
+        
+        /* ===== SLIDESHOW ===== */
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: var(--bg-card);
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .slideshow-controls {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            z-index: 10;
+        }
+        
+        .slideshow-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        
+        .slideshow-btn:hover {
+            background: var(--primary-gold);
+            transform: scale(1.1);
+        }
+        
+        .slide-indicators {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .indicator.active {
+            background: var(--primary-gold);
+            transform: scale(1.2);
+        }
+        
+        /* ===== MULTIMÍDIA ===== */
+        .media-container {
+            margin: 3rem 0;
+        }
+        
+        .media-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-md);
+        }
+        
+        [data-theme="light"] .media-card {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .media-card h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .media-card video {
+            width: 100%;
+            border-radius: var(--border-radius);
+            background: var(--bg-primary);
+        }
+        
+        .media-card img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+        }
+        
+        .media-card audio {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .media-card p {
+            margin-bottom: 1rem;
+            color: var(--text-tertiary);
+        }
+        
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            .teca-content {
+                padding: 1rem;
+            }
+            
+            .content-card {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+            
+            .slideshow {
+                height: 400px;
+            }
+            
+            .media-card {
+                padding: 1.5rem;
+            }
+            
+            .teca-content table {
+                min-width: 500px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slideshow {
+                height: 300px;
+            }
+            
+            .slideshow-controls {
+                bottom: 1rem;
+            }
+            
+            .slideshow-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+
+    <div class="content-card">
+        <h1>Simuladores da Teca Capital Investimentos</h1>
+        
+        <div class="highlight-text">
+            <h2>O que é um simulador?</h2>
+            <p>Um simulador educacional é uma ferramenta ou ambiente digital que replica situações do mundo real de forma controlada, permitindo que o usuário experimente, explore e tome decisões sem os riscos associados a essas situações na prática real. Ele vai além de um simples recurso visual, combina lógica, regras, feedback e interação para que o aprendiz possa executar ações, ver resultados imediatos e aprender pela experiência ativa, em vez de apenas consumir informação de forma passiva (Pearson Higher Education).</p>
+            
+            <p>No campo pedagógico, simuladores são alinhados com a aprendizagem experiencial (learning by doing), que parte da ideia de que o conhecimento se constrói melhor quando o sujeito está diretamente engajado em resolver problemas e fazer escolhas em ambientes que imitam aspectos essenciais do real (Pearson Higher Education).</p>
+            
+            <p>Autoria clássica relacionada ao papel dos meios audiovisuais na aprendizagem aparece em Edgar Dale, com seu Cone da Experiência, que enfatiza o valor de métodos audiovisuais para reforçar a aprendizagem além do texto tradicional. Ele desenvolveu metodologias que associam filmes, imagens e experiências a melhora na retenção e compreensão do conteúdo.</p>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <h2>Educação Tradicional vs Educação Audiovisual/Digital</h2>
+        
+        <h3>1. Estrutura e Método</h3>
+        <p>A educação tradicional baseia-se em aulas presenciais com o professor como transmissor principal do conteúdo, seguindo horários fixos, currículos rígidos e métodos conteudistas, onde o foco muitas vezes é a memorização e repetição de informações. Esse modelo pode desenvolver disciplina e interação social, mas nem sempre favorece o desenvolvimento de habilidades práticas ou pensamento crítico por si só.</p>
+        
+        <p>A educação audiovisual e digital incorpora tecnologias como vídeo, áudio, gráficos, animações e simuladores, permitindo ao aprendiz interagir com o conteúdo e experimentar cenários de forma ativa, promovendo aprendizagem experiencial e multimodal.</p>
+        
+        <h3>2. Retenção e Engajamento</h3>
+        <p>A retenção de informação com a educação tradicional tende a ser menor quando comparada com métodos multimídia; estudos sugerem que alunos podem reter apenas 10–20% do que é apresentado em aulas expositivas tradicionais.</p>
+        
+        <p>Já o uso de tecnologias audiovisuais e multimídia pode elevar a retenção de informações para até 65% ou mais, porque engaja múltiplos sentidos, visual, auditivo e cognitivo, o que aumenta o armazenamento e recuperação do conteúdo aprendido.</p>
+        
+        <h3>3. Flexibilidade e Acesso</h3>
+        <p>A educação tradicional exige presença física e horários fixos, o que limita a flexibilidade para quem trabalha, viaja ou tem outros compromissos.</p>
+        
+        <p>Ambientes digitais audiovisuais permitem que o aprendiz acesse conteúdos quando e onde for favorecendo o próprio ritmo, revisões e personalização. Estudos demonstram que plataformas online podem aumentar taxas de retenção e conclusão de cursos justamente por oferecer esta flexibilidade.</p>
+        
+        <h3>4. Aprendizagem Ativa vs Passiva</h3>
+        <p>A abordagem tradicional muitas vezes mantém o aluno em posição passiva, recebendo informação sem a necessidade de experimentação prática.</p>
+        
+        <p>A educação audiovisual favorece uma aprendizagem ativa por meio de simuladores, quizzes, animações e interações alinhando-se com o conceito de "learning by doing" (aprender fazendo), que tem suporte em pedagogias contemporâneas de educação digital.</p>
+        
+        <h3>5. Competências e Habilidades do Século XXI</h3>
+        <p>Metodologias tradicionais frequentemente preparam bem para habilidades básicas, mas podem ser lentas em desenvolver pensamento crítico, adaptabilidade e autonomia, que são essenciais em ambientes dinâmicos e mercados modernos.</p>
+        
+        <p>O uso sistemático de ferramentas audiovisuais e digitais incentiva o desenvolvimento de pensamento analítico, resolução de problemas e autogestão da aprendizagem, competências valorizadas no mercado global (iiscientific.com).</p>
+        
+        <h3>6. Personalização e Inclusão</h3>
+        <p>Nas salas tradicionais, a personalização é limitada; todos seguem o mesmo ritmo e metodologia.</p>
+        
+        <p>Ferramentas digitais, especialmente as que combinam audiovisual e interatividade, permitem traçar rotas de aprendizagem personalizadas com base no desempenho e nas preferências individuais, reduzindo barreiras para diferentes perfis de estudantes (iiscientific.com).</p>
+    </div>
+
+    <div class="content-card">
+        <h2>Resumo de Forças e Limitações</h2>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Educação Tradicional</th>
+                        <th>Educação Audiovisual/Digital</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Retenção de conteúdo</td>
+                        <td>Moderada a baixa</td>
+                        <td>Alta (multissensorial) (KCAV)</td>
+                    </tr>
+                    <tr>
+                        <td>Flexibilidade</td>
+                        <td>Baixa</td>
+                        <td>Alta (acesso remoto) (online.uj.ac.za)</td>
+                    </tr>
+                    <tr>
+                        <td>Engajamento</td>
+                        <td>Variável</td>
+                        <td>Elevado (interativo) (Editora Verde)</td>
+                    </tr>
+                    <tr>
+                        <td>Personalização</td>
+                        <td>Limitada</td>
+                        <td>Alta (adaptação individual) (iiscientific.com)</td>
+                    </tr>
+                    <tr>
+                        <td>Desenvolvimento de habilidades práticas</td>
+                        <td>Média</td>
+                        <td>Excelente (simuladores e interatividade) (KCAV)</td>
+                    </tr>
+                    <tr>
+                        <td>Estrutura</td>
+                        <td>Fixa</td>
+                        <td>Flexível</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p>A proposta da Teca Capital Investimentos de usar simuladores e conteúdos audiovisuais educativos capitaliza exatamente os pontos fortes do modelo digital:</p>
+        
+        <ul>
+            <li>Aprendizagem ativa e interativa: os simuladores estimulam o pensamento crítico e a aplicação prática.</li>
+            <li>Retenção superior de conteúdo: apoiada por multimídia que engaja mais que texto ou palestra apenas.</li>
+            <li>Flexibilidade e autonomia: permitindo ao usuário aprender quando e como quiser, essencial para adultos e profissionais em formação.</li>
+            <li>Personalização, porque cada aluno pode navegar em conteúdo à sua velocidade e necessidade, algo que a educação tradicional nem sempre consegue oferecer. (KCAV)</li>
+        </ul>
+    </div>
+
+    <div class="content-card">
+        <h2>Educação Híbrida</h2>
+        <p>A educação do presente e do futuro não é "ou tradicional ou audiovisual" é a integração inteligente dos dois. A educação tradicional continua essencial por oferecer estrutura, base teórica, método, disciplina e raciocínio lógico, enquanto a educação audiovisual entra para resolver o que o modelo clássico não consegue escalar bem: visualização, prática, interação, autonomia e experimentação sem risco. Quando esses dois mundos se unem, o aprendizado deixa de ser apenas transmissão de conteúdo e passa a ser construção ativa de conhecimento, o aluno entende o conceito, vê como ele funciona e aplica na prática.</p>
+        
+        <p>É exatamente nesse ponto que a Teca Capital Investimentos se destaca. A plataforma nasce para fundir teoria sólida com tecnologia audiovisual interativa, usando simuladores, gráficos dinâmicos, vídeos, áudios, exercícios práticos, quizzes e análise de cenários como extensão natural do ensino tradicional. O conteúdo não substitui a base académica, ele potencializa, acelera a compreensão e reduz a distância entre aprender e saber fazer. Com múltiplos serviços dentro desse nicho, a Teca Capital cria um ecossistema educacional híbrido, onde aprender é entender, testar, errar, ajustar e evoluir tudo no mesmo ambiente, isso não é tendência, é direção.</p>
+    </div>
+
+    <!-- MULTIMÍDIA INTEGRADA -->
+    <div class="media-container">
+        <div class="media-card">
+            <h2>Apresentação em Vídeo do Nosso Principal Serviço</h2>
+            <video src="Video/O_Poder_de_Aprender_Fazendo.mp4" width="100%" controls></video>
+        </div>
+
+        <div class="media-card">
+            <h2>Infográfico</h2>
+            <img src="Imagem/Aprender fazendo Teca Capital Investimentos.png" width="100%" alt="infografico da teca capital">
+        </div>
+
+        <div class="media-card">
+            <h2>Apresentação dos Nossos Simuladores</h2>
+            <p>O que são? Como funcionam? E quem está por tras disso? e o nosso objetivos com eles</p>
+            
+            <!-- SLIDESHOW -->
+            <div class="slideshow-container">
+                <div class="slideshow">
+                    <div class="slide active">
+                        <img src="Imagem/1A.png" alt="Simulador 1">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/2A.png" alt="Simulador 2">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A3.png" alt="Simulador 3">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A4.png" alt="Simulador 4">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A5.png" alt="Simulador 5">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A6.png" alt="Simulador 6">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A7.png" alt="Simulador 7">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A8.png" alt="Simulador 8">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A9.png" alt="Simulador 9">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A10.png" alt="Simulador 10">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A11.png" alt="Simulador 11">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A12.png" alt="Simulador 12">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A13.png" alt="Simulador 13">
+                    </div>
+                    <div class="slide">
+                        <img src="Imagem/A14.png" alt="Simulador 14">
+                    </div>
+                </div>
+                
+                <div class="slideshow-controls">
+                    <button class="slideshow-btn prev-btn" aria-label="Imagem anterior">❮</button>
+                    <div class="slide-indicators">
+                        <!-- Gerado via JavaScript -->
+                    </div>
+                    <button class="slideshow-btn next-btn" aria-label="Próxima imagem">❯</button>
+                </div>
+            </div>
+            <!-- FIM SLIDESHOW -->
+        </div>
+
+        <div class="media-card">
+            <h2>Mini-Podcast - Teca Capital</h2>
+            <p>Uma breve conversa de 12 minutos e 40 segundos sobre educação audiovisual</p>
+            <audio src="audio/Simuladores_Teca_Capital__Ponte_Teoria_Prática.m4a" controls></audio>
+        </div>
+    </div>
+
+    <div class="content-card">
+        <h2>O simulador da Teca Capital Investimentos: o que é e como funciona</h2>
+        <p>A Teca Capital Investimentos disponibiliza atualmente seis simuladores educacionais, todos focados nas Ciências Económicas, concebidos para transformar teoria em prática por meio de interação direta, análise de dados e experimentação sem risco. Cada simulador funciona como um laboratório digital, permitindo que o usuário compreenda como os conceitos funcionam no mundo real. No futuro, essa mesma lógica será expandida para áreas como saúde, agricultura, engenharia e outros setores estratégicos.</p>
+        
+        <h3>1. Simulador de Contabilidade Prática</h3>
+        <p>Este simulador foi criado para ensinar a linguagem dos negócios de forma aplicada. O usuário aprende a registrar transações, compreender débitos e créditos, elaborar balanços patrimoniais, demonstrações de resultados e interpretar informações financeiras essenciais. É ideal para estudantes, empreendedores e gestores que precisam entender como a contabilidade reflete a realidade financeira de uma empresa e apoia a tomada de decisões.</p>
+        
+        <h3>2. Simulador de Estudo de Viabilidade</h3>
+        <p>Aqui o foco é responder à pergunta-chave de qualquer projeto: vale a pena investir? O simulador permite analisar mercados, projetar receitas, estimar custos, calcular lucros e retorno sobre o investimento (ROI). O usuário pode testar diferentes cenários antes de investir dinheiro real, tornando a ferramenta essencial para quem pretende abrir um negócio, expandir uma empresa ou lançar um novo produto.</p>
+        
+        <h3>3. Simulador de Mercados Financeiros</h3>
+        <p>Este ambiente replica o funcionamento do mercado financeiro de forma controlada. O usuário pode simular investimentos em ações, criptomoedas, títulos e ETFs, aprendendo na prática sobre diversificação de carteira, análise de risco, volatilidade e comportamento do mercado. O objetivo é ensinar como investir de forma consciente, estratégica e sem exposição a perdas reais.</p>
+        
+        <h3>4. Quiz do Mercado</h3>
+        <p>O Quiz do Mercado é uma ferramenta de aprendizagem ativa, baseada em perguntas e respostas sobre economia, finanças, negócios, mercado angolano e global. O sistema de pontuação e ranking estimula o raciocínio rápido, a revisão de conceitos e a evolução contínua do conhecimento, tornando o aprendizado mais dinâmico e envolvente.</p>
+        
+        <h3>5. Simulador de Cenários Económicos</h3>
+        <p>Neste simulador, o usuário compreende como a economia funciona como um sistema interligado. São apresentados diferentes cenários económicos, explicando indicadores como inflação, crescimento, emprego, políticas públicas e o papel do Estado. O foco é mostrar como essas variáveis afetam o dinheiro, as empresas, o emprego e a qualidade de vida, ajudando o usuário a interpretar a economia angolana de forma clara e prática.</p>
+        
+        <h3>6. Simulador "Minha Empresa na Bolsa de Valores"</h3>
+        <p>Este simulador permite experimentar como seria ter uma empresa listada na Bolsa de Valores. O usuário aprende sobre os processos do mercado primário e secundário, entende como uma empresa é avaliada, acompanha a precificação do ativo em tempo real e pode simular a emissão de ações ou obrigações. É uma ferramenta essencial para compreender o funcionamento do mercado de capitais e o acesso das empresas ao financiamento via bolsa.</p>
+        
+        <p>Em conjunto, esses seis simuladores formam o núcleo educacional da Teca Capital Investimentos, oferecendo uma experiência prática, audiovisual e interativa nas ciências económicas. A mesma arquitetura será futuramente aplicada a outros setores estratégicos, mantendo o mesmo princípio: aprender fazendo, testando cenários e tomando decisões informadas.</p>
+    </div>
+
+    <div class="content-card highlight-text">
+        <h2>O Motivo por trás de tudo</h2>
+        <p>Para mim, Alberto Teca Tomás, aprender nunca foi apenas ouvir dizer ou o professor falou. Aprender de verdade é testar, experimentar, errar, ajustar e comprovar se funciona. É assim que exploramos o nosso potencial, fazemos descobertas reais e criamos soluções úteis para o mundo. Com o avanço acelerado da inteligência artificial, o acesso à informação e à educação tornou-se descentralizado; memorizar e repetir perdeu valor. O que passa a importar é analisar, pensar criticamente, interpretar dados, emitir opiniões fundamentadas e tomar decisões. Ao mesmo tempo, tecnologias como blockchain, tokenização, energia nuclear, carros autónomos e robótica estão a redefinir o trabalho: tarefas repetitivas desaparecem, profissões mudam, outras surgem, e muita gente ficará perdida sem ferramentas adequadas. A Teca Capital nasce exatamente para isso: unir experiência prática, tecnologia e dados para mostrar o passado, explicar o presente e dar direção para o futuro, capacitando pessoas a aprender fazendo e a decidir com consciência. O futuro é claro para mim, vou transformar a educação em Angola através da tecnologia, colocar o país no mapa do mundo e mudar vidas com conhecimento aplicado.</p>
+        
+        <p style="text-align: center; font-weight: bold; font-size: 1.2rem; margin-top: 2rem; color: var(--primary-gold);">Eu Sou Inevitável</p>
+    </div>
+
+    <script>
+        // ===== SLIDESHOW AUTOMÁTICO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const indicatorsContainer = document.querySelector('.slide-indicators');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            // Criar indicadores
+            slides.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                indicator.dataset.index = index;
+                indicator.addEventListener('click', () => goToSlide(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            const indicators = document.querySelectorAll('.indicator');
+            
+            // Função para mostrar slide
+            function showSlide(index) {
+                // Esconder todos os slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(ind => ind.classList.remove('active'));
+                
+                // Mostrar slide atual
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            // Função para ir para slide específico
+            function goToSlide(index) {
+                showSlide(index);
+                resetInterval();
+            }
+            
+            // Próximo slide
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            // Slide anterior
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            // Iniciar intervalo automático
+            function startInterval() {
+                slideInterval = setInterval(nextSlide, 5000); // 5 segundos
+            }
+            
+            // Resetar intervalo
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', () => {
+                prevSlide();
+                resetInterval();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                nextSlide();
+                resetInterval();
+            });
+            
+            // Controles de teclado para o vídeo
+            const video = document.querySelector('video');
+            if (video) {
+                video.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.code === 'Space') {
+                        e.preventDefault();
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    }
+                });
+            }
+            
+            // Inicializar
+            showSlide(0);
+            startInterval();
+            
+            // Pausar slideshow quando hover
+            const slideshow = document.querySelector('.slideshow-container');
+            slideshow.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            slideshow.addEventListener('mouseleave', startInterval);
+        });
+    </script>
+</section>
+
         <!-- SEÇÃO DE BENEFÍCIOS -->
         <section class="benefits-section">
             <h2 class="benefits-title">Por que usar nossos simuladores?</h2>
