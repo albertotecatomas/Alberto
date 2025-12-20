@@ -2358,6 +2358,343 @@
         pointer-events: none !important;
     }
 }
+
+/* ========== LIGHT MODE ========== */
+[data-theme="light"] {
+    --bg-primary: #f8f9fa;
+    --text-white: #212529;
+    --gray-dark: #e9ecef;
+    --gray-medium: #ced4da;
+    --gray-light: #adb5bd;
+    --accent-green: #9c7c38;
+}
+
+[data-theme="light"] body {
+    background-color: var(--bg-primary);
+    color: var(--text-white);
+}
+
+[data-theme="light"] .onboarding-container h1 {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .onboarding-container h2 {
+    color: var(--text-white);
+}
+
+[data-theme="light"] .info-box {
+    background: #ffffff;
+    border: 2px solid var(--accent-green);
+}
+
+[data-theme="light"] .info-box p {
+    color: #495057;
+}
+
+[data-theme="light"] #user-setup input,
+[data-theme="light"] #user-setup select {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+    color: var(--text-white);
+}
+
+[data-theme="light"] #user-setup input:focus,
+[data-theme="light"] #user-setup select:focus {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(156, 124, 56, 0.1);
+}
+
+[data-theme="light"] .profile-card,
+[data-theme="light"] .scenario-card {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] .profile-card:hover,
+[data-theme="light"] .scenario-card:hover {
+    border-color: var(--accent-green);
+}
+
+[data-theme="light"] .profile-card p,
+[data-theme="light"] .scenario-card p {
+    color: #6c757d;
+}
+
+[data-theme="light"] .balance-options button {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+    color: var(--text-white);
+}
+
+[data-theme="light"] .balance-options button:hover {
+    border-color: var(--accent-green);
+    background: rgba(156, 124, 56, 0.1);
+}
+
+[data-theme="light"] .btn-secondary {
+    background: #ffffff;
+    color: var(--text-white);
+    border: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] .btn-secondary:hover {
+    border-color: var(--accent-green);
+    background: rgba(156, 124, 56, 0.1);
+}
+
+[data-theme="light"] .dashboard-header {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] .dashboard-header h2 {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .summary-card,
+[data-theme="light"] .portfolio-allocation-details,
+[data-theme="light"] .performance-ranking,
+[data-theme="light"] .positions-list {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] .summary-card h3,
+[data-theme="light"] .portfolio-allocation-details h4,
+[data-theme="light"] .performance-ranking h4,
+[data-theme="light"] .positions-list h4 {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .balance-item {
+    border-bottom: 1px solid var(--gray-medium);
+}
+
+[data-theme="light"] .balance-item .label {
+    color: #6c757d;
+}
+
+[data-theme="light"] .balance-item.highlight {
+    background: rgba(156, 124, 56, 0.05);
+}
+
+[data-theme="light"] .allocation-item {
+    background: var(--gray-dark);
+}
+
+[data-theme="light"] .allocation-item:hover {
+    background: var(--gray-medium);
+}
+
+[data-theme="light"] .allocation-name {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .ranking-item {
+    background: var(--gray-dark);
+}
+
+[data-theme="light"] .ranking-item:hover {
+    background: var(--gray-medium);
+}
+
+[data-theme="light"] .ranking-ticker {
+    color: var(--text-white);
+}
+
+[data-theme="light"] .asset-tabs {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] .asset-tabs .tab {
+    color: #6c757d;
+}
+
+[data-theme="light"] .asset-tabs .tab:hover {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .btn-info {
+    background: rgba(156, 124, 56, 0.1);
+    border: 2px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .btn-info:hover {
+    background: var(--accent-green);
+    color: #ffffff;
+}
+
+[data-theme="light"] .explanation-box {
+    background: #ffffff;
+    border: 2px solid var(--accent-green);
+}
+
+[data-theme="light"] .explanation-box h4 {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .explanation-box p {
+    color: #495057;
+}
+
+[data-theme="light"] .asset-card {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] .asset-card:hover {
+    border-color: var(--accent-green);
+}
+
+[data-theme="light"] .asset-info h4 {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .ticker {
+    color: #6c757d;
+}
+
+[data-theme="light"] .price-value {
+    color: var(--text-white);
+}
+
+[data-theme="light"] .crypto-info,
+[data-theme="light"] .bond-info {
+    background: var(--gray-dark);
+}
+
+[data-theme="light"] .crypto-info .label,
+[data-theme="light"] .bond-info p {
+    color: #6c757d;
+}
+
+[data-theme="light"] .crypto-info .value {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .modal-content {
+    background: #ffffff;
+    border: 2px solid var(--accent-green);
+}
+
+[data-theme="light"] .asset-details {
+    background: var(--gray-dark);
+}
+
+[data-theme="light"] .asset-details h4 {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .trade-form input {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+    color: var(--text-white);
+}
+
+[data-theme="light"] .trade-summary {
+    background: rgba(156, 124, 56, 0.05);
+}
+
+[data-theme="light"] .transaction-history {
+    background: #ffffff;
+    border: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] .transaction-history h3 {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] #transactions-table th {
+    background: var(--gray-dark);
+    color: var(--accent-green);
+    border-bottom: 2px solid var(--gray-medium);
+}
+
+[data-theme="light"] #transactions-table td {
+    border-bottom: 1px solid var(--gray-medium);
+}
+
+[data-theme="light"] #transactions-table tbody tr:hover {
+    background: var(--gray-dark);
+}
+
+[data-theme="light"] .notification {
+    background: #ffffff;
+    border: 2px solid var(--accent-green);
+}
+
+[data-theme="light"] .notification.success {
+    border-color: var(--success);
+}
+
+[data-theme="light"] .notification.error {
+    border-color: var(--danger);
+}
+
+[data-theme="light"] .notification.warning {
+    border-color: var(--warning);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--gray-dark);
+}
+
+/* ========== RESPONSIVIDADE DO MENU HORIZONTAL (1000px → 450px) ========== */
+@media (max-width: 1000px) and (min-width: 450px) {
+    .simulator-nav {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: thin !important;
+        scrollbar-color: var(--accent-green) transparent !important;
+        padding: 10px 15px !important;
+        margin: 20px 0 !important;
+        gap: 8px !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+    
+    .simulator-nav::-webkit-scrollbar {
+        height: 6px !important;
+    }
+    
+    .simulator-nav::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+    
+    .simulator-nav::-webkit-scrollbar-thumb {
+        background-color: var(--accent-green) !important;
+        border-radius: 3px !important;
+    }
+    
+    .nav-btn {
+        flex: 0 0 auto !important;
+        min-width: max-content !important;
+        width: auto !important;
+        padding: 10px 16px !important;
+        font-size: clamp(11px, 1.8vw, 14px) !important;
+        min-height: 40px !important;
+    }
+}
+
+/* Ajustes específicos para telas muito pequenas */
+@media (max-width: 600px) {
+    .simulator-nav {
+        margin: 15px 0 !important;
+        padding: 8px 10px !important;
+    }
+    
+    .nav-btn {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        min-height: 36px !important;
+    }
+}
     </style>
 
 
@@ -4444,54 +4781,190 @@
       
         </main>
 
-
-     <footer>
-    <div>
-        <!-- REDES SOCIAIS -->
-        <div id="socialmidia">
-            <h3>Redes Sociais</h3>
-            <div class="social-icons">
-                <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="https://www.tiktok.com/@tecacapital" target="_blank">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-                <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- CONTATO -->
-        <div id="Contato">
-            <h3>Contato</h3>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <p>Gmail:</p>
-                    <a href="mailto:tecacapitalinvestimentostci@gmail.com">
-                        tecacapitalinvestimentostci@gmail.com
+ <footer role="contentinfo">
+        <div class="tc-footer-wrap">
+            <!-- REDES SOCIAIS -->
+            <div id="socialmidia" class="tc-footer-col">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/watch?v=_lbwST_xK_E" target="_blank" aria-label="YouTube">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@tecacapital" target="_blank" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61579163578380" target="_blank" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="https://wa.me/message/2X43ZA7RMITSJ1" target="_blank" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
                     </a>
                 </div>
-                <div class="contact-item">
-                    <p>Telefone:</p>
-                    <a href="tel:+244923456789">
-                    +244 923 456 789
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <p>Endereço:</p>
-                    <span>Rua das flores, Nº 123, Huambo, Angola</span>
+            </div>
+
+            <!-- CONTATO -->
+            <div id="Contato" class="tc-footer-col">
+                <h3>Contato</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <p>Gmail:</p>
+                        <a href="mailto:tecacapitalinvestimentostci@gmail.com">
+                            tecacapitalinvestimentostci@gmail.com
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Telefone:</p>
+                        <a href="tel:+244923456789">
+                           +244 923 456 789
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <p>Endereço:</p>
+                        <span>Rua das flores, Nº 123, Huambo, Angola</span>
+                    </div>
                 </div>
             </div>
+            
+            <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
         </div>
+    </footer>
+
+    <!-- SCRIPT EMBUTIDO PARA TEMA E UTILITÁRIOS -->
+    <script>
+    (function() {
+        'use strict';
         
-        <p class="timeline">&copy; 2025 Teca Capital Investimentos | Todos os direitos reservados</p>
-    </div>
-</footer>
+        // 1. GERENCIAMENTO DE TEMA
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Função para obter tema atual
+        function getCurrentTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) return savedTheme;
+            return prefersDarkScheme.matches ? 'dark' : 'light';
+        }
+        
+        // Função para aplicar tema
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            // Atualizar aria-pressed no botão
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'false' : 'true');
+            }
+            
+            // Atualizar ícone
+            updateThemeIcon(theme);
+        }
+        
+        // Função para alternar tema
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme') || getCurrentTheme();
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        }
+        
+        // Função para atualizar ícone
+        function updateThemeIcon(theme) {
+            if (!themeToggle) return;
+            
+            const sunIcon = themeToggle.querySelector('.tc-icon-sun');
+            const moonIcon = themeToggle.querySelector('.tc-icon-moon');
+            
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = theme === 'dark' ? 'block' : 'none';
+                moonIcon.style.display = theme === 'dark' ? 'none' : 'block';
+            }
+        }
+        
+        // Inicializar tema
+        const initialTheme = getCurrentTheme();
+        applyTheme(initialTheme);
+        
+        // Adicionar event listener ao botão
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+            themeToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+        }
+        
+        // 2. RESPONSIVIDADE DE TABELAS
+        function enhanceTables() {
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.closest('.tc-overflow')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-overflow';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+        }
+        
+        // 3. RESPONSIVIDADE DE VÍDEOS
+        function enhanceVideos() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                if (!video.closest('.tc-video-wrap')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'tc-video-wrap';
+                    video.parentNode.insertBefore(wrapper, video);
+                    wrapper.appendChild(video);
+                }
+                
+                // Adicionar atributos de acessibilidade
+                if (!video.hasAttribute('playsinline')) {
+                    video.setAttribute('playsinline', '');
+                }
+                if (!video.hasAttribute('aria-label') && !video.hasAttribute('aria-describedby')) {
+                    video.setAttribute('aria-label', 'Vídeo de conteúdo relacionado');
+                }
+            });
+        }
+        
+        // 4. DETECÇÃO DE REDIMENSIONAMENTO PARA GRÁFICOS FUTUROS
+        function setupChartResize() {
+            // Esta função será estendida quando gráficos (Chart.js, etc.) forem adicionados
+            const charts = document.querySelectorAll('canvas[data-chart]');
+            if (charts.length > 0) {
+                window.addEventListener('resize', () => {
+                    charts.forEach(chart => {
+                        if (chart.chartInstance && typeof chart.chartInstance.resize === 'function') {
+                            chart.chartInstance.resize();
+                        }
+                    });
+                });
+            }
+        }
+        
+        // 5. INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', () => {
+            enhanceTables();
+            enhanceVideos();
+            setupChartResize();
+            
+            // Log para debugging
+            console.log('Teca Capital - Sistema de tema e responsividade carregado.');
+            console.log('Tema atual:', html.getAttribute('data-theme'));
+            console.log('Tabelas envolvidas:', document.querySelectorAll('.tc-overflow').length);
+        });
+        
+        // 6. LISTENER PARA PREFERÊNCIAS DO SISTEMA
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+    })();
+    </script>
     
 </body>
 </html>
