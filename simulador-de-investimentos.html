@@ -2695,6 +2695,57 @@
         min-height: 36px !important;
     }
 }
+
+/* ========================================
+   OCULTAÇÃO PARA MOBILE (≤450px)
+   Após iniciar simulação
+======================================== */
+
+/* Estado inicial - mostra tudo */
+body.simulation-active #onboarding,
+body.simulation-active .dashboard-header {
+    display: block;
+}
+
+/* Em telas de telefone, ocultar elementos de configuração */
+@media screen and (max-width: 450px) {
+    /* Quando a simulação está ativa, ocultar elementos */
+    body.simulation-active #onboarding {
+        display: none !important;
+    }
+    
+    body.simulation-active .dashboard-header {
+        display: none !important;
+    }
+    
+    /* Ajustar dashboard para ocupar tela completa */
+    body.simulation-active #dashboard {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+    
+    /* Ajustar grid para melhor uso do espaço */
+    body.simulation-active .dashboard-grid {
+        gap: 10px !important;
+    }
+    
+    /* Melhorar visibilidade dos cards de ativos */
+    body.simulation-active .asset-card {
+        border: 2px solid var(--accent-green) !important;
+        background: var(--gray-dark) !important;
+    }
+}
+
+/* Desktop mantém comportamento normal */
+@media screen and (min-width: 451px) {
+    body.simulation-active #onboarding {
+        display: none;
+    }
+    
+    body.simulation-active #dashboard {
+        display: block;
+    }
+}
     </style>
 
 
