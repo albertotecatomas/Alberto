@@ -3451,6 +3451,193 @@ body.simulation-active .dashboard-header {
     }
 }
 
+/* ========================================
+   CORREÇÃO CRÍTICA PARA FLUXO MOBILE (≤450px)
+   Ocultar configuração quando simulação ativa
+======================================== */
+
+/* Estado INATIVO (configuração visível) */
+body.simulation-inactive #onboarding,
+body.simulation-inactive .dashboard-header {
+    display: block !important;
+}
+
+body.simulation-inactive #dashboard {
+    display: none !important;
+}
+
+/* Estado ATIVO (apenas dashboard visível) */
+body.simulation-active #dashboard {
+    display: block !important;
+}
+
+/* Mobile Only: Quando simulação ATIVA, ocultar completamente configuração */
+@media screen and (max-width: 450px) {
+    /* CRÍTICO: Ocultar onboarding quando simulação ativa */
+    body.simulation-active #onboarding {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        pointer-events: none !important;
+    }
+    
+    /* Dashboard ocupa 100% da tela */
+    body.simulation-active #dashboard {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 5px !important;
+        margin: 0 !important;
+        animation: fadeIn 0.3s ease !important;
+    }
+    
+    /* Header do dashboard mais compacto em mobile */
+    body.simulation-active .dashboard-header {
+        padding: 8px 10px !important;
+        margin-bottom: 10px !important;
+        min-height: auto !important;
+    }
+    
+    body.simulation-active .dashboard-header h2 {
+        font-size: 1rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    body.simulation-active .scenario-badge {
+        font-size: 0.7rem !important;
+        padding: 2px 8px !important;
+        margin-top: 3px !important;
+    }
+    
+    /* Otimizar espaço dos botões de ação */
+    body.simulation-active .header-actions {
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+    
+    body.simulation-active .header-actions button {
+        font-size: 0.8rem !important;
+        padding: 6px 10px !important;
+        min-height: 36px !important;
+    }
+    
+    /* Grid principal mais denso */
+    body.simulation-active .dashboard-grid {
+        gap: 8px !important;
+    }
+    
+    /* Cards de ativos ultra compactos */
+    body.simulation-active .asset-card {
+        padding: 10px !important;
+        margin-bottom: 8px !important;
+        gap: 8px !important;
+    }
+    
+    body.simulation-active .asset-icon {
+        font-size: 1.5rem !important;
+    }
+    
+    body.simulation-active .asset-info h4 {
+        font-size: 0.85rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    body.simulation-active .price-value {
+        font-size: 1rem !important;
+    }
+    
+    /* Botões de compra/venda compactos */
+    body.simulation-active .btn-buy,
+    body.simulation-active .btn-sell {
+        min-height: 34px !important;
+        font-size: 0.75rem !important;
+        padding: 6px !important;
+    }
+    
+    /* Tabela de transações com scroll otimizado */
+    body.simulation-active .history-table-container {
+        max-height: 200px !important;
+        overflow-y: auto !important;
+    }
+    
+    /* Indicador visual de que é modo simulação */
+    body.simulation-active::before {
+        content: '📱 SIMULAÇÃO ATIVA';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--accent-green);
+        color: var(--bg-primary);
+        font-size: 0.7rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 3px;
+        z-index: 10000;
+        opacity: 0.9;
+    }
+}
+
+/* ========================================
+   OTIMIZAÇÕES ADICIONAIS PARA DENSIDADE
+======================================== */
+
+/* Para mobile muito pequeno (≤350px) */
+@media screen and (max-width: 350px) {
+    body.simulation-active .asset-actions {
+        flex-direction: column !important;
+        gap: 4px !important;
+    }
+    
+    body.simulation-active .btn-buy,
+    body.simulation-active .btn-sell {
+        width: 100% !important;
+    }
+    
+    body.simulation-active .asset-tabs .tab {
+        font-size: 0.7rem !important;
+        padding: 6px 8px !important;
+    }
+}
+
+/* ========================================
+   ANIMAÇÕES SUAVES PARA TRANSIÇÃO
+======================================== */
+@keyframes slideOutUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Aplicar animações apenas em mobile */
+@media screen and (max-width: 450px) {
+    body.simulation-active #onboarding {
+        animation: slideOutUp 0.3s ease forwards !important;
+    }
+    
+    body.simulation-active #dashboard {
+        animation: slideInDown 0.3s ease 0.1s both !important;
+    }
+}
 
     </style>
 
@@ -5534,11 +5721,94 @@ body.simulation-active .dashboard-header {
 
     // Global functions para onclick handlers
     window.openTradeModal = openTradeModal;
+
+    // ========================================
+// GESTÃO DE ESTADO DA SIMULAÇÃO (MOBILE + DESKTOP)
+// ========================================
+
+function setSimulationState(active) {
+    if (active) {
+        document.body.classList.add('simulation-active');
+        document.body.classList.remove('simulation-inactive');
+    } else {
+        document.body.classList.remove('simulation-active');
+        document.body.classList.add('simulation-inactive');
+    }
+    
+    // Para debug (opcional)
+    console.log(`Simulation state: ${active ? 'ACTIVE' : 'INACTIVE'}`);
+}
+
+// MODIFIQUE esta função no código existente:
+function showDashboard() {
+    showNotification('🚀 Iniciando simulação...', 'info');
+    
+    // CRÍTICO: Definir estado da simulação
+    setSimulationState(true);
+    
+    initializeMarket();
+    
+    // Ocultar onboarding, mostrar dashboard
+    document.getElementById('onboarding').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    
+    // Resto do código existente...
+    document.getElementById('user-name-display').textContent = AppState.user.name;
+    document.getElementById('scenario-display').textContent = getScenarioLabel(AppState.user.scenario);
+    
+    renderAssetsUI('acoes');
+    updatePortfolioUI();
+    updateTransactionsUI();
+    setupAssetTabs();
+    
+    // Configurar botão de explicação
+    document.getElementById('info-btn').onclick = showExplanation;
+    
+    startMarketUpdates();
+    saveToLocalStorage();
+}
+
+// MODIFIQUE a função de reset:
+document.getElementById('reset-simulation').onclick = function() {
+    if (confirm('⚠️ Tem certeza que deseja reiniciar a simulação? Todos os dados serão perdidos.')) {
+        stopMarketUpdates();
+        setSimulationState(false); // CRÍTICO: Resetar estado
+        clearLocalStorage();
+        location.reload();
+    }
+};
+
+function showDashboard() {
+    showNotification('🚀 Iniciando simulação...', 'info');
+    
+    // CRÍTICO: Definir estado da simulação
+    setSimulationState(true);
+    
+    initializeMarket();
+    
+    // Ocultar onboarding, mostrar dashboard
+    document.getElementById('onboarding').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    
+    document.getElementById('user-name-display').textContent = AppState.user.name;
+    document.getElementById('scenario-display').textContent = getScenarioLabel(AppState.user.scenario);
+    
+    renderAssetsUI('acoes');
+    updatePortfolioUI();
+    updateTransactionsUI();
+    setupAssetTabs();
+    
+    // Configurar botão de explicação
+    document.getElementById('info-btn').onclick = showExplanation;
+    
+    startMarketUpdates();
+    saveToLocalStorage();
+}
 </script>
 
 
       
-        </main>
+    </main>
 
  <footer role="contentinfo">
         <div class="tc-footer-wrap">
