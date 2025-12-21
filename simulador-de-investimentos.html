@@ -3451,6 +3451,83 @@ body.simulation-active .dashboard-header {
     }
 }
 
+    /* MOBILE: Header do dashboard VISÍVEL e otimizado */
+    body.simulation-active .dashboard-header {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 10px !important;
+        margin-bottom: 10px !important;
+        background: var(--gray-dark) !important;
+        border: 2px solid var(--gray-medium) !important;
+        border-radius: 8px !important;
+        gap: 8px !important;
+    }
+    
+    body.simulation-active .user-info {
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    body.simulation-active .dashboard-header h2 {
+        font-size: 0.95rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 4px !important;
+        color: var(--accent-green) !important;
+        word-wrap: break-word !important;
+    }
+    
+    body.simulation-active .scenario-badge {
+        font-size: 0.75rem !important;
+        padding: 3px 10px !important;
+        background: rgba(214, 174, 100, 0.2) !important;
+        border-radius: 15px !important;
+        display: inline-block !important;
+        margin-top: 4px !important;
+    }
+    
+    /* Botões de ação em linha horizontal (scroll se necessário) */
+    body.simulation-active .header-actions {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 6px !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        padding-bottom: 5px !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    body.simulation-active .header-actions button {
+        flex-shrink: 0 !important; /* Não encolher */
+        font-size: 0.75rem !important;
+        padding: 8px 12px !important;
+        min-height: 36px !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Ajustar ícones nos botões */
+    body.simulation-active .header-actions button::before {
+        margin-right: 4px !important;
+        font-size: 0.9rem !important;
+    }
+
+        /* GARANTIR que o botão de reiniciar está visível */
+    body.simulation-active #reset-simulation {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        order: 3; /* Colocar como último botão */
+    }
+    
+    /* Estilo específico para o botão de reiniciar (vermelho/danger) */
+    body.simulation-active #reset-simulation.btn-danger {
+        background: var(--danger) !important;
+        color: white !important;
+        border: none !important;
+    }
+    
+    body.simulation-active #reset-simulation.btn-danger:hover {
+        background: rgb(220, 50, 50) !important;
+    }
 
     </style>
 
