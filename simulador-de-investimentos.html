@@ -3899,6 +3899,602 @@ body.simulation-active .dashboard-header {
     }
 }
 
+/* ============================================
+   ESTILOS PARA MARKET CAP E INFORMAÇÕES
+   ============================================ */
+
+.ext-market-cap-info {
+    background: var(--gray-medium);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 12px 0;
+    border-left: 3px solid var(--accent-green);
+}
+
+.ext-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.ext-info-row.highlight {
+    background: rgba(214, 174, 100, 0.15);
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 8px;
+    border: 1px solid var(--accent-green);
+}
+
+.ext-label {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ext-value {
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.ext-market-cap {
+    color: var(--accent-green) !important;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   RANKING DE MARKET CAP
+   ============================================ */
+
+.ext-market-cap-ranking {
+    background: var(--gray-dark);
+    border: 2px solid var(--gray-medium);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.ext-market-cap-ranking h4 {
+    color: var(--accent-green);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.ext-ranking-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.ext-ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--gray-medium);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+.ext-ranking-item:hover {
+    background: var(--gray-light);
+    transform: translateX(5px);
+}
+
+.ext-ranking-item[data-position="1"] {
+    border-left-color: gold;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), var(--gray-medium));
+}
+
+.ext-ranking-item[data-position="2"] {
+    border-left-color: silver;
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.15), var(--gray-medium));
+}
+
+.ext-ranking-item[data-position="3"] {
+    border-left-color: #cd7f32;
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.15), var(--gray-medium));
+}
+
+.ext-rank-position {
+    font-weight: 700;
+    color: var(--accent-green);
+    min-width: 35px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.ext-rank-info {
+    flex: 1;
+}
+
+.ext-rank-ticker {
+    font-weight: 700;
+    color: var(--text-white);
+    font-size: 0.95rem;
+}
+
+.ext-rank-market-cap {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+.ext-rank-change {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   MODAL DE NOTÍCIAS
+   ============================================ */
+
+.ext-news-modal-content {
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.ext-news-disclaimer {
+    background: rgba(234, 179, 8, 0.2);
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: var(--warning);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+#ext-news-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ext-news-item {
+    background: var(--gray-medium);
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid var(--accent-green);
+    transition: var(--transition);
+}
+
+.ext-news-item:hover {
+    background: var(--gray-light);
+    transform: translateX(5px);
+}
+
+.ext-news-item.ext-news-positive {
+    border-left-color: var(--success);
+    background: linear-gradient(90deg, rgba(34, 197, 94, 0.1), var(--gray-medium));
+}
+
+.ext-news-item.ext-news-negative {
+    border-left-color: var(--danger);
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.1), var(--gray-medium));
+}
+
+.ext-news-item.ext-news-neutral {
+    border-left-color: var(--accent-green);
+}
+
+.ext-news-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ext-news-icon {
+    font-size: 1.3rem;
+}
+
+.ext-news-ticker {
+    font-weight: 700;
+    color: var(--accent-green);
+    font-size: 0.95rem;
+}
+
+.ext-news-time {
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+}
+
+.ext-news-body {
+    color: var(--text-white);
+    line-height: 1.5;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.ext-news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ext-news-source {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   SELETOR DE TIPO DE ORDEM
+   ============================================ */
+
+.ext-order-type-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.ext-order-type-label {
+    cursor: pointer;
+    position: relative;
+}
+
+.ext-order-type-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ext-order-type-card {
+    background: var(--gray-medium);
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.ext-order-type-label:hover .ext-order-type-card {
+    border-color: var(--accent-green);
+    background: rgba(214, 174, 100, 0.1);
+}
+
+.ext-order-type-label input[type="radio"]:checked + .ext-order-type-card {
+    border-color: var(--accent-green);
+    background: rgba(214, 174, 100, 0.2);
+    box-shadow: 0 0 15px rgba(214, 174, 100, 0.3);
+}
+
+.ext-order-type-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.ext-order-type-title {
+    font-weight: 700;
+    color: var(--text-white);
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.ext-order-type-desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#ext-limit-price-input {
+    margin-bottom: 15px;
+}
+
+.ext-limit-hint {
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: var(--accent-green);
+}
+
+/* ============================================
+   PROCESSAMENTO DE ORDEM LIMITE
+   ============================================ */
+
+.ext-limit-processing {
+    background: var(--gray-dark);
+    border: 2px solid var(--accent-green);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.ext-processing-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.ext-processing-text h4 {
+    color: var(--accent-green);
+    margin-bottom: 10px;
+}
+
+.ext-processing-text p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+.ext-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--gray-medium);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.ext-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-green), rgb(194, 154, 80));
+    width: 0%;
+    transition: width 1s linear;
+}
+
+.ext-time-remaining {
+    color: var(--accent-green);
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+/* ============================================
+   ESTATÍSTICAS DO MERCADO
+   ============================================ */
+
+.ext-market-stats {
+    background: var(--gray-dark);
+    border: 2px solid var(--gray-medium);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.ext-market-stats h4 {
+    color: var(--accent-green);
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.ext-stat-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-medium);
+}
+
+.ext-stat-item:last-of-type {
+    border-bottom: none;
+}
+
+.ext-stat-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.ext-stat-value {
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.ext-sentiment-indicator {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(214, 174, 100, 0.1);
+    border-radius: 8px;
+    border: 1px solid var(--accent-green);
+}
+
+.ext-sentiment-label {
+    color: var(--accent-green);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.ext-sentiment-bar {
+    width: 100%;
+    height: 25px;
+    background: var(--gray-medium);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.ext-sentiment-fill {
+    height: 100%;
+    transition: width 0.5s ease, background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ext-sentiment-text {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.ext-sentiment-text.positive {
+    color: var(--success);
+}
+
+.ext-sentiment-text.neutral {
+    color: var(--accent-green);
+}
+
+.ext-sentiment-text.negative {
+    color: var(--danger);
+}
+
+/* ============================================
+   FLUXO DE ORDENS POR ATIVO
+   ============================================ */
+
+.ext-order-flow {
+    margin: 12px 0;
+    background: var(--gray-medium);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.ext-flow-header {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.ext-flow-bar {
+    display: flex;
+    height: 30px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--gray-light);
+}
+
+.ext-flow-buy,
+.ext-flow-sell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: width 0.5s ease;
+}
+
+.ext-flow-buy {
+    background: linear-gradient(90deg, var(--success), rgb(25, 175, 75));
+}
+
+.ext-flow-sell {
+    background: linear-gradient(90deg, var(--danger), rgb(220, 50, 50));
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .ext-order-type-selector {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .ext-market-cap-ranking,
+    .ext-market-stats {
+        padding: 15px;
+    }
+    
+    .ext-ranking-item,
+    .ext-stat-item {
+        font-size: 0.85rem;
+    }
+    
+    .ext-news-modal-content {
+        max-width: 95%;
+        padding: 15px;
+    }
+    
+    .ext-news-item {
+        padding: 12px;
+    }
+    
+    .ext-rank-position {
+        min-width: 30px;
+        font-size: 1rem;
+    }
+    
+    .ext-flow-bar {
+        height: 25px;
+    }
+    
+    .ext-flow-buy span,
+    .ext-flow-sell span {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .ext-market-cap-info {
+        padding: 10px;
+    }
+    
+    .ext-info-row {
+        font-size: 0.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .ext-info-row.highlight {
+        padding: 8px;
+    }
+    
+    .ext-ranking-item {
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .ext-news-header {
+        flex-wrap: wrap;
+    }
+    
+    .ext-news-time {
+        margin-left: 0;
+        width: 100%;
+        margin-top: 5px;
+    }
+    
+    .ext-order-type-card {
+        padding: 12px;
+    }
+    
+    .ext-order-type-icon {
+        font-size: 1.5rem;
+    }
+    
+    .ext-sentiment-bar {
+        height: 20px;
+    }
+}
+
+/* ============================================
+   LIGHT MODE
+   ============================================ */
+
+[data-theme="light"] .ext-market-cap-info,
+[data-theme="light"] .ext-ranking-item,
+[data-theme="light"] .ext-news-item,
+[data-theme="light"] .ext-order-type-card,
+[data-theme="light"] .ext-market-stats {
+    background: #ffffff;
+    border-color: #dee2e6;
+}
+
+[data-theme="light"] .ext-info-row.highlight,
+[data-theme="light"] .ext-sentiment-indicator {
+    background: rgba(156, 124, 56, 0.1);
+}
+
+[data-theme="light"] .ext-news-disclaimer {
+    background: rgba(255, 193, 7, 0.2);
+    color: #856404;
+}
+
     </style>
 
 
@@ -7767,880 +8363,876 @@ document.getElementById('reset-simulation').onclick = function() {
     
 })();
 
-</script>
+ // ===== Capital de Mercado e outras alterações =====
 
-    <!-- Conteudo Multimedia Teca Capital-->
-        
-    <style>
-        /* ===== VARIÁVEIS CSS PARA TEMA ===== */
-        :root {
-            --primary-color: rgb(214, 174, 100);
-            --secondary-color: #ffffff;
-            --accent-red: #ff4757;
-            --accent-yellow: #ffd700;
-            --bg-primary: #000000;
-            --bg-secondary: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --border-color: #333333;
-            --shadow-color: rgba(214, 174, 100, 0.1);
-            --modal-overlay: rgba(0, 0, 0, 0.95);
-            --transition-speed: 0.3s;
-        }
-
-        /* ===== ESTILOS BASE - INTEGRAÇÃO COM TEMA EXISTENTE ===== */
-        .teca-multimedia-module {
-            margin-top: 3rem;
-            padding: 2rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-
-        /* ===== LAYOUT GRID RESPONSIVO ===== */
-        .teca-multimedia-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-        }
-
-        @media (min-width: 768px) {
-            .teca-multimedia-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .teca-video-section {
-                grid-column: span 2;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .teca-multimedia-grid {
-                grid-template-columns: 2fr 1fr 2fr;
-            }
-            .teca-video-section {
-                grid-column: span 1;
-            }
-        }
-
-        /* ===== SEÇÃO DE VÍDEO ===== */
-        .teca-video-section,
-        .teca-audio-section,
-        .teca-images-section {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 20px var(--shadow-color);
-            transition: transform var(--transition-speed);
-        }
-
-        .teca-video-section:hover,
-        .teca-audio-section:hover,
-        .teca-images-section:hover {
-            transform: translateY(-2px);
-        }
-
-        .teca-section-title {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .teca-section-title::before {
-            content: "▶";
-            font-size: 1rem;
-        }
-
-        .teca-video-container {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .teca-video-container video {
-            width: 100%;
-            height: auto;
-            display: block;
-            background: #000;
-        }
-
-        .teca-video-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.75rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 0 0 8px 8px;
-        }
-
-        .teca-control-btn {
-            background: var(--primary-color);
-            border: none;
-            color: #000;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-speed);
-        }
-
-        .teca-control-btn:hover {
-            background: var(--accent-yellow);
-            transform: scale(1.1);
-        }
-
-        .teca-progress-bar {
-            flex: 1;
-            height: 6px;
-            background: #444;
-            border-radius: 3px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .teca-progress {
-            height: 100%;
-            background: var(--primary-color);
-            width: 0%;
-            transition: width 0.1s;
-        }
-
-        /* ===== SEÇÃO DE ÁUDIO ===== */
-        .teca-audio-player {
-            background: var(--bg-primary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .teca-audio-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .teca-audio-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-size: 1.5rem;
-        }
-
-        .teca-audio-title {
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .teca-audio-controls {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .teca-audio-time {
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* ===== SEÇÃO DE IMAGENS - SLIDER ===== */
-        .teca-slider-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .teca-slider-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            height: 300px;
-        }
-
-        @media (max-width: 767px) {
-            .teca-slider-track {
-                height: 200px;
-            }
-        }
-
-        .teca-slide {
-            min-width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-        }
-
-        .teca-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .teca-slide img:hover {
-            transform: scale(1.02);
-        }
-
-        .teca-slider-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .teca-slider-btn {
-            background: var(--primary-color);
-            color: #000;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all var(--transition-speed);
-            min-width: 120px;
-        }
-
-        .teca-slider-btn:hover {
-            background: var(--accent-yellow);
-            transform: translateY(-2px);
-        }
-
-        .teca-slider-dots {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        .teca-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--border-color);
-            cursor: pointer;
-            transition: all var(--transition-speed);
-        }
-
-        .teca-dot.active {
-            background: var(--primary-color);
-            transform: scale(1.2);
-        }
-
-        /* ===== MODAL FULLSCREEN ===== */
-        .teca-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--modal-overlay);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-
-        .teca-modal.active {
-            display: flex;
-        }
-
-        .teca-modal-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-        }
-
-        .teca-modal-img {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .teca-modal-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .teca-modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(214, 174, 100, 0.8);
-            color: #000;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-speed);
-        }
-
-        .teca-modal-nav:hover {
-            background: var(--primary-color);
-        }
-
-        .teca-modal-prev {
-            left: -70px;
-        }
-
-        .teca-modal-next {
-            right: -70px;
-        }
-
-        @media (max-width: 767px) {
-            .teca-modal-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-            .teca-modal-prev {
-                left: 10px;
-            }
-            .teca-modal-next {
-                right: 10px;
-            }
-        }
-
-        /* ===== DESCRIÇÕES ===== */
-        .teca-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-top: 0.5rem;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            border-left: 3px solid var(--primary-color);
-        }
-
-        /* ===== RESPONSIVIDADE AVANÇADA ===== */
-        @media (max-width: 767px) {
-            .teca-multimedia-module {
-                margin-top: 2rem;
-                padding: 1rem;
-            }
-            
-            .teca-video-section,
-            .teca-audio-section,
-            .teca-images-section {
-                padding: 1rem;
-            }
-            
-            .teca-section-title {
-                font-size: 1.25rem;
-            }
-            
-            .teca-slider-btn {
-                padding: 0.5rem 1rem;
-                min-width: 100px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 450px) {
-            .teca-multimedia-module {
-                margin-top: 1.5rem;
-                padding: 0.75rem;
-            }
-            
-            .teca-slider-track {
-                height: 180px;
-            }
-            
-            .teca-slider-controls {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .teca-slider-btn {
-                width: 100%;
-                max-width: 200px;
-            }
-            
-            .teca-audio-info {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* ===== ANIMAÇÕES ===== */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .teca-video-section,
-        .teca-audio-section,
-        .teca-images-section {
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        /* ===== SUPORTE PARA LIGHT MODE ===== */
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg-primary: #f8f9fa;
-                --bg-secondary: #ffffff;
-                --text-primary: #212529;
-                --text-secondary: #495057;
-                --border-color: #dee2e6;
-                --shadow-color: rgba(0, 0, 0, 0.1);
-                --modal-overlay: rgba(248, 249, 250, 0.95);
-            }
-            
-            .teca-description {
-                background: rgba(0, 0, 0, 0.05);
-            }
-        }
-    </style>
+(function() {
+    'use strict';
     
-    <section class="teca-multimedia-module" aria-label="Conteúdo educativo multimídia sobre mercado financeiro">
-        <div class="teca-multimedia-grid">
-            <!-- SEÇÃO DE VÍDEO -->
-            <div class="teca-video-section">
-                <h2 class="teca-section-title">Explicando o Mercado Financeiro</h2>
-                <div class="teca-video-container">
-                    <video id="tecaVideo" src="Video/Conheça_o_Mercado_Financeiro.mp4" width="100%" preload="metadata">
-                        Seu navegador não suporta o elemento de vídeo.
-                    </video>
-                    <div class="teca-video-controls">
-                        <button class="teca-control-btn" id="tecaVideoPlay" aria-label="Play/Pause">▶</button>
-                        <div class="teca-progress-bar" id="tecaVideoProgress">
-                            <div class="teca-progress" id="tecaVideoProgressBar"></div>
-                        </div>
-                        <button class="teca-control-btn" id="tecaVideoFullscreen" aria-label="Tela cheia">⛶</button>
-                    </div>
-                </div>
-                <div class="teca-description">
-                    Entenda a evolução e funcionamento do mercado financeiro através desta explicação educativa. Ideal para iniciantes que desejam compreender os conceitos básicos antes de iniciar a simulação.
-                </div>
-            </div>
-
-            <!-- SEÇÃO DE ÁUDIO -->
-            <div class="teca-audio-section">
-                <h2 class="teca-section-title">Mini-Podcast Sobre o Mercado</h2>
-                <div class="teca-audio-player">
-                    <div class="teca-audio-info">
-                        <div class="teca-audio-icon">🎙️</div>
-                        <div>
-                            <div class="teca-audio-title">Do Templo à Tokenização dos Mercados Financeiros em Angola</div>
-                            <div class="teca-description">Uma conversa exclusiva com especialistas da Teca Capital sobre a evolução dos mercados financeiros.</div>
-                        </div>
-                    </div>
-                    <audio id="tecaAudio" src="audio/Do_Templo_à_Tokenização_dos_Mercados_Financeiros_em_Angola.m4a" preload="metadata"></audio>
-                    <div class="teca-audio-controls">
-                        <button class="teca-control-btn" id="tecaAudioPlay" aria-label="Play/Pause">▶</button>
-                        <div class="teca-progress-bar" id="tecaAudioProgress">
-                            <div class="teca-progress" id="tecaAudioProgressBar"></div>
-                        </div>
-                    </div>
-                    <div class="teca-audio-time">
-                        <span id="tecaAudioCurrent">0:00</span>
-                        <span id="tecaAudioDuration">0:00</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SEÇÃO DE IMAGENS - SLIDER -->
-            <div class="teca-images-section">
-                <h2 class="teca-section-title">Visualiza o Mapa da Sua Jornada</h2>
-                <div class="teca-slider-container">
-                    <div class="teca-slider-track" id="tecaSliderTrack">
-                        <!-- Imagens serão inseridas dinamicamente via JavaScript -->
-                    </div>
-                </div>
-                <div class="teca-slider-dots" id="tecaSliderDots">
-                    <!-- Pontos de navegação serão gerados dinamicamente -->
-                </div>
-                <div class="teca-slider-controls">
-                    <button class="teca-slider-btn" id="tecaSliderPrev">← Anterior</button>
-                    <button class="teca-slider-btn" id="tecaSliderNext">Próxima →</button>
-                </div>
-                <div class="teca-description">
-                    Explore 16 etapas da jornada no mercado financeiro. Clique em qualquer imagem para visualização em tela cheia.
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PARA VISUALIZAÇÃO FULLSCREEN -->
-        <div class="teca-modal" id="tecaImageModal">
-            <div class="teca-modal-content">
-                <button class="teca-modal-close" id="tecaModalClose" aria-label="Fechar">✕</button>
-                <img class="teca-modal-img" id="tecaModalImage" src="" alt="Imagem em tela cheia">
-                <button class="teca-modal-nav teca-modal-prev" id="tecaModalPrev" aria-label="Imagem anterior">←</button>
-                <button class="teca-modal-nav teca-modal-next" id="tecaModalNext" aria-label="Próxima imagem">→</button>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        (function() {
-            'use strict';
-
-            // ===== CONFIGURAÇÕES =====
-            const SLIDER_INTERVAL = 5000; // 5 segundos
-            const IMAGE_PATHS = [
-                'Imagem/M1.png', 'Imagem/M2.png', 'Imagem/M3.png', 'Imagem/M4.png',
-                'Imagem/M5.png', 'Imagem/M6.png', 'Imagem/M7.png', 'Imagem/M8.png',
-                'Imagem/M9.png', 'Imagem/M10.png', 'Imagem/M11.png', 'Imagem/M12.png',
-                'Imagem/M13.png', 'Imagem/M14.png', 'Imagem/M15.png', 'Imagem/M16.png'
-            ];
-
-            // ===== ELEMENTOS DO DOM =====
-            const elements = {
-                // Vídeo
-                video: document.getElementById('tecaVideo'),
-                videoPlay: document.getElementById('tecaVideoPlay'),
-                videoProgress: document.getElementById('tecaVideoProgress'),
-                videoProgressBar: document.getElementById('tecaVideoProgressBar'),
-                videoFullscreen: document.getElementById('tecaVideoFullscreen'),
+    // ===== INICIALIZAÇÃO DE DADOS COMPLEMENTARES =====
+    
+    function ext_initializeMarketCapData() {
+        Object.keys(AppState.market.assets).forEach(assetId => {
+            const asset = AppState.market.assets[assetId];
+            
+            if (asset.type === 'acao') {
+                // Gerar dados de ações
+                const sharesIssued = Math.floor(Math.random() * 990000000) + 10000000; // 10M - 1B
+                const freeFloatPercent = Math.random() * 0.5 + 0.3; // 30-80%
+                const sharesOutstanding = Math.floor(sharesIssued * (0.9 + Math.random() * 0.05)); // 90-95%
                 
-                // Áudio
-                audio: document.getElementById('tecaAudio'),
-                audioPlay: document.getElementById('tecaAudioPlay'),
-                audioProgress: document.getElementById('tecaAudioProgress'),
-                audioProgressBar: document.getElementById('tecaAudioProgressBar'),
-                audioCurrent: document.getElementById('tecaAudioCurrent'),
-                audioDuration: document.getElementById('tecaAudioDuration'),
-                
-                // Slider
-                sliderTrack: document.getElementById('tecaSliderTrack'),
-                sliderDots: document.getElementById('tecaSliderDots'),
-                sliderPrev: document.getElementById('tecaSliderPrev'),
-                sliderNext: document.getElementById('tecaSliderNext'),
-                
-                // Modal
-                imageModal: document.getElementById('tecaImageModal'),
-                modalImage: document.getElementById('tecaModalImage'),
-                modalClose: document.getElementById('tecaModalClose'),
-                modalPrev: document.getElementById('tecaModalPrev'),
-                modalNext: document.getElementById('tecaModalNext')
+                asset.stockInfo = {
+                    sharesIssued: sharesIssued,
+                    sharesOutstanding: sharesOutstanding,
+                    freeFloat: freeFloatPercent,
+                    lockedShares: sharesIssued - sharesOutstanding
+                };
+            }
+        });
+    }
+    
+    // ===== FUNÇÕES DE FORMATAÇÃO =====
+    
+    function formatMarketCap(value) {
+        if (value >= 1000000000) {
+            return `${(value / 1000000000).toFixed(2)} B Kz`;
+        } else if (value >= 1000000) {
+            return `${(value / 1000000).toFixed(2)} M Kz`;
+        } else if (value >= 1000) {
+            return `${(value / 1000).toFixed(2)} K Kz`;
+        }
+        return `${value.toFixed(2)} Kz`;
+    }
+    
+    function formatShares(value) {
+        if (value >= 1000000000) {
+            return `${(value / 1000000000).toFixed(2)} B`;
+        } else if (value >= 1000000) {
+            return `${(value / 1000000).toFixed(2)} M`;
+        } else if (value >= 1000) {
+            return `${(value / 1000).toFixed(2)} K`;
+        }
+        return value.toLocaleString('pt-AO');
+    }
+    
+    // ===== CÁLCULO DE MARKET CAP =====
+    
+    function ext_calculateMarketCap(asset) {
+        if (!asset.stockInfo) return null;
+        
+        const marketCap = asset.currentPrice * asset.stockInfo.sharesIssued;
+        
+        return {
+            marketCapKz: marketCap,
+            marketCapFormatted: formatMarketCap(marketCap),
+            pricePerShare: asset.currentPrice,
+            sharesIssued: asset.stockInfo.sharesIssued,
+            sharesOutstanding: asset.stockInfo.sharesOutstanding,
+            freeFloatPercent: (asset.stockInfo.freeFloat * 100).toFixed(1)
+        };
+    }
+    
+    // ===== RANKING DE MARKET CAP =====
+    
+    function ext_generateMarketCapRanking() {
+        const stocks = Object.values(AppState.market.assets)
+            .filter(asset => asset.type === 'acao' && asset.stockInfo);
+        
+        const withMarketCap = stocks.map(asset => {
+            const marketCap = asset.currentPrice * asset.stockInfo.sharesIssued;
+            const priceChange = ((asset.currentPrice - asset.previousPrice) / asset.previousPrice) * 100;
+            
+            return {
+                ticker: asset.ticker,
+                name: asset.name,
+                marketCap: marketCap,
+                price: asset.currentPrice,
+                priceChange: priceChange
             };
-
-            // ===== ESTADO DA APLICAÇÃO =====
-            let state = {
-                currentSlide: 0,
-                sliderInterval: null,
-                isModalOpen: false,
-                modalCurrentIndex: 0
-            };
-
-            // ===== INICIALIZAÇÃO DO SLIDER =====
-            function initSlider() {
-                // Limpar conteúdo existente
-                elements.sliderTrack.innerHTML = '';
-                elements.sliderDots.innerHTML = '';
-                
-                // Criar slides
-                IMAGE_PATHS.forEach((path, index) => {
-                    // Slide
-                    const slide = document.createElement('div');
-                    slide.className = 'teca-slide';
-                    
-                    const img = document.createElement('img');
-                    img.src = path;
-                    img.alt = `Slide ${index + 1}`;
-                    img.loading = 'lazy';
-                    img.dataset.index = index;
-                    img.addEventListener('click', () => openModal(index));
-                    
-                    slide.appendChild(img);
-                    elements.sliderTrack.appendChild(slide);
-                    
-                    // Dot
-                    const dot = document.createElement('div');
-                    dot.className = `teca-dot ${index === 0 ? 'active' : ''}`;
-                    dot.dataset.index = index;
-                    dot.addEventListener('click', () => goToSlide(index));
-                    elements.sliderDots.appendChild(dot);
-                });
-                
-                // Iniciar slider automático
-                startSlider();
-            }
-
-            // ===== FUNÇÕES DO SLIDER =====
-            function startSlider() {
-                if (state.sliderInterval) {
-                    clearInterval(state.sliderInterval);
-                }
-                
-                state.sliderInterval = setInterval(() => {
-                    nextSlide();
-                }, SLIDER_INTERVAL);
-            }
-
-            function stopSlider() {
-                if (state.sliderInterval) {
-                    clearInterval(state.sliderInterval);
-                    state.sliderInterval = null;
-                }
-            }
-
-            function nextSlide() {
-                goToSlide((state.currentSlide + 1) % IMAGE_PATHS.length);
-            }
-
-            function prevSlide() {
-                goToSlide((state.currentSlide - 1 + IMAGE_PATHS.length) % IMAGE_PATHS.length);
-            }
-
-            function goToSlide(index) {
-                state.currentSlide = index;
-                
-                // Atualizar posição do slider
-                elements.sliderTrack.style.transform = `translateX(-${index * 100}%)`;
-                
-                // Atualizar dots
-                document.querySelectorAll('.teca-dot').forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-                
-                // Reiniciar intervalo
-                if (!state.isModalOpen) {
-                    startSlider();
-                }
-            }
-
-            // ===== FUNÇÕES DO MODAL =====
-            function openModal(index) {
-                state.isModalOpen = true;
-                state.modalCurrentIndex = index;
-                stopSlider();
-                
-                elements.modalImage.src = IMAGE_PATHS[index];
-                elements.imageModal.classList.add('active');
-                
-                // Adicionar listeners do teclado
-                document.addEventListener('keydown', handleModalKeyboard);
-            }
-
-            function closeModal() {
-                state.isModalOpen = false;
-                elements.imageModal.classList.remove('active');
-                elements.modalImage.src = '';
-                
-                // Remover listeners do teclado
-                document.removeEventListener('keydown', handleModalKeyboard);
-                
-                // Reiniciar slider
-                startSlider();
-            }
-
-            function nextModalImage() {
-                state.modalCurrentIndex = (state.modalCurrentIndex + 1) % IMAGE_PATHS.length;
-                elements.modalImage.src = IMAGE_PATHS[state.modalCurrentIndex];
-            }
-
-            function prevModalImage() {
-                state.modalCurrentIndex = (state.modalCurrentIndex - 1 + IMAGE_PATHS.length) % IMAGE_PATHS.length;
-                elements.modalImage.src = IMAGE_PATHS[state.modalCurrentIndex];
-            }
-
-            function handleModalKeyboard(event) {
-                switch(event.key) {
-                    case 'Escape':
-                        closeModal();
-                        break;
-                    case 'ArrowLeft':
-                        prevModalImage();
-                        break;
-                    case 'ArrowRight':
-                        nextModalImage();
-                        break;
-                }
-            }
-
-            // ===== FUNÇÕES DO VÍDEO =====
-            function initVideo() {
-                elements.videoPlay.addEventListener('click', toggleVideoPlayback);
-                elements.videoFullscreen.addEventListener('click', toggleVideoFullscreen);
-                elements.videoProgress.addEventListener('click', seekVideo);
-                elements.video.addEventListener('timeupdate', updateVideoProgress);
-                elements.video.addEventListener('click', toggleVideoPlayback);
-            }
-
-            function toggleVideoPlayback() {
-                if (elements.video.paused) {
-                    elements.video.play();
-                    elements.videoPlay.textContent = '⏸';
+        });
+        
+        withMarketCap.sort((a, b) => b.marketCap - a.marketCap);
+        
+        return withMarketCap.slice(0, 10);
+    }
+    
+    function ext_renderMarketCapRanking() {
+        const ranking = ext_generateMarketCapRanking();
+        const container = document.getElementById('ext-top-market-cap-list');
+        
+        if (!container) return;
+        
+        container.innerHTML = ranking.map((company, index) => {
+            const changeClass = company.priceChange >= 0 ? 'positive' : 'negative';
+            const changeIcon = company.priceChange >= 0 ? '📈' : '📉';
+            const position = index + 1;
+            
+            let badge = '';
+            if (position === 1) badge = '🥇';
+            else if (position === 2) badge = '🥈';
+            else if (position === 3) badge = '🥉';
+            
+            return `
+                <div class="ext-ranking-item" data-position="${position}">
+                    <div class="ext-rank-position">${badge || position + 'º'}</div>
+                    <div class="ext-rank-info">
+                        <div class="ext-rank-ticker">${company.ticker}</div>
+                        <div class="ext-rank-market-cap">${formatMarketCap(company.marketCap)}</div>
+                    </div>
+                    <div class="ext-rank-change ${changeClass}">
+                        ${changeIcon} ${company.priceChange >= 0 ? '+' : ''}${company.priceChange.toFixed(2)}%
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    // ===== SISTEMA DE NOTÍCIAS =====
+    
+    const EXT_NEWS_TEMPLATES = {
+        positive: [
+            "{company} anuncia lucro recorde de {value} no último trimestre",
+            "{company} expande operações e prevê crescimento de {percent}% este ano",
+            "Analistas elevam recomendação de {company} para 'Compra Forte'",
+            "{company} assina contrato milionário com governo angolano",
+            "CEO de {company} anuncia dividendos extraordinários para acionistas",
+            "{company} inaugura nova sede e contrata {number} funcionários",
+            "Investidores estrangeiros aumentam participação em {company}",
+            "{company} lança produto inovador que pode revolucionar o setor",
+            "Rating de crédito de {company} é elevado para AA+",
+            "{company} reduz dívida em {percent}% e melhora balanço",
+            "{company} bate recorde de vendas e supera expectativas",
+            "Parceria estratégica de {company} impulsiona ações",
+            "{company} anuncia investimento de {value} em tecnologia",
+            "Market share de {company} cresce {percent}% no setor",
+            "Dividendos de {company} sobem {percent}% este ano"
+        ],
+        
+        negative: [
+            "{company} enfrenta queda de {percent}% nas vendas trimestrais",
+            "Lucro de {company} decepciona investidores e ações caem",
+            "{company} anuncia demissões e reestruturação operacional",
+            "Regulador investiga práticas de {company} no mercado",
+            "CEO de {company} renuncia após escândalo financeiro",
+            "{company} registra prejuízo de {value} no último balanço",
+            "Greve em {company} paralisa operações por tempo indeterminado",
+            "Analistas rebaixam {company} para 'Venda' após resultados fracos",
+            "{company} cancela projeto bilionário por falta de recursos",
+            "Ações de {company} despencam após alerta de lucro",
+            "Dívida de {company} aumenta {percent}% e preocupa mercado",
+            "{company} perde contrato importante para concorrente",
+            "Recall de produtos afeta reputação de {company}",
+            "Processo judicial pode custar {value} a {company}",
+            "{company} enfrenta crise de gestão e troca de diretoria"
+        ],
+        
+        neutral: [
+            "{company} realiza assembleia de acionistas nesta semana",
+            "Diretoria de {company} anuncia mudanças na estrutura organizacional",
+            "{company} divulga calendário de pagamento de dividendos",
+            "Volume de negociação de {company} aumenta {percent}% na BODIVA",
+            "{company} participa de conferência internacional sobre sustentabilidade",
+            "Especialistas debatem futuro de {company} em painel",
+            "{company} lança relatório anual de transparência corporativa",
+            "Ações de {company} oscilam em pregão volátil hoje",
+            "{company} agenda teleconferência com investidores para próxima semana",
+            "Mercado aguarda anúncio estratégico de {company}",
+            "{company} divulga nova política de governança corporativa",
+            "Investidores avaliam perspectivas de longo prazo para {company}",
+            "{company} atualiza projeções para o ano fiscal",
+            "Análise técnica aponta consolidação em {company}",
+            "{company} mantém posição estável no ranking setorial"
+        ],
+        
+        crypto: [
+            "{crypto} atinge nova máxima histórica de ${value}",
+            "Volatilidade de {crypto} preocupa investidores nesta semana",
+            "Baleias de {crypto} movimentam milhões em transações suspeitas",
+            "{crypto} é listada em nova exchange internacional",
+            "Mineradores de {crypto} relatam aumento de {percent}% na dificuldade",
+            "Fork polêmico divide comunidade de {crypto}",
+            "{crypto} integra nova tecnologia de escalabilidade Layer 2",
+            "Regulação de criptomoedas pode afetar {crypto} em Angola",
+            "{crypto} lidera ganhos do dia com valorização de {percent}%",
+            "Volume de {crypto} explode após anúncio de atualização",
+            "Adoção institucional de {crypto} cresce {percent}%",
+            "{crypto} anuncia queima de tokens para reduzir supply",
+            "Upgrade de rede de {crypto} programado para próximo mês",
+            "Staking de {crypto} oferece rendimento de {percent}% ao ano",
+            "Fundos de investimento adicionam {crypto} aos portfolios"
+        ]
+    };
+    
+    function ext_generateNews() {
+        const allAssets = Object.values(AppState.market.assets);
+        const news = [];
+        
+        const newsCount = Math.floor(Math.random() * 6) + 10; // 10-15 notícias
+        
+        for (let i = 0; i < newsCount; i++) {
+            const asset = allAssets[Math.floor(Math.random() * allAssets.length)];
+            const sentiment = Math.random();
+            
+            let template;
+            let type;
+            
+            if (asset.type === 'cripto') {
+                template = EXT_NEWS_TEMPLATES.crypto[Math.floor(Math.random() * EXT_NEWS_TEMPLATES.crypto.length)];
+                type = 'neutral';
+            } else if (asset.type === 'acao') {
+                if (sentiment < 0.35) {
+                    template = EXT_NEWS_TEMPLATES.negative[Math.floor(Math.random() * EXT_NEWS_TEMPLATES.negative.length)];
+                    type = 'negative';
+                } else if (sentiment < 0.7) {
+                    template = EXT_NEWS_TEMPLATES.positive[Math.floor(Math.random() * EXT_NEWS_TEMPLATES.positive.length)];
+                    type = 'positive';
                 } else {
-                    elements.video.pause();
-                    elements.videoPlay.textContent = '▶';
+                    template = EXT_NEWS_TEMPLATES.neutral[Math.floor(Math.random() * EXT_NEWS_TEMPLATES.neutral.length)];
+                    type = 'neutral';
                 }
-            }
-
-            function toggleVideoFullscreen() {
-                if (!document.fullscreenElement) {
-                    elements.video.requestFullscreen().catch(err => {
-                        console.error(`Erro ao tentar entrar em fullscreen: ${err.message}`);
-                    });
-                } else {
-                    document.exitFullscreen();
-                }
-            }
-
-            function seekVideo(event) {
-                const rect = elements.videoProgress.getBoundingClientRect();
-                const pos = (event.clientX - rect.left) / rect.width;
-                elements.video.currentTime = pos * elements.video.duration;
-            }
-
-            function updateVideoProgress() {
-                const percent = (elements.video.currentTime / elements.video.duration) * 100;
-                elements.videoProgressBar.style.width = `${percent}%`;
-            }
-
-            // ===== FUNÇÕES DO ÁUDIO =====
-            function initAudio() {
-                elements.audioPlay.addEventListener('click', toggleAudioPlayback);
-                elements.audioProgress.addEventListener('click', seekAudio);
-                elements.audio.addEventListener('timeupdate', updateAudioProgress);
-                elements.audio.addEventListener('loadedmetadata', updateAudioDuration);
-                
-                // Atualizar duração quando disponível
-                if (elements.audio.readyState > 0) {
-                    updateAudioDuration();
-                }
-            }
-
-            function toggleAudioPlayback() {
-                if (elements.audio.paused) {
-                    elements.audio.play();
-                    elements.audioPlay.textContent = '⏸';
-                } else {
-                    elements.audio.pause();
-                    elements.audioPlay.textContent = '▶';
-                }
-            }
-
-            function seekAudio(event) {
-                const rect = elements.audioProgress.getBoundingClientRect();
-                const pos = (event.clientX - rect.left) / rect.width;
-                elements.audio.currentTime = pos * elements.audio.duration;
-            }
-
-            function updateAudioProgress() {
-                const percent = (elements.audio.currentTime / elements.audio.duration) * 100;
-                elements.audioProgressBar.style.width = `${percent}%`;
-                
-                // Atualizar tempo atual
-                elements.audioCurrent.textContent = formatTime(elements.audio.currentTime);
-            }
-
-            function updateAudioDuration() {
-                elements.audioDuration.textContent = formatTime(elements.audio.duration);
-            }
-
-            function formatTime(seconds) {
-                const mins = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${mins}:${secs.toString().padStart(2, '0')}`;
-            }
-
-            // ===== EVENT LISTENERS =====
-            function setupEventListeners() {
-                // Slider
-                elements.sliderPrev.addEventListener('click', () => {
-                    stopSlider();
-                    prevSlide();
-                });
-                
-                elements.sliderNext.addEventListener('click', () => {
-                    stopSlider();
-                    nextSlide();
-                });
-                
-                // Pausar slider ao interagir
-                elements.sliderTrack.addEventListener('mouseenter', stopSlider);
-                elements.sliderTrack.addEventListener('mouseleave', startSlider);
-                
-                // Modal
-                elements.modalClose.addEventListener('click', closeModal);
-                elements.modalPrev.addEventListener('click', prevModalImage);
-                elements.modalNext.addEventListener('click', nextModalImage);
-                
-                // Fechar modal ao clicar no overlay
-                elements.imageModal.addEventListener('click', (event) => {
-                    if (event.target === elements.imageModal) {
-                        closeModal();
-                    }
-                });
-            }
-
-            // ===== INICIALIZAÇÃO =====
-            function init() {
-                initSlider();
-                initVideo();
-                initAudio();
-                setupEventListeners();
-                
-                // Parar slider quando a página não estiver visível
-                document.addEventListener('visibilitychange', () => {
-                    if (document.hidden) {
-                        stopSlider();
-                    } else if (!state.isModalOpen) {
-                        startSlider();
-                    }
-                });
-                
-                console.log('Módulo Multimídia Teca Capital inicializado com sucesso!');
-            }
-
-            // ===== INICIALIZAR QUANDO O DOM ESTIVER PRONTO =====
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
             } else {
-                init();
+                continue; // Pular ETFs e títulos
             }
+            
+            // Substituir placeholders
+            const newsText = template
+                .replace('{company}', asset.name)
+                .replace('{crypto}', asset.name)
+                .replace('{value}', formatCurrency(Math.random() * 1000000000 + 100000000))
+                .replace('{percent}', (Math.random() * 50 + 10).toFixed(1))
+                .replace('{number}', Math.floor(Math.random() * 500 + 100));
+            
+            news.push({
+                id: Date.now() + i,
+                text: newsText,
+                type: type,
+                assetName: asset.name,
+                ticker: asset.ticker,
+                timestamp: new Date(Date.now() - Math.random() * 86400000 * 3).toISOString(),
+                source: ['BODIVA News', 'Mercado AO', 'Angola Investe', 'Teca Capital Análise'][Math.floor(Math.random() * 4)]
+            });
+        }
+        
+        news.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        
+        return news;
+    }
+    
+    function ext_getTimeAgo(timestamp) {
+        const seconds = Math.floor((new Date() - new Date(timestamp)) / 1000);
+        
+        if (seconds < 60) return 'Agora mesmo';
+        if (seconds < 3600) return Math.floor(seconds / 60) + ' min atrás';
+        if (seconds < 86400) return Math.floor(seconds / 3600) + 'h atrás';
+        return Math.floor(seconds / 86400) + 'd atrás';
+    }
+    
+    function ext_renderNews() {
+        const news = ext_generateNews();
+        const container = document.getElementById('ext-news-feed');
+        
+        if (!container) return;
+        
+        container.innerHTML = news.map(item => {
+            const icon = {
+                positive: '📈',
+                negative: '📉',
+                neutral: '📰'
+            }[item.type];
+            
+            const typeClass = `ext-news-${item.type}`;
+            const timeAgo = ext_getTimeAgo(item.timestamp);
+            
+            return `
+                <div class="ext-news-item ${typeClass}">
+                    <div class="ext-news-header">
+                        <span class="ext-news-icon">${icon}</span>
+                        <span class="ext-news-ticker">${item.ticker}</span>
+                        <span class="ext-news-time">${timeAgo}</span>
+                    </div>
+                    <div class="ext-news-body">
+                        ${item.text}
+                    </div>
+                    <div class="ext-news-footer">
+                        <span class="ext-news-source">📡 ${item.source}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    // ===== ESTATÍSTICAS DO MERCADO =====
+    
+    const EXT_MARKET_SIMULATION = {
+        totalInvestors: 20000000,
+        currentBuyOrders: 0,
+        currentSellOrders: 0,
+        totalVolume: 0
+    };
+    
+    function ext_simulateMarketActivity() {
+        Object.values(AppState.market.assets).forEach(asset => {
+            if (asset.type !== 'acao' && asset.type !== 'cripto') return;
+            
+            const priceChange = ((asset.currentPrice - asset.previousPrice) / asset.previousPrice) * 100;
+            
+            if (priceChange > 0) {
+                const newBuyers = Math.floor(Math.random() * 10000 * Math.abs(priceChange) + 500);
+                EXT_MARKET_SIMULATION.currentBuyOrders += newBuyers;
+                
+                const volume = newBuyers * asset.currentPrice * (Math.random() * 100 + 50);
+                EXT_MARKET_SIMULATION.totalVolume += volume;
+            } else if (priceChange < 0) {
+                const newSellers = Math.floor(Math.random() * 10000 * Math.abs(priceChange) + 500);
+                EXT_MARKET_SIMULATION.currentSellOrders += newSellers;
+                
+                const volume = newSellers * asset.currentPrice * (Math.random() * 100 + 50);
+                EXT_MARKET_SIMULATION.totalVolume += volume;
+            } else {
+                // Atividade aleatória mesmo sem mudança
+                const randomBuyers = Math.floor(Math.random() * 1000);
+                const randomSellers = Math.floor(Math.random() * 1000);
+                EXT_MARKET_SIMULATION.currentBuyOrders += randomBuyers;
+                EXT_MARKET_SIMULATION.currentSellOrders += randomSellers;
+            }
+        });
+        
+        // Adicionar transações do usuário
+        if (AppState.portfolio.transactions) {
+            AppState.portfolio.transactions.forEach(tx => {
+                if (!tx.countedInMarket) {
+                    EXT_MARKET_SIMULATION.totalVolume += tx.total;
+                    tx.countedInMarket = true;
+                    
+                    if (tx.type === 'buy') {
+                        EXT_MARKET_SIMULATION.currentBuyOrders++;
+                    } else {
+                        EXT_MARKET_SIMULATION.currentSellOrders++;
+                    }
+                }
+            });
+        }
+        
+        // Decair ordens antigas
+        EXT_MARKET_SIMULATION.currentBuyOrders = Math.floor(EXT_MARKET_SIMULATION.currentBuyOrders * 0.95);
+        EXT_MARKET_SIMULATION.currentSellOrders = Math.floor(EXT_MARKET_SIMULATION.currentSellOrders * 0.95);
+    }
+    
+    function ext_updateMarketStats() {
+        const totalInvestorsEl = document.getElementById('ext-total-investors');
+        const totalVolumeEl = document.getElementById('ext-total-volume');
+        const buyOrdersEl = document.getElementById('ext-buy-orders');
+        const sellOrdersEl = document.getElementById('ext-sell-orders');
+        const sentimentFill = document.getElementById('ext-sentiment-fill');
+        const sentimentText = document.getElementById('ext-sentiment-text');
+        
+        if (!totalInvestorsEl) return;
+        
+        totalInvestorsEl.textContent = EXT_MARKET_SIMULATION.totalInvestors.toLocaleString('pt-AO');
+        totalVolumeEl.textContent = formatCurrency(EXT_MARKET_SIMULATION.totalVolume);
+        buyOrdersEl.textContent = EXT_MARKET_SIMULATION.currentBuyOrders.toLocaleString('pt-AO');
+        sellOrdersEl.textContent = EXT_MARKET_SIMULATION.currentSellOrders.toLocaleString('pt-AO');
+        
+        const total = EXT_MARKET_SIMULATION.currentBuyOrders + EXT_MARKET_SIMULATION.currentSellOrders || 1;
+        const buyPercentage = (EXT_MARKET_SIMULATION.currentBuyOrders / total) * 100;
+        
+        sentimentFill.style.width = buyPercentage + '%';
+        
+        if (buyPercentage >= 60) {
+            sentimentFill.style.background = 'linear-gradient(90deg, var(--success), rgb(25, 175, 75))';
+            sentimentText.textContent = `📈 Otimista (${buyPercentage.toFixed(1)}% Compradores)`;
+            sentimentText.className = 'ext-sentiment-text positive';
+        } else if (buyPercentage >= 45) {
+            sentimentFill.style.background = 'linear-gradient(90deg, var(--accent-green), rgb(194, 154, 80))';
+            sentimentText.textContent = `➡️ Neutro (${buyPercentage.toFixed(1)}% Compradores)`;
+            sentimentText.className = 'ext-sentiment-text neutral';
+        } else {
+            sentimentFill.style.background = 'linear-gradient(90deg, var(--danger), rgb(220, 50, 50))';
+            sentimentText.textContent = `📉 Pessimista (${buyPercentage.toFixed(1)}% Compradores)`;
+            sentimentText.className = 'ext-sentiment-text negative';
+        }
+    }
+    
+    // ===== FLUXO DE ORDENS POR ATIVO =====
+    
+    function ext_calculateAssetOrderFlow(asset) {
+        const priceChange = ((asset.currentPrice - asset.previousPrice) / asset.previousPrice) * 100;
+        
+        let buyPercentage;
+        
+        if (priceChange > 0) {
+            buyPercentage = 50 + Math.min(priceChange * 5, 45);
+        } else if (priceChange < 0) {
+            buyPercentage = 50 + Math.max(priceChange * 5, -45);
+        } else {
+            buyPercentage = 50;
+        }
+        
+        const sellPercentage = 100 - buyPercentage;
+        
+        return {
+            buyPercentage: buyPercentage.toFixed(1),
+            sellPercentage: sellPercentage.toFixed(1),
+            dominantSide: buyPercentage > 50 ? 'buy' : 'sell'
+        };
+    }
+    
+    // ===== SISTEMA DE ORDENS LIMITE =====
+    
+    function ext_executeOrder(assetId, quantity, orderType, limitPrice = null) {
+        const type = document.getElementById('trade-modal').dataset.type;
+        
+        if (orderType === 'market') {
+            if (type === 'buy') {
+                return Promise.resolve(buyAsset(assetId, quantity));
+            } else {
+                return Promise.resolve(sellAsset(assetId, quantity));
+            }
+        } else if (orderType === 'limit') {
+            return ext_processLimitOrder(assetId, quantity, limitPrice, type);
+        }
+    }
+    
+    function ext_processLimitOrder(assetId, quantity, limitPrice, type) {
+        return new Promise((resolve, reject) => {
+            const processingDiv = document.getElementById('ext-limit-processing');
+            const progressBar = document.getElementById('ext-limit-progress');
+            const timeRemaining = document.getElementById('ext-time-remaining');
+            const confirmBtn = document.getElementById('confirm-trade');
+            const cancelBtn = document.getElementById('cancel-trade');
+            
+            // Desabilitar botões durante processamento
+            confirmBtn.disabled = true;
+            cancelBtn.disabled = true;
+            
+            processingDiv.style.display = 'block';
+            
+            let secondsLeft = 10;
+            const interval = setInterval(() => {
+                secondsLeft--;
+                const progress = ((10 - secondsLeft) / 10) * 100;
+                progressBar.style.width = progress + '%';
+                timeRemaining.textContent = `Tempo restante: ${secondsLeft}s`;
+                
+                if (secondsLeft <= 0) {
+                    clearInterval(interval);
+                    processingDiv.style.display = 'none';
+                    
+                    // Reabilitar botões
+                    confirmBtn.disabled = false;
+                    cancelBtn.disabled = false;
+                    
+                    // Executar ordem com preço limite
+                    const asset = AppState.market.assets[assetId];
+                    const originalPrice = asset.currentPrice;
+                    
+                    // Temporariamente usar preço limite
+                    asset.currentPrice = limitPrice;
+                    
+                    let result;
+                    if (type === 'buy') {
+                        result = buyAsset(assetId, quantity);
+                    } else {
+                        result = sellAsset(assetId, quantity);
+                    }
+                    
+                    // Restaurar preço original
+                    asset.currentPrice = originalPrice;
+                    
+                    if (result.success) {
+                        showNotification(`✅ Ordem limite executada com sucesso! ${result.message}`, 'success');
+                        resolve(result);
+                    } else {
+                        showNotification(`❌ ${result.message}`, 'error');
+                        reject(result);
+                    }
+                }
+            }, 1000);
+        });
+    }
+    
+    // ===== ATUALIZAÇÃO DE CARDS DE ATIVOS =====
+    
+    function ext_addMarketCapToCards() {
+        const assetCards = document.querySelectorAll('.asset-card');
+        
+        assetCards.forEach(card => {
+            const ticker = card.querySelector('.ticker')?.textContent;
+            if (!ticker) return;
+            
+            const asset = Object.values(AppState.market.assets).find(a => a.ticker === ticker);
+            if (!asset || asset.type !== 'acao') return;
+            
+            // Verificar se já existe info de market cap
+            if (card.querySelector('.ext-market-cap-info')) return;
+            
+            const marketCapInfo = ext_calculateMarketCap(asset);
+            if (!marketCapInfo) return;
+            
+            const orderFlow = ext_calculateAssetOrderFlow(asset);
+            
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'ext-market-cap-info';
+            infoDiv.innerHTML = `
+                <div class="ext-info-row">
+                    <span class="ext-label">📈 Ações Emitidas:</span>
+                    <span class="ext-value">${formatShares(marketCapInfo.sharesIssued)}</span>
+                </div>
+                <div class="ext-info-row">
+                    <span class="ext-label">💹 Ações em Circulação:</span>
+                    <span class="ext-value">${formatShares(marketCapInfo.sharesOutstanding)} (${((marketCapInfo.sharesOutstanding / marketCapInfo.sharesIssued) * 100).toFixed(1)}%)</span>
+                </div>
+                <div class="ext-info-row highlight">
+                    <span class="ext-label">📊 Valor de Mercado:</span>
+                    <span class="ext-value ext-market-cap">${marketCapInfo.marketCapFormatted}</span>
+                </div>
+            `;
+            
+            // Adicionar fluxo de ordens
+            const flowDiv = document.createElement('div');
+            flowDiv.className = 'ext-order-flow';
+            flowDiv.innerHTML = `
+                <div class="ext-flow-header">
+                    <span>📊 Fluxo de Ordens</span>
+                </div>
+                <div class="ext-flow-bar">
+                    <div class="ext-flow-buy" style="width: ${orderFlow.buyPercentage}%">
+                        <span>📈 ${orderFlow.buyPercentage}%</span>
+                    </div>
+                    <div class="ext-flow-sell" style="width: ${orderFlow.sellPercentage}%">
+                        <span>📉 ${orderFlow.sellPercentage}%</span>
+                    </div>
+                </div>
+            `;
+            
+            // Inserir antes dos botões de ação
+            const actionsDiv = card.querySelector('.asset-actions');
+            if (actionsDiv) {
+                actionsDiv.parentNode.insertBefore(infoDiv, actionsDiv);
+                actionsDiv.parentNode.insertBefore(flowDiv, actionsDiv);
+            }
+        });
+    }
+    
+    // ===== CONFIGURAÇÃO DO MODAL DE ORDENS =====
+    
+    function ext_setupOrderTypeSelector() {
+        const modal = document.getElementById('trade-modal');
+        if (!modal) return;
+        
+        const modalContent = modal.querySelector('.modal-content');
+        const assetDetails = modalContent.querySelector('.asset-details');
+        
+        // Verificar se já existe o seletor
+        if (modalContent.querySelector('.ext-order-type-selector')) return;
+        
+        const orderTypeHTML = `
+            <div class="ext-order-type-selector">
+                <label class="ext-order-type-label">
+                    <input type="radio" name="order-type" value="market" checked>
+                    <div class="ext-order-type-card">
+                        <div class="ext-order-type-icon">⚡</div>
+                        <div class="ext-order-type-title">Ordem a Mercado</div>
+                        <div class="ext-order-type-desc">Execução instantânea ao preço atual</div>
+                    </div>
+                </label>
+                
+                <label class="ext-order-type-label">
+                    <input type="radio" name="order-type" value="limit">
+                    <div class="ext-order-type-card">
+                        <div class="ext-order-type-icon">🎯</div>
+                        <div class="ext-order-type-title">Ordem Limite</div>
+                        <div class="ext-order-type-desc">Defina o preço desejado</div>
+                    </div>
+                </label>
+            </div>
+            
+            <div id="ext-limit-price-input" style="display:none; margin-bottom: 15px;">
+                <label for="ext-limit-price">Preço Limite (Kz):</label>
+                <input 
+                    type="number" 
+                    id="ext-limit-price" 
+                    min="0.01" 
+                    step="0.01" 
+                    placeholder="Digite o preço desejado"
+                    style="width: 100%; padding: 12px; background: var(--gray-medium); border: 2px solid var(--gray-light); border-radius: 8px; color: var(--text-white); font-size: 1rem;"
+                >
+                <p class="ext-limit-hint" style="margin-top: 5px; font-size: 0.85rem; color: var(--accent-green);">
+                    💡 Sua ordem será executada quando o mercado atingir este preço
+                </p>
+            </div>
+            
+            <p id="ext-order-summary" style="text-align: center; color: var(--accent-green); margin-bottom: 15px; font-size: 0.9rem;">
+                ⚡ Ordem será executada imediatamente ao preço de mercado
+            </p>
+        `;
+        
+        const processingHTML = `
+            <div id="ext-limit-processing" class="ext-limit-processing" style="display:none;">
+                <div class="ext-processing-icon">⏳</div>
+                <div class="ext-processing-text">
+                    <h4>Procurando ordem compatível...</h4>
+                    <p>Aguarde alguns segundos enquanto sua ordem é processada no mercado.</p>
+                    <div class="ext-progress-bar">
+                        <div class="ext-progress-fill" id="ext-limit-progress"></div>
+                    </div>
+                    <p class="ext-time-remaining" id="ext-time-remaining">Tempo restante: 10s</p>
+                </div>
+            </div>
+        `;
+        
+        // Inserir após os detalhes do ativo
+        if (assetDetails) {
+            assetDetails.insertAdjacentHTML('afterend', orderTypeHTML);
+            assetDetails.insertAdjacentHTML('afterend', processingHTML);
+        } else {
+            modalContent.querySelector('.trade-form').insertAdjacentHTML('beforebegin', orderTypeHTML);
+            modalContent.querySelector('.trade-form').insertAdjacentHTML('beforebegin', processingHTML);
+        }
+        
+        // Event listeners
+        document.querySelectorAll('input[name="order-type"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const limitInput = document.getElementById('ext-limit-price-input');
+                const orderSummary = document.getElementById('ext-order-summary');
+                
+                if (e.target.value === 'limit') {
+                    limitInput.style.display = 'block';
+                    orderSummary.innerHTML = '🎯 Ordem será executada ao preço limite definido';
+                } else {
+                    limitInput.style.display = 'none';
+                    orderSummary.innerHTML = '⚡ Ordem será executada imediatamente ao preço de mercado';
+                }
+            });
+        });
+    }
+    
+    // ===== MODIFICAR CONFIRMAÇÃO DE ORDEM =====
+    
+    function ext_overrideConfirmTrade() {
+        const confirmBtn = document.getElementById('confirm-trade');
+        if (!confirmBtn) return;
+        
+        // Remover listeners antigos
+        const newBtn = confirmBtn.cloneNode(true);
+        confirmBtn.parentNode.replaceChild(newBtn, confirmBtn);
+        
+        newBtn.addEventListener('click', async () => {
+            const orderTypeRadio = document.querySelector('input[name="order-type"]:checked');
+            const orderType = orderTypeRadio ? orderTypeRadio.value : 'market';
+            
+            const limitPriceInput = document.getElementById('ext-limit-price');
+            const limitPrice = orderType === 'limit' && limitPriceInput
+                ? parseFloat(limitPriceInput.value) 
+                : null;
+            
+            const assetId = document.getElementById('trade-modal').dataset.assetId;
+            const quantity = parseFloat(document.getElementById('trade-quantity').value);
+            
+            if (!quantity || quantity <= 0) {
+                showNotification('⚠️ Por favor, insira uma quantidade válida', 'error');
+                return;
+            }
+            
+            if (orderType === 'limit' && (!limitPrice || limitPrice <= 0)) {
+                showNotification('⚠️ Por favor, defina um preço limite válido', 'error');
+                return;
+            }
+            
+            try {
+                await ext_executeOrder(assetId, quantity, orderType, limitPrice);
+                closeTradeModal();
+                updatePortfolioUI();
+                updateTransactionsUI();
+            } catch (error) {
+                console.error('Erro ao executar ordem:', error);
+            }
+        });
+    }
+    
+    // ===== INTEGRAÇÃO COM SISTEMA EXISTENTE =====
+    
+    function ext_updateAllData() {
+        ext_simulateMarketActivity();
+        ext_updateMarketStats();
+        ext_renderMarketCapRanking();
+        ext_addMarketCapToCards();
+    }
+    
+    // Hook no sistema existente
+    const originalUpdateMarketPrices = window.updateMarketPrices;
+    if (originalUpdateMarketPrices) {
+        window.updateMarketPrices = function() {
+            const result = originalUpdateMarketPrices.call(this);
+            ext_updateAllData();
+            return result;
+        };
+    }
+    
+    const originalRenderAssetsUI = window.renderAssetsUI;
+    if (originalRenderAssetsUI) {
+        window.renderAssetsUI = function(category) {
+            const result = originalRenderAssetsUI.call(this, category);
+            setTimeout(() => {
+                ext_addMarketCapToCards();
+            }, 100);
+            return result;
+        };
+    }
+    
+    // ===== ADICIONAR HTML DOS PAINÉIS =====
+    
+    function ext_injectHTML() {
+        const positionsList = document.querySelector('.positions-list');
+        if (!positionsList) return;
+        
+        // Ranking de Market Cap
+        const rankingHTML = `
+            <div class="ext-market-cap-ranking">
+                <h4>🏆 Top 10 Maiores Empresas</h4>
+                <p class="ext-ranking-subtitle">Por Valor de Mercado</p>
+                <div id="ext-top-market-cap-list"></div>
+            </div>
+        `;
+        
+        // Estatísticas do Mercado
+        const statsHTML = `
+            <div class="ext-market-stats">
+                <h4>📊 Estatísticas do Mercado</h4>
+                
+                <div class="ext-stat-item">
+                    <span class="ext-stat-label">👥 Investidores Ativos:</span>
+                    <span class="ext-stat-value" id="ext-total-investors">20.000.000</span>
+                </div>
+                
+                <div class="ext-stat-item">
+                    <span class="ext-stat-label">💰 Volume Total Transacionado:</span>
+                    <span class="ext-stat-value" id="ext-total-volume">0 Kz</span>
+                </div>
+                
+                <div class="ext-stat-item">
+                    <span class="ext-stat-label">📈 Ordens de Compra:</span>
+                    <span class="ext-stat-value positive" id="ext-buy-orders">0</span>
+                </div>
+                
+                <div class="ext-stat-item">
+                    <span class="ext-stat-label">📉 Ordens de Venda:</span>
+                    <span class="ext-stat-value negative" id="ext-sell-orders">0</span>
+                </div>
+                
+                <div class="ext-sentiment-indicator">
+                    <div class="ext-sentiment-label">Sentimento do Mercado:</div>
+                    <div class="ext-sentiment-bar">
+                        <div class="ext-sentiment-fill" id="ext-sentiment-fill" style="width: 50%;"></div>
+                    </div>
+                    <div class="ext-sentiment-text" id="ext-sentiment-text">Neutro</div>
+                </div>
+            </div>
+        `;
+        
+        positionsList.insertAdjacentHTML('afterend', rankingHTML);
+        
+        // Encontrar a performance-ranking para inserir depois
+        const performanceRanking = document.querySelector('.performance-ranking');
+        if (performanceRanking) {
+            performanceRanking.insertAdjacentHTML('afterend', statsHTML);
+        } else {
+            // Fallback: inserir após o ranking
+            document.getElementById('ext-top-market-cap-list').parentNode.insertAdjacentHTML('afterend', statsHTML);
+        }
+        
+        // Botão de Notícias
+        const headerActions = document.querySelector('.header-actions');
+        if (headerActions) {
+            const newsBtn = document.createElement('button');
+            newsBtn.id = 'ext-news-btn';
+            newsBtn.className = 'btn-secondary';
+            newsBtn.innerHTML = '📰 Notícias do Mercado';
+            headerActions.insertBefore(newsBtn, headerActions.querySelector('#reset-simulation'));
+        }
+        
+        // Modal de Notícias
+        const newsModalHTML = `
+            <div id="ext-news-modal" class="modal">
+                <div class="modal-content ext-news-modal-content">
+                    <span class="close" id="ext-news-close">&times;</span>
+                    <h3>📰 Notícias do Mercado Financeiro</h3>
+                    <p class="ext-news-disclaimer">
+                        ⚠️ Notícias fictícias geradas para fins educacionais
+                    </p>
+                    <div id="ext-news-feed"></div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', newsModalHTML);
+    }
+    
+    // ===== EVENT LISTENERS =====
+    
+    function ext_setupEventListeners() {
+        // Botão de notícias
+        const newsBtn = document.getElementById('ext-news-btn');
+        if (newsBtn) {
+            newsBtn.addEventListener('click', () => {
+                const modal = document.getElementById('ext-news-modal');
+                modal.style.display = 'block';
+                ext_renderNews();
+            });
+        }
+        
+        // Fechar modal de notícias
+        const newsClose = document.getElementById('ext-news-close');
+        if (newsClose) {
+            newsClose.addEventListener('click', () => {
+                document.getElementById('ext-news-modal').style.display = 'none';
+            });
+        }
+        
+        // Fechar ao clicar fora
+        window.addEventListener('click', (e) => {
+            const newsModal = document.getElementById('ext-news-modal');
+            if (e.target === newsModal) {
+                newsModal.style.display = 'none';
+            }
+        });
+    }
+    
+    // ===== INICIALIZAÇÃO =====
+    
+    function ext_initialize() {
+        console.log('🚀 Inicializando módulo Market Cap e funcionalidades avançadas...');
+        
+        setTimeout(() => {
+            ext_initializeMarketCapData();
+            ext_injectHTML();
+            ext_setupOrderTypeSelector();
+            ext_overrideConfirmTrade();
+            ext_setupEventListeners();
+            ext_updateAllData();
+            
+            console.log('✅ Módulo Market Cap inicializado com sucesso!');
+        }, 2000);
+    }
+    
+    // Aguardar carregamento completo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', ext_initialize);
+    } else {
+        ext_initialize();
+    }
+    
+    // Exposição global para debug
+    window.EXT_MARKET_MODULE = {
+        initialize: ext_initialize,
+        generateNews: ext_generateNews,
+        calculateMarketCap: ext_calculateMarketCap,
+        updateMarketStats: ext_updateMarketStats,
+        renderMarketCapRanking: ext_renderMarketCapRanking
+    };
+    
+})();
 
-            // ===== EXPOSIÇÃO PARA DEBUG (OPCIONAL) =====
-            window.tecaMultimediaModule = {
-                goToSlide,
-                openModal,
-                closeModal,
-                toggleVideoPlayback,
-                toggleAudioPlayback
-            };
-
-        })();
-    </script>
+</script>
 
     </main>
 
