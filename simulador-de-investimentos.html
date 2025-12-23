@@ -9421,48 +9421,57 @@ document.getElementById('reset-simulation').onclick = function() {
     }
     
     // ===== MODIFICAR CONFIRMAÇÃO DE ORDEM =====
+
+function ext_overrideConfirmTrade() {
+    const confirmBtn = document.getElementById('confirm-trade');
+    if (!confirmBtn) return;
     
-    function ext_overrideConfirmTrade() {
-        const confirmBtn = document.getElementById('confirm-trade');
-        if (!confirmBtn) return;
-        
-        // Remover listeners antigos
-        const newBtn = confirmBtn.cloneNode(true);
-        confirmBtn.parentNode.replaceChild(newBtn, confirmBtn);
-        
-        newBtn.addEventListener('click', async () => {
-            const orderTypeRadio = document.querySelector('input[name="order-type"]:checked');
-            const orderType = orderTypeRadio ? orderTypeRadio.value : 'market';
-            
-            const limitPriceInput = document.getElementById('ext-limit-price');
-            const limitPrice = orderType === 'limit' && limitPriceInput
-                ? parseFloat(limitPriceInput.value) 
-                : null;
-            
-            const assetId = document.getElementById('trade-modal').dataset.assetId;
-            const quantity = parseFloat(document.getElementById('trade-quantity').value);
-            
-            if (!quantity || quantity <= 0) {
-                showNotification('⚠️ Por favor, insira uma quantidade válida', 'error');
-                return;
-            }
-            
-            if (orderType === 'limit' && (!limitPrice || limitPrice <= 0)) {
-                showNotification('⚠️ Por favor, defina um preço limite válido', 'error');
-                return;
-            }
-            
-            try {
-                await ext_executeOrder(assetId, quantity, orderType, limitPrice);
-                closeTradeModal();
-                updatePortfolioUI();
-                updateTransactionsUI();
-            } catch (error) {
-                console.error('Erro ao executar ordem:', error);
-            }
-        });
-    }
+    // Remover listeners antigos
+    const newBtn = confirmBtn.cloneNode(true);
+    confirmBtn.parentNode.replaceChild(newBtn, confirmBtn);
     
+    newBtn.addEventListener('click', async () => {
+        const orderTypeRadio = document.querySelector('input[name="order-type"]:checked');
+        const orderType = orderTypeRadio ? orderTypeRadio.value : 'market';
+        
+        const limitPriceInput = document.getElementById('ext-limit-price');
+        const limitPrice = orderType === 'limit' && limitPriceInput
+            ? parseFloat(limitPriceInput.value) 
+            : null;
+        
+        const assetId = document.getElementById('trade-modal').dataset.assetId;
+        const quantity = parseFloat(document.getElementById('trade-quantity').value);
+        
+        if (!quantity || quantity <= 0) {
+            showNotification('⚠️ Por favor, insira uma quantidade válida', 'error');
+            return;
+        }
+        
+        if (orderType === 'limit' && (!limitPrice || limitPrice <= 0)) {
+            showNotification('⚠️ Por favor, defina um preço limite válido', 'error');
+            return;
+        }
+        
+        try {
+            const result = await ext_executeOrder(assetId, quantity, orderType, limitPrice);
+            
+            // ✅ CORREÇÃO: Exibir notificação de sucesso
+            if (result && result.success) {
+                showNotification(result.message, 'success');
+            }
+            
+            closeTradeModal();
+            updatePortfolioUI();
+            updateTransactionsUI();
+        } catch (error) {
+            console.error('Erro ao executar ordem:', error);
+            
+            // ✅ CORREÇÃO: Exibir notificação de erro
+            showNotification('❌ Erro ao processar transação. Tente novamente.', 'error');
+        }
+    });
+}
+
     // ===== INTEGRAÇÃO COM SISTEMA EXISTENTE =====
     
     function ext_updateAllData() {
