@@ -5211,6 +5211,420 @@ body.simulation-active .dashboard-header {
     // ========================================
     // ESTADO GLOBAL DA APLICAÇÃO
     // ========================================
+
+    // ========================================
+// SISTEMA DE MARKET CAP E RANKING
+// ========================================
+
+// Inicializar dados de Market Cap para todas as ações
+function ext_initializeMarketCapData() {
+    console.log('Inicializando dados de Market Cap...');
+    
+    ASSETS_DATABASE.acoes.forEach(asset => {
+        // Gerar dados aleatórios realistas para cada ação
+        const sharesIssued = Math.floor(Math.random() * (1000000000 - 10000000 + 1)) + 10000000; // 10M a 1B
+        const outstandingPercentage = Math.random() * 0.05 + 0.90; // 90-95%
+        const freeFloatPercentage = Math.random() * 0.5 + 0.30; // 30-80%
+        
+        asset.stockInfo = {
+            sharesIssued: sharesIssued,
+            sharesOutstanding: Math.floor(sharesIssued * outstandingPercentage),
+            freeFloat: Math.floor(sharesIssued * outstandingPercentage * freeFloatPercentage),
+            lockedShares: Math.floor(sharesIssued * (1 - outstandingPercentage))
+        };
+        
+        console.log(`Dados de ${asset.ticker}:`, asset.stockInfo);
+    });
+}
+
+// Calcular Market Cap para um ativo específico
+function ext_calculateMarketCap(asset) {
+    if (!asset || !asset.stockInfo || !asset.stockInfo.sharesIssued) {
+        console.warn(`Ativo ${asset?.ticker || 'desconhecido'} não tem dados de Market Cap`);
+        return {
+            marketCapKz: 0,
+            marketCapFormatted: 'N/A',
+            pricePerShare: 0
+        };
+    }
+    
+    const price = asset.currentPrice || asset.initialPrice;
+    const marketCap = price * asset.stockInfo.sharesIssued;
+    
+    return {
+        marketCapKz: marketCap,
+        marketCapFormatted: formatMarketCap(marketCap),
+        pricePerShare: price,
+        sharesIssued: asset.stockInfo.sharesIssued,
+        sharesOutstanding: asset.stockInfo.sharesOutstanding,
+        outstandingPercentage: (asset.stockInfo.sharesOutstanding / asset.stockInfo.sharesIssued * 100).toFixed(1)
+    };
+}
+
+// Formatar Market Cap para exibição legível
+function formatMarketCap(value) {
+    if (value >= 1000000000) {
+        return `${(value / 1000000000).toFixed(2)} B Kz`;
+    }
+    if (value >= 1000000) {
+        return `${(value / 1000000).toFixed(2)} M Kz`;
+    }
+    if (value >= 1000) {
+        return `${(value / 1000).toFixed(2)} K Kz`;
+    }
+    return `${value.toFixed(2)} Kz`;
+}
+
+// Formatar quantidade de ações
+function formatShares(value) {
+    if (value >= 1000000000) {
+        return `${(value / 1000000000).toFixed(2)} B`;
+    }
+    if (value >= 1000000) {
+        return `${(value / 1000000).toFixed(2)} M`;
+    }
+    if (value >= 1000) {
+        return `${(value / 1000).toFixed(2)} K`;
+    }
+    return value.toLocaleString('pt-AO');
+}
+
+// Adicionar informações de Market Cap aos cards de ações
+function ext_addMarketCapToCards(assetsList, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const assetCards = container.querySelectorAll('.asset-card');
+    
+    assetCards.forEach((card, index) => {
+        const assetId = assetsList[index]?.id;
+        if (!assetId) return;
+        
+        const asset = AppState.market.assets[assetId];
+        if (!asset || asset.type !== 'acao') return;
+        
+        // Verificar se já existe a seção de Market Cap
+        let marketCapSection = card.querySelector('.ext-market-cap-info');
+        if (marketCapSection) {
+            marketCapSection.remove(); // Remover se já existir para recriar
+        }
+        
+        // Calcular dados de Market Cap
+        const marketCapData = ext_calculateMarketCap(asset);
+        
+        // Criar nova seção de Market Cap
+        marketCapSection = document.createElement('div');
+        marketCapSection.className = 'ext-market-cap-info';
+        marketCapSection.innerHTML = `
+            <div class="ext-info-row">
+                <span class="ext-label">📈 Ações Emitidas:</span>
+                <span class="ext-value">${formatShares(marketCapData.sharesIssued)}</span>
+            </div>
+            <div class="ext-info-row">
+                <span class="ext-label">💹 Ações em Circulação:</span>
+                <span class="ext-value">${formatShares(marketCapData.sharesOutstanding)} (${marketCapData.outstandingPercentage}%)</span>
+            </div>
+            <div class="ext-info-row highlight">
+                <span class="ext-label">📊 Valor de Mercado:</span>
+                <span class="ext-value ext-market-cap">${marketCapData.marketCapFormatted}</span>
+            </div>
+        `;
+        
+        // Inserir após as informações de preço
+        const priceElement = card.querySelector('.asset-price');
+        if (priceElement) {
+            priceElement.insertAdjacentElement('afterend', marketCapSection);
+        }
+    });
+}
+
+// Renderizar ranking das 10 maiores empresas por Market Cap
+function ext_renderMarketCapRanking() {
+    const container = document.querySelector('.ext-market-cap-ranking');
+    if (!container) {
+        console.warn('Container .ext-market-cap-ranking não encontrado');
+        return;
+    }
+    
+    // Filtrar apenas ações
+    const allStocks = Object.values(AppState.market.assets).filter(asset => 
+        asset.type === 'acao'
+    );
+    
+    if (allStocks.length === 0) {
+        container.innerHTML = `
+            <h4>📊 Top 10 Maiores Empresas</h4>
+            <p class="ext-ranking-subtitle">Por capitalização de mercado</p>
+            <p class="empty-state">Nenhuma ação disponível</p>
+        `;
+        return;
+    }
+    
+    // Calcular Market Cap e ordenar
+    const stocksWithMarketCap = allStocks.map(stock => {
+        const marketCapData = ext_calculateMarketCap(stock);
+        return {
+            ...stock,
+            marketCapKz: marketCapData.marketCapKz,
+            marketCapFormatted: marketCapData.marketCapFormatted
+        };
+    });
+    
+    // Ordenar por Market Cap (maior → menor)
+    stocksWithMarketCap.sort((a, b) => b.marketCapKz - a.marketCapKz);
+    
+    // Pegar top 10
+    const top10 = stocksWithMarketCap.slice(0, 10);
+    
+    // Renderizar ranking
+    container.innerHTML = `
+        <h4>📊 Top 10 Maiores Empresas</h4>
+        <p class="ext-ranking-subtitle">Por capitalização de mercado</p>
+        <div id="ext-top-market-cap-list">
+            ${top10.map((stock, index) => {
+                const position = index + 1;
+                const change = ((stock.currentPrice - stock.previousPrice) / stock.previousPrice * 100) || 0;
+                const changeClass = change >= 0 ? 'positive' : 'negative';
+                const changeIcon = change >= 0 ? '📈' : '📉';
+                
+                // Badges para os 3 primeiros
+                let badge = '';
+                if (position === 1) badge = '🥇';
+                else if (position === 2) badge = '🥈';
+                else if (position === 3) badge = '🥉';
+                
+                return `
+                    <div class="ext-ranking-item" data-position="${position}">
+                        <span class="ext-rank-position">${badge} ${position}º</span>
+                        <div class="ext-rank-info">
+                            <div class="ext-rank-ticker">${stock.ticker} - ${stock.name}</div>
+                            <div class="ext-rank-market-cap">${stock.marketCapFormatted}</div>
+                        </div>
+                        <span class="ext-rank-change ${changeClass}">
+                            ${changeIcon} ${change >= 0 ? '+' : ''}${change.toFixed(2)}%
+                        </span>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
+    
+    console.log('Ranking de Market Cap atualizado com', top10.length, 'empresas');
+}
+
+// Atualizar Market Cap de todas as ações (chamado quando preços mudam)
+function ext_updateAllMarketCaps() {
+    console.log('Atualizando Market Caps...');
+    
+    // Atualizar ranking
+    ext_renderMarketCapRanking();
+    
+    // Atualizar cards visíveis
+    const activeTab = document.querySelector('.asset-tabs .tab.active');
+    if (activeTab && activeTab.dataset.category === 'acoes') {
+        const assets = ASSETS_DATABASE.acoes;
+        ext_addMarketCapToCards(assets, 'assets-list');
+    }
+}
+
+// ========================================
+// HOOKS DE INTEGRAÇÃO COM SISTEMA EXISTENTE
+// ========================================
+
+// Modificar a função initializeMarket() para inicializar Market Cap
+const originalInitializeMarket = initializeMarket;
+initializeMarket = function() {
+    originalInitializeMarket();
+    ext_initializeMarketCapData();
+    
+    // Garantir que todos os assets no market tenham stockInfo
+    ASSETS_DATABASE.acoes.forEach(asset => {
+        if (AppState.market.assets[asset.id] && asset.stockInfo) {
+            AppState.market.assets[asset.id].stockInfo = asset.stockInfo;
+        }
+    });
+    
+    // Renderizar ranking inicial
+    setTimeout(() => ext_renderMarketCapRanking(), 100);
+};
+
+// Modificar a função updateMarketPrices() para atualizar Market Cap
+const originalUpdateMarketPrices = updateMarketPrices;
+updateMarketPrices = function() {
+    originalUpdateMarketPrices();
+    ext_updateAllMarketCaps();
+};
+
+// Modificar a função renderAssetsUI() para adicionar Market Cap aos cards
+const originalRenderAssetsUI = renderAssetsUI;
+renderAssetsUI = function(category) {
+    originalRenderAssetsUI(category);
+    
+    if (category === 'acoes') {
+        const assets = ASSETS_DATABASE[category] || [];
+        setTimeout(() => ext_addMarketCapToCards(assets, 'assets-list'), 100);
+    }
+};
+
+// Adicionar função para criar o container de ranking se não existir
+function ext_createMarketCapRankingContainer() {
+    const sidebar = document.querySelector('.portfolio-summary');
+    if (!sidebar) return;
+    
+    // Verificar se já existe
+    let rankingContainer = document.querySelector('.ext-market-cap-ranking');
+    if (!rankingContainer) {
+        rankingContainer = document.createElement('div');
+        rankingContainer.className = 'ext-market-cap-ranking';
+        rankingContainer.style.marginTop = '20px';
+        
+        // Inserir após o card de resumo
+        const summaryCard = document.querySelector('.summary-card');
+        if (summaryCard) {
+            summaryCard.insertAdjacentElement('afterend', rankingContainer);
+        } else {
+            sidebar.insertAdjacentElement('afterbegin', rankingContainer);
+        }
+    }
+}
+
+// Inicializar quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        ext_createMarketCapRankingContainer();
+        if (AppState.market.assets) {
+            ext_renderMarketCapRanking();
+        }
+    }, 500);
+});
+
+// ========================================
+// TESTE RÁPIDO
+// ========================================
+
+// Função para verificar se tudo está funcionando
+function ext_testMarketCapSystem() {
+    console.log('=== TESTE DO SISTEMA MARKET CAP ===');
+    
+    // Verificar se todas as ações têm stockInfo
+    const stocks = ASSETS_DATABASE.acoes;
+    console.log(`Total de ações: ${stocks.length}`);
+    
+    stocks.forEach((stock, index) => {
+        const marketCapData = ext_calculateMarketCap(stock);
+        console.log(`${index + 1}. ${stock.ticker}: ${marketCapData.marketCapFormatted}`);
+    });
+    
+    // Testar formatação
+    console.log('Formatação 1.5B Kz:', formatMarketCap(1500000000));
+    console.log('Formatação 25M Kz:', formatMarketCap(25000000));
+    console.log('Formatação 1.2M ações:', formatShares(1200000));
+    
+    console.log('=== FIM DO TESTE ===');
+}
+
+// Adicionar CSS adicional para melhorar a aparência
+const additionalCSS = `
+.ext-market-cap-ranking {
+    background: var(--gray-dark);
+    border: 2px solid var(--gray-medium);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.ext-market-cap-ranking h4 {
+    color: var(--accent-green);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.ext-ranking-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.ext-ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--gray-medium);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+.ext-ranking-item:hover {
+    background: var(--gray-light);
+    transform: translateX(5px);
+}
+
+.ext-ranking-item[data-position="1"] {
+    border-left-color: gold;
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), var(--gray-medium));
+}
+
+.ext-ranking-item[data-position="2"] {
+    border-left-color: silver;
+    background: linear-gradient(90deg, rgba(192, 192, 192, 0.15), var(--gray-medium));
+}
+
+.ext-ranking-item[data-position="3"] {
+    border-left-color: #cd7f32;
+    background: linear-gradient(90deg, rgba(205, 127, 50, 0.15), var(--gray-medium));
+}
+
+.ext-rank-position {
+    font-weight: 700;
+    color: var(--accent-green);
+    min-width: 35px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.ext-rank-info {
+    flex: 1;
+}
+
+.ext-rank-ticker {
+    font-weight: 700;
+    color: var(--text-white);
+    font-size: 0.95rem;
+}
+
+.ext-rank-market-cap {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+
+.ext-rank-change {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.ext-rank-change.positive {
+    color: var(--success);
+}
+
+.ext-rank-change.negative {
+    color: var(--danger);
+}
+`;
+
+// Adicionar CSS à página
+document.addEventListener('DOMContentLoaded', function() {
+    const style = document.createElement('style');
+    style.textContent = additionalCSS;
+    document.head.appendChild(style);
+    
+    // Executar teste de verificação
+    setTimeout(() => ext_testMarketCapSystem(), 1000);
+});
+
     const AppState = {
         user: {
             name: '',
@@ -9231,6 +9645,8 @@ document.getElementById('reset-simulation').onclick = function() {
     };
     
 })();
+
+
 
 </script>
 
