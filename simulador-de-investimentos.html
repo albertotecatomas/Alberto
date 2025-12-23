@@ -3529,6 +3529,376 @@ body.simulation-active .dashboard-header {
         background: rgb(220, 50, 50) !important;
     }
 
+    /* ===== ESTILOS PARA DIVIDENDOS ===== */
+.ext-dividends-panel {
+    margin-top: 40px;
+    animation: fadeIn 0.5s ease;
+}
+
+.ext-dividends-panel .transaction-history {
+    background: var(--gray-dark);
+    border: 2px solid var(--accent-green);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+#ext-dividends-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+#ext-dividends-table th {
+    background: var(--gray-medium);
+    padding: 12px 10px;
+    text-align: left;
+    color: var(--accent-green);
+    font-weight: 600;
+    border-bottom: 2px solid var(--gray-light);
+    white-space: nowrap;
+}
+
+#ext-dividends-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--gray-medium);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#ext-dividends-table tbody tr:hover {
+    background: var(--gray-medium);
+}
+
+/* ===== ESTILOS PARA FUNDAMENTALS ===== */
+.ext-fundamentals-panel {
+    margin-top: 30px;
+    animation: fadeIn 0.6s ease;
+}
+
+#ext-indicators-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+#ext-indicators-table th {
+    background: var(--gray-medium);
+    padding: 12px 8px;
+    text-align: center;
+    color: var(--accent-green);
+    font-weight: 600;
+    border-bottom: 2px solid var(--gray-light);
+}
+
+#ext-indicators-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--gray-medium);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#ext-indicators-table .positive {
+    color: var(--success);
+    font-weight: 600;
+}
+
+#ext-indicators-table .negative {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+/* ===== ESTILOS PARA MODAIS DE FINANÇAS ===== */
+.ext-financials-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gray-medium);
+}
+
+.ext-financials-tabs .tab {
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.ext-financials-tabs .tab:hover {
+    color: var(--accent-green);
+    background: rgba(214, 174, 100, 0.1);
+}
+
+.ext-financials-tabs .tab.active {
+    background: var(--accent-green);
+    color: var(--bg-primary);
+    border-color: var(--accent-green);
+}
+
+.ext-statement-container {
+    margin-top: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.ext-statement-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.ext-statement-table th {
+    background: var(--gray-medium);
+    padding: 12px;
+    text-align: left;
+    color: var(--accent-green);
+    font-weight: 600;
+    border-bottom: 2px solid var(--gray-light);
+}
+
+.ext-statement-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--gray-medium);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.ext-statement-table tr.total-row td {
+    font-weight: 700;
+    color: var(--accent-green);
+    border-top: 2px solid var(--gray-medium);
+    background: rgba(214, 174, 100, 0.1);
+}
+
+/* ===== ESTILOS PARA BOTÕES ADICIONAIS NOS CARDS ===== */
+.ext-asset-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.ext-btn-info {
+    padding: 8px 12px;
+    background: rgba(214, 174, 100, 0.2);
+    border: 2px solid var(--accent-green);
+    border-radius: 6px;
+    color: var(--accent-green);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+}
+
+.ext-btn-info:hover {
+    background: var(--accent-green);
+    color: var(--bg-primary);
+}
+
+/* ===== INDICADORES MINI NOS CARDS ===== */
+.ext-mini-indicators {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px;
+    background: var(--gray-medium);
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.ext-indicator-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ext-indicator-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+}
+
+.ext-indicator-value {
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.ext-indicator-value.positive {
+    color: var(--success);
+}
+
+.ext-indicator-value.negative {
+    color: var(--danger);
+}
+
+/* ===== ESTILOS PARA DETALHES DE TÍTULOS ===== */
+.ext-bond-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+    padding: 15px;
+    background: var(--gray-medium);
+    border-radius: 8px;
+}
+
+.ext-bond-summary p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.ext-bond-summary strong {
+    color: var(--accent-green);
+}
+
+/* ===== ESTILOS PARA DETALHES DE CRIPTO ===== */
+.ext-crypto-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+    padding: 15px;
+    background: var(--gray-medium);
+    border-radius: 8px;
+}
+
+.ext-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ext-stat-row:last-child {
+    border-bottom: none;
+}
+
+.ext-stat-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.ext-stat-value {
+    font-weight: 600;
+    color: var(--accent-green);
+}
+
+.ext-crypto-performance {
+    margin-top: 20px;
+}
+
+.ext-performance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.ext-performance-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: var(--gray-dark);
+    border-radius: 8px;
+    border: 2px solid var(--gray-medium);
+    transition: var(--transition);
+}
+
+.ext-performance-item:hover {
+    border-color: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+.ext-performance-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+}
+
+.ext-performance-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.ext-performance-value.positive {
+    color: var(--success);
+}
+
+.ext-performance-value.negative {
+    color: var(--danger);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .ext-dividends-panel .transaction-history,
+    .ext-fundamentals-panel .transaction-history {
+        padding: 15px;
+    }
+    
+    #ext-dividends-table,
+    #ext-indicators-table {
+        font-size: 0.8rem;
+    }
+    
+    #ext-dividends-table th,
+    #ext-dividends-table td,
+    #ext-indicators-table th,
+    #ext-indicators-table td {
+        padding: 8px 6px;
+    }
+    
+    .ext-financials-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .ext-financials-tabs .tab {
+        flex: 1;
+        min-width: 120px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .ext-bond-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .ext-performance-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .ext-asset-actions {
+        flex-direction: column;
+    }
+    
+    .ext-btn-info {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #ext-dividends-table,
+    #ext-indicators-table {
+        font-size: 0.75rem;
+    }
+    
+    #ext-dividends-table th,
+    #ext-dividends-table td {
+        padding: 6px 4px;
+    }
+    
+    .ext-mini-indicators {
+        grid-template-columns: 1fr;
+    }
+}
+
     </style>
 
 
@@ -3902,6 +4272,342 @@ body.simulation-active .dashboard-header {
         </section>
 
     </section>
+
+    <section class="ext-dividends-panel" style="display: none;">
+    <div class="transaction-history">
+        <h3>💰 Histórico de Dividendos</h3>
+        <div class="history-table-container">
+            <table id="ext-dividends-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Empresa</th>
+                        <th>Valor por Ação</th>
+                        <th>Dividend Yield</th>
+                        <th>Quantidade</th>
+                        <th>Total Recebido</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="ext-dividends-body">
+                    <tr>
+                        <td colspan="7" class="empty-state">Nenhum dividendo recebido ainda.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Painel de Indicadores Fundamentalistas -->
+<section class="ext-fundamentals-panel" style="display: none;">
+    <div class="transaction-history">
+        <h3>📊 Indicadores Fundamentalistas por Setor</h3>
+        <div class="history-table-container">
+            <table id="ext-indicators-table">
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Setor</th>
+                        <th>P/L</th>
+                        <th>P/VPA</th>
+                        <th>ROE</th>
+                        <th>DY</th>
+                        <th>Margem Líq.</th>
+                        <th>Market Cap</th>
+                    </tr>
+                </thead>
+                <tbody id="ext-indicators-body">
+                    <tr>
+                        <td colspan="8" class="empty-state">Carregando indicadores...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Modal para Demonstrações Financeiras -->
+<div id="ext-financials-modal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 800px;">
+        <span class="close ext-modal-close">&times;</span>
+        <h3 id="ext-financials-title">Demonstrações Financeiras</h3>
+        
+        <div class="ext-financials-tabs">
+            <button class="tab active" data-statement="balance">Balanço Patrimonial</button>
+            <button class="tab" data-statement="income">Demonstração de Resultados</button>
+            <button class="tab" data-statement="cashflow">Fluxo de Caixa</button>
+            <button class="tab" data-statement="indicators">Indicadores</button>
+        </div>
+        
+        <div class="ext-statement-container">
+            <!-- Conteúdo dinâmico das demonstrações -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Detalhes de Títulos -->
+<div id="ext-bond-details-modal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 700px;">
+        <span class="close ext-modal-close">&times;</span>
+        <h3 id="ext-bond-title">Detalhes do Título</h3>
+        
+        <div class="asset-details">
+            <h4 id="ext-bond-name"></h4>
+            <div class="ext-bond-summary">
+                <p><strong>Emissor:</strong> <span id="ext-bond-issuer"></span></p>
+                <p><strong>Vencimento:</strong> <span id="ext-bond-maturity"></span></p>
+                <p><strong>Taxa Anual:</strong> <span id="ext-bond-rate"></span></p>
+                <p><strong>Rating:</strong> <span id="ext-bond-rating"></span></p>
+                <p><strong>Valor Nominal:</strong> <span id="ext-bond-nominal"></span></p>
+                <p><strong>Yield to Maturity:</strong> <span id="ext-bond-ytm"></span></p>
+            </div>
+            
+            <h4 style="margin-top: 20px;">📅 Cronograma de Pagamentos</h4>
+            <div class="history-table-container" style="max-height: 300px; overflow-y: auto;">
+                <table id="ext-bond-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ext-bond-schedule-body">
+                        <!-- Preenchido dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Detalhes de Criptomoedas -->
+<div id="ext-crypto-details-modal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 600px;">
+        <span class="close ext-modal-close">&times;</span>
+        <h3 id="ext-crypto-title">Detalhes da Criptomoeda</h3>
+        
+        <div class="asset-details">
+            <div class="ext-crypto-stats">
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Market Cap:</span>
+                    <span class="ext-stat-value" id="ext-crypto-marketcap"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Volume 24h:</span>
+                    <span class="ext-stat-value" id="ext-crypto-volume24h"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Dominância:</span>
+                    <span class="ext-stat-value" id="ext-crypto-dominance"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">All-Time High:</span>
+                    <span class="ext-stat-value" id="ext-crypto-ath"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Distância do ATH:</span>
+                    <span class="ext-stat-value" id="ext-crypto-ath-distance"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Categoria:</span>
+                    <span class="ext-stat-value" id="ext-crypto-category"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Consenso:</span>
+                    <span class="ext-stat-value" id="ext-crypto-consensus"></span>
+                </div>
+            </div>
+            
+            <div class="ext-crypto-performance">
+                <h4>📈 Performance</h4>
+                <div class="ext-performance-grid">
+                    <div class="ext-performance-item">
+                        <span class="ext-performance-label">24h</span>
+                        <span class="ext-performance-value" id="ext-crypto-change24h"></span>
+                    </div>
+                    <div class="ext-performance-item">
+                        <span class="ext-performance-label">7d</span>
+                        <span class="ext-performance-value" id="ext-crypto-change7d"></span>
+                    </div>
+                    <div class="ext-performance-item">
+                        <span class="ext-performance-label">30d</span>
+                        <span class="ext-performance-value" id="ext-crypto-change30d"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><section class="ext-dividends-panel" style="display: none;">
+    <div class="transaction-history">
+        <h3>💰 Histórico de Dividendos</h3>
+        <div class="history-table-container">
+            <table id="ext-dividends-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Empresa</th>
+                        <th>Valor por Ação</th>
+                        <th>Dividend Yield</th>
+                        <th>Quantidade</th>
+                        <th>Total Recebido</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="ext-dividends-body">
+                    <tr>
+                        <td colspan="7" class="empty-state">Nenhum dividendo recebido ainda.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Painel de Indicadores Fundamentalistas -->
+<section class="ext-fundamentals-panel" style="display: none;">
+    <div class="transaction-history">
+        <h3>📊 Indicadores Fundamentalistas por Setor</h3>
+        <div class="history-table-container">
+            <table id="ext-indicators-table">
+                <thead>
+                    <tr>
+                        <th>Empresa</th>
+                        <th>Setor</th>
+                        <th>P/L</th>
+                        <th>P/VPA</th>
+                        <th>ROE</th>
+                        <th>DY</th>
+                        <th>Margem Líq.</th>
+                        <th>Market Cap</th>
+                    </tr>
+                </thead>
+                <tbody id="ext-indicators-body">
+                    <tr>
+                        <td colspan="8" class="empty-state">Carregando indicadores...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Modal para Demonstrações Financeiras -->
+<div id="ext-financials-modal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 800px;">
+        <span class="close ext-modal-close">&times;</span>
+        <h3 id="ext-financials-title">Demonstrações Financeiras</h3>
+        
+        <div class="ext-financials-tabs">
+            <button class="tab active" data-statement="balance">Balanço Patrimonial</button>
+            <button class="tab" data-statement="income">Demonstração de Resultados</button>
+            <button class="tab" data-statement="cashflow">Fluxo de Caixa</button>
+            <button class="tab" data-statement="indicators">Indicadores</button>
+        </div>
+        
+        <div class="ext-statement-container">
+            <!-- Conteúdo dinâmico das demonstrações -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Detalhes de Títulos -->
+<div id="ext-bond-details-modal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 700px;">
+        <span class="close ext-modal-close">&times;</span>
+        <h3 id="ext-bond-title">Detalhes do Título</h3>
+        
+        <div class="asset-details">
+            <h4 id="ext-bond-name"></h4>
+            <div class="ext-bond-summary">
+                <p><strong>Emissor:</strong> <span id="ext-bond-issuer"></span></p>
+                <p><strong>Vencimento:</strong> <span id="ext-bond-maturity"></span></p>
+                <p><strong>Taxa Anual:</strong> <span id="ext-bond-rate"></span></p>
+                <p><strong>Rating:</strong> <span id="ext-bond-rating"></span></p>
+                <p><strong>Valor Nominal:</strong> <span id="ext-bond-nominal"></span></p>
+                <p><strong>Yield to Maturity:</strong> <span id="ext-bond-ytm"></span></p>
+            </div>
+            
+            <h4 style="margin-top: 20px;">📅 Cronograma de Pagamentos</h4>
+            <div class="history-table-container" style="max-height: 300px; overflow-y: auto;">
+                <table id="ext-bond-schedule-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ext-bond-schedule-body">
+                        <!-- Preenchido dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Detalhes de Criptomoedas -->
+<div id="ext-crypto-details-modal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 600px;">
+        <span class="close ext-modal-close">&times;</span>
+        <h3 id="ext-crypto-title">Detalhes da Criptomoeda</h3>
+        
+        <div class="asset-details">
+            <div class="ext-crypto-stats">
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Market Cap:</span>
+                    <span class="ext-stat-value" id="ext-crypto-marketcap"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Volume 24h:</span>
+                    <span class="ext-stat-value" id="ext-crypto-volume24h"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Dominância:</span>
+                    <span class="ext-stat-value" id="ext-crypto-dominance"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">All-Time High:</span>
+                    <span class="ext-stat-value" id="ext-crypto-ath"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Distância do ATH:</span>
+                    <span class="ext-stat-value" id="ext-crypto-ath-distance"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Categoria:</span>
+                    <span class="ext-stat-value" id="ext-crypto-category"></span>
+                </div>
+                <div class="ext-stat-row">
+                    <span class="ext-stat-label">Consenso:</span>
+                    <span class="ext-stat-value" id="ext-crypto-consensus"></span>
+                </div>
+            </div>
+            
+            <div class="ext-crypto-performance">
+                <h4>📈 Performance</h4>
+                <div class="ext-performance-grid">
+                    <div class="ext-performance-item">
+                        <span class="ext-performance-label">24h</span>
+                        <span class="ext-performance-value" id="ext-crypto-change24h"></span>
+                    </div>
+                    <div class="ext-performance-item">
+                        <span class="ext-performance-label">7d</span>
+                        <span class="ext-performance-value" id="ext-crypto-change7d"></span>
+                    </div>
+                    <div class="ext-performance-item">
+                        <span class="ext-performance-label">30d</span>
+                        <span class="ext-performance-value" id="ext-crypto-change30d"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </main>
 
@@ -5668,1455 +6374,2273 @@ document.getElementById('reset-simulation').onclick = function() {
     }
 };
 
+(function() {
+    'use strict';
+    
+    // ===== CONFIGURAÇÕES GLOBAIS =====
+    const EXT_CONFIG = {
+        dividendFrequencies: ['monthly', 'quarterly', 'semiannual', 'annual'],
+        sectors: ['Tecnologia', 'Financeiro', 'Varejo', 'Energia', 'Saúde', 'Telecomunicações', 'Indústria', 'Transporte'],
+        cryptoCategories: ['Payment', 'DeFi', 'Smart Contract Platform', 'Layer 1', 'Layer 2', 'Meme Coin', 'Oracle', 'Storage'],
+        consensusAlgorithms: ['PoW', 'PoS', 'DPoS', 'PoA', 'BFT', 'PoH'],
+        bondRatings: ['AAA', 'AA+', 'AA', 'AA-', 'A+', 'A', 'A-', 'BBB+', 'BBB', 'BBB-'],
+        ceoNames: ['João Silva', 'Maria Santos', 'Carlos Oliveira', 'Ana Pereira', 'Pedro Costa', 'Luísa Fernandes', 'Miguel Rodrigues', 'Sofia Martins']
+    };
+    
+    // ===== ESTRUTURAS DE DADOS GLOBAIS =====
+    let EXT_STATE = {
+        initialized: false,
+        dividendHistory: [],
+        lastDividendCheck: Date.now(),
+        cryptoTotalMarketCap: 0
+    };
+    
+    // ===== INICIALIZAÇÃO DOS DADOS COMPLEMENTARES =====
+    function ext_initializeAdditionalData() {
+        if (EXT_STATE.initialized) return;
+        
+        console.log('🔧 Inicializando dados complementares...');
+        
+        // Expandir cada ativo com novos dados
+        Object.keys(AppState.market.assets).forEach(assetId => {
+            const asset = AppState.market.assets[assetId];
+            
+            // Adicionar dados específicos por tipo
+            switch(asset.type) {
+                case 'acao':
+                    ext_addDividendsData(asset);
+                    ext_addFundamentalsData(asset);
+                    ext_addCorporateInfo(asset);
+                    break;
+                    
+                case 'cripto':
+                    ext_addCryptoDetails(asset);
+                    break;
+                    
+                case 'titulo-publico':
+                case 'titulo-privado':
+                    ext_addBondDetails(asset);
+                    break;
+                    
+                case 'etf':
+                    ext_addETFDetails(asset);
+                    break;
+            }
+            
+            // Calcular indicadores iniciais
+            ext_calculateAssetIndicators(asset);
+        });
+        
+        // Inicializar market cap total cripto
+        ext_calculateTotalCryptoMarketCap();
+        
+        // Renderizar painéis
+        ext_renderDividendsTable();
+        ext_renderIndicatorsTable();
+        
+        EXT_STATE.initialized = true;
+        console.log('✅ Dados complementares inicializados!');
+    }
+    
+    // ===== SISTEMA DE DIVIDENDOS =====
+    function ext_addDividendsData(asset) {
+        // 70% das empresas pagam dividendos
+        const paysDividends = Math.random() > 0.3;
+        
+        if (!paysDividends) {
+            asset.ext_dividends = { enabled: false };
+            return;
+        }
+        
+        const frequency = EXT_CONFIG.dividendFrequencies[Math.floor(Math.random() * EXT_CONFIG.dividendFrequencies.length)];
+        const yieldValue = (Math.random() * 0.07 + 0.01); // 1% a 8%
+        
+        // Calcular próxima data de pagamento baseado na frequência
+        const now = new Date();
+        let nextPayment = new Date(now);
+        
+        switch(frequency) {
+            case 'monthly':
+                nextPayment.setMonth(nextPayment.getMonth() + 1);
+                break;
+            case 'quarterly':
+                nextPayment.setMonth(nextPayment.getMonth() + 3);
+                break;
+            case 'semiannual':
+                nextPayment.setMonth(nextPayment.getMonth() + 6);
+                break;
+            case 'annual':
+                nextPayment.setFullYear(nextPayment.getFullYear() + 1);
+                break;
+        }
+        
+        asset.ext_dividends = {
+            enabled: true,
+            frequency: frequency,
+            yield: yieldValue,
+            history: [],
+            nextPayment: nextPayment.toISOString(),
+            lastPayment: null
+        };
+    }
+    
+    function ext_processDividends() {
+        const now = Date.now();
+        const oneDay = 24 * 60 * 60 * 1000;
+        
+        // Verificar dividendos apenas uma vez por dia (em tempo simulado)
+        if (now - EXT_STATE.lastDividendCheck < oneDay) return;
+        
+        EXT_STATE.lastDividendCheck = now;
+        
+        Object.keys(AppState.market.assets).forEach(assetId => {
+            const asset = AppState.market.assets[assetId];
+            
+            if (asset.type !== 'acao' || !asset.ext_dividends?.enabled) return;
+            
+            const dividends = asset.ext_dividends;
+            const nextPayment = new Date(dividends.nextPayment);
+            
+            // Verificar se é dia de pagamento
+            if (now >= nextPayment.getTime()) {
+                ext_payDividends(asset);
+            }
+        });
+    }
+    
+    function ext_payDividends(asset) {
+        const dividends = asset.ext_dividends;
+        const dividendPerShare = asset.currentPrice * dividends.yield;
+        
+        // Verificar posições do usuário nesta ação
+        const userPosition = AppState.portfolio.positions.find(p => p.assetId === asset.id);
+        
+        if (userPosition && userPosition.quantity > 0) {
+            const totalDividend = dividendPerShare * userPosition.quantity;
+            
+            // Creditar no saldo disponível
+            AppState.user.availableBalance += totalDividend;
+            
+            // Registrar no histórico
+            const dividendRecord = {
+                date: new Date().toISOString(),
+                assetId: asset.id,
+                assetName: asset.name,
+                ticker: asset.ticker,
+                valuePerShare: dividendPerShare,
+                yield: dividends.yield,
+                quantity: userPosition.quantity,
+                total: totalDividend,
+                status: 'Pago'
+            };
+            
+            EXT_STATE.dividendHistory.push(dividendRecord);
+            dividends.history.push(dividendRecord);
+            
+            // Mostrar notificação
+            showNotification(`💰 Dividendos recebidos de ${asset.ticker}: ${formatCurrency(totalDividend)}`, 'success');
+            
+            // Atualizar UI
+            updatePortfolioUI();
+            ext_renderDividendsTable();
+        }
+        
+        // Calcular próxima data de pagamento
+        const nextPayment = new Date(dividends.nextPayment);
+        switch(dividends.frequency) {
+            case 'monthly':
+                nextPayment.setMonth(nextPayment.getMonth() + 1);
+                break;
+            case 'quarterly':
+                nextPayment.setMonth(nextPayment.getMonth() + 3);
+                break;
+            case 'semiannual':
+                nextPayment.setMonth(nextPayment.getMonth() + 6);
+                break;
+            case 'annual':
+                nextPayment.setFullYear(nextPayment.getFullYear() + 1);
+                break;
+        }
+        
+        dividends.lastPayment = dividends.nextPayment;
+        dividends.nextPayment = nextPayment.toISOString();
+        
+        // Salvar estado
+        saveToLocalStorage();
+    }
+    
+    function ext_renderDividendsTable() {
+        const tbody = document.getElementById('ext-dividends-body');
+        
+        if (!tbody) return;
+        
+        if (EXT_STATE.dividendHistory.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Nenhum dividendo recebido ainda.</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = EXT_STATE.dividendHistory
+            .slice()
+            .reverse()
+            .map(dividend => `
+                <tr>
+                    <td>${new Date(dividend.date).toLocaleDateString('pt-AO')}</td>
+                    <td><strong>${dividend.ticker}</strong><br><small>${dividend.assetName}</small></td>
+                    <td>${formatCurrency(dividend.valuePerShare)}</td>
+                    <td>${(dividend.yield * 100).toFixed(2)}%</td>
+                    <td>${dividend.quantity.toLocaleString()}</td>
+                    <td class="positive"><strong>${formatCurrency(dividend.total)}</strong></td>
+                    <td><span class="badge buy">${dividend.status}</span></td>
+                </tr>
+            `).join('');
+    }
+    
+    // ===== DEMONSTRAÇÕES FINANCEIRAS =====
+    function ext_addFundamentalsData(asset) {
+        // Geração de valores coerentes e realistas
+        const sharesIssued = asset.ext_corporateInfo?.sharesIssued || 
+                           Math.floor(Math.random() * 990000000) + 10000000; // 10M a 1B
+        
+        // Receita aleatória proporcional ao preço
+        const revenueBase = asset.initialPrice * 1000000; // Multiplicador base
+        const revenue = revenueBase * (Math.random() * 2 + 0.5); // 0.5x a 2.5x
+        
+        // Custo dos Produtos Vendidos (40-70% da receita)
+        const cogs = revenue * (Math.random() * 0.3 + 0.4);
+        const grossProfit = revenue - cogs;
+        
+        // Despesas Operacionais (20-40% do lucro bruto)
+        const opex = grossProfit * (Math.random() * 0.2 + 0.2);
+        const ebitda = grossProfit - opex;
+        
+        // Depreciação e Amortização (5-15% do EBITDA)
+        const depreciation = ebitda * (Math.random() * 0.1 + 0.05);
+        const ebit = ebitda - depreciation;
+        
+        // Despesas Financeiras (5-20% do EBIT)
+        const financialExpenses = ebit * (Math.random() * 0.15 + 0.05);
+        const profitBeforeTax = ebit - financialExpenses;
+        
+        // Impostos (15-35% do lucro antes dos impostos)
+        const taxRate = Math.random() * 0.2 + 0.15;
+        const taxes = profitBeforeTax * taxRate;
+        const netIncome = profitBeforeTax - taxes;
+        
+        // Balanço Patrimonial (coerente com DRE)
+        const currentAssets = revenue * 0.3; // 30% da receita
+        const nonCurrentAssets = revenue * 0.8; // 80% da receita
+        const totalAssets = currentAssets + nonCurrentAssets;
+        
+        // Patrimônio Líquido (baseado no lucro acumulado)
+        const equity = totalAssets * (Math.random() * 0.3 + 0.3); // 30-60% do ativo
+        const currentLiabilities = totalAssets * (Math.random() * 0.2 + 0.1); // 10-30%
+        const nonCurrentLiabilities = totalAssets - equity - currentLiabilities;
+        const totalLiabilities = currentLiabilities + nonCurrentLiabilities;
+        
+        // Fluxo de Caixa (coerente com lucro líquido)
+        const operatingCashFlow = netIncome * (Math.random() * 0.5 + 0.8); // 80-130% do lucro
+        const investingCashFlow = -nonCurrentAssets * 0.1; // Investimento negativo
+        const financingCashFlow = -financialExpenses * 2; // Financiamento negativo
+        const netCashFlow = operatingCashFlow + investingCashFlow + financingCashFlow;
+        const beginningCash = currentAssets * 0.3;
+        const endingCash = beginningCash + netCashFlow;
+        
+        asset.ext_fundamentals = {
+            balanceSheet: {
+                assets: {
+                    current: currentAssets,
+                    nonCurrent: nonCurrentAssets,
+                    total: totalAssets
+                },
+                liabilities: {
+                    current: currentLiabilities,
+                    nonCurrent: nonCurrentLiabilities,
+                    equity: equity,
+                    total: totalLiabilities + equity
+                }
+            },
+            incomeStatement: {
+                revenue: revenue,
+                cogs: cogs,
+                grossProfit: grossProfit,
+                opex: opex,
+                ebitda: ebitda,
+                depreciation: depreciation,
+                ebit: ebit,
+                financialExpenses: financialExpenses,
+                profitBeforeTax: profitBeforeTax,
+                taxes: taxes,
+                netIncome: netIncome
+            },
+            cashFlow: {
+                operating: operatingCashFlow,
+                investing: investingCashFlow,
+                financing: financingCashFlow,
+                netChange: netCashFlow,
+                beginningCash: beginningCash,
+                endingCash: endingCash
+            }
+        };
+    }
+    
+    function ext_renderFinancials(assetId) {
+        const asset = AppState.market.assets[assetId];
+        if (!asset || !asset.ext_fundamentals) return;
+        
+        const fundamentals = asset.ext_fundamentals;
+        const title = `Demonstrações Financeiras - ${asset.name} (${asset.ticker})`;
+        
+        document.getElementById('ext-financials-title').textContent = title;
+        document.getElementById('ext-financials-modal').style.display = 'block';
+        
+        // Renderizar balanço patrimonial por padrão
+        ext_renderBalanceSheet(fundamentals.balanceSheet);
+        
+        // Configurar tabs
+        document.querySelectorAll('.ext-financials-tabs .tab').forEach(tab => {
+            tab.onclick = function() {
+                document.querySelectorAll('.ext-financials-tabs .tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const statement = this.dataset.statement;
+                switch(statement) {
+                    case 'balance':
+                        ext_renderBalanceSheet(fundamentals.balanceSheet);
+                        break;
+                    case 'income':
+                        ext_renderIncomeStatement(fundamentals.incomeStatement);
+                        break;
+                    case 'cashflow':
+                        ext_renderCashFlow(fundamentals.cashFlow);
+                        break;
+                    case 'indicators':
+                        ext_renderAssetIndicators(asset);
+                        break;
+                }
+            };
+        });
+    }
+    
+    function ext_renderBalanceSheet(balanceSheet) {
+        const container = document.querySelector('.ext-statement-container');
+        if (!container) return;
+        
+        const bs = balanceSheet;
+        
+        container.innerHTML = `
+            <table class="ext-statement-table">
+                <thead>
+                    <tr>
+                        <th>ATIVO</th>
+                        <th style="text-align: right;">Valor (Kz)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Circulante</strong></td>
+                        <td style="text-align: right;">${formatCurrency(bs.assets.current)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Caixa e Equivalentes</td>
+                        <td style="text-align: right;">${formatCurrency(bs.assets.current * 0.3)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Contas a Receber</td>
+                        <td style="text-align: right;">${formatCurrency(bs.assets.current * 0.4)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Estoques</td>
+                        <td style="text-align: right;">${formatCurrency(bs.assets.current * 0.3)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Não Circulante</strong></td>
+                        <td style="text-align: right;">${formatCurrency(bs.assets.nonCurrent)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Imobilizado</td>
+                        <td style="text-align: right;">${formatCurrency(bs.assets.nonCurrent * 0.7)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Investimentos</td>
+                        <td style="text-align: right;">${formatCurrency(bs.assets.nonCurrent * 0.3)}</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>TOTAL DO ATIVO</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(bs.assets.total)}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <table class="ext-statement-table" style="margin-top: 30px;">
+                <thead>
+                    <tr>
+                        <th>PASSIVO + PATRIMÔNIO LÍQUIDO</th>
+                        <th style="text-align: right;">Valor (Kz)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Circulante</strong></td>
+                        <td style="text-align: right;">${formatCurrency(bs.liabilities.current)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Não Circulante</strong></td>
+                        <td style="text-align: right;">${formatCurrency(bs.liabilities.nonCurrent)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Patrimônio Líquido</strong></td>
+                        <td style="text-align: right;">${formatCurrency(bs.liabilities.equity)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Capital Social</td>
+                        <td style="text-align: right;">${formatCurrency(bs.liabilities.equity * 0.6)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Reservas</td>
+                        <td style="text-align: right;">${formatCurrency(bs.liabilities.equity * 0.3)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">• Lucros Acumulados</td>
+                        <td style="text-align: right;">${formatCurrency(bs.liabilities.equity * 0.1)}</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>TOTAL DO PASSIVO + PL</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(bs.liabilities.total)}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    }
+    
+    function ext_renderIncomeStatement(incomeStatement) {
+        const container = document.querySelector('.ext-statement-container');
+        if (!container) return;
+        
+        const is = incomeStatement;
+        
+        container.innerHTML = `
+            <table class="ext-statement-table">
+                <thead>
+                    <tr>
+                        <th>DEMONSTRAÇÃO DO RESULTADO</th>
+                        <th style="text-align: right;">Valor (Kz)</th>
+                        <th style="text-align: right;">% Receita</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Receita Operacional Líquida</strong></td>
+                        <td style="text-align: right;">${formatCurrency(is.revenue)}</td>
+                        <td style="text-align: right;">100.0%</td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">(-) Custo dos Produtos Vendidos</td>
+                        <td style="text-align: right;">${formatCurrency(is.cogs)}</td>
+                        <td style="text-align: right;">${((is.cogs/is.revenue)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>= Lucro Bruto</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(is.grossProfit)}</strong></td>
+                        <td style="text-align: right;"><strong>${((is.grossProfit/is.revenue)*100).toFixed(1)}%</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">(-) Despesas Operacionais</td>
+                        <td style="text-align: right;">${formatCurrency(is.opex)}</td>
+                        <td style="text-align: right;">${((is.opex/is.revenue)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>= EBITDA</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(is.ebitda)}</strong></td>
+                        <td style="text-align: right;"><strong>${((is.ebitda/is.revenue)*100).toFixed(1)}%</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">(-) Depreciação e Amortização</td>
+                        <td style="text-align: right;">${formatCurrency(is.depreciation)}</td>
+                        <td style="text-align: right;">${((is.depreciation/is.revenue)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>= EBIT (Lucro Operacional)</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(is.ebit)}</strong></td>
+                        <td style="text-align: right;"><strong>${((is.ebit/is.revenue)*100).toFixed(1)}%</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">(-) Despesas Financeiras</td>
+                        <td style="text-align: right;">${formatCurrency(is.financialExpenses)}</td>
+                        <td style="text-align: right;">${((is.financialExpenses/is.revenue)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>= Lucro Antes dos Impostos</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(is.profitBeforeTax)}</strong></td>
+                        <td style="text-align: right;"><strong>${((is.profitBeforeTax/is.revenue)*100).toFixed(1)}%</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">(-) Impostos</td>
+                        <td style="text-align: right;">${formatCurrency(is.taxes)}</td>
+                        <td style="text-align: right;">${((is.taxes/is.revenue)*100).toFixed(1)}%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>= LUCRO LÍQUIDO</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(is.netIncome)}</strong></td>
+                        <td style="text-align: right;"><strong>${((is.netIncome/is.revenue)*100).toFixed(1)}%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    }
+    
+    function ext_renderCashFlow(cashFlow) {
+        const container = document.querySelector('.ext-statement-container');
+        if (!container) return;
+        
+        const cf = cashFlow;
+        
+        container.innerHTML = `
+            <table class="ext-statement-table">
+                <thead>
+                    <tr>
+                        <th>FLUXO DE CAIXA</th>
+                        <th style="text-align: right;">Valor (Kz)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Atividades Operacionais</strong></td>
+                        <td style="text-align: right;" class="${cf.operating >= 0 ? 'positive' : 'negative'}">${formatCurrency(cf.operating)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Atividades de Investimento</strong></td>
+                        <td style="text-align: right;" class="${cf.investing >= 0 ? 'positive' : 'negative'}">${formatCurrency(cf.investing)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Atividades de Financiamento</strong></td>
+                        <td style="text-align: right;" class="${cf.financing >= 0 ? 'positive' : 'negative'}">${formatCurrency(cf.financing)}</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>= Variação de Caixa</strong></td>
+                        <td style="text-align: right;" class="${cf.netChange >= 0 ? 'positive' : 'negative'}"><strong>${formatCurrency(cf.netChange)}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Saldo Inicial de Caixa</td>
+                        <td style="text-align: right;">${formatCurrency(cf.beginningCash)}</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td><strong>= Saldo Final de Caixa</strong></td>
+                        <td style="text-align: right;"><strong>${formatCurrency(cf.endingCash)}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    }
+    
+    // ===== INDICADORES FUNDAMENTALISTAS =====
+    function ext_calculateAssetIndicators(asset) {
+        if (asset.type !== 'acao') return;
+        
+        const fundamentals = asset.ext_fundamentals;
+        const corporateInfo = asset.ext_corporateInfo;
+        
+        if (!fundamentals || !corporateInfo) return;
+        
+        const income = fundamentals.incomeStatement;
+        const balance = fundamentals.balanceSheet;
+        const shares = corporateInfo.sharesIssued;
+        const price = asset.currentPrice;
+        
+        // Cálculo do EPS (Lucro por Ação)
+        const eps = income.netIncome / shares;
+        
+        // P/L Ratio
+        const peRatio = eps > 0 ? price / eps : 0;
+        
+        // P/VPA (Price to Book)
+        const bookValuePerShare = balance.liabilities.equity / shares;
+        const pbRatio = bookValuePerShare > 0 ? price / bookValuePerShare : 0;
+        
+        // ROE (Return on Equity)
+        const roe = balance.liabilities.equity > 0 ? (income.netIncome / balance.liabilities.equity) * 100 : 0;
+        
+        // ROA (Return on Assets)
+        const roa = balance.assets.total > 0 ? (income.netIncome / balance.assets.total) * 100 : 0;
+        
+        // Margem Líquida
+        const netMargin = income.revenue > 0 ? (income.netIncome / income.revenue) * 100 : 0;
+        
+        // Margem EBITDA
+        const ebitdaMargin = income.revenue > 0 ? (income.ebitda / income.revenue) * 100 : 0;
+        
+        // Dividend Yield
+        const dividendYield = asset.ext_dividends?.enabled ? asset.ext_dividends.yield * 100 : 0;
+        
+        // Payout Ratio
+        const dividendPerShare = price * (dividendYield / 100);
+        const payoutRatio = eps > 0 ? (dividendPerShare / eps) * 100 : 0;
+        
+        // Liquidez Corrente
+        const currentRatio = balance.liabilities.current > 0 ? balance.assets.current / balance.liabilities.current : 0;
+        
+        // Market Cap
+        const marketCap = price * shares;
+        corporateInfo.marketCap = marketCap;
+        
+        asset.ext_indicators = {
+            eps: eps,
+            peRatio: peRatio,
+            pbRatio: pbRatio,
+            roe: roe,
+            roa: roa,
+            netMargin: netMargin,
+            ebitdaMargin: ebitdaMargin,
+            dividendYield: dividendYield,
+            payoutRatio: payoutRatio,
+            currentRatio: currentRatio,
+            marketCap: marketCap
+        };
+        
+        return asset.ext_indicators;
+    }
+    
+    function ext_renderAssetIndicators(asset) {
+        const container = document.querySelector('.ext-statement-container');
+        if (!container || !asset.ext_indicators) return;
+        
+        const indicators = asset.ext_indicators;
+        
+        container.innerHTML = `
+            <table class="ext-statement-table">
+                <thead>
+                    <tr>
+                        <th>INDICADOR</th>
+                        <th style="text-align: right;">VALOR</th>
+                        <th style="text-align: center;">INTERPRETAÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>P/L (Price to Earnings)</strong></td>
+                        <td style="text-align: right;">${indicators.peRatio.toFixed(2)}</td>
+                        <td style="text-align: center;">${ext_interpretPERatio(indicators.peRatio)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>P/VPA (Price to Book)</strong></td>
+                        <td style="text-align: right;">${indicators.pbRatio.toFixed(2)}</td>
+                        <td style="text-align: center;">${ext_interpretPBRatio(indicators.pbRatio)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ROE (Return on Equity)</strong></td>
+                        <td style="text-align: right;">${indicators.roe.toFixed(2)}%</td>
+                        <td style="text-align: center;">${ext_interpretROE(indicators.roe)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ROA (Return on Assets)</strong></td>
+                        <td style="text-align: right;">${indicators.roa.toFixed(2)}%</td>
+                        <td style="text-align: center;">${ext_interpretROA(indicators.roa)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Margem Líquida</strong></td>
+                        <td style="text-align: right;">${indicators.netMargin.toFixed(2)}%</td>
+                        <td style="text-align: center;">${ext_interpretMargin(indicators.netMargin)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dividend Yield</strong></td>
+                        <td style="text-align: right;">${indicators.dividendYield.toFixed(2)}%</td>
+                        <td style="text-align: center;">${ext_interpretDividendYield(indicators.dividendYield)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payout Ratio</strong></td>
+                        <td style="text-align: right;">${indicators.payoutRatio.toFixed(2)}%</td>
+                        <td style="text-align: center;">${ext_interpretPayoutRatio(indicators.payoutRatio)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Liquidez Corrente</strong></td>
+                        <td style="text-align: right;">${indicators.currentRatio.toFixed(2)}</td>
+                        <td style="text-align: center;">${ext_interpretCurrentRatio(indicators.currentRatio)}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Market Cap</strong></td>
+                        <td style="text-align: right;">${formatCurrency(indicators.marketCap)}</td>
+                        <td style="text-align: center;">${ext_interpretMarketCap(indicators.marketCap)}</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+    }
+    
+    function ext_interpretPERatio(pe) {
+        if (pe <= 0) return 'Prejuízo';
+        if (pe < 10) return '📉 Subvalorizado';
+        if (pe < 20) return '⚖️ Justo';
+        if (pe < 30) return '📈 Sobrevalorizado';
+        return '🚀 Muito Sobrevalorizado';
+    }
+    
+    function ext_interpretPBRatio(pb) {
+        if (pb < 1) return '📉 Subvalorizado';
+        if (pb < 2) return '⚖️ Justo';
+        if (pb < 4) return '📈 Sobrevalorizado';
+        return '🚀 Muito Sobrevalorizado';
+    }
+    
+    function ext_interpretROE(roe) {
+        if (roe < 5) return '📉 Fraco';
+        if (roe < 15) return '⚖️ Médio';
+        if (roe < 25) return '📈 Bom';
+        return '🚀 Excelente';
+    }
+    
+    function ext_interpretMargin(margin) {
+        if (margin < 5) return '📉 Baixa';
+        if (margin < 15) return '⚖️ Média';
+        if (margin < 25) return '📈 Alta';
+        return '🚀 Muito Alta';
+    }
+    
+    function ext_interpretDividendYield(dy) {
+        if (dy === 0) return '📭 Não paga';
+        if (dy < 2) return '📈 Baixo';
+        if (dy < 5) return '⚖️ Médio';
+        if (dy < 8) return '💰 Alto';
+        return '💎 Muito Alto';
+    }
+    
+    // ===== INFORMAÇÕES CORPORATIVAS =====
+    function ext_addCorporateInfo(asset) {
+        const sector = EXT_CONFIG.sectors[Math.floor(Math.random() * EXT_CONFIG.sectors.length)];
+        const sharesIssued = Math.floor(Math.random() * 990000000) + 10000000; // 10M a 1B
+        const freeFloat = Math.random() * 0.5 + 0.3; // 30% a 80%
+        const founded = Math.floor(Math.random() * 41) + 1980; // 1980 a 2020
+        const ceo = EXT_CONFIG.ceoNames[Math.floor(Math.random() * EXT_CONFIG.ceoNames.length)];
+        
+        asset.ext_corporateInfo = {
+            sector: sector,
+            sharesIssued: sharesIssued,
+            freeFloat: freeFloat,
+            founded: founded,
+            ceo: ceo,
+            marketCap: 0 // Será calculado depois
+        };
+    }
+    
+    function ext_renderIndicatorsTable() {
+        const tbody = document.getElementById('ext-indicators-body');
+        if (!tbody) return;
+        
+        // Filtrar apenas ações
+        const stocks = Object.values(AppState.market.assets)
+            .filter(asset => asset.type === 'acao' && asset.ext_indicators)
+            .sort((a, b) => (b.ext_indicators?.marketCap || 0) - (a.ext_indicators?.marketCap || 0));
+        
+        if (stocks.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Nenhuma ação com indicadores disponíveis.</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = stocks.map(asset => {
+            const indicators = asset.ext_indicators;
+            const corporate = asset.ext_corporateInfo;
+            
+            return `
+                <tr>
+                    <td><strong>${asset.ticker}</strong><br><small>${asset.name}</small></td>
+                    <td>${corporate?.sector || '-'}</td>
+                    <td class="${indicators.peRatio < 15 ? 'positive' : indicators.peRatio > 25 ? 'negative' : ''}">
+                        ${indicators.peRatio.toFixed(1)}
+                    </td>
+                    <td class="${indicators.pbRatio < 1 ? 'positive' : indicators.pbRatio > 3 ? 'negative' : ''}">
+                        ${indicators.pbRatio.toFixed(1)}
+                    </td>
+                    <td class="${indicators.roe > 15 ? 'positive' : indicators.roe < 5 ? 'negative' : ''}">
+                        ${indicators.roe.toFixed(1)}%
+                    </td>
+                    <td class="${indicators.dividendYield > 4 ? 'positive' : ''}">
+                        ${indicators.dividendYield.toFixed(2)}%
+                    </td>
+                    <td class="${indicators.netMargin > 15 ? 'positive' : indicators.netMargin < 5 ? 'negative' : ''}">
+                        ${indicators.netMargin.toFixed(1)}%
+                    </td>
+                    <td>${formatCurrency(indicators.marketCap)}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+    
+    // ===== DETALHES DE TÍTULOS =====
+    function ext_addBondDetails(asset) {
+        const isPublic = asset.type === 'titulo-publico';
+        const issuer = isPublic ? 'Governo de Angola' : asset.issuer || 'Emissor Privado';
+        const rating = isPublic ? 'AAA' : EXT_CONFIG.bondRatings[Math.floor(Math.random() * 5) + 5]; // BBB para privados
+        
+        // Valor nominal padrão
+        const nominalValue = asset.initialPrice >= 50000 ? 100000 : 50000;
+        
+        // Frequência de pagamento (semestral para >1 ano, anual para <=1 ano)
+        const paymentFrequency = asset.maturity > 1 ? 'semiannual' : 'annual';
+        
+        asset.ext_bondDetails = {
+            issuer: issuer,
+            nominalValue: nominalValue,
+            paymentFrequency: paymentFrequency,
+            rating: rating,
+            issueDate: new Date(Date.now() - (asset.maturity * 365 * 24 * 60 * 60 * 1000)).toISOString(),
+            maturityDate: new Date(Date.now() + (asset.maturity * 365 * 24 * 60 * 60 * 1000)).toISOString()
+        };
+    }
+    
+    function ext_openBondDetails(assetId) {
+        const asset = AppState.market.assets[assetId];
+        if (!asset || !asset.ext_bondDetails) return;
+        
+        const details = asset.ext_bondDetails;
+        const couponRate = asset.couponRate || 0;
+        const maturity = asset.maturity || 1;
+        const currentPrice = asset.currentPrice || details.nominalValue;
+        
+        // Calcular YTM (Yield to Maturity)
+        const ytm = ext_calculateYTM(details.nominalValue, currentPrice, couponRate, maturity);
+        
+        // Preencher modal
+        document.getElementById('ext-bond-title').textContent = `Detalhes do Título - ${asset.name}`;
+        document.getElementById('ext-bond-name').textContent = asset.name;
+        document.getElementById('ext-bond-issuer').textContent = details.issuer;
+        document.getElementById('ext-bond-maturity').textContent = `${maturity} ano(s) - até ${new Date(details.maturityDate).toLocaleDateString('pt-AO')}`;
+        document.getElementById('ext-bond-rate').textContent = `${(couponRate * 100).toFixed(2)}% a.a.`;
+        document.getElementById('ext-bond-rating').textContent = details.rating;
+        document.getElementById('ext-bond-nominal').textContent = formatCurrency(details.nominalValue);
+        document.getElementById('ext-bond-ytm').textContent = `${ytm.toFixed(2)}%`;
+        
+        // Gerar cronograma de pagamentos
+        const schedule = ext_generateBondSchedule(asset);
+        const tbody = document.getElementById('ext-bond-schedule-body');
+        
+        if (schedule.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="empty-state">Sem pagamentos futuros.</td></tr>';
+        } else {
+            tbody.innerHTML = schedule.map(payment => `
+                <tr>
+                    <td>${payment.paymentNumber}</td>
+                    <td>${payment.date}</td>
+                    <td>${payment.type}</td>
+                    <td>${formatCurrency(payment.value)}</td>
+                </tr>
+            `).join('');
+        }
+        
+        // Mostrar modal
+        document.getElementById('ext-bond-details-modal').style.display = 'block';
+    }
+    
+    function ext_calculateYTM(nominal, price, couponRate, years) {
+        // Cálculo simplificado do YTM
+        const annualCoupon = nominal * couponRate;
+        const totalCoupons = annualCoupon * years;
+        const capitalGain = nominal - price;
+        
+        return ((totalCoupons + capitalGain) / price / years) * 100;
+    }
+    
+    function ext_generateBondSchedule(asset) {
+        const details = asset.ext_bondDetails;
+        if (!details) return [];
+        
+        const schedule = [];
+        const couponRate = asset.couponRate || 0;
+        const maturity = asset.maturity || 1;
+        const nominalValue = details.nominalValue;
+        const frequency = details.paymentFrequency;
+        const paymentsPerYear = frequency === 'semiannual' ? 2 : 1;
+        const totalPayments = maturity * paymentsPerYear;
+        const couponPayment = nominalValue * couponRate / paymentsPerYear;
+        
+        let currentDate = new Date();
+        
+        for (let i = 1; i <= totalPayments; i++) {
+            const paymentDate = new Date(currentDate);
+            
+            if (frequency === 'semiannual') {
+                paymentDate.setMonth(paymentDate.getMonth() + 6);
+            } else {
+                paymentDate.setFullYear(paymentDate.getFullYear() + 1);
+            }
+            
+            const isFinalPayment = i === totalPayments;
+            const paymentValue = isFinalPayment ? nominalValue + couponPayment : couponPayment;
+            
+            schedule.push({
+                paymentNumber: i,
+                date: paymentDate.toLocaleDateString('pt-AO'),
+                type: isFinalPayment ? 'Principal + Cupom' : 'Cupom',
+                value: paymentValue
+            });
+            
+            currentDate = paymentDate;
+        }
+        
+        return schedule;
+    }
+    
+    // ===== DETALHES DE CRIPTOMOEDAS =====
+    function ext_addCryptoDetails(asset) {
+        const category = EXT_CONFIG.cryptoCategories[Math.floor(Math.random() * EXT_CONFIG.cryptoCategories.length)];
+        const consensus = EXT_CONFIG.consensusAlgorithms[Math.floor(Math.random() * EXT_CONFIG.consensusAlgorithms.length)];
+        
+        // Gerar ATH histórico (1.5x a 3x do preço inicial)
+        const athMultiplier = Math.random() * 1.5 + 1.5;
+        const ath = asset.initialPrice * athMultiplier;
+        const athDate = new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000).toISOString();
+        
+        asset.ext_cryptoDetails = {
+            category: category,
+            consensus: consensus,
+            website: `https://${asset.ticker.toLowerCase()}.org`,
+            whitepaper: `https://${asset.ticker.toLowerCase()}.org/whitepaper`,
+            ath: ath,
+            athDate: athDate,
+            volume24h: 0, // Será calculado
+            dominance: 0  // Será calculado
+        };
+    }
+    
+    function ext_calculateCryptoMetrics(crypto) {
+        if (!crypto.ext_cryptoDetails) return;
+        
+        const details = crypto.ext_cryptoDetails;
+        const supplyCirc = crypto.supplyCirc || 0;
+        const currentPrice = crypto.currentPrice || 0;
+        
+        // Market Cap em USD
+        const marketCap = currentPrice * supplyCirc;
+        
+        // Volume 24h (5-20% do market cap)
+        const volume24h = marketCap * (Math.random() * 0.15 + 0.05);
+        details.volume24h = volume24h;
+        
+        // Calcular variações percentuais
+        const history = crypto.priceHistory || [];
+        if (history.length > 1) {
+            const current = history[history.length - 1];
+            const prev24h = history[Math.max(0, history.length - Math.min(24, history.length))] || current;
+            const prev7d = history[Math.max(0, history.length - Math.min(168, history.length))] || current;
+            const prev30d = history[0] || current;
+            
+            details.change24h = ((current - prev24h) / prev24h) * 100;
+            details.change7d = ((current - prev7d) / prev7d) * 100;
+            details.change30d = ((current - prev30d) / prev30d) * 100;
+        }
+        
+        // Distância do ATH
+        details.athDistance = ((currentPrice - details.ath) / details.ath) * 100;
+        
+        return details;
+    }
+    
+    function ext_calculateTotalCryptoMarketCap() {
+        let totalMarketCap = 0;
+        
+        Object.values(AppState.market.assets).forEach(asset => {
+            if (asset.type === 'cripto') {
+                const supplyCirc = asset.supplyCirc || 0;
+                const currentPrice = asset.currentPrice || 0;
+                totalMarketCap += currentPrice * supplyCirc;
+            }
+        });
+        
+        EXT_STATE.cryptoTotalMarketCap = totalMarketCap;
+        
+        // Calcular dominância para cada cripto
+        Object.values(AppState.market.assets).forEach(asset => {
+            if (asset.type === 'cripto' && asset.ext_cryptoDetails) {
+                const supplyCirc = asset.supplyCirc || 0;
+                const currentPrice = asset.currentPrice || 0;
+                const marketCap = currentPrice * supplyCirc;
+                
+                asset.ext_cryptoDetails.dominance = totalMarketCap > 0 ? 
+                    (marketCap / totalMarketCap) * 100 : 0;
+            }
+        });
+    }
+    
+    function ext_openCryptoDetails(assetId) {
+        const asset = AppState.market.assets[assetId];
+        if (!asset || asset.type !== 'cripto' || !asset.ext_cryptoDetails) return;
+        
+        const details = ext_calculateCryptoMetrics(asset);
+        if (!details) return;
+        
+        // Preencher modal
+        document.getElementById('ext-crypto-title').textContent = `Detalhes - ${asset.name} (${asset.ticker})`;
+        document.getElementById('ext-crypto-marketcap').textContent = `$${(asset.currentPrice * asset.supplyCirc).toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+        document.getElementById('ext-crypto-volume24h').textContent = `$${details.volume24h.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+        document.getElementById('ext-crypto-dominance').textContent = `${details.dominance.toFixed(2)}%`;
+        document.getElementById('ext-crypto-ath').textContent = `$${details.ath.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        document.getElementById('ext-crypto-ath-distance').textContent = `${details.athDistance.toFixed(2)}%`;
+        document.getElementById('ext-crypto-category').textContent = details.category;
+        document.getElementById('ext-crypto-consensus').textContent = details.consensus;
+        
+        // Performance
+        document.getElementById('ext-crypto-change24h').textContent = `${details.change24h >= 0 ? '+' : ''}${details.change24h?.toFixed(2) || '0.00'}%`;
+        document.getElementById('ext-crypto-change24h').className = `ext-performance-value ${details.change24h >= 0 ? 'positive' : 'negative'}`;
+        
+        document.getElementById('ext-crypto-change7d').textContent = `${details.change7d >= 0 ? '+' : ''}${details.change7d?.toFixed(2) || '0.00'}%`;
+        document.getElementById('ext-crypto-change7d').className = `ext-performance-value ${details.change7d >= 0 ? 'positive' : 'negative'}`;
+        
+        document.getElementById('ext-crypto-change30d').textContent = `${details.change30d >= 0 ? '+' : ''}${details.change30d?.toFixed(2) || '0.00'}%`;
+        document.getElementById('ext-crypto-change30d').className = `ext-performance-value ${details.change30d >= 0 ? 'positive' : 'negative'}`;
+        
+        // Mostrar modal
+        document.getElementById('ext-crypto-details-modal').style.display = 'block';
+    }
+    
+    // ===== DETALHES DE ETFs =====
+    function ext_addETFDetails(asset) {
+        const manager = 'Teca Asset Management';
+        const holdings = [];
+        
+        // Gerar holdings fictícios baseado no tipo de ETF
+        if (asset.ticker.includes('BODIVA')) {
+            // ETF de ações Angolanas
+            const angolanStocks = Object.values(AppState.market.assets)
+                .filter(a => a.type === 'acao' && a.country === 'AO')
+                .slice(0, 8);
+            
+            let remainingWeight = 100;
+            angolanStocks.forEach((stock, index) => {
+                const weight = index === angolanStocks.length - 1 ? 
+                    remainingWeight : 
+                    Math.random() * (remainingWeight / 2) + 5;
+                
+                holdings.push({
+                    ticker: stock.ticker,
+                    name: stock.name,
+                    weight: weight
+                });
+                
+                remainingWeight -= weight;
+            });
+        } else if (asset.ticker.includes('CRYPTO')) {
+            // ETF de cripto
+            holdings.push({ ticker: 'BTC', name: 'Bitcoin', weight: 70 });
+            holdings.push({ ticker: 'ETH', name: 'Ethereum', weight: 30 });
+        } else {
+            // ETF genérico
+            holdings.push({ ticker: 'AAPL', name: 'Apple Inc.', weight: 25 });
+            holdings.push({ ticker: 'MSFT', name: 'Microsoft', weight: 20 });
+            holdings.push({ ticker: 'GOOGL', name: 'Alphabet', weight: 15 });
+            holdings.push({ ticker: 'AMZN', name: 'Amazon', weight: 15 });
+            holdings.push({ ticker: 'META', name: 'Meta Platforms', weight: 10 });
+            holdings.push({ ticker: 'TSLA', name: 'Tesla', weight: 10 });
+            holdings.push({ ticker: 'NVDA', name: 'NVIDIA', weight: 5 });
+        }
+        
+        // Ajustar pesos para somar 100%
+        const totalWeight = holdings.reduce((sum, h) => sum + h.weight, 0);
+        if (totalWeight !== 100) {
+            const factor = 100 / totalWeight;
+            holdings.forEach(h => h.weight *= factor);
+        }
+        
+        asset.ext_etfDetails = {
+            manager: manager,
+            benchmark: asset.ticker.includes('BODIVA') ? 'BODIVA Index' : 'S&P 500',
+            holdings: holdings,
+            expenseRatio: Math.random() * 0.015 + 0.005, // 0.5% a 2%
+            aum: Math.random() * 5000000000 + 1000000000, // 1B a 6B Kz
+            dividendYield: Math.random() * 0.03, // 0% a 3%
+            shareholders: Math.floor(Math.random() * 90000) + 10000 // 10k a 100k
+        };
+    }
+    
+    // ===== INTEGRAÇÃO COM LOOP PRINCIPAL =====
+    function ext_updateAllData() {
+        // Processar dividendos
+        ext_processDividends();
+        
+        // Atualizar indicadores para todos os ativos
+        Object.keys(AppState.market.assets).forEach(assetId => {
+            const asset = AppState.market.assets[assetId];
+            
+            // Recalcular indicadores para ações
+            if (asset.type === 'acao') {
+                ext_calculateAssetIndicators(asset);
+                
+                // Atualizar market cap
+                if (asset.ext_corporateInfo && asset.ext_indicators) {
+                    const shares = asset.ext_corporateInfo.sharesIssued;
+                    asset.ext_indicators.marketCap = asset.currentPrice * shares;
+                    asset.ext_corporateInfo.marketCap = asset.currentPrice * shares;
+                }
+            }
+            
+            // Atualizar métricas de cripto
+            if (asset.type === 'cripto') {
+                ext_calculateCryptoMetrics(asset);
+            }
+            
+            // Atualizar preço de títulos (pode variar levemente do nominal)
+            if (asset.type.includes('titulo')) {
+                // Manter preço próximo ao nominal com pequenas variações
+                const nominal = asset.ext_bondDetails?.nominalValue || asset.initialPrice;
+                const variation = (Math.random() - 0.5) * 0.02; // ±1%
+                asset.currentPrice = nominal * (1 + variation);
+            }
+        });
+        
+        // Atualizar market cap total cripto
+        ext_calculateTotalCryptoMarketCap();
+        
+        // Atualizar tabelas de UI
+        ext_renderDividendsTable();
+        ext_renderIndicatorsTable();
+    }
+    
+    // ===== HOOK NO SISTEMA EXISTENTE =====
+    // Integrar com updateMarketPrices existente
+    const originalUpdateMarketPrices = updateMarketPrices;
+    window.updateMarketPrices = function() {
+        originalUpdateMarketPrices();
+        ext_updateAllData();
+    };
+    
+    // Expandir renderAssetsUI para mostrar indicadores
+    const originalRenderAssetsUI = window.renderAssetsUI;
+    window.renderAssetsUI = function(category) {
+        originalRenderAssetsUI(category);
+        ext_addIndicatorsToAssetCards();
+    };
+    
+    function ext_addIndicatorsToAssetCards() {
+        // Adicionar indicadores e botões extras aos cards
+        document.querySelectorAll('.asset-card').forEach(card => {
+            const tickerElement = card.querySelector('.ticker');
+            if (!tickerElement) return;
+            
+            const ticker = tickerElement.textContent;
+            const asset = Object.values(AppState.market.assets).find(a => a.ticker === ticker);
+            if (!asset) return;
+            
+            // Remover qualquer conteúdo adicional existente
+            const existingExtActions = card.querySelector('.ext-asset-actions');
+            const existingMiniIndicators = card.querySelector('.ext-mini-indicators');
+            if (existingExtActions) existingExtActions.remove();
+            if (existingMiniIndicators) existingMiniIndicators.remove();
+            
+            // Adicionar botões extras baseado no tipo
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'ext-asset-actions';
+            
+            switch(asset.type) {
+                case 'acao':
+                    if (asset.ext_fundamentals) {
+                        actionsDiv.innerHTML += `
+                            <button class="ext-btn-info" onclick="window.EXT_MODULE.openFinancials('${asset.id}')">
+                                📊 Demonstrações
+                            </button>
+                        `;
+                    }
+                    
+                    if (asset.ext_dividends?.enabled) {
+                        const nextPayment = new Date(asset.ext_dividends.nextPayment);
+                        const daysUntil = Math.ceil((nextPayment - Date.now()) / (1000 * 60 * 60 * 24));
+                        
+                        actionsDiv.innerHTML += `
+                            <button class="ext-btn-info" style="background: rgba(34, 197, 94, 0.2); border-color: var(--success); color: var(--success);">
+                                💰 DY: ${(asset.ext_dividends.yield * 100).toFixed(2)}%
+                            </button>
+                        `;
+                    }
+                    break;
+                    
+                case 'cripto':
+                    actionsDiv.innerHTML += `
+                        <button class="ext-btn-info" onclick="window.EXT_MODULE.openCryptoDetails('${asset.id}')">
+                            📈 Detalhes
+                        </button>
+                    `;
+                    break;
+                    
+                case 'titulo-publico':
+                case 'titulo-privado':
+                    actionsDiv.innerHTML += `
+                        <button class="ext-btn-info" onclick="window.EXT_MODULE.openBondDetails('${asset.id}')">
+                            📅 Cronograma
+                        </button>
+                    `;
+                    break;
+            }
+            
+            // Adicionar mini-indicadores para ações
+            if (asset.type === 'acao' && asset.ext_indicators) {
+                const indicators = asset.ext_indicators;
+                const indicatorsDiv = document.createElement('div');
+                indicatorsDiv.className = 'ext-mini-indicators';
+                
+                indicatorsDiv.innerHTML = `
+                    <div class="ext-indicator-item">
+                        <span class="ext-indicator-label">P/L</span>
+                        <span class="ext-indicator-value ${indicators.peRatio < 15 ? 'positive' : indicators.peRatio > 25 ? 'negative' : ''}">
+                            ${indicators.peRatio.toFixed(1)}
+                        </span>
+                    </div>
+                    <div class="ext-indicator-item">
+                        <span class="ext-indicator-label">ROE</span>
+                        <span class="ext-indicator-value ${indicators.roe > 15 ? 'positive' : indicators.roe < 5 ? 'negative' : ''}">
+                            ${indicators.roe.toFixed(1)}%
+                        </span>
+                    </div>
+                    <div class="ext-indicator-item">
+                        <span class="ext-indicator-label">DY</span>
+                        <span class="ext-indicator-value ${indicators.dividendYield > 4 ? 'positive' : ''}">
+                            ${indicators.dividendYield.toFixed(2)}%
+                        </span>
+                    </div>
+                    <div class="ext-indicator-item">
+                        <span class="ext-indicator-label">Margem</span>
+                        <span class="ext-indicator-value ${indicators.netMargin > 15 ? 'positive' : indicators.netMargin < 5 ? 'negative' : ''}">
+                            ${indicators.netMargin.toFixed(1)}%
+                        </span>
+                    </div>
+                `;
+                
+                card.insertBefore(indicatorsDiv, card.querySelector('.asset-actions'));
+            }
+            
+            card.insertBefore(actionsDiv, card.querySelector('.asset-actions'));
+        });
+    }
+    
+    // ===== INTEGRAÇÃO COM INTERFACE EXISTENTE =====
+    function ext_addNavigationButtons() {
+        // Adicionar botões de navegação para novas seções
+        const headerActions = document.querySelector('.header-actions');
+        if (!headerActions) return;
+        
+        const dividendsBtn = document.createElement('button');
+        dividendsBtn.className = 'btn-secondary';
+        dividendsBtn.innerHTML = '💰 Dividendos';
+        dividendsBtn.onclick = function() {
+            const panel = document.querySelector('.ext-dividends-panel');
+            const fundamentalsPanel = document.querySelector('.ext-fundamentals-panel');
+            
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                if (fundamentalsPanel) fundamentalsPanel.style.display = 'none';
+                ext_renderDividendsTable();
+            } else {
+                panel.style.display = 'none';
+            }
+        };
+        
+        const fundamentalsBtn = document.createElement('button');
+        fundamentalsBtn.className = 'btn-secondary';
+        fundamentalsBtn.innerHTML = '📊 Indicadores';
+        fundamentalsBtn.onclick = function() {
+            const panel = document.querySelector('.ext-fundamentals-panel');
+            const dividendsPanel = document.querySelector('.ext-dividends-panel');
+            
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                if (dividendsPanel) dividendsPanel.style.display = 'none';
+                ext_renderIndicatorsTable();
+            } else {
+                panel.style.display = 'none';
+            }
+        };
+        
+        headerActions.appendChild(dividendsBtn);
+        headerActions.appendChild(fundamentalsBtn);
+    }
+    
+    // ===== MANIPULAÇÃO DE MODAIS =====
+    function ext_setupModalHandlers() {
+        // Fechar modais
+        document.querySelectorAll('.ext-modal-close').forEach(closeBtn => {
+            closeBtn.onclick = function() {
+                this.closest('.modal').style.display = 'none';
+            };
+        });
+        
+        // Fechar modal ao clicar fora
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.onclick = function(event) {
+                if (event.target === this) {
+                    this.style.display = 'none';
+                }
+            };
+        });
+    }
+    
+    // ===== INICIALIZAÇÃO =====
+    function ext_initialize() {
+        // Aguardar inicialização do simulador principal
+        const checkInterval = setInterval(() => {
+            if (AppState.user.name && AppState.market.assets) {
+                clearInterval(checkInterval);
+                
+                // Inicializar dados complementares
+                ext_initializeAdditionalData();
+                
+                // Adicionar navegação
+                ext_addNavigationButtons();
+                
+                // Configurar handlers de modais
+                ext_setupModalHandlers();
+                
+                // Mostrar painéis inicialmente ocultos
+                setTimeout(() => {
+                    ext_renderDividendsTable();
+                    ext_renderIndicatorsTable();
+                }, 1000);
+                
+                console.log('✅ Módulo complementar totalmente inicializado!');
+            }
+        }, 500);
+    }
+    
+    // ===== INTEGRAÇÃO COM PERSISTÊNCIA EXISTENTE =====
+    // Salvar dados complementares
+    const originalSaveToLocalStorage = saveToLocalStorage;
+    window.saveToLocalStorage = function() {
+        // Adicionar dados complementares ao estado salvo
+        const stateToSave = JSON.parse(localStorage.getItem('teca_simulator_v1') || '{}');
+        stateToSave.ext_data = {
+            dividendHistory: EXT_STATE.dividendHistory,
+            cryptoTotalMarketCap: EXT_STATE.cryptoTotalMarketCap,
+            lastDividendCheck: EXT_STATE.lastDividendCheck
+        };
+        
+        localStorage.setItem('teca_simulator_v1', JSON.stringify(stateToSave));
+        originalSaveToLocalStorage();
+    };
+    
+    // Carregar dados complementares
+    const originalLoadFromLocalStorage = loadFromLocalStorage;
+    window.loadFromLocalStorage = function() {
+        const success = originalLoadFromLocalStorage();
+        
+        if (success) {
+            const savedState = JSON.parse(localStorage.getItem('teca_simulator_v1') || '{}');
+            if (savedState.ext_data) {
+                EXT_STATE.dividendHistory = savedState.ext_data.dividendHistory || [];
+                EXT_STATE.cryptoTotalMarketCap = savedState.ext_data.cryptoTotalMarketCap || 0;
+                EXT_STATE.lastDividendCheck = savedState.ext_data.lastDividendCheck || Date.now();
+            }
+        }
+        
+        return success;
+    };
+    
+    // ===== EXPOSIÇÃO GLOBAL PARA DEBUG E INTEGRAÇÃO =====
+    window.EXT_MODULE = {
+        // Inicialização
+        initialize: ext_initialize,
+        initializeAdditionalData: ext_initializeAdditionalData,
+        
+        // Dividendos
+        processDividends: ext_processDividends,
+        renderDividendsTable: ext_renderDividendsTable,
+        
+        // Demonstrações Financeiras
+        openFinancials: ext_renderFinancials,
+        calculateIndicators: ext_calculateAssetIndicators,
+        
+        // Títulos
+        openBondDetails: ext_openBondDetails,
+        calculateYTM: ext_calculateYTM,
+        generateBondSchedule: ext_generateBondSchedule,
+        
+        // Criptomoedas
+        openCryptoDetails: ext_openCryptoDetails,
+        calculateCryptoMetrics: ext_calculateCryptoMetrics,
+        
+        // Atualização geral
+        updateAllData: ext_updateAllData,
+        
+        // Estado
+        getState: () => EXT_STATE,
+        getConfig: () => EXT_CONFIG
+    };
+    
+    // ===== INICIAR QUANDO O DOM ESTIVER PRONTO =====
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', ext_initialize);
+    } else {
+        ext_initialize();
+    }
+    
+})();
+
 </script>
 
     <!-- Conteudo Multimedia Teca Capital-->
         
     <style>
-        /* ===== VARIÁVEIS CSS E ESTILOS BASE FUTURISTAS ===== */
+        /* ===== VARIÁVEIS CSS PARA TEMA ===== */
         :root {
-            --primary-gold: rgb(214, 174, 100);
-            --primary-gold-glow: rgba(214, 174, 100, 0.6);
-            --primary-gold-light: rgba(214, 174, 100, 0.2);
-            --neon-blue: #00f3ff;
-            --neon-blue-glow: rgba(0, 243, 255, 0.4);
-            --neon-pink: #ff00ff;
-            --neon-pink-glow: rgba(255, 0, 255, 0.4);
-            --dark-bg: #000000;
-            --dark-card: #0a0a0a;
-            --dark-border: #1a1a1a;
-            --dark-text: #e0e0e0;
-            --light-bg: #ffffff;
-            --light-card: #f5f5f5;
-            --light-border: #e0e0e0;
-            --light-text: #222222;
-            --grid-line: rgba(255, 255, 255, 0.03);
-            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-fast: all 0.2s ease;
-            --glass-bg: rgba(10, 10, 10, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --blur-effect: blur(20px);
-            --font-primary: 'Inter', 'Segoe UI', system-ui, sans-serif;
-            --font-tech: 'Courier New', monospace;
+            --primary-color: rgb(214, 174, 100);
+            --secondary-color: #ffffff;
+            --accent-red: #ff4757;
+            --accent-yellow: #ffd700;
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #333333;
+            --shadow-color: rgba(214, 174, 100, 0.1);
+            --modal-overlay: rgba(0, 0, 0, 0.95);
+            --transition-speed: 0.3s;
         }
 
-        [data-theme="light"] {
-            --dark-bg: #ffffff;
-            --dark-card: #f5f5f5;
-            --dark-border: #e0e0e0;
-            --dark-text: #222222;
-            --light-bg: #000000;
-            --light-card: #0a0a0a;
-            --light-border: #1a1a1a;
-            --light-text: #e0e0e0;
-            --grid-line: rgba(0, 0, 0, 0.03);
-            --glass-bg: rgba(245, 245, 245, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* ===== BACKGROUND FUTURISTA COM GRID E EFEITOS ===== */
-        .teca-multimedia-section {
-            position: relative;
-            margin-top: 5rem;
-            padding: 3rem 1rem;
-            font-family: var(--font-primary);
-            max-width: 1400px;
+        /* ===== ESTILOS BASE - INTEGRAÇÃO COM TEMA EXISTENTE ===== */
+        .teca-multimedia-module {
+            margin-top: 3rem;
+            padding: 2rem;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
-            overflow: hidden;
+            font-family: system-ui, -apple-system, sans-serif;
         }
 
-        .teca-multimedia-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -2;
-            opacity: 0.5;
-        }
-
-        .teca-multimedia-section::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            z-index: -3;
-            animation: pulse-glow 15s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulse-glow {
-            0% { opacity: 0.1; transform: scale(1); }
-            100% { opacity: 0.3; transform: scale(1.1); }
-        }
-
-        /* ===== ESTILOS DE TEXTO FUTURISTAS ===== */
-        .teca-multimedia-section h2 {
-            color: var(--primary-gold);
-            font-size: 2.2rem;
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-            text-transform: uppercase;
-            font-family: var(--font-tech);
-        }
-
-        .teca-multimedia-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-gold), transparent);
-            border-radius: 2px;
-        }
-
-        .teca-multimedia-section p {
-            color: var(--dark-text);
-            line-height: 1.7;
-            margin-bottom: 1.8rem;
-            font-size: 1.05rem;
-            max-width: 800px;
-            opacity: 0.9;
-        }
-
-        [data-theme="light"] .teca-multimedia-section p {
-            color: var(--light-text);
-        }
-
-        /* ===== LAYOUT RESPONSIVO AVANÇADO ===== */
-        .multimedia-container {
+        /* ===== LAYOUT GRID RESPONSIVO ===== */
+        .teca-multimedia-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 3.5rem;
-            margin-bottom: 4rem;
-            position: relative;
-            z-index: 1;
+            gap: 3rem;
         }
 
         @media (min-width: 768px) {
-            .multimedia-container {
+            .teca-multimedia-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 3rem;
             }
-            
-            .video-container {
+            .teca-video-section {
                 grid-column: span 2;
             }
         }
 
-        @media (min-width: 1200px) {
-            .multimedia-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 4rem;
+        @media (min-width: 1024px) {
+            .teca-multimedia-grid {
+                grid-template-columns: 2fr 1fr 2fr;
             }
-            
-            .video-container {
-                grid-column: span 2;
+            .teca-video-section {
+                grid-column: span 1;
             }
         }
 
-        /* ===== CARDS FUTURISTAS COM EFEITO GLASSMORPHISM ===== */
-        .multimedia-card {
-            background: var(--glass-bg);
-            backdrop-filter: var(--blur-effect);
-            -webkit-backdrop-filter: var(--blur-effect);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--glass-border);
-            transition: var(--transition-smooth);
-            height: 100%;
+        /* ===== SEÇÃO DE VÍDEO ===== */
+        .teca-video-section,
+        .teca-audio-section,
+        .teca-images-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px var(--shadow-color);
+            transition: transform var(--transition-speed);
+        }
+
+        .teca-video-section:hover,
+        .teca-audio-section:hover,
+        .teca-images-section:hover {
+            transform: translateY(-2px);
+        }
+
+        .teca-section-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .teca-section-title::before {
+            content: "▶";
+            font-size: 1rem;
+        }
+
+        .teca-video-container {
             position: relative;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
         }
 
-        .multimedia-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                var(--primary-gold), 
-                transparent);
-        }
-
-        .multimedia-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-gold);
-            box-shadow: 
-                0 20px 60px rgba(214, 174, 100, 0.15),
-                0 0 0 1px rgba(214, 174, 100, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-
-        .multimedia-card:hover::before {
-            animation: scan-line 2s linear infinite;
-        }
-
-        @keyframes scan-line {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* ===== PLAYER DE VÍDEO FUTURISTA ===== */
-        .video-wrapper {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-top: 1.5rem;
-            flex-grow: 1;
-            border: 2px solid var(--dark-border);
-            transition: var(--transition-smooth);
-        }
-
-        .video-wrapper:hover {
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 30px var(--primary-gold-glow);
-        }
-
-        .video-wrapper::after {
-            content: '▶ PLAY';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: var(--primary-gold);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-family: var(--font-tech);
-            font-weight: bold;
-            letter-spacing: 2px;
-            opacity: 0;
-            transition: var(--transition-smooth);
-            pointer-events: none;
-            backdrop-filter: blur(10px);
-        }
-
-        .video-wrapper:hover::after {
-            opacity: 1;
-        }
-
-        .video-wrapper video {
+        .teca-video-container video {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             display: block;
-            transition: var(--transition-smooth);
+            background: #000;
         }
 
-        /* ===== SLIDER FUTURISTA COM EFEITOS ===== */
-        .slider-container {
-            background: var(--glass-bg);
-            backdrop-filter: var(--blur-effect);
-            border-radius: 20px;
-            padding: 3rem;
-            border: 1px solid var(--glass-border);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slider-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-                from 0deg,
-                transparent,
-                var(--neon-blue-glow),
-                transparent 30%
-            );
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
-
-        .slider-wrapper {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-            margin-bottom: 2.5rem;
-            aspect-ratio: 16/9;
-            border: 2px solid transparent;
-            background: linear-gradient(var(--dark-card), var(--dark-card)) padding-box,
-                        linear-gradient(45deg, var(--primary-gold), var(--neon-blue)) border-box;
-            z-index: 1;
-        }
-
-        .slider-track {
+        .teca-video-controls {
             display: flex;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 0 0 8px 8px;
         }
 
-        .slider-slide {
-            min-width: 100%;
-            height: 100%;
+        .teca-control-btn {
+            background: var(--primary-color);
+            border: none;
+            color: #000;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--dark-card);
+            transition: all var(--transition-speed);
+        }
+
+        .teca-control-btn:hover {
+            background: var(--accent-yellow);
+            transform: scale(1.1);
+        }
+
+        .teca-progress-bar {
+            flex: 1;
+            height: 6px;
+            background: #444;
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .teca-progress {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* ===== SEÇÃO DE ÁUDIO ===== */
+        .teca-audio-player {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .teca-audio-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .teca-audio-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.5rem;
+        }
+
+        .teca-audio-title {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .teca-audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .teca-audio-time {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== SEÇÃO DE IMAGENS - SLIDER ===== */
+        .teca-slider-container {
             position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
         }
 
-        .slider-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                transparent, 
-                rgba(214, 174, 100, 0.1), 
-                transparent);
-            z-index: 1;
-            pointer-events: none;
+        .teca-slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 300px;
         }
 
-        .slider-slide img {
-            max-width: 95%;
-            max-height: 95%;
+        @media (max-width: 767px) {
+            .teca-slider-track {
+                height: 200px;
+            }
+        }
+
+        .teca-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .teca-slide img {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             cursor: pointer;
-            transition: var(--transition-smooth);
-            position: relative;
-            z-index: 2;
-            filter: brightness(0.95) contrast(1.1);
+            transition: transform 0.3s;
         }
 
-        .slider-slide img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1) contrast(1.2);
+        .teca-slide img:hover {
+            transform: scale(1.02);
         }
 
-        /* ===== CONTROLES DO SLIDER FUTURISTAS ===== */
-        .slider-nav {
+        .teca-slider-controls {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            z-index: 1;
-            position: relative;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
         }
 
-        .slider-nav button {
-            background: linear-gradient(145deg, 
-                var(--dark-card), 
-                var(--dark-border));
-            color: var(--dark-text);
-            border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--dark-border);
-            font-family: var(--font-tech);
-            letter-spacing: 1px;
-        }
-
-        .slider-nav button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.1), 
-                transparent);
-            transition: left 0.6s ease;
-        }
-
-        .slider-nav button:hover {
-            background: linear-gradient(145deg, 
-                var(--primary-gold), 
-                #b8860b);
+        .teca-slider-btn {
+            background: var(--primary-color);
             color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(214, 174, 100, 0.3);
-            border-color: var(--primary-gold);
-        }
-
-        .slider-nav button:hover::before {
-            left: 100%;
-        }
-
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            z-index: 1;
-            position: relative;
-        }
-
-        .dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--dark-border);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
             cursor: pointer;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+            min-width: 120px;
         }
 
-        .dot::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent);
-            transition: left 0.3s ease;
+        .teca-slider-btn:hover {
+            background: var(--accent-yellow);
+            transform: translateY(-2px);
         }
 
-        .dot.active {
-            background: var(--primary-gold);
+        .teca-slider-dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .teca-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+        }
+
+        .teca-dot.active {
+            background: var(--primary-color);
             transform: scale(1.2);
-            box-shadow: 0 0 15px var(--primary-gold-glow);
         }
 
-        .dot.active::before {
-            left: 100%;
-        }
-
-        .dot:hover {
-            transform: scale(1.1);
-            background: var(--primary-gold);
-        }
-
-        /* ===== MODAL FULLSCREEN FUTURISTA ===== */
-        .modal-overlay {
+        /* ===== MODAL FULLSCREEN ===== */
+        .teca-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: var(--modal-overlay);
             display: none;
-            justify-content: center;
             align-items: center;
-            z-index: 9999;
-            backdrop-filter: blur(10px);
+            justify-content: center;
+            z-index: 10000;
         }
 
-        .modal-content {
+        .teca-modal.active {
+            display: flex;
+        }
+
+        .teca-modal-content {
             position: relative;
-            max-width: 95%;
-            max-height: 95%;
-            animation: modal-appear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 90vw;
+            max-height: 90vh;
         }
 
-        @keyframes modal-appear {
-            from { 
-                opacity: 0; 
-                transform: scale(0.8) rotateX(-10deg); 
-            }
-            to { 
-                opacity: 1; 
-                transform: scale(1) rotateX(0); 
-            }
-        }
-
-        .modal-image {
+        .teca-modal-img {
             max-width: 100%;
-            max-height: 85vh;
+            max-height: 90vh;
             object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 0 60px rgba(214, 174, 100, 0.3);
-            border: 2px solid var(--primary-gold);
         }
 
-        .modal-close {
+        .teca-modal-close {
             position: absolute;
-            top: -60px;
+            top: -40px;
             right: 0;
-            background: var(--primary-gold);
+            background: var(--accent-red);
+            color: white;
             border: none;
-            color: #000;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: var(--transition-smooth);
-            font-family: var(--font-tech);
-            font-weight: bold;
         }
 
-        .modal-close:hover {
-            background: #fff;
-            transform: rotate(90deg);
-            box-shadow: 0 0 25px var(--primary-gold);
-        }
-
-        .modal-nav {
+        .teca-modal-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: var(--primary-gold);
+            background: rgba(214, 174, 100, 0.8);
             color: #000;
             border: none;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            font-size: 1.8rem;
             cursor: pointer;
+            font-size: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: var(--transition-smooth);
-            font-family: var(--font-tech);
-            font-weight: bold;
+            transition: all var(--transition-speed);
         }
 
-        .modal-nav:hover {
-            background: #fff;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 0 30px var(--primary-gold);
+        .teca-modal-nav:hover {
+            background: var(--primary-color);
         }
 
-        .modal-prev {
-            left: -80px;
+        .teca-modal-prev {
+            left: -70px;
         }
 
-        .modal-next {
-            right: -80px;
+        .teca-modal-next {
+            right: -70px;
         }
 
-        /* ===== PLAYER DE ÁUDIO FUTURISTA ===== */
-        .audio-player {
-            background: var(--glass-bg);
-            backdrop-filter: var(--blur-effect);
-            border-radius: 20px;
-            padding: 2.5rem;
-            border: 1px solid var(--glass-border);
-            margin-top: 1.5rem;
-            flex-grow: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .audio-player::before {
-            content: '♪';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: var(--primary-gold);
-            opacity: 0.3;
-            font-family: var(--font-tech);
-        }
-
-        .audio-controls {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            align-items: center;
-        }
-
-        .audio-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .audio-controls button {
-            background: linear-gradient(145deg, var(--dark-card), var(--dark-border));
-            color: var(--dark-text);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-size: 1rem;
-            border: 1px solid var(--dark-border);
-            font-family: var(--font-tech);
-            min-width: 140px;
-            justify-content: center;
-        }
-
-        .audio-controls button:hover {
-            background: linear-gradient(145deg, var(--primary-gold), #b8860b);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(214, 174, 100, 0.3);
-            border-color: var(--primary-gold);
-        }
-
-        .audio-progress {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .progress-bar {
-            flex-grow: 1;
-            height: 8px;
-            background: var(--dark-border);
-            border-radius: 4px;
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .progress-bar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, 
-                var(--dark-border), 
-                var(--primary-gold-light));
-            opacity: 0.5;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, 
-                var(--primary-gold), 
-                var(--neon-blue));
-            width: 0%;
-            transition: width 0.1s linear;
-            position: relative;
-            z-index: 1;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 15px;
-            height: 15px;
-            background: var(--primary-gold);
-            border-radius: 50%;
-            transform: translateY(-3.5px);
-            box-shadow: 0 0 10px var(--primary-gold);
-        }
-
-        .time-display {
-            font-size: 0.95rem;
-            color: var(--primary-gold);
-            min-width: 120px;
-            text-align: center;
-            font-family: var(--font-tech);
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        /* ===== RESPONSIVIDADE MOBILE FUTURISTA ===== */
         @media (max-width: 767px) {
-            .teca-multimedia-section {
-                margin-top: 3rem;
-                padding: 2rem 0.8rem;
+            .teca-modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
-            
-            .multimedia-container {
-                gap: 2.5rem;
-            }
-            
-            .multimedia-card,
-            .slider-container {
-                padding: 2rem;
-            }
-            
-            .slider-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .slider-nav {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .slider-nav button {
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .audio-controls {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .audio-buttons {
-                flex-direction: column;
-            }
-            
-            .audio-controls button {
-                width: 100%;
-            }
-            
-            .modal-nav {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-            }
-            
-            .modal-prev {
+            .teca-modal-prev {
                 left: 10px;
             }
-            
-            .modal-next {
+            .teca-modal-next {
                 right: 10px;
             }
         }
 
+        /* ===== DESCRIÇÕES ===== */
+        .teca-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* ===== RESPONSIVIDADE AVANÇADA ===== */
+        @media (max-width: 767px) {
+            .teca-multimedia-module {
+                margin-top: 2rem;
+                padding: 1rem;
+            }
+            
+            .teca-video-section,
+            .teca-audio-section,
+            .teca-images-section {
+                padding: 1rem;
+            }
+            
+            .teca-section-title {
+                font-size: 1.25rem;
+            }
+            
+            .teca-slider-btn {
+                padding: 0.5rem 1rem;
+                min-width: 100px;
+                font-size: 0.9rem;
+            }
+        }
+
         @media (max-width: 450px) {
-            .teca-multimedia-section h2 {
-                font-size: 1.6rem;
+            .teca-multimedia-module {
+                margin-top: 1.5rem;
+                padding: 0.75rem;
             }
             
-            .multimedia-container {
-                gap: 2rem;
+            .teca-slider-track {
+                height: 180px;
             }
             
-            .multimedia-card,
-            .slider-container,
-            .audio-player {
-                padding: 1.5rem;
+            .teca-slider-controls {
+                flex-direction: column;
+                gap: 1rem;
             }
             
-            .slider-nav button {
-                padding: 0.8rem 1.5rem;
+            .teca-slider-btn {
+                width: 100%;
+                max-width: 200px;
             }
             
-            .dot {
-                width: 10px;
-                height: 10px;
+            .teca-audio-info {
+                flex-direction: column;
+                text-align: center;
             }
         }
 
-        /* ===== ANIMAÇÕES E EFEITOS ESPECIAIS ===== */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+        .teca-video-section,
+        .teca-audio-section,
+        .teca-images-section {
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .pulse-effect {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .loading-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-gold), var(--neon-blue));
-            width: 0%;
-            animation: loading 2s ease-in-out infinite;
-        }
-
-        @keyframes loading {
-            0%, 100% { left: 0; width: 0%; }
-            50% { left: 0; width: 100%; }
-            100% { left: 100%; width: 0%; }
+        /* ===== SUPORTE PARA LIGHT MODE ===== */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #f8f9fa;
+                --bg-secondary: #ffffff;
+                --text-primary: #212529;
+                --text-secondary: #495057;
+                --border-color: #dee2e6;
+                --shadow-color: rgba(0, 0, 0, 0.1);
+                --modal-overlay: rgba(248, 249, 250, 0.95);
+            }
+            
+            .teca-description {
+                background: rgba(0, 0, 0, 0.05);
+            }
         }
     </style>
-
-<body data-theme="dark">
     
-    <section class="teca-multimedia-section" id="tecaMultimedia">
-        <!-- ELEMENTOS DE BACKGROUND DINÂMICOS -->
-        <div class="floating-elements">
-            <div class="float-animation" style="position: absolute; top: 10%; left: 5%; width: 20px; height: 20px; background: var(--primary-gold); border-radius: 50%; opacity: 0.3;"></div>
-            <div class="float-animation" style="position: absolute; top: 30%; right: 10%; width: 30px; height: 30px; background: var(--neon-blue); border-radius: 50%; opacity: 0.2; animation-delay: 1s;"></div>
-            <div class="float-animation" style="position: absolute; bottom: 20%; left: 15%; width: 25px; height: 25px; background: var(--neon-pink); border-radius: 50%; opacity: 0.2; animation-delay: 2s;"></div>
+    <section class="teca-multimedia-module" aria-label="Conteúdo educativo multimídia sobre mercado financeiro">
+        <div class="teca-multimedia-grid">
+            <!-- SEÇÃO DE VÍDEO -->
+            <div class="teca-video-section">
+                <h2 class="teca-section-title">Explicando o Mercado Financeiro</h2>
+                <div class="teca-video-container">
+                    <video id="tecaVideo" src="Video/Conheça_o_Mercado_Financeiro.mp4" width="100%" preload="metadata">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                    <div class="teca-video-controls">
+                        <button class="teca-control-btn" id="tecaVideoPlay" aria-label="Play/Pause">▶</button>
+                        <div class="teca-progress-bar" id="tecaVideoProgress">
+                            <div class="teca-progress" id="tecaVideoProgressBar"></div>
+                        </div>
+                        <button class="teca-control-btn" id="tecaVideoFullscreen" aria-label="Tela cheia">⛶</button>
+                    </div>
+                </div>
+                <div class="teca-description">
+                    Entenda a evolução e funcionamento do mercado financeiro através desta explicação educativa. Ideal para iniciantes que desejam compreender os conceitos básicos antes de iniciar a simulação.
+                </div>
+            </div>
+
+            <!-- SEÇÃO DE ÁUDIO -->
+            <div class="teca-audio-section">
+                <h2 class="teca-section-title">Mini-Podcast Sobre o Mercado</h2>
+                <div class="teca-audio-player">
+                    <div class="teca-audio-info">
+                        <div class="teca-audio-icon">🎙️</div>
+                        <div>
+                            <div class="teca-audio-title">Do Templo à Tokenização dos Mercados Financeiros em Angola</div>
+                            <div class="teca-description">Uma conversa exclusiva com especialistas da Teca Capital sobre a evolução dos mercados financeiros.</div>
+                        </div>
+                    </div>
+                    <audio id="tecaAudio" src="audio/Do_Templo_à_Tokenização_dos_Mercados_Financeiros_em_Angola.m4a" preload="metadata"></audio>
+                    <div class="teca-audio-controls">
+                        <button class="teca-control-btn" id="tecaAudioPlay" aria-label="Play/Pause">▶</button>
+                        <div class="teca-progress-bar" id="tecaAudioProgress">
+                            <div class="teca-progress" id="tecaAudioProgressBar"></div>
+                        </div>
+                    </div>
+                    <div class="teca-audio-time">
+                        <span id="tecaAudioCurrent">0:00</span>
+                        <span id="tecaAudioDuration">0:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO DE IMAGENS - SLIDER -->
+            <div class="teca-images-section">
+                <h2 class="teca-section-title">Visualiza o Mapa da Sua Jornada</h2>
+                <div class="teca-slider-container">
+                    <div class="teca-slider-track" id="tecaSliderTrack">
+                        <!-- Imagens serão inseridas dinamicamente via JavaScript -->
+                    </div>
+                </div>
+                <div class="teca-slider-dots" id="tecaSliderDots">
+                    <!-- Pontos de navegação serão gerados dinamicamente -->
+                </div>
+                <div class="teca-slider-controls">
+                    <button class="teca-slider-btn" id="tecaSliderPrev">← Anterior</button>
+                    <button class="teca-slider-btn" id="tecaSliderNext">Próxima →</button>
+                </div>
+                <div class="teca-description">
+                    Explore 16 etapas da jornada no mercado financeiro. Clique em qualquer imagem para visualização em tela cheia.
+                </div>
+            </div>
         </div>
 
-        <div class="multimedia-container">
-            <!-- VÍDEO FUTURISTA -->
-            <div class="video-container multimedia-card">
-                <h2>Explicando o Mercado Financeiro</h2>
-                <p>Entenda a evolução do mercado financeiro, seus mecanismos e oportunidades de investimento. Este vídeo educativo oferece uma visão clara e objetiva para iniciantes e investidores experientes.</p>
-                <div class="video-wrapper">
-                    <video controls poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYwMCIgaGVpZ2h0PSI5MDAiIHZpZXdCb3g9IjAgMCAxNiA5IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxNiIgaGVpZ2h0PSI5IiBmaWxsPSIjMGExYTI5Ii8+PHRleHQgeD0iOCIgeT0iNC41IiBmb250LWZhbWlseT0iJ0NvdXJpZXIgTmV3JywgbW9ub3NwYWNlIiBmb250LXNpemU9IjAuNSIgZmlsbD0iI2Q2YWU2NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9IjAuM2VtIj5URUNBIENBUElUQUw8L3RleHQ+PC9zdmc+">
-                        <source src="Video/Conheça_o_Mercado_Financeiro.mp4" type="video/mp4">
-                        Seu navegador não suporta a reprodução de vídeos.
-                    </video>
-                </div>
-            </div>
-            
-            <!-- ÁUDIO FUTURISTA -->
-            <div class="audio-container multimedia-card">
-                <h2>Mini-Podcast Sobre o Mercado</h2>
-                <p>Uma conversa esclarecedora sobre a visão da Teca Capital Investimentos, abordando desde conceitos fundamentais até tendências atuais do mercado financeiro.</p>
-                <div class="audio-player">
-                    <div class="audio-info">
-                        <p><strong>Mercados Financeiros - Uma Conversa na Teca Capital</strong></p>
-                        <p class="pulse-effect" style="color: var(--primary-gold); font-size: 0.9rem; margin-top: 0.5rem;">● TRANSMITINDO AO VIVO</p>
-                    </div>
-                    <div class="audio-controls">
-                        <div class="audio-buttons">
-                            <button id="playBtn">
-                                <span id="playIcon">▶</span>
-                                <span id="playText">REPRODUZIR</span>
-                            </button>
-                            <button id="pauseBtn">⏸ PAUSAR</button>
-                        </div>
-                        <div class="audio-progress">
-                            <div class="progress-bar" id="progressBar">
-                                <div class="progress-fill" id="progressFill"></div>
-                            </div>
-                            <div class="time-display">
-                                <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
-                            </div>
-                        </div>
-                    </div>
-                    <audio id="audioPlayer">
-                        <source src="audio/Do_Templo_à_Tokenização_dos_Mercados_Financeiros_em_Angola.m4a" type="audio/mp4">
-                        Seu navegador não suporta a reprodução de áudio.
-                    </audio>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SLIDER DE IMAGENS FUTURISTA -->
-        <div class="slider-container">
-            <h2>Visualiza o Mapa da Sua Jornada</h2>
-            <p>Explore as 16 etapas da sua jornada no mercado financeiro. Cada imagem representa um conceito importante para sua educação financeira.</p>
-            
-            <div class="slider-wrapper">
-                <div class="slider-track" id="sliderTrack">
-                    <!-- Imagens serão inseridas dinamicamente via JavaScript -->
-                </div>
-            </div>
-            
-            <div class="slider-nav">
-                <button id="prevBtn">
-                    <span style="margin-right: 8px;">◀</span>
-                    ANTERIOR
-                </button>
-                <button id="nextBtn">
-                    PRÓXIMA
-                    <span style="margin-left: 8px;">▶</span>
-                </button>
-            </div>
-            
-            <div class="slider-dots" id="sliderDots">
-                <!-- Pontos do slider serão gerados dinamicamente -->
-            </div>
-        </div>
-        
-        <!-- MODAL FULLSCREEN FUTURISTA -->
-        <div class="modal-overlay" id="modalOverlay">
-            <div class="modal-content">
-                <button class="modal-close" id="modalClose">X</button>
-                <button class="modal-nav modal-prev" id="modalPrev">◀</button>
-                <img class="modal-image" id="modalImage" src="" alt="Visualização em tela cheia">
-                <button class="modal-nav modal-next" id="modalNext">▶</button>
+        <!-- MODAL PARA VISUALIZAÇÃO FULLSCREEN -->
+        <div class="teca-modal" id="tecaImageModal">
+            <div class="teca-modal-content">
+                <button class="teca-modal-close" id="tecaModalClose" aria-label="Fechar">✕</button>
+                <img class="teca-modal-img" id="tecaModalImage" src="" alt="Imagem em tela cheia">
+                <button class="teca-modal-nav teca-modal-prev" id="tecaModalPrev" aria-label="Imagem anterior">←</button>
+                <button class="teca-modal-nav teca-modal-next" id="tecaModalNext" aria-label="Próxima imagem">→</button>
             </div>
         </div>
     </section>
 
     <script>
-        // ===== SISTEMA DE TEMA INTEGRADO =====
-        const themeManager = {
-            init() {
-                // Verificar tema atual do body
-                const currentTheme = document.body.getAttribute('data-theme') || 'dark';
-                
-                // Observar mudanças no tema do site existente
-                const observer = new MutationObserver((mutations) => {
-                    mutations.forEach((mutation) => {
-                        if (mutation.attributeName === 'data-theme') {
-                            const newTheme = document.body.getAttribute('data-theme');
-                            this.updateThemeStyles(newTheme);
-                        }
-                    });
-                });
-                
-                observer.observe(document.body, { attributes: true });
-                
-                // Aplicar tema inicial
-                this.updateThemeStyles(currentTheme);
-            },
-            
-            updateThemeStyles(theme) {
-                // Atualizar variáveis CSS baseadas no tema
-                const root = document.querySelector(':root');
-                const isDark = theme === 'dark';
-                
-                // Atualizar ícones e textos conforme o tema
-                document.querySelectorAll('.multimedia-card').forEach(card => {
-                    card.style.background = isDark 
-                        ? 'rgba(10, 10, 10, 0.7)' 
-                        : 'rgba(245, 245, 245, 0.7)';
-                    
-                    card.style.borderColor = isDark 
-                        ? 'rgba(255, 255, 255, 0.1)' 
-                        : 'rgba(0, 0, 0, 0.1)';
-                });
-                
-                // Atualizar cores dos botões
-                document.querySelectorAll('.slider-nav button, .audio-controls button').forEach(btn => {
-                    btn.style.background = isDark 
-                        ? 'linear-gradient(145deg, var(--dark-card), var(--dark-border))'
-                        : 'linear-gradient(145deg, var(--light-card), var(--light-border))';
-                    
-                    btn.style.color = isDark ? 'var(--dark-text)' : 'var(--light-text)';
-                    btn.style.borderColor = isDark ? 'var(--dark-border)' : 'var(--light-border)';
-                });
-                
-                console.log('Tema multimídia atualizado para:', theme);
-            }
-        };
+        (function() {
+            'use strict';
 
-        // ===== DADOS DAS IMAGENS =====
-        const imagePaths = [
-            "Imagem/M1.png", "Imagem/M2.png", "Imagem/M3.png", "Imagem/M4.png",
-            "Imagem/M5.png", "Imagem/M6.png", "Imagem/M7.png", "Imagem/M8.png",
-            "Imagem/M9.png", "Imagem/M10.png", "Imagem/M11.png", "Imagem/M12.png",
-            "Imagem/M13.png", "Imagem/M14.png", "Imagem/M15.png", "Imagem/M16.png"
-        ];
-        
-        // ===== SLIDER DE IMAGENS AVANÇADO =====
-        class FuturisticSlider {
-            constructor() {
-                this.currentSlide = 0;
-                this.autoSlideInterval = null;
-                this.slideDuration = 5000; // 5 segundos
-                this.isAnimating = false;
+            // ===== CONFIGURAÇÕES =====
+            const SLIDER_INTERVAL = 5000; // 5 segundos
+            const IMAGE_PATHS = [
+                'Imagem/M1.png', 'Imagem/M2.png', 'Imagem/M3.png', 'Imagem/M4.png',
+                'Imagem/M5.png', 'Imagem/M6.png', 'Imagem/M7.png', 'Imagem/M8.png',
+                'Imagem/M9.png', 'Imagem/M10.png', 'Imagem/M11.png', 'Imagem/M12.png',
+                'Imagem/M13.png', 'Imagem/M14.png', 'Imagem/M15.png', 'Imagem/M16.png'
+            ];
+
+            // ===== ELEMENTOS DO DOM =====
+            const elements = {
+                // Vídeo
+                video: document.getElementById('tecaVideo'),
+                videoPlay: document.getElementById('tecaVideoPlay'),
+                videoProgress: document.getElementById('tecaVideoProgress'),
+                videoProgressBar: document.getElementById('tecaVideoProgressBar'),
+                videoFullscreen: document.getElementById('tecaVideoFullscreen'),
                 
-                this.init();
-            }
-            
-            init() {
-                this.createSlides();
-                this.createNavigation();
-                this.startAutoSlide();
-                this.setupKeyboardNavigation();
-            }
-            
-            createSlides() {
-                const sliderTrack = document.getElementById('sliderTrack');
-                const sliderDots = document.getElementById('sliderDots');
+                // Áudio
+                audio: document.getElementById('tecaAudio'),
+                audioPlay: document.getElementById('tecaAudioPlay'),
+                audioProgress: document.getElementById('tecaAudioProgress'),
+                audioProgressBar: document.getElementById('tecaAudioProgressBar'),
+                audioCurrent: document.getElementById('tecaAudioCurrent'),
+                audioDuration: document.getElementById('tecaAudioDuration'),
                 
-                imagePaths.forEach((path, index) => {
-                    // Criar slide
+                // Slider
+                sliderTrack: document.getElementById('tecaSliderTrack'),
+                sliderDots: document.getElementById('tecaSliderDots'),
+                sliderPrev: document.getElementById('tecaSliderPrev'),
+                sliderNext: document.getElementById('tecaSliderNext'),
+                
+                // Modal
+                imageModal: document.getElementById('tecaImageModal'),
+                modalImage: document.getElementById('tecaModalImage'),
+                modalClose: document.getElementById('tecaModalClose'),
+                modalPrev: document.getElementById('tecaModalPrev'),
+                modalNext: document.getElementById('tecaModalNext')
+            };
+
+            // ===== ESTADO DA APLICAÇÃO =====
+            let state = {
+                currentSlide: 0,
+                sliderInterval: null,
+                isModalOpen: false,
+                modalCurrentIndex: 0
+            };
+
+            // ===== INICIALIZAÇÃO DO SLIDER =====
+            function initSlider() {
+                // Limpar conteúdo existente
+                elements.sliderTrack.innerHTML = '';
+                elements.sliderDots.innerHTML = '';
+                
+                // Criar slides
+                IMAGE_PATHS.forEach((path, index) => {
+                    // Slide
                     const slide = document.createElement('div');
-                    slide.className = 'slider-slide';
-                    slide.dataset.index = index;
+                    slide.className = 'teca-slide';
                     
                     const img = document.createElement('img');
                     img.src = path;
-                    img.alt = `Slide ${index + 1} - Mapa da Jornada`;
-                    img.loading = "lazy";
-                    img.addEventListener('click', () => this.openModal(index));
-                    img.addEventListener('load', () => {
-                        img.style.opacity = '1';
-                    });
+                    img.alt = `Slide ${index + 1}`;
+                    img.loading = 'lazy';
+                    img.dataset.index = index;
+                    img.addEventListener('click', () => openModal(index));
                     
                     slide.appendChild(img);
-                    sliderTrack.appendChild(slide);
+                    elements.sliderTrack.appendChild(slide);
                     
-                    // Criar ponto com efeito especial
+                    // Dot
                     const dot = document.createElement('div');
-                    dot.className = 'dot';
-                    dot.innerHTML = `<span class="dot-glow"></span>`;
-                    if (index === 0) dot.classList.add('active');
+                    dot.className = `teca-dot ${index === 0 ? 'active' : ''}`;
                     dot.dataset.index = index;
-                    dot.addEventListener('click', () => this.goToSlide(index));
-                    dot.addEventListener('mouseenter', () => {
-                        if (!dot.classList.contains('active')) {
-                            dot.style.transform = 'scale(1.3)';
-                        }
-                    });
-                    dot.addEventListener('mouseleave', () => {
-                        if (!dot.classList.contains('active')) {
-                            dot.style.transform = 'scale(1)';
-                        }
-                    });
-                    
-                    sliderDots.appendChild(dot);
-                });
-            }
-            
-            createNavigation() {
-                document.getElementById('prevBtn').addEventListener('click', () => {
-                    this.prevSlide();
-                    this.resetAutoSlide();
+                    dot.addEventListener('click', () => goToSlide(index));
+                    elements.sliderDots.appendChild(dot);
                 });
                 
-                document.getElementById('nextBtn').addEventListener('click', () => {
-                    this.nextSlide();
-                    this.resetAutoSlide();
-                });
+                // Iniciar slider automático
+                startSlider();
             }
-            
-            goToSlide(index) {
-                if (this.isAnimating) return;
+
+            // ===== FUNÇÕES DO SLIDER =====
+            function startSlider() {
+                if (state.sliderInterval) {
+                    clearInterval(state.sliderInterval);
+                }
                 
-                this.isAnimating = true;
-                const sliderTrack = document.getElementById('sliderTrack');
-                const dots = document.querySelectorAll('.dot');
-                
-                // Animar transição
-                sliderTrack.style.transform = `translateX(-${index * 100}%)`;
-                
-                // Atualizar pontos ativos com efeito
-                dots.forEach((dot, i) => {
-                    const isActive = i === index;
-                    dot.classList.toggle('active', isActive);
-                    
-                    if (isActive) {
-                        dot.style.transform = 'scale(1.4)';
-                        setTimeout(() => {
-                            dot.style.transform = 'scale(1.2)';
-                        }, 300);
-                    } else {
-                        dot.style.transform = 'scale(1)';
-                    }
-                });
-                
-                this.currentSlide = index;
-                
-                // Liberar animação
-                setTimeout(() => {
-                    this.isAnimating = false;
-                }, 800);
+                state.sliderInterval = setInterval(() => {
+                    nextSlide();
+                }, SLIDER_INTERVAL);
             }
-            
-            nextSlide() {
-                const nextIndex = (this.currentSlide + 1) % imagePaths.length;
-                this.goToSlide(nextIndex);
-            }
-            
-            prevSlide() {
-                const prevIndex = (this.currentSlide - 1 + imagePaths.length) % imagePaths.length;
-                this.goToSlide(prevIndex);
-            }
-            
-            startAutoSlide() {
-                this.autoSlideInterval = setInterval(() => {
-                    this.nextSlide();
-                }, this.slideDuration);
-            }
-            
-            stopAutoSlide() {
-                clearInterval(this.autoSlideInterval);
-            }
-            
-            resetAutoSlide() {
-                this.stopAutoSlide();
-                setTimeout(() => this.startAutoSlide(), 10000);
-            }
-            
-            openModal(index) {
-                const modalOverlay = document.getElementById('modalOverlay');
-                const modalImage = document.getElementById('modalImage');
-                
-                modalImage.src = imagePaths[index];
-                modalOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                this.stopAutoSlide();
-                
-                // Efeito de entrada
-                modalOverlay.style.opacity = '0';
-                setTimeout(() => {
-                    modalOverlay.style.opacity = '1';
-                }, 10);
-            }
-            
-            closeModal() {
-                const modalOverlay = document.getElementById('modalOverlay');
-                modalOverlay.style.opacity = '0';
-                
-                setTimeout(() => {
-                    modalOverlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                    this.startAutoSlide();
-                }, 500);
-            }
-            
-            setupKeyboardNavigation() {
-                document.addEventListener('keydown', (e) => {
-                    const modal = document.getElementById('modalOverlay');
-                    
-                    if (modal.style.display === 'flex') {
-                        e.preventDefault();
-                        
-                        switch(e.key) {
-                            case 'Escape':
-                                this.closeModal();
-                                break;
-                            case 'ArrowLeft':
-                                this.prevModalImage();
-                                break;
-                            case 'ArrowRight':
-                                this.nextModalImage();
-                                break;
-                        }
-                    }
-                });
-            }
-            
-            nextModalImage() {
-                this.currentSlide = (this.currentSlide + 1) % imagePaths.length;
-                document.getElementById('modalImage').src = imagePaths[this.currentSlide];
-                this.animateModalTransition();
-            }
-            
-            prevModalImage() {
-                this.currentSlide = (this.currentSlide - 1 + imagePaths.length) % imagePaths.length;
-                document.getElementById('modalImage').src = imagePaths[this.currentSlide];
-                this.animateModalTransition();
-            }
-            
-            animateModalTransition() {
-                const modalImage = document.getElementById('modalImage');
-                modalImage.style.opacity = '0';
-                
-                setTimeout(() => {
-                    modalImage.style.opacity = '1';
-                }, 200);
-            }
-        }
-        
-        // ===== PLAYER DE ÁUDIO AVANÇADO =====
-        class FuturisticAudioPlayer {
-            constructor() {
-                this.audio = document.getElementById('audioPlayer');
-                this.playBtn = document.getElementById('playBtn');
-                this.pauseBtn = document.getElementById('pauseBtn');
-                this.progressBar = document.getElementById('progressBar');
-                this.progressFill = document.getElementById('progressFill');
-                this.currentTimeEl = document.getElementById('currentTime');
-                this.durationEl = document.getElementById('duration');
-                this.playIcon = document.getElementById('playIcon');
-                this.playText = document.getElementById('playText');
-                
-                this.init();
-            }
-            
-            init() {
-                this.setupEventListeners();
-                this.updateDuration();
-                this.createWaveform();
-            }
-            
-            setupEventListeners() {
-                this.playBtn.addEventListener('click', () => this.play());
-                this.pauseBtn.addEventListener('click', () => this.pause());
-                
-                this.audio.addEventListener('timeupdate', () => this.updateProgress());
-                this.audio.addEventListener('loadedmetadata', () => this.updateDuration());
-                this.audio.addEventListener('ended', () => this.onEnded());
-                this.audio.addEventListener('play', () => this.onPlay());
-                this.audio.addEventListener('pause', () => this.onPause());
-                
-                this.progressBar.addEventListener('click', (e) => this.setPosition(e));
-                this.progressBar.addEventListener('mousemove', (e) => this.showHoverTime(e));
-            }
-            
-            play() {
-                this.audio.play();
-                this.playIcon.textContent = '⏸';
-                this.playText.textContent = 'PAUSAR';
-                this.playBtn.classList.add('playing');
-            }
-            
-            pause() {
-                this.audio.pause();
-                this.playIcon.textContent = '▶';
-                this.playText.textContent = 'REPRODUZIR';
-                this.playBtn.classList.remove('playing');
-            }
-            
-            updateProgress() {
-                const progress = (this.audio.currentTime / this.audio.duration) * 100 || 0;
-                this.progressFill.style.width = `${progress}%`;
-                this.currentTimeEl.textContent = this.formatTime(this.audio.currentTime);
-                
-                // Efeito de onda sonora
-                this.updateWaveform();
-            }
-            
-            updateDuration() {
-                if (this.audio.duration) {
-                    this.durationEl.textContent = this.formatTime(this.audio.duration);
+
+            function stopSlider() {
+                if (state.sliderInterval) {
+                    clearInterval(state.sliderInterval);
+                    state.sliderInterval = null;
                 }
             }
-            
-            formatTime(seconds) {
+
+            function nextSlide() {
+                goToSlide((state.currentSlide + 1) % IMAGE_PATHS.length);
+            }
+
+            function prevSlide() {
+                goToSlide((state.currentSlide - 1 + IMAGE_PATHS.length) % IMAGE_PATHS.length);
+            }
+
+            function goToSlide(index) {
+                state.currentSlide = index;
+                
+                // Atualizar posição do slider
+                elements.sliderTrack.style.transform = `translateX(-${index * 100}%)`;
+                
+                // Atualizar dots
+                document.querySelectorAll('.teca-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                // Reiniciar intervalo
+                if (!state.isModalOpen) {
+                    startSlider();
+                }
+            }
+
+            // ===== FUNÇÕES DO MODAL =====
+            function openModal(index) {
+                state.isModalOpen = true;
+                state.modalCurrentIndex = index;
+                stopSlider();
+                
+                elements.modalImage.src = IMAGE_PATHS[index];
+                elements.imageModal.classList.add('active');
+                
+                // Adicionar listeners do teclado
+                document.addEventListener('keydown', handleModalKeyboard);
+            }
+
+            function closeModal() {
+                state.isModalOpen = false;
+                elements.imageModal.classList.remove('active');
+                elements.modalImage.src = '';
+                
+                // Remover listeners do teclado
+                document.removeEventListener('keydown', handleModalKeyboard);
+                
+                // Reiniciar slider
+                startSlider();
+            }
+
+            function nextModalImage() {
+                state.modalCurrentIndex = (state.modalCurrentIndex + 1) % IMAGE_PATHS.length;
+                elements.modalImage.src = IMAGE_PATHS[state.modalCurrentIndex];
+            }
+
+            function prevModalImage() {
+                state.modalCurrentIndex = (state.modalCurrentIndex - 1 + IMAGE_PATHS.length) % IMAGE_PATHS.length;
+                elements.modalImage.src = IMAGE_PATHS[state.modalCurrentIndex];
+            }
+
+            function handleModalKeyboard(event) {
+                switch(event.key) {
+                    case 'Escape':
+                        closeModal();
+                        break;
+                    case 'ArrowLeft':
+                        prevModalImage();
+                        break;
+                    case 'ArrowRight':
+                        nextModalImage();
+                        break;
+                }
+            }
+
+            // ===== FUNÇÕES DO VÍDEO =====
+            function initVideo() {
+                elements.videoPlay.addEventListener('click', toggleVideoPlayback);
+                elements.videoFullscreen.addEventListener('click', toggleVideoFullscreen);
+                elements.videoProgress.addEventListener('click', seekVideo);
+                elements.video.addEventListener('timeupdate', updateVideoProgress);
+                elements.video.addEventListener('click', toggleVideoPlayback);
+            }
+
+            function toggleVideoPlayback() {
+                if (elements.video.paused) {
+                    elements.video.play();
+                    elements.videoPlay.textContent = '⏸';
+                } else {
+                    elements.video.pause();
+                    elements.videoPlay.textContent = '▶';
+                }
+            }
+
+            function toggleVideoFullscreen() {
+                if (!document.fullscreenElement) {
+                    elements.video.requestFullscreen().catch(err => {
+                        console.error(`Erro ao tentar entrar em fullscreen: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+
+            function seekVideo(event) {
+                const rect = elements.videoProgress.getBoundingClientRect();
+                const pos = (event.clientX - rect.left) / rect.width;
+                elements.video.currentTime = pos * elements.video.duration;
+            }
+
+            function updateVideoProgress() {
+                const percent = (elements.video.currentTime / elements.video.duration) * 100;
+                elements.videoProgressBar.style.width = `${percent}%`;
+            }
+
+            // ===== FUNÇÕES DO ÁUDIO =====
+            function initAudio() {
+                elements.audioPlay.addEventListener('click', toggleAudioPlayback);
+                elements.audioProgress.addEventListener('click', seekAudio);
+                elements.audio.addEventListener('timeupdate', updateAudioProgress);
+                elements.audio.addEventListener('loadedmetadata', updateAudioDuration);
+                
+                // Atualizar duração quando disponível
+                if (elements.audio.readyState > 0) {
+                    updateAudioDuration();
+                }
+            }
+
+            function toggleAudioPlayback() {
+                if (elements.audio.paused) {
+                    elements.audio.play();
+                    elements.audioPlay.textContent = '⏸';
+                } else {
+                    elements.audio.pause();
+                    elements.audioPlay.textContent = '▶';
+                }
+            }
+
+            function seekAudio(event) {
+                const rect = elements.audioProgress.getBoundingClientRect();
+                const pos = (event.clientX - rect.left) / rect.width;
+                elements.audio.currentTime = pos * elements.audio.duration;
+            }
+
+            function updateAudioProgress() {
+                const percent = (elements.audio.currentTime / elements.audio.duration) * 100;
+                elements.audioProgressBar.style.width = `${percent}%`;
+                
+                // Atualizar tempo atual
+                elements.audioCurrent.textContent = formatTime(elements.audio.currentTime);
+            }
+
+            function updateAudioDuration() {
+                elements.audioDuration.textContent = formatTime(elements.audio.duration);
+            }
+
+            function formatTime(seconds) {
                 const mins = Math.floor(seconds / 60);
                 const secs = Math.floor(seconds % 60);
                 return `${mins}:${secs.toString().padStart(2, '0')}`;
             }
-            
-            setPosition(e) {
-                const rect = this.progressBar.getBoundingClientRect();
-                const pos = (e.clientX - rect.left) / rect.width;
-                this.audio.currentTime = pos * this.audio.duration;
-                
-                // Efeito visual
-                this.progressBar.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    this.progressBar.style.transform = 'scale(1)';
-                }, 200);
-            }
-            
-            showHoverTime(e) {
-                const rect = this.progressBar.getBoundingClientRect();
-                const pos = (e.clientX - rect.left) / rect.width;
-                const time = pos * this.audio.duration;
-                
-                // Tooltip dinâmico (poderia ser implementado)
-            }
-            
-            onEnded() {
-                this.playIcon.textContent = '▶';
-                this.playText.textContent = 'REPRODUZIR';
-                this.playBtn.classList.remove('playing');
-                this.progressFill.style.width = '0%';
-            }
-            
-            onPlay() {
-                // Efeito visual ao tocar
-                document.querySelectorAll('.pulse-effect').forEach(el => {
-                    el.style.animation = 'pulse 1s ease-in-out infinite';
-                });
-            }
-            
-            onPause() {
-                // Remover efeito ao pausar
-                document.querySelectorAll('.pulse-effect').forEach(el => {
-                    el.style.animation = 'none';
-                });
-            }
-            
-            createWaveform() {
-                // Simulação de visualização de onda sonora
-                const progressBar = this.progressBar;
-                const canvas = document.createElement('canvas');
-                canvas.style.position = 'absolute';
-                canvas.style.top = '0';
-                canvas.style.left = '0';
-                canvas.style.width = '100%';
-                canvas.style.height = '100%';
-                canvas.style.opacity = '0.1';
-                canvas.style.pointerEvents = 'none';
-                progressBar.parentNode.insertBefore(canvas, progressBar);
-                
-                const ctx = canvas.getContext('2d');
-                canvas.width = progressBar.offsetWidth;
-                canvas.height = progressBar.offsetHeight;
-                
-                // Desenhar onda básica
-                this.drawWaveform(ctx, canvas.width, canvas.height);
-            }
-            
-            drawWaveform(ctx, width, height) {
-                ctx.clearRect(0, 0, width, height);
-                
-                const centerY = height / 2;
-                const amplitude = height * 0.3;
-                const frequency = 0.05;
-                
-                ctx.beginPath();
-                ctx.strokeStyle = 'var(--primary-gold)';
-                ctx.lineWidth = 1;
-                
-                for (let x = 0; x < width; x++) {
-                    const y = centerY + Math.sin(x * frequency) * amplitude;
-                    ctx.lineTo(x, y);
-                }
-                
-                ctx.stroke();
-            }
-            
-            updateWaveform() {
-                // Atualizar visualização da onda conforme o áudio toca
-                const canvas = this.progressBar.previousElementSibling;
-                if (canvas && canvas.tagName === 'CANVAS') {
-                    const progress = (this.audio.currentTime / this.audio.duration) || 0;
-                    const ctx = canvas.getContext('2d');
-                    
-                    // Efeito de onda animada
-                    this.drawAnimatedWaveform(ctx, canvas.width, canvas.height, progress);
-                }
-            }
-            
-            drawAnimatedWaveform(ctx, width, height, progress) {
-                ctx.clearRect(0, 0, width, height);
-                
-                const centerY = height / 2;
-                const amplitude = height * 0.3;
-                const frequency = 0.05;
-                const time = Date.now() * 0.001;
-                
-                // Parte já reproduzida (dourada)
-                ctx.beginPath();
-                ctx.strokeStyle = 'var(--primary-gold)';
-                ctx.lineWidth = 2;
-                
-                const progressWidth = width * progress;
-                for (let x = 0; x < progressWidth; x++) {
-                    const y = centerY + Math.sin(x * frequency + time * 2) * amplitude;
-                    ctx.lineTo(x, y);
-                }
-                ctx.stroke();
-                
-                // Parte restante (azul neon)
-                ctx.beginPath();
-                ctx.strokeStyle = 'var(--neon-blue)';
-                ctx.lineWidth = 1;
-                ctx.setLineDash([2, 2]);
-                
-                for (let x = progressWidth; x < width; x++) {
-                    const y = centerY + Math.sin(x * frequency) * amplitude * 0.5;
-                    ctx.lineTo(x, y);
-                }
-                ctx.stroke();
-                ctx.setLineDash([]);
-            }
-        }
-        
-        // ===== INICIALIZAÇÃO =====
-        document.addEventListener('DOMContentLoaded', () => {
-            // Inicializar gerenciador de tema
-            themeManager.init();
-            
-            // Inicializar slider futurista
-            const slider = new FuturisticSlider();
-            
-            // Inicializar player de áudio futurista
-            const audioPlayer = new FuturisticAudioPlayer();
-            
-            // Configurar modal
-            document.getElementById('modalClose').addEventListener('click', () => slider.closeModal());
-            document.getElementById('modalPrev').addEventListener('click', () => slider.prevModalImage());
-            document.getElementById('modalNext').addEventListener('click', () => slider.nextModalImage());
-            
-            // Efeitos de hover avançados
-            document.querySelectorAll('.multimedia-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    const glow = document.createElement('div');
-                    glow.style.position = 'absolute';
-                    glow.style.top = '0';
-                    glow.style.left = '0';
-                    glow.style.width = '100%';
-                    glow.style.height = '100%';
-                    glow.style.background = 'radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(214, 174, 100, 0.1), transparent)';
-                    glow.style.pointerEvents = 'none';
-                    glow.style.zIndex = '0';
-                    card.appendChild(glow);
-                    
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(214, 174, 100, 0.15), transparent)`;
-                    });
-                    
-                    card.addEventListener('mouseleave', () => {
-                        if (glow.parentNode === card) {
-                            card.removeChild(glow);
-                        }
-                    });
-                });
-            });
-            
-            // Parar slides automáticos quando o mouse estiver sobre o slider
-            const sliderWrapper = document.querySelector('.slider-wrapper');
-            sliderWrapper.addEventListener('mouseenter', () => slider.stopAutoSlide());
-            sliderWrapper.addEventListener('mouseleave', () => slider.startAutoSlide());
-            
-            // Para dispositivos touch
-            sliderWrapper.addEventListener('touchstart', () => slider.stopAutoSlide());
-            sliderWrapper.addEventListener('touchend', () => {
-                setTimeout(() => slider.startAutoSlide(), 5000);
-            });
-            
-            console.log('Sistema multimídia futurista carregado com sucesso!');
-        });
-        
-        // ===== INTEGRAÇÃO COM O SITE EXISTENTE =====
-        window.hideMultimediaContent = function() {
-            const section = document.getElementById('tecaMultimedia');
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                section.style.display = 'none';
-                if (window.slider) window.slider.stopAutoSlide();
-                if (window.audioPlayer) window.audioPlayer.pause();
-            }, 300);
-        };
-        
-        window.showMultimediaContent = function() {
-            const section = document.getElementById('tecaMultimedia');
-            section.style.display = 'block';
-            
-            setTimeout(() => {
-                section.style.opacity = '1';
-                section.style.transform = 'translateY(0)';
-                
-                if (window.slider) window.slider.startAutoSlide();
-            }, 10);
-        };
-    </script>
-      
-     <!-- Livro do Mercado Financeiro -->
 
-     
+            // ===== EVENT LISTENERS =====
+            function setupEventListeners() {
+                // Slider
+                elements.sliderPrev.addEventListener('click', () => {
+                    stopSlider();
+                    prevSlide();
+                });
+                
+                elements.sliderNext.addEventListener('click', () => {
+                    stopSlider();
+                    nextSlide();
+                });
+                
+                // Pausar slider ao interagir
+                elements.sliderTrack.addEventListener('mouseenter', stopSlider);
+                elements.sliderTrack.addEventListener('mouseleave', startSlider);
+                
+                // Modal
+                elements.modalClose.addEventListener('click', closeModal);
+                elements.modalPrev.addEventListener('click', prevModalImage);
+                elements.modalNext.addEventListener('click', nextModalImage);
+                
+                // Fechar modal ao clicar no overlay
+                elements.imageModal.addEventListener('click', (event) => {
+                    if (event.target === elements.imageModal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // ===== INICIALIZAÇÃO =====
+            function init() {
+                initSlider();
+                initVideo();
+                initAudio();
+                setupEventListeners();
+                
+                // Parar slider quando a página não estiver visível
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        stopSlider();
+                    } else if (!state.isModalOpen) {
+                        startSlider();
+                    }
+                });
+                
+                console.log('Módulo Multimídia Teca Capital inicializado com sucesso!');
+            }
+
+            // ===== INICIALIZAR QUANDO O DOM ESTIVER PRONTO =====
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+            // ===== EXPOSIÇÃO PARA DEBUG (OPCIONAL) =====
+            window.tecaMultimediaModule = {
+                goToSlide,
+                openModal,
+                closeModal,
+                toggleVideoPlayback,
+                toggleAudioPlayback
+            };
+
+        })();
+    </script>
 
     </main>
 
