@@ -4461,6 +4461,92 @@ body.simulation-active .dashboard-header {
     color: #856404;
 }
 
+/* Adicionar ao final do bloco <style> existente */
+
+/* Estilos para títulos públicos bloqueados */
+.btn-sell[disabled], .btn-sell-small[disabled] {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    background: var(--gray-medium) !important;
+    color: var(--gray-light) !important;
+    border-color: var(--gray-light) !important;
+}
+
+/* Badge informativo para títulos públicos */
+.public-bond-badge {
+    animation: pulse 3s infinite;
+    border-left: 3px solid var(--accent-green) !important;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Estilos para contagem regressiva */
+.bond-countdown {
+    transition: all 0.3s ease;
+}
+
+.bond-countdown:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(214, 174, 100, 0.2);
+    background: rgba(214, 174, 100, 0.15) !important;
+}
+
+/* Barra de progresso */
+.bond-countdown div[style*="background: var(--accent-green)"] {
+    background: linear-gradient(90deg, var(--accent-green), rgb(194, 154, 80)) !important;
+    box-shadow: 0 0 8px rgba(214, 174, 100, 0.3);
+}
+
+/* Estilos para tabelas */
+#bond-interest-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#bond-interest-table th {
+    background: var(--gray-medium);
+    padding: 12px;
+    text-align: left;
+    color: var(--accent-green);
+    font-weight: 600;
+    border-bottom: 2px solid var(--gray-light);
+}
+
+#bond-interest-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--gray-medium);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#bond-interest-table tbody tr:hover {
+    background: var(--gray-medium);
+}
+
+/* Badge para status */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge.buy {
+    background: rgba(34, 197, 94, 0.2);
+    color: var(--success);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
     </style>
 
 
@@ -5304,6 +5390,7 @@ function ext_addMarketCapToCards(assetsList, containerId) {
     });
 }
 
+
 // Renderizar ranking das 10 maiores empresas por Market Cap
 function ext_renderMarketCapRanking() {
     const container = document.querySelector('.ext-market-cap-ranking');
@@ -5412,24 +5499,6 @@ initializeMarket = function() {
     
     // Renderizar ranking inicial
     setTimeout(() => ext_renderMarketCapRanking(), 100);
-};
-
-// Modificar a função updateMarketPrices() para atualizar Market Cap
-const originalUpdateMarketPrices = updateMarketPrices;
-updateMarketPrices = function() {
-    originalUpdateMarketPrices();
-    ext_updateAllMarketCaps();
-};
-
-// Modificar a função renderAssetsUI() para adicionar Market Cap aos cards
-const originalRenderAssetsUI = renderAssetsUI;
-renderAssetsUI = function(category) {
-    originalRenderAssetsUI(category);
-    
-    if (category === 'acoes') {
-        const assets = ASSETS_DATABASE[category] || [];
-        setTimeout(() => ext_addMarketCapToCards(assets, 'assets-list'), 100);
-    }
 };
 
 // Adicionar função para criar o container de ranking se não existir
@@ -9614,6 +9683,1858 @@ function ext_overrideConfirmTrade() {
     
 })();
 
+// ========================================
+// SISTEMA DE CRONOGRAMA INTERNO
+// ========================================
+
+// Adicionar propriedades ao AppState.market (APÓS linha 215)
+// Buscar: AppState.market = { (linha ~215)
+if (!AppState.market.simulatedTime) {
+    AppState.market.simulatedTime = {
+        startTimestamp: Date.now(),
+        currentYear: 2025,
+        currentMonth: 1, // Janeiro
+        currentDay: 1,
+        lastUpdate: Date.now(),
+        totalDaysElapsed: 0
+    };
+}
+
+// Função para atualizar tempo simulado (NOVA FUNÇÃO)
+function updateSimulatedTime() {
+    const now = Date.now();
+    const elapsedMs = now - AppState.market.simulatedTime.startTimestamp;
+    
+    // Conversões baseadas nas proporções fornecidas:
+    // 0.0125 segundos = 1 hora → 0.0125 * 1000 ms = 12.5 ms por hora
+    // 0.3 segundos = 1 dia → 0.3 * 1000 ms = 300 ms por dia
+    // 2 min 1 seg = 1 semana → 121000 ms por semana
+    // 8 min 4 seg = 1 mês → 484000 ms por mês
+    // 100 min 8 seg = 1 ano → 6008000 ms por ano
+    
+    const hoursSimulated = elapsedMs / 12.5; // horas simuladas
+    const daysSimulated = hoursSimulated / 24; // dias simulados
+    
+    // Atualizar dias
+    const newTotalDays = Math.floor(daysSimulated);
+    AppState.market.simulatedTime.totalDaysElapsed = newTotalDays;
+    
+    // Calcular data a partir dos dias totais
+    let remainingDays = newTotalDays;
+    let year = 2025;
+    let month = 1;
+    let day = 1;
+    
+    while (remainingDays > 0) {
+        const daysInMonth = getDaysInMonth(month, year);
+        
+        if (remainingDays >= daysInMonth) {
+            remainingDays -= daysInMonth;
+            month++;
+            
+            if (month > 12) {
+                month = 1;
+                year++;
+            }
+        } else {
+            day = remainingDays + 1;
+            remainingDays = 0;
+        }
+    }
+    
+    // Atualizar AppState
+    const oldMonth = AppState.market.simulatedTime.currentMonth;
+    const oldYear = AppState.market.simulatedTime.currentYear;
+    
+    AppState.market.simulatedTime.currentYear = year;
+    AppState.market.simulatedTime.currentMonth = month;
+    AppState.market.simulatedTime.currentDay = day;
+    AppState.market.simulatedTime.lastUpdate = now;
+    
+    // Verificar se mês ou ano mudaram (para dividendos/juros)
+    const monthChanged = oldMonth !== month;
+    const yearChanged = oldYear !== year;
+    
+    return { monthChanged, yearChanged, currentDate: { year, month, day } };
+}
+
+// Função auxiliar para dias no mês
+function getDaysInMonth(month, year) {
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    
+    // Fevereiro em ano bissexto
+    if (month === 2 && ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0))) {
+        return 29;
+    }
+    
+    return daysInMonth[month - 1];
+}
+
+// Formatar data para exibição
+function formatSimulatedDate() {
+    const { currentDay, currentMonth, currentYear } = AppState.market.simulatedTime;
+    return `${currentDay.toString().padStart(2, '0')}/${currentMonth.toString().padStart(2, '0')}/${currentYear}`;
+}
+
+// Modificar updateMarketPrices() para incluir cronograma
+// Buscar: function updateMarketPrices() { (linha ~715)
+// ADICIONAR NO INÍCIO da função:
+const originalUpdateMarketPrices = updateMarketPrices;
+updateMarketPrices = function() {
+    // Atualizar tempo simulado
+    const timeUpdate = updateSimulatedTime();
+    
+    // Processar eventos baseados em tempo (dividendos/juros)
+    if (timeUpdate.monthChanged || timeUpdate.yearChanged) {
+        setTimeout(() => {
+            processTimeBasedEvents(timeUpdate);
+        }, 0);
+    }
+    
+    // Chamar função original
+    originalUpdateMarketPrices();
+    
+    // Atualizar data na UI
+    updateSimulatedDateUI();
+};
+
+// Função para processar eventos baseados em tempo
+function processTimeBasedEvents(timeUpdate) {
+    // Esta função será expandida para dividendos e juros
+    const { currentDate } = timeUpdate;
+    
+    // Verificar se é mês de pagamento de dividendos (Junho ou Dezembro)
+    if (currentDate.month === 6 || currentDate.month === 12) {
+        console.log(`Mês de dividendos: ${currentDate.month}/${currentDate.year}`);
+    }
+    
+    // Verificar se é mês antes para alerta
+    if (currentDate.month === 5 || currentDate.month === 11) {
+        showNotification(
+            `📅 Dividendos se aproximam! Pagamento em ${currentDate.month === 5 ? 'Junho' : 'Dezembro'}`,
+            'warning'
+        );
+    }
+}
+
+// Atualizar UI da data simulada
+function updateSimulatedDateUI() {
+    const dateElement = document.getElementById('simulated-date');
+    if (dateElement) {
+        dateElement.textContent = formatSimulatedDate();
+    }
+}
+
+// Adicionar elemento HTML para data simulada
+// Buscar no HTML: <div class="balance-item highlight"> (linha ~270)
+// ADICIONAR APÓS este elemento:
+function addSimulatedDateToUI() {
+    const balanceInfo = document.querySelector('.balance-info');
+    if (!balanceInfo) return;
+    
+    // Verificar se já existe
+    if (!document.getElementById('simulated-date')) {
+        const dateElement = document.createElement('div');
+        dateElement.className = 'balance-item';
+        dateElement.innerHTML = `
+            <span class="label">📅 Data Simulada:</span>
+            <span class="value" id="simulated-date">01/01/2025</span>
+        `;
+        
+        // Inserir após o último balance-item
+        const lastBalanceItem = balanceInfo.querySelector('.balance-item:last-child');
+        if (lastBalanceItem) {
+            lastBalanceItem.insertAdjacentElement('afterend', dateElement);
+        } else {
+            balanceInfo.appendChild(dateElement);
+        }
+    }
+}
+
+// Inicializar UI quando dashboard for mostrado
+const originalShowDashboard = showDashboard || function() {};
+showDashboard = function() {
+    originalShowDashboard();
+    setTimeout(addSimulatedDateToUI, 100);
+};
+
+
+// ========================================
+// SISTEMA DE PROVÍNCIA DO USUÁRIO
+// ========================================
+
+// Modificar a inicialização do usuário para incluir província
+// Buscar no código: AppState.user.name = (linha ~1900)
+// ADICIONAR após salvar o nome:
+
+// Encontrar onde o formulário é processado
+document.addEventListener('DOMContentLoaded', function() {
+    const userSetupForm = document.getElementById('user-setup');
+    if (userSetupForm) {
+        const originalSubmit = userSetupForm.onsubmit;
+        
+        userSetupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const name = document.getElementById('investor-name').value;
+            const region = document.getElementById('region').value;
+            const gender = document.getElementById('gender').value;
+            const profile = document.querySelector('.profile-card.selected')?.dataset.profile;
+            const scenario = document.querySelector('.scenario-card.selected')?.dataset.scenario;
+            const balance = document.querySelector('.balance-options button.selected')?.dataset.balance;
+            const tickInterval = document.getElementById('tick-interval').value;
+            
+            // Salvar no AppState (incluindo província)
+            AppState.user.name = name;
+            AppState.user.region = region; // Já existe
+            AppState.user.province = region; // Novo campo para exibição específica
+            AppState.user.gender = gender;
+            AppState.user.profile = profile;
+            AppState.user.scenario = scenario;
+            AppState.user.initialBalance = parseInt(balance) || 100000;
+            AppState.user.availableBalance = AppState.user.initialBalance;
+            AppState.user.tickInterval = parseInt(tickInterval) || 60000;
+            
+            // Resto da lógica existente...
+            // (manter código original aqui)
+            
+            // Chamar função original se existir
+            if (typeof originalSubmit === 'function') {
+                originalSubmit.call(this, e);
+            }
+        });
+    }
+});
+
+// Adicionar província ao header do dashboard
+function addProvinceToDashboard() {
+    const userInfo = document.querySelector('.user-info');
+    if (!userInfo || !AppState.user.province) return;
+    
+    // Verificar se já existe
+    if (!document.getElementById('province-display')) {
+        const provinceElement = document.createElement('p');
+        provinceElement.className = 'scenario-badge';
+        provinceElement.innerHTML = `Província: <span id="province-display">${AppState.user.province}</span>`;
+        
+        // Inserir após o cenário
+        const scenarioElement = userInfo.querySelector('.scenario-badge');
+        if (scenarioElement) {
+            scenarioElement.insertAdjacentElement('afterend', provinceElement);
+        } else {
+            userInfo.appendChild(provinceElement);
+        }
+    } else {
+        // Atualizar se já existe
+        document.getElementById('province-display').textContent = AppState.user.province;
+    }
+}
+
+// Integrar com showDashboard
+if (typeof showDashboard === 'function') {
+    const originalShowDashboard = showDashboard;
+    showDashboard = function() {
+        originalShowDashboard();
+        setTimeout(addProvinceToDashboard, 150);
+    };
+}
+
+
+// ========================================
+// SISTEMA DE DIVIDENDOS (APROVEITANDO ESTRUTURA EXISTENTE)
+// ========================================
+
+// Adicionar propriedades de dividendos às ações
+// Buscar: ASSETS_DATABASE.acoes.forEach (linha ~620)
+// ADICIONAR dentro do forEach:
+
+function initializeDividendSystem() {
+    ASSETS_DATABASE.acoes.forEach((asset, index) => {
+        // Inicializar informações de dividendos se não existirem
+        if (!asset.dividendInfo) {
+            // Determinar frequência baseada no ranking (top 2 são semestrais)
+            const isTop2 = index < 2; // Simplificação - baseado no índice
+            const frequency = isTop2 ? 'semiannual' : 'annual';
+            
+            // Determinar yield baseado no cenário
+            let baseYield = 0.15; // 15% padrão
+            
+            // Empresas que não pagam este ano (rotação)
+            // 3 empresas aleatórias por ano não pagam
+            const notPayingThisYear = Math.random() < 0.3; // ~30% de chance
+            
+            asset.dividendInfo = {
+                enabled: true,
+                frequency: frequency,
+                yield: baseYield,
+                lastPaymentYear: null,
+                lastPaymentMonth: null,
+                isPayingThisYear: !notPayingThisYear,
+                paymentHistory: []
+            };
+        }
+        
+        // Garantir que a ação no market também tenha a informação
+        if (AppState.market.assets[asset.id]) {
+            AppState.market.assets[asset.id].dividendInfo = asset.dividendInfo;
+        }
+    });
+}
+
+// Inicializar sistema de dividendos
+initializeDividendSystem();
+
+// Função principal de processamento de dividendos
+function processDividends() {
+    const { currentYear, currentMonth } = AppState.market.simulatedTime;
+    
+    // Verificar se é mês de pagamento (Junho ou Dezembro)
+    const isDividendMonth = currentMonth === 6 || currentMonth === 12;
+    if (!isDividendMonth) return;
+    
+    // Inicializar histórico de dividendos se não existir
+    if (!AppState.portfolio.dividendHistory) {
+        AppState.portfolio.dividendHistory = [];
+    }
+    
+    let totalDividendsPaid = 0;
+    let companiesPaid = 0;
+    
+    // Processar cada posição de ação
+    AppState.portfolio.positions.forEach(position => {
+        if (position.type !== 'acao') return;
+        
+        const asset = AppState.market.assets[position.assetId];
+        if (!asset || !asset.dividendInfo) return;
+        
+        // Verificar se deve pagar dividendos
+        if (shouldPayDividend(asset, currentYear, currentMonth)) {
+            // Calcular dividendo por ação
+            const dividendPerShare = calculateDividendPerShare(asset, AppState.user.scenario);
+            const totalDividend = dividendPerShare * position.quantity;
+            
+            // Adicionar ao saldo do usuário
+            AppState.user.availableBalance += totalDividend;
+            totalDividendsPaid += totalDividend;
+            companiesPaid++;
+            
+            // Criar registro de dividendo
+            const dividendRecord = {
+                id: `div_${Date.now()}_${asset.id}`,
+                date: formatSimulatedDate(),
+                company: asset.name,
+                ticker: asset.ticker,
+                perShare: dividendPerShare,
+                dividendYield: (dividendPerShare / asset.currentPrice * 100).toFixed(2),
+                quantity: position.quantity,
+                total: totalDividend,
+                status: 'Pago',
+                paymentMonth: currentMonth,
+                paymentYear: currentYear
+            };
+            
+            // Adicionar ao histórico
+            AppState.portfolio.dividendHistory.push(dividendRecord);
+            
+            // Atualizar histórico no ativo
+            if (!asset.dividendInfo.paymentHistory) {
+                asset.dividendInfo.paymentHistory = [];
+            }
+            asset.dividendInfo.paymentHistory.push({
+                date: dividendRecord.date,
+                amount: dividendPerShare,
+                total: totalDividend
+            });
+            
+            // Atualizar último pagamento
+            asset.dividendInfo.lastPaymentYear = currentYear;
+            asset.dividendInfo.lastPaymentMonth = currentMonth;
+            
+            // Mostrar notificação
+            showNotification(
+                `💰 Dividendo recebido de ${asset.ticker}: ${formatCurrency(totalDividend)}`,
+                'success'
+            );
+        }
+    });
+    
+    // Atualizar tabela de dividendos
+    if (companiesPaid > 0) {
+        updateDividendsTable();
+        showNotification(
+            `🎉 Total de dividendos recebidos: ${formatCurrency(totalDividendsPaid)} de ${companiesPaid} empresa(s)`,
+            'success'
+        );
+    }
+}
+
+// Função auxiliar para verificar se deve pagar dividendo
+function shouldPayDividend(asset, currentYear, currentMonth) {
+    const info = asset.dividendInfo;
+    if (!info || !info.enabled || !info.isPayingThisYear) return false;
+    
+    // Verificar frequência
+    if (info.frequency === 'annual') {
+        // Pagamento anual em Dezembro
+        if (currentMonth !== 12) return false;
+        
+        // Verificar se já pagou este ano
+        if (info.lastPaymentYear === currentYear) return false;
+        
+    } else if (info.frequency === 'semiannual') {
+        // Pagamento semestral em Junho e Dezembro
+        if (currentMonth !== 6 && currentMonth !== 12) return false;
+        
+        // Verificar se já pagou neste mês/ano
+        if (info.lastPaymentYear === currentYear && 
+            info.lastPaymentMonth === currentMonth) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+// Calcular dividendo por ação baseado no cenário
+function calculateDividendPerShare(asset, scenario) {
+    const basePrice = asset.currentPrice || asset.initialPrice;
+    let yieldMultiplier = asset.dividendInfo.yield || 0.15;
+    
+    // Ajustar yield baseado no cenário
+    switch(scenario) {
+        case 'estavel':
+            yieldMultiplier *= (0.15 + Math.random() * 0.10); // 15-25%
+            break;
+        case 'crise':
+            yieldMultiplier *= (Math.random() * 0.05); // 0-5%
+            break;
+        case 'crescimento':
+            yieldMultiplier *= (0.05 + Math.random() * 0.25); // 5-30%
+            break;
+        case 'angola-especial':
+            yieldMultiplier *= (0.05 + Math.random() * 0.15); // 5-20%
+            break;
+    }
+    
+    // Garantir mínimo e máximo
+    yieldMultiplier = Math.max(0.01, Math.min(0.30, yieldMultiplier));
+    
+    return basePrice * yieldMultiplier;
+}
+
+// Atualizar tabela de dividendos EXISTENTE
+function updateDividendsTable() {
+    const tableBody = document.getElementById('ext-dividends-body');
+    if (!tableBody) return;
+    
+    const history = AppState.portfolio.dividendHistory || [];
+    
+    if (history.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="7" class="empty-state">Nenhum dividendo recebido ainda.</td></tr>';
+        return;
+    }
+    
+    // Ordenar por data (mais recente primeiro)
+    const sorted = [...history].sort((a, b) => {
+        // Converter datas para comparação
+        const dateA = parseDateString(a.date);
+        const dateB = parseDateString(b.date);
+        return dateB - dateA;
+    }).slice(0, 20); // Limitar aos 20 mais recentes
+    
+    tableBody.innerHTML = sorted.map(record => `
+        <tr>
+            <td>${record.date}</td>
+            <td>${record.company}</td>
+            <td>${formatCurrency(record.perShare)}</td>
+            <td>${record.dividendYield}%</td>
+            <td>${record.quantity.toLocaleString('pt-AO')}</td>
+            <td>${formatCurrency(record.total)}</td>
+            <td><span class="badge" style="background: var(--success); color: white;">${record.status}</span></td>
+        </tr>
+    `).join('');
+    
+    // Mostrar painel de dividendos
+    const panel = document.querySelector('.ext-dividends-panel');
+    if (panel) {
+        panel.style.display = 'block';
+    }
+}
+
+// Função auxiliar para parse de data
+function parseDateString(dateStr) {
+    const [day, month, year] = dateStr.split('/').map(Number);
+    return new Date(year, month - 1, day);
+}
+
+// Atualizar processTimeBasedEvents para incluir dividendos
+const originalProcessTimeBasedEvents = processTimeBasedEvents || function() {};
+processTimeBasedEvents = function(timeUpdate) {
+    originalProcessTimeBasedEvents(timeUpdate);
+    
+    const { currentDate } = timeUpdate;
+    
+    // Processar dividendos se for mês de pagamento
+    if (currentDate.month === 6 || currentDate.month === 12) {
+        setTimeout(processDividends, 100);
+    }
+    
+    // Rotacionar empresas que não pagam dividendos a cada ano
+    if (currentDate.month === 1) { // Janeiro - reset anual
+        rotateNonPayingCompanies();
+    }
+};
+
+// Rotacionar empresas que não pagam dividendos
+function rotateNonPayingCompanies() {
+    const stocks = ASSETS_DATABASE.acoes;
+    const currentYear = AppState.market.simulatedTime.currentYear;
+    
+    // Resetar todas para pagar
+    stocks.forEach(stock => {
+        if (stock.dividendInfo) {
+            stock.dividendInfo.isPayingThisYear = true;
+            
+            // Atualizar no market também
+            if (AppState.market.assets[stock.id]) {
+                AppState.market.assets[stock.id].dividendInfo.isPayingThisYear = true;
+            }
+        }
+    });
+    
+    // Selecionar 3 empresas aleatórias que não pagarão este ano
+    const nonPayingCount = Math.min(3, stocks.length);
+    const shuffled = [...stocks].sort(() => Math.random() - 0.5);
+    
+    for (let i = 0; i < nonPayingCount; i++) {
+        const stock = shuffled[i];
+        if (stock.dividendInfo) {
+            stock.dividendInfo.isPayingThisYear = false;
+            
+            // Atualizar no market também
+            if (AppState.market.assets[stock.id]) {
+                AppState.market.assets[stock.id].dividendInfo.isPayingThisYear = false;
+            }
+            
+            console.log(`${stock.ticker} não pagará dividendos em ${currentYear}`);
+        }
+    }
+}
+
+// Adicionar informações de dividendos aos cards de ações
+function addDividendInfoToAssetCards() {
+    const assetCards = document.querySelectorAll('.asset-card');
+    
+    assetCards.forEach(card => {
+        const tickerElement = card.querySelector('.ticker');
+        if (!tickerElement) return;
+        
+        const ticker = tickerElement.textContent;
+        
+        // Encontrar o ativo
+        const asset = Object.values(AppState.market.assets).find(a => a.ticker === ticker);
+        if (!asset || asset.type !== 'acao' || !asset.dividendInfo) return;
+        
+        // Verificar se já tem info de dividendos
+        if (card.querySelector('.dividend-info')) return;
+        
+        const info = asset.dividendInfo;
+        const yieldPercent = (info.yield * 100).toFixed(1);
+        const nextPayment = info.frequency === 'semiannual' ? 'Jun/Dez' : 'Dez';
+        const payingStatus = info.isPayingThisYear ? '💰 Pagando' : '⏸️ Suspenso';
+        
+        const dividendDiv = document.createElement('div');
+        dividendDiv.className = 'dividend-info';
+        dividendDiv.style.cssText = `
+            margin-top: 8px;
+            padding: 6px 10px;
+            background: rgba(214, 174, 100, 0.1);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border-left: 3px solid ${info.isPayingThisYear ? 'var(--success)' : 'var(--danger)'};
+        `;
+        dividendDiv.innerHTML = `
+            <div style="display: flex; justify-content: space-between;">
+                <span>DY: <strong>${yieldPercent}%</strong></span>
+                <span>${payingStatus}</span>
+            </div>
+            <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 2px;">
+                Pagamento: ${nextPayment} | Último: ${info.lastPaymentYear || 'Nunca'}
+            </div>
+        `;
+        
+        // Inserir antes dos botões de ação
+        const actions = card.querySelector('.asset-actions');
+        if (actions) {
+            actions.insertAdjacentElement('beforebegin', dividendDiv);
+        }
+    });
+}
+
+// Integrar com renderAssetsUI
+const originalRenderAssetsUI = renderAssetsUI;
+renderAssetsUI = function(category) {
+    originalRenderAssetsUI(category);
+    
+    if (category === 'acoes') {
+        setTimeout(addDividendInfoToAssetCards, 200);
+    }
+};
+
+// ========================================
+// SISTEMA DE JUROS PARA TÍTULOS DE RENDA FIXA
+// ========================================
+
+// Inicializar sistema de juros para títulos
+function initializeBondInterestSystem() {
+    // Adicionar propriedades a títulos públicos
+    ASSETS_DATABASE.titulosPublicos.forEach(asset => {
+        if (!asset.bondSchedule) {
+            asset.bondSchedule = {
+                purchaseDate: null,
+                maturityDate: null,
+                interestRate: asset.couponRate,
+                payments: [],
+                principal: asset.initialPrice,
+                nextPaymentIndex: 0,
+                totalPayments: asset.maturity * 2, // Pagamentos semestrais
+                isPublic: true
+            };
+        }
+        
+        // Garantir que está no market state
+        if (AppState.market.assets[asset.id]) {
+            AppState.market.assets[asset.id].bondSchedule = asset.bondSchedule;
+        }
+    });
+    
+    // Adicionar propriedades a títulos privados
+    ASSETS_DATABASE.titulosPrivados.forEach(asset => {
+        if (!asset.bondSchedule) {
+            asset.bondSchedule = {
+                purchaseDate: null,
+                maturityDate: null,
+                interestRate: asset.couponRate,
+                payments: [],
+                principal: asset.initialPrice,
+                nextPaymentIndex: 0,
+                totalPayments: asset.maturity * 2,
+                isPublic: false
+            };
+        }
+        
+        // Garantir que está no market state
+        if (AppState.market.assets[asset.id]) {
+            AppState.market.assets[asset.id].bondSchedule = asset.bondSchedule;
+        }
+    });
+}
+
+// Inicializar sistema
+initializeBondInterestSystem();
+
+// Extender função buyAsset para títulos
+const originalBuyAsset = buyAsset;
+buyAsset = function(assetId, quantity) {
+    const result = originalBuyAsset(assetId, quantity);
+    
+    // Se a compra foi bem sucedida e é um título, configurar cronograma
+    if (result.success) {
+        const asset = AppState.market.assets[assetId];
+        if (asset && asset.type.includes('titulo')) {
+            setupBondSchedule(asset, quantity);
+        }
+    }
+    
+    return result;
+};
+
+// Configurar cronograma de pagamentos para título
+function setupBondSchedule(asset, quantity) {
+    if (!asset.bondSchedule) return;
+    
+    const purchaseDate = { ...AppState.market.simulatedTime };
+    const maturityYears = asset.maturity || 1;
+    
+    // Calcular datas de pagamento semestrais
+    const paymentDates = generatePaymentDates(purchaseDate, maturityYears);
+    
+    // Calcular juros totais e por pagamento
+    const principal = asset.initialPrice * quantity;
+    const totalInterest = principal * asset.couponRate * maturityYears;
+    const semiannualPayment = totalInterest / (maturityYears * 2);
+    
+    // Configurar cronograma
+    asset.bondSchedule.purchaseDate = purchaseDate;
+    asset.bondSchedule.maturityDate = calculateMaturityDate(purchaseDate, maturityYears);
+    asset.bondSchedule.payments = paymentDates.map((date, index) => ({
+        index: index + 1,
+        date,
+        amount: semiannualPayment,
+        status: 'pending',
+        type: 'interest'
+    }));
+    
+    // Adicionar pagamento do principal no final
+    asset.bondSchedule.payments.push({
+        index: paymentDates.length + 1,
+        date: asset.bondSchedule.maturityDate,
+        amount: principal,
+        status: 'pending',
+        type: 'principal'
+    });
+    
+    asset.bondSchedule.nextPaymentIndex = 0;
+    asset.bondSchedule.totalPayments = paymentDates.length + 1;
+    
+    console.log(`Cronograma configurado para ${asset.ticker}: ${asset.bondSchedule.payments.length} pagamentos`);
+}
+
+// Gerar datas de pagamento semestrais
+function generatePaymentDates(startDate, years) {
+    const dates = [];
+    let currentYear = startDate.currentYear;
+    let currentMonth = startDate.currentMonth;
+    let currentDay = startDate.currentDay;
+    
+    // Primeiro pagamento em 6 meses
+    for (let i = 1; i <= years * 2; i++) {
+        // Adicionar 6 meses
+        currentMonth += 6;
+        if (currentMonth > 12) {
+            currentMonth -= 12;
+            currentYear++;
+        }
+        
+        // Ajustar dia se necessário (ex: 31 para meses com 30 dias)
+        const daysInMonth = getDaysInMonth(currentMonth, currentYear);
+        const adjustedDay = Math.min(currentDay, daysInMonth);
+        
+        dates.push({
+            currentYear,
+            currentMonth,
+            currentDay: adjustedDay
+        });
+    }
+    
+    return dates;
+}
+
+// Calcular data de vencimento
+function calculateMaturityDate(startDate, years) {
+    let maturityYear = startDate.currentYear + years;
+    let maturityMonth = startDate.currentMonth;
+    let maturityDay = startDate.currentDay;
+    
+    // Ajustar dia se necessário
+    const daysInMonth = getDaysInMonth(maturityMonth, maturityYear);
+    if (maturityDay > daysInMonth) {
+        maturityDay = daysInMonth;
+    }
+    
+    return {
+        currentYear: maturityYear,
+        currentMonth: maturityMonth,
+        currentDay: maturityDay
+    };
+}
+
+// Processar pagamentos de títulos
+function processBondPayments() {
+    const currentDate = AppState.market.simulatedTime;
+    let totalInterestPaid = 0;
+    let bondsProcessed = 0;
+    
+    // Processar cada posição de título
+    AppState.portfolio.positions.forEach(position => {
+        if (!position.type.includes('titulo')) return;
+        
+        const asset = AppState.market.assets[position.assetId];
+        if (!asset || !asset.bondSchedule) return;
+        
+        const schedule = asset.bondSchedule;
+        
+        // Verificar pagamentos pendentes
+        while (schedule.nextPaymentIndex < schedule.payments.length) {
+            const payment = schedule.payments[schedule.nextPaymentIndex];
+            
+            if (isSameDate(currentDate, payment.date)) {
+                // Processar pagamento
+                const paymentAmount = payment.amount;
+                let netPayment = paymentAmount;
+                
+                // Aplicar imposto para títulos privados
+                if (payment.type === 'interest' && !schedule.isPublic) {
+                    const tax = paymentAmount * 0.10; // 10% de imposto
+                    netPayment = paymentAmount - tax;
+                    
+                    // Registrar imposto
+                    AppState.portfolio.transactions.push({
+                        timestamp: new Date().toISOString(),
+                        assetId: asset.id,
+                        assetName: asset.name,
+                        type: 'tax',
+                        amount: -tax,
+                        details: `Imposto sobre juros - ${asset.ticker}`
+                    });
+                }
+                
+                // Adicionar ao saldo
+                AppState.user.availableBalance += netPayment;
+                totalInterestPaid += netPayment;
+                bondsProcessed++;
+                
+                // Atualizar status do pagamento
+                payment.status = 'paid';
+                payment.paidDate = { ...currentDate };
+                payment.netAmount = netPayment;
+                
+                // Registrar transação
+                const transactionType = payment.type === 'principal' ? 'principal_return' : 'interest';
+                AppState.portfolio.transactions.push({
+                    timestamp: new Date().toISOString(),
+                    assetId: asset.id,
+                    assetName: asset.name,
+                    type: transactionType,
+                    amount: netPayment,
+                    quantity: position.quantity,
+                    details: `${payment.type === 'principal' ? 'Principal' : 'Juros'} - ${asset.ticker}`
+                });
+                
+                // Notificação
+                const paymentType = payment.type === 'principal' ? 'principal' : 'juros';
+                showNotification(
+                    `💸 Recebeu ${paymentType} de ${asset.ticker}: ${formatCurrency(netPayment)}`,
+                    'success'
+                );
+                
+                // Se for pagamento do principal, remover posição
+                if (payment.type === 'principal') {
+                    removeBondPosition(position.assetId);
+                }
+                
+                schedule.nextPaymentIndex++;
+            } else {
+                break; // Próxima data não atingida
+            }
+        }
+    });
+    
+    return { totalInterestPaid, bondsProcessed };
+}
+
+// Verificar se duas datas são iguais
+function isSameDate(date1, date2) {
+    return date1.currentYear === date2.currentYear &&
+           date1.currentMonth === date2.currentMonth &&
+           date1.currentDay === date2.currentDay;
+}
+
+// Remover posição de título após pagamento do principal
+function removeBondPosition(assetId) {
+    const index = AppState.portfolio.positions.findIndex(p => p.assetId === assetId);
+    if (index !== -1) {
+        AppState.portfolio.positions.splice(index, 1);
+        console.log(`Posição de título ${assetId} removida após vencimento`);
+    }
+}
+
+// Calcular tempo restante para vencimento
+function calculateTimeToMaturity(asset) {
+    if (!asset.bondSchedule || !asset.bondSchedule.maturityDate) return 'N/A';
+    
+    const current = AppState.market.simulatedTime;
+    const maturity = asset.bondSchedule.maturityDate;
+    
+    let yearsRemaining = maturity.currentYear - current.currentYear;
+    let monthsRemaining = maturity.currentMonth - current.currentMonth;
+    let daysRemaining = maturity.currentDay - current.currentDay;
+    
+    // Ajustar valores negativos
+    if (daysRemaining < 0) {
+        monthsRemaining--;
+        const prevMonth = current.currentMonth === 1 ? 12 : current.currentMonth - 1;
+        const prevYear = current.currentMonth === 1 ? current.currentYear - 1 : current.currentYear;
+        daysRemaining += getDaysInMonth(prevMonth, prevYear);
+    }
+    
+    if (monthsRemaining < 0) {
+        yearsRemaining--;
+        monthsRemaining += 12;
+    }
+    
+    // Formatar resultado
+    if (yearsRemaining > 0) {
+        return `${yearsRemaining} ano(s), ${monthsRemaining} mês(es)`;
+    } else if (monthsRemaining > 0) {
+        return `${monthsRemaining} mês(es), ${daysRemaining} dia(s)`;
+    } else {
+        return `${daysRemaining} dia(s)`;
+    }
+}
+
+// Adicionar informações de vencimento às posições de títulos
+function addMaturityInfoToPositions() {
+    const positionItems = document.querySelectorAll('.position-item');
+    
+    positionItems.forEach(item => {
+        const tickerElement = item.querySelector('strong');
+        if (!tickerElement) return;
+        
+        const ticker = tickerElement.textContent;
+        
+        // Encontrar a posição
+        const position = AppState.portfolio.positions.find(p => p.ticker === ticker);
+        if (!position || !position.type.includes('titulo')) return;
+        
+        const asset = AppState.market.assets[position.assetId];
+        if (!asset || !asset.bondSchedule) return;
+        
+        // Verificar se já tem info de vencimento
+        if (item.querySelector('.maturity-info')) return;
+        
+        const timeRemaining = calculateTimeToMaturity(asset);
+        const nextPaymentIndex = asset.bondSchedule.nextPaymentIndex;
+        const totalPayments = asset.bondSchedule.totalPayments || 1;
+        const progressPercent = Math.round((nextPaymentIndex / totalPayments) * 100);
+        
+        const maturityDiv = document.createElement('div');
+        maturityDiv.className = 'maturity-info';
+        maturityDiv.style.cssText = `
+            margin-top: 8px;
+            padding: 8px;
+            background: rgba(214, 174, 100, 0.1);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--accent-green);
+        `;
+        maturityDiv.innerHTML = `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                <span>⏳ Vencimento: <strong>${timeRemaining}</strong></span>
+                <span>${progressPercent}%</span>
+            </div>
+            <div style="height: 4px; background: var(--gray-medium); border-radius: 2px; overflow: hidden;">
+                <div style="height: 100%; width: ${progressPercent}%; background: var(--accent-green); transition: width 0.3s;"></div>
+            </div>
+            <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 4px;">
+                Pagamento ${nextPaymentIndex + 1}/${totalPayments} | 
+                ${asset.bondSchedule.isPublic ? '🏛️ Público' : '🏦 Privado'}
+            </div>
+        `;
+        
+        // Inserir antes do botão de venda
+        const sellButton = item.querySelector('.btn-sell-small');
+        if (sellButton) {
+            sellButton.insertAdjacentElement('beforebegin', maturityDiv);
+        }
+    });
+}
+
+// Integrar processamento de juros com o sistema temporal
+const extendedProcessTimeBasedEvents = processTimeBasedEvents;
+processTimeBasedEvents = function(timeUpdate) {
+    extendedProcessTimeBasedEvents(timeUpdate);
+    
+    // Processar pagamentos de títulos diariamente
+    processBondPayments();
+};
+
+// ========================================
+// CORREÇÃO DO SISTEMA DE VALORIZAÇÃO/DESVALORIZAÇÃO
+// ========================================
+
+// Backup da função original
+const originalCalculateNextPrice = calculateNextPrice;
+
+// Nova implementação com correções
+calculateNextPrice = function(asset, scenario) {
+    const current = asset.currentPrice || asset.initialPrice;
+    let vol = asset.volatility;
+    let drift = 0;
+    
+    // Aplicar lógica de correção baseada no cenário
+    switch(scenario) {
+        case 'estavel':
+            // Cenário estável - manter como está (já funciona bem)
+            // Apenas garantir pequena oscilação
+            drift = randomNormal(0, vol);
+            break;
+            
+        case 'crise':
+            if (asset.type === 'acao' || asset.type === 'etf') {
+                // Crise: mais desvalorização que valorização
+                const willRise = Math.random() < 0.30; // 30% chance de subir
+                
+                if (willRise) {
+                    drift = 0.01 + (Math.random() * 0.02); // 1-3% de valorização
+                    vol *= 1.5;
+                } else {
+                    drift = -0.05 + (Math.random() * -0.03); // 5-8% de desvalorização
+                    vol *= 2.5;
+                }
+            } else if (asset.type.includes('titulo')) {
+                // Títulos sobem em crise (flight to safety)
+                drift = 0.005 + (Math.random() * 0.005); // 0.5-1% de valorização
+            } else if (asset.type === 'cripto') {
+                // Cripto: alta volatilidade negativa
+                const willRise = Math.random() < 0.25; // 25% chance de subir
+                
+                if (willRise) {
+                    drift = 0.02 + (Math.random() * 0.03); // 2-5% de valorização
+                    vol *= 1.8;
+                } else {
+                    drift = -0.08 + (Math.random() * -0.04); // 8-12% de desvalorização
+                    vol *= 2.2;
+                }
+            }
+            break;
+            
+        case 'crescimento':
+            if (asset.type === 'acao' || asset.type === 'etf' || asset.type === 'cripto') {
+                // Crescimento: mais valorização, mas COM desvalorização
+                const willRise = Math.random() < 0.75; // 75% chance de subir
+                
+                if (willRise) {
+                    // Valorização forte
+                    drift = 0.02 + (Math.random() * 0.03); // 2-5% de valorização
+                    vol *= 1.2;
+                } else {
+                    // Correção saudável
+                    drift = -0.03 + (Math.random() * -0.02); // 3-5% de desvalorização
+                    vol *= 1.5;
+                    
+                    // Garantir que não seja apenas linha reta
+                    if (Math.random() < 0.3) {
+                        drift *= 1.5; // Correção mais forte ocasionalmente
+                    }
+                }
+                
+                // Oscilação mínima garantida
+                if (Math.abs(drift) < 0.005) {
+                    drift = drift < 0 ? -0.008 : 0.008;
+                }
+            } else if (asset.type.includes('titulo')) {
+                // Títulos têm desempenho moderado em crescimento
+                drift = randomNormal(0, vol * 0.5);
+            }
+            break;
+            
+        case 'angola-especial':
+            if (asset.country === 'AO' && asset.type === 'acao') {
+                // Angola Especial: forte valorização mas COM oscilação
+                const willRise = Math.random() < 0.80; // 80% chance de subir
+                
+                if (willRise) {
+                    // Valorização muito forte (mas variável)
+                    const baseGain = 0.03 + (Math.random() * 0.04); // 3-7% base
+                    
+                    // Bônus adicional baseado no tempo (acumulação)
+                    const daysElapsed = AppState.market.simulatedTime.totalDaysElapsed || 0;
+                    const timeBonus = Math.min(0.10, daysElapsed * 0.0005); // Até 10% bônus
+                    
+                    drift = baseGain + timeBonus;
+                    vol *= 0.9; // Menor volatilidade na subida
+                    
+                    // Adicionar "momentum" - tendência a continuar subindo
+                    const recentGains = calculateRecentGains(asset);
+                    if (recentGains > 0.10) { // Se subiu 10% recentemente
+                        drift *= 1.2; // Aumentar momentum
+                    }
+                } else {
+                    // Correção controlada
+                    drift = -0.04 + (Math.random() * -0.03); // 4-7% de correção
+                    vol *= 1.4; // Maior volatilidade na descida
+                    
+                    // Limitador de correção baseado no ganho anual
+                    const annualGain = calculateAnnualGain(asset);
+                    if (annualGain > 2.0) { // Se já subiu 200% no ano
+                        // Correção mais permitida
+                        drift *= 1.3;
+                    } else if (annualGain < 0.5) { // Se subiu menos de 50%
+                        // Correção mais limitada
+                        drift *= 0.7;
+                    }
+                }
+                
+                // Profit taking automático para ganhos extremos
+                const totalGain = (current - asset.initialPrice) / asset.initialPrice;
+                if (totalGain > 3.0) { // +300%
+                    const correctionChance = Math.min(0.4, (totalGain - 3.0) * 0.1);
+                    if (Math.random() < correctionChance) {
+                        const profitTaking = 0.10 + (Math.random() * 0.10); // 10-20%
+                        drift = -profitTaking;
+                        console.log(`Profit taking automático em ${asset.ticker}: -${(profitTaking*100).toFixed(1)}%`);
+                    }
+                }
+                
+                // REMOVER limite máximo (comentar, não deletar)
+                // const maxPrice = asset.initialPrice * 50; // <-- COMENTAR ESTA LINHA
+                
+                // Aplicar limite mínimo dinâmico
+                const minPrice = asset.initialPrice * 0.10; // Nunca abaixo de 10% do inicial
+                
+            } else if (asset.type === 'cripto') {
+                // Cripto segue mercado global em Angola Especial
+                const willRise = Math.random() < 0.65;
+                
+                if (willRise) {
+                    drift = 0.015 + (Math.random() * 0.025); // 1.5-4%
+                    vol *= 1.3;
+                } else {
+                    drift = -0.025 + (Math.random() * -0.015); // 2.5-4%
+                    vol *= 1.6;
+                }
+            }
+            break;
+    }
+    
+    // Calcular novo preço
+    const changePct = drift + randomNormal(0, vol);
+    let newPrice = current * (1 + changePct);
+    
+    // Limites dinâmicos (sem limites máximos fixos para Angola Especial)
+    const minPrice = asset.initialPrice * 0.01; // Mínimo de 1% do inicial
+    
+    if (scenario === 'angola-especial' && asset.country === 'AO' && asset.type === 'acao') {
+        // Sem limite máximo, apenas mínimo
+        newPrice = Math.max(minPrice, newPrice);
+    } else {
+        // Para outros cenários, manter limite razoável
+        const maxPrice = asset.initialPrice * 50;
+        newPrice = Math.max(minPrice, Math.min(maxPrice, newPrice));
+    }
+    
+    // Formatação baseada no tipo
+    if (asset.type === 'cripto') {
+        const decimals = asset.decimals || 8;
+        newPrice = parseFloat(newPrice.toFixed(decimals));
+    } else {
+        newPrice = parseFloat(newPrice.toFixed(2));
+    }
+    
+    // Log para debugging (opcional)
+    if (Math.abs(changePct) > 0.15) { // Mudança > 15%
+        console.log(`${asset.ticker}: ${changePct > 0 ? '📈' : '📉'} ${(changePct*100).toFixed(2)}% (${scenario})`);
+    }
+    
+    return newPrice;
+};
+
+// Funções auxiliares para o sistema de correção
+function calculateRecentGains(asset) {
+    if (!asset.priceHistory || asset.priceHistory.length < 10) return 0;
+    
+    const recentPrices = asset.priceHistory.slice(-10); // Últimas 10 atualizações
+    const oldest = recentPrices[0];
+    const latest = recentPrices[recentPrices.length - 1];
+    
+    return (latest - oldest) / oldest;
+}
+
+function calculateAnnualGain(asset) {
+    const current = asset.currentPrice || asset.initialPrice;
+    const initial = asset.initialPrice;
+    
+    return (current - initial) / initial;
+}
+
+// Sistema de "market cycles" para evitar linearidade
+let marketCyclePhase = 0; // 0-1: fase do ciclo
+let marketCycleDirection = 1; // 1: expansão, -1: contração
+
+function updateMarketCycle() {
+    // Atualizar fase do ciclo (progressão lenta)
+    marketCyclePhase += 0.01;
+    if (marketCyclePhase >= 1) {
+        marketCyclePhase = 0;
+        marketCycleDirection *= -1; // Inverter direção
+    }
+    
+    // Aplicar influência do ciclo nos preços
+    Object.values(AppState.market.assets).forEach(asset => {
+        if (asset.type === 'acao' || asset.type === 'etf' || asset.type === 'cripto') {
+            const cycleInfluence = Math.sin(marketCyclePhase * Math.PI * 2) * 0.005;
+            
+            // Aplicar influência gradualmente
+            if (Math.random() < 0.3) { // 30% de chance de ser afetado pelo ciclo
+                asset.currentPrice *= (1 + cycleInfluence);
+            }
+        }
+    });
+}
+
+// Integrar com updateMarketPrices
+const extendedUpdateMarketPrices = updateMarketPrices;
+updateMarketPrices = function() {
+    // Atualizar ciclo de mercado
+    if (Math.random() < 0.1) { // 10% de chance por atualização
+        updateMarketCycle();
+    }
+    
+    // Chamar função estendida
+    extendedUpdateMarketPrices();
+};
+
+// Função para verificar e corrigir estagnação
+function checkAndCorrectStagnation() {
+    Object.values(AppState.market.assets).forEach(asset => {
+        if (asset.type === 'acao' && asset.country === 'AO') {
+            // Verificar se está "estagnado" (pouca variação recente)
+            if (asset.priceHistory && asset.priceHistory.length > 20) {
+                const recentPrices = asset.priceHistory.slice(-20);
+                const minPrice = Math.min(...recentPrices);
+                const maxPrice = Math.max(...recentPrices);
+                const priceRange = (maxPrice - minPrice) / minPrice;
+                
+                // Se variação menor que 5% nas últimas 20 atualizações
+                if (priceRange < 0.05) {
+                    // Aplicar correção de estagnação
+                    const correction = (Math.random() - 0.5) * 0.08; // ±4%
+                    asset.currentPrice *= (1 + correction);
+                    
+                    console.log(`Correção de estagnação em ${asset.ticker}: ${correction > 0 ? '+' : ''}${(correction*100).toFixed(2)}%`);
+                }
+            }
+        }
+    });
+}
+
+// Executar verificação de estagnação periodicamente
+setInterval(checkAndCorrectStagnation, 30000); // A cada 30 segundos
+
+
+// ========================================
+// CORREÇÃO 2: SISTEMA DE HISTÓRICO DE JUROS
+// ========================================
+
+// 1. Inicializar array de histórico de juros
+if (!AppState.portfolio.bondInterestHistory) {
+    AppState.portfolio.bondInterestHistory = [];
+}
+
+// 2. Função para registrar pagamento de juros
+function registerBondInterestPayment(asset, position, paymentNumber, interestAmount, principalRemaining) {
+    const interestRecord = {
+        timestamp: new Date().toISOString(),
+        date: formatSimulatedDate(),
+        bondId: asset.id,
+        bondName: asset.name,
+        ticker: asset.ticker,
+        type: 'interest',
+        paymentNumber: paymentNumber,
+        interestAmount: interestAmount,
+        principalRemaining: principalRemaining,
+        quantity: position.quantity,
+        simulatedDate: formatSimulatedDate()
+    };
+    
+    // Adicionar ao histórico
+    AppState.portfolio.bondInterestHistory.push(interestRecord);
+    
+    // Salvar
+    saveToLocalStorage();
+    
+    // Atualizar tabela
+    updateBondInterestTable();
+    
+    return interestRecord;
+}
+
+// 3. Criar e atualizar tabela de juros
+function createBondInterestTable() {
+    // Verificar se já existe
+    if (document.getElementById('bond-interest-table')) return;
+    
+    // Encontrar onde inserir (após tabela de dividendos ou transações)
+    const referenceElement = document.querySelector('.ext-dividends-panel') || 
+                           document.querySelector('.transaction-history');
+    
+    if (!referenceElement) {
+        console.log('Elemento de referência não encontrado para tabela de juros');
+        return;
+    }
+    
+    // Criar nova seção
+    const interestSection = document.createElement('div');
+    interestSection.className = 'transaction-history';
+    interestSection.style.marginTop = '20px';
+    interestSection.innerHTML = `
+        <h3>💵 Histórico de Pagamentos de Juros</h3>
+        <div class="history-table-container">
+            <table id="bond-interest-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Título</th>
+                        <th>Pagamento Nº</th>
+                        <th>Valor do Juro</th>
+                        <th>Principal Restante</th>
+                    </tr>
+                </thead>
+                <tbody id="bond-interest-body">
+                    <tr><td colspan="5" class="empty-state">Nenhum juro recebido ainda.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    // Inserir após o elemento de referência
+    referenceElement.insertAdjacentElement('afterend', interestSection);
+}
+
+function updateBondInterestTable() {
+    // Garantir que a tabela existe
+    if (!document.getElementById('bond-interest-table')) {
+        createBondInterestTable();
+    }
+    
+    const tableBody = document.getElementById('bond-interest-body');
+    if (!tableBody) return;
+    
+    const history = AppState.portfolio.bondInterestHistory || [];
+    
+    if (history.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5" class="empty-state">Nenhum juro recebido ainda.</td></tr>';
+        return;
+    }
+    
+    // Ordenar por data (mais recente primeiro)
+    const sorted = [...history].sort((a, b) => 
+        new Date(b.timestamp) - new Date(a.timestamp)
+    );
+    
+    tableBody.innerHTML = sorted.map(record => `
+        <tr>
+            <td>${record.simulatedDate || record.date}</td>
+            <td>${record.bondName} (${record.ticker})</td>
+            <td>${record.paymentNumber}</td>
+            <td>${formatCurrency(record.interestAmount)}</td>
+            <td>${formatCurrency(record.principalRemaining)}</td>
+        </tr>
+    `).join('');
+}
+
+// 4. Criar estrutura de bondInfo para cada posição
+function initializeBondInfo() {
+    AppState.portfolio.positions.forEach((position, index) => {
+        if (position.type.includes('titulo') && !position.bondInfo) {
+            const asset = AppState.market.assets[position.assetId];
+            if (!asset) return;
+            
+            const maturityYears = asset.maturity || 1;
+            
+            position.bondInfo = {
+                purchaseDate: { ...AppState.market.simulatedTime },
+                maturityDate: calculateMaturityDate(AppState.market.simulatedTime, maturityYears),
+                totalPayments: maturityYears * 2, // semestral
+                paymentsMade: 0,
+                nextPaymentDate: calculateNextPaymentDate(AppState.market.simulatedTime, 6), // 6 meses
+                principalAmount: asset.initialPrice * position.quantity
+            };
+            
+            console.log(`BondInfo inicializado para ${position.ticker}: ${position.bondInfo.totalPayments} pagamentos`);
+        }
+    });
+}
+
+// Funções auxiliares para datas
+function calculateMaturityDate(startDate, years) {
+    return {
+        currentYear: startDate.currentYear + years,
+        currentMonth: startDate.currentMonth,
+        currentDay: startDate.currentDay
+    };
+}
+
+function calculateNextPaymentDate(startDate, monthsToAdd) {
+    let newYear = startDate.currentYear;
+    let newMonth = startDate.currentMonth + monthsToAdd;
+    
+    while (newMonth > 12) {
+        newMonth -= 12;
+        newYear += 1;
+    }
+    
+    return {
+        currentYear: newYear,
+        currentMonth: newMonth,
+        currentDay: startDate.currentDay
+    };
+}
+
+// 5. Sistema de pagamento de juros com registro
+function processBondInterestPayments() {
+    const currentDate = AppState.market.simulatedTime;
+    
+    AppState.portfolio.positions.forEach((position, index) => {
+        if (!position.type.includes('titulo') || !position.bondInfo) return;
+        
+        const asset = AppState.market.assets[position.assetId];
+        if (!asset) return;
+        
+        const bondInfo = position.bondInfo;
+        
+        // Verificar se é hora do próximo pagamento
+        if (isSameDate(currentDate, bondInfo.nextPaymentDate) || 
+            isDateAfter(currentDate, bondInfo.nextPaymentDate)) {
+            
+            // Verificar se já fez todos os pagamentos
+            if (bondInfo.paymentsMade >= bondInfo.totalPayments) return;
+            
+            // Calcular juro semestral
+            const semiannualInterest = (asset.couponRate / 2) * bondInfo.principalAmount;
+            
+            // Adicionar ao saldo
+            AppState.user.availableBalance += semiannualInterest;
+            
+            // Incrementar contador
+            bondInfo.paymentsMade += 1;
+            
+            // Calcular próximo pagamento
+            bondInfo.nextPaymentDate = calculateNextPaymentDate(bondInfo.nextPaymentDate, 6);
+            
+            // Registrar pagamento
+            registerBondInterestPayment(
+                asset,
+                position,
+                `${bondInfo.paymentsMade}/${bondInfo.totalPayments}`,
+                semiannualInterest,
+                bondInfo.principalAmount
+            );
+            
+            // Notificação
+            showNotification(
+                `💵 Juro de ${asset.ticker}: ${formatCurrency(semiannualInterest)} (${bondInfo.paymentsMade}/${bondInfo.totalPayments})`,
+                'success'
+            );
+        }
+    });
+}
+
+// Funções auxiliares para comparação de datas
+function isSameDate(date1, date2) {
+    return date1.currentYear === date2.currentYear &&
+           date1.currentMonth === date2.currentMonth &&
+           date1.currentDay === date2.currentDay;
+}
+
+function isDateAfter(date1, date2) {
+    if (date1.currentYear > date2.currentYear) return true;
+    if (date1.currentYear === date2.currentYear) {
+        if (date1.currentMonth > date2.currentMonth) return true;
+        if (date1.currentMonth === date2.currentMonth) {
+            return date1.currentDay > date2.currentDay;
+        }
+    }
+    return false;
+}
+
+// 6. Inicializar e executar sistema
+setTimeout(() => {
+    initializeBondInfo();
+    updateBondInterestTable();
+}, 2000);
+
+setInterval(() => {
+    processBondInterestPayments();
+}, 30000); // Verificar a cada 30 segundos
+
+// ========================================
+// CORREÇÃO 3: CONTAGEM REGRESSIVA DE TÍTULOS
+// ========================================
+
+// 1. Atualizar informações de contagem regressiva
+function updateBondCountdowns() {
+    const currentDate = AppState.market.simulatedTime;
+    
+    AppState.portfolio.positions.forEach((position, index) => {
+        if (!position.type.includes('titulo') || !position.bondInfo) return;
+        
+        const bondInfo = position.bondInfo;
+        
+        // Calcular dias até vencimento
+        const daysToMaturity = calculateDaysBetween(currentDate, bondInfo.maturityDate);
+        
+        // Calcular dias até próximo pagamento
+        const daysToNextPayment = calculateDaysBetween(currentDate, bondInfo.nextPaymentDate);
+        
+        // Calcular progresso
+        const progressPercent = Math.round((bondInfo.paymentsMade / bondInfo.totalPayments) * 100);
+        
+        // Atualizar informações
+        position.countdown = {
+            daysToMaturity: daysToMaturity,
+            daysToNextPayment: daysToNextPayment,
+            progressPercent: progressPercent,
+            paymentsMade: bondInfo.paymentsMade,
+            totalPayments: bondInfo.totalPayments,
+            nextPaymentFormatted: formatDate(bondInfo.nextPaymentDate),
+            maturityFormatted: formatDate(bondInfo.maturityDate)
+        };
+    });
+}
+
+// 2. Funções auxiliares para cálculos
+function calculateDaysBetween(date1, date2) {
+    // Simplificação: cada mês tem 30 dias
+    const days1 = date1.currentYear * 365 + (date1.currentMonth - 1) * 30 + date1.currentDay;
+    const days2 = date2.currentYear * 365 + (date2.currentMonth - 1) * 30 + date2.currentDay;
+    return Math.max(0, days2 - days1);
+}
+
+function formatDate(date) {
+    return `${date.currentDay.toString().padStart(2, '0')}/${date.currentMonth.toString().padStart(2, '0')}/${date.currentYear}`;
+}
+
+// 3. Atualizar UI com contagem regressiva
+function updateBondCountdownUI() {
+    const positionItems = document.querySelectorAll('.position-item');
+    
+    positionItems.forEach(item => {
+        const tickerElement = item.querySelector('strong');
+        if (!tickerElement) return;
+        
+        const ticker = tickerElement.textContent;
+        
+        // Encontrar a posição
+        const position = AppState.portfolio.positions.find(p => p.ticker === ticker);
+        if (!position || !position.type.includes('titulo') || !position.countdown) return;
+        
+        const countdown = position.countdown;
+        
+        // Remover contagem anterior se existir
+        const oldCountdown = item.querySelector('.bond-countdown');
+        if (oldCountdown) oldCountdown.remove();
+        
+        // Criar nova contagem
+        const countdownDiv = document.createElement('div');
+        countdownDiv.className = 'bond-countdown';
+        countdownDiv.style.cssText = `
+            margin-top: 8px;
+            padding: 10px;
+            background: rgba(214, 174, 100, 0.1);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--accent-green);
+        `;
+        
+        countdownDiv.innerHTML = `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>⏳ Vencimento: <strong>${countdown.daysToMaturity} dias</strong></span>
+                <span>${countdown.progressPercent}%</span>
+            </div>
+            <div style="height: 6px; background: var(--gray-medium); border-radius: 3px; overflow: hidden; margin-bottom: 6px;">
+                <div style="height: 100%; width: ${countdown.progressPercent}%; background: var(--accent-green); transition: width 0.3s;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
+                <span>Pagamento ${countdown.paymentsMade + 1}/${countdown.totalPayments}</span>
+                <span>Próximo: ${countdown.daysToNextPayment} dias</span>
+            </div>
+            <div style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 4px;">
+                ${countdown.nextPaymentFormatted} → ${countdown.maturityFormatted}
+            </div>
+        `;
+        
+        // Inserir antes do botão de venda
+        const sellButton = item.querySelector('.btn-sell-small');
+        if (sellButton) {
+            sellButton.insertAdjacentElement('beforebegin', countdownDiv);
+        }
+    });
+}
+
+// 4. Integrar com atualização do portfolio
+const originalUpdatePortfolioUI = updatePortfolioUI;
+updatePortfolioUI = function() {
+    // Atualizar contagens
+    updateBondCountdowns();
+    
+    // Chamar função original
+    originalUpdatePortfolioUI();
+    
+    // Atualizar UI
+    setTimeout(updateBondCountdownUI, 100);
+};
+
+// 5. Executar periodicamente
+setInterval(() => {
+    updateBondCountdowns();
+}, 10000); // Atualizar a cada 10 segundos
+
+// ========================================
+// CORREÇÃO 4: DEVOLUÇÃO DO CAPITAL NO VENCIMENTO
+// ========================================
+
+// 1. Função para processar vencimentos
+function processBondMaturities() {
+    const currentDate = AppState.market.simulatedTime;
+    let maturedBonds = [];
+    
+    AppState.portfolio.positions.forEach((position, index) => {
+        if (!position.type.includes('titulo') || !position.bondInfo) return;
+        
+        const asset = AppState.market.assets[position.assetId];
+        if (!asset) return;
+        
+        const bondInfo = position.bondInfo;
+        
+        // Verificar se atingiu a data de vencimento
+        if (isSameDate(currentDate, bondInfo.maturityDate) || 
+            isDateAfter(currentDate, bondInfo.maturityDate)) {
+            
+            // Verificar se já processou este vencimento
+            if (position.bondInfo.matured) return;
+            
+            // Calcular capital a devolver
+            const principalAmount = bondInfo.principalAmount;
+            
+            // Adicionar ao saldo do usuário
+            AppState.user.availableBalance += principalAmount;
+            
+            // Marcar como vencido
+            position.bondInfo.matured = true;
+            
+            // Registrar devolução
+            const returnRecord = {
+                timestamp: new Date().toISOString(),
+                date: formatSimulatedDate(),
+                bondId: asset.id,
+                bondName: asset.name,
+                ticker: asset.ticker,
+                type: 'capital_return',
+                principalAmount: principalAmount,
+                quantity: position.quantity,
+                simulatedDate: formatSimulatedDate(),
+                status: 'Capital Devolvido'
+            };
+            
+            // Adicionar ao histórico de juros também
+            AppState.portfolio.bondInterestHistory.push(returnRecord);
+            
+            // Adicionar à lista de processamento
+            maturedBonds.push({
+                position: position,
+                asset: asset,
+                principal: principalAmount
+            });
+            
+            console.log(`Título ${asset.ticker} venceu. Capital devolvido: ${formatCurrency(principalAmount)}`);
+        }
+    });
+    
+    // Processar títulos vencidos
+    if (maturedBonds.length > 0) {
+        processMaturedBonds(maturedBonds);
+    }
+    
+    return maturedBonds;
+}
+
+// 2. Processar títulos vencidos
+function processMaturedBonds(maturedBonds) {
+    // Remover da carteira após breve delay para o usuário ver
+    setTimeout(() => {
+        maturedBonds.forEach(bond => {
+            // Encontrar e remover posição
+            const index = AppState.portfolio.positions.findIndex(p => p.assetId === bond.asset.id);
+            if (index !== -1) {
+                AppState.portfolio.positions.splice(index, 1);
+                
+                // Notificação
+                showNotification(
+                    `🏛️ Título ${bond.asset.ticker} venceu. Capital de ${formatCurrency(bond.principal)} devolvido.`,
+                    'success'
+                );
+                
+                // Atualizar tabelas
+                updateBondInterestTable();
+                updatePortfolioUI();
+            }
+        });
+    }, 2000); // 2 segundos de delay
+}
+
+// 3. Verificar vencimentos periodicamente
+setInterval(() => {
+    processBondMaturities();
+}, 15000); // Verificar a cada 15 segundos
+
+// 4. Verificar na inicialização
+setTimeout(() => {
+    processBondMaturities();
+}, 3000);
+
+// ========================================
+// CORREÇÃO 5: RESTRIÇÕES PARA TÍTULOS PÚBLICOS
+// ========================================
+
+// 1. Modificar botões de venda para títulos públicos
+function updatePublicBondButtons() {
+    const assetCards = document.querySelectorAll('.asset-card');
+    
+    assetCards.forEach(card => {
+        const tickerElement = card.querySelector('.ticker');
+        if (!tickerElement) return;
+        
+        const ticker = tickerElement.textContent;
+        
+        // Encontrar o ativo
+        const asset = Object.values(AppState.market.assets).find(a => a.ticker === ticker);
+        if (!asset || asset.type !== 'titulo-publico') return;
+        
+        // Modificar botão de venda
+        const sellButton = card.querySelector('.btn-sell');
+        if (sellButton) {
+            // Salvar função original se existir
+            if (!sellButton.originalOnClick) {
+                sellButton.originalOnClick = sellButton.onclick;
+            }
+            
+            // Substituir função
+            sellButton.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                showNotification(
+                    '🏛️ Títulos Públicos não podem ser vendidos antes do vencimento. Aguarde a data de vencimento para receber o capital.',
+                    'warning'
+                );
+                
+                return false;
+            };
+            
+            // Estilizar como desabilitado
+            sellButton.disabled = true;
+            sellButton.innerHTML = '🔒 Aguarde Vencimento';
+            sellButton.style.opacity = '0.6';
+            sellButton.style.cursor = 'not-allowed';
+            sellButton.title = 'Título Público - Venda não permitida antes do vencimento';
+        }
+        
+        // Adicionar badge informativo
+        if (!card.querySelector('.public-bond-badge')) {
+            const badge = document.createElement('div');
+            badge.className = 'public-bond-badge';
+            badge.style.cssText = `
+                margin: 8px 0;
+                padding: 6px 10px;
+                background: rgba(214, 174, 100, 0.15);
+                border: 1px solid var(--accent-green);
+                border-radius: 6px;
+                font-size: 0.85rem;
+                text-align: center;
+                color: var(--accent-green);
+            `;
+            badge.innerHTML = '🏛️ Título Público - Isento de IAC | Venda bloqueada';
+            
+            // Inserir antes dos botões
+            const actions = card.querySelector('.asset-actions');
+            if (actions) {
+                actions.insertAdjacentElement('beforebegin', badge);
+            }
+        }
+    });
+}
+
+// 2. Modificar botões de venda nas posições
+function updatePositionSellButtons() {
+    const positionItems = document.querySelectorAll('.position-item');
+    
+    positionItems.forEach(item => {
+        const tickerElement = item.querySelector('strong');
+        if (!tickerElement) return;
+        
+        const ticker = tickerElement.textContent;
+        
+        // Encontrar a posição
+        const position = AppState.portfolio.positions.find(p => p.ticker === ticker);
+        if (!position || position.type !== 'titulo-publico') return;
+        
+        // Modificar botão de venda
+        const sellButton = item.querySelector('.btn-sell-small');
+        if (sellButton) {
+            sellButton.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                showNotification(
+                    `🏛️ ${ticker} é um Título Público. Não pode ser vendido antes do vencimento.`,
+                    'warning'
+                );
+                
+                return false;
+            };
+            
+            sellButton.disabled = true;
+            sellButton.innerHTML = '🔒 Venda Bloqueada';
+            sellButton.style.opacity = '0.6';
+            sellButton.style.cursor = 'not-allowed';
+        }
+    });
+}
+
+// 3. Modificar função de venda para isentar títulos públicos de impostos
+const originalSellAsset = sellAsset;
+sellAsset = function(assetId, quantity) {
+    const asset = AppState.market.assets[assetId];
+    
+    // Verificar se é título público
+    if (asset && asset.type === 'titulo-publico') {
+        return {
+            success: false,
+            message: 'Títulos Públicos não podem ser vendidos antes do vencimento'
+        };
+    }
+    
+    // Para outros ativos, usar função original
+    return originalSellAsset(assetId, quantity);
+};
+
+// 4. Modificar openTradeModal para bloquear títulos públicos
+const originalOpenTradeModal = window.openTradeModal;
+if (originalOpenTradeModal) {
+    window.openTradeModal = function(assetId, modalType) {
+        const asset = AppState.market.assets[assetId];
+        
+        // Bloquear venda de títulos públicos
+        if (modalType === 'sell' && asset && asset.type === 'titulo-publico') {
+            showNotification(
+                '🏛️ Venda não permitida para Títulos Públicos. Aguarde o vencimento.',
+                'warning'
+            );
+            return;
+        }
+        
+        // Chamar função original
+        originalOpenTradeModal(assetId, modalType);
+    };
+}
+
+// 5. Atualizar botões periodicamente
+function updateAllBondButtons() {
+    updatePublicBondButtons();
+    updatePositionSellButtons();
+}
+
+// 6. Executar inicialização
+setTimeout(() => {
+    updateAllBondButtons();
+}, 2000);
+
+// Executar quando assets forem renderizados
+const originalRenderAssets = renderAssetsUI;
+renderAssetsUI = function(category) {
+    originalRenderAssets(category);
+    setTimeout(updateAllBondButtons, 300);
+};
+
+// Executar quando portfolio for atualizado
+const originalUpdatePortfolio = updatePortfolioUI;
+updatePortfolioUI = function() {
+    originalUpdatePortfolio();
+    setTimeout(updateAllBondButtons, 200);
+};
 
 
 </script>
