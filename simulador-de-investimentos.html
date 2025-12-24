@@ -11244,19 +11244,6 @@ function updateBondCountdownUI() {
     });
 }
 
-// 4. Integrar com atualização do portfolio
-const originalUpdatePortfolioUI = updatePortfolioUI;
-updatePortfolioUI = function() {
-    // Atualizar contagens
-    updateBondCountdowns();
-    
-    // Chamar função original
-    originalUpdatePortfolioUI();
-    
-    // Atualizar UI
-    setTimeout(updateBondCountdownUI, 100);
-};
-
 // 5. Executar periodicamente
 setInterval(() => {
     updateBondCountdowns();
@@ -11537,7 +11524,127 @@ updatePortfolioUI = function() {
 };
 
 
+// ========================================
+// CORREÇÃO 3: CONTAGEM REGRESSIVA DE TÍTULOS
+// ========================================
 
+// 1. Atualizar informações de contagem regressiva
+function updateBondCountdowns() {
+    const currentDate = AppState.market.simulatedTime;
+    
+    AppState.portfolio.positions.forEach((position, index) => {
+        if (!position.type.includes('titulo') || !position.bondInfo) return;
+        
+        const bondInfo = position.bondInfo;
+        
+        // Calcular dias até vencimento
+        const daysToMaturity = calculateDaysBetween(currentDate, bondInfo.maturityDate);
+        
+        // Calcular dias até próximo pagamento
+        const daysToNextPayment = calculateDaysBetween(currentDate, bondInfo.nextPaymentDate);
+        
+        // Calcular progresso
+        const progressPercent = Math.round((bondInfo.paymentsMade / bondInfo.totalPayments) * 100);
+        
+        // Atualizar informações
+        position.countdown = {
+            daysToMaturity: daysToMaturity,
+            daysToNextPayment: daysToNextPayment,
+            progressPercent: progressPercent,
+            paymentsMade: bondInfo.paymentsMade,
+            totalPayments: bondInfo.totalPayments,
+            nextPaymentFormatted: formatDate(bondInfo.nextPaymentDate),
+            maturityFormatted: formatDate(bondInfo.maturityDate)
+        };
+    });
+}
+
+// 2. Funções auxiliares para cálculos
+function calculateDaysBetween(date1, date2) {
+    // Simplificação: cada mês tem 30 dias
+    const days1 = date1.currentYear * 365 + (date1.currentMonth - 1) * 30 + date1.currentDay;
+    const days2 = date2.currentYear * 365 + (date2.currentMonth - 1) * 30 + date2.currentDay;
+    return Math.max(0, days2 - days1);
+}
+
+function formatDate(date) {
+    return `${date.currentDay.toString().padStart(2, '0')}/${date.currentMonth.toString().padStart(2, '0')}/${date.currentYear}`;
+}
+
+// 3. Atualizar UI com contagem regressiva
+function updateBondCountdownUI() {
+    const positionItems = document.querySelectorAll('.position-item');
+    
+    positionItems.forEach(item => {
+        const tickerElement = item.querySelector('strong');
+        if (!tickerElement) return;
+        
+        const ticker = tickerElement.textContent;
+        
+        // Encontrar a posição
+        const position = AppState.portfolio.positions.find(p => p.ticker === ticker);
+        if (!position || !position.type.includes('titulo') || !position.countdown) return;
+        
+        const countdown = position.countdown;
+        
+        // Remover contagem anterior se existir
+        const oldCountdown = item.querySelector('.bond-countdown');
+        if (oldCountdown) oldCountdown.remove();
+        
+        // Criar nova contagem
+        const countdownDiv = document.createElement('div');
+        countdownDiv.className = 'bond-countdown';
+        countdownDiv.style.cssText = `
+            margin-top: 8px;
+            padding: 10px;
+            background: rgba(214, 174, 100, 0.1);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--accent-green);
+        `;
+        
+        countdownDiv.innerHTML = `
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>⏳ Vencimento: <strong>${countdown.daysToMaturity} dias</strong></span>
+                <span>${countdown.progressPercent}%</span>
+            </div>
+            <div style="height: 6px; background: var(--gray-medium); border-radius: 3px; overflow: hidden; margin-bottom: 6px;">
+                <div style="height: 100%; width: ${countdown.progressPercent}%; background: var(--accent-green); transition: width 0.3s;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
+                <span>Pagamento ${countdown.paymentsMade + 1}/${countdown.totalPayments}</span>
+                <span>Próximo: ${countdown.daysToNextPayment} dias</span>
+            </div>
+            <div style="font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 4px;">
+                ${countdown.nextPaymentFormatted} → ${countdown.maturityFormatted}
+            </div>
+        `;
+        
+        // Inserir antes do botão de venda
+        const sellButton = item.querySelector('.btn-sell-small');
+        if (sellButton) {
+            sellButton.insertAdjacentElement('beforebegin', countdownDiv);
+        }
+    });
+}
+
+// 4. Integrar com atualização do portfolio
+const originalUpdatePortfolioUI = updatePortfolioUI;
+updatePortfolioUI = function() {
+    // Atualizar contagens
+    updateBondCountdowns();
+    
+    // Chamar função original
+    originalUpdatePortfolioUI();
+    
+    // Atualizar UI
+    setTimeout(updateBondCountdownUI, 100);
+};
+
+// 5. Executar periodicamente
+setInterval(() => {
+    updateBondCountdowns();
+}, 10000); // Atualizar a cada 10 segundos
 
 
 </script>
