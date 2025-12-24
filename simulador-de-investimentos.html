@@ -8715,6 +8715,55 @@ document.getElementById('reset-simulation').onclick = function() {
         }, 500);
     }
     
+    // Corrigir fechamento de todos os modais
+function fixModalCloseButtons() {
+    // Fechar modal padrão (trade-modal)
+    const closeButtons = document.querySelectorAll('.close');
+    const extCloseButtons = document.querySelectorAll('.ext-modal-close');
+    
+    // Função para fechar qualquer modal
+    function closeModal(modal) {
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // Adicionar eventos aos botões .close padrão
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.modal');
+            closeModal(modal);
+        });
+    });
+    
+    // Adicionar eventos aos botões .ext-modal-close
+    extCloseButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.modal');
+            closeModal(modal);
+        });
+    });
+    
+    // Fechar modal clicando fora (para todos os modais)
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('modal')) {
+            closeModal(event.target);
+        }
+    });
+    
+    // Fechar com ESC key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const openModals = document.querySelectorAll('.modal[style*="display: block"], .modal[style*="display:block"]');
+            openModals.forEach(modal => closeModal(modal));
+        }
+    });
+}
+
+// Chamar após o DOM carregar
+document.addEventListener('DOMContentLoaded', fixModalCloseButtons);
+
     // ===== INTEGRAÇÃO COM PERSISTÊNCIA EXISTENTE =====
     // Salvar dados complementares
     const originalSaveToLocalStorage = saveToLocalStorage;
@@ -11987,6 +12036,8 @@ updatePortfolioUI = function() {
 setInterval(() => {
     updateBondCountdowns();
 }, 10000); // Atualizar a cada 03 segundos
+
+
 
 
 </script>
