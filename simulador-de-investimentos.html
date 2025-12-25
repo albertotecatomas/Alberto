@@ -11644,69 +11644,55 @@ document.addEventListener('visibilitychange', () => {
 // CORREÇÃO 4: DEVOLUÇÃO DO CAPITAL NO VENCIMENTO
 // ========================================
 
-// 1. Função para processar vencimentos
+// NOVA FUNÇÃO: Processar vencimento de títulos
 function processBondMaturities() {
-    const currentDate = AppState.market.simulatedTime;
-    let maturedBonds = [];
+    const now = Date.now();
+    const oneDayMs = 24 * 60 * 60 * 1000;
     
     AppState.portfolio.positions.forEach((position, index) => {
-        if (!position.type.includes('titulo') || !position.bondInfo) return;
-        
         const asset = AppState.market.assets[position.assetId];
-        if (!asset) return;
         
-        const bondInfo = position.bondInfo;
-        
-        // Verificar se atingiu a data de vencimento
-        if (isSameDate(currentDate, bondInfo.maturityDate) || 
-            isDateAfter(currentDate, bondInfo.maturityDate)) {
+        if (asset && asset.type.includes('titulo')) {
+            // Verificar se atingiu maturidade
+            // Supondo que cada "tick" do mercado = 1 dia na simulação
+            const purchaseDate = new Date(position.purchaseDate || AppState.market.lastUpdate);
+            const daysHeld = Math.floor((now - purchaseDate) / oneDayMs);
             
-            // Verificar se já processou este vencimento
-            if (position.bondInfo.matured) return;
-            
-            // Calcular capital a devolver
-            const principalAmount = bondInfo.principalAmount;
-            
-            // Adicionar ao saldo do usuário
-            AppState.user.availableBalance += principalAmount;
-            
-            // Marcar como vencido
-            position.bondInfo.matured = true;
-            
-            // Registrar devolução
-            const returnRecord = {
-                timestamp: new Date().toISOString(),
-                date: formatSimulatedDate(),
-                bondId: asset.id,
-                bondName: asset.name,
-                ticker: asset.ticker,
-                type: 'capital_return',
-                principalAmount: principalAmount,
-                quantity: position.quantity,
-                simulatedDate: formatSimulatedDate(),
-                status: 'Capital Devolvido'
-            };
-            
-            // Adicionar ao histórico de juros também
-            AppState.portfolio.bondInterestHistory.push(returnRecord);
-            
-            // Adicionar à lista de processamento
-            maturedBonds.push({
-                position: position,
-                asset: asset,
-                principal: principalAmount
-            });
-            
-            console.log(`Título ${asset.ticker} venceu. Capital devolvido: ${formatCurrency(principalAmount)}`);
+            if (daysHeld >= asset.maturity * 365) { // Maturidade em anos
+                // CALCULAR VALOR FINAL = Capital + Juros Compostos
+                const initialInvestment = position.avgPrice * position.quantity;
+                const finalValue = initialInvestment * Math.pow(1 + asset.couponRate, asset.maturity);
+                
+                // RETORNAR VALOR COMPLETO À CARTEIRA
+                AppState.user.availableBalance += finalValue;
+                
+                // REMOVER POSIÇÃO
+                AppState.portfolio.positions.splice(index, 1);
+                
+                // REGISTRAR TRANSAÇÃO DE RESGATE
+                AppState.portfolio.transactions.push({
+                    timestamp: new Date().toISOString(),
+                    assetId: position.assetId,
+                    assetName: asset.name,
+                    type: 'maturity',
+                    quantity: position.quantity,
+                    initialValue: initialInvestment,
+                    finalValue: finalValue,
+                    interest: finalValue - initialInvestment,
+                    total: finalValue
+                });
+                
+                showNotification(
+                    `✅ Título ${asset.ticker} venceu! Resgate: ${formatCurrency(finalValue)} ` +
+                    `(Juros: ${formatCurrency(finalValue - initialInvestment)})`,
+                    'success'
+                );
+            }
         }
     });
     
-    // Processar títulos vencidos
-    if (maturedBonds.length > 0) {
-        processMaturedBonds(maturedBonds);
-    }
-    
-    return maturedBonds;
+    updatePortfolioMetrics();
+    updatePortfolioUI();
 }
 
 // 2. Processar títulos vencidos
@@ -11868,6 +11854,58 @@ sellAsset = function(assetId, quantity) {
     // Para outros ativos, usar função original
     return originalSellAsset(assetId, quantity);
 };
+
+// NOVA FUNÇÃO: Processar vencimento de títulos
+function processBondMaturities() {
+    const now = Date.now();
+    const oneDayMs = 24 * 60 * 60 * 1000;
+    
+    AppState.portfolio.positions.forEach((position, index) => {
+        const asset = AppState.market.assets[position.assetId];
+        
+        if (asset && asset.type.includes('titulo')) {
+            // Verificar se atingiu maturidade
+            // Supondo que cada "tick" do mercado = 1 dia na simulação
+            const purchaseDate = new Date(position.purchaseDate || AppState.market.lastUpdate);
+            const daysHeld = Math.floor((now - purchaseDate) / oneDayMs);
+            
+            if (daysHeld >= asset.maturity * 365) { // Maturidade em anos
+                // CALCULAR VALOR FINAL = Capital + Juros Compostos
+                const initialInvestment = position.avgPrice * position.quantity;
+                const finalValue = initialInvestment * Math.pow(1 + asset.couponRate, asset.maturity);
+                
+                // RETORNAR VALOR COMPLETO À CARTEIRA
+                AppState.user.availableBalance += finalValue;
+                
+                // REMOVER POSIÇÃO
+                AppState.portfolio.positions.splice(index, 1);
+                
+                // REGISTRAR TRANSAÇÃO DE RESGATE
+                AppState.portfolio.transactions.push({
+                    timestamp: new Date().toISOString(),
+                    assetId: position.assetId,
+                    assetName: asset.name,
+                    type: 'maturity',
+                    quantity: position.quantity,
+                    initialValue: initialInvestment,
+                    finalValue: finalValue,
+                    interest: finalValue - initialInvestment,
+                    total: finalValue
+                });
+                
+                showNotification(
+                    `✅ Título ${asset.ticker} venceu! Resgate: ${formatCurrency(finalValue)} ` +
+                    `(Juros: ${formatCurrency(finalValue - initialInvestment)})`,
+                    'success'
+                );
+            }
+        }
+    });
+    
+    updatePortfolioMetrics();
+    updatePortfolioUI();
+}
+
 
 // 4. Modificar openTradeModal para bloquear títulos públicos
 const originalOpenTradeModal = window.openTradeModal;
